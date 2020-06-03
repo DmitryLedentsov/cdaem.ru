@@ -1,0 +1,71 @@
+{#
+    Представление страницы ошибок.
+    @var yii\base\View $this Предсталвение
+    @var string $name Название
+    @var string $message Сообщение
+    @var Exception $exception Исключение
+#}
+
+{% extends "@app/themes/basic/layouts/main.twig" %}
+
+{% block title %} {{ name }} {% endblock %}
+
+{% block header %}
+    {{ use('frontend/modules/site/widgets/BgHeader') }}
+    {{ bg_header_widget({'title': exception.statusCode}) }}
+{% endblock %}
+
+{% block navbar_bottom %}{% endblock %}
+
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        {{ use('yii/widgets/Breadcrumbs') }}
+        {{ breadcrumbs_widget({
+            'itemTemplate' : "<li>{link}</li>\n",
+            'homeLink' :
+            {
+                'label' : 'Главная',
+                'url' : '/'
+            },
+            'links':  [
+            {
+                'label': 'Ошибка',
+            },
+            ],
+        }) }}
+    </div>
+{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+        <div class="error">
+
+            {% if exception.statusCode == 404 %}
+
+                <div class="e-404"><img src="/basic-images/404.png" alt="" /></div>
+                <br />
+                <div class="text-center">
+                    <a href="javascript:window.history.back()" class="btn btn-primary btn-special">Вернуться назад</a>
+                </div>
+
+            {% else %}
+
+                <div class="container pages">
+                    <div class="container-certain primary text">
+                        <h2> {{ name }} </h2>
+                        <p> {{ message|raw }} </p>
+                        <br />
+                        <div class="text-center">
+                            {% set url = app.request.refferer ? app.request.refferer : '/' %}
+                            <a href="{{ url }}" class="btn btn-primary btn-special">Вернуться назад</a>
+                        </div>
+                    </div>
+                </div>
+
+            {% endif %}
+
+        </div>
+    </div>
+{% endblock %}

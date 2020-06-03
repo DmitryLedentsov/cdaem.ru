@@ -1,0 +1,258 @@
+{#
+   Карта
+   @var \yii\web\View this
+#}
+
+{% extends "@app/themes/basic/layouts/main.twig" %}
+
+{% block title %} {{ this.registerTitle('Найти апартаменты на карте | Сдаём.ру') }} {% endblock %}
+
+{% block header %}{% endblock %}
+
+{% block navbar %}
+    {{ this.renderDynamic('return $this->render("@app/modules/office/views/layouts/navbar.twig");') | raw }}
+{% endblock %}
+
+{% block navbar_bottom %}{% endblock %}
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        {{ use('yii/widgets/Breadcrumbs') }}
+        {{ breadcrumbs_widget({
+            'itemTemplate' : "<li>{link}</li>\n",
+            'homeLink' :
+            {
+                'label' : 'Главная',
+                'url' : '/'
+            },
+            'links':  [
+            {
+                'label': 'Карта города - ' ~ city.name,
+                'url': ['/geo/default/index'],
+            },
+            ],
+        }) }}
+    </div>
+{% endblock %}
+
+
+{% block content %}
+
+    {{ this.registerMetaTag({'name' : 'description', 'content' : ''}) }}
+    {{ this.registerMetaTag({'name' : 'keywords', 'content' : ''}) }}
+
+  
+
+    <div class="container">
+
+        <style type="text/css">
+            #map {
+                margin-top: 20px;
+                width: 100%;
+                height: 800px;
+            }
+
+            .balloon-info {
+                width: 250px;
+                height: 90px;
+                display: block;
+            }
+
+            .balloon-info .balloon-more {
+                display: inline-block;
+                margin-top: 15px;
+                float: left;
+            }
+
+            .balloon-info .balloon-view {
+                width: 75px;
+                display: block;
+                float: left;
+            }
+
+            .balloon-info .balloon-view p {
+                width: 100%;
+                display: block;
+                margin: 5px 0 0 0;
+                padding: 0;
+                font-size: 10px;
+                text-overflow: clip;
+                overflow: hidden;
+                line-height: 1;
+            }
+
+            .balloon-info .balloon-property {
+                font-size: 90%;
+                clear: left;
+                line-height: 1.3;
+                margin-top: 10px;
+                height: 18px;
+                overflow: hidden;
+                width: 100%;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+
+            .balloon-info .balloon-image {
+                width: 65px;
+                height: 65px;
+                display: block;
+                background-size: cover;
+                background-position: center;
+            }
+
+            .balloon-info .balloon-desc {
+                overflow: hidden;
+                text-align: right;
+            }
+
+            .balloon-info .balloon-desc span:first-child {
+                width: 65px;
+                display: block;
+                text-align: left;
+                float: left;
+            }
+
+            .balloon-info .balloon-desc p {
+                margin: 0;
+                padding: 0;
+                height: 22px;
+                overflow: hidden;
+                width: 100%;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+            
+         
+
+        </style>
+        <hr>
+        <div style="text-align:center;"><a class="backmap-btn-2" href="{{ path(['/partners/default/index']) }}">Назад к поиску</a></div>
+        <div id="map"></div>
+
+
+        <script src="//api-maps.yandex.ru/2.1/?lang=ru-RU" type="text/javascript"></script>
+        <script type="text/javascript">
+
+            ymaps.ready(init);
+
+
+            function init() {
+                var myMap = new ymaps.Map('map', {
+                            center: [{{ city.longitude }}, {{ city.latitude }}],
+                            zoom: 10
+                        }),
+                        objectManager = new ymaps.ObjectManager({
+                            clusterize: true,
+                            gridSize: 32
+                        });
+
+                // Задаём опции кластеров
+                objectManager.clusters.options.set({
+                    preset: 'islands#blueClusterIcons',
+                    //balloonContentLayout: 'cluster#balloonCarousel',
+                    //clusterBalloonPagerSize: 5,
+                    //clusterBalloonPanelMaxMapArea: 0,
+                    balloonContentLayoutWidth: 400,
+                    balloonContentLayoutHeight: 300
+                });
+
+                var activeObjectMonitor = new ymaps.Monitor(objectManager.clusters.state);
+
+                // При клике на некластеризованные объекты получаем содержимое балуна
+                objectManager.objects.events.add('click', function (e) {
+                    var objectId = e.get('objectId');
+                    getBalloonData(objectId, function(data) {
+                        render(data, objectId);
+                    });
+                });
+
+                // В кластеризованных объектах отслеживаем изменение выбранного объекта
+                activeObjectMonitor.add('activeObject', function () {
+                    var objectId = activeObjectMonitor.get('activeObject').id;
+                    getBalloonData(objectId, function(data) {
+                        render(data, objectId);
+                    });
+                });
+
+                // Проверяем, есть ли у выбранного объекта содержимое балуна
+                /*function hasBalloonData(objectId) {
+                 return objectManager.objects.getById(objectId).properties.balloonContent;
+                 }*/
+
+
+                // Получаем данные и устанавливаем содержимое балуна
+                /*function setBalloonData(objectId) {
+                 if (!hasBalloonData(objectId)) {
+                 getBalloonData(objectId).done(function (data) {
+                 var object = objectManager.objects.getById(objectId);
+                 object.properties.balloonContent = data;
+                 var objectState = objectManager.getObjectState(objectId);
+                 if (objectState.isClustered) {
+                 objectManager.clusters.balloon.open(objectState.cluster.id);
+                 }
+                 else {
+                 objectManager.objects.balloon.open(objectId);
+                 }
+                 });
+                 }
+                 }*/
+
+
+                myMap.geoObjects.add(objectManager);
+                $.ajax({
+                            url: '/geo/map',
+                            dataType: 'json'
+                        })
+                        .done(function (data) {
+                            objectManager.add(data);
+                        })
+                        .fail(function () {
+                            console.log("error");
+                        });
+
+
+                // Функция, осуществляющая запрос за данными балуна на сервер.
+                function getBalloonData(objectId, done) {
+                    var dataDeferred = ymaps.vow.defer();
+                    $.ajax({
+                                url: '/geo/map/' + objectId,
+                                type: 'GET',
+                                dataType: 'html'
+                            })
+                            .done(function (data) {
+                                done(data);
+                                dataDeferred.resolve(data);
+                            })
+                            .fail(function () {
+                                console.log("full-story error");
+                                dataDeferred.resolve('error');
+                            });
+                }
+
+
+                function render(data, objectId) {
+                    var object = objectManager.objects.getById(objectId);
+                    object.properties.balloonContent = data;
+                    var objectState = objectManager.getObjectState(objectId);
+                    if (objectState.isClustered) {
+                        objectManager.clusters.balloon.open(objectState.cluster.id);
+                    }
+                    else {
+                        objectManager.objects.balloon.open(objectId);
+                    }
+                }
+            }
+
+
+        </script>
+
+    </div>
+
+
+{% endblock %}
+
+{% block footer %}
+    {% include "@app/themes/basic/layouts/footer-partners.twig" %}
+{% endblock %}
+

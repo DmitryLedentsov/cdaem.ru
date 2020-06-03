@@ -1,0 +1,56 @@
+{
+    "name": "yiisoft/yii2-app-advanced",
+    "description": "Yii 2 Advanced Application Template",
+    "keywords": ["yii2", "framework", "advanced", "application template"],
+    "homepage": "http://www.yiiframework.com/",
+    "type": "project",
+    "license": "BSD-3-Clause",
+    "support": {
+        "issues": "https://github.com/yiisoft/yii2/issues?state=open",
+        "forum": "http://www.yiiframework.com/forum/",
+        "wiki": "http://www.yiiframework.com/wiki/",
+        "irc": "irc://irc.freenode.net/yii",
+        "source": "https://github.com/yiisoft/yii2"
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.4.0",
+        "yiisoft/yii2": "*",
+        "yiisoft/yii2-bootstrap": "*",
+        "yiisoft/yii2-jui": "*",
+        "yiisoft/yii2-swiftmailer": "*",
+        "yiisoft/yii2-twig": "*",
+        "nepster-web/yii2-faceviewer-widget": "*",
+        "nepster-web/yii2-module-users": "dev-master",
+        "nepster-web/yii2-basis-components": "*",
+        "nepster-web/yii2-module-robokassa": "dev-master",
+        "yurkinx/yii2-image": "dev-master",
+        "iutbay/yii2-imagecache" : "*",
+        "kartik-v/yii2-widget-datepicker": "*",
+        "kartik-v/yii2-widget-datetimepicker": "*",
+        "vova07/yii2-imperavi-widget": "*",
+        "himiklab/yii2-recaptcha-widget" : "*",
+        "ladamalina/yii2-smsc": "*",
+        "giggsey/libphonenumber-for-php": "~6.0",
+        "vitalik74/yii2-geocode-yandex": "*",
+        "execut/yii2-robots-txt": "dev-master"
+    },
+    "require-dev": {
+        "yiisoft/yii2-codeception": "*",
+        "yiisoft/yii2-debug": "*",
+        "yiisoft/yii2-gii": "*",
+        "yiisoft/yii2-faker": "*",
+        "codeception/specify": "*",
+        "codeception/verify": "*",
+        "yiisoft/yii2-apidoc": "*"
+    },
+    "config": {
+        "process-timeout": 1800
+    },
+  "extra": {
+    "asset-installer-paths": {
+      "npm-asset-library": "vendor/npm",
+      "bower-asset-library": "vendor/bower"
+    }
+  }
+}

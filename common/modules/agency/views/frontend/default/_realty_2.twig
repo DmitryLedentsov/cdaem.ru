@@ -1,0 +1,93 @@
+{#
+    Недвижимость (Просмотр апартаментов)
+    @var common\modules\agency\models\Apartment searchModel
+    @var yii\data\ActiveDataProvider dataProvider
+    @var bool onlyAgency
+#}
+
+<div class="agency">
+
+    <div class="container">
+        <div class="agency-filter">
+            <div class="description agency-all">
+                {% if onlyAgency == true %}
+                    <div class="d-title"><h2>Все варианты квартир на сутки в Москве, Час, Ночь, Бронируйте!</h2></div>
+                    <p>Специалисты Сдаём.ру подберут вам проверенную квартиру в Москве по выгодным для Вас условиям! </p>
+                {% else %}
+                    <div class='d-title'>{{ metaData.agency_seo_short_desc | raw }}</div>
+                {% endif %}
+            </div>
+            <div class="filters agency-all">
+
+                <div class="select-filter pink round_dr_filter" style="width: 250px">
+                    <select name="district" class="select-darkgray">
+                        {% for name_eng, district_name in searchModel.districtsList %}
+                            <option value="/{{ searchModel.rentType }}/komnat/{{ searchModel.rooms }}/okrug/{{ name_eng }}"{% if searchModel.district == name_eng %} selected="selected"{% endif %}>{{ district_name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="select-filter round_dr_filter" style="width: 250px">
+                    <select name="rooms" class="select-pinkround">
+                        {% for key, room in searchModel.roomsList %}
+                            <option  value="/{{ searchModel.rentType }}/komnat/{{ key }}/okrug/{{ searchModel.district }}"{% if searchModel.rooms == key %} selected="selected"{% endif %}>{{ room }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="agency-info">
+            <h3>
+                Информация:
+            </h3>
+            
+            <p><strong>Расчётный час. Заезд "на Сутки"</strong>- с 18чдо18ч (следующего дня)-3000р, выезд до 21ч-3500р. </p>
+                <p><strong>Заезд "на Ночь"</strong>после 18:00 до 10:00 утра по цене от1700р до 2000р., до 12ч следующего дня 2500р</p>
+                <p><strong>Заселение  "на Час"</strong> C 10ч. до 21ч. Цены на часовые квартиры от 300р. до 400р. за час! Квартира за  300р., минимальная оплата 1000р./ три часа, далее по 300р. за каждый час! Квартира за 400р., минимальная оплата 1000р./два часа, далее по 400р. за каждый час.</p>
+            
+        </div>
+    </div>
+
+
+
+
+
+    <div class="container">
+        <div class="row apartments fourrow" style="margin-top:50px;">
+            {% for advert in dataProvider.getModels() %}
+                {{ preview_advert_widget({'advert': advert}) }}
+            {% endfor %}
+
+            <div class="clearfix"></div>
+        </div>
+
+        {% if dataProvider.getModels() is empty %}
+            <div class="alert alert-danger" role="alert">
+                Апартаменты не найдены.
+             
+            </div>
+              
+        {% endif %}
+
+        {% if onlyAgency == false %}
+            <div class="all-articles-link">
+                <a class="newblue-btn" href="{{ path(['/agency/default/index']) }}"><span>Все квартиры</span></a>
+            </div>
+        {% endif %}
+        
+         <div class="all-articles-link">
+                <a class="newblue-btn" href=""><span>Показать еще</span></a>
+         </div>
+
+    </div>
+</div>
+
+
+
+
+{% if onlyAgency == true %}
+    <p><br/></p>
+{% endif %}

@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>DevBridge Autocomplete Demo</title>
+    <link href="content/styles.css" rel="stylesheet" />
+</head>
+<body>
+
+
+
+<div>
+    <input type="text" name="country" id="autocomplete"/>
+</div>
+
+
+
+
+<script type="text/javascript" src="scripts/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="scripts/jquery.mockjax.js"></script>
+<script type="text/javascript" src="src/jquery.autocomplete.js"></script>
+
+
+
+<script>
+
+    $('#autocomplete').autocomplete({
+        serviceUrl: 'server.php',
+        onSelect: function (suggestion) {
+            console.log('You selected: ' + suggestion.value + ', ' + suggestion.data);
+        }
+    });
+
+</script>
+
+
+</body>
+</html>

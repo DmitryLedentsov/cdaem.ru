@@ -1,0 +1,74 @@
+{#
+    Обращение в тех. поддержку
+    @var \yii\web\View this
+    @var \common\helpdesk\models\Helpdesk model
+    @var \common\helpdesk\models\form\HelpdeskForm formModel
+#}
+
+{% extends "@app/themes/basic/layouts/main.twig" %}
+
+{% block title %} Помощь в аренде квартир и загородных домов | Сдаём.ру {% endblock %}
+
+{% block header %}
+    {{ use('frontend/modules/site/widgets/BgHeader') }}
+    {{ bg_header_widget({'title': 'Помощь'}) }}
+{% endblock %}
+
+{% block navbar %}
+    {{ this.renderDynamic('return $this->render("@app/modules/office/views/layouts/navbar.twig");') | raw }}
+{% endblock %}
+
+{% block footer %}
+    {{ this.render("@app/themes/basic/layouts/footer-partners.twig") | raw }}
+{% endblock %}
+
+{% block navbar_bottom %}{% endblock %}
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        {{ use('yii/widgets/Breadcrumbs') }}
+        {{ breadcrumbs_widget({
+            'itemTemplate' : "<li>{link}</li>\n",
+            'homeLink' :
+            {
+                'label' : 'Главная',
+                'url' : '/'
+            },
+            'links':  [
+            {
+                'label': 'Помощь',
+            },
+            ],
+        }) }}
+    </div>
+{% endblock %}
+
+
+{% block content %}
+
+    {{ this.registerMetaTag({'name' : 'description', 'content' : 'Сдаём.ру связь с администрацией. Помощь в Аренде Квартир и загородных домов. Поиск жилья. Снять или сдать жилье. Keywords: Квартира на сутки, сдать квартиру, сдача жилья в аренду, снять квартиру на сутки, квартира на сутки недорого, квартиры на сутки без посредников, снять квартиру на сутки не дорого, снять квартиру на сутки без посредников'}) }}
+    {{ this.registerMetaTag({'name' : 'keywords', 'content' : 'Сдаём.ру связь с администрацией. Помощь в Аренде Квартир и загородных домов. Поиск жилья. Снять или сдать жилье. Keywords: Квартира на сутки, сдать квартиру, сдача жилья в аренду, снять квартиру на сутки, квартира на сутки недорого, квартиры на сутки без посредников, снять квартиру на сутки не дорого, снять квартиру на сутки без посредников'}) }}
+
+    {{ use('common/modules/helpdesk/assets/HelpdeskAsset') }}
+    {{ register_helpdesk_asset() }}
+
+    <div class="container help clearfix">
+        {{ this.render("@app/modules/office/views/default/_nav-help.twig") | raw }}
+        <div class="help-text">
+            <div class="container-certain orange">
+                {% if app.session.hasFlash('danger') %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ app.session.getFlash('danger') | raw }}
+                    </div> <br/>
+                {% endif %}
+                {% if app.session.hasFlash('success') %}
+                    <div class="alert alert-success" role="alert">
+                        {{ app.session.getFlash('success') | raw }}
+                    </div> <br/>
+                {% endif %}
+                {{ this.render('_form.twig', {'model' : model, 'formModel' : formModel}) | raw }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

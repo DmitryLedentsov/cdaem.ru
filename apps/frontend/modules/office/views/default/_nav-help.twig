@@ -1,0 +1,18 @@
+<div class="nav">
+    <h3>Центр помощи:</h3>
+    <ul>
+        <li {{ app.request.pathInfo == 'help/apartment-info' ? ' class="active"' : '' }}><a href="{{ path({0 : '/office/default/help', 'url'  : 'apartment-info'}) }}">Снять или сдать жилье</a></li>
+        <li {{ app.request.pathInfo == 'help/signup-info' ? ' class="active"' : '' }}><a href="{{ path({0 : '/office/default/help', 'url'  : 'signup-info'}) }}">Регистрация</a></li>
+        <li {{ app.request.pathInfo == 'help/office-info' ? ' class="active"' : '' }}><a href="{{ path({0 : '/office/default/help', 'url'  : 'office-info'}) }}">Управление кабинетом</a></li>
+        <li {{ app.request.pathInfo == 'help/security-info' ? ' class="active"' : '' }}><a href="{{ path({0 : '/office/default/help', 'url'  : 'security-info'}) }}">Безопасность</a></li>
+        <li {{ app.request.pathInfo == 'help/notifications-info' ? ' class="active"' : '' }}><a href="{{ path({0 : '/office/default/help', 'url'  : 'notifications-info'}) }}">Оповещения</a></li>
+        <li {{ app.request.pathInfo == 'help/apartment-search-info' ? ' class="active"' : '' }}><a href="{{ path({0 : '/office/default/help', 'url'  : 'apartment-search-info'}) }}">Поиск жилья</a></li>
+        <li {{ app.request.pathInfo == 'help/reviews-info' ? ' class="active"' : '' }}><a href="{{ path({0 : '/office/default/help', 'url'  : 'reviews-info'}) }}">Отзывы</a></li>
+        <li {{ app.request.pathInfo == 'help/services-info' ? ' class="active"' : '' }}><a href="{{ path({0 : '/office/default/help', 'url'  : 'services-info'}) }}">Платные услуги</a></li>
+        <li {{ app.request.pathInfo == 'help/agreement' ? ' class="active"' : '' }} ><a href="{{ path({0 : '/office/default/help', 'url'  : 'agreement'}) }}">Пользовательское соглашение</a></li>
+        <li {{ app.request.pathInfo == 'help/contacts-info' ? ' class="active"' : '' }}><a href="{{ path({0 : '/office/default/help', 'url'  : 'contacts-info'}) }}">Контактная информация</a></li>
+        <li {{ app.request.pathInfo == 'help/msk' ? ' class="active"' : '' }}><a href="{{ path({0 : '/office/default/help', 'url'  : 'msk'}) }}">Квартиры от Сдаём.ру для тех, кто приехал или планирует посетить Москву.</a></li>
+    </ul>
+    <p><br/></p>
+    <p><br/></p>
+</div>

@@ -1,0 +1,77 @@
+{#
+    Просмотр
+    @var \yii\web\View this
+    @var frontend\modules\partners\models\Advert model
+#}
+
+{% extends "@app/themes/basic/layouts/main.twig" %}
+
+{% block title %}{{ this.registerTitle('Снять ' ~ model.apartment.total_rooms ~ ' -комнатная ' ~ model.rentType.name ~ ' г. ' ~ model.apartment.city.name ~ ', ' ~ model.apartment.address) ~ ' | Сдаём.ру'}}{% endblock %}
+
+{% block navbar %}
+    {% include("@frontend/modules/office/views/layouts/navbar.twig") %}
+{% endblock %}
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        {{ use('yii/widgets/Breadcrumbs') }}
+        {{ breadcrumbs_widget({
+            'itemTemplate' : "<li>{link}</li>\n",
+            'homeLink' :
+            {
+                'label' : 'Главная',
+                'url' : '/'
+            },
+            'links':  [
+            {
+                'label': model.rentType.name,
+            },
+            {
+                'label': '№ ' ~ model.advert_id,
+            },
+            {
+                'label': 'Еще предложения',
+            },
+            ],
+        }) }}
+    </div>
+{% endblock %}
+
+{% block content %}
+
+    {{ this.registerMetaTag({'name' : 'description', 'content' : 'Стоимость аренды ' ~model.apartment.total_rooms ~'-комнатная '~model.rentType.name ~' г. '~model.apartment.city.name ~', '~model.apartment.address~' - ' ~model.metaTagsPrice}) }}
+    {{ this.registerMetaTag({'name' : 'keywords', 'content' : model.rentType.meta_keywords}) }}
+
+    {{ use('frontend/modules/partners/widgets/PreviewAdvert') }}
+
+    {{ use('frontend/modules/partners/assets/ApartmentAsset') }}
+    {{ register_apartment_asset() }}
+
+
+    {# Слайдер с рекламой #}
+    {{ use('frontend/modules/partners/widgets/AdvertisingTopSliderAdverts') }}
+    {{ advertising_top_slider_adverts_widget() }}
+
+    {{ use('frontend/modules/partners/widgets/PreviewAdvertIndex') }}
+
+
+    <div class="container apartment-board-info clearfix">
+
+        <div class="user">
+            {% include('@app/modules/partners/views/default/view/owner.twig') %}
+        </div>
+
+        <div class="info clearfix">
+            {% include('@app/modules/partners/views/default/view/offers.twig') %}
+            {% if otherAdverts is empty %}
+                <div class="alert alert-danger" role="alert">Апартаменты не найдены.</div>
+            {% endif %}
+        </div>
+
+    </div>
+
+{% endblock content %}
+
+{% block footer %}
+    {% include "@app/themes/basic/layouts/footer-partners.twig" %}
+{% endblock %}

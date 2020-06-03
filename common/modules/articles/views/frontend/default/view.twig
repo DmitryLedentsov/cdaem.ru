@@ -1,0 +1,103 @@
+{#
+    Просмотр статьи
+    @var \yii\web\View this
+    @var \frontend\acticles\models\Acticle model
+#}
+
+{% extends "@app/themes/basic/layouts/main.twig" %}
+
+{% block title %} {{ this.registerTitle(model.title) }} {% endblock %}
+{% block navbar %}
+    {% include("@frontend/modules/office/views/layouts/navbar.twig") %}
+{% endblock %}
+{% block header %}
+    {{ use('frontend/modules/site/widgets/BgHead') }}
+    {{ bg_head_widget({'title': model.name, 'background': model.background}) }}
+{% endblock %}
+
+
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        {{ use('yii/widgets/Breadcrumbs') }}
+        {{ breadcrumbs_widget({
+            'itemTemplate' : "<li>{link}</li>\n",
+            'homeLink' :
+            {
+                'label' : 'Главная',
+                'url' : '/'
+            },
+            'links':  [
+            {
+                'label': 'Статьи',
+                'url': ['/articles/default/index'],
+            },
+            {
+                'label': model.name,
+            }
+            ],
+        }) }}
+    </div>
+{% endblock %}
+
+{% block content %}
+
+    {{ this.registerMetaTag({'name' : 'description', 'content' : model.description}) }}
+    {{ this.registerMetaTag({'name' : 'keywords', 'content' : model.keywords}) }}
+    <div class="bg-article-new">
+        <div class="container">
+            <div class="row">
+
+                {% if model.articlelink is not empty %}
+                    <div class="col-md-10">
+                        <div class="primary text">
+                            <div class="article-v-title"><h2>{{ model.name }}</h2></div>
+                                    {% if model.full_text is empty %}
+                                        {% if model.short_text is empty %}
+                                    Статья находится в стадии наполнения информацией.
+                                {% else %}
+                                    {{ model.short_text | raw }}
+                                {% endif %}
+                            {% else %}
+                                {{ model.full_text | raw }}
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="articlelink-block col-md-2 clearfix">
+                        <div class="row">
+                            {% for data in model.articlelink %}
+                                <div class="col-md-12 articlelink-item">
+                                    <div class="img_wrap-articlelink" style="background: url(/images/{{ data.thumb_img }})center center;background-size:cover"></div>
+                                    <a href="{{ data.link_page }}" class="article-lnk"><span class="articlelink-title">{{ data.title }}</span></a>
+                                    <a href="{{ data.link_page }}" class="article-nolnk"></a>
+                                </div>
+                            {% endfor %}
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+
+
+
+
+                {% else  %}
+                    <div class="primary text">
+                        <div class="article-v-title"><h2>{{ model.name }}</h2></div>
+                                {% if model.full_text is empty %}
+                                    {% if model.short_text is empty %}
+                                Статья находится в стадии наполнения информацией.
+                            {% else %}
+                                {{ model.short_text | raw }}
+                            {% endif %}
+                        {% else %}
+                            {{ model.full_text | raw }}
+                        {% endif %}
+                    </div>
+                {% endif %}
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

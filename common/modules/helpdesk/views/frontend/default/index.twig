@@ -1,0 +1,124 @@
+{#
+    Обращение в тех. поддержку
+    @var \yii\web\View this
+    @var \common\helpdesk\models\Helpdesk model
+    @var \common\helpdesk\models\form\HelpdeskForm formModel
+#}
+
+{% extends "@app/themes/basic/layouts/main.twig" %}
+
+{% block title %} Связь с администрацией. | Сдаём.ру {% endblock %}
+
+{% block header %}
+    {{ use('frontend/modules/site/widgets/BgHeader') }}
+    {{ bg_header_widget({'title': 'Техническая поддержка'}) }}
+{% endblock %}
+
+{% block navbar_bottom %}{% endblock %}
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        {{ use('yii/widgets/Breadcrumbs') }}
+        {{ breadcrumbs_widget({
+            'itemTemplate' : "<li>{link}</li>\n",
+            'homeLink' :
+            {
+                'label' : 'Главная',
+                'url' : '/'
+            },
+            'links':  [
+            {
+                'label': 'Техническая поддержка',
+                'url': ['/helpdesk/default/index'],
+            },
+            ],
+        }) }}
+    </div>
+{% endblock %}
+
+
+{% block content %}
+
+    {{ this.registerMetaTag({'name' : 'description', 'content' : 'Связь с администрацией сайта Cdaem.ru'}) }}
+    {{ this.registerMetaTag({'name' : 'keywords', 'content' : ''}) }}
+
+    {{ use('common/modules/helpdesk/assets/HelpdeskAsset') }}
+    {{ register_helpdesk_asset() }}
+
+
+    <div class="container">
+
+        <div class="container-certain primary text hidden-xs">
+            <p>
+                Для развития нашей компании и улучшения сервиса, нам важно Ваше мнение об отдыхе в квартирах предоставляемых <a href="/">Сdaem.ru</a>.
+            </p>
+            <p>
+                <b>Мы примем критику, чтобы исправить ошибки сотрудников и менеджеров.</b> <br/>
+                Если Вам нагрубили, плохо встретили, плохо убрали квартиру, не вовремя заселили или еще что-то Вам не понравилось,
+                менеджеры нашей компании примут Вашу критику и исправят наши недоработки в части обслуживания или сервиса.
+                Ваши жалобы просим направлять на EMAIL: info@cdaem.ru или по тел. +7(905) 777-40-79. Так же можете оставить на сайте по форме, предоставленной ниже.
+            </p>
+            <p>
+                Обращаем Ваше внимание, что пожелания и жалобы, оставленные Вами на сайте, попадают напрямую к руководству компании, а это значит меры будут приняты немедленно и ситуация будет исправлена.
+            </p>
+        </div>
+
+
+        <div class="container-certain orange hidden-xs">
+
+            {% if app.session.hasFlash('danger') %}
+                <div class="alert alert-danger" role="alert">
+                    {{ app.session.getFlash('danger') | raw }}
+                </div> <br/>
+            {% endif %}
+
+            {% if app.session.hasFlash('success') %}
+                <div class="alert alert-success" role="alert">
+                    {{ app.session.getFlash('success') | raw }}
+                </div> <br/>
+            {% endif %}
+
+            {{ this.render('_form.twig', {'model' : model, 'formModel' : formModel}) | raw }}
+
+        </div>
+
+
+        <div class="container-certain orange visible-xs">
+
+            {% if app.session.hasFlash('danger') %}
+                <div class="alert alert-danger" role="alert">
+                    {{ app.session.getFlash('danger') | raw }}
+                </div> <br/>
+            {% endif %}
+
+            {% if app.session.hasFlash('success') %}
+                <div class="alert alert-success" role="alert">
+                    {{ app.session.getFlash('success') | raw }}
+                </div> <br/>
+            {% endif %}
+
+            {{ this.render('_form.twig', {'model' : model, 'formModel' : formModel}) | raw }}
+
+        </div>
+
+        <div class="container-certain primary text visible-xs">
+            <p>
+                Для развития нашей компании и улучшения сервиса, нам важно Ваше мнение об отдыхе в квартирах предоставляемых <a href="/">Сdaem.ru</a>.
+            </p>
+            <p>
+                <b>Мы примем критику, чтобы исправить ошибки сотрудников и менеджеров.</b> <br/>
+                Если Вам нагрубили, плохо встретили, плохо убрали квартиру, не вовремя заселили или еще что-то Вам не понравилось,
+                менеджеры нашей компании примут Вашу критику и исправят наши недоработки в части обслуживания или сервиса.
+                Ваши жалобы просим направлять на EMAIL: info@cdaem.ru или по тел. +7(905) 777-40-79. Так же можете оставить на сайте по форме, предоставленной ниже.
+            </p>
+            <p>
+                Обращаем Ваше внимание, что пожелания и жалобы, оставленные Вами на сайте, попадают напрямую к руководству компании, а это значит меры будут приняты немедленно и ситуация будет исправлена.
+            </p>
+        </div>
+
+
+
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,125 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/nodejs', '/usr/bin/npm', '-g', 'install', 'forever' ]
+2 info using npm@1.3.10
+3 info using node@v0.10.25
+4 verbose cache add [ 'forever', null ]
+5 verbose cache add name=undefined spec="forever" args=["forever",null]
+6 verbose parsed url { protocol: null,
+6 verbose parsed url   slashes: null,
+6 verbose parsed url   auth: null,
+6 verbose parsed url   host: null,
+6 verbose parsed url   port: null,
+6 verbose parsed url   hostname: null,
+6 verbose parsed url   hash: null,
+6 verbose parsed url   search: null,
+6 verbose parsed url   query: null,
+6 verbose parsed url   pathname: 'forever',
+6 verbose parsed url   path: 'forever',
+6 verbose parsed url   href: 'forever' }
+7 silly lockFile e07f8c4a-forever forever
+8 verbose lock forever /home/vladymir/.npm/e07f8c4a-forever.lock
+9 silly lockFile e07f8c4a-forever forever
+10 silly lockFile e07f8c4a-forever forever
+11 verbose addNamed [ 'forever', '' ]
+12 verbose addNamed [ null, '*' ]
+13 silly lockFile 28ef027b-forever forever@
+14 verbose lock forever@ /home/vladymir/.npm/28ef027b-forever.lock
+15 silly addNameRange { name: 'forever', range: '*', hasData: false }
+16 verbose url raw forever
+17 verbose url resolving [ 'https://registry.npmjs.org/', './forever' ]
+18 verbose url resolved https://registry.npmjs.org/forever
+19 info trying registry request attempt 1 at 22:21:33
+20 http GET https://registry.npmjs.org/forever
+21 http 200 https://registry.npmjs.org/forever
+22 silly registry.get cb [ 200,
+22 silly registry.get   { server: 'nginx/1.10.1',
+22 silly registry.get     'content-type': 'application/json',
+22 silly registry.get     'last-modified': 'Fri, 25 Aug 2017 18:24:36 GMT',
+22 silly registry.get     etag: '"59a06b64-16eba"',
+22 silly registry.get     'cache-control': 'max-age=300',
+22 silly registry.get     'content-length': '93882',
+22 silly registry.get     'accept-ranges': 'bytes',
+22 silly registry.get     date: 'Wed, 30 Aug 2017 19:21:29 GMT',
+22 silly registry.get     via: '1.1 varnish',
+22 silly registry.get     age: '0',
+22 silly registry.get     connection: 'keep-alive',
+22 silly registry.get     'x-served-by': 'cache-hhn1547-HHN',
+22 silly registry.get     'x-cache': 'MISS',
+22 silly registry.get     'x-cache-hits': '0',
+22 silly registry.get     'x-timer': 'S1504120889.715748,VS0,VE416',
+22 silly registry.get     vary: 'Accept-Encoding, Accept' } ]
+23 silly addNameRange number 2 { name: 'forever', range: '*', hasData: true }
+24 silly addNameRange versions [ 'forever',
+24 silly addNameRange   [ '0.6.0',
+24 silly addNameRange     '0.6.1',
+24 silly addNameRange     '0.6.2',
+24 silly addNameRange     '0.6.3',
+24 silly addNameRange     '0.6.4',
+24 silly addNameRange     '0.6.5',
+24 silly addNameRange     '0.6.6',
+24 silly addNameRange     '0.6.7',
+24 silly addNameRange     '0.6.8',
+24 silly addNameRange     '0.6.9',
+24 silly addNameRange     '0.7.0',
+24 silly addNameRange     '0.7.1',
+24 silly addNameRange     '0.7.2',
+24 silly addNameRange     '0.7.3',
+24 silly addNameRange     '0.7.4',
+24 silly addNameRange     '0.7.5',
+24 silly addNameRange     '0.8.0',
+24 silly addNameRange     '0.8.1',
+24 silly addNameRange     '0.8.2',
+24 silly addNameRange     '0.8.3',
+24 silly addNameRange     '0.8.4',
+24 silly addNameRange     '0.8.5',
+24 silly addNameRange     '0.9.0',
+24 silly addNameRange     '0.9.1',
+24 silly addNameRange     '0.9.2',
+24 silly addNameRange     '0.10.0',
+24 silly addNameRange     '0.10.5',
+24 silly addNameRange     '0.10.6',
+24 silly addNameRange     '0.10.7',
+24 silly addNameRange     '0.10.8',
+24 silly addNameRange     '0.10.9',
+24 silly addNameRange     '0.10.10',
+24 silly addNameRange     '0.10.11',
+24 silly addNameRange     '0.11.0',
+24 silly addNameRange     '0.11.1',
+24 silly addNameRange     '0.12.0',
+24 silly addNameRange     '0.13.0',
+24 silly addNameRange     '0.14.1',
+24 silly addNameRange     '0.14.2',
+24 silly addNameRange     '0.15.0',
+24 silly addNameRange     '0.15.1',
+24 silly addNameRange     '0.15.2',
+24 silly addNameRange     '0.15.3' ] ]
+25 verbose addNamed [ 'forever', '0.15.3' ]
+26 verbose addNamed [ '0.15.3', '0.15.3' ]
+27 silly lockFile 1e2672fd-forever-0-15-3 forever@0.15.3
+28 verbose lock forever@0.15.3 /home/vladymir/.npm/1e2672fd-forever-0-15-3.lock
+29 silly lockFile 4e54f862-s-org-forever-forever-0-15-3-tgz https://registry.npmjs.org/forever/-/forever-0.15.3.tgz
+30 verbose lock https://registry.npmjs.org/forever/-/forever-0.15.3.tgz /home/vladymir/.npm/4e54f862-s-org-forever-forever-0-15-3-tgz.lock
+31 verbose addRemoteTarball [ 'https://registry.npmjs.org/forever/-/forever-0.15.3.tgz',
+31 verbose addRemoteTarball   '77d9d7e15fd2f511ad9d84a110c7dd8fc8ecebc2' ]
+32 silly lockFile 4e54f862-s-org-forever-forever-0-15-3-tgz https://registry.npmjs.org/forever/-/forever-0.15.3.tgz
+33 silly lockFile 4e54f862-s-org-forever-forever-0-15-3-tgz https://registry.npmjs.org/forever/-/forever-0.15.3.tgz
+34 silly lockFile 1e2672fd-forever-0-15-3 forever@0.15.3
+35 silly lockFile 1e2672fd-forever-0-15-3 forever@0.15.3
+36 silly lockFile 28ef027b-forever forever@
+37 silly lockFile 28ef027b-forever forever@
+38 error Error: EACCES, mkdir '/home/vladymir/tmp/npm-6915-jTCl2vwG'
+38 error  { [Error: EACCES, mkdir '/home/vladymir/tmp/npm-6915-jTCl2vwG']
+38 error   errno: 3,
+38 error   code: 'EACCES',
+38 error   path: '/home/vladymir/tmp/npm-6915-jTCl2vwG' }
+39 error Please try running this command again as root/Administrator.
+40 error System Linux 4.4.0-62-generic
+41 error command "/usr/bin/nodejs" "/usr/bin/npm" "-g" "install" "forever"
+42 error cwd /var/www/cdaem.my
+43 error node -v v0.10.25
+44 error npm -v 1.3.10
+45 error path /home/vladymir/tmp/npm-6915-jTCl2vwG
+46 error code EACCES
+47 error errno 3
+48 error stack Error: EACCES, mkdir '/home/vladymir/tmp/npm-6915-jTCl2vwG'
+49 verbose exit [ 3, true ]

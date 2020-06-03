@@ -1,0 +1,86 @@
+.box-modal {
+    position: relative;
+    padding: 15px 15px 68px 15px;
+    background: #ebebeb;
+    color: #3c3c3c;
+    border-radius: 3px;
+    max-width: 830px;
+}
+
+.help-em {
+    background: #bdc3c7 !important;
+    color:white !important;
+    cursor: pointer;
+}
+
+.help-em:hover {
+    background: #FFAF3E !important;
+}
+
+.box-modal_close { 
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    font-size: 17px;
+    line-height: 20px;
+    color: white;
+    cursor: pointer;
+    background: #585858 url(/basic-images/clos.png)left no-repeat;
+    padding: 20px;
+    border-radius: 4px 0px 0px 0px;
+    margin-top: 10px;
+    padding-left: 34px;
+}
+
+.poz {
+    display: inline-block;
+    height: 120px;
+    min-width: 170px;
+}
+
+.poz-span {
+    display: table-cell;
+    height: 120px;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 24px;
+}
+
+
+.dash-poz {
+    border-bottom: 1px dashed black;
+    margin: 0 10px;
+    min-height: 120px;
+}
+
+.p-style1 {
+    padding: 10px !important;
+    font-size: 16px !important;
+}
+
+.poz-1 {
+    background: url(/basic-images/poz-1.png)center no-repeat;
+}
+
+.poz-2 {
+    background: url(/basic-images/poz-2.png)center no-repeat;
+}
+
+.poz-3 {
+    background: url(/basic-images/poz-3.png)center no-repeat;
+}
+
+.poz-4 {
+    background: url(/basic-images/poz-4.png)center no-repeat;
+}
+
+.poz-5 {
+    background: url(/basic-images/poz-5.png)center no-repeat;
+}
+
+.poz-6 {
+    background: url(/basic-images/poz-42.png)center no-repeat;
+}
+
+
+

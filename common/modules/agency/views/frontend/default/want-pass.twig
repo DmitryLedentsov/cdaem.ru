@@ -1,0 +1,89 @@
+{#
+    Хочу сдать квартиру
+    @var \yii\web\View this
+    @var \frontend\modules\agency\models\form\WantPassForm formModel
+#}
+
+{% extends "@app/themes/basic/layouts/main.twig" %}
+
+{% block title %}Хочу сдать квартиру | Сдаём.ру{% endblock %}
+
+{% block header %}
+    {{ use('frontend/modules/site/widgets/BgHeader') }}
+    {{ bg_header_widget({'title': 'Хочу сдать квартиру'}) }}
+{% endblock %}
+
+{% block navbar_bottom %}{% endblock %}
+
+{% block navbarStickyHeader %}sticky-header{% endblock %}
+
+{% block breadcrumbs %}
+    {#<div class="breadcrumbs">
+        {{ use('yii/widgets/Breadcrumbs') }}
+        {{ breadcrumbs_widget({
+            'itemTemplate' : "<li>{link}</li>\n",
+            'homeLink' :
+            {
+                'label' : 'Главная',
+                'url' : '/'
+            },
+            'links':  [
+            {
+                'label': 'Авторизация',
+                'url': ['/users/guest/login'],
+            },
+            {
+                'label': 'Регистрация',
+                'url': ['/users/guest/signup'],
+            },
+            ],
+        }) }}
+    </div>#}
+{% endblock %}
+
+{% block content %}
+
+    {{ this.registerMetaTag({'name' : 'description', 'content' : 'Сдаём.ру подберёт и забронирует Вам - квартира на сутки, аренда квартир на сутки, квартира сутки, посуточные квартиры, квартира на сутки в Москве,посуточные квартиры в Москве.'}) }}
+    {{ this.registerMetaTag({'name' : 'keywords', 'content' : 'квартира на час, квартира на час в Москве, квартира час, снять квартиру на час, почасовая аренда квартиры квартира на сутки ,квартира сутки,квартира на сутки в Москве,аренда квартир на сутки,квартира на ночь,квартира на ночь в Москве,посуточная аренда,на сутки, доска бесплатных объявлений,доска объявлений'}) }}
+
+    {{ use('common/modules/agency/assets/frontend/AgencyAsset') }}
+    {{ register_agency_asset() }}
+
+    {{ use('common/modules/geo/assets/frontend/MetroMskAsset') }}
+    {{ register_metro_msk_asset() }}
+
+    {{ use('common/modules/geo/assets/frontend/YMapAsset') }}
+    {{ register_y_map_asset() }}
+
+   
+
+    <div class="container">
+
+        <div class="container-certain primary text">
+
+            {% if app.session.hasFlash('danger') %}
+                <div class="alert alert-danger" role="alert">
+                    {{ app.session.getFlash('danger') | raw  }}
+                </div>
+               
+            {% endif %}
+
+            {% if app.session.hasFlash('success') %}
+                <div class="alert alert-success" role="alert">
+                    {{ app.session.getFlash('success') | raw  }}
+                </div>
+           
+           
+                 {% endif %}
+            
+
+           
+            <br/>
+
+            {{ this.render('_form-want-pass', {'model': formModel}) | raw }}
+
+        </div>
+
+    </div>
+
+{% endblock content %}

@@ -1,0 +1,138 @@
+{#
+    Моя реклама
+    @var \yii\web\View this
+    @var \frontend\modules\partners\models\AdvertisementSearch searchModel
+    @var \yii\data\ActiveDataProvider dataProvider
+#}
+
+{% extends "@app/modules/office/views/layouts/main.twig" %}
+
+{% block title %}{{ this.registerTitle('Моя реклама - Личный кабинет | Сдаём.ру') }}{% endblock %}
+
+{% block header %}{% endblock %}
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        {{ use('yii/widgets/Breadcrumbs') }}
+        {{ breadcrumbs_widget({
+            'itemTemplate' : "<li>{link}</li>\n",
+            'homeLink' :
+            {
+                'label' : 'Главная',
+                'url' : '/'
+            },
+            'links':  [
+            {
+                'label': 'Личный кабинет',
+                'url' : ['/office/default/index']
+            },
+            {
+                'label': 'Моя реклама',
+            },
+            ],
+        }) }}
+    </div>
+{% endblock %}
+
+
+{% block sidebar %}
+    {% if app.user.identity.profile.user_type != constant('\\common\\modules\\users\\models\\Profile::WANT_RENT') %}
+        {{ this.render("@app/modules/office/views/layouts/services.twig") | raw }}
+    {% endif %}
+{% endblock %}
+
+
+{% block content %}
+    <h4 style="text-align:center;border-bottom:2px solid orange;font-size:30px;">Мои рекламные объявления</h4>
+    {% for advertisement in dataProvider.getModels() %}
+
+
+        <div class="apartment-item clearfix {% if (advertisement.visible == 0) %}invisible{% endif %}">
+            <div class="apartment-description">
+
+                {% if (advertisement.type == constant('TYPE_RENT', advertisement) ) %}
+                    <h3>{{ ApartmentHelper.getAddress(advertisement.advert.apartment) }}</h3>
+                {% else %}
+                    <h3>{{ ArrayHelper.getValue(searchModel.typeArray, advertisement.type) }} </h3>
+                {% endif %}
+
+                <div class="apartment-blocks">
+                    <div class="extra-list accent payment-status text-center">
+                        {% if advertisement.payment != 1 %}
+                            <p class="color-danger">Не оплачено</p>
+                            <br/>
+                            <p><span class="fast_payment_button" onclick="fast_payment_widget('{{ constant('SERVICE_ADVERTISING_TOP_SLIDER', Service) }}', {'advertisement_id' : {{ advertisement.advertisement_id }} })">Оплатить</span></p>
+                        {% else %}
+                            <p class="color-success">Оплачено</p>
+                        {% endif %}
+                    </div>
+
+                    <div class="adverts-list">
+                        {% if advertisement.type == constant('TYPE_RENT', advertisement) %}
+                            <p>
+                        <span class="advert-name">
+                            <a href="{{ path({0:'/partners/default/view', 'id' : advertisement.advert.advert_id, 'city' : advertisement.advert.apartment.city.name_eng}) }}">{{ advertisement.advert.rentType.name }}</a>
+                            <span class="{{ advert.top ? 'top color-success' : 'top color-danger' }}">{{ advertisement.advert.top ? 'В топе' : 'Не в топе' }}</span>
+                        </span>
+                        <span class="color-info">
+                           
+                            {% if advertisement.advert.real_position %}
+                                {{ advertisement.advert.real_position }}
+                            {% else %}
+                                <span title="Расчет позиции">Р</span>
+                            {% endif %}
+                            позиция
+                        </span>
+                            </p>
+                        {% endif %}
+
+                        <p>
+                            Тип: {{ ArrayHelper.getValue(searchModel.typeArray, advertisement.type) }},
+                            Ярлык: {{ ArrayHelper.getValue(searchModel.labelArray, advertisement.label) }}
+                        </p>
+
+                        <p>
+                            {% if advertisement.more_info %}{{ advertisement.more_info }}{% else %}Нет дополнительной информации{% endif %}
+                        </p>
+
+                        <p>
+                            Дата создания:  {{ DateTimeHelper.toFullDateTime(advertisement.date_create) | raw }}
+
+                            {% if advertisement.payment %} <br>
+                                Дата оплаты: {{ DateTimeHelper.toFullDateTime(advertisement.date_payment) | raw }}
+                            {% endif %}
+                        </p>
+
+                    </div>
+
+                    <div class="apartment-info">
+                        <div class="address border-right">
+                            {% if advertisement.type == constant('frontend\\modules\\partners\\models\\AdvertisementSlider::TYPE_RENT') %}
+                                {{ ApartmentHelper.getInfo(advertisement.advert.apartment) | raw }}
+                            {% else %}
+                                <div class="alert alert-info">Нет дополнительной информации</div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="present">
+                {{ preview_advert_tmp_widget({'advertisement' : advertisement}) }}
+                <br/><br/><br/>
+                <p class="text-center" style="font-weight: bold">
+                    <span class="link color-danger delete-top-slider" data-advertisement_id="{{ advertisement.advertisement_id }}">Удалить рекламу</span>
+                </p>
+            </div>
+        </div>
+    {% else %}
+        <div class="alert alert-info">
+            Вы не рекламировали ни одного объявления. <a href="{{ path(['/office/default/buy-ads']) }}">Добавить рекламное объявление</a>.
+        </div>
+    {% endfor %}
+
+    {{ use ('yii/widgets/LinkPager') }}
+    {{ link_pager_widget({'pagination' : dataProvider.pagination}) }}
+
+{% endblock content %}

@@ -1,0 +1,83 @@
+{#
+    Быстрое заселение
+    @var \yii\web\View this
+    @var frontend\modules\partners\models\Apartment apartments
+#}
+
+{% extends "@app/modules/office/views/layouts/main.twig" %}
+
+{% block title %}{{ this.registerTitle('Быстрое заселение | Сдаём.ру') }}{% endblock %}
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        {{ use('yii/widgets/Breadcrumbs') }}
+        {{ breadcrumbs_widget({
+            'itemTemplate' : "<li>{link}</li>\n",
+            'homeLink' :
+            {
+                'label' : 'Главная',
+                'url' : '/'
+            },
+            'links':  [
+            {
+                'label': 'Личный кабинет',
+                'url': ['/office/default/index'],
+            },
+            {
+                'label': 'Быстрое заселение',
+                'url': ['/partners/default/calendar'],
+            },
+            ],
+        }) }}
+    </div>
+{% endblock %}
+
+{% block content %}
+
+    {{ use('frontend/themes/basic/assets/CalendarAsset') }}
+    {{ register_calendar_asset() }}
+
+
+    <div class="container-certain primary text">
+
+        <h3>Календарь</h3>
+        <div class="alert alert-info">
+            Используйте календарь, чтобы управлять статусом "Сейчас свободно" или "занято" для своих апартаментов.
+        </div>
+
+        <p><br/></p>
+
+        <div id="calendar"></div>
+
+        <p><br/></p>
+
+        {% for apartment in apartments %}
+            <div class="apartment-item clearfix">
+                <div class="apartment-description">
+                    <h3>{{ ApartmentHelper.getAddress(apartment) }}</h3>
+                    <div class="apartment-blocks">
+                        <div class="extra-list text-center va accent border-right" style="width: 25%;">
+                            <p class="color-success">Сейчас свободно</p>
+                            <p>с {{ DateTimeHelper.toFullDateTime(apartment.calenderActualRecord.date_from) | raw }}</p>
+                            <p>по {{ DateTimeHelper.toFullDateTime(apartment.calenderActualRecord.date_to) | raw  }}</p>
+                        </div>
+                        <div class="adverts-list">
+                            {{ ApartmentHelper.getAdverts(apartment) | raw }}
+                        </div>
+                        <div class="apartment-info">
+                            {{ ApartmentHelper.getInfo(apartment) | raw }}
+                        </div>
+                    </div>
+                </div>
+                <div class="present">
+                    {{ preview_advert_tmp_widget({'apartment' : apartment}) }}
+                </div>
+            </div>
+        {% else %}
+            <div class="alert alert-info">
+                В данный момент ни один из объектов не помечен как "Сейчас свободно".
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock content %}

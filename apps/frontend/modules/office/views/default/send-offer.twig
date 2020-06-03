@@ -1,0 +1,42 @@
+{#
+    Отправить предложение
+    @var \yii\web\View this
+#}
+
+{% extends "@app/modules/office/views/layouts/main.twig" %}
+
+{% block title %}{{ this.registerTitle('Отправить предложение - Личный кабинет | Сдаём.ру') }}{% endblock %}
+
+{% block header %}{% endblock %}
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        {{ use('yii/widgets/Breadcrumbs') }}
+        {{ breadcrumbs_widget({
+            'itemTemplate' : "<li>{link}</li>\n",
+            'homeLink' :
+            {
+                'label' : 'Главная',
+                'url' : '/'
+            },
+            'links':  [
+            {
+                'label': 'Личный кабинет',
+                'url' : ['/office/default/index']
+            },
+            {
+                'label': 'Отправить предложение',
+            },
+            ],
+        }) }}
+    </div>
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="alert alert-info">
+        В разработке
+    </div>
+
+{% endblock content %}

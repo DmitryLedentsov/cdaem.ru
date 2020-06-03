@@ -1,0 +1,91 @@
+{% extends "@app/modules/office/views/layouts/main.twig" %}
+{% block title %}{{ this.registerTitle('Мои объявления - Личный кабинет | Cdaem.ру') }}{% endblock %}
+
+{% block header %}<meta http-equiv="Refresh" content="95" />{% endblock %}
+{% block content %}
+    {{ use('frontend/modules/partners/helpers/ApartmentHelper') }}
+
+    <div class="container">
+        <div style='text-align: center;padding: 5px'>
+            <a href="{{ path({'0' : '/partners/default/update', 'id' : model.apartment_id}) }}" class="edit-apartment" style='display:inline-block;padding: 10px;font-size: 16px;background:#83d0d9;color: black;'>Редактировать</a>
+            <a data-fancybox data-src="#hidden-window-2"  href="javascript:;" style="display:inline-block;padding: 10px;font-size: 16px;background:red;color: black;">Удалить квартиру</a>
+            <a href="{{ path(['/partners/default/create']) }}" class="no-board" style='display:inline-block;padding: 10px;font-size: 16px;background: orange;color: white;'>Добавить</a>
+        </div>
+        <div class="accept-delete" id="hidden-window-2" style="display:none;">
+            <h4 style="margin:10px;">Вы действительно хотите удалить данную квартиру?</h4>
+            <a class="backmap-btn" href="{{ path({'0' : '/partners/default/delete', 'id' : apartment.apartment_id}) }}">Удалить квартиру</a>
+            <a data-fancybox-close class="backmap-btn" style="background:green !important;">Нет, я передумал!</a>
+        </div>
+
+        {{ use('frontend/themes/basic/assets/SlickAsset') }}
+        {{ register_slick_asset() }}
+
+
+        <div class="images row multiple-items-6">
+            {% for image in model.orderedImages %}
+                <div class="col-xs-12" style="margin-bottom:5px;">
+                    <div class="image" style="height:250px;">
+                        <a href="{{image.reviewSrc}}" data-lightbox="example-set" data-title="">
+                            <img src="{{image.previewSrc}}"
+                                 alt="Фото {{ model.apartment.city.name }}, {{ model.apartment.address }}{{ model.apartment.apartment ? ', кв.'~model.apartment.apartment }}"
+                                 title="{{ model.apartment.city.name }}, {{ model.apartment.address }}{{ model.apartment.apartment ? ', кв.'~model.apartment.apartment }}"/>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+            {{ use('frontend/themes/basic/assets/LightBoxAsset') }}
+            {{ register_light_box_asset() }}
+
+        </div>
+
+        <h3 class="apartment_titlehelper">{{ ApartmentHelper.getAddress(model) }}</h3>
+        <h4 style="font-size: 20px;color:#83d0d9">Обьявление  № {{model.apartment_id}}</h4>
+
+        <div id="information-advert2" style="display: none">
+            <h4 style="font-size: 20px;color:#83d0d9">Информация от владельца:</h4>
+            <div class="ofiice_apart_description"><p style='padding:10px;'>{{ model.description}}</p></div></div>
+        <div style="text-align: center"><a class="btn-danger visible-xs" id="opendescription2">Открыть описание</a></div>
+        <div style="text-align:center">
+
+            <div>
+
+                <table style='width:100%;font-size: 16px;'>
+                    <tr>
+                        <td style='text-align:left;width: 50%'><p>Комнат:{{ model.total_rooms }}</p></td>
+                        <td style='text-align:right;width: 50%'><p>Спальных мест:{{ model.beds }}</p></td>
+                    </tr>    
+                    <tr>
+                        <td style='text-align:left;width: 50%'><p>Общая площадь:{{ model.total_area }}м<sup>2</sup></p></td>
+                        <td style='text-align:right;width: 50%'><p>Ремонт:{{ model.remontName }}</p></td>
+                    </tr>
+                </table>
+                <hr>
+                {{ ApartmentHelper.getInfoNew(model) | raw }}</div>
+            <hr>
+        </div>
+        {{ use('frontend/themes/basic/assets/SlickAsset') }}
+        {{ register_slick_asset() }}
+        <h4 style="font-size: 20px;color:#83d0d9">Обьявления:</h4>
+
+        <div class="slide service multiple-items-5 visible-xs row">
+            {{ ApartmentHelper.getAdvertsNew(model) | raw }} 
+        </div>
+        <h4 style="font-size: 20px;color:#83d0d9">Услуги:</h4>
+        <div class="visible-xs row">
+            {{ this.render("@app/modules/office/views/layouts/services_3.twig") | raw }}
+        </div> 
+
+        <h4 style="font-size: 20px;color:#83d0d9">Место нахождения:</h4>
+        {{ use('common/modules/geo/assets/frontend/YMapAsset') }}
+        {{ register_y_map_asset() }}
+
+        <div class="container">
+
+
+
+
+        </div>
+
+    </div>
+
+{% endblock content %}

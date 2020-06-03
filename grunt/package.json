@@ -1,0 +1,14 @@
+{
+  "name": "grunt",
+  "version": "1.0.0",
+  "dependencies": {
+    "grunt": "*",
+    "grunt-contrib-cssmin": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-less": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-image": "*"
+  },
+  "analyze": true,
+  "license": "MIT"
+}

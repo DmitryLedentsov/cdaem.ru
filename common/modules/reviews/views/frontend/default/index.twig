@@ -1,0 +1,67 @@
+{#
+    Все отзывы
+    @var \yii\web\View this
+    @var integer countReviews
+    @var frontend\modules\reviews\models\ReviewSearch searchModel
+    @var yii\data\ActiveDataProvider dataProvider
+#}
+
+{% extends "@app/modules/office/views/layouts/main.twig" %}
+
+{% block title %}{{ this.registerTitle('Отзывы | Сдаём.ру') }}{% endblock %}
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        {{ use('yii/widgets/Breadcrumbs') }}
+        {{ breadcrumbs_widget({
+            'itemTemplate' : "<li>{link}</li>\n",
+            'homeLink' :
+            {
+                'label' : 'Главная',
+                'url' : '/'
+            },
+            'links':  [
+            {
+                'label': 'Личный кабинет',
+                'url': ['/office/default/index'],
+            },
+            {
+                'label': 'Отзывы',
+                'url': ['/reviews/default/index'],
+            },
+            ],
+        }) }}
+    </div>
+{% endblock %}
+
+
+{% block content %}
+
+    {% if countReviews %}
+        <div class="reviews">
+            <div class="list">
+                <div class="clearfix">
+                    <div class="title">Отзывы (<span>{{ countReviews }}</span>):</div>
+                </div>
+
+                {% for review in dataProvider.getModels() %}
+                    {{ this.render('_view.twig', {
+                        'user' : false,
+                        'model' : review,
+                    }) | raw }}
+                {% endfor %}
+
+                {{ use('yii/widgets/LinkPager') }}
+                {{ link_pager_widget({
+                    'pagination' : dataProvider.pagination
+                }) }}
+
+            </div>
+        </div>
+    {% else %}
+        <div class="alert alert-info">
+            В данный момент нет отзывов
+        </div>
+    {% endif %}
+
+{% endblock content %}

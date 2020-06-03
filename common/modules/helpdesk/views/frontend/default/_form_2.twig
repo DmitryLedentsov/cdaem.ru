@@ -1,0 +1,36 @@
+{#
+    @var \yii\web\View this
+    @var \common\helpdesk\models\Helpdesk model
+    @var \common\helpdesk\models\form\HelpdeskForm formModel
+#}
+{{ use('frontend/modules/site/widgets/Captcha') }}
+{% set form = active_form_begin({
+'options' : {'class' : 'horizontal'},
+'id' : 'form-helpdesk-ask',
+'enableClientScript' : false
+}) %}
+    <div class="form-group">
+                    <div class="col-l">
+                     <label class="control-label">Выберите страну мобильного оператора</label>
+                </div>
+                <div class="col-i">
+                       <select class="form-control" name="country" id="country">
+                    <option selected value="non">Выберите страну</option>
+                    <option value="Russia">Russia</option>
+                    <option value="Ukraine">Ukraine</option>
+                    <option value="Belarus">Belarus</option>
+                </select>  
+                </div> 
+                </div>
+        {{ form.field(formModel, 'priority', {'options' : {'class' : 'form-group white' , 'style':'display:none' }, 'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'}).dropDownList(ArrayHelper.getColumn(model.priorityArray, 'label'), {'class' : 'form-control select-white'}) | raw }}
+        <label>Напишите номер телефона ((---)***-**-**):</label>
+       
+        {{ form.field(formModel, 'theme', {'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'}).textInput({'class' : 'phone form-control', 'prompt': ' ', 'id':'phone',}) | raw }}
+       
+
+        
+    <div class="form-group text-right">
+        <input type="submit" value="Отправить" class="btn btn-primary"/>
+    </div>
+
+{{ active_form_end() }}

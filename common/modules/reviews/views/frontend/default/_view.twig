@@ -1,0 +1,36 @@
+{#
+    Вид отзывы
+    @var \yii\web\View this
+    @var frontend\modules\reviews\models\Review model
+    @var bool user
+#}
+
+<div class="review-item clearfix">
+    <div class="represent">
+        {% if user %}
+            <div class="user">
+                {{ widget_widget({
+                    'template' :  '<div class="avatar">{face}</div><div class="name">{name}</div>',
+                    'data' : {
+                        'avatar_url' : model.user.profile.avatar_url,
+                        'name' : model.user.profile.name,
+                    },
+                }) }}
+            </div>
+        {% else %}
+            <a href="{{ path({0 : '/partners/default/view', 'id' : model.apartment.apartment_id, 'city' : model.apartment.city.name_eng}) }}">
+                {{ preview_advert_tmp_widget({'apartment' : model.apartment}) }}
+            </a>
+        {% endif %}
+
+    </div>
+    <div class="info">
+        <div class="description">{{ model.text }}</div>
+        <ul class="characteristics">
+            <li><span class="r-{{ model.match_description }}">{{ model.match_description }}<sup>/5</sup></span> Соответствие описанию</li>
+            <li><span class="r-{{ model.price_quality }}">{{ model.price_quality }}<sup>/5</sup></span> Цена и Качество</li>
+            <li><span class="r-{{ model.cleanliness }}">{{ model.cleanliness }}<sup>/5</sup></span> Чистота</li>
+            <li><span class="r-{{ model.entry }}">{{ model.entry }}<sup>/5</sup></span> Заселение</li>
+        </ul>
+    </div>
+</div>

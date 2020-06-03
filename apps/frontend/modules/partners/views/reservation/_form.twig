@@ -1,0 +1,329 @@
+{#
+    Отправить заявку на бронь всему сайту
+    @var \yii\web\View this
+    @var \frontend\modules\partners\models\models\ReservationForm reservationsForm
+#}
+
+{% extends "@app/themes/basic/layouts/main.twig" %}
+
+{% block title %} {{ this.registerTitle(' Быстрая аренда | Сдаём.ру') }} {% endblock %}
+
+{% block navbar %}
+    {{ this.renderDynamic('return $this->render("@app/modules/office/views/layouts/navbar.twig");') | raw }}
+{% endblock %}
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        {{ use('yii/widgets/Breadcrumbs') }}
+        {{ breadcrumbs_widget({
+            'itemTemplate' : "<li>{link}</li>\n",
+            'homeLink' :
+            {
+                'label' : 'Главная',
+                'url' : '/'
+            },
+            'links':  [
+            {
+                'label': 'Доска объявлений',
+                'url': ['/partners/default/index'],
+            },
+            {
+                'label': 'Быстро снять',
+            },
+            ],
+        }) }}
+    </div>
+{% endblock %}
+
+{% block footer %}
+    {% include "@app/themes/basic/layouts/footer-partners.twig" %}
+{% endblock %}
+
+{% block content %}
+
+    {{ this.registerMetaTag({'name' : 'description', 'content' : ''}) }}
+    {{ this.registerMetaTag({'name' : 'keywords', 'content' : ''}) }}
+    
+    {{ use('frontend/modules/partners/assets/ApartmentAsset') }}
+    {{ register_apartment_asset() }}
+
+    {{ use('frontend/themes/basic/assets/DateTimeAsset') }}
+    {{ register_date_time_asset() }}
+
+    {{ use('frontend/modules/site/widgets/Captcha') }}
+
+    <div class="container">
+
+        <div class="container-certain primary text" style="width: 100%;">
+
+
+            <h3>Быстро снять</h3>
+            <div class="desc">
+                Заполнение заявки "Быстро снять" <b>совершенно бесплатно</b>. После того, как Вы заполните все данные формы, Ваша заявка будет доступна всем агентам и
+                собственникам на сайте. После чего, когда кто-нибудь откроет Ваши контакты, в личном кабинете вы сможете увидеть
+                это. Детальная инструкция будет отправлена на Ваш почтовый адрес.
+            </div>
+
+            <p><br/></p>
+
+
+            {% if app.session.hasFlash('danger') %}
+                <div class="alert alert-danger" role="alert">
+                    {{ app.session.getFlash('danger') | raw }}
+                </div> <br/>
+            {% endif %}
+
+            {% if app.session.hasFlash('success') %}
+                <div class="alert alert-success" role="alert">
+                    {{ app.session.getFlash('success') | raw }}
+                </div> <br/>
+                Ваша заявка будет доступна всем владельцам апартаментов на сайте {{ app.params.siteDomain }}. После того, как кто-нибудь откроет ваши контакты,
+                в <a href="{{ path(['/partners/reservation/total-bid']) }}" target="_blank">личном кабинете</a> вы увидите, что заявка закрыта.
+                <br/>
+
+            {% else %}
+
+                {% set form = active_form_begin({
+                    'id' : 'form-reservation',
+                    'options' : {'class' : 'horizontal'},
+                    'enableClientScript' : false
+                }) %}
+
+
+                <div class="general-form reservation row">
+
+                    <div class="section col-md-6">
+
+                        <h3 class="text-left">Место аренды:</h3>
+
+                        <div class="form-group required">
+                            <div class="col-l"><label class="control-label">{{ reservationsForm.getAttributeLabel('city') }}</label></div>
+                            <div class="col-i">
+                                <span data-toggle="modal" data-target="#modal-select-city" class="link" id="select-city-name">Выбрать</span>
+                                {{ html.activeHiddenInput(reservationsForm, 'city_id') | raw }}
+                                <div class="help-block"></div>
+                            </div>
+                        </div>
+
+                        {{ form.field(reservationsForm, 'address', {
+                            'options' : {'class' : 'form-group white'},
+                            'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}Укажите адрес в выбранном городе, где планируете остановиться. Это может быть район, улица или ветка метро (если есть). Предоставленную информацию будут видеть собственники апартаментов.{error}</div>'
+                        }) | raw }}
+
+
+                        <h3 class="text-left">Со мной:</h3>
+
+                        {{ form.field(reservationsForm, 'pets', {
+                            'options' : {'class' : 'form-group'},
+                            'inputOptions' : {'class' : 'select-white'},
+                            'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'
+                        }).dropDownList(reservationsForm.petsArray, {'prompt' : ' '}) | raw }}
+
+
+                        {{ form.field(reservationsForm, 'children', {
+                            'options' : {'class' : 'form-group'},
+                            'inputOptions' : {'class' : 'select-white'},
+                            'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'
+                        }).dropDownList(reservationsForm.childrenArray, {'prompt' : ' '}) | raw }}
+
+                        {{ form.field(reservationsForm, 'clients_count', {
+                            'options' : {'class' : 'form-group'},
+                            'inputOptions' : {'class' : 'select-white'},
+                            'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'
+                        }).dropDownList(reservationsForm.clientsCountArray, {'prompt' : ' '}) | raw }}
+
+
+                        {% if reservationsForm.scenario == 'unauthorized' %}
+
+                            <h3 class="text-left">Быстрая регистрация:</h3>
+
+                            <div class="alert alert-info">
+                                <b>Внимание:</b> <br/>
+                                Вам необходим аккаунт на сайте {{ app.params.siteDomain }} для бронирования апартаментов.
+                                Если у Вас уже есть аккаунт, авторизируйтесь на сайте, если у Вас нет аккаунта,
+                                пожалуйста заполните ниже представленные поля для быстрой регистрации:
+                            </div>
+
+                            {{ form.field(reservationsForm, 'email', {
+                                'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>',
+                                'options' : {'class' : 'form-group'}
+                            }) | raw }}
+
+                            <div class="form-group">
+                                <div class="col-l">
+                                    <label class="control-label">Выберите страну мобильного оператора</label>
+                                </div>
+                                <div class="col-i">
+                                    <select class="form-control" name="country" id="country">
+                                        <option selected value="non">Выберите страну</option>
+                                        <option value="Russia">Russia</option>
+                                        <option value="Ukraine">Ukraine</option>
+                                        <option value="Belarus">Belarus</option>
+                                    </select>  
+                                </div> 
+                            </div>
+
+                            {{ form.field(reservationsForm, 'phone', {'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'}).textInput({'class' : 'phone form-control', 'prompt': ' ', 'id':'phone',}) | raw }}
+
+                            {{ form.field(reservationsForm, 'password', {
+                                'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>',
+                                'options' : {'class' : 'form-group'}
+                            }).passwordInput() | raw }}
+
+                            {{ form.field(reservationsForm, 'agreement').checkbox({'label' : '
+                                Регистрируясь на сайте, Вы соглашаетесь с '
+                                ~html.a('пользовательским соглашением', {0 : '/pages/default/index', 'url' : 'agreement'}, {'target': '_blank'})
+                            }) | raw }}
+
+                        {% endif %}
+
+                    </div>
+
+                    <div class="section col-md-6">
+
+                        <h3 class="text-right">Укажите дату брони:</h3>
+
+                        <div class="date">
+                            <div class="date_arrived clearfix">
+                                {% set field = form.field(reservationsForm, 'arrived_date', {'options' : {'class' : 'form-group date'}}) | raw %}
+                                {{ field.begin() | raw }}
+                                <div class="col-l"><label class="control-label">{{ reservationsForm.getAttributeLabel('arrived_date') }}</label></div>
+                                <div class="col-i">{{ html.activeTextInput(reservationsForm, 'arrived_date', {'class' : 'form-control datepicker', 'readonly' : 'readonly'}) | raw }}</div>
+                                {{ html.error(reservationsForm, 'arrived_date', {'class' : 'help-block'}) | raw }}
+                                {{ field.end() | raw }}
+
+                                {% set field = form.field(reservationsForm, 'arrived_time', {'options' : {'class' : 'form-group time'}}) | raw %}
+                                {{ field.begin() | raw }}
+                                <div class="col-l"><label class="control-label">{{ reservationsForm.getAttributeLabel('out_time') }}</label></div>
+                                <div class="col-i">{{ html.activeTextInput(reservationsForm, 'arrived_time', {'class' : 'form-control timepicker', 'readonly' : 'readonly'}) | raw }}</div>
+                                {{ html.error(reservationsForm, 'arrived_time', {'class' : 'help-block'}) | raw }}
+                                {{ field.end() | raw }}
+                            </div>
+                            <div class="date_out clearfix">
+                                {% set field = form.field(reservationsForm, 'out_date', {'options' : {'class' : 'form-group date'}}) | raw %}
+                                {{ field.begin() | raw }}
+                                <div class="col-l"><label class="control-label">{{ reservationsForm.getAttributeLabel('out_date') }}</label></div>
+                                <div class="col-i">{{ html.activeTextInput(reservationsForm, 'out_date', {'class' : 'form-control datepicker', 'readonly' : 'readonly'}) | raw }}</div>
+                                {{ html.error(reservationsForm, 'out_date', {'class' : 'help-block'}) | raw }}
+                                {{ field.end() | raw }}
+
+                                {% set field = form.field(reservationsForm, 'out_time', {'options' : {'class' : 'form-group time'}}) | raw %}
+                                {{ field.begin() | raw }}
+                                <div class="col-l"><label class="control-label">{{ reservationsForm.getAttributeLabel('out_time') }}</label></div>
+                                <div class="col-i">{{ html.activeTextInput(reservationsForm, 'out_time', {'class' : 'form-control timepicker', 'readonly' : 'readonly'}) | raw }}</div>
+                                {{ html.error(reservationsForm, 'out_time', {'class' : 'help-block'}) | raw }}
+                                {{ field.end() | raw }}
+                            </div>
+                        </div>
+
+                        {{ form.field(reservationsForm, 'actuality_duration', {
+                            'options' : {'class' : 'form-group'},
+                            'inputOptions' : {'class' : 'select-white'},
+                            'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'
+                        }).dropDownList(reservationsForm.actualityList, {'prompt' : ' '}) | raw }}
+
+
+
+                        <h3 class="text-right">Ваши предпочтения:</h3>
+
+
+                        {{ form.field(reservationsForm, 'rent_type', {
+                            'options' : {'class' : 'form-group'},
+                            'inputOptions' : {'class' : 'select-white'},
+                            'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'
+                        }).dropDownList(reservationsForm.rentTypesList, {'prompt' : ' '}) | raw }}
+
+
+                        <div class="form-group required money text-right">
+                            <div class="col-l text-right" style="width: 48%"><label class="control-label" style="float: none">Планируемый бюджет</label></div>
+                            <div class="col-i" style="width: 52%">
+                                {{ html.activeHiddenInput(reservationsForm, 'budget') | raw }}
+                                {{ html.activeTextInput(reservationsForm, 'money_from', {'class' : 'form-control', 'placeholder' : 'от 3000'}) | raw }} -
+                                {{ html.activeTextInput(reservationsForm, 'money_to', {'class' : 'form-control', 'placeholder' : 'до 5000'}) | raw }}
+                                {{ html.activeDropDownList(reservationsForm, 'currency', reservationsForm.getCurrencyArray(), {'class' : 'form-control'}) | raw }}
+                                <div class="help-block"></div>
+                            </div>
+
+                        </div>
+
+                        <p><br/></p>
+
+                        {{ form.field(reservationsForm, 'floor', {
+                            'options' : {'class' : 'form-group'},
+                            'inputOptions' : {'class' : 'select-white'},
+                            'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'
+                        }).dropDownList(reservationsForm.floorArray, {'prompt' : ' '}) | raw }}
+
+                        {{ form.field(reservationsForm, 'rooms', {
+                            'options' : {'class' : 'form-group'},
+                            'inputOptions' : {'class' : 'select-white'},
+                            'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'
+                        }).dropDownList(reservationsForm.roomsList, {'prompt' : ' '}) | raw }}
+
+                        {{ form.field(reservationsForm, 'beds', {
+                            'options' : {'class' : 'form-group'},
+                            'inputOptions' : {'class' : 'select-white'},
+                            'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'
+                        }).dropDownList(reservationsForm.bedsList, {'prompt' : ' '}) | raw }}
+
+                        {{ form.field(reservationsForm, 'metro_walk', {
+                            'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>',
+                            'inputOptions' : {'class' : 'select-white'},
+                            'options' : {'class' : 'form-group'}
+                        }).dropDownList(reservationsForm.metroWalkList, {'prompt' : ' '}) | raw }}
+
+                        {{ form.field(reservationsForm, 'more_info', {
+                            'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>',
+                            'options' : {'class' : 'form-group'}
+                        }).textarea() | raw }}
+
+
+                        <p><br/></p>
+
+                        {% if reservationsForm.scenario == 'unauthorized' %}
+                            <h3>Подтвердите что вы не робот!</h3>
+                            {{ captcha_widget({'form': form, 'model': reservationsForm, 'name': 'verifyCode'}) }}
+
+                            <p><br></p>
+
+                        {% endif %}
+
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="form-group text-right">
+                        <input type="submit" value="Отправить" class="btn btn-primary" />
+                    </div>
+
+                </div>
+
+
+                {{ active_form_end() }}
+
+            {% endif %}
+
+
+        </div>
+    </div>
+
+
+    {#
+        Модальное окно выбора города
+    #}
+    <div id="modal-select-city" class="modal fade" data-title="Выбрать город">
+        <div class="form-group">
+            {{ html.textInput('city', null, {
+                'class' : 'form-control city-drop-down-list',
+                'data-url' : path(['/geo/ajax/select-city']),
+                'placeholder' : 'Введите название города',
+                'id': 'input-select-city'
+            }) | raw }}
+        </div>
+        <br/>
+        <div class="form-group text-center" style="display: none">
+            <input type="submit" value="Указать" class="btn btn-primary" id="button-select-city" data-target-city-id="reservationform-city_id" data-target-select-city="#select-city-name" />
+        </div>
+    </div>
+
+{% endblock content %}

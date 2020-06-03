@@ -1,0 +1,227 @@
+
+
+{#
+    Главная страница
+    @var common\modules\agency\models\Apartment agencyDataProvider
+    @var common\modules\agency\models\SearchAdvert agencySearch
+    @var common\modules\partners\models\ApartmentAdvert partnersAdverts
+    @var common\modules\partners\models\SearchAdvert searchModel
+    @var \yii\web\View this
+#}
+{% extends "@app/themes/basic/layouts/main.twig" %}
+
+{% block title %}{{ metaData['meta_title'] }}{% endblock %}
+
+{% block header %}
+
+    <header class="header index-header {{ getPartOfTheDay() }}">
+        <div class="cdaem container">
+            <div class="row">
+                <div class="logo col-xs-12 col-md-3">
+                    <a href="/"><img src="/basic-images/arenda-kvartir-posutochno-logo.png" alt="Все города России и СНГ" title="Все города России и СНГ" /></a>
+                </div>
+                <div class="seo-text col-xs-12 col-sm-6">
+                    <div class="size">
+                        {{ seo_text_widget({'type' : 'header' }) | raw }}
+                    </div>
+                </div>
+                <div class="cls col-sm-6 col-xs-12 col-md-3">
+                    <div class="login-links">{{ this.renderDynamic('return $this->render("@app/modules/site/views/default/logged.twig");') | raw }}</div>
+                    <div class="social-links" style="font-size:30px;">
+                        <ul>
+                            <li><a href="https://www.facebook.com/cdaem.ru" rel="nofollow"><i class="fab fa-facebook"></i></a></li>
+                            <li><a href="https://new.vk.com/cdaemru" rel="nofollow"><i class="fab fa-vk" ></i></a></li>
+                            <li><a href="https://plus.google.com/communities/104623882749857804458" rel="nofollow"><i class="fab fa-google-plus"></i></a></li>
+                            <li><a href="skype:cdaemru" rel="nofollow"><i class="fab fa-skype"></i></a></li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="notion">
+            {% include('@app/modules/site/views/default/_header.twig') %}
+        </div>
+
+    </header>
+    <div class="callbackbar-block">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7 callback-title-link-block">
+                    <span class="title-span">Квартиры от <a href="#" class="or-link">Сдаём.ру</a> без посредников - Москва</span>
+                    <div class="hidden-xs phones-block"> <span class="call absolute-p" data-toggle="modal" data-target="#modal-callback"></span>
+                        <a href="https://chat.whatsapp.com/HBYHOMkBYY89Jh2EElJuUv" rel="nofollow"><i class="fab fa-whatsapp fa-3x" style="line-height: 85px;" aria-hidden="true"></i></a></div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="callback-phone-block">
+                        <div class="row phone-1"><a href="tel:+79037991799"><span class="c-phone">+7 (903) 799-17-99</span></a></div>
+                        <div class="row phone-2"><a href="tel:+79154559494"><span class="m-phone">+7 (915) 455-94-94</span></a></div>
+                    </div>
+                </div>
+                <div class="col-md-3 callback-btn-block">
+                    <a href="{{ path(['/helpdesk/default/index']) }}" class="callback-btn">Связаться с диспетчером <br> Cdaem.ru</a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+        </div>
+    </div>
+
+
+    {#
+        Модальное окно для заказа обратного звонка
+    #}
+    <div class="modal fade" id="modal-callback" data-title="Заказать обратный звонок">
+
+        {% set form = active_form_begin({
+            'id' : 'form-callback',
+            'action' : ['/callback/default/index'],
+            'enableClientScript' : false,
+            'options' : {'class' : 'horizontal'}
+        }) %}
+
+        {{ form.field(callback, 'phone').textInput({'placeholder' : '+7 (___) ___-____'}) | raw }}
+
+        <div class="form-group text-center">
+            <input type="submit" value="Отправить" class="btn btn-primary" />
+        </div>
+        {{ active_form_end() }}
+        <div class="row-call">
+            <div class="callback-phone-block">
+                <div class="row phone-1"><a href="tel:+79037991799"><span class="c-phone">+7 (903) 799-17-99</span></a></div>
+                <div class="row phone-2"><a href="tel:+79154559494"><span class="m-phone">+7 (915) 455-94-94</span></a></div>
+            </div>
+        </div>
+    </div>
+
+{% endblock header %}
+
+
+{% block navbarStickyHeader %}sticky-header{% endblock %}
+
+
+{% block content %}
+
+    {{ this.registerMetaTag({'name' : 'description', 'content' : metaData['meta_description']}) }}
+    {{ this.registerMetaTag({'name' : 'keywords', 'content' : metaData['meta_keywords']}) }}
+
+    {{ use('common/modules/agency/widgets/frontend/PreviewAdvert') }}
+
+    {{ use('frontend/themes/basic/assets/SliderAsset') }}
+    {{ register_slider_asset() }}
+
+    {{ use('frontend/themes/basic/assets/SlickAsset') }}
+    {{ register_slick_asset() }}
+
+    {{ use('common/modules/geo/assets/frontend/MetroMskAsset') }}
+    {{ register_metro_msk_asset() }}
+
+    {{ use('common/modules/agency/assets/frontend/AgencyAsset') }}
+    {{ register_agency_asset() }}
+
+    {% if specialAdverts is not empty %}
+        <div class="container special-block">
+
+            <div class="d-title"><h4>Спецпредложения на сегодня</h4></div>
+            <div class="special-advert-block">   
+                <div class="deals">
+                    {% for specialAdvert in specialAdverts %}
+                        {{ preview_advert_widget({'advert': specialAdvert}) }}
+                    {% endfor %}
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+        </div>
+    {% endif %}
+
+
+    <style>
+               header.header .cdaem .logo {
+     padding-top: 25px !important; 
+}
+    </style>
+
+
+    {{ this.render('@common/modules/agency/views/frontend/default/_realty.twig', {
+        'searchModel': agencySearch,
+        'dataProvider': agencyDataProvider,
+        'metaData' : metaData,
+    }) | raw }}
+
+
+    <div class="apartament-board-block">
+        {{ this.render('@app/modules/partners/views/default/_new_realty.twig', {
+        'adverts': partnersAdverts,
+        'searchModel': searchModel,
+    }) | raw }}
+    </div>
+
+    {% if articles is not empty %}
+        <div class="article-block-wrap">
+            <div class="container articles-block clearfix">
+                <div class="d-title"><h4>Все новости от Сдаем.ру</h4></div>
+                {% for article in articles %}
+                    <div class="item-article col-md-4">
+
+                        <div class="item-img" style="background: url(/images/{{ article.title_img | raw }})center center;">
+                            <a  class='link-on-image-2' href="{{ path('/articles/default/view', {'id' : article.slug}) }}"></a>
+                        </div>
+                        <div class="title-article-big"><h4><a href="{{ path('/articles/default/view', {'id' : article.slug}) }}">{{ article.name }}</a></h4></div>
+                        <div class="article-shorttext-block">
+                            <p class="article-text"> {{ article.short_text | raw }} </p>
+                            <a href="{{ path('/articles/default/view', {'id' : article.slug}) }}">Читать полностью >></a>
+                        </div>
+                    </div>
+
+                    <div class="col-md-8 articles-block-2">
+                        <div class="row">
+
+                            <div class="col-md-12">
+                                <div class="row">
+                                   
+                                    {% for article in articlesall2 %}
+                                        
+                                        <div class="col-md-4 item-article-3">
+                                            <div class="row">
+                                                <div class="col-md-5" style="padding:5px;">
+                                                    <div class="item-img" style="background: url(/images/{% if article.title_img is not empty %}{{ article.title_img | raw }}){% else %}article-not-image.jpg){% endif %}center center;background-size: cover;">
+                                                        <a  class='link-on-image-2' href="{{ path('/articles/default/view', {'id' : article.slug}) }}"></a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-7">
+                                                    <div class="title-article-wrap">
+                                                        <a  class='title-articleall-2' href="{{ path('/articles/default/view', {'id' : article.slug}) }}">{{ article.name }}</a>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                               
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                {% endfor %}
+                <div class="all-articles-link">
+                    <a class="newblue-btn" href="{{ path(['/articles/default/news']) }}"><span>Все Новости</span></a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+
+
+
+
+
+
+{% endblock content %}
+

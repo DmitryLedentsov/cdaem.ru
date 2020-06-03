@@ -1,0 +1,112 @@
+{#
+    @var $this yii\web\View
+#}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Вы используете устаревший браузер.</title>
+    <meta charset="utf-8">
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            background: #F7F7F7;
+            padding: 0;
+            margin: 0;
+            font-size: 12px;
+        }
+
+        #bad_browser {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            text-align: center;
+            width: 530px;
+            margin: -200px 0 0 -250px;
+            background: #FFF;
+            line-height: 180%;
+            border-bottom: 1px solid #E4E4E4;
+            -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
+            -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
+        }
+
+        #content {
+            padding: 20px;
+            font-size: 1.19em;
+        }
+
+        #content div {
+            margin: 10px 0 15px 0;
+        }
+
+        #content #browsers {
+            width: 480px;
+            height: 136px;
+            margin: 15px auto 0;
+        }
+
+        #browsers a {
+            float: left;
+            width: 120px;
+            height: 20px;
+            padding: 106px 0 13px 0;
+            -webkit-border-radius: 4px;
+            -khtml-border-radius: 4px;
+            -moz-border-radius: 4px;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+
+        #browsers a:hover {
+            text-decoration: none;
+            background-color: #edf1f5 !important;
+        }
+
+        #no_js {
+            display: none;
+        }
+    </style>
+
+</head>
+
+<body class="">
+
+<div id="bad_browser">
+    <div id="wrap">
+        <div id="content">
+
+            <div id="no_js">
+                <h3>Возможно у Вас выключен JavaScript.</h3>
+                <p>Для работы с сайтом необходима поддержка Javascript и Cookies.</p>
+            </div>
+
+            <div id="old">
+                <h3>Ваш браузер устарел.</h3>
+            </div>
+
+            <p>Чтобы использовать все возможности сайта, загрузите и установите один из следующих браузеров:</p>
+
+            <div>
+                <div id="browsers" style="width: 360px;">
+                    <a href="http://www.mozilla-europe.org/" target="_blank" style="background: url(/basic-images/brw/mozilla-firefox.png?1) no-repeat 50% 5px;">Firefox</a>
+                    <a href="http://www.opera.com/" target="_blank" style="background: url(/basic-images/brw/opera.png?1) no-repeat 50% 5px;">Opera</a>
+                    <a href="http://www.google.com/chrome/" target="_blank" style="background: url(/basic-images/brw/google-chrome.png?1) no-repeat 50% 5px;">Chrome</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var noJsBlock = document.getElementById('no_js');
+    noJsBlock.style.display = 'block';
+
+    var old = document.getElementById('old');
+    old.style.display = 'none';
+</script>
+
+</body>
+</html>

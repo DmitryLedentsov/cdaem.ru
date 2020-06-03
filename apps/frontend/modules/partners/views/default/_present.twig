@@ -1,0 +1,39 @@
+<section class="board">
+    <h3 class="title">Доска объявлений по недвижимости - Все города России и СНГ.</h3>
+    <form method="get" action="{{ path(['/partners/pre-region']) }}">
+        <div class="input-search">
+            <input type="text" name="city" class="form-control city-drop-down-list" data-url="{{ path(['/geo/ajax/select-city']) }}" placeholder="Укажите город" />
+        </div>
+        <div class="select-filter primary">
+            <select name="rooms" class="select-primary">
+                {% for key, room in searchModel.roomsList %}
+                    <option value="{{ key }}">{{ room }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="select-filter primary" style="width: 220px">
+            <select name="sect" class="select-primary">
+                {% for key, rentType in searchModel.rentTypesList %}
+                    <option value="{{ key }}" {{ key == 2 ? 'selected="selected"' : '' }}>{{ rentType}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="input-submit">
+            <input type="submit" value="Поиск" class="btn btn-primary" />
+        </div>
+    </form>
+
+    <a href="{{ path(['/partners/reservation/index']) }}" class="btn btn-orange" style="position: absolute; right: 25px; top: 65%;">Быстро снять</a>
+
+    <div class="hint">
+        Вы можете бесплатно разместить своё предложение по аренде или снять квартиру, комнату, койко-место или дом, на выгодных для Вас условиях. Все города России и СНГ.
+    </div>
+    <div class="clearfix"></div>
+    <ul class="nav">
+        <li style="width:36%"><a href="{{ path(['/partners/default/create']) }}">Добавить объявление</a></li>
+        <li style="width:33%"><a href="{{ path(['/partners/default/index']) }}">Доска объявлений</a></li>
+        <li style="width:31%"><a href="{{ path(['/office/default/index']) }}">Личный кабинет</a></li>
+    </ul>
+</section>
+
+

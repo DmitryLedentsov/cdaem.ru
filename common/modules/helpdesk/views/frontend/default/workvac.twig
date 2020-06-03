@@ -1,0 +1,91 @@
+{#
+    Обращение в тех. поддержку
+    @var \yii\web\View this
+    @var \common\helpdesk\models\Helpdesk model
+    @var \common\helpdesk\models\form\HelpdeskForm formModel
+#}
+
+{% extends "@app/themes/basic/layouts/main.twig" %}
+
+{% block title %}Работа уборщицей в Москве, ищу работу уборщицы. {% endblock %}
+
+{% block header %}
+    {{ use('frontend/modules/site/widgets/BgHeader') }}
+    {{ bg_header_widget({'title': 'Работа на Сдаём.ру в Москве, по всем районам.'}) }}
+{% endblock %}
+
+{% block navbar_bottom %}{% endblock %}
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        {{ use('yii/widgets/Breadcrumbs') }}
+        {{ breadcrumbs_widget({
+            'itemTemplate' : "<li>{link}</li>\n",
+            'homeLink' :
+            {
+                'label' : 'Главная',
+                'url' : '/'
+            },
+            'links':  [
+            {
+                'label': 'Работа на Сдаём.ру',
+                'url': ['/helpdesk/default/workvac'],
+            },
+            ],
+        }) }}
+    </div>
+{% endblock %}
+
+
+{% block content %}
+
+    {{ this.registerMetaTag({'name' : 'description', 'content' : 'Работа на Сдаём.ру в Москве, по всем районам.'}) }}
+    {{ this.registerMetaTag({'name' : 'keywords', 'content' : ''}) }}
+
+    {{ use('common/modules/helpdesk/assets/HelpdeskAsset') }}
+    {{ register_helpdesk_asset() }}
+
+
+    <div class="container">
+        <div class="d-title"><h1>Работа для уборщицы/уборщика</h1></div>
+        <h2>Вакансия: Горничная </h2>
+        <div class="container-certain primary text" style="font-size: 20px">
+            <p>
+                Проводим набор сотрудников для своей компании -уборка квартир!  <a href="/">Сdaem.ru</a>.
+            </p>
+            <p>
+                <strong>Требования:</strong> Пунктуальность, внимательное отношение к работе, умение обучаться, активная, вежливая, ответственная, желание карьерного роста, пунктуальная.
+            </p>
+            <p>
+                <strong>Обязанности:</strong> Уборка малогабаритных квартир в Москве, разъездная работа: 
+               Убрали одну квартиру, поехали на другую квартиру, если работы нет, то сидите на квартире, чай пьёте. На зарплату не влияет. В день от двух до четырёх квартир, которые нужно убирать.
+               Работник только на постоянную работу. Квартиры представлены у нас на сайте. Вакансия ограничена, так, как люди у нас работют годами, и уходят только по состоянию здоровья.
+            </p>
+            <p><strong>Условия:</strong>
+                Хороший дружелюбный коллектив. Зарплата два раза в месяц от 30000 руб. до 40000 руб., есть чаевые и бонусы, плюс к зарплате, сотрудников обучаем! Бонусы получают ежедневно.</p>
+            <p>Выходные строго по графику.</p>
+            <p style="color:red; font-size: 21px;">Тел: 8 966-096-23-60</p>
+        </div>
+
+
+        <div class="container-certain orange">
+
+            {% if app.session.hasFlash('danger') %}
+                <div class="alert alert-danger" role="alert">
+                    {{ app.session.getFlash('danger') | raw }}
+                </div> <br/>
+            {% endif %}
+
+            {% if app.session.hasFlash('success') %}
+                <div class="alert alert-success" role="alert">
+                    {{ app.session.getFlash('success') | raw }}
+                </div> <br/>
+            {% endif %}
+
+            {{ this.render('_form_1.twig', {'model' : model, 'formModel' : formModel}) | raw }}
+
+        </div>
+
+    </div>
+
+{% endblock %}

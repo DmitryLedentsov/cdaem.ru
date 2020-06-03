@@ -1,0 +1,140 @@
+{#
+    Главная страница
+    @var frontend\modules\agency\models\Apartment AgencyApartments
+    @var frontend\modules\partners\models\Apartment AdvertsApartments
+    @var \yii\web\View this
+#}
+
+{% extends "@app/themes/basic/layouts/main.twig" %}
+
+{% block title %}{{ this.registerTitle('Доска объявлений по аренде посуточно, все города России и СНГ | Сдаём.ру') }}{% endblock %}
+
+{% block header %}
+    {{ use('frontend/modules/site/widgets/BgHeader') }}
+    {{ bg_header_widget({'title': 'Доска объявлений'}) }}
+{% endblock %}
+
+{% block breadcrumbs %}
+    <div class="container">
+    <div class="breadcrumbs">
+        {{ use('yii/widgets/Breadcrumbs') }}
+        {{ breadcrumbs_widget({
+            'itemTemplate' : "<li>{link}</li>\n",
+            'homeLink' :
+            {
+                'label' : 'Главная',
+                'url' : '/'
+            },
+            'links':  [
+            {
+                'label': 'Доска объявлений',
+            },
+            ],
+        }) }}
+    </div>
+    </div>
+{% endblock %}
+
+{% block navbar %}
+    {{ this.renderDynamic('return $this->render("@app/modules/office/views/layouts/navbar.twig");') | raw }}
+{% endblock %}
+
+{% block content %}
+
+    {{ this.registerMetaTag({'name' : 'description', 'content' : ''}) }}
+    {{ this.registerMetaTag({'name' : 'keywords', 'content' : ''}) }}
+
+    {{ use('frontend/modules/partners/assets/AdvertAsset') }}
+    {{ register_advert_asset() }}
+
+    {{ use('common/modules/geo/assets/frontend/MetroMskAsset') }}
+    {{ register_metro_msk_asset() }}
+    
+   
+
+    {# Поиск #}
+    <div style="margin-top: -25px;margin-bottom:10px;padding: 0px;" class="indexboard">
+        {# Поиск #}
+        {{ this.render('@app/modules/partners/views/default/_search_on_the_board.twig', {
+            'searchTitle': 'Где вы хотите остановиться ?',
+            'searchModel': searchModel
+        }) | raw }}
+    </div>
+
+    <div class="container">
+
+        <div class="search-front">
+            <div role="main">
+                <div class="millioners clearfix">
+                    <h1 class="secondary">Сдаём.ру — Доска объявлений по всей России и СНГ по «аренде посуточно» или на короткий срок.</h1>
+
+                    <p>
+                        Вы можете бесплатно разместить своё предложение по «аренде посуточно» и выбрать нужный раздел:
+                        Квартира на сутки, квартира на час, квартира на ночь, квартира на месяц, комната на сутки, койко-место,
+                        загородный дом или дом на выходные, коттедж на сутки. Также если Вы собрались в поездку:
+                        Санкт-Петербург, Ростов на дону, Новосибирск, Екатеринбург, Казань, Челябинск, Уфа, Самара, Нижний Новгород, Волгоград, Омск
+                        или любой другой город России, то можно заранее забронировать через Наш сайт www.cdaem.ru. Если Вы едите в Москву или уже в Москве,
+                        то можно забронировать и подобрать квартиру посуточно через нашу фирму. Наши менеджеры профессионально подберут Вам нужный вариант,
+                        и Вы останетесь довольны. Мы работаем без посредников!
+                    </p>
+
+                    <hr/>
+
+                    <h3  class="secondary">Популярные направления</h3>
+
+                    <ul>
+                        <li><a href="{{ path('/partners/default/region', {'city' : 'msk'}) }}">Москва</a> — 10 563 038 чел.</li>
+                        <li><a href="{{ path('/partners/default/region', {'city' : 'ns'}) }}">Новосибирск</a> — 1 409 137 чел.</li>
+                        <li><a href="{{ path('/partners/default/region', {'city' : 'nn'}) }}">Нижний Новгород</a> — 1 271 045 чел.</li>
+                        <li><a href="{{ path('/partners/default/region', {'city' : 'chel'}) }}">Челябинск</a> — 1 125 723 чел.</li>
+                        <li><a href="{{ path('/partners/default/region', {'city' : 'rostov'}) }}">Ростов-на-Дону</a> — 1 048 124 чел.</li>
+                        <li><a href="{{ path('/partners/default/region', {'city' : 'kemerovo'}) }}">Кемерово</a></li>
+                    </ul>
+
+                    <ul>
+                        <li><a href="{{ path('/partners/default/region', {'city' : 'spb'}) }}">Санкт-Петербург</a> — 617 000 чел.</li>
+                        <li><a href="{{ path('/partners/default/region', {'city' : 'ekaterinburg'}) }}">Екатеринбург</a>— 1 365 567 чел.</li>
+                        <li><a href="{{ path('/partners/default/region', {'city' : 'kazan'}) }}">Казань</a> — 1 136 566 чел.</li>
+                        <li><a href="{{ path('/partners/default/region', {'city' : 'samara'}) }}">Самара</a> — 1 133 754 чел.</li>
+                        <li><a href="{{ path('/partners/default/region', {'city' : 'ufa'}) }}">Уфа</a> — 1 064 843 чел.</li>
+                        <li><a href="{{ path('/partners/default/region', {'city' : 'volgograd'}) }}">Волгоград</a> — 1015 813 чел.</li>
+                    </ul>
+
+                </div>
+
+                <hr/>
+
+                <br />
+
+                <h4 class="secondary">Выберите город</h4>
+                <ul class="countries-list">
+                    {% for country, arCities in cities %}
+                        <li>
+                            <div class="country-name">{{ country }}</div>
+                            <ul class="alph-list">
+                                {% for key, arCity in arCities %}
+                                    <li>
+                                        <b>{{ key }}</b>
+                                        <ul class="cities-list">
+                                            {% for city in arCity %}
+                                                <li>
+                                                    <a href="{{ path('/partners/default/region', {'city' : city.name_eng}) }}" class="mainlink" title="Снять квартиру посуточно в {{ city.name }}">{{ city.name }}</a>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock content %}
+
+{% block footer %}
+    {% include "@app/themes/basic/layouts/footer-partners.twig" %}
+{% endblock %}

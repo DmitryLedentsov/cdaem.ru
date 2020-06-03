@@ -1,0 +1,353 @@
+{#
+    Бронь
+    @var \yii\web\View this
+#}
+
+{% extends "@app/modules/office/views/layouts/main.twig" %}
+
+{% block title %}{{ this.registerTitle('Бронь - Личный кабинет | Сдаём.ру') }}{% endblock %}
+
+{% block header %}<meta http-equiv="Refresh" content="95" />{% endblock %}
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        {{ use('yii/widgets/Breadcrumbs') }}
+        {{ breadcrumbs_widget({
+            'itemTemplate' : "<li>{link}</li>\n",
+            'homeLink' :
+            {
+                'label' : 'Главная',
+                'url' : '/'
+            },
+            'links':  [
+            {
+                'label': 'Личный кабинет',
+                'url' : ['/office/default/index']
+            },
+            {
+                'label': 'Бронь',
+            },
+            ],
+        }) }}
+    </div>
+{% endblock %}
+
+
+{% block content %}
+{{ use('frontend/themes/basic/assets/SlickAsset') }}
+    {{ register_slick_asset() }}
+    {{ use('frontend/modules/partners/assets/ApartmentAsset') }}
+    {{ register_apartment_asset() }}
+    <h4 style="text-align:center;border-bottom:2px solid orange;font-size:30px;">Бронь обьявлений</h4>
+    <div class="visible-xs multiple-items-7">
+        {% for reservation in dataProvider.getModels() %}
+
+
+        <div class="row apartment-item mini clearfix {% if reservation.closed != 0 %}closed{% endif %}">
+            <div class="apartment-item-title">
+                <h3>{{ ApartmentHelper.getAddress(reservation.advert.apartment) }} | Объявление №{{ reservation.advert.advert_id }}</h3>
+            </div>
+            <p class="accent-time" style="padding: 0 20px;"> Заявка создана: {{ this.renderDynamic('return \\nepster\\basis\\helpers\\DateTimeHelper::diffAgoPeriodRound("'~reservation.date_create~'");') | raw }}</p>
+            <div class="col-md-6">
+                <div class="apartment-description">
+                    <div class="apartment-blocks">
+                        <div class="adverts-list">
+                            <span class="advert-name distinguish">
+                                {{ reservation.advert.rentTypeName }}
+                            </span>
+                            <div class="reservation">
+                                <div class="clearfix">
+                                    <b>Бронь</b>
+                                    <div class="d">
+                                        с {{ DateTimeHelper.toFullDateTime(reservation.date_arrived) }} <br/>
+                                        по {{ DateTimeHelper.toFullDateTime(reservation.date_out) }}
+                                    </div>
+                                </div>
+                                <br/>
+                                <p>
+                                    <b>Дополнительно:</b> <br/>
+                                    <span class="color-info">{{ reservation.clientsCountText }}</span> человек,
+                                    <span class="color-info">{{ reservation.childrenText }}</span>,
+                                    <span class="color-info">{{ reservation.petsText }}</span>
+                                    <br/>
+                                    Актуально до:<br/> <span class="color-info">{{ DateTimeHelper.toFullDateTime(reservation.date_actuality) }}</span>
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <div class="extra-list">
+
+                            <p><span class="color-info"><b>Заявка № {{ reservation.id }}</b></span></p>
+
+
+
+                            <div class="contacts">
+                                {% if reservation.isContactsOpen %}
+                                    {{ UserHelper.getOpenContactsBlock(reservation.user) | raw }}
+                                {% else %}
+                                    <p class="color-closed">Контакты закрыты
+                                        {% if reservation.landlord_open_contacts != 1 %}
+                                            <span class="color-danger" style="font-size: 70%; font-weight: normal">(Не оплачено)</span>
+                                        {% endif %}
+                                    </p>
+
+                                {% endif %}
+
+                            </div>
+                                {% if reservation.confirm == 3 %}
+                        {{ this.renderDynamic('return $this->render("@app/modules/partners/views/reservation/reservation-failure-btn.php", ["id" => "'~reservation.id~'", "date" => "'~reservation.date_arrived~'", "confirm" => "'~reservation.confirm~'"]);') | raw }}
+                    {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+
+
+                <div class="present"> 
+                    {% if reservation.confirm == 3 and reservation.closed == 0 %}
+                        <h4>Связаться с клиентом</h4>
+                        <span class="btn newpink-btn-2" onclick="writeMessage({{ reservation.user_id }})">Написать Сообщение</span>
+                    {% endif %}
+                </div>
+                <div class="present">
+                    {{ preview_advert_tmp_widget({'advert' : reservation.advert}) }}
+                     <p>{{ reservation.advert.apartment.city.country.name }}, {{ reservation.advert.apartment.city.name }}, {{ reservation.advert.apartment.address }}</p>
+                        <p>
+                            Комнат: <span class="color-info">{{ reservation.advert.apartment.total_rooms }}</span>,
+                            Спальных мест: <span class="color-info">{{ ArrayHelper.getValue( reservation.advert.apartment.bedsList,  reservation.advert.apartment.beds) }}</span>,
+                            <br/> Общая площадь: <span class="color-info">{{ reservation.advert.apartment.total_area }} м2</span>,
+                            <span class="color-info">{{ reservation.advert.apartment.remontName }}</span>
+                        </p>
+                </div>
+               
+                <div class="extra-list va" style="padding: 0 15px;"> 
+                     {% if reservation.more_info %}
+                    <p>
+                        <b>Пожелания:</b> <br/>
+                        {{ reservation.more_info }}
+                    </p>
+                {% else %}
+                    <div class="alert alert-info">
+                        Нет пожеланий
+                    </div>
+                {% endif %}
+                    <br/>
+                    {% if otherreservation.userothreservarion(reservation.user_id)|length < 1 %}
+                        {% set foo = '0' %}
+                    {% endif %}
+                    {% if reservation.closed == 0 %}
+
+                        {% if reservation.confirm != 2 and reservation.confirm != 3 and otherreservation.userothreservarion(reservation.user_id)|length < 1 %}{# Если не подтверждено арендодателем или обеими сторонами #}
+
+                            <p class="text-center" style="font-weight: bold">
+                                <span class="link color-success reservation-send" data-type="confirm" data-reservation="{{ reservation.id }}" data-user-id="{{foo}}" data-user-type="landlord">Подтвердить бронь</span>
+
+                            </p>
+
+                        {% endif %}
+
+                        {% if reservation.confirm != 2 and reservation.confirm != 3 and otherreservation.userothreservarion(reservation.user_id)|length == 1 %}
+                            <div class="alert alert-warning">
+                                <p>Другой Владелец подтвердил бронь Вашего Клиента быстрее. Заявка аннулирована !</p>
+                            </div>
+                        {% endif %} 
+
+                        {% if reservation.confirm == 0 %}{# Подтвержденные заявки нельзя отменить #}
+                            <p class="text-center" style="font-weight: bold">
+                                <span class="link color-danger reservation-send" data-type="cancel" data-department="reservations" data-user-type="landlord"  data-reservation="{{ reservation.id }}">Отказать</span>
+                            </p>
+                        {% endif %}
+
+                    {% endif %}
+
+                    {% if reservation.confirm and reservation.cancel != 1 %}
+                        <br/>
+                        {{ reservation.confirmOwnerText | raw }}
+                    {% endif %}
+
+                    {% if reservation.cancel == 1 %}
+                        <br/>
+                        <div class="alert alert-warning">Клиент отменил заявку <p><b>Причина:</b> {{ reservation.cancel_reason }}</p></div>
+                    {% endif %}
+
+                    {% if reservation.cancel == 2 %}
+                        <br/>
+                        <div class="alert alert-warning">Вы отменили заявку <p><b>Причина:</b> {{ reservation.cancel_reason }}</p></div>
+                    {% endif %}
+
+                    {% if reservation.cancel == 3 %}
+                        <div class="alert alert-warning">Отменено системой <p><b>Причина:</b> {{ reservation.cancel_reason }}</p></div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+
+
+    {% else %}
+        <div class="alert alert-info">
+            Нет заявок
+        </div>
+    {% endfor %}
+
+    </div>
+    <div class="hidden-xs">
+    {% for reservation in dataProvider.getModels() %}
+
+
+        <div class="row apartment-item clearfix {% if reservation.closed != 0 %}closed{% endif %}">
+            <div class="apartment-item-title">
+                <h3>{{ ApartmentHelper.getAddress(reservation.advert.apartment) }} | Объявление №{{ reservation.advert.advert_id }}</h3>
+            </div>
+            <p class="accent-time" style="padding: 0 20px;"> Заявка создана: {{ this.renderDynamic('return \\nepster\\basis\\helpers\\DateTimeHelper::diffAgoPeriodRound("'~reservation.date_create~'");') | raw }}</p>
+            <div class="col-md-6">
+                <div class="apartment-description">
+                    <div class="apartment-blocks">
+                        <div class="adverts-list">
+                            <span class="advert-name distinguish">
+                                {{ reservation.advert.rentTypeName }}
+                            </span>
+                            <div class="reservation">
+                                <div class="clearfix">
+                                    <b>Бронь</b>
+                                    <div class="d">
+                                        с {{ DateTimeHelper.toFullDateTime(reservation.date_arrived) }} <br/>
+                                        по {{ DateTimeHelper.toFullDateTime(reservation.date_out) }}
+                                    </div>
+                                </div>
+                                <br/>
+                                <p>
+                                    <b>Дополнительно:</b> <br/>
+                                    <span class="color-info">{{ reservation.clientsCountText }}</span> человек,
+                                    <span class="color-info">{{ reservation.childrenText }}</span>,
+                                    <span class="color-info">{{ reservation.petsText }}</span>
+                                    <br/>
+                                    Актуально до:<br/> <span class="color-info">{{ DateTimeHelper.toFullDateTime(reservation.date_actuality) }}</span>
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <div class="extra-list">
+
+                            <p><span class="color-info"><b>Заявка № {{ reservation.id }}</b></span></p>
+
+
+
+                            <div class="contacts">
+                                {% if reservation.isContactsOpen %}
+                                    {{ UserHelper.getOpenContactsBlock(reservation.user) | raw }}
+                                {% else %}
+                                    <p class="color-closed">Контакты закрыты
+                                        {% if reservation.landlord_open_contacts != 1 %}
+                                            <span class="color-danger" style="font-size: 70%; font-weight: normal">(Не оплачено)</span>
+                                        {% endif %}
+                                    </p>
+
+                                {% endif %}
+
+                            </div>
+                                {% if reservation.confirm == 3 %}
+                        {{ this.renderDynamic('return $this->render("@app/modules/partners/views/reservation/reservation-failure-btn.php", ["id" => "'~reservation.id~'", "date" => "'~reservation.date_arrived~'", "confirm" => "'~reservation.confirm~'"]);') | raw }}
+                    {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+
+
+                <div class="present"> 
+                    {% if reservation.confirm == 3 and reservation.closed == 0 %}
+                        <h4>Связаться с клиентом</h4>
+                        <span class="btn newpink-btn-2" onclick="writeMessage({{ reservation.user_id }})">Написать Сообщение</span>
+                    {% endif %}
+                </div>
+                <div class="present">
+                    {{ preview_advert_tmp_widget({'advert' : reservation.advert}) }}
+                     <p>{{ reservation.advert.apartment.city.country.name }}, {{ reservation.advert.apartment.city.name }}, {{ reservation.advert.apartment.address }}</p>
+                        <p>
+                            Комнат: <span class="color-info">{{ reservation.advert.apartment.total_rooms }}</span>,
+                            Спальных мест: <span class="color-info">{{ ArrayHelper.getValue( reservation.advert.apartment.bedsList,  reservation.advert.apartment.beds) }}</span>,
+                            <br/> Общая площадь: <span class="color-info">{{ reservation.advert.apartment.total_area }} м2</span>,
+                            <span class="color-info">{{ reservation.advert.apartment.remontName }}</span>
+                        </p>
+                </div>
+               
+                <div class="extra-list va" style="padding: 0 15px;"> 
+                     {% if reservation.more_info %}
+                    <p>
+                        <b>Пожелания:</b> <br/>
+                        {{ reservation.more_info }}
+                    </p>
+                {% else %}
+                    <div class="alert alert-info">
+                        Нет пожеланий
+                    </div>
+                {% endif %}
+                    <br/>
+                    {% if otherreservation.userothreservarion(reservation.user_id)|length < 1 %}
+                        {% set foo = '0' %}
+                    {% endif %}
+                    {% if reservation.closed == 0 %}
+
+                        {% if reservation.confirm != 2 and reservation.confirm != 3 and otherreservation.userothreservarion(reservation.user_id)|length < 1 %}{# Если не подтверждено арендодателем или обеими сторонами #}
+
+                            <p class="text-center" style="font-weight: bold">
+                                <span class="link color-success reservation-send" data-type="confirm" data-reservation="{{ reservation.id }}" data-user-id="{{foo}}" data-user-type="landlord">Подтвердить бронь</span>
+
+                            </p>
+
+                        {% endif %}
+
+                        {% if reservation.confirm != 2 and reservation.confirm != 3 and otherreservation.userothreservarion(reservation.user_id)|length == 1 %}
+                            <div class="alert alert-warning">
+                                <p>Другой Владелец подтвердил бронь Вашего Клиента быстрее. Заявка аннулирована !</p>
+                            </div>
+                        {% endif %} 
+
+                        {% if reservation.confirm == 0 %}{# Подтвержденные заявки нельзя отменить #}
+                            <p class="text-center" style="font-weight: bold">
+                                <span class="link color-danger reservation-send" data-type="cancel" data-department="reservations" data-user-type="landlord"  data-reservation="{{ reservation.id }}">Отказать</span>
+                            </p>
+                        {% endif %}
+
+                    {% endif %}
+
+                    {% if reservation.confirm and reservation.cancel != 1 %}
+                        <br/>
+                        {{ reservation.confirmOwnerText | raw }}
+                    {% endif %}
+
+                    {% if reservation.cancel == 1 %}
+                        <br/>
+                        <div class="alert alert-warning">Клиент отменил заявку <p><b>Причина:</b> {{ reservation.cancel_reason }}</p></div>
+                    {% endif %}
+
+                    {% if reservation.cancel == 2 %}
+                        <br/>
+                        <div class="alert alert-warning">Вы отменили заявку <p><b>Причина:</b> {{ reservation.cancel_reason }}</p></div>
+                    {% endif %}
+
+                    {% if reservation.cancel == 3 %}
+                        <div class="alert alert-warning">Отменено системой <p><b>Причина:</b> {{ reservation.cancel_reason }}</p></div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+
+
+    {% else %}
+        <div class="alert alert-info">
+            Нет заявок
+        </div>
+    {% endfor %}
+    </div>
+
+    {{ use ('yii/widgets/LinkPager') }}
+    {{ link_pager_widget({'pagination' : dataProvider.pagination}) }}
+
+{% endblock content %}

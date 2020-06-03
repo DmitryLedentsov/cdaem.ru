@@ -1,0 +1,68 @@
+{#
+    Создать
+    @var \yii\web\View this
+    @var frontend\modules\partners\models\form\ApartmentForm apartment
+    @var frontend\modules\partners\models\form\AdvertForm advert
+    @var frontend\modules\partners\models\form\ImageForm image
+    @var array rentTypes
+#}
+
+{% extends "@app/modules/office/views/layouts/main.twig" %}
+
+{% block title %}{{ this.registerTitle('Создать объявления | Сдаём.ру') }}{% endblock %}
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        {{ use('yii/widgets/Breadcrumbs') }}
+        {{ breadcrumbs_widget({
+            'itemTemplate' : "<li>{link}</li>\n",
+            'homeLink' :
+            {
+                'label' : 'Главная',
+                'url' : '/'
+            },
+            'links':  [
+            {
+                'label': 'Личный кабинет',
+                'url': ['/office/default/index'],
+            },
+            {
+                'label': 'Создать объявления',
+                'url': ['/partners/default/create'],
+            },
+            ],
+        }) }}
+    </div>
+{% endblock %}
+
+
+{% block sidebar %}
+
+    <div class="text-help-section s1">
+        <h3>Создание объявления</h3>
+        <p>Создавая апартамент, Вы можете создать сразу несколько объявлений отметив соответствующие типы аренды.</p>
+    </div>
+
+    <div class="text-help-section s2">
+        <p>Укажите город в котором находится Ваш объект недвижимости.</p>
+    </div>
+
+    <div class="text-help-section s3">
+        <p>Вы можете загрузить до 10 фотографий.</p>
+    </div>
+
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="container-apartment-form">
+        {{ this.render('_form_apartment.twig', {
+            'apartment' : apartment,
+            'advert' : advert,
+            'image' : image,
+            'rentTypes' : rentTypes,
+        }) | raw }}
+    </div>
+
+{% endblock content %}

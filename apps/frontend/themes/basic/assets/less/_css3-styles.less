@@ -1,0 +1,69 @@
+/**
+  -moz- Firefox
+  -webkit- Safari, Chrome
+  -ms- IE10
+  -o- Opera 11.10+
+  -khtml- KHTML
+**/
+
+// Радиус скругления уголков
+.background-cover(@radius: 10px) {
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  -ms-background-size: cover;
+  -o-background-size: cover;
+  -khtml-background-size: cover;
+  background-size: cover;
+}
+
+// Радиус скругления уголков
+.border-radius(@radius: 10px) {
+  -moz-border-radius: @radius;
+  -webkit-border-radius: @radius;
+  -ms-border-radius: @radius;
+  -o-box-shadow: @radius;
+  -khtml-border-radius: @radius;
+  border-radius: @radius;
+}
+
+// Тень
+.box-shadow(@shadow: 7px 7px 3px black) {
+  -moz-box-shadow: @shadow ;
+  -webkit-box-shadow: @shadow;
+  -ms-box-shadow: @shadow;
+  -o-box-shadow: @shadow;
+  -khtml-box-shadow: @shadow;
+  box-shadow: @shadow;
+}
+
+// Прозрачность
+.opacity(@opacity: 100) {
+  @_ops: 100;
+  filter:progid:DXImageTransform.Microsoft.Alpha(opacity=@opacity);
+  -moz-opacity: @opacity / @_ops;
+  -webkit-opacity: @opacity / @_ops;
+  zoom: 1; /* для элемента в ИЕ, у которого не заданы width и height */
+  -ms-box-shadow: @opacity / @_ops;
+  -khtml-opacity: @opacity / @_ops;
+  opacity: @opacity / @_ops;
+}
+
+// Трансформация
+.transform(@transform: 45deg) {
+  -moz-transform: rotate(@transform);
+  -webkit-transform: rotate(@transform);
+  -ms-transform: rotate(@transform);
+  -o-transform: rotate(@transform);
+  -khtml-transform: rotate(@transform);
+  transform: rotate(@transform);
+}
+
+// Переходы
+.transition(@transition: 0.2s ease 0.2s) {
+  -moz-transition: @transition;
+  -webkit-transition: @transition;
+  -ms-transform: @transition;
+  -o-transition: @transition;
+  -khtml-transform: @transition;
+  transition: @transition;
+}

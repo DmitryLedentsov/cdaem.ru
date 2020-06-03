@@ -1,0 +1,116 @@
+{#
+    @var \yii\web\View this
+    @var common\modules\agency\models\form\reservationFormForm reservationFormForm
+    @var common\modules\agency\models\form\DetailsHistoryForm detailsHistoryForm
+#}
+
+
+{{ use('frontend/modules/site/widgets/Captcha') }}
+
+
+<div class="container">
+    <div class="container-certain primary text" style="width: 100%">
+
+        <h3 style="text-align: center">Заявка на бронирование:</h3>
+
+        <div id="reserved-result">
+
+            {% set form = active_form_begin({
+                'id' : 'form-reserved',
+                'options' : {'class' : 'horizontal'},
+                'enableClientScript': false,
+            }) %}
+
+            <div class="general-form clearfix row">
+
+                <div class="col-md-6">
+                    {{ form.field(reservationForm, 'name', {'template' : '<div class="">{label}</div> <div class="">{input}{error}</div>'}) | raw }}
+                    {{ form.field(reservationForm, 'email', {'template' : '<div class="">{label}</div> <div class="">{input}{error}</div>'}) | raw }}
+                    {{ form.field(reservationForm, 'phone', {'template' : '<div class="">{label}</div> <div class="">{input}{error}</div>'}).textInput({'class' : 'form-control phone-mask', 'placeholder' : '+7 (___) ___-____'}) | raw }}
+                    {{ form.field(reservationForm, 'transfer', {
+                        'template' : '<div class="">{label}</div> <div class="">{input}{error}</div>',
+                        'options' : {'class' : 'form-group', 'style' : 'float: right'}
+                    }).checkbox() | raw }}
+                    <div>      {{ form.field(reservationForm, 'clients_count', {
+                        'template' : '<div class="">{label}</div> <div class="">{input}{error}</div>',
+                        'inputOptions' : {'maxlength' : 2, 'class' : 'form-control', 'style' : 'width: 70px;'},
+                        'options' : {'class' : 'form-group'}
+                    }) | raw }}
+                    </div>
+
+
+                    <div>{{ form.field(reservationForm, 'more_info', {
+                        'template' : '<div class="">{label}</div> <div class="">{input}{error}</div>',
+                        'options' : {'class' : 'form-group'}
+                    }).textarea() | raw }}</div>
+                    <div class="clearfix"></div>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <div class="form-reservation-advert">
+                        <div class="form-block-1">
+                            {% set field = form.field(reservationForm, 'arrived_date', {'options' : {'class' : 'form-group date'}}) | raw %}
+                            {{ field.begin() | raw }}
+                            <div class="field-wrap"><label class="label-form-b">{{ reservationForm.getAttributeLabel('arrived_date') }}</label></div>
+                            <div class="field-wrap">{{ html.activeTextInput(reservationForm, 'arrived_date', {'class' : 'form-control datepicker', 'readonly' : 'readonly'}) | raw }}</div>
+                            {{ html.error(reservationForm, 'arrived_date', {'class' : 'help-block'}) | raw }}
+                            {{ field.end() | raw }}
+
+                            {% set field = form.field(reservationForm, 'arrived_time', {'options' : {'class' : 'form-group time'}}) | raw %}
+                            {{ field.begin() | raw }}
+                            <div class="field-wrap"><label class="label-form-b">{{ reservationForm.getAttributeLabel('out_time') }}</label></div>
+                            <div class="field-wrap">{{ html.activeTextInput(reservationForm, 'arrived_time', {'class' : 'form-control timepicker', 'readonly' : 'readonly'}) | raw }}</div>
+                            {{ html.error(reservationForm, 'arrived_time', {'class' : 'help-block'}) | raw }}
+                            {{ field.end() | raw }}
+                        </div>
+                        <div class="date_out clearfix">
+                            {% set field = form.field(reservationForm, 'out_date', {'options' : {'class' : 'form-group date'}}) | raw %}
+                            {{ field.begin() | raw }}
+                            <div class="field-wrap"><label class="label-form-b">{{ reservationForm.getAttributeLabel('out_date') }}</label></div>
+                            <div class="field-wrap">{{ html.activeTextInput(reservationForm, 'out_date', {'class' : 'form-control datepicker', 'readonly' : 'readonly'}) | raw }}</div>
+                            {{ html.error(reservationForm, 'out_date', {'class' : 'help-block'}) | raw }}
+                            {{ field.end() | raw }}
+
+                            {% set field = form.field(reservationForm, 'out_time', {'options' : {'class' : 'form-group time'}}) | raw %}
+                            {{ field.begin() | raw }}
+                            <div class="field-wrap"><label class="label-form-b">{{ reservationForm.getAttributeLabel('out_time') }}</label></div>
+                            <div class="field-wrap">{{ html.activeTextInput(reservationForm, 'out_time', {'class' : 'form-control timepicker', 'readonly' : 'readonly'}) | raw }}</div>
+                            {{ html.error(reservationForm, 'out_time', {'class' : 'help-block'}) | raw }}
+                            {{ field.end() | raw }}
+
+                        </div>
+                    </div>
+
+                    {{ form.field(reservationForm, 'whau', {
+                        'options' : {'class' : 'form-group white'},
+                        'template' : '<div class="">{label}</div> <div class="">{input}{error}</div>'
+                    }).dropDownList(reservationForm.getWhauArray(), {'class' : "select-white"}) | raw }}
+
+                    {{ captcha_widget({'form': form, 'model': reservationForm, 'name': 'verifyCode'}) }}
+
+
+
+
+                </div>
+
+
+                <div class="clearfix"></div>
+
+                <div class="form-group" style="text-align: center;">
+                    <input type="submit" value="Отправить" class="btn btn-primary pink-btn" />
+                </div>
+
+            </div>
+
+            {{ active_form_end() }}
+
+        </div>
+
+    </div>
+
+</div>
+
+{{ use('frontend/themes/basic/assets/DateTimeAsset') }}
+{{ register_date_time_asset() }}

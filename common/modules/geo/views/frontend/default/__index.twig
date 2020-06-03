@@ -1,0 +1,265 @@
+ {#
+    Карта
+    @var \yii\web\View this
+
+#}
+
+{% extends "@app/themes/basic/layouts/main.twig" %}
+
+{% block title %} {{ this.registerTitle('Найти апартаменты на карте | Сдаём.ру') }} {% endblock %}
+
+{% block header %}{% endblock %}
+
+{% block navbar %}
+    {{ this.renderDynamic('return $this->render("@app/modules/office/views/layouts/navbar.twig");') | raw }}
+{% endblock %}
+
+{% block navbar_bottom %}{% endblock %}
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        {{ use('yii/widgets/Breadcrumbs') }}
+        {{ breadcrumbs_widget({
+            'itemTemplate' : "<li>{link}</li>\n",
+            'homeLink' :
+            {
+                'label' : 'Главная',
+                'url' : '/'
+            },
+            'links':  [
+            {
+                'label': 'Карта',
+                'url': ['/geo/default/index'],
+            },
+            ],
+        }) }}
+    </div>
+{% endblock %}
+
+
+{% block content %}
+
+    {{ this.registerMetaTag({'name' : 'description', 'content' : ''}) }}
+    {{ this.registerMetaTag({'name' : 'keywords', 'content' : ''}) }}
+
+    {# Слайдер с рекламой #}
+    {{ use('frontend/modules/partners/widgets/AdvertisingTopSliderAdverts') }}
+    {{ advertising_top_slider_adverts_widget() }}
+
+    <div class="container">
+
+        <style type="text/css">
+            #map {
+                margin-top: 20px;
+                width: 100%;
+                height: 800px;
+            }
+
+            .balloon-info {
+                width: 250px;
+                height: 90px;
+                display: block;
+            }
+
+            .balloon-info .balloon-more {
+                display: inline-block;
+                margin-top: 15px;
+                float: left;
+            }
+
+            .balloon-info .balloon-view {
+                width: 75px;
+                display: block;
+                float: left;
+            }
+
+            .balloon-info .balloon-view p {
+                width: 100%;
+                display: block;
+                margin: 5px 0 0 0;
+                padding: 0;
+                font-size: 10px;
+                text-overflow: clip;
+                overflow: hidden;
+                line-height: 1;
+            }
+
+            .balloon-info .balloon-property {
+                font-size: 90%;
+                clear: left;
+                line-height: 1.3;
+                margin-top: 10px;
+                height: 18px;
+                overflow: hidden;
+                width: 100%;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+
+            .balloon-info .balloon-image {
+                width: 65px;
+                height: 65px;
+                display: block;
+                background-size: cover;
+                background-position: center;
+            }
+
+            .balloon-info .balloon-desc {
+                overflow: hidden;
+                text-align: right;
+            }
+
+            .balloon-info .balloon-desc span:first-child {
+                width: 65px;
+                display: block;
+                text-align: left;
+                float: left;
+            }
+
+            .balloon-info .balloon-desc p {
+                margin: 0;
+                padding: 0;
+                height: 22px;
+                overflow: hidden;
+                width: 100%;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+
+        </style>
+
+
+        <div id="map"></div>
+
+
+        <script src="//api-maps.yandex.ru/2.1/?lang=ru-RU" type="text/javascript"></script>
+        <script type="text/javascript">
+
+            ymaps.ready(init);
+
+            function init() {
+                var myMap = new ymaps.Map('map', {
+                            center: [55.76, 37.64],
+                            zoom: 10
+                        }, {
+                            searchControlProvider: 'yandex#search'
+                        }),
+                        objectManager = new ymaps.ObjectManager({
+                            clusterize: true,
+                            gridSize: 32
+                        });
+
+                //objectManager.objects.options.set('preset', 'islands#greenDotIcon');
+                //objectManager.clusters.options.set('preset', 'islands#greenClusterIcons');
+                myMap.geoObjects.add(objectManager);
+
+/*
+                var data = {
+                    "type": "FeatureCollection",
+                    "features": [
+                        {
+                            "type": "Feature",
+                            "id": 2,
+                            "geometry": {"type": "Point", "coordinates": [55.763338, 37.565466]},
+                            "properties": {
+                                "balloonContent": '<div class="balloon-info">' +
+                                '<div class="balloon-view">' +
+                                '<div class="balloon-image" style="background-image: url(/images/thumbs/1315.jpg_100x80.jpg)"></div>' +
+                                '<p>Комнат: --</p>' +
+                                '<p>Ремонт: --</p>' +
+                                '</div>' +
+                                '<div class="balloon-desc">' +
+                                '<p><span>На час:</span> --</p>' +
+                                '<p><span>На ночь:</span> --</p>' +
+                                '<p><span>На сутки:</span> --</p>' +
+                                '<a href="" class="balloon-more">Подробнее</a>' +
+                                '</div>' +
+                                '</div>',
+                                "hintContent": "Текст подсказки",
+                                //'iconLayout': 'islands#blueDotIcon',
+                            },
+                            "options": {
+                                //'preset': 'islands#blueDotIcon',
+                                'preset': 'islands#lightBlueDotIcon',
+                                //'iconLayout': 'islands#blueDotIcon',
+                                /*'iconLayout': 'default#image',
+                                'iconImageHref': '/basic-images/green-phone-icon.png',
+                                'fillImageHref':  '/basic-images/green-phone-icon.png',
+                                'iconImageSize': [30, 30],
+                                'iconImageOffset': [-15, -15]*//*
+                            },
+                        }
+                    ]
+                };
+
+
+                objectManager.add(data);*/
+
+
+                $.ajax({
+                 url: "/geo/map"
+                 }).done(function(data) {
+                    //objectManager.add(data);
+
+
+                    var GeoObjects = [];
+
+                    for (var i in data) {
+                        var apt = data[i];
+
+                        GeoObjects[i] = new ymaps.GeoObject({
+                            geometry: { type: "Point", coordinates: apt.lon, apt: apt.lat },
+                            properties: {
+                                clusterCaption: 'Маркер №' + apt.id,
+                                balloonContentBody: 'Содержимое балуна маркера №1.'
+                            }
+                        });
+
+                        GeoObjects[i] = new ymaps.GeoObject({
+                            geometry: { type: "Point", coordinates: apt.lat, apt: apt.lon },
+                            properties: {
+                                clusterCaption: 'Маркер №' + apt.id,
+                                balloonContentBody: 'Содержимое балуна маркера №1.'
+                            }
+                        });
+
+                        break;
+                    }
+
+
+
+
+                    var clusterer = new ymaps.Clusterer({
+                        gridSize: 64,
+                        groupByCoordinates: false,
+                        hasBalloon: true,
+                        hasHint: true,
+                        margin: 10,
+                        maxZoom: 10,
+                        minClusterSize: 2,
+                        showInAlphabeticalOrder: false,
+                        viewportMargin: 128,
+                        zoomMargin: 0,
+                        clusterDisableClickZoom: true
+                    });
+                    clusterer.add(GeoObjects);
+                    myMap.geoObjects.add(clusterer);
+
+
+
+                });
+
+            }
+
+
+        </script>
+
+    </div>
+
+
+{% endblock %}
+
+{% block footer %}
+    {% include "@app/themes/basic/layouts/footer-partners.twig" %}
+{% endblock %}
+

@@ -1,0 +1,75 @@
+{#
+    Все статьи
+    @var \yii\web\View this
+    @var \frontend\acticles\models\Acticle model
+    @var \frontend\acticles\models\Acticle models
+    @var \yii\data\Pagination pages
+#}
+
+{% extends "@app/themes/basic/layouts/main.twig" %}
+
+{% block title %}{{ this.registerTitle('Статьи, которые помогут Снять Квартиру в Москве и области | Сдаём.ру') }}{% endblock %}
+
+{% block header %}
+    {{ use('frontend/modules/site/widgets/BgHeader') }}
+    {{ bg_header_widget({'title': 'Статьи'}) }}
+{% endblock %}
+
+{% block navbar %}
+    {{ this.renderDynamic('return $this->render("@frontend/modules/office/views/layouts/navbar.twig");') | raw }}
+{% endblock %}
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        {{ use('yii/widgets/Breadcrumbs') }}
+        {{ breadcrumbs_widget({
+            'itemTemplate' : "<li>{link}</li>\n",
+            'homeLink' :
+            {
+                'label' : 'Главная',
+                'url' : '/'
+            },
+            'links':  [
+            {
+                'label': 'Статьи',
+                'url': ['/articles/default/index'],
+            },
+            ],
+        }) }}
+    </div>
+{% endblock %}
+
+{% block content %}
+
+    {{ this.registerMetaTag({'name' : 'description', 'content' : 'Как правильно выбрать квартиру на час в Москве и области. Для чего снимают квартиры на час в Москве и области. Квартиры на сутки выручат в сложной ситуации.'}) }}
+    {{ this.registerMetaTag({'name' : 'keywords', 'content' : 'Выбрать квартиру, статьи об аренде, как снять квартиру, аренда квартир плюсы, квартиры посуточно, квартира на час, квартира на сутки, снять квартиру на сутки, квартира на ночь, снять квартиру на ночь, квартира на месяц'}) }}
+
+    <div class="container slider-article-block">
+        <div class="d-title"><h4>Блог Cdaem.ru</h4></div>
+        <div class="article-block row">
+             {% for article in models %}
+            <div class="item-article col-md-3">
+                <div class="item-img" style="background: url(/images/{{ article.title_img | raw }})center center;">
+                    <div class="title-article"><h4><a href="{{ path('/articles/default/view', {'id' : article.slug}) }}">{{ article.name }}</a></h4></div>
+                </div>         
+            </div>
+        {% else %}
+            <div class="alert alert-danger" role="alert">
+                Статьи не найдены.
+            </div>
+        {% endfor %}
+        <div class="clearfix"></div>
+        </div>
+       
+        {% if models %}
+
+            {{ use('yii/widgets/LinkPager') }}
+
+            {{ link_pager_widget({
+                'pagination': pages
+            }) }}
+
+        {% endif %}
+
+    </div>
+{% endblock %}

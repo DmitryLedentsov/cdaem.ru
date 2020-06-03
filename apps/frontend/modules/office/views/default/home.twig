@@ -1,0 +1,182 @@
+{#
+    Мои покупки
+    @var \yii\web\View this
+    @var \yii\data\ActiveDataProvider dataProvider
+#}
+
+{% extends "@app/modules/office/views/layouts/main.twig" %}
+
+{% block title %}{{ this.registerTitle('Личный кабинет | Сдаём.ру') }}{% endblock %}
+
+{% block header %}{% endblock %}
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        {{ use('yii/widgets/Breadcrumbs') }}
+        {{ breadcrumbs_widget({
+            'itemTemplate' : "<li>{link}</li>\n",
+            'homeLink' :
+            {
+                'label' : 'Главная',
+                'url' : '/'
+            },
+            'links':  [
+            
+            {
+                'label': 'Личный Кабинет',
+            },
+            ],
+        }) }}
+    </div>
+{% endblock %}
+
+
+
+
+
+{% block content %}
+
+    <h4 style="text-align:center;border-bottom:2px solid orange;font-size:19px;">Мой кабинет</h4>
+{% if app.user.id %} {% if app.user.identity.profile.user_type == constant('\\common\\modules\\users\\models\\Profile::WANT_RENT') %}<div style="padding: 10px;text-align: center" class="visible-xs"><a href="{{ path(['/partners/reservation/index']) }}" style="display: inline-block;padding:5px 20px;width: 90%;border-radius: 10px;background: red;color:white;font-size: 16px;">Быстро снять</a></div>{% endif %}{% endif %}
+<div style="text-align: center;padding-top: 10px;padding-bottom: 10px;"><a href="{{ path({ 0: '/geo/default/index', 'city': city.name_eng}) }}" class="header-img map-xs" style="width:43%;display:inline-block;padding: 10px 20px;background: #247d8c;font-size: 12px;color:white;" >Поиск на карте</a>
+    <a href="/search" style="width:43%;display:inline-block;padding: 10px 10px;background: #247d8c;font-size: 12px;color:white;">Поиск по городам</a>     
+</div>  
+<div class="row">
+    <div class="board-search">
+        <div class="container">
+
+            <div class="filters">
+
+                {{ use('yii/widgets/ActiveForm') }}
+                {% set form = active_form_begin({
+                    'method' : 'GET',
+                    'action' : '/partners/pre-region',
+                    'options' : {
+                        'style' : 'padding: 20px',
+                    },
+                    'enableClientScript' : false,
+                }) %}
+
+                <div class="select-filter-2 white">
+                    <input name="city" type="text" class="form-control input-search city-drop-down-list" data-url="{{ path(['/geo/ajax/select-city']) }}" value="{{city.name}}" placeholder="Укажите Ваш город" />
+                </div>
+
+                {{ form.field(searchModel, 'sect', {
+                    'options' : {
+                        'class' : 'select-filter',
+                        'style' : 'width: 230px',
+                    },
+                    'inputOptions' : {
+                        'class' : 'select-white',
+                    },
+                    'template' : '{input}',
+                }).dropDownList(searchModel.rentTypesList, {
+                    'data-style' : 'white',
+                }) | raw }}
+
+                {{ form.field(searchModel, 'rooms', {
+                    'options' : {
+                        'class' : 'select-filter',
+                        'style' : 'width: 210px',
+                    },
+                    'inputOptions' : {
+                        'class' : 'select-white',
+                    },
+                    'template' : '{input}',
+                }).dropDownList(searchModel.roomsList, {
+                    'data-style' : 'white',
+                }) | raw }}
+
+                {{ form.field(searchModel, 'sort', {
+                    'options' : {
+                        'class' : 'select-filter',
+                        'style' : 'width: 220px',
+                    },
+                    'inputOptions' : {
+                        'class' : 'select-white',
+                    },
+                    'template' : '{input}',
+                }).dropDownList({0 : 'Сортировать по дате', 1 : 'От дешёвых к дорогим', 2 : 'От дорогих к дешёвым'}) | raw }}
+
+
+                <div class="select-filter white">
+                    <input type="submit" class="btn btn-white" style="background: #247d8c;width: 143px;color: white;" value="Поиск"/>
+                </div>
+
+                <div class="clearfix"></div>
+
+
+                {{ form.field(searchModel, 'price_start', {
+                    'options' : {
+                        'class' : 'select-filter',
+                        'style' : 'width: 245px',
+                    },
+                    'inputOptions' : {
+                        'class' : 'select-white',
+                    },
+                    'template' : '{input}',
+                    'enableClientValidation' : false,
+                }).textInput({
+                    'class' : 'form-control',
+                    'placeholder' : 'Цена от',
+                }) | raw }}
+
+                {{ form.field(searchModel, 'price_end', {
+                    'options' : {
+                        'class' : 'select-filter',
+                        'style' : 'width: 245px',
+                    },
+                    'template' : '{input}',
+                    'enableClientValidation' : false,
+                }).textInput({
+                    'class' : 'form-control',
+                    'placeholder' : 'Цена до',
+                }) | raw }}
+
+
+                {{ form.field(searchModel, 'online_user', {
+                    'options' : {
+                        'class' : 'select-filter radiobox',
+                        'style' : 'margin-top:8px !important;padding:0px !important',
+                    },
+                    'template' : '{input}',
+                }).checkbox({
+
+                }) | raw }}
+
+                {{ form.field(searchModel, 'now_available', {
+                    'options' : {
+                        'class' : 'select-filter radiobox',
+                        'style' : 'margin-top:8px !important;padding:0px !important',
+                    },
+                    'template' : '{input}',
+                }).checkbox({
+
+                }) | raw }}
+
+
+                {% if city.name_eng == 'msk' %}
+                    {{ use('common/modules/geo/assets/frontend/MetroMskAsset') }}
+                    {{ register_metro_msk_asset() }}
+                    <div class="select-filter">
+                        <div class="msk-map">
+                            <div class="title"><span id="open-subway-map" data-url="{{ path({'0' : '/partners/default/region', 'city' : 'msk'}) }}">Поиск по метро</span></div>
+                            <div class="modal fade" id="modal-subway-map" data-title="Выбрать на карте Москвы">
+                                <div class="map"></div> <br />
+                                <div class="form-group text-center">
+                                    <input type="button" class="close-modal btn btn-primary" value="Выбрать" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+                {{ active_form_end() }}
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock content %}

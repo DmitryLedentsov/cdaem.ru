@@ -1,0 +1,1142 @@
+/* --------------------------------- */
+/* --------------------------------- */
+/**
+  -moz- Firefox
+  -webkit- Safari, Chrome
+  -ms- IE10
+  -o- Opera 11.10+
+  -khtml- KHTML
+**/
+/* ========================================================
+*
+* Target Cdaem.ru
+*
+* ======================================================== */
+/*-------------------------------------*/
+.office {
+    /*-------------------------------------*/
+    /*-------------------------------------*/
+    /*-------------------------------------*/
+    /*-------------------------------------*/
+    /*-------------------------------------*/
+    /*-------------------------------------*/
+    /*-------------------------------------*/
+    /*-------------------------------------*/
+}
+.office small {
+    font-size: 10px;
+}
+.office.container {
+    margin-top: 30px;
+}
+.office .color-success {
+    color: #00AE5D;
+}
+.office .color-danger {
+    color: #F24941;
+}
+.office .color-info {
+    color: #0098BD;
+}
+.office .color-closed {
+    color: #A5A5A5;
+}
+
+.office .color-closed-2 {
+    text-transform: uppercase;
+    margin-left: 75px;
+    color: black;
+}
+
+.apartment_titlehelper {
+    font-size: 24px !important;
+    font-weight: 200;
+    color:#34495e;
+}
+
+.office .view-apartments {
+
+}
+.office .view-apartments h3 {
+    font-size: 145%;
+    margin-bottom: 15px;
+}
+.office .view-apartments .rent-type-list {
+    width: 80%;
+    font-size: 150%;
+}
+.office .view-apartments .rent-type-list li {
+    clear: both;
+    height: 30px;
+    margin-bottom: 5px;
+}
+.office .view-apartments .rent-type-list .name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    float: left;
+}
+.office .view-apartments .rent-type-list .count {
+    float: right;
+    color: #0098BD;
+    font-weight: 400;
+}
+.office .graphical-menu {
+    margin: 0;
+    padding: 30px;
+    text-align: center;
+}
+.office .graphical-menu li {
+    display: inline-block;
+    font-size: 155%;
+    margin-right: 45px;
+    position: relative;
+}
+.office .graphical-menu li.active {
+    font-weight: bold;
+}
+.office .graphical-menu li .label {
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
+    padding: 5px 0;
+    position: absolute;
+    top: -5px;
+    left: 25px;
+    background: #0098BD;
+    font-weight: 600;
+    color: #ffffff;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-box-shadow: 50%;
+    -khtml-border-radius: 50%;
+    border-radius: 50%;
+}
+.office .graphical-menu li .gm-icon {
+    width: 45px;
+    height: 48px;
+    display: inline-block;
+    background: url("/basic-images/office-sprite.png") no-repeat;
+}
+.office .graphical-menu li .gm-icon.message {
+    height: 40px;
+    background-position: 0 -282px;
+    margin-bottom: -12px;
+    margin-top: 10px;
+}
+.office .graphical-menu li .gm-icon.favorites {
+    background-position: 0 -180px;
+    margin-bottom: -10px;
+}
+.office .graphical-menu li .gm-icon.ban {
+    background-position: 8px -232px;
+    margin-bottom: -10px;
+}
+.office .graphical-menu li .gm-icon.bid {
+    background-position: 0 -130px;
+    margin-bottom: -10px;
+}
+.office .graphical-menu li .gm-icon.reservations {
+    background-position: 0 -322px;
+    margin-bottom: -10px;
+}
+.office .graphical-menu li a {
+    display: inline-block;
+    color: #0098BD;
+}
+.office .extra-menu {
+    margin-bottom: 25px;
+    text-align: center;
+    width: 100%;
+}
+
+.filter-title {
+    color:#7f8c8d;
+    margin-top: 15px;
+}
+
+.office .extra-menu.filter-style a {
+    padding: 3px 7px;
+    display: block;
+    color: #a2b0b1;
+    text-decoration: none;
+    font-weight: 600;
+    margin-right: 5px;
+    margin-bottom: 8px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-box-shadow: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+}
+.office .extra-menu.filter-style a:hover {
+    background: #FFAF3E;
+    color: white;
+}
+.office .extra-menu.filter-style li {
+    margin-right: 0;
+}
+.office .extra-menu.filter-style li.active a {
+    background: #1abc9c;
+    color: white;
+}
+.office .extra-menu.long-list li {
+    font-size: 100%;
+}
+.office .extra-menu.long-list li a {
+    text-decoration: none;
+    font-weight: 300;
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-right: 5px;
+    margin-bottom: 8px;
+}
+.office .extra-menu li {
+    display: inline-block;
+    font-size: 150%;
+    margin-right: 15px;
+}
+.office .extra-menu li.active {
+    font-weight: bold;
+}
+.office .apartment-list {
+    margin-top: 55px;
+    min-height: 200px;
+    padding-right: 6%;
+}
+.office .apartment-list .aadvert-preview .description {
+    height: 25px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto 3px;
+    font-size: 13px;
+    overflow: hidden;
+    padding: 2px 5px;
+    background: rgba(255, 255, 255, 0.8);
+}
+.office .apartment-list .aadvert-preview .name {
+    color: #0098BD;
+}
+.office .apartment-list .item {
+    width: 50%;
+    float: left;
+    text-align: left;
+    margin-bottom: 30px;
+}
+.office .apartment-list .item:nth-child(2n) {
+    text-align: right;
+}
+.office .load .apartment-list {
+    margin-top: 15px;
+    min-height: 200px;
+    padding-right: 0;
+}
+.office .load .apartment-list .item {
+    text-align: center;
+}
+.office .load .apartment-list .item .advert-preview {
+    cursor: pointer;
+}
+.office .load .apartment-list .name {
+    font-size: 100%;
+}
+.office .user-list {
+    margin-top: 55px;
+    margin-left: -25px;
+}
+.office .user-list li {
+    width: 33.3333%;
+    float: left;
+    padding-left: 25px;
+    margin-bottom: 25px;
+}
+.office .user-list .user {
+    height: 130px;
+    border: dashed 1px #D9D9D9;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.office .user-list .user .face {
+    width: 35%;
+    float: left;
+    padding-left: 15px;
+}
+.office .user-list .user .face .avatar {
+    height: 80px;
+}
+.office .user-list .user .face .avatar img {
+    min-height: 80px;
+}
+.office .user-list .user .face .online {
+    text-align: center;
+    margin-top: 15px;
+    color: #008000;
+}
+.office .user-list .user .extra {
+    width: 65%;
+    float: right;
+    padding-right: 15px;
+}
+.office .user-list .user .extra .name {
+    padding: 5px;
+    font-size: 120%;
+    overflow: hidden;
+    height: 50px;
+}
+.office .user-list .user .extra .settings {
+    float: left;
+    margin: 5px;
+}
+.office .user-list .user .extra .btn {
+    font-size: 120%;
+    font-weight: 400;
+    float: right;
+}
+.office .settings-nav {
+    position: relative;
+    float: left;
+}
+.office .settings-nav.text {
+    display: inline-block;
+    cursor: pointer;
+}
+.office .settings-nav.text ul {
+    top: 20px;
+}
+.office .settings-nav.right ul {
+    right: 0;
+}
+.office .settings-nav:hover ul {
+    display: block;
+    border: solid 1px #D9D9D9;
+    padding-bottom: 5px;
+    -moz-box-shadow: 3px 7px 10px -3px rgba(0, 0, 0, 0.35);
+    -webkit-box-shadow: 3px 7px 10px -3px rgba(0, 0, 0, 0.35);
+    -ms-box-shadow: 3px 7px 10px -3px rgba(0, 0, 0, 0.35);
+    -o-box-shadow: 3px 7px 10px -3px rgba(0, 0, 0, 0.35);
+    -khtml-box-shadow: 3px 7px 10px -3px rgba(0, 0, 0, 0.35);
+    box-shadow: 3px 7px 10px -3px rgba(0, 0, 0, 0.35);
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-box-shadow: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+}
+.office .settings-nav ul {
+    display: none;
+    width: 42px;
+    top: 40px;
+    position: absolute;
+    z-index: 999;
+    background: #ffffff;
+}
+.office .settings-nav ul li {
+    width: 100%;
+    height: 35px;
+    display: block;
+    margin: 0 0 5px 0;
+    padding: 0;
+}
+.office .settings-nav ul li:last-child {
+    margin: 0;
+}
+.office .settings {
+    width: 32px;
+    height: 35px;
+    display: block;
+    background: url("/basic-images/office-sprite.png") no-repeat;
+    cursor: pointer;
+}
+.office .settings.control {
+    background-position: 0 -385px;
+}
+.office .settings.bookmark {
+    background-position: 0 -420px;
+}
+.office .settings.blacklist {
+    background-position: -1px -458px;
+}
+.office .settings.remove {
+    background-position: -1px -502px;
+}
+.office .settings:hover.control {
+    background-position: -34px -385px;
+}
+.office .settings:hover.bookmark {
+    background-position: -34px -420px;
+}
+.office .settings:hover.blacklist {
+    background-position: -35px -458px;
+}
+.office .settings:hover.remove {
+    background-position: -35px -502px;
+}
+.office .info {
+    overflow: hidden;
+    padding-bottom: 95px;
+}
+.office .info .container-certain {
+    width: 90%;
+    margin: 0 auto 55px auto;
+}
+.office .separator-e {
+    margin-bottom: 55px;
+}
+.office .separator-e .title a {
+    font-size: 90%;
+}
+.office .apartment-item {
+    margin-bottom: 45px;
+    background: #ecf0f1;
+    padding: 5px;
+}
+.office .apartment-item.closed,
+.office .apartment-item.invisible {
+    color: #c0c0c0;
+}
+.office .apartment-item.closed a,
+.office .apartment-item.invisible a {
+    color: #c0c0c0;
+}
+.office .apartment-item.closed .color-info,
+.office .apartment-item.invisible .color-info,
+.office .apartment-item.closed .color-success,
+.office .apartment-item.invisible .color-success,
+.office .apartment-item.closed span,
+.office .apartment-item.invisible span {
+    color: #c0c0c0 !important;
+}
+.office .apartment-item .accent-time {
+    font-size: 150%;
+}
+.office .apartment-item .contacts p {
+    margin: 0;
+}
+.office .apartment-item > .apartment-description {
+
+}
+.office .apartment-item h3 {
+    font-size: 125%;
+    border-bottom: solid 1px #EEEEEE;
+    padding-bottom: 5px;
+    
+}
+.office .apartment-item .apartment-blocks {
+    width: 100%;
+
+    margin-top: 10px;
+}
+.office .apartment-item .apartment-blocks > div {
+    padding: 0 10px;
+}
+.office .apartment-item .apartment-blocks .color-info {
+    color: #1F1F1F;
+    font-weight: bold;
+}
+.office .apartment-item .apartment-blocks .apartment-info p {
+    margin-bottom: 5px;
+    font-size: 100%;
+}
+.office .apartment-item .apartment-blocks .no-payment a {
+    font-size: 10px;
+    color: #F24941;
+}
+
+.office .apartment-item .apartment-blocks .no-payment-2 a {
+
+    color: red;
+}
+
+.office .apartment-item .adverts-list {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.office .apartment-item .adverts-list-2 {
+    margin-top: 20px;
+}
+
+
+.office .apartment-item .adverts-list .advert-name {
+    display: inline-block;
+    width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-bottom: -3px;
+    position: relative;
+    padding-top: 5px;
+}
+.office .apartment-item .adverts-list .advert-name.distinguish {
+    width: 100%;
+    font-size: 150%;
+}
+.office .apartment-item .adverts-list .advert-name .top {
+    font-size: 11px;
+    position: absolute;
+    top: -2px;
+    right: -20px;
+    width: 75px;
+    height: 15px;
+    overflow: hidden;
+}
+.office .apartment-item .apartment-info {
+    width: 32%;
+    display: table-cell;
+}
+
+.office .apartment-item .apartment-info-2 {
+    margin-top: 30px;
+}
+
+.office .apartment-item .extra-list {
+
+}
+.office .apartment-item .extra-list.va {
+    vertical-align: middle;
+}
+.office .apartment-item .extra-list.accent .color-danger,
+.office .apartment-item .extra-list.accent .color-success {
+    font-size: 150%;
+}
+.office .apartment-item .extra-list.payment-status {
+    width: 25%;
+    vertical-align: middle;
+}
+.office .apartment-item .extra-list.links {
+    margin-top: 10px;
+    font-size: 11px;
+}
+
+.statushelper_title {
+    color:#95a5a6;
+    font-size: 15px;
+    border-right: 1px solid #95a5a6; 
+    margin-right: 15px;
+    padding-right:15px;
+}
+
+.advertposition_info {
+    color:#95a5a6;
+    font-size: 15px;
+    margin-right: 5px;
+}
+
+.advert-name-new {
+    border-right: 1px solid #95a5a6; 
+    font-size: 15px;
+    margin-right: 15px;
+
+}
+
+.possition_name {
+    margin-right: 15px;
+}
+
+.rentypelink {
+    display: inline-block;
+    color:#95a5a6;
+    font-size: 15px;
+    border-radius: 10px;
+    border: 1px solid #95a5a6;
+    padding: 2px 10px;
+    margin-right: 15px;
+}
+
+.rentypelink:hover {
+    color:#95a5a6;
+    border: 1px solid orange;
+    text-decoration: none;
+}
+
+.editapartment {
+    color:#3e5266;
+}
+
+.office .apartment-item .extra-list-2.links-2 {
+
+}
+
+.office .apartment-item .extra-list.links a {
+    font-size: 120%;
+}
+.office .apartment-item .extra-list.links p {
+    margin: 0;
+}
+.office .apartment-item .extra-list.links .edit {
+    background: url('/basic-images/btn_edit_ads.png') no-repeat center;
+    height: 40px;
+    padding: 5px 0 0 40px;
+}
+.office .apartment-item .extra-list.links .reviews {
+    background: url('/basic-images/btn_comments.png') no-repeat left center;
+    height: 40px;
+    padding: 5px 0 0 40px;
+    margin-top: 5px;
+}
+
+.reviews {
+   background: url('/basic-images/btn_comments.png') no-repeat left center;
+    height: 40px;
+    padding: 5px 0 0 50px;
+    margin-top: 15px; 
+    font-size: 21px;
+    background-size: contain;
+}
+
+.advertinfo-row {
+    margin-top: 12px;
+    padding-left: 16px;
+}
+
+.office .apartment-item > .present {
+
+}
+.office .general-form.buy-ads .section {
+    width: 35%;
+}
+.office .general-form.buy-ads .section .desc {
+    text-align: left;
+}
+.office .general-form.buy-ads .section:first-child {
+    width: 65%;
+}
+.office .calculate {
+    margin-bottom: 15px;
+}
+.office .calculate .service-logo {
+    width: 180px;
+    height: 180px;
+    float: left;
+    text-align: center;
+    padding: 0 15px;
+    margin-right: 15px;
+}
+.office .calculate .service-info {
+    overflow: hidden;
+}
+.office .calculate .name {
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+}
+.office .calculate .price {
+    font-size: 125%;
+    text-decoration: line-through;
+}
+.office .calculate .discount {
+    font-size: 125%;
+    color: #00AE5D;
+}
+.office .calculate .total-price {
+    font-size: 170%;
+    font-weight: bold;
+}
+.office .reservation-filter {
+    margin-bottom: 55px;
+}
+.office .reservation-filter .form-group {
+    width: 170px;
+    float: left;
+    clear: none;
+    margin-right: 15px;
+}
+.office .reservation-filter .form-group:first-child {
+    width: 270px;
+}
+.office .reservation-filter .form-group:last-child {
+    width: 80px;
+    margin-top: 15px;
+    margin-right: 0;
+}
+/*-------------------------------------*/
+#modal-realty-objects-by-service .modal-dialog {
+    width: 550px;
+}
+#modal-realty-objects-by-service .modal-dialog .apartment-list .shadow-box:hover {
+    border: solid 1px #f1a73f;
+}
+#modal-realty-objects-by-service .modal-dialog .apartment-list .item {
+    width: 33.3333%;
+    float: left;
+    text-align: center;
+    margin-bottom: 30px;
+}
+#modal-realty-objects-by-service .modal-dialog .apartment-list .item:nth-child(2n) {
+    text-align: center;
+}
+/*-------------------------------------*/
+.container-apartment-form .apartment-form-section {
+    border: solid 1px #DBDBDB;
+    padding: 25px;
+    border-radius: 5px;
+    margin-bottom: 35px;
+}
+.container-apartment-form .apartment-form-section .margin {
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-bottom: 15px;
+}
+.container-apartment-form .apartment-form-section .title {
+    font-size: 150%;
+    font-weight: 400;
+    margin-bottom: 25px;
+}
+.container-apartment-form .apartment-form-section .title span {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background: #D0EEF6;
+    color: #76A4AE;
+    text-align: center;
+    padding-top: 2px;
+    font-size: 80%;
+    border-bottom: solid 2px #ACD1E0;
+    margin-right: 5px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-box-shadow: 50%;
+    -khtml-border-radius: 50%;
+    border-radius: 50%;
+}
+.container-apartment-form .apartment-form-section .item {
+    width: 100%;
+
+}
+.container-apartment-form .apartment-form-section .item .form-control {
+
+}
+.container-apartment-form .apartment-form-section .item.r3 {
+    width: 33%;
+}
+.container-apartment-form .apartment-form-section .item.r2 {
+    width: 50%;
+}
+.container-apartment-form .apartment-form-section .item.no-label {
+    padding-top: 25px;
+}
+.container-apartment-form .apartment-form-section .item label.control-label {
+    width: auto;
+    float: none;
+    font-size: 120%;
+}
+.container-apartment-form .apartment-form-section .item .form-group {
+    display: block;
+}
+.container-apartment-form .apartment-form-section .item .col-l {
+    width: auto;
+    min-width: 100px;
+    display: block;
+}
+.container-apartment-form .apartment-form-section .item .col-i {
+    display: block;
+}
+.container-apartment-form .apartment-form-section .rent-type-list .col-i label {
+    width: 25%;
+    clear: none !important;
+}
+.text-help-section {
+    padding-right: 15px;
+}
+.text-help-section.s1 {
+
+}
+.text-help-section.s2 {
+
+}
+.text-help-section.s3 {
+    margin-top: 10px;
+}
+#form-apartment h2 {
+    font-size: 150%;
+    margin-top: 45px;
+    margin-bottom: 25px;
+}
+#form-apartment .col-i .small {
+    width: 150px;
+}
+#form-apartment .col-i .medium {
+    width: 250px;
+}
+#form-apartment .rent-type-list .col-i label {
+    display: block;
+    float: left;
+    clear: both;
+    font-size: 120%;
+    padding: 5px 0;
+}
+#form-apartment .price-type-list {
+    display: none;
+}
+#form-apartment .price-type-list.show {
+    display: block;
+}
+#form-apartment .price-type-list .title {
+    font-size: 150%;
+    margin-bottom: 15px;
+    color: #00C0F3;
+}
+/*-------------------------------------*/
+.images-preview {
+    margin-bottom: 15px;
+}
+.images-preview .advert-preview {
+    margin-right: 15px;
+    margin-bottom: 15px;
+    position: relative;
+}
+.images-preview .advert-preview:hover .control {
+    display: block;
+}
+.images-preview .advert-preview .control {
+    width: 100%;
+    height: 38px;
+    position: absolute;
+    z-index: 2;
+    display: none;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    text-align: center;
+}
+.images-preview .advert-preview .control .index,
+.images-preview .advert-preview .control .delete {
+    width: 35px;
+    height: 35px;
+    display: inline-block;
+    cursor: pointer;
+}
+.images-preview .advert-preview .control .index {
+    margin-right: 5px;
+    background: url('/basic-images/success.png') no-repeat center;
+}
+.images-preview .advert-preview .control .delete {
+    background: url('/basic-images/fail.png') no-repeat center;
+}
+.images-preview .advert-preview.default {
+    border: solid 2px #0098BD;
+}
+/*-------------------------------------*/
+.services-wrap #services .service {
+    width: 33%;
+    float: left;
+    padding: 15px;
+    margin-bottom: 55px;
+    
+    cursor: pointer;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-box-shadow: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+}
+#services .service a {
+    color: inherit;
+    text-decoration: none;
+}
+#services .service:hover,
+#services .service.active {
+    
+}
+
+#services .service:hover,
+#services .service.s2.active {
+    border: none;
+    cursor: pointer;
+}
+#services .service .service-logo {
+    width: 220px;
+    height: 150px;
+    margin: auto;
+    text-align: center;
+}
+#services .service .service-name {
+    font-weight: bold;
+    font-size: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    margin: 15px 0;
+}
+#services .service .service-desc {
+    height: 100px;
+    overflow: hidden;
+}
+#services.min {
+    padding: 5px;
+
+}
+
+.serviceline {
+    border:0px;
+    width:90%;
+}
+
+.service.s2 {
+    height: 126px;
+}
+
+.oldservice_style #services.min .service {
+    width: 50%;
+    float: left;
+    margin-bottom: 15px;
+    padding: 5px;
+}
+#services.min .service .service-logo {
+    width: 100%;
+    height: 105px;
+    margin: auto;
+    text-align: center;
+}
+
+#services.min .service.s2 .service-logo {
+    width: 100%;
+    height: 85px;
+    margin: auto;
+    text-align: center;
+}
+
+
+
+
+#services.min .service .service-name {
+    font-size: 85%;
+    margin: 0;
+    height: auto;
+}
+
+#services.min .service.s2 .service-name {
+    font-size: 75%;
+    color:#828f90;
+    margin: 0;
+    height: auto;
+}
+
+
+#services.min .service .service-desc {
+    font-size: 100%;
+    height: auto;
+    text-align: center;
+}
+
+#services.min .service.s2 .service-desc {
+    font-size: 100%;
+    height: auto;
+    text-align: center;
+    background: #7f8c8d;
+}
+
+
+#services.min .service .service-desc p {
+    margin: 0;
+}
+#services.min .service .service-desc span {
+    color: #0098BD;
+    display: inline-block;
+    font-size: 125%;
+    font-weight: bold;
+}
+
+#services.min .service.s2 .service-desc span {
+    color: white;
+    display: inline-block;
+    font-size: 125%;
+    font-weight: bold;
+}
+
+#services.min .service .service-desc span span {
+    font-size: 100%;
+}
+.service-icon-small {
+    background: url('/basic-images/service-sprite-small.png') no-repeat top left;
+    display: inline-block;
+}
+
+.s2 .service-icon-small {
+    background: url('/basic-images/service-sprite-small.png') no-repeat top left;
+    display: inline-block;
+    background-size: cover;
+}
+
+.service-icon-small.top {
+    background-position: 0 0;
+    width: 111px;
+    height: 100px;
+}
+
+.s2 .service-icon-small.top {
+    background-position: 21px 0;
+    width: 111px;
+    height: 78px;
+}
+
+.service-icon-small.contacts-open {
+    background-position: 21px -107px;
+    width: 111px;
+    height: 100px;
+}
+
+.s2 .service-icon-small.contacts-open {
+    background-position: 21px -74px;
+    width: 111px;
+    height: 78px;
+}
+
+
+.service-icon-small.top-position {
+    background-position: 0 -209px;
+    width: 107px;
+    height: 100px;
+}
+
+.s2 .service-icon-small.top-position {
+    background-position: 21px -144px;
+    width: 107px;
+    height: 78px;
+}
+
+.service-icon-small.selected {
+    background-position: 0 -316px;
+    width: 114px;
+    height: 100px;
+}
+
+.s2 .service-icon-small.selected {
+    background-position: 21px -238px;
+    width: 114px;
+    height: 78px;
+}
+
+.service-icon-small.a-one-section {
+    background-position: 0 -528px;
+    width: 95px;
+    height: 100px;
+}
+
+.s2 .service-icon-small.a-one-section {
+    background-position: 21px -324px;
+    width: 95px;
+    height: 74px;
+}
+
+
+.service-icon-small.a-all-sections {
+    background-position: 0 -633px;
+    width: 145px;
+    height: 100px;
+}
+.service-icon-small.top-slider {
+    background-position: 0 -733px;
+    width: 100px;
+    height: 100px;
+}
+
+.s2 .service-icon-small.top-slider {
+    background-position: 21px -480px;
+    width: 100px;
+    height: 100px;
+}
+
+
+.service-icon-big {
+    background: url('/basic-images/service-sprite-big.png') no-repeat top left;
+    display: inline-block;
+}
+.service-icon-big.top {
+    background-position: 0 0;
+    width: 165px;
+    height: 148px;
+}
+.service-icon-big.contacts-open {
+    background-position: 0 -163px;
+    width: 160px;
+    height: 142px;
+}
+.service-icon-big.top-position {
+    background-position: 0 -320px;
+    width: 161px;
+    height: 141px;
+}
+.service-icon-big.selected {
+    background-position: 0 -476px;
+    width: 178px;
+    height: 149px;
+}
+.service-icon-big.a-one-section {
+    background-position: 0 -800px;
+    width: 150px;
+    height: 146px;
+}
+.service-icon-big.a-all-sections {
+    background-position: 0 -961px;
+    width: 219px;
+    height: 130px;
+}
+.service-icon-big.top-slider {
+    background-position: 0 -1106px;
+    width: 154px;
+    height: 133px;
+}
+#calendar {
+    /*Allow pointer-events through*/
+}
+#calendar .fc-toolbar h2 {
+    text-transform: capitalize;
+}
+#calendar .fc-month-button {
+    display: none;
+}
+#calendar .fc-state-disabled {
+    display: none;
+}
+#calendar .fc-day:hover {
+    background: #F1FAFF;
+    cursor: pointer;
+}
+#calendar .fc-slats,
+#calendar .fc-content-skeleton,
+#calendar .fc-bgevent {
+    pointer-events: none;
+}
+.control-date {
+    width: 100%;
+    display: table;
+}
+.control-date.item {
+    margin-bottom: 15px;
+}
+.control-date .object {
+    width: 175px;
+    display: table-cell;
+    vertical-align: top;
+    padding-top: 15px;
+}
+.control-date .options {
+    display: table-cell;
+    vertical-align: top;
+}
+.control-date .options .form-control.date {
+    width: 40%;
+    float: left;
+    margin-right: 15px;
+}
+.control-date .options .form-control.time {
+    width: 30%;
+    float: left;
+}
+#image-preview img {
+    max-width: 210px;
+}
+

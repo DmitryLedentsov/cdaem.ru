@@ -1,0 +1,7 @@
+{% if app.user.isGuest %}
+    <a href="{{ path(['/users/guest/login']) }}" class="loggin-btn">Вход</a>
+    <a href="{{ path(['/users/guest/signup']) }}" class="siggnup-btn">Регистрация</a>
+{% else %}
+    <a href="{{ path(['/office/apartments']) }}">{{ app.user.identity.email }}</a>
+    <a href="{{ path(['/users/user/logout']) }}">Выход</a>
+{% endif %}

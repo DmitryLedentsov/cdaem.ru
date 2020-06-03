@@ -1,0 +1,170 @@
+<?php
+
+namespace frontend\modules\office\controllers;
+
+use common\modules\users\models\frontend\UsersListSearch;
+use common\modules\users\models\UsersList;
+use common\modules\partners\models\Service;
+use common\modules\users\models\Profile;
+use frontend\modules\partners\models as models;
+use common\modules\users\models\User;
+use yii\helpers\ArrayHelper;
+use yii\web\HttpException;
+use yii\widgets\ActiveForm;
+use yii\web\Response;
+use yii\helpers\Html;
+use yii\helpers\Url;
+use Yii;
+
+/**
+ * Ajax контроллер офиса
+ * @package frontend\modules\office\controllers
+ */
+class AjaxController extends \frontend\components\Controller
+{
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => \yii\filters\AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => [],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ]
+                ],
+            ],
+        ];
+    }
+
+    /**
+     * Социальные возможности
+     * @return Response
+     */
+    public function actionSocial()
+    {
+        if (!Yii::$app->request->isAjax) {
+            return $this->goHome();
+        }
+
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        $usersList = UsersList::find()->where([
+            'user_id' => Yii::$app->user->id,
+            'interlocutor_id' => Yii::$app->request->post('interlocutor')
+        ])->one();
+
+        if ($usersList) {
+            if (Yii::$app->request->post('type') == 'bookmark') {
+                if ($usersList->type == UsersList::BOOKMARK) {
+                    if ($usersList->delete()) {
+                        return [
+                            'status' => 1,
+                            'message' => 'Пользователь успешно удален из списка избранных'
+                        ];
+                    }
+                } else {
+                    $usersList->type = UsersList::BOOKMARK;
+                    if ($usersList->save()) {
+                        return [
+                            'status' => 1,
+                            'message' => 'Пользователь успешно добавлен в список избранных'
+                        ];
+                    }
+                }
+            }
+
+            if (Yii::$app->request->post('type') == 'blacklist') {
+                if ($usersList->type == UsersList::BLACKLIST) {
+                    if ($usersList->delete()) {
+                        return [
+                            'status' => 1,
+                            'message' => 'Пользователь успешно удален из списка заблокированных'
+                        ];
+                    }
+                } else {
+                    $usersList->type = UsersList::BLACKLIST;
+                    if ($usersList->save()) {
+                        return [
+                            'status' => 1,
+                            'message' => 'Пользователь успешно добавлен в список заблокированных'
+                        ];
+                    }
+                }
+            }
+
+            if (Yii::$app->request->post('type') == 'remove') {
+                if ($usersList->delete()) {
+                    return [
+                        'status' => 1,
+                        'message' => 'Пользователь успешно удален из списка'
+                    ];
+                }
+            }
+        }
+
+        if (!$usersList) {
+            $usersList = new UsersList;
+            $usersList->user_id = Yii::$app->user->id;
+            $usersList->interlocutor_id = Yii::$app->request->post('interlocutor');
+            if (Yii::$app->request->post('type') == 'bookmark') {
+                $usersList->type = UsersList::BOOKMARK;
+                if ($usersList->save()) {
+                    return [
+                        'status' => 1,
+                        'message' => 'Пользователь успешно добавлен в список избранных'
+                    ];
+                }
+            }
+            if (Yii::$app->request->post('type') == 'blacklist') {
+                $usersList->type = UsersList::BLACKLIST;
+                if ($usersList->save()) {
+                    return [
+                        'status' => 1,
+                        'message' => 'Пользователь успешно добавлен в список заблокированных'
+                    ];
+                }
+            }
+        }
+
+        return [
+            'status' => 0,
+            'message' => 'Возникла критическая ошибка'
+        ];
+    }
+
+    /**
+     * Удаление рекламы Top-slider
+     * @return Response
+     */
+    public function actionDeleteTopSlider($advertisement_id)
+    {
+        if (!Yii::$app->request->isAjax) {
+            return $this->goHome();
+        }
+
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        $advertisementSlider = models\AdvertisementSlider::find()->where([
+            'advertisement_id' => $advertisement_id,
+            'user_id' => Yii::$app->user->id
+        ])->one();
+
+        if ($advertisementSlider && $advertisementSlider->delete()) {
+            return [
+                'status' => 1,
+                'message' => 'Рекламное объявление успешно удалено.'
+            ];
+        } else {
+            return [
+                'status' => 0,
+                'message' => 'Возникла критическая ошибка.'
+            ];
+        }
+    }
+
+}

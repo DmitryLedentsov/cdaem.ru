@@ -1,0 +1,74 @@
+{#
+    Все статьи
+    @var \yii\web\View this
+    @var \frontend\acticles\models\Acticle model
+    @var \frontend\acticles\models\Acticle models
+    @var \yii\data\Pagination pages
+#}
+
+{% extends "@app/themes/basic/layouts/main.twig" %}
+
+{% block title %}{{ this.registerTitle('Все Новости, | Сдаём.ру') }}{% endblock %}
+
+{% block header %}
+    {{ use('frontend/modules/site/widgets/BgHeader') }}
+    {{ bg_header_widget({'title': 'Все Новости'}) }}
+{% endblock %}
+
+{% block navbar %}
+    {{ this.renderDynamic('return $this->render("@frontend/modules/office/views/layouts/navbar.twig");') | raw }}
+{% endblock %}
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        {{ use('yii/widgets/Breadcrumbs') }}
+        {{ breadcrumbs_widget({
+            'itemTemplate' : "<li>{link}</li>\n",
+            'homeLink' :
+            {
+                'label' : 'Главная',
+                'url' : '/'
+            },
+            'links':  [
+            {
+                'label': 'Все Новости',
+                'url': ['/articles/default/news'],
+            },
+            ],
+        }) }}
+    </div>
+{% endblock %}
+
+
+{% block content %}
+
+    {{ this.registerMetaTag({'name' : 'description', 'content' : 'Новости от Сдаем.Ру'}) }}
+    {{ this.registerMetaTag({'name' : 'keywords', 'content' : 'Новости от Сдаем.Ру'}) }}
+
+    <div class="container slider-article-block">
+        <div class="d-title"><h4>Все Новости Cdaem.ru</h4></div>
+        <div class="article-block row">
+             {% for article in models %}
+            <div class="item-article col-md-3">
+                <div class="item-img" style="background: url(/images/{{ article.title_img | raw }})center center;">
+                    <a  class='link-on-image-2' href="{{ path('/articles/default/view', {'id' : article.slug}) }}"></a>
+                    <div class="title-article"><h4><a href="{{ path('/articles/default/view', {'id' : article.slug}) }}">{{ article.name }}</a></h4></div>
+                </div>
+                
+              
+            </div>
+        {% else %}
+            <div class="alert alert-danger" role="alert">
+                Статьи не найдены.
+            </div>
+        {% endfor %}
+        <div class="clearfix"></div>
+        </div>
+       
+
+
+           
+
+    </div>
+
+{% endblock %}

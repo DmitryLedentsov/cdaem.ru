@@ -1,0 +1,251 @@
+<div class="fixednav visible-xs">
+     {% if app.user.id %} {% if app.user.identity.profile.user_type != constant('\\common\\modules\\users\\models\\Profile::WANT_RENT') %}<a class="fixed-item" href="{{ path(['/partners/default/apartments']) }}" style="color:white;"><i class="fa fa-book"></i></a> {% endif %}{% endif %}
+    <a class="fixed-item" href="{{ path(['/office/dialogs']) }}" style="color:white;"><i class="fa fa-envelope"></i></a>
+    <a class="fixed-item" href="{{ path(['/office/reservations']) }}" style="color:white;"><i class="fas fa-key"></i></a>
+    <a class="fixed-item" href="{{ path(['/office/total-bid/all']) }}" style="color:white;"><i class="fab fa-algolia"></i></a>  
+    <a class="fixed-item" href="{{ path(['/partners/default/index']) }}" style="color:white;"><i class="fa fa-search"></i></a>   
+    <a class="fixed-item" id="item-iu"><i class="fa fa-user-circle"></i></a>
+    <a class="fixed-item" id="item-br"><i class="fa fa-bars"></i></a>
+
+</div>
+
+<div class="tutut" id="pp">
+     
+    
+        {% if app.user.id %} 
+            {% if app.user.identity.profile.user_type != constant('\\common\\modules\\users\\models\\Profile::WANT_RENT') %}
+                {% block options_group %}
+                    <div class="">
+                        <a id="item-iu-2" style="color:#ef920f;display: block;cursor:pointer;font-size: 20px;padding-left: 20px;"><i class="fa fa-close"></i>Закрыть меню</a>
+                        <div class="profile-menu">
+                            <a style="width:100%;position: relative;" href="{{ path(['/office/default/orders']) }}" {{ app.request.pathInfo == 'office/orders' ? 'class="active"' : '' }}>Мои покупки<i class="fa fa-shopping-cart" style="color: #f4ad49;position: absolute;right: 25px;top: 7px;"></i></a>
+                            <a style="width:100%;position: relative;" href="{{ path(['/office/default/top-slider']) }}" {{ app.request.pathInfo == 'office/top-slider-history' ? 'class="active"' : '' }}>Бегущая строка<i class="fa fa-image" style="color: #f4ad49;position: absolute;right: 25px;top: 7px;"></i></a>
+                            <a style="width:100%;position: relative;" href="{{ path(['/partners/default/apartments']) }}" {% if app.request.pathInfo == 'office/apartments' and strpos(app.request.pathInfo, 'type=available') == 0 %}class="active"{% endif %}>Мои объявления<i class="fa fa-building" style="color: #f4ad49;position: absolute;right: 25px;top: 7px;"></i></a>
+                            <a style="width:100%;position: relative;" href="{{ path(['/office/default/services']) }}" {{ app.request.pathInfo == 'office/services' ? 'class="active"' : '' }}>Услуги<i class="fa fa-gift" style="color: #f4ad49;position: absolute;right: 25px;top: 7px;"></i></a>
+                            <a style="width:100%;position: relative;" href="{{ path({0 : '/partners/default/calendar'}) }}" {{ app.request.pathInfo == 'office/calendar' ? 'class="active"' : '' }}>Календарь<i class="fa fa-calendar" style="color: #f4ad49;position: absolute;right: 25px;top: 7px;"></i></a>
+                        </div>
+                    </div>
+                {% endblock %}
+            {% endif %}
+            <a style="width:100%;position: relative;display:block;padding-left: 20px;font-size: 20px;color: white;text-decoration: none;" href="{{ path(['/partners/default/index']) }}" class="no-board">Доска объявлений<i class="fa fa-search" style="color: #f4ad49;position: absolute;right: 25px;top: 7px;"></i></a>
+                {% if app.user.identity.profile.user_type != constant('\\common\\modules\\users\\models\\Profile::WANT_RENT') %}
+                <a style="width:100%;position: relative;display:block;padding-left: 20px;font-size: 20px;color: white;text-decoration: none;" href="{{ path(['/partners/default/create']) }}" class="no-board">Добавить объявление<i class="fa fa-plus-square" style="color: #f4ad49;position: absolute;right: 25px;top: 7px;"></i></a>
+                    {% if not app.user.isGuest %}
+                    <a style="width:100%;position: relative;display:block;padding-left: 20px;font-size: 20px;color: white;text-decoration: none;" href="{{ path(['/reviews/default/index']) }}" class="no-board">Отзывы<i class="fa fa-comment" style="color: #f4ad49;position: absolute;right: 25px;top: 7px;"></i></a>
+                    {% endif %}
+                {% else %}
+                <!--<li><a href="{{ url.previous('region') }}" class="no-board">Вернуться к поиску</a></li>-->
+               <!-- <li {{ app.request.pathInfo == 'office/top-slider-history' ? 'class="active"' : '' }}><a href="{{ path(['/office/default/top-slider']) }}">Моя реклама</a></li>-->
+            {% endif %}
+            <a style="width:100%;position: relative;display:block;padding-left: 20px;font-size: 20px;color: white;text-decoration: none;" href="{{ path(['/partners/reservation/index']) }}" class="no-board">Быстро снять<i class="fa fa-bed" style="color: #f4ad49;position: absolute;right: 25px;top: 7px;"></i></a>
+            <a style="width:100%;position: relative;display:block;padding-left: 20px;font-size: 20px;color: white;text-decoration: none;" href="{{ path(['/office/default/help']) }}" class="no-board">Помощь<i class="fa fa-question-circle" style="color: #f4ad49;position: absolute;right: 25px;top: 7px;"></i></a>
+
+        {% else %}
+            <p style="color:white;">Меню видят только зарегистрированные пользователи</p>
+        {% endif %}
+    
+</div>
+<div class="tutut2">
+    
+    {% if app.user.id %} 
+        {{ use('nepster/faceviewer/Widget') }}
+        <div class="user">
+            {{ html.beginTag('a', {
+                            'href' : url.to(['/users/user/profile']),
+                            'title' : 'Редактировать профиль'
+                        }) | raw }}
+            <div class="avatar-wrap"><div class="avatar" style="background-image: url({{ widget_widget({'template' : '{face}', 'onlyUrl' : true, 'data' : app.user.identity.profile}) }})"></div></div>
+           <div style="text-align:center;"> <a href="{{ path(['/merchant/default/pay']) }}"><b id="funds-main">{{ app.formatter.asCurrency(app.user.identity.funds_main, 'RUB') | raw }}</b></a> {{ html.a('', ['/merchant/default/pay'], {'class' : 'pay-2'}) | raw }}</div>
+            {{ html.endTag('a') | raw }}
+            <div style="text-align:center;color:#ef920f;font-size: 18px;"> {{ UserHelper.getUserName(app.user.identity) }}</div>
+            <div style="text-align:center"><strong><a href="{{ path(['/office/default/']) }}">Личный кабинет</a></strong></div>
+                        {% block graphical_menu %}
+                <!-- Графическое меню -->
+                
+                   {{ this.renderDynamic('return \\frontend\\modules\\office\\widgets\\GraphicalMenu2::widget();') | raw }}
+                 {% endblock %}
+            <a href="{{ path(['/users/user/logout']) }}" style="color:#ef920f;display: block;cursor:pointer;font-size: 20px;padding-left: 20px;">Выход</a>
+            <a id="item-iu-3" style="color:#ef920f;display: block;cursor:pointer;font-size: 20px;padding-left: 20px;"><i class="fa fa-close"></i>Закрыть меню</a>
+        </div>
+
+    {% else %}
+        <a href="{{ path(['/users/guest/signup']) }}" class="no-board reg-link">Регистрация</a>
+        <div class="login-form">
+
+            {{ html.beginForm(['/users/guest/login']) |raw }}
+            <div class="login">
+                <input type="text" name="LoginForm[username]" class="form-control" value="" />
+            </div>
+            <div class="password">
+                <input type="password" name="LoginForm[password]" class="form-control" value="" />
+            </div>
+            <div class="submit">
+                <input type="submit" class="btn btn-white" value="Вход" />
+            </div>
+            {{ html.endForm() |raw }}
+
+            <div class="clearfix"></div>
+        </div>
+
+    {% endif %}
+</div>
+
+<style>
+    .tutut {
+        display: none;
+        position: fixed;
+        padding-top:25%;
+        line-height: 35px;
+        bottom: 50px;
+        left:0;
+        width: 100%;
+        height: 100%;
+        background: black;
+        z-index: 999;
+    }
+
+
+    .tutut2 {
+        display: none;
+        position: fixed;
+        bottom: 50px;
+        left:0;
+        width: 100%;
+        height: 460px;
+        background: black;
+        z-index: 999;
+    }
+
+
+
+
+</style>
+
+<div class="col-md-7 hidden-xs">
+
+
+    <ul class="nav dropdown topmenu visible-xs">
+        <li>
+            <a href="" class="dropdown-toggle" style="background:none" data-toggle="dropdown">Открыть меню<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="{{ path(['/partners/default/index']) }}" class="no-board">Доска объявлений</a></li>
+
+                {% if app.user.identity.profile.user_type != constant('\\common\\modules\\users\\models\\Profile::WANT_RENT') %}
+                    <li {{ app.request.pathInfo == 'office/create-adverts' ? 'class="active"' : '' }}><a href="{{ path(['/partners/default/create']) }}" class="no-board">Добавить объявление</a></li>
+                        {% if not app.user.isGuest %}
+                        <li {{ app.request.pathInfo == 'office/reviews' ? 'class="active"' : '' }}><a href="{{ path(['/reviews/default/index']) }}" class="no-board">Отзывы</a></li>
+                        {% endif %}
+                    {% else %}
+                    <!--<li><a href="{{ url.previous('region') }}" class="no-board">Вернуться к поиску</a></li>-->
+                   <!-- <li {{ app.request.pathInfo == 'office/top-slider-history' ? 'class="active"' : '' }}><a href="{{ path(['/office/default/top-slider']) }}">Моя реклама</a></li>-->
+                {% endif %}
+                <li {{ app.request.pathInfo == 'reservation' ? 'class="active"' : '' }}><a href="{{ path(['/partners/reservation/index']) }}" class="no-board">Быстро снять</a></li>
+                <li {{ app.request.pathInfo == 'help' ? 'class="active"' : '' }}><a href="{{ path(['/office/default/help']) }}" class="no-board">Помощь</a></li>
+            </ul>
+        </li>
+    </ul> 
+
+
+</div>
+<div class="navbar ogange hidden-xs" id="navigatio">
+    <div class="top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <ul class="nav navmenu hidden-xs">
+                        <li><a href="{{ path(['/partners/default/index']) }}" class="no-board">Доска объявлений</a></li>
+                        
+                        {% if app.user.identity.profile.user_type != constant('\\common\\modules\\users\\models\\Profile::WANT_RENT') %}
+                            <li {{ app.request.pathInfo == 'office/create-adverts' ? 'class="active"' : '' }}><a href="{{ path(['/partners/default/create']) }}" class="no-board">Добавить объявление</a></li>
+                                {% if not app.user.isGuest %}
+                                <li {{ app.request.pathInfo == 'office/reviews' ? 'class="active"' : '' }}><a href="{{ path(['/reviews/default/index']) }}" class="no-board">Отзывы</a></li>
+                                {% endif %}
+                            {% else %}
+                            <!--<li><a href="{{ url.previous('region') }}" class="no-board">Вернуться к поиску</a></li>-->
+                           <!-- <li {{ app.request.pathInfo == 'office/top-slider-history' ? 'class="active"' : '' }}><a href="{{ path(['/office/default/top-slider']) }}">Моя реклама</a></li>-->
+                        {% endif %}
+                        <li {{ app.request.pathInfo == 'reservation' ? 'class="active"' : '' }}><a href="{{ path(['/partners/reservation/index']) }}" class="no-board">Быстро снять</a></li>
+                        <li {{ app.request.pathInfo == 'help' ? 'class="active"' : '' }}><a href="{{ path(['/office/default/help']) }}" class="no-board">Помощь</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-5 extra">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-5 col-xs-12">
+                            {% if app.user.id %}
+                                {{ use('nepster/faceviewer/Widget') }}
+                                <div class="user">
+                                    {{ html.beginTag('a', {
+                            'href' : url.to(['/users/user/profile']),
+                            'title' : 'Редактировать профиль'
+                        }) | raw }}
+                                    <div class="avatar" style="background-image: url({{ widget_widget({'template' : '{face}', 'onlyUrl' : true, 'data' : app.user.identity.profile}) }})"></div>
+                                    {{ html.endTag('a') | raw }}
+                                    <div class="name">
+                                        <strong><a href="{{ path(['/partners/default/index']) }}">{{ UserHelper.getUserName(app.user.identity) }}</a></strong>
+
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="login-form">
+
+                                    {{ html.beginForm(['/users/guest/login']) |raw }}
+                                    <div class="login">
+                                        <input type="text" name="LoginForm[username]" class="form-control" value="" />
+                                    </div>
+                                    <div class="password">
+                                        <input type="password" name="LoginForm[password]" class="form-control" value="" />
+                                    </div>
+                                    <div class="submit">
+                                        <input type="submit" class="btn btn-white" value="Вход" />
+                                    </div>
+                                    {{ html.endForm() |raw }}
+
+                                    <div class="clearfix"></div>
+                                </div>
+                            {% endif %}
+
+                        </div>
+                        <div class="col-md-1 col-sm-2 col-xs-12 block-dropmenu">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-5">
+                                    <ul class="nav">
+                                        {% if app.user.id %}
+                                            <ul class="nav dropdown">
+                                                <li>
+                                                    <a href="{{ path('/pages/default/index', {'url' : 'booking'}) }}" class="dropdown-toggle" style="background:none" data-toggle="dropdown"><span class="caret"></span></a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="{{ path(['/users/user/logout']) }}">Выход</a></li>
+                                                        {% else %}
+                                                        <li><a href="{{ path(['/users/guest/signup']) }}" class="no-board reg-link">Регистрация</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>  
+
+                                        {% endif %}
+                                    </ul>
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+                        {% if app.user.id %}
+                            <div class="office-main-nav-balanceblock col-md-5 col-sm-2 col-xs-12"><span>Баланс: </span> <b id="funds-main">{{ app.formatter.asCurrency(app.user.identity.funds_main, 'RUB') | raw }}</b> {{ html.a('', ['/merchant/default/pay'], {'class' : 'pay-2'}) | raw }}</div>         
+                        {% endif %}
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="clearfix"></div>
+</div>
+
+
+
+
+
+

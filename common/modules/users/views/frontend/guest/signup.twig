@@ -1,0 +1,202 @@
+{#
+    Регистрация
+    @var \yii\web\View this
+    @var \common\modules\users\models\User user
+    @var \common\modules\users\models\Profile profile
+#}
+
+{% extends "@app/themes/basic/layouts/main.twig" %}
+
+{% block title %} Регистрация | Сдаём.ру {% endblock %}
+
+{% block header %}
+    {{ use('frontend/modules/site/widgets/BgHeader') }}
+    {{ bg_header_widget({'title': 'Регистрация'}) }}
+{% endblock %}
+
+{% block navbar_bottom %}{% endblock %}
+
+{% block navbar %}
+    {{ this.renderDynamic('return $this->render("@frontend/modules/office/views/layouts/navbar.twig");') | raw }}
+{% endblock %}
+
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        {{ use('yii/widgets/Breadcrumbs') }}
+        {{ breadcrumbs_widget({
+            'itemTemplate' : "<li>{link}</li>\n",
+            'homeLink' :
+            {
+                'label' : 'Главная',
+                'url' : '/'
+            },
+            'links':  [
+            {
+                'label': 'Авторизация',
+                'url': ['/users/guest/login'],
+            },
+            {
+                'label': 'Регистрация',
+                'url': ['/users/guest/signup'],
+            },
+            ],
+        }) }}
+    </div>
+{% endblock %}
+
+{% block content %}
+
+    {{ use('common/modules/users/assets/UserAsset') }}
+    {{ register_user_asset() }}
+
+    {{ this.registerMetaTag({'name' : 'description', 'content' : 'Сдаём.ру подберёт и забронирует Вам - квартира на сутки, аренда квартир на сутки, квартира сутки, посуточные квартиры, квартира на сутки в Москве,посуточные квартиры в Москве.'}) }}
+    {{ this.registerMetaTag({'name' : 'keywords', 'content' : 'квартира на час, квартира на час в Москве, квартира час, снять квартиру на час, почасовая аренда квартиры квартира на сутки ,квартира сутки,квартира на сутки в Москве,аренда квартир на сутки,квартира на ночь,квартира на ночь в Москве,посуточная аренда,на сутки, доска бесплатных объявлений,доска объявлений'}) }}
+
+    <div class="container">
+
+        {{ use('yii/widgets/ActiveForm') }}
+        {% set form = active_form_begin({
+            'options' : {'class' : 'horizontal'},
+            'enableClientScript': false,
+            'id': 'form-signup',
+        }) %}
+
+        <div class="container-certain primary text" style="margin-bottom: 25px">
+
+            {% if app.session.hasFlash('danger') %}
+                <div class="alert alert-danger" role="alert">
+                    {{ app.session.getFlash('danger') | raw  }}
+                </div>
+            {% endif %}
+
+            {% if app.session.hasFlash('success') %}
+                <div class="alert alert-success" role="alert">
+                    {{ app.session.getFlash('success') | raw  }}
+                </div>
+            {% endif %}
+
+            <h3>Основные данные</h3>
+
+            <div class="fields-fix">
+
+                {{ form.field(user, 'email', {'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'}) | raw }}
+
+                <div class="form-group">
+                    <div class="col-l">
+                     <label class="control-label">Выберите страну мобильного оператора</label>
+                </div>
+                <div class="col-i">
+                       <select class="form-control" name="country" id="country">
+                    <option selected value="non">Выберите страну</option>
+                    <option value="Russia">Russia</option>
+                    <option value="Ukraine">Ukraine</option>
+                    <option value="Belarus">Belarus</option>
+                </select>  
+                </div> 
+                </div>
+               
+                
+                {{ form.field(user, 'phone', {'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'}).textInput({'class' : 'phone form-control', 'prompt': ' ', 'id':'phone',}) | raw }}
+
+                {{ form.field(user, 'password', {'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'}).passwordInput() | raw }}
+
+                {{ form.field(user, 'repassword', {'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'}).passwordInput() | raw }}
+
+                {{ form.field(profile, 'user_type', {
+                    'options' : {'class' : 'form-group white'}, 'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'
+                }).dropDownList(StatusHelper.getList(profile.getUserTypeArray()), {'class' : 'form-control select-white', 'prompt': ' '}) | raw }}
+
+                {#
+                    {{ form.field(profile, 'user_partner', {'options' : {'class' : 'form-group white'}, 'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'}).dropDownList(StatusHelper.getList(profile.getUserPartnerArray())) | raw }}
+                #}
+            </div>
+        </div>
+
+
+        <div class="container-certain orange text" style="margin-bottom: 10%">
+
+            <h3>Данные профиля</h3>
+
+            <div class="fields-fix">
+
+                {{ form.field(profile, 'name', {'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'}) | raw }}
+
+                {{ form.field(profile, 'surname', {'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'}) | raw }}
+
+                {{ form.field(profile, 'second_name', {'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'}) | raw }}
+
+                {{ form.field(profile, 'whau', {'options' : {'class' : 'form-group line'}, 'labelOptions' : {'class' : ''} }) | raw }}
+
+
+                {#
+                <div class="form-group">
+                    <div class="col-l"><label class="control-label" for="profile-user_type">Дата рождения</label></div>
+                    <div class="col-i">
+                        {{ form.field(profile, 'day', {'options' : {'class' : 'white', 'style' : 'width: 25%; margin-right: 2%; float: left;'}, 'template' : '{input}'}).dropDownList([]) | raw }}
+                        {{ form.field(profile, 'month', {'options' : {'class' : 'white', 'style' : 'width: 45%; margin-right: 2%; float: left;'}, 'template' : '{input}'}).dropDownList([]) | raw }}
+                        {{ form.field(profile, 'year', {'options' : {'class' : 'white', 'style' : 'width: 25%; float: left;'}, 'template' : '{input}'}).dropDownList([]) | raw }}
+
+
+                        {{ html.error(profile, 'day', {'class' : 'help-block'}) | raw }}
+                    </div>
+                </div>
+                #}
+
+                {#
+
+                <div class="form-group">
+                    <div class="col-l"><label class="control-label" for="profile-user_type">Дата рождения</label></div>
+                    <div class="col-i">
+
+
+                        {{ form.field(profile, 'day', {'options' : {'class' : 'white', 'style' : 'width: 25%; margin-right: 2%; float: left;'}, 'template' : '{input}'}).dropDownList([], {'data-style' : "white"}) | raw }}
+                        {{ form.field(profile, 'month', {'options' : {'class' : 'white', 'style' : 'width: 45%; margin-right: 2%; float: left;'}, 'template' : '{input}'}).dropDownList([], {'data-style' : "white"}) | raw }}
+                        {{ form.field(profile, 'year', {'options' : {'class' : 'white', 'style' : 'width: 25%; float: left;'}, 'template' : '{input}'}).dropDownList([], {'data-style' : "white"}) | raw }}
+
+                        {{ html.error(profile, 'birthday', {'class' : 'help-block'}) | raw }}
+
+
+                    </div>
+                </div>
+
+                #}
+
+                <div class="clearfix"></div>
+
+                <br />
+
+                <p><b>Регистрируясь на сайте я соглашаюсь:</b></p>
+
+                {{ form.field(profile, 'advertising').checkbox({'label' : 'Получать рекламные и информационные EMAIL рассылки от "cdaem.ru" и партнеров и не возражаю о передачи моих персональных данных третьим лицам.'}) | raw }}
+
+                {{ form.field(user, 'agreement').checkbox({'label' : 'С <a href="' ~ path({0 : '/pages/default/index', 'url' : 'agreement'}) ~ '" target="_blank">пользовательским соглашением</a>, с расценками на размещение платных объявлений, а также получать СМС-оповещения при использовании определенных сервисов на этом сайте.</label>'}) | raw }}
+
+                {#
+                <div class="form-group">
+                    <label>{{ html.checkbox('agreement', true) | raw }} С <a href="{{ path({0 : '/pages/default/index', 'url' : 'agreement'}) }}" target="_blank">пользовательским соглашением</a>, а так же с расценками на размещение платных объявлений на этом сайте.</label>
+                </div>
+                #}
+
+                <br />
+
+                <p><b>Внимание:</b></p>
+                <p>
+                    После регистрации Вам будет отправлено письмо с инструкциями по активации аккаунта. Если письмо не пришло в течении 15 минут, Вы можете запросить <a href="{{ path('/users/guest/resend') }}">код активации</a> повторно.
+                </p>
+
+
+                <br />
+
+                <div class="form-group text-right">
+                    <input id="signup-button" type="submit" value="{{ t('users', 'SIGNUP') }}" class="btn btn-primary" />
+                </div>
+
+            </div>
+        </div>
+
+        {{ active_form_end() }}
+
+    </div>
+
+{% endblock content %}

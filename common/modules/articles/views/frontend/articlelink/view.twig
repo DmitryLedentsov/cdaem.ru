@@ -1,0 +1,26 @@
+{#
+    Просмотр статьи
+    @var \yii\web\View this
+    @var \frontend\acticles\models\Acticle model
+#}
+
+{% extends "@app/themes/basic/layouts/main.twig" %}
+
+{% block title %} {{ this.registerTitle(model.title) }} {% endblock %}
+
+{% block header %}
+    {{ use('frontend/modules/site/widgets/BgHeader') }}
+    {{ bg_header_widget({'title': 'Статьи'}) }}
+{% endblock %}
+
+{% block navbar %}
+    {% include("@frontend/modules/office/views/layouts/navbar.twig") %}
+{% endblock %}
+
+
+
+{% block content %}
+
+   
+
+{% endblock %}

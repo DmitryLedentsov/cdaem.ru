@@ -1,0 +1,20 @@
+<section class="agency">
+    <h3 class="title"><span><span>С</span>даем.ру</span> - квартиры без посредников</h3>
+    {% include "@app/modules/site/views/default/social.twig" %}
+    <div class="buttons">
+        <a class="btn btn-primary" href="{{ path(['/agency/default/want-pass']) }}">Хочу сдать квартиру</a>
+        <a class="btn btn-primary" href="{{ path(['/agency/default/select']) }}" style="letter-spacing: -0.03em">Быстро подберём квартиру</a>
+        <a class="btn btn-primary" href="{{ path(['/agency/default/index']) }}">Все квартиры</a>
+    </div>
+    <div class="booking">
+        <span>Бронируйте</span>
+        <p><span>+7</span> (903) <span>799-17-99</span></p>
+        <p><span>+7</span> (915) <span>455-94-94</span></p>
+    </div>
+    <div class="clearfix"></div>
+    <ul class="nav">
+        <li style="width: 32%"><a href="{{ path({0 : '/pages/default/index', 'url' : 'rules'}) }}">Правила заселения</a></li>
+        <li style="width: 42%"><a href="{{ path(['/helpdesk/default/index']) }}">Связь с Администрацией</a></li>
+        <li style="width: 26%;"><a href="skype:cdaem.ru?call" class="c-skype">Cdaem.ru</a></li>
+    </ul>
+</section>

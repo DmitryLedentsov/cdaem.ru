@@ -1,0 +1,31 @@
+{#
+    Недвижимость (Просмотр апартаментов)
+    @var frontend\modules\partners\models\ApartmentAdverts adverts
+    @var frontend\modules\partners\models\SearchAdverts searchModel
+    @var \yii\web\View this
+#}
+
+
+{{ use('frontend/modules/partners/widgets/PreviewAdvertIndex') }}
+
+{# Поиск #}
+{{ this.render('@app/modules/partners/views/default/_new_search_on_the_board.twig', {
+    'searchTitle': 'Доска объявлений',
+    'searchModel': searchModel,
+    'index': true,
+}) | raw }}
+
+<div class="container new-adver-bord">
+    <div class="row">
+        {% for advert in adverts %}
+            {{ preview_advert_index_widget({'advert': advert}) }}
+        {% endfor %}
+    </div>
+    {% if adverts is empty %}
+        <div class="alert alert-danger" role="alert">
+            Апартаменты не найдены.
+        </div>
+    {% endif %}
+    <div class="clearfix"></div>
+    <div class="bottom-nav-board"><a href="{{ path('/partners/default/region', {'city' : 'msk'}) }}" class="btn new_btn-fulllighblue">Все объявления</a></div>
+</div>

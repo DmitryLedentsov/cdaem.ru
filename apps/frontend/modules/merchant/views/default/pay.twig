@@ -1,0 +1,101 @@
+{#
+    Пополнить счет
+    @var \yii\web\View this
+#}
+
+{% extends "@app/modules/office/views/layouts/main.twig" %}
+
+{% block title %}{{ this.registerTitle('Пополнение счета - Личный кабинет | Сдаём.ру') }}{% endblock %}
+
+{% block header %}{% endblock %}
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        {{ use('yii/widgets/Breadcrumbs') }}
+        {{ breadcrumbs_widget({
+            'itemTemplate' : "<li>{link}</li>\n",
+            'homeLink' :
+            {
+                'label' : 'Главная',
+                'url' : '/'
+            },
+            'links':  [
+            {
+                'label': 'Личный кабинет',
+                'url' : ['/office/default/index']
+            },
+            {
+                'label': 'Пополнить счет',
+            },
+            ],
+        }) }}
+    </div>
+{% endblock %}
+
+
+{% block content %}
+
+    <ul class="extra-menu">
+        <li ><a href="{{ path(['/merchant/default/index']) }}">История денежного оборота</a></li>
+    </ul>
+
+    <div class="container-certain primary text">
+
+        {% set form = active_form_begin({
+            'id' : 'form-pay',
+            'options' : {'class' : 'form-horizontal'},
+            'enableClientScript' : false
+        }) %}
+
+        <div class="payment-way">
+
+            <h3>Выберите подходящий способ оплаты:</h3>
+
+            <div class="payment-service">
+                <div class="method">
+                    <span class="payments-method-logo visa" data-system="BANKOCEAN3R"></span>
+                    <span class="payments-method-logo mastercard" data-system="BANKOCEAN3R"></span>
+                    <span class="payments-method-logo mts" data-system="MixplatMTSRIBR"></span>
+                    <!--<span class="payments-method-logo megafon" data-system="MegafonR"></span>-->
+                    <span class="payments-method-logo beeline" data-system="MixplatBeelineRIBR"></span>
+                </div>
+                <div class="method">
+                    <span class="payments-method-logo qiwi" data-system="Qiwi50RIBRM"></span>
+                    <span class="payments-method-logo yamoney" data-system="YandexMerchantRIBR"></span>
+                    <span class="payments-method-logo webmoney" data-system="WMRRM"></span>
+                </div>
+
+                <br/>
+
+                <div class="extra clearfix form-group required">
+                    <h4><label>Все способы оплаты:</label></h4>
+                    {{ use('frontend/modules/merchant/widgets/robokassa/PaymentSystemsList') }}
+                    {{ payment_systems_list_widget({
+                        'selectOptions' : {
+                            'class' : 'form-control',
+                            'name' : model.formName() ~ '[system]',
+                            'style' : 'width:200px',
+                        }
+                    }) }}
+                </div>
+            </div>
+
+            <br/>
+
+            {% set field = form.field(model, 'amount') %}
+            {{ field.begin() | raw }}
+            <label>Сумма пополнения в рублях:</label>
+            {{ html.activeTextInput(model, 'amount', {'class' : 'form-control', 'style' : 'max-width: 100px;', 'value' : 100}) | raw }}
+            {{ field.end() | raw }}
+
+
+            <div class="text-center pay-button">
+                <input type="submit" value="Пополнить" class="btn btn-primary btn-special" />
+            </div>
+        </div>
+
+        {{ active_form_end() | raw }}
+
+    </div>
+
+{% endblock content %}

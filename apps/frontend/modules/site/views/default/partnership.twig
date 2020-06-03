@@ -1,0 +1,100 @@
+{#
+    @var \yii\web\View this
+    @var \common\modules\agency\formModels\form\WantPassForm formModel
+    @var \common\modules\pages\formModels\Page model
+#}
+
+{% extends "@app/themes/basic/layouts/main.twig" %}
+
+{% block title %}  {{ this.registerTitle(model.title ~ ' | Сдаём.ру') }} {% endblock %}
+
+{% block header %}
+    {{ use('frontend/modules/site/widgets/BgHeader') }}
+    {{ bg_header_widget({'title': 'Сотрудничество'}) }}
+{% endblock %}
+
+{% block navbar_bottom %}{% endblock %}
+
+{% block navbarStickyHeader %}sticky-header{% endblock %}
+
+{% block breadcrumbs %}
+    <div class="container">
+    <div class="breadcrumbs">
+        {{ use('yii/widgets/Breadcrumbs') }}
+        {{ breadcrumbs_widget({
+            'itemTemplate' : "<li>{link}</li>\n",
+            'homeLink' :
+            {
+                'label' : 'Главная',
+                'url' : '/'
+            },
+            'links':  [
+            {
+                'label': 'Сотрудничество',
+                'url': ['/site/default/partnership'],
+            },
+            ],
+        }) }}
+    </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+
+    {{ this.registerMetaTag({'name' : 'description', 'content' : model.description }) }}
+    {{ this.registerMetaTag({'name' : 'keywords', 'content' : model.keywords }) }}
+
+    {{ use('common/modules/geo/assets/frontend/MetroMskAsset') }}
+    {{ register_metro_msk_asset() }}
+
+    {{ use('common/modules/geo/assets/frontend/YMapAsset') }}
+    {{ register_y_map_asset() }}
+
+    {{ use('common/modules/agency/assets/frontend/AgencyAsset') }}
+    {{ register_agency_asset() }}
+
+    {{ use('frontend/modules/site/widgets/Captcha') }}
+
+    <div class="container pages">
+
+        {% if app.session.hasFlash('danger') %}
+            <div class="alert alert-danger" role="alert">
+                {{ app.session.getFlash('danger') | raw  }}
+            </div>
+        {% endif %}
+
+        {% if app.session.hasFlash('success') %}
+            <div class="alert alert-success" role="alert">
+                {{ app.session.getFlash('success') | raw  }}
+            </div>
+        {% endif %}
+
+        <div class="container-certain primary text">
+            {{ model.text|raw }}
+        </div>
+    </div>
+
+    <div class="container">
+
+        {{ use('yii/widgets/ActiveForm') }}
+        {% set form = active_form_begin({
+        'id' : 'form-want-pass',
+        'options' : {'class' : 'horizontal', 'enctype' : 'multipart/form-data'},
+        'enableClientScript': false
+        }) %}
+
+        <div class="container-certain primary text">
+
+
+            <h3>Хочу сдать квартиру</h3>
+            <br/>
+
+            {{ this.render('@common/modules/agency/views/frontend/default/_form-want-pass', {'model': formModel}) | raw }}
+
+        </div>
+
+        {{ active_form_end() }}
+
+    </div>
+
+{% endblock content %}
