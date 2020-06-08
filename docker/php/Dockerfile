@@ -39,8 +39,7 @@ RUN docker-php-ext-install \
         zip \
         pdo \
         pdo_mysql \
-        bcmath \
-        mcrypt
+        bcmath
 
 RUN if [ "${LOCAL_ENV}" = "dev" ] ; then apk add --no-cache $PHPIZE_DEPS \
 && pecl install xdebug-2.9.1 \

@@ -12,6 +12,9 @@ node_run = $(docker_compose) run --user="${USER_ID}" --rm node
 bootstrap:
 	cp ./docker/docker-compose.override.yml.example ./docker/docker-compose.override.yml
 	cp ./docker/.env.example ./docker/.env
+	make build
+	make start
+
 
 start:
 	$(docker_compose) up -d
@@ -36,3 +39,5 @@ composer:
 	    $(app_run) sh -c "composer update"
     endif
 
+app_bash:
+	$(app_run) sh
