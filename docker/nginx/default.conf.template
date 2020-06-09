@@ -8,7 +8,7 @@ server
     listen 80;
     server_name ${SERVER_NAME};
 
-    root /app/environments/prod/apps/backend/web;
+    root /app/apps/frontend/web;
     index index.php index.html;
 
     location / {
