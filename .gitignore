@@ -2,3 +2,4 @@
 vendor
 docker/docker-compose.override.yml
 docker/.env
+docker/nginx/default.conf
