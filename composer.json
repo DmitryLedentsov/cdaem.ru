@@ -1,21 +1,7 @@
 {
-    "name": "yiisoft/yii2-app-advanced",
-    "description": "Yii 2 Advanced Application Template",
-    "keywords": ["yii2", "framework", "advanced", "application template"],
-    "homepage": "http://www.yiiframework.com/",
-    "type": "project",
-    "license": "BSD-3-Clause",
-    "support": {
-        "issues": "https://github.com/yiisoft/yii2/issues?state=open",
-        "forum": "http://www.yiiframework.com/forum/",
-        "wiki": "http://www.yiiframework.com/wiki/",
-        "irc": "irc://irc.freenode.net/yii",
-        "source": "https://github.com/yiisoft/yii2"
-    },
-    "minimum-stability": "dev",
     "require": {
         "php": ">=5.4.0",
-        "yiisoft/yii2": "*",
+        "yiisoft/yii2": "2.0.35",
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-jui": "*",
         "yiisoft/yii2-swiftmailer": "*",
@@ -30,10 +16,10 @@
         "kartik-v/yii2-widget-datetimepicker": "*",
         "vova07/yii2-imperavi-widget": "*",
         "himiklab/yii2-recaptcha-widget" : "*",
-        "ladamalina/yii2-smsc": "*",
         "giggsey/libphonenumber-for-php": "~6.0",
         "vitalik74/yii2-geocode-yandex": "*",
-        "execut/yii2-robots-txt": "dev-master"
+        "execut/yii2-robots-txt": "dev-master",
+        "ladamalina/yii2-smsc": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
