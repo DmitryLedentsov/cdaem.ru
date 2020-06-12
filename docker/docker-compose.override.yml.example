@@ -1,1 +1,5 @@
 version: '3.7'
+services:
+  nginx:
+    ports:
+    - 80:80

@@ -19,7 +19,7 @@ use Yii;
  *
  * @package common\modules\partners\services
  */
-final class ContactsOpenForTotalBid extends \yii\base\Object implements ServiceInterface
+final class ContactsOpenForTotalBid extends \yii\base\BaseObject implements ServiceInterface
 {
     /**
      * @var string Идентификатор сервиса

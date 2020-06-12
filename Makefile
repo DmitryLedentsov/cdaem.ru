@@ -14,6 +14,7 @@ bootstrap:
 	cp ./docker/.env.example ./docker/.env
 	make build
 	make start
+	make composer cmd="global require "fxp/composer-asset-plugin:^1.3.1""
 
 
 start:
@@ -41,3 +42,10 @@ composer:
 
 app_bash:
 	$(app_run) sh
+
+php-yii:
+    ifneq ($(cmd),)
+	    $(app_run) sh -c "php yii $(cmd)"
+    else
+	    $(app_run) sh -c "php yii"
+    endif

@@ -16,7 +16,7 @@ use Yii;
  *
  * @package common\modules\partners\services
  */
-final class AdvertSelected extends \yii\base\Object implements ServiceInterface
+final class AdvertSelected extends \yii\base\BaseObject implements ServiceInterface
 {
     /**
      * @var string Идентификатор сервиса

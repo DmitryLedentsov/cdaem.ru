@@ -30,7 +30,7 @@ class CollectorController extends \yii\console\Controller
         $this->stdout('Чистит изображения' . PHP_EOL);
 
         $path = Yii::getAlias('@frontend/web/partner_imgs') . '/';
-        $thumbsPath = Yii::getAlias('@frontend/web/partner_thumb') . '/'
+        $thumbsPath = Yii::getAlias('@frontend/web/partner_thumb') . '/';
         $result = [];
         // Удаление записей в БД ссылающихся на несуществующие файлы Больших картинок
         $image = true;

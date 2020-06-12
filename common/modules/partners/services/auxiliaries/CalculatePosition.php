@@ -14,7 +14,7 @@ use Yii;
  *
  * @package common\modules\partners\services\auxiliaries
  */
-final class CalculatePosition extends \yii\base\Object
+final class CalculatePosition extends \yii\base\BaseObject
 {
     /**
      * Массив кол-во объявлений в каждом типе аренды каждого города

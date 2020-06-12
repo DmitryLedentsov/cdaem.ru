@@ -18,7 +18,7 @@ use Yii;
  *
  * @package common\modules\partners\services
  */
-final class AdvertInTop extends \yii\base\Object implements ServiceInterface
+final class AdvertInTop extends \yii\base\BaseObject implements ServiceInterface
 {
     /**
      * Идентификатор сервиса

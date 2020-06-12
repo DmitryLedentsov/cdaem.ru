@@ -2,9 +2,9 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=locaklhost;dbname=cdaem.ru',
+    'dsn' => 'mysql:host=db;dbname=cdaemru',
     'username' => 'root',
-    'password' => '9liavC66MFOH',
+    'password' => 'cdaemru',
     'charset' => 'utf8',
     'tablePrefix' => '',
     'enableSchemaCache' => true,
