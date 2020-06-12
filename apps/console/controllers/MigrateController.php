@@ -34,7 +34,13 @@ class MigrateController extends \yii\console\controllers\MigrateController
                 $directories = array_merge((array) $extraPath, $directories);
             }
 
-            foreach (array_unique($directories) as $dir) {
+            // TODO: Последний элемент в массиве вложенный массив
+            // $directories = array_unique($directories);
+            //var_dump($directories);
+            $directories[18] = $directories[17][0];
+            unset($directories[17]);
+
+            foreach ($directories as $dir) {
                 $dir = Yii::getAlias($dir, false);
                 if ($dir && is_dir($dir)) {
                     $handle = opendir($dir);
