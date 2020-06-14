@@ -6,6 +6,7 @@ class m140508_233577_geo_cities_coords extends \yii\db\Migration
 {
 	public function safeUp()
 	{
+	    // TODO: no sql dump
 		//$this->addColumn('{{%city}}', 'latitude', 'DECIMAL(17,14)  DEFAULT NULL');
 		//$this->addColumn('{{%city}}', 'longitude', 'DECIMAL(17,14)  DEFAULT NULL');
 	}
