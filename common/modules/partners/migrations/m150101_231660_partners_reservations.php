@@ -45,7 +45,8 @@ class m150101_231660_partners_reservations extends Migration
         // Foreign Keys
         $this->addForeignKey('{{%partners_reservations_user_id}}', '{{%partners_reservations}}', 'user_id', '{{%users}}', 'id', 'CASCADE', 'CASCADE');
         $this->addForeignKey('{{%partners_reservations_rent_type}}', '{{%partners_reservations}}', 'rent_type', '{{%realty_rent_type}}', 'rent_type_id', 'CASCADE', 'CASCADE');
-        $this->addForeignKey('{{%partners_reservations_city_id}}', '{{%partners_reservations}}', 'city_id', '{{%city}}', 'city_id', 'CASCADE', 'CASCADE');
+       // TODO
+       // $this->addForeignKey('{{%partners_reservations_city_id}}', '{{%partners_reservations}}', 'city_id', '{{%city}}', 'city_id', 'CASCADE', 'CASCADE');
 
 
         // Открытие контактов Заявок на бронирование
