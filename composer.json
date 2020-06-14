@@ -28,7 +28,9 @@
         "yiisoft/yii2-faker": "*",
         "codeception/specify": "*",
         "codeception/verify": "*",
-        "yiisoft/yii2-apidoc": "*"
+        "yiisoft/yii2-apidoc": "*",
+        "symfony/var-dumper": "5.0.8",
+        "friendsofphp/php-cs-fixer": "2.16.3"
     },
     "config": {
         "process-timeout": 1800

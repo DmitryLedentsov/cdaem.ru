@@ -10,420 +10,286 @@ return [
     'modules' => [
         'robotsTxt' => [
             'class' => 'execut\robotsTxt\Module',
-            'components'    => [
+            'components' => [
                 'generator' => [
                     'class' => \execut\robotsTxt\Generator::class,
-                    
-                    
                     //or generate link through the url rules
-                    
                     'userAgent' => [
                         '*' => [
-
-				
                             'Disallow' => [
-                                
+                                ['/signup'],
+                                ['/login'],
+                                ['/*/login',
+                                ],
                                 [
-                                    '/signup',
-                                    
-                                ],
-				[
-                                    '/login',
-                                    
-                                ],
-				[
-                                    '/*/login',
-                                    
-                                ],
-				[
                                     '/badbrowser',
-                                    
                                 ],
-				[
+                                [
                                     '/resend',
-                                    
                                 ],
-				[
+                                [
                                     '/call',
-                                    
                                 ],
-				[
+                                [
                                     '/recovery',
-                                    
                                 ],
-				[
+                                [
                                     '/page/agreement',
-                                    
                                 ],
-				[
+                                [
                                     '/users/guest/resend',
-                                    
                                 ],
-				[
+                                [
                                     '/fonts',
-                                    
                                 ],
-				[
+                                [
                                     '/brw',
-                                    
                                 ],
-				[
+                                [
                                     '/userpic',
-                                    
                                 ],
-				[
+                                [
                                     '/pic',
-                                    
                                 ],
-				[
+                                [
                                     '/imgs',
-                                    
                                 ],
-				[
+                                [
                                     '/images-help',
-                                    
                                 ],
-				[
+                                [
                                     '/uploads',
-                                    
                                 ],
-				[
+                                [
                                     '/tmp',
-                                    
                                 ],
-				[
+                                [
                                     '/ion.sound',
-                                    
                                 ],
-
-				[
+                                [
                                     '/email-images',
-                                    
                                 ],
-                                 
                                 [
                                     '/reservation/*',
-                                    
                                 ],
-                                
                                 [
                                     '/page/FAQ',
-                                    
                                 ],
                             ],
                             'Allow' => [
                                 [
                                     '/partner_thumb',
-                                    
                                 ],
-
-				 [
+                                [
                                     '/partner_imgs',
-                                    
                                 ],
-
-				 [
+                                [
                                     '/images',
-                                    
                                 ],
-
-				 [
+                                [
                                     '/basic-images',
-                                    
                                 ],
-
-				 [
+                                [
                                     '/css',
-                                    
                                 ],
-
-				 [
+                                [
                                     '/*.css$',
-                                    
                                 ],
-
-				 [
+                                [
                                     '/*.js$',
-                                    
                                 ],
-				
-				[
+                                [
                                     '/js',
-                                    
                                 ],
-
                             ],
                         ],
                         'Googlebot' => [
-                            
                             'Disallow' => [
                                 [
                                     '/signup',
-                                    
                                 ],
-				[
+                                [
                                     '/login',
-                                    
                                 ],
-				[
+                                [
                                     '/*/login',
-                                    
                                 ],
-				[
+                                [
                                     '/badbrowser',
-                                    
                                 ],
-				[
+                                [
                                     '/resend',
-                                    
                                 ],
-				[
+                                [
                                     '/call',
-                                    
                                 ],
-				[
+                                [
                                     '/recovery',
-                                    
                                 ],
-				[
+                                [
                                     '/page/agreement',
-                                    
                                 ],
-				[
+                                [
                                     '/users/guest/resend',
-                                    
                                 ],
-				[
+                                [
                                     '/fonts',
-                                    
                                 ],
-				[
+                                [
                                     '/brw',
-                                    
                                 ],
-				[
+                                [
                                     '/userpic',
-                                    
                                 ],
-				[
+                                [
                                     '/pic',
-                                    
                                 ],
-				[
+                                [
                                     '/imgs',
-                                    
                                 ],
-				[
+                                [
                                     '/images-help',
-                                    
                                 ],
-				[
+                                [
                                     '/uploads',
-                                    
                                 ],
-				[
+                                [
                                     '/tmp',
-                                    
                                 ],
-				[
+                                [
                                     '/ion.sound',
-                                    
                                 ],
-
-				[
+                                [
                                     '/email-images',
-                                    
                                 ],
-                                
                                 [
                                     '/reservation/*',
-                                    
                                 ],
-                                
                                 [
                                     '/page/FAQ',
-                                    
                                 ],
                             ],
                             'Allow' => [
-                                 [
+                                [
                                     '/partner_thumb',
-                                    
                                 ],
-
-				 [
+                                [
                                     '/partner_imgs',
-                                    
                                 ],
-
-				 [
+                                [
                                     '/images',
-                                    
                                 ],
-
-				 [
+                                [
                                     '/basic-images',
-                                    
                                 ],
-
-				 [
+                                [
                                     '/css',
-                                    
                                 ],
-
-				 [
+                                [
                                     '/*.css$',
-                                    
                                 ],
-
-				 [
+                                [
                                     '/*.js$',
-                                    
                                 ],
-				
-				[
+                                [
                                     '/js',
-                                    
                                 ],
-
                             ],
                         ],
-				'Yandex' => [
-                            
+                        'Yandex' => [
                             'Disallow' => [
                                 [
                                     '/signup',
-                                    
                                 ],
-				[
+                                [
                                     '/login',
-                                    
                                 ],
-				[
+                                [
                                     '/*/login',
-                                    
                                 ],
-				[
+                                [
                                     '/badbrowser',
-                                    
                                 ],
-				[
+                                [
                                     '/resend',
-                                    
                                 ],
-				[
+                                [
                                     '/call',
-                                    
                                 ],
-				[
+                                [
                                     '/recovery',
-                                    
                                 ],
-				[
+                                [
                                     '/page/agreement',
-                                    
                                 ],
-				[
+                                [
                                     '/users/guest/resend',
-                                    
                                 ],
-				[
+                                [
                                     '/fonts',
-                                    
                                 ],
-				[
+                                [
                                     '/brw',
-                                    
                                 ],
-				[
+                                [
                                     '/userpic',
-                                    
                                 ],
-				[
+                                [
                                     '/pic',
-                                    
                                 ],
-				[
+                                [
                                     '/imgs',
-                                    
                                 ],
-				[
+                                [
                                     '/images-help',
-                                    
                                 ],
-				[
+                                [
                                     '/uploads',
-                                    
                                 ],
-				[
+                                [
                                     '/tmp',
-                                    
                                 ],
-				[
+                                [
                                     '/ion.sound',
-                                    
                                 ],
-
-				[
+                                [
                                     '/email-images',
-                                    
                                 ],
-                                
                                 [
                                     '/reservation/*',
-                                    
                                 ],
-                                
                                 [
                                     '/page/FAQ',
-                                    
                                 ],
                             ],
                             'Allow' => [
-                                 [
+                                [
                                     '/partner_thumb',
-                                    
                                 ],
-
-				 [
+                                [
                                     '/partner_imgs',
-                                    
                                 ],
-
-				 [
+                                [
                                     '/images',
-                                    
                                 ],
-
-				 [
+                                [
                                     '/basic-images',
-                                    
                                 ],
-
-				 [
+                                [
                                     '/css',
-                                    
                                 ],
-
-				 [
+                                [
                                     '/*.css$',
-                                    
                                 ],
-
-				 [
+                                [
                                     '/*.js$',
-                                    
                                 ],
-				
-				[
+                                [
                                     '/js',
-                                    
                                 ],
-
                             ],
                         ],
                     ],
-					
                 ],
             ],
         ],
@@ -493,7 +359,7 @@ return [
             'showScriptName' => false,
             'suffix' => '',
             'rules' => [
-                 ['pattern' => 'robots', 'route' => 'robotsTxt/web/index', 'suffix' => '.txt'],
+                ['pattern' => 'robots', 'route' => 'robotsTxt/web/index', 'suffix' => '.txt'],
             ]
         ],
         'assetManager' => [

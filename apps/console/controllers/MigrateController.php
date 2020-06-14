@@ -28,17 +28,14 @@ class MigrateController extends \yii\console\controllers\MigrateController
     {
         if ($this->_migrationFiles === null) {
             $this->_migrationFiles = [];
-            $directories = array_merge($this->migrationLookup, [$this->migrationPath]);
+            $directories = ArrayHelper::merge($this->migrationLookup, (array)$this->migrationPath);
             $extraPath = ArrayHelper::getValue(Yii::$app->params, 'yii.migrations');
+
             if (!empty($extraPath)) {
                 $directories = array_merge((array) $extraPath, $directories);
             }
 
-            // TODO: Последний элемент в массиве вложенный массив
-            // $directories = array_unique($directories);
-            //var_dump($directories);
-            $directories[18] = $directories[17][0];
-            unset($directories[17]);
+            $directories = array_unique($directories);
 
             foreach ($directories as $dir) {
                 $dir = Yii::getAlias($dir, false);
