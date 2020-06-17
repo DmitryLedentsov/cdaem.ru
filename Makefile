@@ -7,6 +7,7 @@ docker_compose = docker-compose -p ${PROJECT_NAME} -f ./docker/docker-compose.ym
 
 app_run = $(docker_compose) exec --user="${USER_ID}" app
 node_run = $(docker_compose) run --user="${USER_ID}" --rm node
+db_run = $(docker_compose) exec --user=root db
 
 
 bootstrap:
@@ -15,6 +16,10 @@ bootstrap:
 	make build
 	make start
 	make composer cmd="global require "fxp/composer-asset-plugin:^1.3.1""
+	make dump-geo-load
+	make php-yii cmd="migrate --interactive=0"
+	make dump-import
+	make composer cmd=install
 
 
 start:
@@ -49,3 +54,11 @@ php-yii:
     else
 	    $(app_run) sh -c "php yii"
     endif
+
+dump-geo-load:
+	$(db_run) sh -c "mysql -u cdaemru -p cdaemru --password='cdaemru' < /dumps/geo.sql"
+
+dump-import:
+	$(db_run) sh -c "mysql -u cdaemru -p cdaemru --password='cdaemru' < /dumps/articles.sql"
+	$(db_run) sh -c "mysql -u cdaemru -p cdaemru --password='cdaemru' < /dumps/pages.sql"
+	$(db_run) sh -c "mysql -u cdaemru -p cdaemru --password='cdaemru' < /dumps/seo_text.sql"
