@@ -5,7 +5,7 @@ GROUP_ID=$(shell id -g)
 
 docker_compose = docker-compose -p ${PROJECT_NAME} -f ./docker/docker-compose.yml -f ./docker/docker-compose.override.yml
 
-app_run = $(docker_compose) exec --user="${USER_ID}" app
+app_run = $(docker_compose) exec -T --user="${USER_ID}" app
 node_run = $(docker_compose) run --user="${USER_ID}" --rm node
 db_run = $(docker_compose) exec --user=root db
 
@@ -16,11 +16,11 @@ bootstrap:
 	make build
 	make start
 	make composer cmd="global require "fxp/composer-asset-plugin:^1.3.1""
+	make composer cmd=install
+	make php-init
 	make dump-geo-load
 	make php-yii cmd="migrate --interactive=0"
 	make dump-import
-	make composer cmd=install
-
 
 start:
 	$(docker_compose) up -d
@@ -62,3 +62,6 @@ dump-import:
 	$(db_run) sh -c "mysql -u cdaemru -p cdaemru --password='cdaemru' < /dumps/articles.sql"
 	$(db_run) sh -c "mysql -u cdaemru -p cdaemru --password='cdaemru' < /dumps/pages.sql"
 	$(db_run) sh -c "mysql -u cdaemru -p cdaemru --password='cdaemru' < /dumps/seo_text.sql"
+
+php-init:
+	$(app_run) sh -c "php init"
