@@ -14,9 +14,9 @@ return [
         ],
         'db' => [
             'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=127.0.0.1;dbname=dev.cdaem.ru',
+            'dsn' => 'mysql:host=db;dbname=cdaemru',
             'username' => 'root',
-            'password' => '',
+            'password' => 'cdaemru',
             'charset' => 'utf8',
             'tablePrefix' => '',
             'enableSchemaCache' => false,
