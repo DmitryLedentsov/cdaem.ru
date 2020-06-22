@@ -202,6 +202,7 @@ return [
             'errorAction' => 'site/default/error',
         ],
         'assetManager' => [
+        'assetManager' => [
             'basePath' => '@webroot/assets',
             'baseUrl' => '@web/assets',
             'bundles' => [
