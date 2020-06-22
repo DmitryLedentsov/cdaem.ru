@@ -179,6 +179,7 @@ return [
         'request' => [
             'enableCsrfValidation' => true,
             'enableCookieValidation' => true,
+            'cookieValidationKey' => 'DSFgksdifhiw899734hekfDFGisjdfi9374',
             'baseUrl' => '',
             'as cityModelBehavior' => \common\behaviors\CityModelBehavior::className()
         ],
@@ -201,7 +202,6 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/default/error',
         ],
-        'assetManager' => [
         'assetManager' => [
             'basePath' => '@webroot/assets',
             'baseUrl' => '@web/assets',
