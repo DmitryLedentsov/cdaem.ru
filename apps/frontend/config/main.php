@@ -179,7 +179,6 @@ return [
         'request' => [
             'enableCsrfValidation' => true,
             'enableCookieValidation' => true,
-            'cookieValidationKey' => 'DSFgksdifhiw899734hekfDFGisjdfi9374',
             'baseUrl' => '',
             'as cityModelBehavior' => \common\behaviors\CityModelBehavior::className()
         ],
