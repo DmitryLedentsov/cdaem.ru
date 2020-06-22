@@ -65,3 +65,7 @@ dump-import:
 
 php-init:
 	$(app_run) sh -c "php init"
+
+pull:
+	git status
+	git pull
