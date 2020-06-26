@@ -20,7 +20,7 @@ deploy_to prod:
     - chmod 700 ~/.ssh
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
   only:
-    - devops/init
+    - dev
   script:
     - ssh -p${SSH_PORT} ${SSH_USER}@${PROD_SERVER} "cd ${PROJECT_PATH} &&
       make pull &&
