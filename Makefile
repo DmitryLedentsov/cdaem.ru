@@ -24,6 +24,8 @@ bootstrap:
 
 start:
 	$(docker_compose) up -d
+	make composer cmd=install
+	make php-yii cmd="migrate --interactive=0"
 
 stop:
 	$(docker_compose) down
@@ -69,3 +71,4 @@ php-init:
 pull:
 	git status
 	git pull
+	make restart
