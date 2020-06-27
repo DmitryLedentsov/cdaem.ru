@@ -14,7 +14,7 @@ use Yii;
 class ReservationFailureQuery extends ActiveQuery
 {
     /**
-     * Обработанные системой
+     * ГЋГЎГ°Г ГЎГ®ГІГ Г­Г­Г»ГҐ Г±ГЁГ±ГІГҐГ¬Г®Г©
      * @param int $state
      * @return $this
      */
@@ -25,7 +25,7 @@ class ReservationFailureQuery extends ActiveQuery
     }
 
     /**
-     * Обработанные администратором
+     * ГЋГЎГ°Г ГЎГ®ГІГ Г­Г­Г»ГҐ Г Г¤Г¬ГЁГ­ГЁГ±ГІГ°Г ГІГ®Г°Г®Г¬
      * @param int $state
      * @return $this
      */
@@ -36,7 +36,7 @@ class ReservationFailureQuery extends ActiveQuery
     }
 
     /**
-     * У которых наступило время к обработке
+     * Г“ ГЄГ®ГІГ®Г°Г»Гµ Г­Г Г±ГІГіГЇГЁГ«Г® ГўГ°ГҐГ¬Гї ГЄ Г®ГЎГ°Г ГЎГ®ГІГЄГҐ
      * @return $this
      */
     public function timeHasCome()
