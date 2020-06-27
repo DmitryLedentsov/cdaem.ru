@@ -14,6 +14,7 @@ if (!extension_loaded('openssl')) {
 
 $params = getParams();
 $root = str_replace('\\', '/', __DIR__);
+
 $envs = require "$root/environments/index.php";
 $envNames = array_keys($envs);
 
@@ -81,7 +82,7 @@ foreach ($files as $file) {
 $callbacks = ['setCookieValidationKey', 'setWritable', 'setExecutable', 'createSymlink'];
 foreach ($callbacks as $callback) {
     if (!empty($env[$callback])) {
-        $callback($root, $env[$callback]);
+        $callback(sprintf('%s/apps', $root), $env[$callback]);
     }
 }
 
