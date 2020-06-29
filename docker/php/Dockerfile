@@ -59,4 +59,4 @@ USER "${USER_ID}:${GROUP_ID}"
 COPY ./docker/php/php.ini         /usr/local/etc/php/conf.d/php.ini
 COPY ./docker/php/php-fpm.conf    /usr/local/etc/php-fpm.d/php-fpm.conf
 
-COPY . /app
+# COPY . /app
