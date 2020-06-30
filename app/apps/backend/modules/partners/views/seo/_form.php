@@ -23,7 +23,7 @@ use yii\helpers\Html;
     </div>
 <?php endif; ?>
 
-<br />
+    <br/>
 
 <?php $form = ActiveForm::begin(); ?>
 
@@ -46,10 +46,10 @@ use yii\helpers\Html;
         <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-3">
             <?= $form->field($formModel, 'url')->textInput(['maxlength' => true]) ?>
         </div>
-        <?php if ($formModel->scenario == 'update') :?>
+        <?php if ($formModel->scenario == 'update') : ?>
             <div class="row">
                 <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-2">
-                    <?= $form->field($formModel, 'date_create')->textInput(['maxlength' => true, 'disabled' => true])?>
+                    <?= $form->field($formModel, 'date_create')->textInput(['maxlength' => true, 'disabled' => true]) ?>
                 </div>
                 <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-2">
                     <?= $form->field($formModel, 'date_update')->textInput(['maxlength' => true, 'disabled' => true]) ?>
@@ -67,15 +67,15 @@ use yii\helpers\Html;
         </div>
     </div>
 
-    <br />
+    <br/>
 
-    <?php if (Yii::$app->user->can('seo-specifications-update')) :?>
-        <div class="form-group">
-            <?= Html::submitButton(Yii::t('app', 'Сохранить'), ['class' => 'btn btn-success']) ?>
-        </div>
-    <?php endif; ?>
+<?php if (Yii::$app->user->can('seo-specifications-update')) : ?>
+    <div class="form-group">
+        <?= Html::submitButton(Yii::t('app', 'Сохранить'), ['class' => 'btn btn-success']) ?>
+    </div>
+<?php endif; ?>
 
-    <br />
+    <br/>
 
 
 <?php ActiveForm::end(); ?>

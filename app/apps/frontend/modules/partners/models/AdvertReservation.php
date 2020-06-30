@@ -14,18 +14,18 @@ class AdvertReservation extends \common\modules\partners\models\AdvertReservatio
      */
     public function getAdvert()
     {
-        return $this->hasOne(Advert::className(), ['advert_id' => 'advert_id']);
+        return $this->hasOne(Advert::class, ['advert_id' => 'advert_id']);
     }
-    
+
     public function userothreservarion($myid = null)
     {
-         $reservationwidth = AdvertReservation::find()
-                ->Where( ['!=', 'landlord_id', Yii::$app->user->id])
-                ->andWhere(['confirm' => 2])
-                        ->andWhere(['user_id' => $myid])->one();
-         
-         
+        $reservationwidth = AdvertReservation::find()
+            ->Where(['!=', 'landlord_id', Yii::$app->user->id])
+            ->andWhere(['confirm' => 2])
+            ->andWhere(['user_id' => $myid])->one();
+
+
         return $reservationwidth;
     }
-    
+
 }

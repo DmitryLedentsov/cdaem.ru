@@ -14,12 +14,12 @@ class DateTimeAsset extends AssetBundle
     /**
      * @inheritdoc
      */
-	public $sourcePath = '@frontend/themes/basic/assets';
+    public $sourcePath = '@frontend/themes/basic/assets';
 
     /**
      * @inheritdoc
      */
-	public $depends = [
+    public $depends = [
         'yii\web\JqueryAsset',
     ];
 

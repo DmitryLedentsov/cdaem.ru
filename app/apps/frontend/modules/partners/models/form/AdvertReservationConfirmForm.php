@@ -96,8 +96,7 @@ class AdvertReservationConfirmForm extends AdvertReservation
                 $this->addError('error', 'На вашем счету недостаточно средств');
                 return false;
             }
-            
-           
+
 
             $paymentId = Yii::$app->balance
                 ->setModule($this->module->id)

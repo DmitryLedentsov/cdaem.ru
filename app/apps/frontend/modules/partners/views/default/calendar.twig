@@ -19,14 +19,14 @@
                 'url' : '/'
             },
             'links':  [
-            {
-                'label': 'Личный кабинет',
-                'url': ['/office/default/index'],
-            },
-            {
-                'label': 'Быстрое заселение',
-                'url': ['/partners/default/calendar'],
-            },
+                {
+                    'label': 'Личный кабинет',
+                    'url': ['/office/default/index'],
+                },
+                {
+                    'label': 'Быстрое заселение',
+                    'url': ['/partners/default/calendar'],
+                },
             ],
         }) }}
     </div>
@@ -59,7 +59,7 @@
                         <div class="extra-list text-center va accent border-right" style="width: 25%;">
                             <p class="color-success">Сейчас свободно</p>
                             <p>с {{ DateTimeHelper.toFullDateTime(apartment.calenderActualRecord.date_from) | raw }}</p>
-                            <p>по {{ DateTimeHelper.toFullDateTime(apartment.calenderActualRecord.date_to) | raw  }}</p>
+                            <p>по {{ DateTimeHelper.toFullDateTime(apartment.calenderActualRecord.date_to) | raw }}</p>
                         </div>
                         <div class="adverts-list">
                             {{ ApartmentHelper.getAdverts(apartment) | raw }}

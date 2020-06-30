@@ -8,66 +8,79 @@
   -khtml- KHTML
 **/
 .millioners ul {
-  width: 40%;
-  padding: 0;
-  margin: 0;
-  list-style-type: none;
-  float: left;
+    width: 40%;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    float: left;
 }
+
 .millioners ul li {
-  padding: 1em 0;
+    padding: 1em 0;
 }
+
 .millioners ul a {
-  color: #1966b4;
-  font-size: 120%;
+    color: #1966b4;
+    font-size: 120%;
 }
+
 .millioners ul a:hover {
-  color: #3399FF;
+    color: #3399FF;
 }
+
 .country-name {
-  font-size: 120%;
-  font-weight: bold;
-  padding: 5px 15px;
-  border: solid 1px #35ACC0;
-  margin-bottom: 15px;
-  background: #35ACC0;
-  border-radius: 5px;
-  color: #ffffff;
+    font-size: 120%;
+    font-weight: bold;
+    padding: 5px 15px;
+    border: solid 1px #35ACC0;
+    margin-bottom: 15px;
+    background: #35ACC0;
+    border-radius: 5px;
+    color: #ffffff;
 }
+
 .secondary {
-  font-size: 150%;
-  margin-bottom: 15px;
+    font-size: 150%;
+    margin-bottom: 15px;
 }
+
 .countries-list {
-  margin: 0 0 100px 0;
-  padding: 0;
+    margin: 0 0 100px 0;
+    padding: 0;
 }
+
 .countries-list > li {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
+
 .countries-list ul {
-  list-style-type: none;
-  display: inline-block;
-  vertical-align: top;
+    list-style-type: none;
+    display: inline-block;
+    vertical-align: top;
 }
+
 .alph-list > li {
-  display: inline-block;
-  vertical-align: top;
-  margin-bottom: 20px;
+    display: inline-block;
+    vertical-align: top;
+    margin-bottom: 20px;
 }
+
 ul.cities-list {
-  width: 150px;
-  margin-left: 15px;
+    width: 150px;
+    margin-left: 15px;
 }
+
 .userpic-box {
-  text-align: center;
-  margin-bottom: 15px;
+    text-align: center;
+    margin-bottom: 15px;
 }
+
 .userpic-box img {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 }
+
 .flats-request-btn {
-  vertical-align: top;
+    vertical-align: top;
 }

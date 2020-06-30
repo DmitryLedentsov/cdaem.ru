@@ -27,7 +27,7 @@ class ReservationController extends \frontend\components\Controller
     {
         $behaviors = [
             'access' => [
-                'class' => \yii\filters\AccessControl::className(),
+                'class' => \yii\filters\AccessControl::class,
                 'rules' => [
                     [
                         'actions' => ['index', 'advert-reservation'],
@@ -94,14 +94,14 @@ class ReservationController extends \frontend\components\Controller
      */
     public function actionAdvertReservation($advert_id)
     {
-           $reservationtakewidth = AdvertReservation::find()
+        $reservationtakewidth = AdvertReservation::find()
             ->where(['confirm' => 2])->andWhere(['user_id' => Yii::$app->user->id])
             ->all();
-        if (!empty($reservationtakewidth)){
+        if (!empty($reservationtakewidth)) {
             Yii::$app->session->setFlash('danger', 'У вас есть неподтвержденная бронь! Пожалуйста подтвердите свою заявку, или отмените прежде чем сделать новую ');
             return $this->redirect(['/office/reservations']);
         }
-        
+
         $advert = $this->findAdvert($advert_id);
         $otheradvert = $this->findOtherAdvert($advert->apartment->user_id);
         $form = new models\form\AdvertReservationForm();
@@ -194,9 +194,8 @@ class ReservationController extends \frontend\components\Controller
      * Просмотр арендодателем заявок на бронь его объявлений
      * @return string
      */
-    
-  
-    
+
+
     public function actionReservations()
     {
         // Если тип пользователя "Хочу снять" выполняем специализированный экнш
@@ -205,21 +204,21 @@ class ReservationController extends \frontend\components\Controller
         }
 
         $searchModel = new models\search\AdvertReservationSearch(['scenario' => 'landlord']);
-     
+
         $dataProvider = $searchModel->landlordSearch();
-        
-       
+
+
         $otherreservation = new models\AdvertReservation;
-       
-  
+
+
         $query2 = clone $dataProvider->query;
         UserSeen::updateLastDate(models\search\AdvertReservationSearch::tableName(), $query2->select('max(date_update)')->scalar(), 'landlord');
-        
+
         return $this->render('reservations.twig', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'otherreservation' => $otherreservation,
-        
+
         ]);
     }
 
@@ -233,15 +232,15 @@ class ReservationController extends \frontend\components\Controller
         $dataProvider = $searchModel->renterSearch();
         $dataProvider->pagination->route = '/partners/reservation/reservations';
         $reservationtakewidth = AdvertReservation::find()
-          ->where(['confirm' => 2])->andWhere(['user_id' => Yii::$app->user->id])
-         ->all();
-     //   if (empty($reservationtakewidth)){
-     //       Yii::$app->session->setFlash('danger', 'У вас есть не подтвержденная бронь!');
-     //   }
+            ->where(['confirm' => 2])->andWhere(['user_id' => Yii::$app->user->id])
+            ->all();
+        //   if (empty($reservationtakewidth)){
+        //       Yii::$app->session->setFlash('danger', 'У вас есть не подтвержденная бронь!');
+        //   }
         $query2 = clone $dataProvider->query;
         $tableName = models\search\AdvertReservationSearch::tableName();
         UserSeen::updateLastDate($tableName, $query2->select('max(' . $tableName . '.date_update)')->scalar(), 'renter');
-        
+
         return $this->render('reservations-want-rent.twig', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -279,8 +278,8 @@ class ReservationController extends \frontend\components\Controller
         }
         return $advert;
     }
-    
-       protected function findOtherAdvert($user_id)
+
+    protected function findOtherAdvert($user_id)
     {
         $userAdverts = Advert::getAdvertsByUser($user_id, 10);
         return $userAdverts;

@@ -13,7 +13,9 @@
                 <div class="options">
                     <ul class="nav-tabs clearfix" role="tablist">
                         {% for rentTypeSlug, adverts in otherAdverts %}
-                            <li {% if loop.first %}class="active"{% endif %}><a href="#{{ rentTypeSlug|split(',')[0] }}" data-toggle="tab">{{ rentTypeSlug|split(',')[1] }}</a></li>
+                            <li {% if loop.first %}class="active"{% endif %}><a href="#{{ rentTypeSlug|split(',')[0] }}"
+                                                                                data-toggle="tab">{{ rentTypeSlug|split(',')[1] }}</a>
+                            </li>
                         {% endfor %}
                     </ul>
                 </div>

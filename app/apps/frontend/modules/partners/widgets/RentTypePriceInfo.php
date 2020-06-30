@@ -76,7 +76,7 @@ class RentTypePriceInfo extends Widget
 
             if ($rFlag) {
                 $active = ($this->advert->rent_type == $advert->rent_type) ? ' class="active"' : '';
-                $this->_rentTypeHtmlN .= '<li '.$active.' title="' . $advert->rentType->name . '"><a href="'.Url::toRoute(['/partners/default/view', 'id' => $advert->advert_id, 'city' => $advert->apartment->city->name_eng]).'"><span class="icon-rent-type icon-rent-type-widget-' . $rentTypeTime . '"></span></a></li>';
+                $this->_rentTypeHtmlN .= '<li ' . $active . ' title="' . $advert->rentType->name . '"><a href="' . Url::toRoute(['/partners/default/view', 'id' => $advert->advert_id, 'city' => $advert->apartment->city->name_eng]) . '"><span class="icon-rent-type icon-rent-type-widget-' . $rentTypeTime . '"></span></a></li>';
             }
         }
 

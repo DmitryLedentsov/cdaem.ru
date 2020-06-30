@@ -20,13 +20,13 @@
                 'url' : '/'
             },
             'links':  [
-            {
-                'label': 'Личный кабинет',
-                'url' : ['/office/default/index']
-            },
-            {
-                'label': 'Избранное',
-            },
+                {
+                    'label': 'Личный кабинет',
+                    'url' : ['/office/default/index']
+                },
+                {
+                    'label': 'Избранное',
+                },
             ],
         }) }}
     </div>
@@ -63,11 +63,14 @@
                                 {#
                                 <li><span class="settings bookmark" data-interlocutor="{{ userList.interlocutor.id }}" data-type="bookmark" title="В избранное"></span></li>
                                 #}
-                                <li><span class="settings blacklist" data-interlocutor="{{ userList.interlocutor.id }}" data-type="blacklist" title="Заблокировать"></span></li>
-                                <li><span class="settings remove" data-interlocutor="{{ userList.interlocutor.id }}" data-type="remove" title="Удалить"></span></li>
+                                <li><span class="settings blacklist" data-interlocutor="{{ userList.interlocutor.id }}"
+                                          data-type="blacklist" title="Заблокировать"></span></li>
+                                <li><span class="settings remove" data-interlocutor="{{ userList.interlocutor.id }}"
+                                          data-type="remove" title="Удалить"></span></li>
                             </ul>
                         </div>
-                        <a class="btn btn-orange" href="{{ path({0 : '/messages/default/view', 'interlocutorId' :  userList.interlocutor.id }) }}">Написать</a>
+                        <a class="btn btn-orange"
+                           href="{{ path({0 : '/messages/default/view', 'interlocutorId' :  userList.interlocutor.id }) }}">Написать</a>
                     </div>
                 </div>
             </li>
@@ -79,7 +82,7 @@
             Список пуст
         </div>
     {% endif %}
-    
+
     {{ use ('yii/widgets/LinkPager') }}
     {{ link_pager_widget({'pagination' : dataProvider.pagination}) }}
 

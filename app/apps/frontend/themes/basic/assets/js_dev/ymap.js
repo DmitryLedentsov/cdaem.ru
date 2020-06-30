@@ -46,11 +46,6 @@ function Ymap() {
 }
 
 
-
-
-
-
-
 function LiveYmap() {
 
     var mapTag = $('#liveYmap');
@@ -102,7 +97,7 @@ function LiveYmap() {
         }
         fullAddress += ' ' + address;
 
-         console.log(fullAddress);
+        console.log(fullAddress);
 
         ymaps.geocode(fullAddress, {results: 1}).then(function (res) {
 

@@ -6,6 +6,7 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
+
 ?>
 
 <!-- Navbar -->
@@ -36,12 +37,14 @@ use yii\helpers\Url;
                             'username' => Yii::$app->user->identity->email,
                             'avatar_url' => Yii::$app->user->identity->profile->avatar_url,
                         ]
-                    ]);?>
+                    ]); ?>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right icons-right">
-                    <li><?php echo Html::a('На сайт', Yii::$app->params['siteDomain'])?></li>
-                    <li><a href="<?php echo Url::toRoute(['/users/user/update', 'id' => Yii::$app->user->id])?>"><i class="icon-user"></i> Профиль</a></li>
-                    <li><a href="<?php echo Url::toRoute(['/users/user/logout'])?>"><i class="icon-exit"></i> Выход</a></li>
+                    <li><?php echo Html::a('На сайт', Yii::$app->params['siteDomain']) ?></li>
+                    <li><a href="<?php echo Url::toRoute(['/users/user/update', 'id' => Yii::$app->user->id]) ?>"><i
+                                    class="icon-user"></i> Профиль</a></li>
+                    <li><a href="<?php echo Url::toRoute(['/users/user/logout']) ?>"><i class="icon-exit"></i> Выход</a>
+                    </li>
                 </ul>
             </li>
         </ul>

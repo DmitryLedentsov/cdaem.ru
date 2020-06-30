@@ -5,10 +5,7 @@ namespace frontend\modules\merchant\widgets\fastpayment;
 use frontend\modules\merchant\widgets\fastpayment\assets\FastPaymentAsset;
 use common\modules\partners\models\Service;
 use frontend\modules\merchant\models\Pay;
-use yii\base\InvalidParamException;
-use yii\helpers\ArrayHelper;
-use yii\helpers\Html;
-use yii\helpers\Url;
+use yii\base\InvalidArgumentException;
 use Yii;
 
 /**
@@ -69,19 +66,19 @@ class FastPayment extends \yii\base\Widget
         // Необходимо передать параметр service для идентификации и оплаты разовых или одиночных сервисов
         // При этом параметр processServiceId указывает на оплату сервиса, который ожидает активации
         if (empty($this->service) && empty($this->processServiceId)) {
-            throw new InvalidParamException('Params "service" or "processServiceId" can not be empty');
+            throw new InvalidArgumentException('Params "service" or "processServiceId" can not be empty');
         }
 
         if (!empty($this->service)) {
             if (!in_array($this->service, array_keys(Yii::$app->service->getList()))) {
-                throw new InvalidParamException('Service "'.$this->service.'" not initialized');
+                throw new InvalidArgumentException('Service "' . $this->service . '" not initialized');
             }
             $this->_service = Yii::$app->service->load($this->service);
         }
 
         if (!empty($this->processServiceId)) {
             if (!$this->_processService = Service::findProcessById($this->processServiceId)) {
-                throw new InvalidParamException('Service process by id "'.$this->processServiceId.'" not found');
+                throw new InvalidArgumentException('Service process by id "' . $this->processServiceId . '" not found');
             }
             $this->_service = Yii::$app->service->load($this->_processService->service);
         }

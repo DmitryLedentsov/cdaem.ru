@@ -6,8 +6,7 @@
  * @param cb
  * @returns {*}
  */
-function findWaitingRoomByUserIdAndInterlocutorId(userId, interlocutorId, cb)
-{
+function findWaitingRoomByUserIdAndInterlocutorId(userId, interlocutorId, cb) {
     for (var room in chat.rooms) {
         if (
             (chat.rooms[room].waiting[0] == userId && chat.rooms[room].waiting[1] == interlocutorId) ||
@@ -26,8 +25,7 @@ function findWaitingRoomByUserIdAndInterlocutorId(userId, interlocutorId, cb)
  * @param cb
  * @returns {*}
  */
-function findRoomByHash(hash, cb)
-{
+function findRoomByHash(hash, cb) {
     for (var room in chat.rooms) {
         if (chat.rooms[room].name == hash) {
             return cb(chat.rooms[room]);
@@ -43,8 +41,7 @@ function findRoomByHash(hash, cb)
  * @param cb
  * @returns {*}
  */
-function findRoomBySocketId(socketId, cb)
-{
+function findRoomBySocketId(socketId, cb) {
     for (var room in chat.rooms) {
         for (var connection in chat.rooms[room].connections) {
             if (chat.rooms[room].connections[connection].sockets.indexOf(socketId) >= 0) {

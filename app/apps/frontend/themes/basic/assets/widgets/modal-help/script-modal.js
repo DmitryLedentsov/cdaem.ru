@@ -1,8 +1,7 @@
-
 //if ($.cookie("popup2") == null)
 //{
 //    var delay_popup = 2001;
- //   setTimeout("$('#example1').click();", delay_popup);
+//   setTimeout("$('#example1').click();", delay_popup);
 //}
 
 //if ($.cookie("popup3") == null)
@@ -50,35 +49,35 @@ $('.example6').click(function () {
 });
 
 $('.example7').click(function () {
-     var date = new Date();
+    var date = new Date();
     date.setTime(date.getTime() + (60000 * 30000));
     $.cookie("popup3", "", {expires: date});
     $('#exampleModal2').arcticmodal();
 });
 
 $('.example8').click(function () {
-      var date = new Date();
+    var date = new Date();
     date.setTime(date.getTime() + (60000 * 30000));
     $.cookie("popup4", "", {expires: date});
     $('#exampleModal3').arcticmodal();
 });
 
 $('.example9').click(function () {
-     var date = new Date();
+    var date = new Date();
     date.setTime(date.getTime() + (60000 * 30000));
     $.cookie("popup5", "", {expires: date});
     $('#exampleModal4').arcticmodal();
 });
 
 $('.example10').click(function () {
-     var date = new Date();
+    var date = new Date();
     date.setTime(date.getTime() + (60000 * 30000));
     $.cookie("popup6", "", {expires: date});
     $('#exampleModal5').arcticmodal();
 });
 
 $('.example11').click(function () {
-     var date = new Date();
+    var date = new Date();
     date.setTime(date.getTime() + (60000 * 30000));
     $.cookie("popup7", "", {expires: date});
     $('#exampleModal6').arcticmodal();

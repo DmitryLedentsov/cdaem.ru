@@ -293,7 +293,7 @@ jQuery(function () {
                 if ($('#selectform-verifycode-image').length) {
                     $('#selectform-verifycode-image').yiiCaptcha('refresh');
                 }
-                $("html, body").animate({ scrollTop: $('div.alert').height() }, 2000);
+                $("html, body").animate({scrollTop: $('div.alert').height()}, 2000);
             }
         }
     });

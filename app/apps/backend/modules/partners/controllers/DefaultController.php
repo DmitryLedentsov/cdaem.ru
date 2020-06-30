@@ -29,7 +29,7 @@ class DefaultController extends Controller
     {
         return [
             'access' => [
-                'class' => \yii\filters\AccessControl::className(),
+                'class' => \yii\filters\AccessControl::class,
                 'rules' => [
                     [
                         'allow' => true,
@@ -125,9 +125,9 @@ class DefaultController extends Controller
             if (!Yii::$app->user->can('partners-apartment-update')) {
                 throw new ForbiddenHttpException(Yii::t('users.rbac', 'ACCESS_DENIED'));
             }
-            
+
             if ($model->validate()) {
-                
+
                 if ($model->save(false)) {
                     Yii::$app->session->setFlash('success', 'Данные успешно сохранены.');
                 } else {
@@ -197,33 +197,33 @@ class DefaultController extends Controller
             'action' => 'defaultImage',
             'id' => $id
         ];
-        
+
         $newDefaultImg = Image::findOne($id);
-        
+
         if (!$newDefaultImg) {
             $response['result'] = false;
             return $response;
         }
-        
-        
+
+
         $oldDefaultImg = Image::find()->where([
             'apartment_id' => $newDefaultImg->apartment_id,
             'default_img' => 1,
         ])->one();
-        
+
         if ($newDefaultImg == $oldDefaultImg) {
             $response['result'] = true;
             return $response;
         }
-        
+
         $newDefaultImg->default_img = 1;
         $newDefaultImg->save();
-        
+
         if ($oldDefaultImg) {
             $oldDefaultImg->default_img = 0;
             $oldDefaultImg->save();
         }
-        
+
         $response['result'] = true;
         return $response;
     }
@@ -242,7 +242,7 @@ class DefaultController extends Controller
 
         $image = Image::findOne($id);
         $result = false;
-        
+
         if ($image) {
             $apartment_id = $image->apartment_id;
             $result = $image->deleteWithFiles();
@@ -250,9 +250,9 @@ class DefaultController extends Controller
                 $newDefaultImg = Image::find()->where(['apartment_id' => $apartment_id, 'default_img' => 1])->select('image_id')->scalar();
             }
         }
-        
+
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        
+
         return [
             'action' => 'deleteImage',
             'result' => $result,
@@ -275,12 +275,12 @@ class DefaultController extends Controller
         $redirect = Yii::$app->request->referrer ? Yii::$app->request->referrer : ['index'];
         $action = Yii::$app->request->post('action');
         $ids = Yii::$app->request->post('selection');
-        
+
         if (!$ids || !is_array($ids)) {
             Yii::$app->session->setFlash('danger', 'Не выбрано ни одной действие');
             return $this->redirect($redirect);
         }
-        
+
         switch ($action) {
             case 'moderated':
                 $updatedRows = Apartment::updateAll(['status' => 1, 'date_update' => date('Y-m-d H:i:s')], ['in', 'apartment_id', $ids]);
@@ -298,7 +298,7 @@ class DefaultController extends Controller
         }
 
         Yii::$app->session->setFlash('success', 'Данные успешно сохранены');
-        
+
         return $this->redirect($redirect);
     }
 

@@ -10,9 +10,9 @@
     // TAB CLASS DEFINITION
     // ====================
     var Tab = function (element) {
-    // jscs:disable requireDollarBeforejQueryAssignment
+        // jscs:disable requireDollarBeforejQueryAssignment
         this.element = $(element)
-    // jscs:enable requireDollarBeforejQueryAssignment
+        // jscs:enable requireDollarBeforejQueryAssignment
     }
     Tab.VERSION = '3.3.4'
     Tab.TRANSITION_DURATION = 150

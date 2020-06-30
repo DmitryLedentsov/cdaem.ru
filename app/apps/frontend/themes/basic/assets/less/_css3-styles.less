@@ -28,7 +28,7 @@
 
 // Тень
 .box-shadow(@shadow: 7px 7px 3px black) {
-  -moz-box-shadow: @shadow ;
+  -moz-box-shadow: @shadow;
   -webkit-box-shadow: @shadow;
   -ms-box-shadow: @shadow;
   -o-box-shadow: @shadow;
@@ -39,7 +39,7 @@
 // Прозрачность
 .opacity(@opacity: 100) {
   @_ops: 100;
-  filter:progid:DXImageTransform.Microsoft.Alpha(opacity=@opacity);
+  filter: progid:DXImageTransform.Microsoft.Alpha(opacity=@opacity);
   -moz-opacity: @opacity / @_ops;
   -webkit-opacity: @opacity / @_ops;
   zoom: 1; /* для элемента в ИЕ, у которого не заданы width и height */

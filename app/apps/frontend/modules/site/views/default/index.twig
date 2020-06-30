@@ -18,7 +18,8 @@
         <div class="cdaem container">
             <div class="row">
                 <div class="logo col-xs-12 col-md-3">
-                    <a href="/"><img src="/basic-images/arenda-kvartir-posutochno-logo.png" alt="Все города России и СНГ" title="Все города России и СНГ" /></a>
+                    <a href="/"><img src="/basic-images/arenda-kvartir-posutochno-logo.png"
+                                     alt="Все города России и СНГ" title="Все города России и СНГ"/></a>
                 </div>
                 <div class="seo-text col-xs-12 col-sm-6">
                     <div class="size">
@@ -29,9 +30,11 @@
                     <div class="login-links">{{ this.renderDynamic('return $this->render("@app/modules/site/views/default/logged.twig");') | raw }}</div>
                     <div class="social-links" style="font-size:30px;">
                         <ul>
-                            <li><a href="https://www.facebook.com/cdaem.ru" rel="nofollow"><i class="fab fa-facebook"></i></a></li>
-                            <li><a href="https://new.vk.com/cdaemru" rel="nofollow"><i class="fab fa-vk" ></i></a></li>
-                            <li><a href="https://plus.google.com/communities/104623882749857804458" rel="nofollow"><i class="fab fa-google-plus"></i></a></li>
+                            <li><a href="https://www.facebook.com/cdaem.ru" rel="nofollow"><i
+                                            class="fab fa-facebook"></i></a></li>
+                            <li><a href="https://new.vk.com/cdaemru" rel="nofollow"><i class="fab fa-vk"></i></a></li>
+                            <li><a href="https://plus.google.com/communities/104623882749857804458" rel="nofollow"><i
+                                            class="fab fa-google-plus"></i></a></li>
                             <li><a href="skype:cdaemru" rel="nofollow"><i class="fab fa-skype"></i></a></li>
 
                         </ul>
@@ -51,18 +54,24 @@
             <div class="row">
                 <div class="col-md-7 callback-title-link-block">
                     <span class="title-span">Квартиры от <a href="#" class="or-link">Сдаём.ру</a> без посредников - Москва</span>
-                    <div class="hidden-xs phones-block"> <span class="call absolute-p" data-toggle="modal" data-target="#modal-callback"></span>
-                        <a href="https://chat.whatsapp.com/HBYHOMkBYY89Jh2EElJuUv" rel="nofollow"><i class="fab fa-whatsapp fa-3x" style="line-height: 85px;" aria-hidden="true"></i></a></div>
+                    <div class="hidden-xs phones-block"><span class="call absolute-p" data-toggle="modal"
+                                                              data-target="#modal-callback"></span>
+                        <a href="https://chat.whatsapp.com/HBYHOMkBYY89Jh2EElJuUv" rel="nofollow"><i
+                                    class="fab fa-whatsapp fa-3x" style="line-height: 85px;" aria-hidden="true"></i></a>
+                    </div>
                 </div>
 
                 <div class="col-md-2">
                     <div class="callback-phone-block">
-                        <div class="row phone-1"><a href="tel:+79037991799"><span class="c-phone">+7 (903) 799-17-99</span></a></div>
-                        <div class="row phone-2"><a href="tel:+79154559494"><span class="m-phone">+7 (915) 455-94-94</span></a></div>
+                        <div class="row phone-1"><a href="tel:+79037991799"><span
+                                        class="c-phone">+7 (903) 799-17-99</span></a></div>
+                        <div class="row phone-2"><a href="tel:+79154559494"><span
+                                        class="m-phone">+7 (915) 455-94-94</span></a></div>
                     </div>
                 </div>
                 <div class="col-md-3 callback-btn-block">
-                    <a href="{{ path(['/helpdesk/default/index']) }}" class="callback-btn">Связаться с диспетчером <br> Cdaem.ru</a>
+                    <a href="{{ path(['/helpdesk/default/index']) }}" class="callback-btn">Связаться с диспетчером <br>
+                        Cdaem.ru</a>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -86,13 +95,15 @@
         {{ form.field(callback, 'phone').textInput({'placeholder' : '+7 (___) ___-____'}) | raw }}
 
         <div class="form-group text-center">
-            <input type="submit" value="Отправить" class="btn btn-primary" />
+            <input type="submit" value="Отправить" class="btn btn-primary"/>
         </div>
         {{ active_form_end() }}
         <div class="row-call">
             <div class="callback-phone-block">
-                <div class="row phone-1"><a href="tel:+79037991799"><span class="c-phone">+7 (903) 799-17-99</span></a></div>
-                <div class="row phone-2"><a href="tel:+79154559494"><span class="m-phone">+7 (915) 455-94-94</span></a></div>
+                <div class="row phone-1"><a href="tel:+79037991799"><span class="c-phone">+7 (903) 799-17-99</span></a>
+                </div>
+                <div class="row phone-2"><a href="tel:+79154559494"><span class="m-phone">+7 (915) 455-94-94</span></a>
+                </div>
             </div>
         </div>
     </div>

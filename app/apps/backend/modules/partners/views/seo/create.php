@@ -9,7 +9,7 @@
 $this->title = 'Создать сео спецификации';
 
 echo \backend\modules\admin\widgets\HeaderWidget::widget([
-    'title' =>  'Управление сео спецификациями',
+    'title' => 'Управление сео спецификациями',
     'description' => $this->title,
     'breadcrumb' => [
         [
@@ -24,6 +24,6 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
 ]);
 
 echo $this->render('_form', [
-        'model' => $model,
-        'formModel' => $formModel,
-    ]);
+    'model' => $model,
+    'formModel' => $formModel,
+]);

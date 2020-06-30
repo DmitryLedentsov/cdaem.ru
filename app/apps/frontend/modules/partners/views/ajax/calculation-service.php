@@ -6,6 +6,7 @@
     @var array $calculation
     @var datetime $date
 */
+
 use common\modules\partners\models\Service;
 use yii\helpers\Html;
 
@@ -35,22 +36,26 @@ switch ($service::NAME) {
 
 <div class='calculate clearfix'>
     <div class='service-logo'>
-        <?=$serviceLogo?>
-        <p class='name'><?=$service->getName()?></p>
+        <?= $serviceLogo ?>
+        <p class='name'><?= $service->getName() ?></p>
         <p class='selected'>
-            Объектов выбрано: <b><?=$calculation['countSelected']?></b>
+            Объектов выбрано: <b><?= $calculation['countSelected'] ?></b>
         </p>
     </div>
     <div class='service-info'>
 
-        Активация услуги: <b><?=Yii::$app->BasisFormat->helper('DateTime')->toFullDate($date)?></b><br/>
-        <?php if ($calculation['days']): ?>Действует <b><?=Yii::t('app', '{n, plural, one{# день} few{# дня} many{# дней} other{# дня} }', ['n' => $calculation['days']])?></b><?php endif;?>
+        Активация услуги: <b><?= Yii::$app->BasisFormat->helper('DateTime')->toFullDate($date) ?></b><br/>
+        <?php if ($calculation['days']): ?>Действует
+            <b><?= Yii::t('app', '{n, plural, one{# день} few{# дня} many{# дней} other{# дня} }', ['n' => $calculation['days']]) ?></b><?php endif; ?>
 
         <br/>
 
         <?php if ($calculation['discount']): ?>
-            <p class='price'>Общая стоимость: <b><?=Yii::$app->formatter->asCurrency($calculation['price'] + $calculation['discount'], 'RUB')?></b></p> <br/>
-            <p class='discount' style="margin: 0">Ваша скидка составляет: <b><?=Yii::$app->formatter->asCurrency($calculation['discount'], 'RUB')?></b></p>
+            <p class='price'>Общая стоимость:
+                <b><?= Yii::$app->formatter->asCurrency($calculation['price'] + $calculation['discount'], 'RUB') ?></b>
+            </p> <br/>
+            <p class='discount' style="margin: 0">Ваша скидка составляет:
+                <b><?= Yii::$app->formatter->asCurrency($calculation['discount'], 'RUB') ?></b></p>
         <?php else: ?>
             <br/>
             <div class="alert alert-warning">
@@ -58,10 +63,12 @@ switch ($service::NAME) {
                 При текущей покупке, Вы не получаете скидку!
             </div>
         <?php endif; ?>
-        <p class='total-price'>Всего к оплате: <b><?=Yii::$app->formatter->asCurrency($calculation['price'], 'RUB')?></b></p>
+        <p class='total-price'>Всего к оплате:
+            <b><?= Yii::$app->formatter->asCurrency($calculation['price'], 'RUB') ?></b></p>
         <?php if (Yii::$app->user->can('admin')) : ?>
             <div class="alert alert-info">
-                Вы являетесь администратором! Любая стоимость сервиса будет сброшена на <b><?=Yii::$app->formatter->asCurrency(1, 'RUB')?></b>
+                Вы являетесь администратором! Любая стоимость сервиса будет сброшена на
+                <b><?= Yii::$app->formatter->asCurrency(1, 'RUB') ?></b>
             </div>
         <?php endif; ?>
     </div>

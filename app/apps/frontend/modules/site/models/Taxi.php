@@ -124,7 +124,7 @@ class Taxi extends \yii\base\Model
     {
         if (parent::beforeValidate()) {
 
-            $this->phone  = str_replace(['(', ')', '+', ' ', '-'], '', $this->phone);
+            $this->phone = str_replace(['(', ')', '+', ' ', '-'], '', $this->phone);
 
             $validator = new \yii\validators\DateValidator();
             $validator->format = 'php:d.m.Y H:i';
@@ -145,7 +145,7 @@ class Taxi extends \yii\base\Model
                 $time1 = strtotime($this->date_delivery);
 
                 // Бронирование апартаментов не ранее чем за час
-                if ( (time() + 60 * 5) > $time1) {
+                if ((time() + 60 * 5) > $time1) {
                     $this->addError('date_delivery', '');
                     $this->addError('date_delivery', 'Необходимо бронировать не менее чем за 5 минут');
                 }
@@ -163,8 +163,6 @@ class Taxi extends \yii\base\Model
     public function afterValidate()
     {
         parent::afterValidate();
-
-
     }
 
     /**

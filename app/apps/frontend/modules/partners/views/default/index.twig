@@ -16,22 +16,22 @@
 
 {% block breadcrumbs %}
     <div class="container">
-    <div class="breadcrumbs">
-        {{ use('yii/widgets/Breadcrumbs') }}
-        {{ breadcrumbs_widget({
-            'itemTemplate' : "<li>{link}</li>\n",
-            'homeLink' :
-            {
-                'label' : 'Главная',
-                'url' : '/'
-            },
-            'links':  [
-            {
-                'label': 'Доска объявлений',
-            },
-            ],
-        }) }}
-    </div>
+        <div class="breadcrumbs">
+            {{ use('yii/widgets/Breadcrumbs') }}
+            {{ breadcrumbs_widget({
+                'itemTemplate' : "<li>{link}</li>\n",
+                'homeLink' :
+                {
+                    'label' : 'Главная',
+                    'url' : '/'
+                },
+                'links':  [
+                    {
+                        'label': 'Доска объявлений',
+                    },
+                ],
+            }) }}
+        </div>
     </div>
 {% endblock %}
 
@@ -49,8 +49,8 @@
 
     {{ use('common/modules/geo/assets/frontend/MetroMskAsset') }}
     {{ register_metro_msk_asset() }}
-    
-   
+
+
 
     {# Поиск #}
     <div style="margin-top: -25px;margin-bottom:10px;padding: 0px;" class="indexboard">
@@ -66,45 +66,71 @@
         <div class="search-front">
             <div role="main">
                 <div class="millioners clearfix">
-                    <h1 class="secondary">Сдаём.ру — Доска объявлений по всей России и СНГ по «аренде посуточно» или на короткий срок.</h1>
+                    <h1 class="secondary">Сдаём.ру — Доска объявлений по всей России и СНГ по «аренде посуточно» или на
+                        короткий срок.</h1>
 
                     <p>
                         Вы можете бесплатно разместить своё предложение по «аренде посуточно» и выбрать нужный раздел:
-                        Квартира на сутки, квартира на час, квартира на ночь, квартира на месяц, комната на сутки, койко-место,
+                        Квартира на сутки, квартира на час, квартира на ночь, квартира на месяц, комната на сутки,
+                        койко-место,
                         загородный дом или дом на выходные, коттедж на сутки. Также если Вы собрались в поездку:
-                        Санкт-Петербург, Ростов на дону, Новосибирск, Екатеринбург, Казань, Челябинск, Уфа, Самара, Нижний Новгород, Волгоград, Омск
-                        или любой другой город России, то можно заранее забронировать через Наш сайт www.cdaem.ru. Если Вы едите в Москву или уже в Москве,
-                        то можно забронировать и подобрать квартиру посуточно через нашу фирму. Наши менеджеры профессионально подберут Вам нужный вариант,
+                        Санкт-Петербург, Ростов на дону, Новосибирск, Екатеринбург, Казань, Челябинск, Уфа, Самара,
+                        Нижний Новгород, Волгоград, Омск
+                        или любой другой город России, то можно заранее забронировать через Наш сайт www.cdaem.ru. Если
+                        Вы едите в Москву или уже в Москве,
+                        то можно забронировать и подобрать квартиру посуточно через нашу фирму. Наши менеджеры
+                        профессионально подберут Вам нужный вариант,
                         и Вы останетесь довольны. Мы работаем без посредников!
                     </p>
 
                     <hr/>
 
-                    <h3  class="secondary">Популярные направления</h3>
+                    <h3 class="secondary">Популярные направления</h3>
 
                     <ul>
-                        <li><a href="{{ path('/partners/default/region', {'city' : 'msk'}) }}">Москва</a> — 10 563 038 чел.</li>
-                        <li><a href="{{ path('/partners/default/region', {'city' : 'ns'}) }}">Новосибирск</a> — 1 409 137 чел.</li>
-                        <li><a href="{{ path('/partners/default/region', {'city' : 'nn'}) }}">Нижний Новгород</a> — 1 271 045 чел.</li>
-                        <li><a href="{{ path('/partners/default/region', {'city' : 'chel'}) }}">Челябинск</a> — 1 125 723 чел.</li>
-                        <li><a href="{{ path('/partners/default/region', {'city' : 'rostov'}) }}">Ростов-на-Дону</a> — 1 048 124 чел.</li>
+                        <li><a href="{{ path('/partners/default/region', {'city' : 'msk'}) }}">Москва</a> — 10 563 038
+                            чел.
+                        </li>
+                        <li><a href="{{ path('/partners/default/region', {'city' : 'ns'}) }}">Новосибирск</a> — 1 409
+                            137 чел.
+                        </li>
+                        <li><a href="{{ path('/partners/default/region', {'city' : 'nn'}) }}">Нижний Новгород</a> — 1
+                            271 045 чел.
+                        </li>
+                        <li><a href="{{ path('/partners/default/region', {'city' : 'chel'}) }}">Челябинск</a> — 1 125
+                            723 чел.
+                        </li>
+                        <li><a href="{{ path('/partners/default/region', {'city' : 'rostov'}) }}">Ростов-на-Дону</a> — 1
+                            048 124 чел.
+                        </li>
                         <li><a href="{{ path('/partners/default/region', {'city' : 'kemerovo'}) }}">Кемерово</a></li>
                     </ul>
 
                     <ul>
-                        <li><a href="{{ path('/partners/default/region', {'city' : 'spb'}) }}">Санкт-Петербург</a> — 617 000 чел.</li>
-                        <li><a href="{{ path('/partners/default/region', {'city' : 'ekaterinburg'}) }}">Екатеринбург</a>— 1 365 567 чел.</li>
-                        <li><a href="{{ path('/partners/default/region', {'city' : 'kazan'}) }}">Казань</a> — 1 136 566 чел.</li>
-                        <li><a href="{{ path('/partners/default/region', {'city' : 'samara'}) }}">Самара</a> — 1 133 754 чел.</li>
-                        <li><a href="{{ path('/partners/default/region', {'city' : 'ufa'}) }}">Уфа</a> — 1 064 843 чел.</li>
-                        <li><a href="{{ path('/partners/default/region', {'city' : 'volgograd'}) }}">Волгоград</a> — 1015 813 чел.</li>
+                        <li><a href="{{ path('/partners/default/region', {'city' : 'spb'}) }}">Санкт-Петербург</a> — 617
+                            000 чел.
+                        </li>
+                        <li><a href="{{ path('/partners/default/region', {'city' : 'ekaterinburg'}) }}">Екатеринбург</a>—
+                            1 365 567 чел.
+                        </li>
+                        <li><a href="{{ path('/partners/default/region', {'city' : 'kazan'}) }}">Казань</a> — 1 136 566
+                            чел.
+                        </li>
+                        <li><a href="{{ path('/partners/default/region', {'city' : 'samara'}) }}">Самара</a> — 1 133 754
+                            чел.
+                        </li>
+                        <li><a href="{{ path('/partners/default/region', {'city' : 'ufa'}) }}">Уфа</a> — 1 064 843 чел.
+                        </li>
+                        <li><a href="{{ path('/partners/default/region', {'city' : 'volgograd'}) }}">Волгоград</a> —
+                            1015 813 чел.
+                        </li>
                     </ul>
 
                 </div>
 
                 <hr/>
 
-                <br />
+                <br/>
 
                 <h4 class="secondary">Выберите город</h4>
                 <ul class="countries-list">
@@ -118,7 +144,9 @@
                                         <ul class="cities-list">
                                             {% for city in arCity %}
                                                 <li>
-                                                    <a href="{{ path('/partners/default/region', {'city' : city.name_eng}) }}" class="mainlink" title="Снять квартиру посуточно в {{ city.name }}">{{ city.name }}</a>
+                                                    <a href="{{ path('/partners/default/region', {'city' : city.name_eng}) }}"
+                                                       class="mainlink"
+                                                       title="Снять квартиру посуточно в {{ city.name }}">{{ city.name }}</a>
                                                 </li>
                                             {% endfor %}
                                         </ul>

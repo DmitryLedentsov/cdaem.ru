@@ -21,13 +21,13 @@
                 'url' : '/'
             },
             'links':  [
-            {
-                'label': 'Личный кабинет',
-                'url' : ['/office/default/index']
-            },
-            {
-                'label': 'Мои покупки',
-            },
+                {
+                    'label': 'Личный кабинет',
+                    'url' : ['/office/default/index']
+                },
+                {
+                    'label': 'Мои покупки',
+                },
             ],
         }) }}
     </div>
@@ -55,10 +55,10 @@
                 <div class="apartment-blocks">
                     <div class="extra-list">
                         <p>
-                            Дата включения: <br> {{ DateTimeHelper.toFullDateTime(process.date_start) | raw  }} <br/>
-                                Дата выключения: <br>
+                            Дата включения: <br> {{ DateTimeHelper.toFullDateTime(process.date_start) | raw }} <br/>
+                            Дата выключения: <br>
                             {% if process.date_expire is not empty %}
-                                {{ DateTimeHelper.toFullDateTime(process.date_expire) | raw  }}
+                                {{ DateTimeHelper.toFullDateTime(process.date_expire) | raw }}
                             {% else %}
                                 Нет
                             {% endif %}

@@ -208,8 +208,8 @@ class AdvertReservationForm extends AdvertReservation
     public function validateAllDates($attribute, $params)
     {
         // На данном этапе валидации, уже должны быть провалидированы все 4 поля валидаторами "required" и "format"
-        if ($this->hasErrors('arrived_date') OR $this->hasErrors('arrived_time') OR $this->hasErrors('out_date') OR $this->hasErrors('out_time')) {
-            return ;
+        if ($this->hasErrors('arrived_date') or $this->hasErrors('arrived_time') or $this->hasErrors('out_date') or $this->hasErrors('out_time')) {
+            return;
         }
 
         $timeNow = time();
@@ -264,10 +264,10 @@ class AdvertReservationForm extends AdvertReservation
     {
         $model = new AdvertReservation;
         $model->user_id = !Yii::$app->user->isGuest ? Yii::$app->user->id : User::signup([
-                'email' => $this->email,
-                'password' => $this->password,
-                'phone' => $this->phone,
-            ]);
+            'email' => $this->email,
+            'password' => $this->password,
+            'phone' => $this->phone,
+        ]);
         $model->landlord_id = $this->landlord_id;
         $model->advert_id = $this->advert_id;
         $model->children = $this->children;

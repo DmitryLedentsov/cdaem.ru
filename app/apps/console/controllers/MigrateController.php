@@ -32,7 +32,7 @@ class MigrateController extends \yii\console\controllers\MigrateController
             $extraPath = ArrayHelper::getValue(Yii::$app->params, 'yii.migrations');
 
             if (!empty($extraPath)) {
-                $directories = array_merge((array) $extraPath, $directories);
+                $directories = array_merge((array)$extraPath, $directories);
             }
 
             $directories = array_unique($directories);

@@ -15,7 +15,7 @@ class BgHead extends Widget
      * @var string
      */
     public $title;
-    
+
     public $background;
 
     /**
@@ -69,9 +69,11 @@ class BgHead extends Widget
     {
         $content = Html::tag('h1', ($this->title), ['id' => 'bg-head-title']);
         $background = $this->background;
+
         if ($this->background == null) {
             $background = 'article-no-img.jpg';
         }
+
         return Html::tag('div', $content, [
             'class' => 'bg-header-2',
             'style' => 'background: url(' . $this->url . '/' . $background . ')center center;background-size:cover',

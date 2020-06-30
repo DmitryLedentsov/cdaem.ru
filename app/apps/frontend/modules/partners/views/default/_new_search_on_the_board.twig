@@ -15,14 +15,17 @@
 
             {% if index is not null %}
                 <div class="msk-map clearfix">
-                    <div class="title"><span id="open-subway-map" data-url="{{ path({'0' : '/partners/default/region', 'city' : 'msk'}) }}">Поиск по метро</span></div>
+                    <div class="title"><span id="open-subway-map"
+                                             data-url="{{ path({'0' : '/partners/default/region', 'city' : 'msk'}) }}">Поиск по метро</span>
+                    </div>
                     <div class="modal fade" id="modal-subway-map" data-title="Выбрать на карте Москвы">
                         <div class="form-group text-center">
-                            <input type="button" class="close-modal btn btn-primary" value="Выбрать" />
+                            <input type="button" class="close-modal btn btn-primary" value="Выбрать"/>
                         </div>
-                        <div class="map"></div> <br />
+                        <div class="map"></div>
+                        <br/>
                         <div class="form-group text-center">
-                            <input type="button" class="close-modal btn btn-primary" value="Выбрать" />
+                            <input type="button" class="close-modal btn btn-primary" value="Выбрать"/>
                         </div>
                     </div>
                 </div>
@@ -53,7 +56,8 @@
         </select>
     </div>-->
             <div class="select-filter white new_search_style" style="width: 600px">
-                <input name="city" type="text" class="form-control input-search city-drop-down-list" data-url="{{ path(['/geo/ajax/select-city']) }}" value="" placeholder="Укажите Ваш город"/>
+                <input name="city" type="text" class="form-control input-search city-drop-down-list"
+                       data-url="{{ path(['/geo/ajax/select-city']) }}" value="" placeholder="Укажите Ваш город"/>
                 <input type="submit" class="btn btn-primary btn-orange-style" value="Искать"/>
             </div>
             <div class="select-filter new_search_style custom">
@@ -62,10 +66,12 @@
 
             <div class="new_search_style-filter">
                 <div class="select-filter lightblue">
-                    <a href="{{ path(['/partners/default/create']) }}" class="btn new_btn-lighblue">Подать обЪявление</a>
+                    <a href="{{ path(['/partners/default/create']) }}" class="btn new_btn-lighblue">Подать
+                        обЪявление</a>
                 </div>
                 <div class="select-filter lightblue">
-                    <a href="{{ path(['/partners/reservation/index']) }}" class="btn new_btn-fulllighblue">Быстро снять</a>
+                    <a href="{{ path(['/partners/reservation/index']) }}" class="btn new_btn-fulllighblue">Быстро
+                        снять</a>
                 </div>
             </div>
 

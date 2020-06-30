@@ -6,11 +6,11 @@ return [
             'identityCookie' => [
                 'name' => '_identity',
                 'httpOnly' => true,
-                'domain' => '.c.ru',
+                'domain' => '.cdaem.loc',
             ],
         ],
         'session' => [
-            'cookieParams' => ['domain' => '.c.ru'],
+            'cookieParams' => ['domain' => '.cdaem.loc'],
         ],
         'db' => [
             'class' => 'yii\db\Connection',

@@ -2,19 +2,19 @@ var app = require('express')();
 var fs = require('fs');
 
 var server = require('https').createServer({
-    	key: fs.readFileSync('/etc/letsencrypt/live/cdaem.com-0002/privkey.pem'),
-	cert: fs.readFileSync('/etc/letsencrypt/live/cdaem.com-0002/cert.pem'),
-	ca: fs.readFileSync('/etc/letsencrypt/live/cdaem.com-0002/chain.pem'),
+    key: fs.readFileSync('/etc/letsencrypt/live/cdaem.com-0002/privkey.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/cdaem.com-0002/cert.pem'),
+    ca: fs.readFileSync('/etc/letsencrypt/live/cdaem.com-0002/chain.pem'),
     requestCert: false,
     rejectUnauthorized: false
-},app);
+}, app);
 var io = require('socket.io')(server);
 var request = require('request');
 var mysql = require('mysql');
 var util = require('util');
 var uuid = require('node-uuid');
-server.listen(8443, function(){
-  console.log('listening on *:8443');
+server.listen(8443, function () {
+    console.log('listening on *:8443');
 });
 
 // Логирование
@@ -57,26 +57,24 @@ try {
     /**
      * Соединение по сокету
      */
-    io.on('connection', function (socket)
-    {
+    io.on('connection', function (socket) {
 
-console.log("connected");
+        console.log("connected");
         /**
          * Добавляем пользователя в комнату
          * @var hash - на основе которого необходимо проверить текущего пользователя
          * @var interlocutor_id - идентификатор собеседника
          */
-        socket.on('add user', function (hash, interlocutor_id)
-        {
-            console.log ('add user');
+        socket.on('add user', function (hash, interlocutor_id) {
+            console.log('add user');
 
             verifyHash(hash, function (user) {
                 if (user && typeof user === 'object') {
 
-                    console.log ('Пользователь и собеседник: ' + user.id + ' ' + interlocutor_id);
+                    console.log('Пользователь и собеседник: ' + user.id + ' ' + interlocutor_id);
                     findWaitingRoomByUserIdAndInterlocutorId(user.id, interlocutor_id, function (roomHash) {
 
-                        console.log ('Комната: ' + roomHash);
+                        console.log('Комната: ' + roomHash);
                         roomUserPush({
                             user: user,
                             interlocutor_id: interlocutor_id,
@@ -93,7 +91,7 @@ console.log("connected");
                                 status: -1,
                                 message: 'Пользователь id' + user.id + ' зашел в комнату ' + room.name + '. Собеседник: id' + interlocutor_id
                             });
-                            console.log('Пользователь id' + user.id + ' зашел в комнату '+room.name+'. Собеседник: id' + interlocutor_id);
+                            console.log('Пользователь id' + user.id + ' зашел в комнату ' + room.name + '. Собеседник: id' + interlocutor_id);
                         });
 
                     });
@@ -111,9 +109,8 @@ console.log("connected");
         /**
          * Обрабатываем событие приватного сообщения
          */
-        socket.on('private message', function (msg)
-        {
-            findRoomByHash(socket.room, function(room) {
+        socket.on('private message', function (msg) {
+            findRoomByHash(socket.room, function (room) {
                 if (room) {
                     checkBlackList(socket.user.id, socket.interlocutor_id, function (result) {
                         if (result > 0) {
@@ -166,8 +163,7 @@ console.log("connected");
         /**
          * Потеря соединения
          */
-        socket.on('disconnect', function ()
-        {
+        socket.on('disconnect', function () {
             socket.leave(socket.room);
             roomsClear(socket.id, function (result) {
                 // Сообщение
@@ -180,8 +176,8 @@ console.log("connected");
         });
     });
 
-} catch(e) {
-    console.log ('catch');
+} catch (e) {
+    console.log('catch');
     console.log(e);
     logError(e);
 }

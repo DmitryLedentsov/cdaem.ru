@@ -47,7 +47,7 @@ echo $this->render('_search', ['model' => $searchModel]);
     </div>
 <?php endif; ?>
 
-<br />
+    <br/>
 
 <?php echo GridView::widget([
     'tableOptions' => ['class' => 'table table-bordered'],
@@ -81,7 +81,6 @@ echo $this->render('_search', ['model' => $searchModel]);
                 $url = str_replace('<city>', $model->advert->apartment->city->name_eng, Yii::$app->params['siteSubDomain']) . '/flats/' . $model->advert_id;
 
 
-
                 /*$advertHref = Html::a('ID ' . $model->advert_id, $url);
                 $address = '<span style="color:blue">Заявка к обьявлению ' . $advertHref . '</span><br/>';
                 $address.= 'Страна: ' . $model->advert->apartment->city->country->name;
@@ -90,31 +89,30 @@ echo $this->render('_search', ['model' => $searchModel]);
                 $address.= $model->advert->apartment->address;*/
 
 
-
                 $titleImage = '';
                 if (!empty($model->advert->apartment->titleImage)) {
                     $titleImage = ('
                         <div class="thumbnail thumbnail-boxed" style="float: none">
                             <div class="thumb">
-                                '.Html::img($model->advert->apartment->titleImage->previewSrc, ['alt' => $model->advert->apartment->titleImage->preview]).'
+                                ' . Html::img($model->advert->apartment->titleImage->previewSrc, ['alt' => $model->advert->apartment->titleImage->preview]) . '
                             </div>
                         </div>
                     ');
                 }
 
-                $id = '<b>' .  Html::a('ID ' . $model->advert_id, ['/partners/default/update', 'id' => $model->advert->apartment->apartment_id ]) . '</b>';
+                $id = '<b>' . Html::a('ID ' . $model->advert_id, ['/partners/default/update', 'id' => $model->advert->apartment->apartment_id]) . '</b>';
 
                 $address = '';
                 if ($model->advert->apartment->city) {
-                    $address.= 'Страна: ' . $model->advert->apartment->city->country->name . ', ';
-                    $address.= 'Город: ' . $model->advert->apartment->city->name;
-                    $address.= '<br/>';
+                    $address .= 'Страна: ' . $model->advert->apartment->city->country->name . ', ';
+                    $address .= 'Город: ' . $model->advert->apartment->city->name;
+                    $address .= '<br/>';
                 }
 
-                $address.= $model->advert->apartment->address;
-                $address.= $model->advert->apartment->apartment ? ' к. ' . $model->advert->apartment->apartment : '';
+                $address .= $model->advert->apartment->address;
+                $address .= $model->advert->apartment->apartment ? ' к. ' . $model->advert->apartment->apartment : '';
 
-                return  Html::a($titleImage, $url) . $id . "<br>" . $address;
+                return Html::a($titleImage, $url) . $id . "<br>" . $address;
             },
         ],
 
@@ -122,17 +120,17 @@ echo $this->render('_search', ['model' => $searchModel]);
             'format' => 'html',
             'label' => 'Клиент',
             'contentOptions' => ['class' => 'text-left tdUser'],
-            'value' => function($model) {
+            'value' => function ($model) {
                 return \nepster\faceviewer\Widget::widget([
-                    'template' => '<div class="user-face"><div class="avatar">{face}</div>{name} {surname}</div>',
-                    'templateUrl' => ['/users/user/update', 'id' => $model->user_id],
-                    'data' => [
-                        'email' => Html::encode($model->user->email),
-                        'name' => Html::encode($model->user->profile->name),
-                        'surname' => Html::encode($model->user->profile->surname),
-                        'avatar_url' => $model->user->profile->avatar_url,
-                    ]
-                ]) . '<div>EMAIL: <b>'.Html::encode($model->user->email).'</b></div>';
+                        'template' => '<div class="user-face"><div class="avatar">{face}</div>{name} {surname}</div>',
+                        'templateUrl' => ['/users/user/update', 'id' => $model->user_id],
+                        'data' => [
+                            'email' => Html::encode($model->user->email),
+                            'name' => Html::encode($model->user->profile->name),
+                            'surname' => Html::encode($model->user->profile->surname),
+                            'avatar_url' => $model->user->profile->avatar_url,
+                        ]
+                    ]) . '<div>EMAIL: <b>' . Html::encode($model->user->email) . '</b></div>';
             }
         ],
 
@@ -140,17 +138,17 @@ echo $this->render('_search', ['model' => $searchModel]);
             'format' => 'html',
             'label' => 'Владелец',
             'contentOptions' => ['class' => 'text-left tdUser'],
-            'value' => function($model) {
+            'value' => function ($model) {
                 return \nepster\faceviewer\Widget::widget([
-                    'template' => '<div class="user-face"><div class="avatar">{face}</div>{name} {surname}</div>',
-                    'templateUrl' => ['/users/user/update', 'id' => $model->landlord_id],
-                    'data' => [
-                        'email' => Html::encode($model->landlord->email),
-                        'name' => Html::encode($model->landlord->profile->name),
-                        'surname' => Html::encode($model->landlord->profile->surname),
-                        'avatar_url' => $model->landlord->profile->avatar_url,
-                    ]
-                ]) . '<div>EMAIL: <b>'.Html::encode($model->landlord->email).'</b></div>';
+                        'template' => '<div class="user-face"><div class="avatar">{face}</div>{name} {surname}</div>',
+                        'templateUrl' => ['/users/user/update', 'id' => $model->landlord_id],
+                        'data' => [
+                            'email' => Html::encode($model->landlord->email),
+                            'name' => Html::encode($model->landlord->profile->name),
+                            'surname' => Html::encode($model->landlord->profile->surname),
+                            'avatar_url' => $model->landlord->profile->avatar_url,
+                        ]
+                    ]) . '<div>EMAIL: <b>' . Html::encode($model->landlord->email) . '</b></div>';
             }
         ],
 
@@ -158,11 +156,11 @@ echo $this->render('_search', ['model' => $searchModel]);
             'format' => 'html',
             'label' => 'Политика аренды',
             'contentOptions' => ['class' => 'text-left', 'style' => 'min-width: 250px; width: 250px'],
-            'value' => function($model) {
+            'value' => function ($model) {
                 $value = $model->advert->rentType->name . ' - ' . $model->advert->priceText;
-                $value .= '<br>Кол-во человек: '.$model->clientsCountText;
-                $value .= '<br>'.$model->childrenText;
-                $value .= '<br>'.$model->petsText;
+                $value .= '<br>Кол-во человек: ' . $model->clientsCountText;
+                $value .= '<br>' . $model->childrenText;
+                $value .= '<br>' . $model->petsText;
 
                 return $value;
             },
@@ -193,8 +191,8 @@ echo $this->render('_search', ['model' => $searchModel]);
                 $value = '<span style = "color:' . $color . '">' . $model->confirmText . '</span><br/>';
                 if ($model->failure) {
                     $color = 'red';
-                    if ($model->failure->processed == 1 OR $model->failure->closed == 0) $color = 'green';
-                    $value .= '<span style = "color:' . $color . '">"Незаезд"' . Html::a(' История ', ['/partners/reservation-failures/index', 's[reservation_id]'=> $model->id]). '</span><br/>';
+                    if ($model->failure->processed == 1 or $model->failure->closed == 0) $color = 'green';
+                    $value .= '<span style = "color:' . $color . '">"Незаезд"' . Html::a(' История ', ['/partners/reservation-failures/index', 's[reservation_id]' => $model->id]) . '</span><br/>';
                 }
 
                 return $value;

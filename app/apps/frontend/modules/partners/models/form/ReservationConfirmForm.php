@@ -59,7 +59,7 @@ class ReservationConfirmForm extends Reservation
     {
         return [
             [
-                'class' => TimestampBehavior::className(),
+                'class' => TimestampBehavior::class,
                 'attributes' => [
                     \yii\db\ActiveRecord::EVENT_BEFORE_INSERT => ['date_create', 'date_update'],
                     \yii\db\ActiveRecord::EVENT_BEFORE_UPDATE => 'date_update',
@@ -103,7 +103,7 @@ class ReservationConfirmForm extends Reservation
      */
     private function defineCancel()
     {
-        if ($this->advert_id != NULL AND $this->deal) {
+        if ($this->advert_id != NULL and $this->deal) {
             $this->addError('cancel_reason', 'Вы не можете отменить данную заявку, так как заявка ожидает подтверждения');
             return false;
         }
@@ -164,7 +164,7 @@ class ReservationConfirmForm extends Reservation
                 $this->addError('userType', 'На вашем счету недостаточно средств');
                 return false;
             }
-            
+
 
             $paymentId = Yii::$app->balance
                 ->setModule($this->module->id)

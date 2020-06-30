@@ -105,16 +105,16 @@ class AdvertReservationSearch extends AdvertReservation
         $query = AdvertReservation::find()
             ->joinWith([
 
-                'user' => function($query) {
+                'user' => function ($query) {
                     $query->joinWith('profile');
                 },
                 'advert' => function ($query) {
                     $query->joinWith([
                         'rentType',
-                        'apartment' => function($query) {
+                        'apartment' => function ($query) {
                             $query->joinWith([
                                 'titleImage',
-                                'city' => function($query) {
+                                'city' => function ($query) {
                                     $query->joinWith('country');
                                 }
                             ]);

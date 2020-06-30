@@ -9,16 +9,16 @@
 {% block title %}{{ this.registerTitle('Квартира посуточно в ' ~ city.name ~ '. Снять квартиру  на сутки без посредников | Сдаём.ру') }}{% endblock %}
 
 {% block header %}
-    {% set foo = {"f" : searchModel.rentTypesList[searchModel.sect]}  %}
+    {% set foo = {"f" : searchModel.rentTypesList[searchModel.sect]} %}
     {% if foo['f']  == 'Квартира на месяц' %}
         {% set fo = {'f': 'Квартиру на месяц' } %}
-    {% elseif foo['f']  == 'Квартира на час'  %}
+    {% elseif foo['f']  == 'Квартира на час' %}
         {% set fo = {'f': 'Квартиру на час' } %}
-    {% elseif foo['f']  == 'Квартира на сутки'  %}
-        {% set fo = {'f': 'Квартиру посуточно' } %} 
-    {% elseif foo['f']  == 'Квартира на ночь'  %}
-        {% set fo = {'f': 'Квартиру на ночь' } %} 
-    {% endif  %}
+    {% elseif foo['f']  == 'Квартира на сутки' %}
+        {% set fo = {'f': 'Квартиру посуточно' } %}
+    {% elseif foo['f']  == 'Квартира на ночь' %}
+        {% set fo = {'f': 'Квартиру на ночь' } %}
+    {% endif %}
     {{ use('frontend/modules/site/widgets/BgHeader') }}
     {{ bg_header_widget({'title': 'Снять ' ~  fo['f']  ~ '  ' ~ city.name }) }}
 {% endblock %}
@@ -38,9 +38,9 @@
                 'url' : app.params.siteDomain
             },
             'links':  [
-            {
-                'label': 'Все объявления города ' ~ city.name,
-            },
+                {
+                    'label': 'Все объявления города ' ~ city.name,
+                },
             ],
         }) }}
     </div>

@@ -30,7 +30,7 @@ class AjaxController extends \frontend\components\Controller
     {
         return [
             'access' => [
-                'class' => \yii\filters\AccessControl::className(),
+                'class' => \yii\filters\AccessControl::class,
                 'rules' => [
                     [
                         'actions' => [],
@@ -112,7 +112,7 @@ class AjaxController extends \frontend\components\Controller
             $department = trim(Yii::$app->request->post('department'));
             $userType = trim(Yii::$app->request->post('user_type'));
             $user_id = trim(Yii::$app->request->post('user_id'));
-            $priced =  trim(Yii::$app->request->post('priced'));          
+            $priced = trim(Yii::$app->request->post('priced'));
 
             if ($action == 'send') {
                 if ($type == 'confirm') {
@@ -130,9 +130,9 @@ class AjaxController extends \frontend\components\Controller
                     if ($userType == 'landlord') {
                         $query->thisLandlord();
                     }
-                    
+
                     if ($user_id == 0) {
-                        
+
                     }
 
                     $reservation = $query->one();
@@ -144,10 +144,10 @@ class AjaxController extends \frontend\components\Controller
                             'message' => 'Возникла критическая ошибка',
                         ];
                     }
-                    
-                    
+
+
                     if ($user_id != 0) {
-                          
+
                         return [
                             'status' => 0,
                             'message' => 'Другой Владелец подтвердил бронь Вашего Клиента быстрее. Заявка аннулирована !',
@@ -157,19 +157,19 @@ class AjaxController extends \frontend\components\Controller
                     $reservation->scenario = 'confirm';
                     if ($reservation->confirm()) {
                         $transaction->commit();
-                             if ($user_id != 0) {
-                          
-                        return [
-                            'status' => 0,
-                            'message' => 'У арендатора есть неподтвержденная бронь, в целях безопасности дождитесь подтверждения со стороны клиента!!!',
-                        ];
-                    }
+                        if ($user_id != 0) {
+
+                            return [
+                                'status' => 0,
+                                'message' => 'У арендатора есть неподтвержденная бронь, в целях безопасности дождитесь подтверждения со стороны клиента!!!',
+                            ];
+                        }
                         // Отправить уведомление
                         Yii::$app->consoleRunner->run('partners/reservation/send-mail ' . $reservation->id . ' confirm');
 
                         return [
                             'status' => 1,
-                            'message' => 'С вашего счёта списано '. $priced. '. Вы забронировали, Владелец вас ждёт! Вам открыты все контакты и функция переписки!',
+                            'message' => 'С вашего счёта списано ' . $priced . '. Вы забронировали, Владелец вас ждёт! Вам открыты все контакты и функция переписки!',
                         ];
                     }
 
@@ -182,7 +182,7 @@ class AjaxController extends \frontend\components\Controller
                 } else {
 
                     // ОТМЕНА глобальной резервации. Возможна только WANT_RENT'ом
-                    if ($department == 'total-bid' AND $userType == 'renter') {
+                    if ($department == 'total-bid' and $userType == 'renter') {
                         $reservation = models\Reservation::find()
                             ->thisUser()
                             ->cancel(0)
@@ -198,20 +198,20 @@ class AjaxController extends \frontend\components\Controller
 
                         $reservation->cancel_reason = Yii::$app->request->post('cancel_reason');
                         // Проверка на стринг
-                       // if (!is_string($reservation->cancel_reason)) {
-                       //     return [
+                        // if (!is_string($reservation->cancel_reason)) {
+                        //     return [
                         //        'status' => 0,
                         //        'message' => 'Возникла критическая ошибка',
-                      //      ];
-                      //  }
+                        //      ];
+                        //  }
                         // Проверка на мин макс
-                      //  $mbStrlen = mb_strlen($reservation->cancel_reason);
-                      //  if ($mbStrlen < 10) {
-                      //      return ['Причина отмены должно содержать минимум 10 символов'];
-                     //   }
-                     //   if ($mbStrlen > 255) {
-                    //        return ['Причина отмены должно содержать максимум 255 символов'];
-                   //     }
+                        //  $mbStrlen = mb_strlen($reservation->cancel_reason);
+                        //  if ($mbStrlen < 10) {
+                        //      return ['Причина отмены должно содержать минимум 10 символов'];
+                        //   }
+                        //   if ($mbStrlen > 255) {
+                        //        return ['Причина отмены должно содержать максимум 255 символов'];
+                        //     }
 
                         $reservation->cancel = 1;
                         $reservation->closed = 1;
@@ -286,7 +286,7 @@ class AjaxController extends \frontend\components\Controller
                     'userType' => $userType,
                     'user_id' => $user_id,
                     'priced' => $priced,
-                    
+
                 ]);
             }
 

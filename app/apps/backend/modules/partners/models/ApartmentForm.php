@@ -23,7 +23,7 @@ class ApartmentForm extends \backend\modules\partners\models\Apartment
     {
         return [
             [
-                'class' => \yii\behaviors\TimestampBehavior::className(),
+                'class' => \yii\behaviors\TimestampBehavior::class,
                 'createdAtAttribute' => 'date_create',
                 'updatedAtAttribute' => 'date_update',
                 'value' => function ($event) {
@@ -75,7 +75,7 @@ class ApartmentForm extends \backend\modules\partners\models\Apartment
             'update' => ['user_id', 'city_id', 'closest_city_id', 'address', 'apartment', 'floor', 'total_rooms', 'total_area', 'visible', 'status', 'remont', 'metro_walk', 'description', 'date_create', 'date_update', 'files']
         ];
     }
-    
+
     /**
      * @inheritdoc
      */
@@ -85,7 +85,7 @@ class ApartmentForm extends \backend\modules\partners\models\Apartment
             [['user_id', 'city_id', 'closest_city_id', 'apartment', 'floor', 'total_rooms', 'total_area', 'visible', 'status', 'remont', 'metro_walk'], 'integer'],
             ['user_id', 'exist', 'targetClass' => '\common\modules\users\models\User', 'targetAttribute' => 'id'],
             [['city_id', 'closest_city_id'], 'exist', 'targetClass' => '\common\modules\geo\models\City', 'targetAttribute' => 'city_id'],
-            [['visible', 'status'], 'in', 'range' => [0,1,2]],
+            [['visible', 'status'], 'in', 'range' => [0, 1, 2]],
             ['remont', 'in', 'range' => array_keys($this->remontList)],
             [['address'], 'string', 'max' => 255],
             [['description'], 'string'],
@@ -93,10 +93,10 @@ class ApartmentForm extends \backend\modules\partners\models\Apartment
             // required on %scenarios%
             [['user_id', 'city_id', 'address', 'floor', 'total_rooms', 'total_area',
                 'visible', 'status', 'remont', 'metro_walk',
-                ], 'required', 'on' => 'create'],
+            ], 'required', 'on' => 'create'],
             [['user_id', 'city_id', 'address',
                 'floor', 'total_rooms', 'total_area', 'visible', 'status', 'remont', 'metro_walk',
-                ], 'required', 'on' => 'update'],
+            ], 'required', 'on' => 'update'],
         ];
     }
 
@@ -107,14 +107,14 @@ class ApartmentForm extends \backend\modules\partners\models\Apartment
     {
         $adverts = Advert::find()->where(['apartment_id' => $this->apartment_id])->all();
         foreach ($adverts as $advert) {
-                
-                $advert->old_position = 0;
-                $advert->position = 1;
-                //$advert->real_position = 1;
-                $advert->save(false);
-            }
-        
-        
+
+            $advert->old_position = 0;
+            $advert->position = 1;
+            //$advert->real_position = 1;
+            $advert->save(false);
+        }
+
+
         reset($this->files);
         $this->files = array_filter($this->files);
         $first = key($this->files);
@@ -122,7 +122,7 @@ class ApartmentForm extends \backend\modules\partners\models\Apartment
         foreach ($this->files as $key => $file) {
             $image = new Image();
             if ($fileName = $image->upload($file, true, true)) {
-                
+
                 $image->apartment_id = $this->apartment_id;
                 $image->review = $fileName;
                 $image->preview = $fileName;

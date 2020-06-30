@@ -13,21 +13,21 @@
     <div class="breadcrumbs">
         {{ use('yii/widgets/Breadcrumbs') }}
         {{ breadcrumbs_widget({
-        'itemTemplate' : "<li>{link}</li>\n",
-        'homeLink' :
-        {
-        'label' : 'Главная',
-        'url' : '/'
-        },
-        'links':  [
-        {
-        'label': 'Личный кабинет',
-        'url' : ['/office/default/index']
-        },
-        {
-        'label': 'Общие заявки',
-        },
-        ],
+            'itemTemplate' : "<li>{link}</li>\n",
+            'homeLink' :
+            {
+                'label' : 'Главная',
+                'url' : '/'
+            },
+            'links':  [
+                {
+                    'label': 'Личный кабинет',
+                    'url' : ['/office/default/index']
+                },
+                {
+                    'label': 'Общие заявки',
+                },
+            ],
         }) }}
     </div>
 {% endblock %}
@@ -105,7 +105,8 @@
                                 <span class="color-info">{{ reservation.childrenText }}</span>,
                                 <span class="color-info">{{ reservation.petsText }}</span>
                                 <br/>
-                                Актуально до:<br/> <span class="color-info">{{ DateTimeHelper.toFullDateTime(reservation.date_actuality) }}</span>
+                                Актуально до:<br/> <span
+                                        class="color-info">{{ DateTimeHelper.toFullDateTime(reservation.date_actuality) }}</span>
                             </p>
 
                         </div>
@@ -118,9 +119,9 @@
                         {% if reservation.closed %}
                             <p>Закрыта</p>
                             {% if reservation.payments %}
-                        <div class="alert alert-success">
-                                <p>Причина: арендодатель открыл Ваши контакты. Ожидайте связи.</p>
-                            </div>
+                                <div class="alert alert-success">
+                                    <p>Причина: арендодатель открыл Ваши контакты. Ожидайте связи.</p>
+                                </div>
                             {% endif %}
                         {% endif %}
 
@@ -129,7 +130,9 @@
                         {% else %}
                             {% if not reservation.closed %}
                                 <p class="text-center" style="font-weight: bold">
-                                    <span class="link color-danger reservation-send" data-type="cancel" data-department="total-bid" data-user-type="renter" data-reservation="{{ reservation.id }}">Отменить</span>
+                                    <span class="link color-danger reservation-send" data-type="cancel"
+                                          data-department="total-bid" data-user-type="renter"
+                                          data-reservation="{{ reservation.id }}">Отменить</span>
                                 </p>
                             {% endif %}
                         {% endif %}

@@ -1,10 +1,10 @@
 $(document).ready(function () {
 
     var d1 = [[1262304000000, 6], [1264982400000, 2057], [1267401600000, 2043], [1270080000000, 2198], [1272672000000, 2660], [1275350400000, 1826], [1277942400000, 1302], [1280620800000, 2237], [1283299200000, 2004], [1285891200000, 2144], [1288569600000, 1577], [1291161600000, 1295]];
- 
+
     var data1 = [
-        { label: "Total clicks", data: d1, color: '#46bb00' },
-    ]; 
+        {label: "Total clicks", data: d1, color: '#46bb00'},
+    ];
     $.plot($("#filled_green"), data1, {
         xaxis: {
             min: (new Date(2009, 12, 1)).getTime(),
@@ -28,9 +28,9 @@ $(document).ready(function () {
         },
         series: {
             lines: {
-                show: true, 
+                show: true,
                 fill: true,
-                fillColor: { colors: [ { opacity: 0.2 }, { opacity: 0.2 } ] },
+                fillColor: {colors: [{opacity: 0.2}, {opacity: 0.2}]},
                 lineWidth: 1.5
             },
             points: {
@@ -42,14 +42,14 @@ $(document).ready(function () {
                 lineWidth: 1.1
             }
         },
-       grid: { hoverable: true, clickable: true },
+        grid: {hoverable: true, clickable: true},
         legend: {
             show: false
         }
     });
 
     function showTooltip(x, y, contents) {
-        $('<div id="tooltip" class="chart-tooltip">' + contents + '</div>').css( {
+        $('<div id="tooltip" class="chart-tooltip">' + contents + '</div>').css({
             position: 'absolute',
             display: 'none',
             top: y - 46,
@@ -68,18 +68,17 @@ $(document).ready(function () {
             if (item) {
                 if (previousPoint != item.dataIndex) {
                     previousPoint = item.dataIndex;
-                    
+
                     $("#tooltip").remove();
                     var x = item.datapoint[0].toFixed(0),
                         y = item.datapoint[1].toFixed(0);
-                    
+
                     showTooltip(item.pageX, item.pageY,
-                                item.series.label + ": " + "<strong>" + y + "</strong>");
+                        item.series.label + ": " + "<strong>" + y + "</strong>");
                 }
-            }
-            else {
+            } else {
                 $("#tooltip").remove();
-                previousPoint = null;            
+                previousPoint = null;
             }
         }
     });

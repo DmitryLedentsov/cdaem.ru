@@ -30,7 +30,7 @@ class HeaderWidget extends Widget
     /**
      * @var string
      */
-    private $_breadcrumb ;
+    private $_breadcrumb;
 
     /**
      * Init

@@ -47,7 +47,7 @@ class CalendarBlockerForm extends Model
 
         if ($this->checkIntersections()) {
             foreach ($this->freeCalendars as $freeCalendar) {
-                if(!$this->divideIntersection($freeCalendar)) return false;
+                if (!$this->divideIntersection($freeCalendar)) return false;
             }
         }
 
@@ -121,7 +121,7 @@ class CalendarBlockerForm extends Model
     protected function setApartmentAvailable()
     {
         $now = date('Y-m-d H:i:s');
-        if ($this->date_from <= $now AND $now <= $this->date_to) { // Åñëè ñåé÷àñ íàõîäèòüñÿ âî âðåìåííîì ïðîìåæóòêå ýòîãî áëîêåðà
+        if ($this->date_from <= $now and $now <= $this->date_to) { // Åñëè ñåé÷àñ íàõîäèòüñÿ âî âðåìåííîì ïðîìåæóòêå ýòîãî áëîêåðà
             $apartment = Apartment::findOne($this->apartment_id);
             if (!$apartment) return false;
             if ($apartment->now_available == 0) return true;
@@ -148,12 +148,12 @@ class CalendarBlockerForm extends Model
         $startDiff = $freeStart->diff($unfreeStart);
         $endDiff = $freeEnd->diff($unfreeEnd);
 
-        if (!$startDiff->invert AND !$endDiff->invert) { // òîëüêî êîíåö çåëåíîãî ïîïàäàåò â ïðîìåæóòîê êðàñíîãî
+        if (!$startDiff->invert and !$endDiff->invert) { // òîëüêî êîíåö çåëåíîãî ïîïàäàåò â ïðîìåæóòîê êðàñíîãî
 
             $freeCalendar->date_to = $this->date_from;
             return $freeCalendar->save(false);
 
-        } else if (!$startDiff->invert AND $endDiff->invert) { // ïðîìåæóòîê êðàñíîãî íàõîäèòüñÿ öåëèêîì â çåëåíîì
+        } else if (!$startDiff->invert and $endDiff->invert) { // ïðîìåæóòîê êðàñíîãî íàõîäèòüñÿ öåëèêîì â çåëåíîì
 
             $calendar = new Calendar();
             $calendar->date_from = $this->date_to;
@@ -167,11 +167,11 @@ class CalendarBlockerForm extends Model
             if ($calendar->save(false) && $freeCalendar->save(false)) return true;
             return false;
 
-        } else if ($startDiff->invert AND !$endDiff->invert) { // ïðîìåæóòîê çåëåíîãî íàõîäèòñÿ öåëèêîì â êðàñíîì
+        } else if ($startDiff->invert and !$endDiff->invert) { // ïðîìåæóòîê çåëåíîãî íàõîäèòñÿ öåëèêîì â êðàñíîì
 
             return $freeCalendar->delete();
 
-        } else if ($startDiff->invert AND $startDiff->invert) { // òîëüêî íà÷àëî çåëåíîãî ïîïàäàåò â ïðîìåæóòîê êðàñíîãî
+        } else if ($startDiff->invert and $startDiff->invert) { // òîëüêî íà÷àëî çåëåíîãî ïîïàäàåò â ïðîìåæóòîê êðàñíîãî
 
             $freeCalendar->date_from = $this->date_to;
             if ($freeCalendar->process == 1) {

@@ -111,13 +111,13 @@ class CalenderForm extends Calendar
             if (!is_array($this->type)) {
                 $calendarApartmentId = $this->calendarApartmentId;
 
-                $this->type =                   [$calendarApartmentId => $this->type];
-                $this->whichDate =              [$calendarApartmentId => $this->whichDate];
-                $this->calendarApartmentId =    [$calendarApartmentId => $this->calendarApartmentId];
-                $this->date_start =             [$calendarApartmentId => $this->date_start];
-                $this->time_start =             [$calendarApartmentId => $this->time_start];
-                $this->date_end =               [$calendarApartmentId => $this->date_end];
-                $this->time_end =               [$calendarApartmentId => $this->time_end];
+                $this->type = [$calendarApartmentId => $this->type];
+                $this->whichDate = [$calendarApartmentId => $this->whichDate];
+                $this->calendarApartmentId = [$calendarApartmentId => $this->calendarApartmentId];
+                $this->date_start = [$calendarApartmentId => $this->date_start];
+                $this->time_start = [$calendarApartmentId => $this->time_start];
+                $this->date_end = [$calendarApartmentId => $this->date_end];
+                $this->time_end = [$calendarApartmentId => $this->time_end];
 
 
             }
@@ -138,8 +138,6 @@ class CalenderForm extends Calendar
 
                         $dateStart = $this->getDateStart($this->_apartments[$apartmentId]->apartment_id);
                         $dateEnd = $this->getDateEnd($this->_apartments[$apartmentId]->apartment_id);
-
-
 
 
                         if (!$validator->validate($dateStart)) {
@@ -229,7 +227,6 @@ class CalenderForm extends Calendar
                 $this->manualErrors[\yii\helpers\Html::getInputId($this, $attribute)] = $errors;
             }
             */
-
 
 
             $currentRecord = Calendar::find()
@@ -447,7 +444,6 @@ class CalenderForm extends Calendar
         }
 
 
-
         //2. Включаем неоткрытый "Сейчас свободно", которые должны открыться сейчас или через 5 минут
         $nowAvailable = Calendar::find()
             ->joinWith('apartment')
@@ -470,7 +466,7 @@ class CalenderForm extends Calendar
                     'reserved' => Calendar::FREE,
                 ])
                 ->andWhere('date_from <= :nowDatePlusFiveM AND date_to >= :nowDatePlusFiveM')
-                ->addParams([':nowDatePlusFiveM' => date('Y-m-d H:i:s', time()+300)])
+                ->addParams([':nowDatePlusFiveM' => date('Y-m-d H:i:s', time() + 300)])
                 ->one();
         }
 
@@ -493,8 +489,6 @@ class CalenderForm extends Calendar
             }
         }
     }
-
-
 
 
     /**
@@ -529,16 +523,6 @@ class CalenderForm extends Calendar
     }
 
 
-
-
-
-
-
-
-
-
-
-
     /**
      * Возвращает проверенную дату
      * @param $date
@@ -563,7 +547,8 @@ class CalenderForm extends Calendar
      * @param $date
      * @return array
      */
-    public function getFormatData(Apartment $apartment, $date) {
+    public function getFormatData(Apartment $apartment, $date)
+    {
         $data = [
             'type' => null,
             'date_from' => null,

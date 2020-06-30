@@ -47,7 +47,7 @@ echo $this->render('_search', ['model' => $searchModel]);
     </div>
 <?php endif; ?>
 
-<br />
+    <br/>
 
 <?php echo GridView::widget([
     'tableOptions' => ['class' => 'table table-bordered'],
@@ -76,17 +76,17 @@ echo $this->render('_search', ['model' => $searchModel]);
             'format' => 'html',
             'label' => 'Пользователь',
             'contentOptions' => ['class' => 'text-left tdUser'],
-            'value' => function($model) {
+            'value' => function ($model) {
                 return \nepster\faceviewer\Widget::widget([
-                    'template' => '<div class="user-face"><div class="avatar">{face}</div>{name} {surname}</div>',
-                    'templateUrl' => ['/users/user/update', 'id' => $model->user_id],
-                    'data' => [
-                        'email' => Html::encode($model->user->email),
-                        'name' => Html::encode($model->user->profile->name),
-                        'surname' => Html::encode($model->user->profile->surname),
-                        'avatar_url' => $model->user->profile->avatar_url,
-                    ]
-                ]) . '<div>EMAIL: <b>'.Html::encode($model->user->email).'</b></div>';
+                        'template' => '<div class="user-face"><div class="avatar">{face}</div>{name} {surname}</div>',
+                        'templateUrl' => ['/users/user/update', 'id' => $model->user_id],
+                        'data' => [
+                            'email' => Html::encode($model->user->email),
+                            'name' => Html::encode($model->user->profile->name),
+                            'surname' => Html::encode($model->user->profile->surname),
+                            'avatar_url' => $model->user->profile->avatar_url,
+                        ]
+                    ]) . '<div>EMAIL: <b>' . Html::encode($model->user->email) . '</b></div>';
             }
         ],
 
@@ -98,9 +98,9 @@ echo $this->render('_search', ['model' => $searchModel]);
 
 
                 $address = 'Страна: ' . $model->city->country->name;
-                $address.= ', Город: ' . $model->city->name;
-                $address.= '<br/>';
-                $address.= $model->address;
+                $address .= ', Город: ' . $model->city->name;
+                $address .= '<br/>';
+                $address .= $model->address;
 
                 return $address;
             },
@@ -110,16 +110,16 @@ echo $this->render('_search', ['model' => $searchModel]);
             'format' => 'html',
             'label' => 'Политика аренды',
             'contentOptions' => ['class' => 'text-left', 'style' => 'min-width: 200px'],
-            'value' => function($model) {
+            'value' => function ($model) {
                 $value = $model->rentTypeText . '<br/>' . $model->budgetString . '<br/>';
-                $value.= 'Комнат: ' . $model->roomsText ;
+                $value .= 'Комнат: ' . $model->roomsText;
                 $value .= '<br/> Спальных мест: ' . $model->bedsText;
                 $value .= '<br/> Расстояние к метро: ' . $model->metroWalkText;
                 $value .= '<br/> Этаж: ' . $model->floorText;
 
-                $value .= '<br/> Кол-во человек: '.$model->clientsCountText;
-                $value .= '<br/> '.$model->childrenText;
-                $value .= '<br/> '.$model->petsText;
+                $value .= '<br/> Кол-во человек: ' . $model->clientsCountText;
+                $value .= '<br/> ' . $model->childrenText;
+                $value .= '<br/> ' . $model->petsText;
 
                 return $value;
             },

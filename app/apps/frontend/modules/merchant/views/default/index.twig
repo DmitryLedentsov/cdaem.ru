@@ -23,13 +23,13 @@
                 'url' : '/'
             },
             'links':  [
-            {
-                'label': 'Личный кабинет',
-                'url' : ['/office/default/index']
-            },
-            {
-                'label': 'История денежного оборота',
-            },
+                {
+                    'label': 'Личный кабинет',
+                    'url' : ['/office/default/index']
+                },
+                {
+                    'label': 'История денежного оборота',
+                },
             ],
         }) }}
     </div>
@@ -39,7 +39,7 @@
 {% block content %}
 
     <ul class="extra-menu">
-        <li ><a href="{{ path(['/merchant/default/pay']) }}">Пополнить счет</a></li>
+        <li><a href="{{ path(['/merchant/default/pay']) }}">Пополнить счет</a></li>
     </ul>
 
     <div class="container-certain primary text">
@@ -49,16 +49,16 @@
         <table class="table-history">
             <thead>
             <tr>
-                <th> {{model.getAttributeLabel('date') | raw }}</th>
-                <th> {{model.getAttributeLabel('funds') | raw }}</th>
-                <th> {{model.getAttributeLabel('type') | raw }}</th>
-                <th> {{model.getAttributeLabel('system') | raw }}</th>
+                <th> {{ model.getAttributeLabel('date') | raw }}</th>
+                <th> {{ model.getAttributeLabel('funds') | raw }}</th>
+                <th> {{ model.getAttributeLabel('type') | raw }}</th>
+                <th> {{ model.getAttributeLabel('system') | raw }}</th>
             </tr>
             </thead>
             <tbody>
             {% for record in dataProvider.getModels() %}
                 <tr>
-                    <td class="date text-center">{{ DateTimeHelper.toFullDateTime(record.date) | raw  }}</td>
+                    <td class="date text-center">{{ DateTimeHelper.toFullDateTime(record.date) | raw }}</td>
                     <td class="status text-center">{{ app.formatter.asCurrency(record.funds, 'RUB') | raw }}</td>
                     <td class="text-center">{{ StatusHelper.getItem(model.typeArray, record.type) |raw }}</td>
                     <td class="text-center">{{ StatusHelper.getItem(systemArray[record.module], record.system) |raw }}</td>

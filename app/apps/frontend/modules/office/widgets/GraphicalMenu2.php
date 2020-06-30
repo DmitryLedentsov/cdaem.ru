@@ -18,7 +18,7 @@ class GraphicalMenu2 extends Widget
     {
         parent::init();
     }
-    
+
     /**
      * @inheritdoc
      */

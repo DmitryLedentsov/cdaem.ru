@@ -18,7 +18,7 @@ class Image extends \common\modules\partners\models\Image
      * @var array
      */
     public $files;
-    
+
     /**
      * @inheritdoc
      */
@@ -29,12 +29,12 @@ class Image extends \common\modules\partners\models\Image
         $labels['defaultImage'] = 'Заглавное изображение';
         return $labels;
     }
-    
+
     /**
      * @return \yii\db\ActiveQuery
      */
     public function getApartment()
     {
-        return $this->hasOne(Apartment::className(), ['apartment_id' => 'apartment_id']);
+        return $this->hasOne(Apartment::class, ['apartment_id' => 'apartment_id']);
     }
 }

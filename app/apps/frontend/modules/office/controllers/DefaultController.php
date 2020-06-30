@@ -21,22 +21,24 @@ use Yii;
  * Главный контроллер офиса
  * @package frontend\modules\office\controllers
  */
-class DefaultController extends \frontend\components\Controller {
+class DefaultController extends \frontend\components\Controller
+{
 
     /**
      * @inheritdoc
      */
-    public function behaviors() {
+    public function behaviors()
+    {
         $behaviors = [
             'access' => [
-                'class' => \yii\filters\AccessControl::className(),
+                'class' => \yii\filters\AccessControl::class,
                 'rules' => [
-                        [
+                    [
                         'actions' => [],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
-                        [
+                    [
                         'actions' => ['help'],
                         'allow' => true,
                         'roles' => ['?'],
@@ -55,7 +57,8 @@ class DefaultController extends \frontend\components\Controller {
     /**
      * @inheritdoc
      */
-    public function beforeAction($action) {
+    public function beforeAction($action)
+    {
 
         $actions = ['apartments', 'services', 'send-offer', 'services', 'services'];
 
@@ -65,7 +68,7 @@ class DefaultController extends \frontend\components\Controller {
                 //Yii::$app->session->setFlash('danger', '<b>Внимание:</b> <br/> Ваш тип аккаунта: "'. $userType . '" и Вы не можете производить данное действие. ');
                 $this->redirect(['/office/default/index']);
                 return false;
-            } 
+            }
         }
 
         if (!parent::beforeAction($action)) {
@@ -79,35 +82,36 @@ class DefaultController extends \frontend\components\Controller {
      * Главная страница
      * @return Response
      */
-    public function actionIndex() {
+    public function actionIndex()
+    {
         if (!Yii::$app->user->isGuest && Yii::$app->user->identity->profile->user_type == Profile::WANT_RENT) {
             $this->redirect(['default/home']);
-        } 
-		else {
-          return $this->redirect(['/office/apartments']);
-        }  
+        } else {
+            return $this->redirect(['/office/apartments']);
+        }
         ///return Yii::$app->runAction('/messages/default/index');
     }
 
-    public function actionHome() {
+    public function actionHome()
+    {
         $searchModel = new models\search\AdvertSearch();
-       
-        return $this->render('home.twig',[
-                    'searchModel' => $searchModel]);
+
+        return $this->render('home.twig', [
+            'searchModel' => $searchModel]);
     }
-    
-   
+
 
     /**
      * Мои покупки
      * @return string
      */
-    public function actionOrders() {
+    public function actionOrders()
+    {
         $searchModel = new models\search\ServiceSearch();
         $dataProvider = $searchModel->search();
 
         return $this->render('orders.twig', [
-                    'dataProvider' => $dataProvider,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -115,13 +119,14 @@ class DefaultController extends \frontend\components\Controller {
      * Реклама
      * @return string
      */
-    public function actionTopSlider() {
+    public function actionTopSlider()
+    {
         $searchModel = new models\search\AdvertisementSliderSearch();
         $dataProvider = $searchModel->search();
 
         return $this->render('advertising.twig', [
-                    'searchModel' => $searchModel,
-                    'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -130,7 +135,8 @@ class DefaultController extends \frontend\components\Controller {
      * @return array|string|Response
      * @throws \Exception
      */
-    public function actionBuyAds() {
+    public function actionBuyAds()
+    {
         $advertisementForm = new models\form\AdvertisementSliderForm();
         $advertisementForm->defineScenario();
 
@@ -150,7 +156,7 @@ class DefaultController extends \frontend\components\Controller {
         }
 
         return $this->render('buy-ads.twig', [
-                    'advertisementForm' => $advertisementForm,
+            'advertisementForm' => $advertisementForm,
         ]);
     }
 
@@ -158,7 +164,8 @@ class DefaultController extends \frontend\components\Controller {
      * Отправить предложение
      * @return string
      */
-    public function actionSendOffer() {
+    public function actionSendOffer()
+    {
         return $this->render('send-offer.twig', [
         ]);
     }
@@ -167,12 +174,13 @@ class DefaultController extends \frontend\components\Controller {
      * Избранное
      * @return string
      */
-    public function actionBookmark() {
+    public function actionBookmark()
+    {
         $searchModel = new UsersListSearch();
         $dataProvider = $searchModel->search(['bookmarked' => true, 'user_id' => Yii::$app->user->id]);
 
         return $this->render('bookmark.twig', [
-                    'dataProvider' => $dataProvider,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -180,12 +188,13 @@ class DefaultController extends \frontend\components\Controller {
      * Черный список
      * @return string
      */
-    public function actionBlacklist() {
+    public function actionBlacklist()
+    {
         $searchModel = new UsersListSearch();
         $dataProvider = $searchModel->search(['blacklisted' => true, 'user_id' => Yii::$app->user->id]);
 
         return $this->render('blacklist.twig', [
-                    'dataProvider' => $dataProvider,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -194,7 +203,8 @@ class DefaultController extends \frontend\components\Controller {
      * @return string
      * @throws \Exception
      */
-    public function actionServices() {
+    public function actionServices()
+    {
         return $this->render('services.twig');
     }
 
@@ -204,7 +214,8 @@ class DefaultController extends \frontend\components\Controller {
      * @return string
      * @throws HttpException
      */
-    public function actionHelp($url = null) {
+    public function actionHelp($url = null)
+    {
         $page = null;
 
         if ($url) {
@@ -216,11 +227,9 @@ class DefaultController extends \frontend\components\Controller {
         }
 
         return $this->render('help.twig', [
-                    'page' => $page
+            'page' => $page
         ]);
     }
-    
-    
-    
+
 
 }

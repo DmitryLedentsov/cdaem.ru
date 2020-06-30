@@ -29,9 +29,9 @@
                 'url' : '/'
             },
             'links':  [
-            {
-                'label': 'Ошибка',
-            },
+                {
+                    'label': 'Ошибка',
+                },
             ],
         }) }}
     </div>
@@ -44,8 +44,8 @@
 
             {% if exception.statusCode == 404 %}
 
-                <div class="e-404"><img src="/basic-images/404.png" alt="" /></div>
-                <br />
+                <div class="e-404"><img src="/basic-images/404.png" alt=""/></div>
+                <br/>
                 <div class="text-center">
                     <a href="javascript:window.history.back()" class="btn btn-primary btn-special">Вернуться назад</a>
                 </div>
@@ -56,7 +56,7 @@
                     <div class="container-certain primary text">
                         <h2> {{ name }} </h2>
                         <p> {{ message|raw }} </p>
-                        <br />
+                        <br/>
                         <div class="text-center">
                             {% set url = app.request.refferer ? app.request.refferer : '/' %}
                             <a href="{{ url }}" class="btn btn-primary btn-special">Вернуться назад</a>

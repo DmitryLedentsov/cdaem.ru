@@ -5,10 +5,12 @@
     @var string $date
     @var frontend\modules\partners\models\Calendar $calendar
 */
+
 use frontend\modules\partners\widgets\PreviewAdvertTmp;
 use frontend\modules\partners\models\Calendar;
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
+
 ?>
 <?php if (!empty($calendar)): ?>
 
@@ -23,10 +25,11 @@ use yii\helpers\ArrayHelper;
             <div class="options clearfix">
                 <br/>
                 <div>
-                    <strong style="font-size: 150%" class="<?=(!$record->reserved) ? 'color-success' : 'color-danger'?>"><?=ArrayHelper::getValue($record->getStatusArray(), $record->reserved)?></strong>
+                    <strong style="font-size: 150%"
+                            class="<?= (!$record->reserved) ? 'color-success' : 'color-danger' ?>"><?= ArrayHelper::getValue($record->getStatusArray(), $record->reserved) ?></strong>
                     <p>
-                        С <?=Yii::$app->BasisFormat->helper('DateTime')->toFullDateTime($record->date_from)?> <br/>
-                        По <?=Yii::$app->BasisFormat->helper('DateTime')->toFullDateTime($record->date_to)?>
+                        С <?= Yii::$app->BasisFormat->helper('DateTime')->toFullDateTime($record->date_from) ?> <br/>
+                        По <?= Yii::$app->BasisFormat->helper('DateTime')->toFullDateTime($record->date_to) ?>
                     </p>
                 </div>
 

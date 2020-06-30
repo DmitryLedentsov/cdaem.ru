@@ -1,11 +1,11 @@
 <div class='container actual-articles'>
-    
+
     <div class="d-title"><h4 class="">Актуальные статьи</h4></div>
-    
+
     {% for article in articles if article.article_id > 68 %}
         <div class='act-item-article'>
-        <h4>{{ article.name }}</h4>
-        <p>{{ article.short_text | raw }}</p>
+            <h4>{{ article.name }}</h4>
+            <p>{{ article.short_text | raw }}</p>
         </div>
     {% endfor %}
 </div>
@@ -15,7 +15,9 @@
         {% for article in articles %}
             <div class="item-article col-md-3">
                 <div class="item-img" style="background: url(/images/{{ article.title_img | raw }})center center;">
-                    <div class="title-article"><h4><a href="{{ path('/articles/default/view', {'id' : article.slug}) }}">{{ article.name }}</a></h4></div>
+                    <div class="title-article"><h4><a
+                                    href="{{ path('/articles/default/view', {'id' : article.slug}) }}">{{ article.name }}</a>
+                        </h4></div>
                 </div>
             </div>
         {% endfor %}

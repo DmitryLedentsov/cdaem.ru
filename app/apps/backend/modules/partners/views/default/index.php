@@ -45,7 +45,7 @@ echo $this->render('_search', ['model' => $searchModel]);
     </div>
 <?php endif; ?>
 
-<br />
+    <br/>
 
 <?php
 
@@ -69,7 +69,6 @@ if (Yii::$app->user->can('partners-apartment-multi-control')) {
 }
 
 
-
 echo Html::beginForm(['multi-control']);
 
 echo GridView::widget([
@@ -77,7 +76,7 @@ echo GridView::widget([
     'layout' => '<div class="GridViewSummary">{summary}</div><div class="panel panel-default"><div class="table-responsive">{items}</div><div class="table-footer"> ' . $actions . ' {pager}</div></div>',
     'dataProvider' => $dataProvider,
     'columns' => [
-    
+
         [
             'class' => 'yii\grid\CheckboxColumn',
             'contentOptions' => ['class' => 'text-left tdCheckbox'],
@@ -110,7 +109,7 @@ echo GridView::widget([
                     return ('
                         <div class="thumbnail thumbnail-boxed">
                             <div class="thumb">
-                                '.Html::img($model->titleImage->previewSrc, ['alt' => $model->titleImage->preview]).'
+                                ' . Html::img($model->titleImage->previewSrc, ['alt' => $model->titleImage->preview]) . '
                             </div>
                         </div>
                     ');
@@ -126,15 +125,15 @@ echo GridView::widget([
             'label' => 'Пользователь',
             'value' => function ($model) {
                 return \nepster\faceviewer\Widget::widget([
-                    'template' => '<div class="user-face">'. Html::a('Все апартаменты', '') .' <div class="avatar">{face}</div>{name} {surname} <p>ID {id}</p></div>',
-                    'templateUrl' => ['/users/user/update', 'id' => $model->user->id],
-                    'data' => [
-                        'id' => $model->user->id,
-                        'name' => Html::encode($model->user->profile->name),
-                        'surname' => $model->user->profile->surname,
-                        'avatar_url' => $model->user->profile->avatar_url,
-                    ]
-                ]).  '<div class="clearfix"></div> <br/> <div class="text-right">'. Html::a('Все апартаменты', ['/partners/default/index', 's[user_id]' => $model->user->id]) .'</div>';
+                        'template' => '<div class="user-face">' . Html::a('Все апартаменты', '') . ' <div class="avatar">{face}</div>{name} {surname} <p>ID {id}</p></div>',
+                        'templateUrl' => ['/users/user/update', 'id' => $model->user->id],
+                        'data' => [
+                            'id' => $model->user->id,
+                            'name' => Html::encode($model->user->profile->name),
+                            'surname' => $model->user->profile->surname,
+                            'avatar_url' => $model->user->profile->avatar_url,
+                        ]
+                    ]) . '<div class="clearfix"></div> <br/> <div class="text-right">' . Html::a('Все апартаменты', ['/partners/default/index', 's[user_id]' => $model->user->id]) . '</div>';
             }
         ],
 
@@ -148,15 +147,15 @@ echo GridView::widget([
 
                 $address = '';
                 if ($model->city) {
-                    $address.= 'Страна: ' . $model->city->country->name;
-                    $address.= ', Город: ' . $model->city->name;
-                    $address.= '<br/>';
+                    $address .= 'Страна: ' . $model->city->country->name;
+                    $address .= ', Город: ' . $model->city->name;
+                    $address .= '<br/>';
                 }
 
-                $address.= $model->address;
-                $address.= $model->apartment ? ' к. ' . $model->apartment : '';
+                $address .= $model->address;
+                $address .= $model->apartment ? ' к. ' . $model->apartment : '';
 
-                return $id . "&nbsp; <p><br/></p> " . $address  . "<p><br/></p> " .  nl2br(Html::decode($model->description));
+                return $id . "&nbsp; <p><br/></p> " . $address . "<p><br/></p> " . nl2br(Html::decode($model->description));
             },
         ],
 
@@ -166,7 +165,7 @@ echo GridView::widget([
             'contentOptions' => ['class' => 'text-left tdText'],
             'value' => function ($model) {
                 $adverts = [];
-                foreach($model->adverts as $advert) {
+                foreach ($model->adverts as $advert) {
 
                     $url = '';
 
@@ -174,7 +173,7 @@ echo GridView::widget([
                         $url = str_replace('<city>', $model->city->name_eng, Yii::$app->params['siteSubDomain']) . '/flats/' . $advert->advert_id;
                     }
 
-                    $adverts[] = Html::a('ID '.$advert->advert_id . ' ' . $advert->rentType->name . ' - ' . $advert->priceText, $url);
+                    $adverts[] = Html::a('ID ' . $advert->advert_id . ' ' . $advert->rentType->name . ' - ' . $advert->priceText, $url);
                 }
 
                 return implode($adverts, '<br/>');

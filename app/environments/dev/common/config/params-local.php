@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'siteDomain' => 'http://c.ru',
-    'siteSubDomain' => 'http://<city>.c.ru',
+    'siteDomain' => 'http://cdaem.loc',
+    'siteSubDomain' => 'http://<city>.cdaem.loc',
 ];

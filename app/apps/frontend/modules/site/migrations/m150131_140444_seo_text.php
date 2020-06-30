@@ -14,11 +14,11 @@ class m150131_140444_seo_text extends \yii\db\Migration
 
         // Static pages
         $this->createTable('{{%seo_text}}', [
-            'text_id'       => 'int(11) unsigned NOT NULL AUTO_INCREMENT',
-            'url'           => 'varchar(200) NOT NULL COMMENT "URL адрес страницы"',
-            'type'          => 'varchar(200) NOT NULL COMMENT "Тип текста"',
-            'text'          => 'text  NOT NULL COMMENT "Текст"',
-            'active'        => 'tinyint(1) DEFAULT 1 COMMENT "Доступен текст или нет"',
+            'text_id' => 'int(11) unsigned NOT NULL AUTO_INCREMENT',
+            'url' => 'varchar(200) NOT NULL COMMENT "URL адрес страницы"',
+            'type' => 'varchar(200) NOT NULL COMMENT "Тип текста"',
+            'text' => 'text  NOT NULL COMMENT "Текст"',
+            'active' => 'tinyint(1) DEFAULT 1 COMMENT "Доступен текст или нет"',
             'unique(`type`, `url`)',
             'PRIMARY KEY (`text_id`,`url`)',
         ], $tableOptions . ' COMMENT = "Seo текст"');

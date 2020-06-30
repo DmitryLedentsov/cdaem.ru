@@ -92,7 +92,7 @@ class ReservationForm extends Reservation
     {
         return [
             [
-                'class' => TimestampBehavior::className(),
+                'class' => TimestampBehavior::class,
                 'attributes' => [
                     \yii\db\ActiveRecord::EVENT_BEFORE_INSERT => ['date_create', 'date_update'],
                     \yii\db\ActiveRecord::EVENT_BEFORE_UPDATE => 'date_update',
@@ -277,7 +277,7 @@ class ReservationForm extends Reservation
     public function validateAllDates($attribute, $params)
     {
         // На данном этапе валидации, уже должны быть провалидированы все 4 поля валидаторами "required" и "format"
-        if ($this->hasErrors('arrived_date') OR $this->hasErrors('arrived_time') OR $this->hasErrors('out_date') OR $this->hasErrors('out_time')) {
+        if ($this->hasErrors('arrived_date') or $this->hasErrors('arrived_time') or $this->hasErrors('out_date') or $this->hasErrors('out_time')) {
             return;
         }
 

@@ -56,15 +56,15 @@ class RealtyObjectsByService extends Widget
     {
         $rentTypeslist = RentType::rentTypeslist();
 
-        switch($this->service) {
+        switch ($this->service) {
 
             case Service::SERVICE_APARTMENT_CONTACTS_OPEN:
                 $apartments = models\Apartment::findApartmentsByUser($this->userId);
-                    // Возвращает список всех апартаментов в HTML формате
-                    return $this->render('apartments', [
-                        'models' => $apartments,
-                        'rentTypeslist' => $rentTypeslist,
-                    ]);
+                // Возвращает список всех апартаментов в HTML формате
+                return $this->render('apartments', [
+                    'models' => $apartments,
+                    'rentTypeslist' => $rentTypeslist,
+                ]);
                 break;
 
             case Service::SERVICE_ADVERTISING_TOP_SLIDER:
@@ -75,11 +75,11 @@ class RealtyObjectsByService extends Widget
             case Service::SERVICE_CONTACTS_OPEN_FOR_TOTAL_BID:
             case Service::SERVICE_CONTACTS_OPEN_FOR_RESERVATION:
                 $adverts = models\Advert::getAdvertsByUser($this->userId);
-                    // Возвращает список всех объявлений в HTML формате
-                    return $this->render('adverts', [
-                        'models' => $adverts,
-                        'rentTypeslist' => $rentTypeslist,
-                    ]);
+                // Возвращает список всех объявлений в HTML формате
+                return $this->render('adverts', [
+                    'models' => $adverts,
+                    'rentTypeslist' => $rentTypeslist,
+                ]);
                 break;
         }
     }

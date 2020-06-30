@@ -22,7 +22,7 @@ use kartik\datetime\DateTimePicker;
     </div>
 <?php endif; ?>
 
-<br />
+<br/>
 
 
 <?php $form = ActiveForm::begin(); ?>
@@ -54,11 +54,11 @@ use kartik\datetime\DateTimePicker;
 <div class="row">
 
     <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-3">
-        <?= $form->field($model, 'date_arrived')->widget(DateTimePicker::className(), [
+        <?= $form->field($model, 'date_arrived')->widget(DateTimePicker::class, [
             'type' => DateTimePicker::TYPE_COMPONENT_PREPEND,
             'options' => ['readonly' => 'readonly'],
             'pluginOptions' => [
-                'autoclose'=>true,
+                'autoclose' => true,
                 'format' => 'yyyy-mm-dd hh:ii:ss',
                 'todayBtn' => true,
             ]
@@ -66,11 +66,11 @@ use kartik\datetime\DateTimePicker;
     </div>
 
     <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-3">
-        <?= $form->field($model, 'date_out')->widget(DateTimePicker::className(), [
+        <?= $form->field($model, 'date_out')->widget(DateTimePicker::class, [
             'type' => DateTimePicker::TYPE_COMPONENT_PREPEND,
             'options' => ['readonly' => 'readonly'],
             'pluginOptions' => [
-                'autoclose'=>true,
+                'autoclose' => true,
                 'format' => 'yyyy-mm-dd hh:ii:ss',
                 'todayBtn' => true,
             ]
@@ -86,15 +86,15 @@ use kartik\datetime\DateTimePicker;
 <div class="row">
 
     <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-3">
-        <?= $form->field($model, 'date_actuality')->widget(DateTimePicker::className(), [
+        <?= $form->field($model, 'date_actuality')->widget(DateTimePicker::class, [
             'type' => DateTimePicker::TYPE_COMPONENT_PREPEND,
             'options' => ['readonly' => 'readonly'],
             'pluginOptions' => [
-                'autoclose'=>true,
+                'autoclose' => true,
                 'format' => 'yyyy-mm-dd hh:ii:ss',
                 'todayBtn' => true,
             ]
-        ]);?>
+        ]); ?>
     </div>
 
 </div>
@@ -149,7 +149,7 @@ use kartik\datetime\DateTimePicker;
 
     <div class="col-md-3 col-md-4 col-sm-4 col-xs-6 col-lg-2">
         <div class="clearfix">
-        <?php
+            <?php
             $budget = $form->field($model, 'budget', ['inputOptions' => [
                 //'style' => 'width:auto;float:left',
                 //'style' => 'width:auto;float:left',
@@ -160,7 +160,7 @@ use kartik\datetime\DateTimePicker;
             $budget->parts['{input}'] .= Html::activeDropDownList($model, 'currency', $model->currencyArray, array_merge($budget->inputOptions, ['prompt' => 'Нету']));
 
             echo $budget;
-        ?>
+            ?>
         </div>
     </div>
 
@@ -191,7 +191,7 @@ use kartik\datetime\DateTimePicker;
 </div>
 
 
-<br />
+<br/>
 
 
 <?php if (Yii::$app->user->can('partners-reservation-update')) : ?>

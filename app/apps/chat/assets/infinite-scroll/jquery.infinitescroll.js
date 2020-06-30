@@ -66,7 +66,8 @@
         dataType: 'html',
         appendCallback: true,
         bufferPx: 40,
-        errorCallback: function () { },
+        errorCallback: function () {
+        },
         infid: 0, //Instance ID
         pixelsFromNavToBottom: undefined,
         path: undefined, // Either parts of a URL as an array (e.g. ["/page/", "/"] or a function that takes in the page number and returns a URL
@@ -86,13 +87,13 @@
         _binding: function infscr_binding(binding) {
 
             var instance = this,
-            opts = instance.options;
+                opts = instance.options;
 
             opts.v = '2.0b2.120520';
 
             // if behavior is defined and this function is extended, call that instead of default
-            if (!!opts.behavior && this['_binding_'+opts.behavior] !== undefined) {
-                this['_binding_'+opts.behavior].call(this);
+            if (!!opts.behavior && this['_binding_' + opts.behavior] !== undefined) {
+                this['_binding_' + opts.behavior].call(this);
                 return;
             }
 
@@ -150,7 +151,7 @@
 
             // distance from nav links to bottom
             // computed as: height of the document + top offset of container - top offset of nav link
-            if(opts.pixelsFromNavToBottom === undefined) {
+            if (opts.pixelsFromNavToBottom === undefined) {
                 opts.pixelsFromNavToBottom = $(document).height() - $(opts.navSelector).offset().top;
                 this._debug('pixelsFromNavToBottom: ' + opts.pixelsFromNavToBottom);
             }
@@ -158,25 +159,25 @@
             var self = this;
 
             // determine loading.start actions
-            opts.loading.start = opts.loading.start || function() {
+            opts.loading.start = opts.loading.start || function () {
                 $(opts.navSelector).hide();
                 opts.loading.msg
-                .appendTo(opts.loading.selector)
-                .show(opts.loading.speed, $.proxy(function() {
-                    this.beginAjax(opts);
-                }, self));
+                    .appendTo(opts.loading.selector)
+                    .show(opts.loading.speed, $.proxy(function () {
+                        this.beginAjax(opts);
+                    }, self));
             };
 
             // determine loading.finished actions
-            opts.loading.finished = opts.loading.finished || function() {
+            opts.loading.finished = opts.loading.finished || function () {
                 if (!opts.state.isBeyondMaxPage)
                     opts.loading.msg.fadeOut(opts.loading.speed);
             };
 
             // callback loading
-            opts.callback = function(instance, data, url) {
-                if (!!opts.behavior && instance['_callback_'+opts.behavior] !== undefined) {
-                    instance['_callback_'+opts.behavior].call($(opts.contentSelector)[0], data, url);
+            opts.callback = function (instance, data, url) {
+                if (!!opts.behavior && instance['_callback_' + opts.behavior] !== undefined) {
+                    instance['_callback_' + opts.behavior].call($(opts.contentSelector)[0], data, url);
                 }
 
                 if (callback) {
@@ -191,7 +192,7 @@
             if (options.debug) {
                 // Tell IE9 to use its built-in console
                 if (Function.prototype.bind && (typeof console === 'object' || typeof console === 'function') && typeof console.log === 'object') {
-                    ['log','info','warn','error','assert','dir','clear','profile','profileEnd']
+                    ['log', 'info', 'warn', 'error', 'assert', 'dir', 'clear', 'profile', 'profileEnd']
                         .forEach(function (method) {
                             console[method] = this.call(console[method], console);
                         }, Function.prototype.bind);
@@ -214,15 +215,15 @@
             var $window = $(window);
 
             function needsPrefill() {
-                return ( $(instance.options.contentSelector).height() <= $window.height() );
+                return ($(instance.options.contentSelector).height() <= $window.height());
             }
 
-            this._prefill = function() {
+            this._prefill = function () {
                 if (needsPrefill()) {
                     instance.scroll();
                 }
 
-                $window.bind('resize.infinite-scroll', function() {
+                $window.bind('resize.infinite-scroll', function () {
                     if (needsPrefill()) {
                         $window.unbind('resize.infinite-scroll');
                         instance.scroll();
@@ -244,9 +245,9 @@
                 // Modern browsers
                 // Single argument, which is a string
                 if ((Array.prototype.slice.call(arguments)).length === 1 && typeof Array.prototype.slice.call(arguments)[0] === 'string') {
-                    console.log( (Array.prototype.slice.call(arguments)).toString() );
+                    console.log((Array.prototype.slice.call(arguments)).toString());
                 } else {
-                    console.log( Array.prototype.slice.call(arguments) );
+                    console.log(Array.prototype.slice.call(arguments));
                 }
             } else if (!Function.prototype.bind && typeof console !== 'undefined' && typeof console.log === 'object') {
                 // IE8
@@ -260,14 +261,14 @@
             var opts = this.options;
 
             // if behavior is defined and this function is extended, call that instead of default
-            if (!!opts.behavior && this['_determinepath_'+opts.behavior] !== undefined) {
-                return this['_determinepath_'+opts.behavior].call(this,path);
+            if (!!opts.behavior && this['_determinepath_' + opts.behavior] !== undefined) {
+                return this['_determinepath_' + opts.behavior].call(this, path);
             }
 
             if (!!opts.pathParse) {
 
                 this._debug('pathParse manual');
-                return opts.pathParse(path, this.options.state.currPage+1);
+                return opts.pathParse(path, this.options.state.currPage + 1);
 
             } else if (path.match(/^(.*?)\b2\b(.*?$)/)) {
                 path = path.match(/^(.*?)\b2\b(.*?$)/).slice(1);
@@ -308,8 +309,8 @@
             var opts = this.options;
 
             // if behavior is defined and this function is extended, call that instead of default
-            if (!!opts.behavior && this['_error_'+opts.behavior] !== undefined) {
-                this['_error_'+opts.behavior].call(this,xhr);
+            if (!!opts.behavior && this['_error_' + opts.behavior] !== undefined) {
+                this['_error_' + opts.behavior].call(this, xhr);
                 return;
             }
 
@@ -334,13 +335,13 @@
         // Load Callback
         _loadcallback: function infscr_loadcallback(box, data, url) {
             var opts = this.options,
-            callback = this.options.callback, // GLOBAL OBJECT FOR CALLBACK
-            result = (opts.state.isDone) ? 'done' : (!opts.appendCallback) ? 'no-append' : 'append',
-            frag;
+                callback = this.options.callback, // GLOBAL OBJECT FOR CALLBACK
+                result = (opts.state.isDone) ? 'done' : (!opts.appendCallback) ? 'no-append' : 'append',
+                frag;
 
             // if behavior is defined and this function is extended, call that instead of default
-            if (!!opts.behavior && this['_loadcallback_'+opts.behavior] !== undefined) {
-                this['_loadcallback_'+opts.behavior].call(this,box,data,url);
+            if (!!opts.behavior && this['_loadcallback_' + opts.behavior] !== undefined) {
+                this['_loadcallback_' + opts.behavior].call(this, box, data, url);
                 return;
             }
 
@@ -387,12 +388,14 @@
             }
 
             // loadingEnd function
-            opts.loading.finished.call($(opts.contentSelector)[0],opts);
+            opts.loading.finished.call($(opts.contentSelector)[0], opts);
 
             // smooth scroll to ease in the new content
             if (opts.animate) {
                 var scrollTo = $(window).scrollTop() + $(opts.loading.msg).height() + opts.extraScrollPx + 'px';
-                $('html,body').animate({ scrollTop: scrollTo }, 800, function () { opts.state.isDuringAjax = false; });
+                $('html,body').animate({scrollTop: scrollTo}, 800, function () {
+                    opts.state.isDuringAjax = false;
+                });
             }
 
             if (!opts.animate) {
@@ -410,11 +413,11 @@
         _nearbottom: function infscr_nearbottom() {
 
             var opts = this.options,
-            pixelsFromWindowBottomToBottom = 0 + $(document).height() - (opts.binder.scrollTop()) - $(window).height();
+                pixelsFromWindowBottomToBottom = 0 + $(document).height() - (opts.binder.scrollTop()) - $(window).height();
 
             // if behavior is defined and this function is extended, call that instead of default
-            if (!!opts.behavior && this['_nearbottom_'+opts.behavior] !== undefined) {
-                return this['_nearbottom_'+opts.behavior].call(this);
+            if (!!opts.behavior && this['_nearbottom_' + opts.behavior] !== undefined) {
+                return this['_nearbottom_' + opts.behavior].call(this);
             }
 
             this._debug('math:', pixelsFromWindowBottomToBottom, opts.pixelsFromNavToBottom);
@@ -430,8 +433,8 @@
             var opts = this.options;
 
             // if behavior is defined and this function is extended, call that instead of default
-            if (!!opts.behavior && this['_pausing_'+opts.behavior] !== undefined) {
-                this['_pausing_'+opts.behavior].call(this,pause);
+            if (!!opts.behavior && this['_pausing_' + opts.behavior] !== undefined) {
+                this['_pausing_' + opts.behavior].call(this, pause);
                 return;
             }
 
@@ -445,15 +448,15 @@
             switch (pause) {
                 case 'pause':
                     opts.state.isPaused = true;
-                break;
+                    break;
 
                 case 'resume':
                     opts.state.isPaused = false;
-                break;
+                    break;
 
                 case 'toggle':
                     opts.state.isPaused = !opts.state.isPaused;
-                break;
+                    break;
             }
 
             this._debug('Paused', opts.state.isPaused);
@@ -468,8 +471,8 @@
             var opts = this.options;
 
             // if behavior is defined and this function is extended, call that instead of default
-            if (!!opts.behavior && this['_setup_'+opts.behavior] !== undefined) {
-                this['_setup_'+opts.behavior].call(this);
+            if (!!opts.behavior && this['_setup_' + opts.behavior] !== undefined) {
+                this['_setup_' + opts.behavior].call(this);
                 return;
             }
 
@@ -485,21 +488,21 @@
             var opts = this.options;
 
             // if behavior is defined and this function is extended, call that instead of default
-            if (!!opts.behavior && this['_showdonemsg_'+opts.behavior] !== undefined) {
-                this['_showdonemsg_'+opts.behavior].call(this);
+            if (!!opts.behavior && this['_showdonemsg_' + opts.behavior] !== undefined) {
+                this['_showdonemsg_' + opts.behavior].call(this);
                 return;
             }
 
             opts.loading.msg
-            .find('img')
-            .hide()
-            .parent()
-            .find('div').html(opts.loading.finishedMsg).animate({ opacity: 1 }, 2000, function () {
+                .find('img')
+                .hide()
+                .parent()
+                .find('div').html(opts.loading.finishedMsg).animate({opacity: 1}, 2000, function () {
                 $(this).parent().fadeOut(opts.loading.speed);
             });
 
             // user provided callback when done
-            opts.errorCallback.call($(opts.contentSelector)[0],'done');
+            opts.errorCallback.call($(opts.contentSelector)[0], 'done');
         },
 
         // grab each selector option and see if any fail
@@ -551,7 +554,7 @@
             opts.state.currPage++;
 
             // Manually control maximum page
-            if ( opts.maxPage !== undefined && opts.state.currPage > opts.maxPage ){
+            if (opts.maxPage !== undefined && opts.state.currPage > opts.maxPage) {
                 opts.state.isBeyondMaxPage = true;
                 this.destroy();
                 return;
@@ -563,7 +566,7 @@
             desturl = (typeof path === 'function') ? path(opts.state.currPage) : path.join(opts.state.currPage);
             instance._debug('heading into ajax', desturl);
 
-            method = (opts.dataType === 'html' || opts.dataType === 'json' ) ? opts.dataType : 'html+callback';
+            method = (opts.dataType === 'html' || opts.dataType === 'json') ? opts.dataType : 'html+callback';
             if (opts.appendCallback && opts.dataType === 'html') {
                 method += '+callback';
             }
@@ -626,7 +629,7 @@
                                 }
                             }
                         },
-                        error: function() {
+                        error: function () {
                             instance._debug('JSON ajax request failed.');
                             instance._error('end');
                         }
@@ -641,11 +644,11 @@
             pageNum = pageNum || null;
 
             var instance = this,
-            opts = instance.options;
+                opts = instance.options;
 
             // if behavior is defined and this function is extended, call that instead of default
-            if (!!opts.behavior && this['retrieve_'+opts.behavior] !== undefined) {
-                this['retrieve_'+opts.behavior].call(this,pageNum);
+            if (!!opts.behavior && this['retrieve_' + opts.behavior] !== undefined) {
+                this['retrieve_' + opts.behavior].call(this, pageNum);
                 return;
             }
 
@@ -658,18 +661,18 @@
             // we dont want to fire the ajax multiple times
             opts.state.isDuringAjax = true;
 
-            opts.loading.start.call($(opts.contentSelector)[0],opts);
+            opts.loading.start.call($(opts.contentSelector)[0], opts);
         },
 
         // Check to see next page is needed
         scroll: function infscr_scroll() {
 
             var opts = this.options,
-            state = opts.state;
+                state = opts.state;
 
             // if behavior is defined and this function is extended, call that instead of default
-            if (!!opts.behavior && this['scroll_'+opts.behavior] !== undefined) {
-                this['scroll_'+opts.behavior].call(this);
+            if (!!opts.behavior && this['scroll_' + opts.behavior] !== undefined) {
+                this['scroll_' + opts.behavior].call(this);
                 return;
             }
 
@@ -698,7 +701,7 @@
         // update options
         update: function infscr_options(key) {
             if ($.isPlainObject(key)) {
-                this.options = $.extend(true,this.options,key);
+                this.options = $.extend(true, this.options, key);
             }
         }
     };
@@ -751,41 +754,40 @@
                     instance[options].apply(instance, args);
                 });
 
-            break;
+                break;
 
             // creation
             case 'object':
 
                 this.each(function () {
 
-                var instance = $.data(this, 'infinitescroll');
+                    var instance = $.data(this, 'infinitescroll');
 
-                if (instance) {
+                    if (instance) {
 
-                    // update options of current instance
-                    instance.update(options);
+                        // update options of current instance
+                        instance.update(options);
 
-                } else {
+                    } else {
 
-                    // initialize new instance
-                    instance = new $.infinitescroll(options, callback, this);
+                        // initialize new instance
+                        instance = new $.infinitescroll(options, callback, this);
 
-                    // don't attach if instantiation failed
-                    if (!instance.failed) {
-                        $.data(this, 'infinitescroll', instance);
+                        // don't attach if instantiation failed
+                        if (!instance.failed) {
+                            $.data(this, 'infinitescroll', instance);
+                        }
+
                     }
 
-                }
+                });
 
-            });
-
-            break;
+                break;
 
         }
 
         return this;
     };
-
 
 
     /*
@@ -796,7 +798,7 @@
      */
 
     var event = $.event,
-    scrollTimeout;
+        scrollTimeout;
 
     event.special.smartscroll = {
         setup: function () {
@@ -808,12 +810,14 @@
         handler: function (event, execAsap) {
             // Save the context
             var context = this,
-            args = arguments;
+                args = arguments;
 
             // set correct event type
             event.type = 'smartscroll';
 
-            if (scrollTimeout) { clearTimeout(scrollTimeout); }
+            if (scrollTimeout) {
+                clearTimeout(scrollTimeout);
+            }
             scrollTimeout = setTimeout(function () {
                 $(context).trigger('smartscroll', args);
             }, execAsap === 'execAsap' ? 0 : 100);

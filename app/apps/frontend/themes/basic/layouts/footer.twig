@@ -8,7 +8,9 @@
                     </div>
                     <div class="footer-text">
                         <p>
-                            Сдаём.ру - это сайт, посвященный краткосрочной аренде недвижимости всей России и СНГ. Здесь Вы можете забронировать квартиру на час, квартиру на ночь и квартиру на сутки, так же подобрать коттедж на сутки и на выходные.
+                            Сдаём.ру - это сайт, посвященный краткосрочной аренде недвижимости всей России и СНГ. Здесь
+                            Вы можете забронировать квартиру на час, квартиру на ночь и квартиру на сутки, так же
+                            подобрать коттедж на сутки и на выходные.
                             Мы работаем только с проверенными объектами недвижимости или своими.
                         </p>
                     </div>
@@ -19,22 +21,31 @@
                         <ul class="nav">
                             <li>Сдаем.ру</li>
                             <li><a href="{{ path('/pages/default/index', {'url' : 'about'}) }}">О Компании</a></li>
-                            <li><a href="{{ path('/pages/default/index', {'url' : 'contacts'}) }}">Контактная информация</a></li>
-                            <li><a href="{{ path('/pages/default/index', {'url' : 'privacy'}) }}">Права, правообладатели</a></li>
+                            <li><a href="{{ path('/pages/default/index', {'url' : 'contacts'}) }}">Контактная
+                                    информация</a></li>
+                            <li><a href="{{ path('/pages/default/index', {'url' : 'privacy'}) }}">Права,
+                                    правообладатели</a></li>
                             <li><a href="{{ path('/pages/default/index', {'url' : 'booking'}) }}">Бронь</a></li>
-                            <li {{ app.request.pathInfo == 'kvartira_na_chas' ? 'class="active"' : '' }}><a href="{{ path('/site/default/index', {'rentType' : 'kvartira_na_chas'}) }}">Квартира на час</a></li>
-                            <li {{ app.request.pathInfo == 'kvartira_na_sutki' ? 'class="active"' : '' }}><a href="{{ path('/site/default/index', {'rentType' : 'kvartira_na_sutki'}) }}">Квартира на сутки</a></li>
-                           <!-- <li {{ app.request.pathInfo == 'kvartira_na_sutki' ? 'class="active"' : '' }}><a href="{{ path('/site/default/dayindex', {'rentType' : 'kvartira_na_sutki'}) }}">Квартира на сутки -->
-                            <li {{ app.request.pathInfo == 'na_noch' ? 'class="active"' : '' }}><a href="{{ path('/site/default/index', {'rentType' : 'na_noch'}) }}">Квартира на ночь</a></li>
-                            <li><a href="{{ path('/pages/default/index', {'url' : 'rules'}) }}">Правила заселения</a></li>
+                            <li {{ app.request.pathInfo == 'kvartira_na_chas' ? 'class="active"' : '' }}><a
+                                        href="{{ path('/site/default/index', {'rentType' : 'kvartira_na_chas'}) }}">Квартира
+                                    на час</a></li>
+                            <li {{ app.request.pathInfo == 'kvartira_na_sutki' ? 'class="active"' : '' }}><a
+                                        href="{{ path('/site/default/index', {'rentType' : 'kvartira_na_sutki'}) }}">Квартира
+                                    на сутки</a></li>
+                            <!-- <li {{ app.request.pathInfo == 'kvartira_na_sutki' ? 'class="active"' : '' }}><a href="{{ path('/site/default/dayindex', {'rentType' : 'kvartira_na_sutki'}) }}">Квартира на сутки -->
+                            <li {{ app.request.pathInfo == 'na_noch' ? 'class="active"' : '' }}><a
+                                        href="{{ path('/site/default/index', {'rentType' : 'na_noch'}) }}">Квартира на
+                                    ночь</a></li>
+                            <li><a href="{{ path('/pages/default/index', {'url' : 'rules'}) }}">Правила заселения</a>
+                            </li>
                             <li><a href="{{ path(['/helpdesk/default/index']) }}">Связь с администрацией</a></li>
                             <li><a href="{{ path(['/articles/default/index']) }}">Статьи</a></li>
-                             <li><a href="{{ path(['/helpdesk/default/workvac']) }}">Работа на Сдаём.ру</a></li>
-                                {#
-                                    <li><a href="{{ path({'0':'/pages/default/index', 'url' : 'exhibitions'}) }}">Выставочные центры Москвы</a></li>
-                                    <li><a href="{{ path({'0':'/pages/default/index', 'url' : 'airports'}) }}">Аэропорты Москвы</a></li>
-                                    <li><a href="{{ path({'0':'/pages/default/index', 'url' : 'railway'}) }}">Вокзалы Москвы</a></li>
-                                #}
+                            <li><a href="{{ path(['/helpdesk/default/workvac']) }}">Работа на Сдаём.ру</a></li>
+                            {#
+                                <li><a href="{{ path({'0':'/pages/default/index', 'url' : 'exhibitions'}) }}">Выставочные центры Москвы</a></li>
+                                <li><a href="{{ path({'0':'/pages/default/index', 'url' : 'airports'}) }}">Аэропорты Москвы</a></li>
+                                <li><a href="{{ path({'0':'/pages/default/index', 'url' : 'railway'}) }}">Вокзалы Москвы</a></li>
+                            #}
                         </ul>
                     </nav>
                     <p><br></p>
@@ -52,11 +63,13 @@
                     </div>
                     <div class="social-links" style="font-size:30px;">
                         <ul>
-                            <li><a href="https://www.facebook.com/cdaem.ru" rel="nofollow"><i class="fab fa-facebook"></i></a></li>
+                            <li><a href="https://www.facebook.com/cdaem.ru" rel="nofollow"><i
+                                            class="fab fa-facebook"></i></a></li>
                             <li><a href="https://new.vk.com/cdaemru" rel="nofollow"><i class="fab fa-vk"></i></a></li>
-                            <li><a href="https://plus.google.com/communities/104623882749857804458" rel="nofollow"><i class="fab fa-google-plus"></i></a></li>
+                            <li><a href="https://plus.google.com/communities/104623882749857804458" rel="nofollow"><i
+                                            class="fab fa-google-plus"></i></a></li>
                             <li><a href="skype:cdaemru" rel="nofollow"><i class="fab fa-skype"></i></a></li>
-                            
+
                         </ul>
                     </div>
                 </div>
@@ -64,8 +77,8 @@
             </div>
             <div class="copyright">
                 <p>E-MAIL: <a href="mailto:info@cdaem.ru">info@cdaem.ru,</a>
-                    
-                <span>Copiright ©  Cdaem.ru {{ 'now'|date('Y') }} | Все права защищены</span>
+
+                    <span>Copiright ©  Cdaem.ru {{ 'now'|date('Y') }} | Все права защищены</span>
             </div>
             <div class="clearfix"></div>
         </div>
@@ -74,9 +87,13 @@
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-129089549-1"></script>
 <script>
- window.dataLayer = window.dataLayer || [];
- function gtag(){dataLayer.push(arguments);}
- gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
 
- gtag('config', 'UA-129089549-1');
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'UA-129089549-1');
 </script>

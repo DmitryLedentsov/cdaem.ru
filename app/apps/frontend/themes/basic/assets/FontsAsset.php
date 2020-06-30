@@ -11,15 +11,15 @@ use yii\web\AssetBundle;
  */
 class FontsAsset extends AssetBundle
 {
-	public $sourcePath = '@frontend/themes/basic/assets';
+    public $sourcePath = '@frontend/themes/basic/assets';
 
 
     public $css = [
         'https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic&subset=latin,cyrillic',
         'https://fonts.googleapis.com/css?family=Roboto',
     ];
-    
-	public $depends = [
+
+    public $depends = [
         'yii\web\JqueryAsset',
     ];
 
@@ -38,9 +38,9 @@ class FontsAsset extends AssetBundle
                 'widgets/pnotify/pnotify.custom.min.css',
                 'widgets/browsers/jquery.reject.css',
                 'css/styles.css',
-		'css/media.css',
+                'css/media.css',
                 'font-awesome/css/fontawesome-all.css',
-                
+
             ]);
 
             $this->js = [
@@ -75,14 +75,15 @@ class FontsAsset extends AssetBundle
             ];
         }
 
-        $this->sourcePath = __DIR__ ;
+        $this->sourcePath = __DIR__;
     }
 
     /**
      * Получить url адрес папки с ресурсами
      * @return string
      */
-    public static function getAssetUrl() {
+    public static function getAssetUrl()
+    {
         $obj = new self();
         return \Yii::$app->assetManager->getPublishedUrl($obj->sourcePath);
     }

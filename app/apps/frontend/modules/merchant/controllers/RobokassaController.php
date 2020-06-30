@@ -28,7 +28,7 @@ class RobokassaController extends \frontend\components\Controller
     {
         return [
             'access' => [
-                'class' => \yii\filters\AccessControl::className(),
+                'class' => \yii\filters\AccessControl::class,
                 'rules' => [
                     [
                         'allow' => true,
@@ -55,6 +55,7 @@ class RobokassaController extends \frontend\components\Controller
     {
         if (!Yii::$app->request->post()) {
             Yii::info('ERROR: Возникла критическая ошибка: сервер Robokassa не смог передать данные для верификации платежа.', 'robokassa');
+
             return $this->goHome();
         }
 
@@ -132,11 +133,15 @@ class RobokassaController extends \frontend\components\Controller
         if (!Yii::$app->request->post()) {
             if (Yii::$app->user->id) {
                 Yii::$app->session->setFlash('danger', 'Возникла критическая ошибка. Пожалуйста, обратитесь в службу технической поддержки.');
+
                 return $this->redirect(['/merchant/default/index']);
             }
+
             return $this->goHome();
         }
+
         Yii::$app->session->setFlash('danger', 'Возникла критическая ошибка. Пожалуйста, обратитесь в службу технической поддержки.');
+
         return $this->redirect(['/merchant/default/index']);
     }
 

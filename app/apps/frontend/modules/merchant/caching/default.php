@@ -3,9 +3,7 @@
 $pageExistQueryParams = Yii::$app->request->queryParams;
 $pageExistQueryParams['page'] = empty($pageExistQueryParams['page']) ? '1' : $pageExistQueryParams['page'];
 
-
 $filters = [
-
     [
         'class' => 'yii\filters\PageCache',
         'only' => ['index'],

@@ -23,13 +23,13 @@
                 'url' : '/'
             },
             'links':  [
-            {
-                'label': 'Доска объявлений',
-                'url': ['/partners/default/index'],
-            },
-            {
-                'label': 'Быстро снять',
-            },
+                {
+                    'label': 'Доска объявлений',
+                    'url': ['/partners/default/index'],
+                },
+                {
+                    'label': 'Быстро снять',
+                },
             ],
         }) }}
     </div>
@@ -43,7 +43,7 @@
 
     {{ this.registerMetaTag({'name' : 'description', 'content' : ''}) }}
     {{ this.registerMetaTag({'name' : 'keywords', 'content' : ''}) }}
-    
+
     {{ use('frontend/modules/partners/assets/ApartmentAsset') }}
     {{ register_apartment_asset() }}
 
@@ -59,8 +59,10 @@
 
             <h3>Быстро снять</h3>
             <div class="desc">
-                Заполнение заявки "Быстро снять" <b>совершенно бесплатно</b>. После того, как Вы заполните все данные формы, Ваша заявка будет доступна всем агентам и
-                собственникам на сайте. После чего, когда кто-нибудь откроет Ваши контакты, в личном кабинете вы сможете увидеть
+                Заполнение заявки "Быстро снять" <b>совершенно бесплатно</b>. После того, как Вы заполните все данные
+                формы, Ваша заявка будет доступна всем агентам и
+                собственникам на сайте. После чего, когда кто-нибудь откроет Ваши контакты, в личном кабинете вы сможете
+                увидеть
                 это. Детальная инструкция будет отправлена на Ваш почтовый адрес.
             </div>
 
@@ -78,7 +80,8 @@
                     {{ app.session.getFlash('success') | raw }}
                 </div> <br/>
                 Ваша заявка будет доступна всем владельцам апартаментов на сайте {{ app.params.siteDomain }}. После того, как кто-нибудь откроет ваши контакты,
-                в <a href="{{ path(['/partners/reservation/total-bid']) }}" target="_blank">личном кабинете</a> вы увидите, что заявка закрыта.
+                в <a href="{{ path(['/partners/reservation/total-bid']) }}" target="_blank">личном
+                кабинете</a> вы увидите, что заявка закрыта.
                 <br/>
 
             {% else %}
@@ -97,9 +100,12 @@
                         <h3 class="text-left">Место аренды:</h3>
 
                         <div class="form-group required">
-                            <div class="col-l"><label class="control-label">{{ reservationsForm.getAttributeLabel('city') }}</label></div>
+                            <div class="col-l"><label
+                                        class="control-label">{{ reservationsForm.getAttributeLabel('city') }}</label>
+                            </div>
                             <div class="col-i">
-                                <span data-toggle="modal" data-target="#modal-select-city" class="link" id="select-city-name">Выбрать</span>
+                                <span data-toggle="modal" data-target="#modal-select-city" class="link"
+                                      id="select-city-name">Выбрать</span>
                                 {{ html.activeHiddenInput(reservationsForm, 'city_id') | raw }}
                                 <div class="help-block"></div>
                             </div>
@@ -139,7 +145,8 @@
 
                             <div class="alert alert-info">
                                 <b>Внимание:</b> <br/>
-                                Вам необходим аккаунт на сайте {{ app.params.siteDomain }} для бронирования апартаментов.
+                                Вам необходим аккаунт на сайте {{ app.params.siteDomain }} для бронирования
+                                апартаментов.
                                 Если у Вас уже есть аккаунт, авторизируйтесь на сайте, если у Вас нет аккаунта,
                                 пожалуйста заполните ниже представленные поля для быстрой регистрации:
                             </div>
@@ -159,8 +166,8 @@
                                         <option value="Russia">Russia</option>
                                         <option value="Ukraine">Ukraine</option>
                                         <option value="Belarus">Belarus</option>
-                                    </select>  
-                                </div> 
+                                    </select>
+                                </div>
                             </div>
 
                             {{ form.field(reservationsForm, 'phone', {'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'}).textInput({'class' : 'phone form-control', 'prompt': ' ', 'id':'phone',}) | raw }}
@@ -187,14 +194,18 @@
                             <div class="date_arrived clearfix">
                                 {% set field = form.field(reservationsForm, 'arrived_date', {'options' : {'class' : 'form-group date'}}) | raw %}
                                 {{ field.begin() | raw }}
-                                <div class="col-l"><label class="control-label">{{ reservationsForm.getAttributeLabel('arrived_date') }}</label></div>
+                                <div class="col-l"><label
+                                            class="control-label">{{ reservationsForm.getAttributeLabel('arrived_date') }}</label>
+                                </div>
                                 <div class="col-i">{{ html.activeTextInput(reservationsForm, 'arrived_date', {'class' : 'form-control datepicker', 'readonly' : 'readonly'}) | raw }}</div>
                                 {{ html.error(reservationsForm, 'arrived_date', {'class' : 'help-block'}) | raw }}
                                 {{ field.end() | raw }}
 
                                 {% set field = form.field(reservationsForm, 'arrived_time', {'options' : {'class' : 'form-group time'}}) | raw %}
                                 {{ field.begin() | raw }}
-                                <div class="col-l"><label class="control-label">{{ reservationsForm.getAttributeLabel('out_time') }}</label></div>
+                                <div class="col-l"><label
+                                            class="control-label">{{ reservationsForm.getAttributeLabel('out_time') }}</label>
+                                </div>
                                 <div class="col-i">{{ html.activeTextInput(reservationsForm, 'arrived_time', {'class' : 'form-control timepicker', 'readonly' : 'readonly'}) | raw }}</div>
                                 {{ html.error(reservationsForm, 'arrived_time', {'class' : 'help-block'}) | raw }}
                                 {{ field.end() | raw }}
@@ -202,14 +213,18 @@
                             <div class="date_out clearfix">
                                 {% set field = form.field(reservationsForm, 'out_date', {'options' : {'class' : 'form-group date'}}) | raw %}
                                 {{ field.begin() | raw }}
-                                <div class="col-l"><label class="control-label">{{ reservationsForm.getAttributeLabel('out_date') }}</label></div>
+                                <div class="col-l"><label
+                                            class="control-label">{{ reservationsForm.getAttributeLabel('out_date') }}</label>
+                                </div>
                                 <div class="col-i">{{ html.activeTextInput(reservationsForm, 'out_date', {'class' : 'form-control datepicker', 'readonly' : 'readonly'}) | raw }}</div>
                                 {{ html.error(reservationsForm, 'out_date', {'class' : 'help-block'}) | raw }}
                                 {{ field.end() | raw }}
 
                                 {% set field = form.field(reservationsForm, 'out_time', {'options' : {'class' : 'form-group time'}}) | raw %}
                                 {{ field.begin() | raw }}
-                                <div class="col-l"><label class="control-label">{{ reservationsForm.getAttributeLabel('out_time') }}</label></div>
+                                <div class="col-l"><label
+                                            class="control-label">{{ reservationsForm.getAttributeLabel('out_time') }}</label>
+                                </div>
                                 <div class="col-i">{{ html.activeTextInput(reservationsForm, 'out_time', {'class' : 'form-control timepicker', 'readonly' : 'readonly'}) | raw }}</div>
                                 {{ html.error(reservationsForm, 'out_time', {'class' : 'help-block'}) | raw }}
                                 {{ field.end() | raw }}
@@ -223,7 +238,6 @@
                         }).dropDownList(reservationsForm.actualityList, {'prompt' : ' '}) | raw }}
 
 
-
                         <h3 class="text-right">Ваши предпочтения:</h3>
 
 
@@ -235,10 +249,13 @@
 
 
                         <div class="form-group required money text-right">
-                            <div class="col-l text-right" style="width: 48%"><label class="control-label" style="float: none">Планируемый бюджет</label></div>
+                            <div class="col-l text-right" style="width: 48%"><label class="control-label"
+                                                                                    style="float: none">Планируемый
+                                    бюджет</label></div>
                             <div class="col-i" style="width: 52%">
                                 {{ html.activeHiddenInput(reservationsForm, 'budget') | raw }}
-                                {{ html.activeTextInput(reservationsForm, 'money_from', {'class' : 'form-control', 'placeholder' : 'от 3000'}) | raw }} -
+                                {{ html.activeTextInput(reservationsForm, 'money_from', {'class' : 'form-control', 'placeholder' : 'от 3000'}) | raw }}
+                                -
                                 {{ html.activeTextInput(reservationsForm, 'money_to', {'class' : 'form-control', 'placeholder' : 'до 5000'}) | raw }}
                                 {{ html.activeDropDownList(reservationsForm, 'currency', reservationsForm.getCurrencyArray(), {'class' : 'form-control'}) | raw }}
                                 <div class="help-block"></div>
@@ -293,7 +310,7 @@
                     <div class="clearfix"></div>
 
                     <div class="form-group text-right">
-                        <input type="submit" value="Отправить" class="btn btn-primary" />
+                        <input type="submit" value="Отправить" class="btn btn-primary"/>
                     </div>
 
                 </div>
@@ -322,7 +339,8 @@
         </div>
         <br/>
         <div class="form-group text-center" style="display: none">
-            <input type="submit" value="Указать" class="btn btn-primary" id="button-select-city" data-target-city-id="reservationform-city_id" data-target-select-city="#select-city-name" />
+            <input type="submit" value="Указать" class="btn btn-primary" id="button-select-city"
+                   data-target-city-id="reservationform-city_id" data-target-select-city="#select-city-name"/>
         </div>
     </div>
 

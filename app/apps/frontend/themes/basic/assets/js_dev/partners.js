@@ -186,53 +186,52 @@ jQuery(function () {
             var formApi = $('#form-apartment').data('formApi');
             var files = document.getElementById("imageform-files").files;
 
-			if ($("#images-preview .advert-preview").length >= 10) {
+            if ($("#images-preview .advert-preview").length >= 10) {
                 showStackError('Внимание', 'Вы можете загрузить до 10 изображений Вашего объекта. Сейчас загружен максимум.');
 
-			}
-			else {
+            } else {
 
-				var filesLength = files.length;				
+                var filesLength = files.length;
 
-	            if (files.length > 10 || (($("#images-preview .advert-preview").length + files.length) > 10)) {
+                if (files.length > 10 || (($("#images-preview .advert-preview").length + files.length) > 10)) {
 
-					var thisLength = $("#images-preview .advert-preview").length;
+                    var thisLength = $("#images-preview .advert-preview").length;
 
-					filesLength = (thisLength>0)?(10-thisLength):10;
+                    filesLength = (thisLength > 0) ? (10 - thisLength) : 10;
 
-                showStackError('Внимание', 'Вы можете загрузить до 10 изображений Вашего объекта. Остальные изображения будут проигнорированы.');
+                    showStackError('Внимание', 'Вы можете загрузить до 10 изображений Вашего объекта. Остальные изображения будут проигнорированы.');
 
-	            } 
+                }
 
 // 				else {
-	                for (var i = 0, m = filesLength; i < m; i++) {
-	                    if (i >= 10) {
-	                        continue;
-	                    }
-	                    var file = {};
-	                    file['ImageForm[files][' + i + ']'] = files[i];
-	                    formApi.addFile(file);
-	                    (function (i) {
-	                        var reader = new FileReader();
-	                        reader.onloadend = function (e) {
-	
-	                            var block =
-	                                    '<div class="advert-preview shadow-box" data-image="ImageForm[files][' + i + ']" style="margin-right: 15px; margin-bottom: 15px;">' +
-	                                    '<div class="control"><div class="delete"></div></div>' +
-	                                    '<div class="apartment-wrap">' +
-	                                    '<div class="image">' +
-	                                    '<img src="' + reader.result + '" alt="" />' +
-	                                    '</div>' +
-	                                    '</div>' +
-	                                    '</div>';
-	
-	                            $("#images-preview").append(block);
-	                        };
-	                        reader.readAsDataURL(files[i]);
-	                    })(i);
-	                }
+                for (var i = 0, m = filesLength; i < m; i++) {
+                    if (i >= 10) {
+                        continue;
+                    }
+                    var file = {};
+                    file['ImageForm[files][' + i + ']'] = files[i];
+                    formApi.addFile(file);
+                    (function (i) {
+                        var reader = new FileReader();
+                        reader.onloadend = function (e) {
+
+                            var block =
+                                '<div class="advert-preview shadow-box" data-image="ImageForm[files][' + i + ']" style="margin-right: 15px; margin-bottom: 15px;">' +
+                                '<div class="control"><div class="delete"></div></div>' +
+                                '<div class="apartment-wrap">' +
+                                '<div class="image">' +
+                                '<img src="' + reader.result + '" alt="" />' +
+                                '</div>' +
+                                '</div>' +
+                                '</div>';
+
+                            $("#images-preview").append(block);
+                        };
+                        reader.readAsDataURL(files[i]);
+                    })(i);
+                }
 // 	            }
-			}
+            }
         }
     });
 
@@ -312,18 +311,14 @@ jQuery(function () {
 // Открытие блока с описанием для мобильных телефонов
     $("#opendescription").click(function () {
         $("#information-advert").slideToggle("slow", function () {
-          
+
         });
     });
-    
-     
 
 
     /**
      * Форма проверка на заполнение подобрать квартиру
      */
-
-   
 
 
     /**
@@ -450,14 +445,17 @@ function writeMessage(userId) {
 }
 
 $(document).ready(function () {
-    $("#country").on('change','',function(e){
+    $("#country").on('change', '', function (e) {
         if ($("#country option:selected").text() == "Russia") {
-        $("#phone").inputmask("+79999999999");}
+            $("#phone").inputmask("+79999999999");
+        }
         if ($("#country option:selected").text() == "Ukraine") {
-        $("#phone").inputmask("+380999999999"); }
-    if ($("#country option:selected").text() == "Belarus") {
-        $("#phone").inputmask("+375999999999"); } 
-});
+            $("#phone").inputmask("+380999999999");
+        }
+        if ($("#country option:selected").text() == "Belarus") {
+            $("#phone").inputmask("+375999999999");
+        }
+    });
 });
 
 

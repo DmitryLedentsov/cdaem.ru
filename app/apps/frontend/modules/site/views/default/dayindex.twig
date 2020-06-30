@@ -18,7 +18,8 @@
         <div class="cdaem container">
             <div class="row">
                 <div class="logo col-xs-12 col-md-3">
-                    <a href="/"><img src="/basic-images/arenda-kvartir-posutochno-logo.png" alt="Все города России и СНГ" title="Все города России и СНГ" /></a>
+                    <a href="/"><img src="/basic-images/arenda-kvartir-posutochno-logo.png"
+                                     alt="Все города России и СНГ" title="Все города России и СНГ"/></a>
                 </div>
                 <div class="seo-text col-xs-12 col-sm-6">
                     <div class="size">
@@ -29,11 +30,15 @@
                     <div class="login-links">{{ this.renderDynamic('return $this->render("@app/modules/site/views/default/logged.twig");') | raw }}</div>
                     <div class="social-links">
                         <ul>
-                            <li><img src="/basic-images/Message-ico.png" alt="messege" /></li>
-                            <li><a href="https://www.facebook.com/cdaem.ru" rel="nofollow"><img src="/basic-images/facebook-ico.png" alt="facebook" /></a></li>
-                            <li><a href="https://vk.com/cdaemru" rel="nofollow"><img src="/basic-images/vk-ico.png"  alt="vk"/></a></li>
-                            <li><a href="https://plus.google.com/communities/104623882749857804458" rel="nofollow"><img src="/basic-images/google-plus-ico.png"  alt="google-plus"/></a></li>
-                            <li><a href="skype:cdaemru" rel="nofollow"><img src="/basic-images/skype-ico.png" alt="skype"/></a></li>
+                            <li><img src="/basic-images/Message-ico.png" alt="messege"/></li>
+                            <li><a href="https://www.facebook.com/cdaem.ru" rel="nofollow"><img
+                                            src="/basic-images/facebook-ico.png" alt="facebook"/></a></li>
+                            <li><a href="https://vk.com/cdaemru" rel="nofollow"><img src="/basic-images/vk-ico.png"
+                                                                                     alt="vk"/></a></li>
+                            <li><a href="https://plus.google.com/communities/104623882749857804458" rel="nofollow"><img
+                                            src="/basic-images/google-plus-ico.png" alt="google-plus"/></a></li>
+                            <li><a href="skype:cdaemru" rel="nofollow"><img src="/basic-images/skype-ico.png"
+                                                                            alt="skype"/></a></li>
 
                         </ul>
                     </div>
@@ -59,7 +64,8 @@
                     </div>
                 </div>
                 <div class="col-md-3 callback-btn-block">
-                    <a href="{{ path(['/helpdesk/default/index']) }}" class="callback-btn">Связаться с диспетчером <br> Cdaem.ru</a>
+                    <a href="{{ path(['/helpdesk/default/index']) }}" class="callback-btn">Связаться с диспетчером <br>
+                        Cdaem.ru</a>
                 </div>
             </div>
 
@@ -82,14 +88,13 @@
         {{ form.field(callback, 'phone').textInput({'placeholder' : '+7 (___) ___-____'}) | raw }}
 
 
-
         <div class="form-group text-center">
-            <input type="submit" value="Отправить" class="btn btn-primary" />
+            <input type="submit" value="Отправить" class="btn btn-primary"/>
         </div>
         {{ active_form_end() }}
 
     </div>
-    
+
 
 {% endblock header %}
 
@@ -103,7 +108,7 @@
     {{ this.registerMetaTag({'name' : 'keywords', 'content' : metaData['meta_keywords']}) }}
 
     {{ use('common/modules/agency/widgets/frontend/PreviewAdvert') }}
-     
+
     {{ use('frontend/themes/basic/assets/SliderAsset') }}
     {{ register_slider_asset() }}
 
@@ -120,7 +125,7 @@
         <div class="container special-block">
 
             <div class="d-title"><h4>Спецпредложения на сегодня</h4></div>
-            <div class="special-advert-block">   
+            <div class="special-advert-block">
                 <div class="deals">
                     {% for specialAdvert in specialAdverts %}
                         {{ preview_advert_widget({'advert': specialAdvert}) }}
@@ -142,7 +147,7 @@
         'metaData' : metaData,
     }) | raw }}
 
-<div class="container">
+    <div class="container">
 
         <style type="text/css">
             #map {
@@ -236,13 +241,13 @@
 
             function init() {
                 var myMap = new ymaps.Map('map', {
-                            center: [{{ city.longitude }}, {{ city.latitude }}],
-                            zoom: 10
-                        }),
-                        objectManager = new ymaps.ObjectManager({
-                            clusterize: true,
-                            gridSize: 32
-                        });
+                        center: [{{ city.longitude }}, {{ city.latitude }}],
+                        zoom: 10
+                    }),
+                    objectManager = new ymaps.ObjectManager({
+                        clusterize: true,
+                        gridSize: 32
+                    });
 
                 // Задаём опции кластеров
                 objectManager.clusters.options.set({
@@ -259,7 +264,7 @@
                 // При клике на некластеризованные объекты получаем содержимое балуна
                 objectManager.objects.events.add('click', function (e) {
                     var objectId = e.get('objectId');
-                    getBalloonData(objectId, function(data) {
+                    getBalloonData(objectId, function (data) {
                         render(data, objectId);
                     });
                 });
@@ -267,7 +272,7 @@
                 // В кластеризованных объектах отслеживаем изменение выбранного объекта
                 activeObjectMonitor.add('activeObject', function () {
                     var objectId = activeObjectMonitor.get('activeObject').id;
-                    getBalloonData(objectId, function(data) {
+                    getBalloonData(objectId, function (data) {
                         render(data, objectId);
                     });
                 });
@@ -298,33 +303,33 @@
 
                 myMap.geoObjects.add(objectManager);
                 $.ajax({
-                            url: '/geo/map',
-                            dataType: 'json'
-                        })
-                        .done(function (data) {
-                            objectManager.add(data);
-                        })
-                        .fail(function () {
-                            console.log("error");
-                        });
+                    url: '/geo/map',
+                    dataType: 'json'
+                })
+                    .done(function (data) {
+                        objectManager.add(data);
+                    })
+                    .fail(function () {
+                        console.log("error");
+                    });
 
 
                 // Функция, осуществляющая запрос за данными балуна на сервер.
                 function getBalloonData(objectId, done) {
                     var dataDeferred = ymaps.vow.defer();
                     $.ajax({
-                                url: '/geo/map/' + objectId,
-                                type: 'GET',
-                                dataType: 'html'
-                            })
-                            .done(function (data) {
-                                done(data);
-                                dataDeferred.resolve(data);
-                            })
-                            .fail(function () {
-                                console.log("full-story error");
-                                dataDeferred.resolve('error');
-                            });
+                        url: '/geo/map/' + objectId,
+                        type: 'GET',
+                        dataType: 'html'
+                    })
+                        .done(function (data) {
+                            done(data);
+                            dataDeferred.resolve(data);
+                        })
+                        .fail(function () {
+                            console.log("full-story error");
+                            dataDeferred.resolve('error');
+                        });
                 }
 
 
@@ -334,8 +339,7 @@
                     var objectState = objectManager.getObjectState(objectId);
                     if (objectState.isClustered) {
                         objectManager.clusters.balloon.open(objectState.cluster.id);
-                    }
-                    else {
+                    } else {
                         objectManager.objects.balloon.open(objectId);
                     }
                 }

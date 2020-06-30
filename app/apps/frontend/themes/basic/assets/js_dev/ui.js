@@ -79,8 +79,8 @@ jQuery(function () {
             var header = '<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"></button> <h4 class="modal-title">' + title + '</h4> </div>';
 
             $this
-                    .wrapInner('<div class="modal-content"></div>')
-                    .wrapInner('<div class="modal-dialog"></div>');
+                .wrapInner('<div class="modal-content"></div>')
+                .wrapInner('<div class="modal-dialog"></div>');
 
             $this.find('.modal-content').wrapInner('<div class="modal-body"></div>');
             $this.find('.modal-content').prepend(header);
@@ -98,8 +98,8 @@ jQuery(function () {
             var header = '<div class="modal-header"></div>';
             var footer = '<div class="modal2-footer"><button type="button" class="close" data-dismiss="modal" aria-label="Close">закрыть</button></div>';
             $this
-                    .wrapInner('<div class="modal-content-2"></div>')
-                    .wrapInner('<div class="modal-dialog"></div>');
+                .wrapInner('<div class="modal-content-2"></div>')
+                .wrapInner('<div class="modal-dialog"></div>');
             $this.find('.modal-content-2').append(footer);
             $this.find('.modal-content-2').wrapInner('<div class="modal-body"></div>');
             //$this.find('.modal-content').prepend(header);
@@ -383,12 +383,12 @@ jQuery(function () {
 
             if (active) {
                 selectMetroStations.forEach(
-                        function (element, index, array) {
-                            if (element[0] == metroId) {
-                                selectMetroStations.splice(index, 1);
-                                return false;
-                            }
+                    function (element, index, array) {
+                        if (element[0] == metroId) {
+                            selectMetroStations.splice(index, 1);
+                            return false;
                         }
+                    }
                 );
             } else {
                 selectMetroStations.push([metroId, $this.attr('title')]);
@@ -449,18 +449,18 @@ jQuery(function () {
                 var metroString = [];
 
                 selectMetroStations.forEach(
-                        function (element, index, array) {
+                    function (element, index, array) {
 
-                            if (metroIds.indexOf(element[0]) == -1) {
-                                metroIds.push(element[0]);
+                        if (metroIds.indexOf(element[0]) == -1) {
+                            metroIds.push(element[0]);
 
-                                var name = toTranslit(element[1]);
-                                name = name.split('-');
-                                name = name[0] + '-' + name[1];
+                            var name = toTranslit(element[1]);
+                            name = name.split('-');
+                            name = name[0] + '-' + name[1];
 
-                                metroString.push(element[0] + '_' + name);
-                            }
+                            metroString.push(element[0] + '_' + name);
                         }
+                    }
                 );
 
                 var $targetSubwayMap = $('#open-subway-map');
@@ -709,8 +709,6 @@ function initScriptFilter() {
 }
 
 
-
-
 function initSelectPicker() {
     /**
      * Кастомные селекты
@@ -768,8 +766,6 @@ function initSelectPicker() {
 }
 
 
-
-
 /**
  * Транслитерация
  * @param text
@@ -777,20 +773,20 @@ function initSelectPicker() {
  */
 function toTranslit(text) {
     return text.replace(/([а-яё])|([\s_-])|([^a-z\d])/gi,
-            function (all, ch, space, words, i) {
-                if (space || words) {
-                    return space ? '-' : '';
-                }
-                var code = ch.charCodeAt(0),
-                        index = code == 1025 || code == 1105 ? 0 :
-                        code > 1071 ? code - 1071 : code - 1039,
-                        t = ['yo', 'a', 'b', 'v', 'g', 'd', 'e', 'zh',
-                            'z', 'i', 'y', 'k', 'l', 'm', 'n', 'o', 'p',
-                            'r', 's', 't', 'u', 'f', 'h', 'c', 'ch', 'sh',
-                            'shch', '', 'y', '', 'e', 'yu', 'ya'
-                        ];
-                return t[index];
-            });
+        function (all, ch, space, words, i) {
+            if (space || words) {
+                return space ? '-' : '';
+            }
+            var code = ch.charCodeAt(0),
+                index = code == 1025 || code == 1105 ? 0 :
+                    code > 1071 ? code - 1071 : code - 1039,
+                t = ['yo', 'a', 'b', 'v', 'g', 'd', 'e', 'zh',
+                    'z', 'i', 'y', 'k', 'l', 'm', 'n', 'o', 'p',
+                    'r', 's', 't', 'u', 'f', 'h', 'c', 'ch', 'sh',
+                    'shch', '', 'y', '', 'e', 'yu', 'ya'
+                ];
+            return t[index];
+        });
 }
 
 
@@ -836,21 +832,21 @@ $.reject({
     reject: {
         all: false, // Covers Everything (Nothing blocked)
         msie: 10 // Covers MSIE <= 6 (Blocked by default)
-                /*
-                 * Many possible combinations.
-                 * You can specify browser (msie, chrome, firefox)
-                 * You can specify rendering engine (geko, trident)
-                 * You can specify OS (Win, Mac, Linux, Solaris, iPhone, iPad)
-                 *
-                 * You can specify versions of each.
-                 * Examples: msie9: true, firefox8: true,
-                 *
-                 * You can specify the highest number to reject.
-                 * Example: msie: 9 (9 and lower are rejected.
-                 *
-                 * There is also "unknown" that covers what isn't detected
-                 * Example: unknown: true
-                 */
+        /*
+         * Many possible combinations.
+         * You can specify browser (msie, chrome, firefox)
+         * You can specify rendering engine (geko, trident)
+         * You can specify OS (Win, Mac, Linux, Solaris, iPhone, iPad)
+         *
+         * You can specify versions of each.
+         * Examples: msie9: true, firefox8: true,
+         *
+         * You can specify the highest number to reject.
+         * Example: msie: 9 (9 and lower are rejected.
+         *
+         * There is also "unknown" that covers what isn't detected
+         * Example: unknown: true
+         */
     },
     display: [], // What browsers to display and their order (default set below)
     browserShow: true, // Should the browser options be shown?
@@ -860,9 +856,9 @@ $.reject({
             text: 'Google Chrome',
             // URL For icon/text link
             url: 'http://www.google.com/chrome/'
-                    // (Optional) Use "allow" to customized when to show this option
-                    // Example: to show chrome only for IE users
-                    // allow: { all: false, msie: true }
+            // (Optional) Use "allow" to customized when to show this option
+            // Example: to show chrome only for IE users
+            // allow: { all: false, msie: true }
         },
         firefox: {
             text: 'Mozilla Firefox',
@@ -882,8 +878,8 @@ $.reject({
     header: 'Did you know that your Internet Browser is out of date?',
 
     paragraph1: 'Your browser is out of date, and may not be compatible with ' +
-            'our website. A list of the most popular web browsers can be ' +
-            'found below.',
+        'our website. A list of the most popular web browsers can be ' +
+        'found below.',
 
     paragraph2: 'Just click on the icons to get to the download page',
 
@@ -892,7 +888,7 @@ $.reject({
 
     // Message displayed below closing link
     closeMessage: 'By closing this window you acknowledge that your experience ' +
-            'on this website may be degraded',
+        'on this website may be degraded',
     closeLink: 'Close This Window',
     closeURL: '#',
 
@@ -935,13 +931,8 @@ $("#item-br").click(function () {
 });
 
 
-
-
-
-
-
 ///$( ".recaptcha-checkbox-checkmark" ).click(function() {
-  ///  $("html, body").animate({ scrollTop: $('div.alert').height() }, 2000); 
+///  $("html, body").animate({ scrollTop: $('div.alert').height() }, 2000);
 ///});
 
 

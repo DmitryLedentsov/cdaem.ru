@@ -288,12 +288,12 @@ class AdvertSearch extends Advert
                     ]);
             },
         ])
-        ->with('rentType')
-        ->andWhere(['rent_type' => $rentType['rent_type_id'], 'city_id' => Yii::$app->getModule('agency')->mskCityId])
-        ->andFilterWhere(['IN', 'metro_id', $metro_array])
-        ->orderBy('CASE WHEN `position` = 0 THEN 1 ELSE 0 END,  `position` ASC')
-        ->limit(12)
-        ->all();
+            ->with('rentType')
+            ->andWhere(['rent_type' => $rentType['rent_type_id'], 'city_id' => Yii::$app->getModule('agency')->mskCityId])
+            ->andFilterWhere(['IN', 'metro_id', $metro_array])
+            ->orderBy('CASE WHEN `position` = 0 THEN 1 ELSE 0 END,  `position` ASC')
+            ->limit(12)
+            ->all();
     }
 
 }

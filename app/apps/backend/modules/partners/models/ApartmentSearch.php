@@ -19,7 +19,7 @@ class ApartmentSearch extends Apartment
     {
         return array_merge(parent::attributes(), ['adverts.rent_type']);
     }
-    
+
     /**
      * @inheritdoc
      */
@@ -29,7 +29,7 @@ class ApartmentSearch extends Apartment
             'adverts.rent_type' => 'Типы аренды',
         ]);
     }
-    
+
     /**
      * @inheritdoc
      */
@@ -51,7 +51,7 @@ class ApartmentSearch extends Apartment
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
-    
+
     /**
      * @inheritdoc
      */
@@ -83,24 +83,24 @@ class ApartmentSearch extends Apartment
                 'pageSize' => 100,
             ],
         ]);
-        
+
         $query->joinWith([
-                'user' => function ($query) {
-                    $query->joinWith([
-                        'profile' => function ($query) {
-                            $query->partner(\common\modules\users\models\Profile::NO_PARTNER);
-                        },
-                    ]);
-                },
-                'adverts' => function ($query) {
-                    $query->with(['rentType']);
-                },
-            ])->with([
-                'titleImage',
-                'city' => function ($query) {
-                    $query->with('country');
-                },
-            ]);
+            'user' => function ($query) {
+                $query->joinWith([
+                    'profile' => function ($query) {
+                        $query->partner(\common\modules\users\models\Profile::NO_PARTNER);
+                    },
+                ]);
+            },
+            'adverts' => function ($query) {
+                $query->with(['rentType']);
+            },
+        ])->with([
+            'titleImage',
+            'city' => function ($query) {
+                $query->with('country');
+            },
+        ]);
 
         $this->load($params);
 
@@ -109,24 +109,24 @@ class ApartmentSearch extends Apartment
             // $query->where('0=1');
             return $dataProvider;
         }
-        
+
         $query->andFilterWhere([
-            Apartment::tableName().'.apartment_id' => $this->apartment_id,
-            Apartment::tableName().'.user_id' => $this->user_id,
-            Apartment::tableName().'.city_id' => $this->city_id,
-            Apartment::tableName().'.closest_city_id' => $this->closest_city_id,
-            Apartment::tableName().'.apartment' => $this->apartment,
-            Apartment::tableName().'.floor' => $this->floor,
-            Apartment::tableName().'.total_rooms' => $this->total_rooms,
-            Apartment::tableName().'.total_area' => $this->total_area,
-            Apartment::tableName().'.visible' => $this->visible,
-            Apartment::tableName().'.status' => $this->status,
-            Apartment::tableName().'.remont' => $this->remont,
-            Apartment::tableName().'.metro_walk' => $this->metro_walk,
-            Apartment::tableName().'.date_create' => $this->date_create,
-            Apartment::tableName().'.date_update' => $this->date_update,
-            Apartment::tableName().'.suspicious' => $this->suspicious,
-            Advert::tableName().'.rent_type' => $this->getAttribute('adverts.rent_type'),
+            Apartment::tableName() . '.apartment_id' => $this->apartment_id,
+            Apartment::tableName() . '.user_id' => $this->user_id,
+            Apartment::tableName() . '.city_id' => $this->city_id,
+            Apartment::tableName() . '.closest_city_id' => $this->closest_city_id,
+            Apartment::tableName() . '.apartment' => $this->apartment,
+            Apartment::tableName() . '.floor' => $this->floor,
+            Apartment::tableName() . '.total_rooms' => $this->total_rooms,
+            Apartment::tableName() . '.total_area' => $this->total_area,
+            Apartment::tableName() . '.visible' => $this->visible,
+            Apartment::tableName() . '.status' => $this->status,
+            Apartment::tableName() . '.remont' => $this->remont,
+            Apartment::tableName() . '.metro_walk' => $this->metro_walk,
+            Apartment::tableName() . '.date_create' => $this->date_create,
+            Apartment::tableName() . '.date_update' => $this->date_update,
+            Apartment::tableName() . '.suspicious' => $this->suspicious,
+            Advert::tableName() . '.rent_type' => $this->getAttribute('adverts.rent_type'),
         ]);
 
         $query->andFilterWhere(['like', 'address', $this->address])
@@ -134,7 +134,7 @@ class ApartmentSearch extends Apartment
 
         return $dataProvider;
     }
-    
+
     /**
      * Спиоск типов аренды
      */

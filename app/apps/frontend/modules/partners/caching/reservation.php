@@ -17,7 +17,7 @@ $filters = [
         'only' => ['reservations'],
         'duration' => 300,
         'enabled' => \common\modules\users\models\Profile::find()->select('user_type')
-            ->where(['user_id' => Yii::$app->user->id])->scalar() != \common\modules\users\models\Profile::WANT_RENT,
+                ->where(['user_id' => Yii::$app->user->id])->scalar() != \common\modules\users\models\Profile::WANT_RENT,
         'variations' => array_merge($pageExistQueryParams, [
             'user_id' => Yii::$app->user->id,
         ]),

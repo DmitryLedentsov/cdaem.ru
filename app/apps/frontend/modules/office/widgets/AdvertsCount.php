@@ -4,9 +4,12 @@ namespace frontend\modules\office\widgets;
 
 use frontend\modules\partners\models\Advert;
 use yii\base\Widget;
-use yii\helpers\Html;
 use Yii;
 
+/**
+ * Class AdvertsCount
+ * @package frontend\modules\office\widgets
+ */
 class AdvertsCount extends Widget
 {
     /**
@@ -16,7 +19,7 @@ class AdvertsCount extends Widget
     {
         parent::init();
     }
-    
+
     /**
      * @inheritdoc
      */
@@ -52,7 +55,7 @@ class AdvertsCount extends Widget
             foreach ($userAdverts as $advert) {
                 $userAdvertsCount[$advert['rent_type']]['rentTypeName'] = $advert->rentType->name;
                 $userAdvertsCount[$advert['rent_type']]['slug'] = $advert->rentType->slug;
-                $userAdvertsCount[$advert['rent_type']]['count'] = isset($userAdvertsCount[$advert['rent_type']]['count']) ? $userAdvertsCount[$advert['rent_type']]['count']+1 : 1;
+                $userAdvertsCount[$advert['rent_type']]['count'] = isset($userAdvertsCount[$advert['rent_type']]['count']) ? $userAdvertsCount[$advert['rent_type']]['count'] + 1 : 1;
             }
 
             $cachedData = $this->render('advertsCount', [

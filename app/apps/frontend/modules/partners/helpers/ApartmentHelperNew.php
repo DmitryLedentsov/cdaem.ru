@@ -22,9 +22,9 @@ class ApartmentHelperNew
      */
     public static function getAddress(Apartment $model)
     {
-        
-        
-           if ($model->city) {
+
+
+        if ($model->city) {
             $result = [];
             $result[] = $model->address;
             $result[] = $model->city->name;
@@ -36,19 +36,19 @@ class ApartmentHelperNew
 
         return '<div>Адрес не указан</div>';
     }
-    
-     public static function getPositions(Apartment $model)
+
+    public static function getPositions(Apartment $model)
     {
-         if ($model->adverts) {
+        if ($model->adverts) {
             $positions = '';
             foreach ($model->adverts as $advert) {
                 $positions = Yii::$app->getView()->renderDynamic('if ($positions = \\common\\modules\\partners\\models\\Advert::find()->select("real_position")->where(["advert_id" => ' . $advert->advert_id . '])->scalar()) { return $positions; } else {return "pos";} ');
             }
-           
+
         }
-        
+
         return $positions;
-  
+
     }
 
     /**
@@ -67,7 +67,7 @@ class ApartmentHelperNew
         } else {
             $status = '<b class="color-danger">На модерации</b>';
         }
-        
+
         $contacts = $model->open_contacts ? '<span class="color-success">открыты</span>' : '<span class="color-closed">закрыты <span class="no-payment">' . Html::a('(Не оплачено)', ['/office/default/services', '#' => Service::SERVICE_APARTMENT_CONTACTS_OPEN]) . '</span></span>';
 
         $result = '<p>Комнат: <span class="color-info">' . $model->total_rooms . '</span></p>';

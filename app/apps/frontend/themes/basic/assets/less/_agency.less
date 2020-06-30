@@ -1,119 +1,120 @@
 // Специальные предложения
 /*-------------------------------------*/
 .deals {
-    margin-top: 15px;
-    width: 100%;
+  margin-top: 15px;
+  width: 100%;
 
-    .apartment-agency {
-        width: 290px !important;
-        height: 215px !important;
-    }
+  .apartment-agency {
+    width: 290px !important;
+    height: 215px !important;
+  }
 }
 
 .fourrow {
-    .apartment-agency {
-        width: 305px !important;
-        height: 220px !important;
+  .apartment-agency {
+    width: 305px !important;
+    height: 220px !important;
 
-        .group {
-            top: 40px;
-            position: absolute;
-            width: 120px;
-            //height: 85%;
-            font-size: 13px;
-            line-height: 30px;
-        }
+    .group {
+      top: 40px;
+      position: absolute;
+      width: 120px;
+      //height: 85%;
+      font-size: 13px;
+      line-height: 30px;
     }
+  }
 }
 
-.agency, .deals { 
-    .apartment-agency {
-        width: 410px;
-        height: 275px;
-        display: block;
-        float: left;
+.agency, .deals {
+  .apartment-agency {
+    width: 410px;
+    height: 275px;
+    display: block;
+    float: left;
 
-        .header {
-            .address {
-                font-size: 80%;
-                line-height: 28px;
-            }
-        }
+    .header {
+      .address {
+        font-size: 80%;
+        line-height: 28px;
+      }
     }
+  }
 }
 
 // Квартиры агенства
 /*-------------------------------------*/
 .agency {
-    padding:35px 0px;
-    background: url(/basic-images/Layer42.png)center center no-repeat;
-    background-size: cover;
-    .content {
-        margin: auto;
+  padding: 35px 0px;
+  background: url(/basic-images/Layer42.png) center center no-repeat;
+  background-size: cover;
+
+  .content {
+    margin: auto;
+  }
+
+  .agency-filter {
+    height: 80px;
+    margin: 15px 0 5px 0;
+
+    .description {
+      width: 41%;
+      float: left;
+      font-size: 82%;
+      line-height: 1.2em;
+
+      &.agency-all {
+        width: 50%;
+      }
+
+      h1, h2, h3 {
+        font-size: 180%;
+        line-height: 1.3em;
+        margin-top: -5px;
+      }
+
+      strong {
+        font-size: 115%;
+      }
     }
 
-    .agency-filter {
-        height: 80px; 
-        margin: 15px 0 5px 0;
+    .filters {
+      width: 59%;
+      float: left;
+      padding-bottom: 5px;
 
-        .description {
-            width: 41%;
-            float: left;
-            font-size: 82%;
-            line-height: 1.2em;
-            &.agency-all {
-                width:50%;
-            }
+      &.agency-all {
+        width: 50%;
+      }
 
-            h1, h2, h3 {
-                font-size: 180%;
-                line-height: 1.3em;
-                margin-top: -5px;
-            }
+      .select-filter-text {
+        display: inline-block;
+        float: right;
+        padding: 15px 0;
+        font-size: 120%;
+      }
 
-            strong {
-                font-size: 115%;
-            }
+      .select-filter {
+        float: right;
+        margin-left: 15px;
+
+        &:last-child {
+          margin-left: 0;
         }
 
-        .filters {
-            width: 59%;
-            float: left;
-            padding-bottom: 5px;
-
-            &.agency-all {
-                width: 50%;
-            }
-
-            .select-filter-text {
-                display: inline-block;
-                float: right;
-                padding: 15px 0;
-                font-size: 120%;
-            }
-
-            .select-filter {
-                float: right;
-                margin-left: 15px;
-
-                &:last-child {
-                    margin-left: 0;
-                }
-
-                .btn {
-                    font-size: 16px;
-                    padding: 12px 10px;
-                    height: 50px;
-                    text-align: center;
-                }
-
-                select {
-                    width: 100%;
-                }
-            }
+        .btn {
+          font-size: 16px;
+          padding: 12px 10px;
+          height: 50px;
+          text-align: center;
         }
+
+        select {
+          width: 100%;
+        }
+      }
     }
-
+  }
 
 
 }
@@ -123,518 +124,522 @@
 // Апартаменты
 /*-------------------------------------*/
 .apartments {
-    margin-top: 15px;
-    margin-bottom:35px;
+  margin-top: 15px;
+  margin-bottom: 35px;
 
 }
 
 .apartment-agency {
-    position: relative;
-    padding: 10px;
-    display: inline-block;
+  position: relative;
+  padding: 10px;
+  display: inline-block;
+  overflow: hidden;
+
+  .header {
     overflow: hidden;
+    height: 40px;
+    padding: 5px;
+    background: @color-style-shadeblue;
+    color: #ffffff;
+    font-weight: 600;
+    z-index: 1;
+    position: relative;
+
+    .address {
+      width: 75%;
+      float: left;
+      overflow: hidden;
+      font-size: 110%;
+    }
+
+    .rooms {
+      width: 25%;
+      float: right;
+      overflow: hidden;
+      font-size: 80%;
+      text-align: right;
+      line-height: 30px;
+    }
+
+
+  }
+
+
+  .image {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 140%;
+    overflow: hidden;
+    margin-top: -40px;
+
+    img {
+      min-width: 100%;
+      max-width: 100%;
+      height: 100%;
+      position: absolute;
+      z-index: 0;
+    }
+
+    .group {
+      top: 40px;
+      position: absolute;
+      width: 150px;
+      //height: 85%;
+      right: 0px;
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .price {
+      clear: left;
+      text-align: right;
+      float: right;
+      padding: 3px 5px 3px 5px;
+      color: black;
+      //background: rgba(0, 0, 0, 0.4);
+    }
+
+    .type {
+      clear: right;
+      overflow: hidden;
+      //float: right;
+      color: black;
+      //background: rgba(0, 0, 0, 0.4);
+      font-size: 100% !important;
+
+      span {
+        margin: 0 2px;
+      }
+    }
+
+    .metro {
+      background-color: rgba(19, 19, 19, 0.56);
+
+      padding: 3px 5px 3px 10px;
+      margin-left: -5px;
+      position: absolute;
+      bottom: 0;
+      color: #ffffff;
+      font-weight: 400;
+      font-size: 60%;
+
+    }
+
+    .metro:after {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 21px;
+      background: url(/basic-images/ap-info-bg.png) right;
+      position: absolute;
+      right: -20px;
+      bottom: 0;
+    }
+
+    .special-text {
+      font-size: 80%;
+      position: absolute;
+      padding: 3px 5px;
+      bottom: 25px;
+      color: @color-style-primary-link;
+
+      a {
+        text-decoration: none;
+        font-weight: normal;
+      }
+    }
+  }
+
+  &.special-adv {
 
     .header {
-        overflow: hidden;
-        height: 40px;
-        padding: 5px;
-        background: @color-style-shadeblue;
-        color: #ffffff;
-        font-weight: 600;
-        z-index: 1;
-        position: relative;
+      background: @color-headboard-spec-adv;
+    }
 
-        .address {
-            width: 75%;
-            float: left;
-            overflow: hidden;
-            font-size: 110%;
-        }
+    .group-adv {
+      position: absolute;
+      bottom: 0px;
+      width: 100%;
+      height: 40px;
+      border: 3px solid red;
+      right: 0px;
+      background: white;
+    }
 
-        .rooms {
-            width: 25%;
-            float: right;
-            overflow: hidden;
-            font-size: 80%;
-            text-align: right;
-            line-height: 30px;
-        }
-
-
-
+    .metro {
+      bottom: 40px;
     }
 
 
-
-    .image {
-        width: 100%;
-        height: 100%;
-        position: relative;
-        color: #ffffff;
-        font-weight: 600;
-        font-size: 140%;
-        overflow: hidden;
-        margin-top: -40px;
-
-        img {
-            min-width: 100%;
-            max-width: 100%;
-            height: 100%;
-            position: absolute;
-            z-index: 0;
-        }
-
-        .group {
-            top: 40px;
-            position: absolute;
-            width: 150px;
-            //height: 85%;
-            right: 0px;
-            background: rgba(255, 255, 255, 0.3);
-        }
-
-        .price {
-            clear: left;
-            text-align: right;
-            float: right;
-            padding: 3px 5px 3px 5px;
-            color: black;
-            //background: rgba(0, 0, 0, 0.4);
-        }
-
-        .type {
-            clear: right;
-            overflow: hidden;
-            //float: right;
-            color: black;
-            //background: rgba(0, 0, 0, 0.4);
-            font-size:100% !important;
-
-            span {
-                margin: 0 2px;
-            }
-        }
-
-        .metro {
-            background-color: rgba(19, 19, 19, 0.56);
-
-            padding: 3px 5px 3px 10px;
-            margin-left: -5px;
-            position: absolute;
-            bottom: 0;
-            color: #ffffff;
-            font-weight: 400;
-            font-size: 60%;
-
-        }
-
-        .metro:after {
-            content: '';
-            display: inline-block;
-            width: 20px;
-            height: 21px;
-            background: url(/basic-images/ap-info-bg.png) right;
-            position: absolute;
-            right: -20px;
-            bottom: 0;
-        }
-
-        .special-text {
-            font-size: 80%;
-            position: absolute;
-            padding: 3px 5px;
-            bottom: 25px;
-            color: @color-style-primary-link;
-
-            a {
-                text-decoration: none;
-                font-weight: normal;
-            }
-        }
-    }
-
-    &.special-adv {
-
-        .header {
-            background:@color-headboard-spec-adv ;
-        }
-
-        .group-adv {
-            position: absolute;
-            bottom: 0px;
-            width: 100%;
-            height: 40px;
-            border: 3px solid red;
-            right: 0px;
-            background: white;
-        }
-
-        .metro {
-            bottom:40px;
-        }
-
-
-
-    }
+  }
 }
 
 .special-advert-block {
-    background: url(/basic-images/RoundedRectangle14.png)no-repeat;
-    background-size: cover;
-    padding: 32px 15px;
+  background: url(/basic-images/RoundedRectangle14.png) no-repeat;
+  background-size: cover;
+  padding: 32px 15px;
 }
 
 .special-block {
-    margin-top:30px;
+  margin-top: 30px;
 }
 
 // Виджет платежные системы
 /*-------------------------------------*/
 .payment-methods-warning {
-    font-size: 110%;
-    margin-top: 50px;
-    color: #F9160A;
-    /*.opacity(90);*/
+  font-size: 110%;
+  margin-top: 50px;
+  color: #F9160A;
+  /*.opacity(90);*/
 
-    span {
-        font-size: 110%;
-        font-weight: bold;
-    }
+  span {
+    font-size: 110%;
+    font-weight: bold;
+  }
 
 }
 
 .payment-methods {
-    margin-top: 15px;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    border-top: solid 1px #D6D6D6;
-    border-bottom: solid 1px #D6D6D6;
+  margin-top: 15px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-top: solid 1px #D6D6D6;
+  border-bottom: solid 1px #D6D6D6;
+
+  .pm-icon {
+    cursor: pointer;
+  }
+
+  h5 {
+    text-transform: uppercase;
+    font-size: 1em;
+    color: @color-style-primary-hover;
+    //padding: 5px 0 5px 15px;
+    // text-align: left;
+  }
+
+  .desc {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 1.15em;
+    margin-top: 5px;
+  }
+
+  .method-1.no-active, .method-2.no-active, .method-3.no-active, .method-4.no-active {
+    .opacity(20);
+  }
+
+  .method-1 {
+    // width: 22%;
+    //float: left;
+    text-align: center;
+    border-right: solid 1px #D6D6D6;
+  }
+
+  .method-2 {
+    //width: 54%;
+    //float: left;
+    text-align: center;
+    border-right: solid 1px #D6D6D6;
 
     .pm-icon {
-        cursor: pointer;
+      margin-right: 2%;
+
+      &:last-child {
+        margin-right: 0;
+      }
     }
 
-    h5 {
-        text-transform: uppercase;
-        font-size: 1em;
-        color: @color-style-primary-hover;
-        //padding: 5px 0 5px 15px;
-       // text-align: left;
+  }
+
+  .method-3 {
+    // width: 14%;
+    //float: left;
+    text-align: center;
+    border-right: solid 1px #D6D6D6;
+  }
+
+  .method-4 {
+    // width: 10%;
+    // float: left;
+    text-align: center;
+  }
+
+  .pm-icon {
+    position: relative;
+  }
+
+  .payment-process .alert {
+    font-size: 130%;
+  }
+
+  .payment-info {
+    width: 400px;
+    min-height: 50px;
+    display: none;
+    text-align: left;
+    padding: 15px 10px;
+    position: absolute;
+    left: -25px;
+    bottom: 80px;
+    background: #FCF8F1;
+    border: solid 1px #B4B4B4;
+    cursor: auto !important;
+    font-size: 75%;
+    z-index: 10;
+    .border-radius(5px);
+    .box-shadow(3px 3px 7px -3px rgba(0, 0, 0, 0.5));
+
+    .horizontal {
+      .col-l {
+        width: 130px;
+      }
+
+      label.control-label {
+        width: 100%;
+      }
     }
 
-    .desc {
-        text-transform: uppercase;
-        text-align: center;
-        font-size: 1.15em;
-        margin-top: 5px;
+    p {
+      margin: 0;
     }
 
-    .method-1.no-active, .method-2.no-active, .method-3.no-active, .method-4.no-active {
-        .opacity(20);
+    b {
+      font-size: 120%;
     }
 
-    .method-1 {
-       // width: 22%;
-        //float: left;
-        text-align: center;
-        border-right: solid 1px #D6D6D6;
+    h3 {
+      font-size: 150%;
+      text-align: center;
+      color: @color-style-primary-hover;
+      margin-bottom: 5px;
     }
 
-    .method-2 {
-        //width: 54%;
-        //float: left;
-        text-align: center;
-        border-right: solid 1px #D6D6D6;
+    .link {
+      margin-top: 5px;
+      font-size: 120%;
 
-        .pm-icon {
-            margin-right: 2%;
-            &:last-child {
-                margin-right: 0;
-            }
+      a, a.link {
+        border-bottom: dashed 1px @color-style-primary-link;
+        margin-right: 25px;
+
+        &:hover {
+          text-decoration: none;
         }
-
+      }
     }
 
-    .method-3 {
-       // width: 14%;
-        //float: left;
-        text-align: center;
-        border-right: solid 1px #D6D6D6;
+    &:before {
+      content: '';
+      position: absolute;
+
+      border-left: 15px solid transparent;
+      border-right: 15px solid transparent;
+      border-top: 15px solid #B4B4B4;
+      left: 55px;
+      bottom: -15px;
     }
 
-    .method-4 {
-       // width: 10%;
-       // float: left;
-        text-align: center;
+    &:after {
+      content: '';
+      position: absolute;
+      border-left: 13px solid transparent;
+      border-right: 13px solid transparent;
+      border-top: 13px solid #FCF8F1;
+      left: 57px;
+      bottom: -13px;
     }
+  }
 
-    .pm-icon {
-        position: relative;
-    }
-
-    .payment-process .alert {
-        font-size: 130%;
-    }
-
+  .right {
     .payment-info {
-        width: 400px;
-        min-height: 50px;
-        display: none;
-        text-align: left;
-        padding: 15px 10px;
-        position: absolute;
-        left: -25px;
-        bottom: 80px;
-        background: #FCF8F1;
-        border: solid 1px #B4B4B4;
-        cursor: auto !important;
-        font-size: 75%;
-        z-index: 10;
-        .border-radius(5px);
-        .box-shadow(3px 3px 7px -3px rgba(0, 0, 0, 0.5));
+      left: -300px;
 
-        .horizontal {
-            .col-l {
-                width: 130px;
-            }
+      &:before {
+        left: auto;
+        right: 55px;
+      }
 
-            label.control-label {
-                width: 100%;
-            }
-        }
-
-        p {
-            margin: 0;
-        }
-
-        b {
-            font-size: 120%;
-        }
-
-        h3 {
-            font-size: 150%;
-            text-align: center;
-            color: @color-style-primary-hover;
-            margin-bottom: 5px;
-        }
-
-        .link {
-            margin-top: 5px;
-            font-size: 120%;
-
-            a, a.link {
-                border-bottom: dashed 1px @color-style-primary-link;
-                margin-right: 25px;
-                &:hover {
-                    text-decoration: none;
-                }
-            }
-        }
-
-        &:before {
-            content: '';
-            position: absolute;
-
-            border-left: 15px solid transparent;
-            border-right: 15px solid transparent;
-            border-top: 15px solid #B4B4B4;
-            left: 55px;
-            bottom: -15px;
-        }
-
-        &:after {
-            content: '';
-            position: absolute;
-            border-left: 13px solid transparent;
-            border-right: 13px solid transparent;
-            border-top: 13px solid #FCF8F1;
-            left: 57px;
-            bottom: -13px;
-        }
+      &:after {
+        left: auto;
+        right: 57px;
+      }
     }
-
-    .right {
-        .payment-info {
-            left: -300px;
-            &:before {
-                left: auto;
-                right: 55px;
-            }
-            &:after {
-                left: auto;
-                right: 57px;
-            }
-        }
-    }
+  }
 }
 
 // Галерея фотографий апартаментов
 /*-------------------------------------*/
 #carousel {
-    //height: 170px;
+  //height: 170px;
+  overflow: hidden;
+  // margin-bottom: 50px;
+
+  .owl-item {
+    padding: 5px 0;
+  }
+
+  .image-box {
+    width: 250px;
+    height: 165px;
+    /*padding: 5px;
+    background: #E9E9E9;
+    border: solid 1px #B4B4B4;
     overflow: hidden;
-    // margin-bottom: 50px;
+    .border-radius(5px);
+    .box-shadow(2px 2px 5px -3px rgba(0,0,0,0.5));*/
 
-    .owl-item {
-        padding: 5px 0;
+    > .image {
+      height: 100%;
+      text-align: center;
+      overflow: hidden;
+
+      img {
+        //width: 100%;
+        height: 250px;
+        //.border-radius(5px);
+      }
     }
-
-    .image-box {
-        width: 250px;
-        height: 165px;
-        /*padding: 5px;
-        background: #E9E9E9;
-        border: solid 1px #B4B4B4;
-        overflow: hidden;
-        .border-radius(5px);
-        .box-shadow(2px 2px 5px -3px rgba(0,0,0,0.5));*/
-
-        > .image {
-            height: 100%;
-            text-align: center;
-            overflow: hidden;
-
-            img {
-                //width: 100%;
-                height: 250px;
-                //.border-radius(5px);
-            }
-        }
-    }
+  }
 }
 
 // Информация о апартаментах
 /*-------------------------------------*/
 .info {
 
-    sup {
-        position: relative;
-        font-size: 0.7em;
-        top: -4px
+  sup {
+    position: relative;
+    font-size: 0.7em;
+    top: -4px
+  }
+
+  .description {
+    // overflow: hidden;
+
+    h1, h2, h3, h4, h5, h6 {
+      color: @color-style-primary-hover;
     }
 
-    .description {
-        // overflow: hidden;
-
-        h1, h2, h3, h4, h5, h6 {
-            color: @color-style-primary-hover;
-        }
-
-        .info-title {
-            margin-top: 5px;
-            font-size: 1.5em;
-            text-align: center;
-            text-transform: uppercase;
-            color: black;
-        }
-
-        .rent-type-group {
-            text-align: center;
-
-            .r-group {
-                margin: 25px 5px 0 5px;
-                width: 100px;
-                height: 70px;
-                display: inline-block;
-                text-align: center;
-                overflow: hidden;
-
-                .icon-rent-type {
-                    height: 40px;
-                    display: inline-block;
-                }
-
-                span {
-                    display: block;
-                }
-            }
-
-            .b-group {
-                margin: 25px 5px 0 20px;
-                //width: 100px;
-                height: 70px;
-                display: inline-block;
-                text-align: center;
-                overflow: hidden;
-
-                .icon-rent-type {
-                    height: 40px;
-                    display: inline-block;
-                }
-
-                span {
-                    display: block;
-                }
-            }
-        }
-
+    .info-title {
+      margin-top: 5px;
+      font-size: 1.5em;
+      text-align: center;
+      text-transform: uppercase;
+      color: black;
     }
 
-    > .properties {
+    .rent-type-group {
+      text-align: center;
 
+      .r-group {
+        margin: 25px 5px 0 5px;
+        width: 100px;
+        height: 70px;
+        display: inline-block;
+        text-align: center;
+        overflow: hidden;
 
-        h4.title {
-            text-align: center;
-            font-size: 1.2em;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-        }
-        
-          h4.title-r {
-            font-size: 1.2em;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-        }
-
-        .desc {
-            margin-top: 20px;
-
-            p {
-                margin: 0;
-                font-size: 1.15em;
-
-                span {
-                    color: @color-style-shadeblue;
-                }
-            }
+        .icon-rent-type {
+          height: 40px;
+          display: inline-block;
         }
 
-        .devices {
-            margin-top: 20px;
-            .list {
-                padding: 0 65px;
-                text-align: center;
-                li {
-                    display: inline-block;
-                    //width: 33.3333%;
-                    //height: 100px;
-                    text-align: center;
-                    //padding: 12px 0;
-                }
-            }
+        span {
+          display: block;
+        }
+      }
+
+      .b-group {
+        margin: 25px 5px 0 20px;
+        //width: 100px;
+        height: 70px;
+        display: inline-block;
+        text-align: center;
+        overflow: hidden;
+
+        .icon-rent-type {
+          height: 40px;
+          display: inline-block;
         }
 
+        span {
+          display: block;
+        }
+      }
     }
-} 
+
+  }
+
+  > .properties {
+
+
+    h4.title {
+      text-align: center;
+      font-size: 1.2em;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+    }
+
+    h4.title-r {
+      font-size: 1.2em;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+    }
+
+    .desc {
+      margin-top: 20px;
+
+      p {
+        margin: 0;
+        font-size: 1.15em;
+
+        span {
+          color: @color-style-shadeblue;
+        }
+      }
+    }
+
+    .devices {
+      margin-top: 20px;
+
+      .list {
+        padding: 0 65px;
+        text-align: center;
+
+        li {
+          display: inline-block;
+          //width: 33.3333%;
+          //height: 100px;
+          text-align: center;
+          //padding: 12px 0;
+        }
+      }
+    }
+
+  }
+}
 
 .agency-info {
-    margin-top: 46px;
-    h3 {
-        color: #bb0b13;
-        text-transform: uppercase;
-        font-size: 18px;
-    }
+  margin-top: 46px;
 
-    p {
-        font-style: italic;
-        margin-bottom:10px; 
-    }
+  h3 {
+    color: #bb0b13;
+    text-transform: uppercase;
+    font-size: 18px;
+  }
+
+  p {
+    font-style: italic;
+    margin-bottom: 10px;
+  }
 
 }
 
 .apartment-view {
-    background: url(/basic-images/Layer42.png)center center no-repeat;
-    background-size: cover;
+  background: url(/basic-images/Layer42.png) center center no-repeat;
+  background-size: cover;
 }
 
 @import "reviews.less"; 

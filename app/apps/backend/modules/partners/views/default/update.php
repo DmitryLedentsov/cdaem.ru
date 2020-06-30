@@ -23,17 +23,17 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
 ]);
 
 echo \backend\modules\admin\widgets\ExtraControlWidget::widget([
-        'control' => [
-            [
-                'url' => ['/partners/default/create'],
-                'label' => 'Создать',
-            ],
-            [
-                'url' => ['/partners/default/delete', 'id' => $model->apartment_id],
-                'label' => 'Удалить',
-            ]
+    'control' => [
+        [
+            'url' => ['/partners/default/create'],
+            'label' => 'Создать',
+        ],
+        [
+            'url' => ['/partners/default/delete', 'id' => $model->apartment_id],
+            'label' => 'Удалить',
         ]
-    ]);
+    ]
+]);
 
 echo $this->render('_form', [
     'model' => $model,

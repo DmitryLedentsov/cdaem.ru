@@ -16,14 +16,17 @@
             {% if index is not null %}
 
                 <div class="msk-map clearfix">
-                    <div class="title"><span id="open-subway-map" data-url="{{ path({'0' : '/partners/default/region', 'city' : 'msk'}) }}">Поиск по метро</span></div>
+                    <div class="title"><span id="open-subway-map"
+                                             data-url="{{ path({'0' : '/partners/default/region', 'city' : 'msk'}) }}">Поиск по метро</span>
+                    </div>
                     <div class="modal fade" id="modal-subway-map" data-title="Выбрать на карте Москвы">
                         <div class="form-group text-center">
-                            <input type="button" class="close-modal btn btn-primary" value="Выбрать" />
+                            <input type="button" class="close-modal btn btn-primary" value="Выбрать"/>
                         </div>
-                        <div class="map"></div> <br />
+                        <div class="map"></div>
+                        <br/>
                         <div class="form-group text-center">
-                            <input type="button" class="close-modal btn btn-primary" value="Выбрать" />
+                            <input type="button" class="close-modal btn btn-primary" value="Выбрать"/>
                         </div>
                     </div>
                 </div>
@@ -36,7 +39,7 @@
                 </div>
             </div>
 
-            <div class="board-search-nav visible-xs">     
+            <div class="board-search-nav visible-xs">
                 <a href="{{ path(['/office/default/index']) }}">Личный кабинет</a>
                 <a href="{{ path(['/partners/default/index']) }}">Доска объявлений</a>
             </div>
@@ -59,7 +62,8 @@
                 </select>
             </div>
             <div class="select-filter white" style="width: 415px">
-                <input name="city" type="text" class="form-control input-search city-drop-down-list" data-url="{{ path(['/geo/ajax/select-city']) }}" value="" placeholder="Укажите Ваш город"/>
+                <input name="city" type="text" class="form-control input-search city-drop-down-list"
+                       data-url="{{ path(['/geo/ajax/select-city']) }}" value="" placeholder="Укажите Ваш город"/>
             </div>
             <div class="select-filter white custom">
                 <input type="submit" class="btn btn-primary" value="Поиск"/>

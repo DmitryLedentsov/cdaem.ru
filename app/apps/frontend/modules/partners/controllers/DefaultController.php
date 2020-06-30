@@ -26,12 +26,14 @@ use Yii;
  * Главный контроллер партнеров
  * @package frontend\modules\partners\controllers
  */
-class DefaultController extends \frontend\components\Controller {
+class DefaultController extends \frontend\components\Controller
+{
 
     /**
      * @inheritdoc
      */
-    public function beforeAction($action) {
+    public function beforeAction($action)
+    {
         $actions = ['apartments', 'preview', 'create', 'update'];
 
         if (in_array($action->id, $actions)) {
@@ -58,17 +60,18 @@ class DefaultController extends \frontend\components\Controller {
     /**
      * @inheritdoc
      */
-    public function behaviors() {
+    public function behaviors()
+    {
         $behaviors = [
             'access' => [
-                'class' => \yii\filters\AccessControl::className(),
+                'class' => \yii\filters\AccessControl::class,
                 'rules' => [
-                        [
+                    [
                         'actions' => ['help', 'index', 'pre-region', 'region', 'view', 'preview', 'thumbs', 'others', 'delete'],
                         'allow' => true,
                         'roles' => ['?', '@']
                     ],
-                        [
+                    [
                         'actions' => ['apartments', 'create', 'update', 'calendar', 'buy-ads', 'preview', 'delete'],
                         'allow' => true,
                         'roles' => ['@']
@@ -88,20 +91,22 @@ class DefaultController extends \frontend\components\Controller {
      * Доска объявлений
      * @return string
      */
-    public function actionIndex() {
+    public function actionIndex()
+    {
         $cities = models\Apartment::alphCities();
 
         $searchModel = new models\search\AdvertSearch();
         return $this->render('index.twig', [
-                    'cities' => $cities,
-                    'searchModel' => $searchModel,
+            'cities' => $cities,
+            'searchModel' => $searchModel,
         ]);
     }
 
     /**
      * Перенаправление на поддомен города
      */
-    public function actionPreRegion() {
+    public function actionPreRegion()
+    {
         $city = Yii::$app->request->get('city');
 
         if ($city) {
@@ -128,7 +133,8 @@ class DefaultController extends \frontend\components\Controller {
      * @return mixed
      * @throws \Exception
      */
-    public function actionRegion() {
+    public function actionRegion()
+    {
         $city = City::findByNameEng(Yii::$app->request->get('city'));
 
         if (!$city) {
@@ -144,36 +150,36 @@ class DefaultController extends \frontend\components\Controller {
             $articlesQuery->where('city IS NULL');
         }
         $articles = $articlesQuery->limit(1)->asArray()->all();
-        
+
         $articlesQuery2 = Article::find()
-                ->orderBy(['date_create' => SORT_DESC]);
+            ->orderBy(['date_create' => SORT_DESC]);
 
         if (!is_null($city)) {
             $articlesQuery2->where(['city' => $city]);
         } else {
             $articlesQuery2->where('city IS NULL');
-        }     
+        }
         $articlesall3 = $articlesQuery2->limit(9)->asArray()->all();
-         $i = 0;
-         $articlesall2 = array();
-        foreach ($articlesall3 as $item){
-            if($i > 0){
+        $i = 0;
+        $articlesall2 = array();
+        foreach ($articlesall3 as $item) {
+            if ($i > 0) {
                 $articlesall2[] = $item;
             }
-             $i++;
+            $i++;
         }
         $searchModel = new models\search\AdvertSearch();
         $dataProvider = $searchModel->search($params);
         $topAdverts = models\Advert::findAdvertsByCity($city->city_id, true, Yii::$app->request->get('sect'));
-       
-        Yii::$app->view->registerLinkTag(['rel' => 'canonical', 'href' => URL::to('https://' . $city->name_eng . '.cdaem.ru')]); 
+
+        Yii::$app->view->registerLinkTag(['rel' => 'canonical', 'href' => URL::to('https://' . $city->name_eng . '.cdaem.ru')]);
         return $this->render('region.twig', [
-                    'city' => $city,
-                    'searchModel' => $searchModel,
-                    'topAdverts' => $topAdverts,
-                    'dataProvider' => $dataProvider,
-                    'articles' => $articles,
-                    'articlesall2' => $articlesall2,
+            'city' => $city,
+            'searchModel' => $searchModel,
+            'topAdverts' => $topAdverts,
+            'dataProvider' => $dataProvider,
+            'articles' => $articles,
+            'articlesall2' => $articlesall2,
         ]);
     }
 
@@ -183,7 +189,8 @@ class DefaultController extends \frontend\components\Controller {
      * @return string
      * @throws NotFoundHttpException
      */
-    public function actionView($id) {
+    public function actionView($id)
+    {
         $model = models\Advert::getFullData($id, Yii::$app->request->get('city'));
 
         if (!$model) {
@@ -195,53 +202,59 @@ class DefaultController extends \frontend\components\Controller {
             $otherAdverts = models\Advert::getOtherAdverts($model->apartment->user_id, $id);
 
             $res = ArrayHelper::map(
-                            $otherAdverts, 'advert_id', function ($element) {
-                        return $element;
-                    }, function ($element) {
-                        return $element['rentType']['slug'] . ',' . $element['rentType']['name'];
-                    });
+                $otherAdverts, 'advert_id', function ($element) {
+                return $element;
+            }, function ($element) {
+                return $element['rentType']['slug'] . ',' . $element['rentType']['name'];
+            });
         }
         return $this->render('view.twig', [
-                    'model' => $model,
-                    'otherAdverts' => $res,
+            'model' => $model,
+            'otherAdverts' => $res,
         ]);
     }
-    public function actionPreview($id) {
+
+    public function actionPreview($id)
+    {
         $model = models\form\ApartmentForm::findByIdThisUser($id);
         return $this->render('preview.twig', [
-                    'model' => $model,
+            'model' => $model,
         ]);
     }
+
     /**
      * Остальные предложения арендодателя
      * @return string
      * @throws HttpException
      */
-    public function actionOthers() {
+    public function actionOthers()
+    {
         $model = $this->findAdvert(Yii::$app->request->get('id'), Yii::$app->request->get('city'));
         if (!$model->apartment->user->profile->vip) {
             throw new HttpException(404, 'Вы запросили страницу, которой не существует');
         }
         $otherAdverts = models\Advert::getOtherAdverts($model->apartment->user_id);
         $res = ArrayHelper::map(
-                        $otherAdverts, 'advert_id', function ($element) {
-                    return $element;
-                }, function ($element) {
-                    return $element['rentType']['slug'] . ',' . $element['rentType']['name'];
-                });
+            $otherAdverts, 'advert_id', function ($element) {
+            return $element;
+        }, function ($element) {
+            return $element['rentType']['slug'] . ',' . $element['rentType']['name'];
+        });
 
 
         return $this->render('others.twig', [
-                    'model' => $model,
-                    'otherAdverts' => $res,
+            'model' => $model,
+            'otherAdverts' => $res,
         ]);
     }
+
     /**
      * Объявления
      * @return string
      */
-    public function actionApartments() {
-        $filter = isset(Yii::$app->request->queryParams['filter']) ? (string) Yii::$app->request->queryParams['filter'] : '';
+    public function actionApartments()
+    {
+        $filter = isset(Yii::$app->request->queryParams['filter']) ? (string)Yii::$app->request->queryParams['filter'] : '';
         $filter = explode(';', $filter);
         $filterArray = [];
 
@@ -255,15 +268,17 @@ class DefaultController extends \frontend\components\Controller {
         $dataProvider = $searchModel->search($filterArray);
 
         return $this->render('apartments.twig', [
-                    'searchModel' => $searchModel,
-                    'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
         ]);
     }
+
     /**
      * Добавить объявление
      * @return string|Response
      */
-    public function actionCreate() {
+    public function actionCreate()
+    {
         $apartment = new models\form\ApartmentForm(['scenario' => 'user-create']);
         $rentTypes = models\form\AdvertForm::getPreparedRentTypesAdvertsList(RentType::rentTypeslist(), $apartment->adverts);
         $advert = new models\form\AdvertForm(['scenario' => 'user-create']);
@@ -298,19 +313,21 @@ class DefaultController extends \frontend\components\Controller {
             return $errors;
         }
         return $this->render('apartment_create.twig', [
-                    'apartment' => $apartment,
-                    'advert' => $advert,
-                    'rentTypes' => $rentTypes,
-                    'image' => $image,
+            'apartment' => $apartment,
+            'advert' => $advert,
+            'rentTypes' => $rentTypes,
+            'image' => $image,
         ]);
     }
+
     /**
      * Редактировать объявление
      * @param $id
      * @return array|string
      * @throws HttpException
      */
-    public function actionUpdate($id) {
+    public function actionUpdate($id)
+    {
         $apartment = models\form\ApartmentForm::findByIdThisUser($id);
         if (!$apartment) {
             throw new HttpException(404, 'Вы ищете страницу, которой не существует');
@@ -360,39 +377,40 @@ class DefaultController extends \frontend\components\Controller {
 
 
         return $this->render('apartment_update.twig', [
-                    'apartment' => $apartment,
-                    'advert' => $advert,
-                    'rentTypes' => $rentTypes,
-                    'image' => $image,
+            'apartment' => $apartment,
+            'advert' => $advert,
+            'rentTypes' => $rentTypes,
+            'image' => $image,
         ]);
     }
-    
-    public function actionDelete($id) {
-       $apartment = models\form\ApartmentForm::findByIdThisUser($id);
-       $oldAdverts = Advert::find()
-                ->Where('apartment_id = :apartment_id', [':apartment_id' => $id])
-                ->all();
 
-            if ($oldAdverts) {
-                foreach ($oldAdverts as $oldAdvert) {
-                    $oldAdvert->delete();
-                }
+    public function actionDelete($id)
+    {
+        $apartment = models\form\ApartmentForm::findByIdThisUser($id);
+        $oldAdverts = Advert::find()
+            ->Where('apartment_id = :apartment_id', [':apartment_id' => $id])
+            ->all();
+
+        if ($oldAdverts) {
+            foreach ($oldAdverts as $oldAdvert) {
+                $oldAdvert->delete();
             }
-        $apartment->delete();    
-            return $this->redirect(['/partners/default/apartments']);
-       
+        }
+        $apartment->delete();
+        return $this->redirect(['/partners/default/apartments']);
+
     }
-            
-    
+
 
     /**
      * Быстрое заселение (Календарь)
      * @return string
      */
-    public function actionCalendar() {
+    public function actionCalendar()
+    {
         $apartments = Apartment::findApartmentsByAvailable(Yii::$app->user->id);
         return $this->render('calendar.twig', [
-                    'apartments' => $apartments
+            'apartments' => $apartments
         ]);
     }
 
@@ -404,21 +422,22 @@ class DefaultController extends \frontend\components\Controller {
      * @return array|null|\yii\db\ActiveRecord
      * @throws HttpException
      */
-    protected function findAdvert($advert_id, $city_name_eng = null) {
+    protected function findAdvert($advert_id, $city_name_eng = null)
+    {
         $advert = models\Advert::find()
-                ->joinWith([
-                    'apartment' => function ($query) {
-                        $query->joinWith([
-                            'city',
-                            'user' => function ($query) {
-                                $query->banned(0);
-                            },
-                        ]);
-                    },
-                ])
-                ->where(['advert_id' => $advert_id])
-                ->andFilterWhere(['name_eng' => $city_name_eng])
-                ->one();
+            ->joinWith([
+                'apartment' => function ($query) {
+                    $query->joinWith([
+                        'city',
+                        'user' => function ($query) {
+                            $query->banned(0);
+                        },
+                    ]);
+                },
+            ])
+            ->where(['advert_id' => $advert_id])
+            ->andFilterWhere(['name_eng' => $city_name_eng])
+            ->one();
         if (!$advert) {
             throw new HttpException(404, 'Вы ищете страницу, которой не существует');
         }

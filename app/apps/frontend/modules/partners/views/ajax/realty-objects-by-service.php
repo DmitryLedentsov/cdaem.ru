@@ -4,16 +4,18 @@
     @var \yii\web\View this
     @var string $service
 */
+
 use common\modules\partners\models\Service;
 use yii\helpers\Html;
 use frontend\themes\basic\assets\DateTimeAsset;
+
 ?>
 <div id="modal-realty-objects-by-service" class="modal fade" data-title="Выберите объект">
     <div class="office">
         <div class="load">
             <?php try {
                 $service = Yii::$app->service->load($service);
-                echo Html::tag('p', '<b>'.$service->getName().'</b>', []);
+                echo Html::tag('p', '<b>' . $service->getName() . '</b>', []);
                 ?>
 
                 <?php if ($service->getId() != Service::SERVICE_ADVERTISING_TOP_SLIDER): ?>
@@ -22,11 +24,12 @@ use frontend\themes\basic\assets\DateTimeAsset;
 
                 <?php if ($service->isTimeInterval()): ?>
                     <p style="margin: 15px 0">
-                        <div class="alert alert-info">
-                            <b>Внимание:</b>
-                            Вы можете указать кол-во дней на которое хотите продлить услугу, а так-же дату активации (услуга начнет действовать с указанной даты)
-                            выбранной услуги.
-                        </div>
+                    <div class="alert alert-info">
+                        <b>Внимание:</b>
+                        Вы можете указать кол-во дней на которое хотите продлить услугу, а так-же дату активации (услуга
+                        начнет действовать с указанной даты)
+                        выбранной услуги.
+                    </div>
                     </p>
                     <div class="clearfix">
                         <div class="form-group" style="float: left; clear: none; margin-right: 15px;">

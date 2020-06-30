@@ -66,6 +66,7 @@ class BgHeader extends Widget
     public function run()
     {
         $content = Html::tag('h1', ($this->title), ['id' => 'bg-header-title']);
+
         return Html::tag('div', $content, [
             'class' => 'bg-header',
             'style' => 'background-image: url(' . $this->url . '/' . $this->_file . ')',

@@ -25,8 +25,8 @@ use yii\widgets\ActiveForm;
 
 <div class="row">
     <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-2"><?= $form->field($model, 'confirm')->dropDownList($model->confirmList, ['prompt' => 'Все']) ?></div>
-    <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-2"><?= $form->field($model, 'closed')->dropDownList(Yii::$app->formatter->booleanFormat, ['prompt' => 'Все'])?></div>
-    <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-2"><?= $form->field($model, 'failed')->dropDownList([1 => 'Только с "Незаездом"'], ['prompt' => 'Все'])?></div>
+    <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-2"><?= $form->field($model, 'closed')->dropDownList(Yii::$app->formatter->booleanFormat, ['prompt' => 'Все']) ?></div>
+    <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-2"><?= $form->field($model, 'failed')->dropDownList([1 => 'Только с "Незаездом"'], ['prompt' => 'Все']) ?></div>
 </div>
 
 <div class="form-group">

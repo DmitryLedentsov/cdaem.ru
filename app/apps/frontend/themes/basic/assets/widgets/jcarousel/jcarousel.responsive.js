@@ -1,5 +1,5 @@
-(function($) {
-    $(function() {
+(function ($) {
+    $(function () {
         var jcarousel = $('.jcarousel'),
             carouselScroll;
 
@@ -18,10 +18,10 @@
                 width = 140;
                 jcarousel.jcarousel('items').css('width', width + 'px');
             })
-            .mouseover(function() { // При наведении курсора остановить прокрутку
+            .mouseover(function () { // При наведении курсора остановить прокрутку
                 clearInterval(carouselScroll);
             })
-            .mouseout(function() { // При потере фокуса запускать прокрутку
+            .mouseout(function () { // При потере фокуса запускать прокрутку
                 autoScroll(4000); // Запуск автоскролла
             })
             .jcarousel({
@@ -41,15 +41,15 @@
 
         // Tooltips
         jcarousel.find('li')
-            .mouseover(function() {
+            .mouseover(function () {
                 var block = $(this).find('.jcarousel-title'),
                     parentBlock = block.parent(),
                     contentBlock = block.find('div');
 
                 block.show();
-                contentBlock.css('height','100px'); // Установить высоту блока такую же, как и у родительского эл-та
+                contentBlock.css('height', '100px'); // Установить высоту блока такую же, как и у родительского эл-та
             })
-            .mouseout(function() {
+            .mouseout(function () {
                 var block = $(this).find('.jcarousel-title');
 
                 block.hide();
@@ -57,7 +57,7 @@
 
         // Функция запуска автоскролла
         function autoScroll(interval) {
-            carouselScroll = setInterval(function() {
+            carouselScroll = setInterval(function () {
                     jcarousel.data('jcarousel').scroll('+=1');
                 }, interval
             );

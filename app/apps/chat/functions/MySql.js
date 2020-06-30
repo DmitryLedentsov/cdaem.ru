@@ -7,9 +7,9 @@ function verifyHash(hash, cb) {
     var user = [];
 
     var sql = 'SELECT user.id, session.id AS hash, profile.name, profile.surname, profile.avatar_url, profile.second_name FROM `users` user ';
-        sql += 'LEFT JOIN `users_profile` profile ON user.id = profile.user_id ';
-        sql += 'LEFT JOIN `session` session ON user.id = session.user_id ';
-        sql += 'WHERE session.id = ? LIMIT 1;';
+    sql += 'LEFT JOIN `users_profile` profile ON user.id = profile.user_id ';
+    sql += 'LEFT JOIN `session` session ON user.id = session.user_id ';
+    sql += 'WHERE session.id = ? LIMIT 1;';
 
     MysqlDBconnection.query(sql, [hash], function (err, rows) {
         if (err) {

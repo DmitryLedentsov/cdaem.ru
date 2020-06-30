@@ -65,6 +65,7 @@ class View extends \yii\web\View
         }
 
         $this->metaTagsRegistered = true;
+
         return true;
     }
 
@@ -77,7 +78,6 @@ class View extends \yii\web\View
         if ($this->dbTags !== null) {
             return (bool)$this->dbTags;
         }
-
 
         $requestedUrl = parse_url(Yii::$app->request->absoluteUrl);
         $domain = explode('.', $requestedUrl['host']);
@@ -97,6 +97,7 @@ class View extends \yii\web\View
         }
 
         $this->dbTags = false;
+
         return false;
     }
 

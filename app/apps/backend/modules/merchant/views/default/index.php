@@ -43,14 +43,14 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
             'value' => function ($model) {
                 if ($model->user) {
                     return \nepster\faceviewer\Widget::widget([
-                        'template' => '<div class="user-face"><div class="avatar">{face}</div>{name} {surname}</div>',
-                        'templateUrl' => ['/users/user/update', 'id' => $model->user->id],
-                        'data' => [
-                            'name' => Html::encode($model->user->profile->name),
-                            'surname' => Html::encode($model->user->profile->surname),
-                            'avatar_url' => $model->user->profile->avatar_url,
-                        ]
-                    ]).  '<div class="clearfix"></div> <br/> <div class="text-right">'. Html::a('Все операции', ['/merchant/default/index', 's[user_id]' => $model->user->id]) .'</div>';
+                            'template' => '<div class="user-face"><div class="avatar">{face}</div>{name} {surname}</div>',
+                            'templateUrl' => ['/users/user/update', 'id' => $model->user->id],
+                            'data' => [
+                                'name' => Html::encode($model->user->profile->name),
+                                'surname' => Html::encode($model->user->profile->surname),
+                                'avatar_url' => $model->user->profile->avatar_url,
+                            ]
+                        ]) . '<div class="clearfix"></div> <br/> <div class="text-right">' . Html::a('Все операции', ['/merchant/default/index', 's[user_id]' => $model->user->id]) . '</div>';
                 }
             }
         ],

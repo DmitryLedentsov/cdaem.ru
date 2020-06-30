@@ -24,17 +24,17 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
 ]);
 
 echo \backend\modules\admin\widgets\ExtraControlWidget::widget([
-        'control' => [
-            [
-                'url' => ['/partners/seo/create'],
-                'label' => 'Создать',
-            ],
-            [
-                'url' => ['/partners/seo/delete', 'id' => $model->id],
-                'label' => 'Удалить',
-            ]
+    'control' => [
+        [
+            'url' => ['/partners/seo/create'],
+            'label' => 'Создать',
+        ],
+        [
+            'url' => ['/partners/seo/delete', 'id' => $model->id],
+            'label' => 'Удалить',
         ]
-    ]);
+    ]
+]);
 
 echo $this->render('_form', [
     'model' => $model,

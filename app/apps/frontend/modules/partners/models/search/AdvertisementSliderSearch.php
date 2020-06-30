@@ -74,5 +74,5 @@ class AdvertisementSliderSearch extends AdvertisementSlider
 
         return $dataProvider;
     }
-    
+
 }

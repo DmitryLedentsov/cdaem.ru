@@ -46,12 +46,12 @@ class AdvertReservationSearch extends AdvertReservation
      * @param $params
      * @return ActiveDataProvider
      */
-    
-    
+
+
     ////////////
-   
-    
-     public function AlltypetSearch($iduser = null)
+
+
+    public function AlltypetSearch($iduser = null)
     {
         $query = AdvertReservation::find()
             ->with([
@@ -73,12 +73,11 @@ class AdvertReservationSearch extends AdvertReservation
                     $query->banned(0)->with('profile');
                 },
             ])
-          ->andWhere( ['!=', 'landlord_id', Yii::$app->user->id])
-                ->andWhere(['confirm' => 2])
-                        ->andWhere(['user_id' => $iduser]);
-                 
-        
-        
+            ->andWhere(['!=', 'landlord_id', Yii::$app->user->id])
+            ->andWhere(['confirm' => 2])
+            ->andWhere(['user_id' => $iduser]);
+
+
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'sort' => [
@@ -95,10 +94,10 @@ class AdvertReservationSearch extends AdvertReservation
 
         return $query;
     }
-    
+
     ///////////
-    
-    
+
+
     public function landlordSearch($params = [])
     {
         $query = AdvertReservation::find()
@@ -122,8 +121,8 @@ class AdvertReservationSearch extends AdvertReservation
                 },
             ])
             ->andWhere([self::tableName() . '.landlord_id' => Yii::$app->user->id]);
-        
-        
+
+
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'sort' => [
@@ -157,12 +156,12 @@ class AdvertReservationSearch extends AdvertReservation
                                     $query->banned(0);
                                 },
                             ])
-                            ->with([
-                                'city' => function ($query) {
-                                    $query->with('country');
-                                },
-                                'titleImage',
-                            ]);
+                                ->with([
+                                    'city' => function ($query) {
+                                        $query->with('country');
+                                    },
+                                    'titleImage',
+                                ]);
                         },
                     ]);
                 },
@@ -174,8 +173,8 @@ class AdvertReservationSearch extends AdvertReservation
             'query' => $query,
             'sort' => [
                 'defaultOrder' => [
-                   // 'closed' => SORT_ASC,
-                   // 'cancel' => SORT_ASC,
+                    // 'closed' => SORT_ASC,
+                    // 'cancel' => SORT_ASC,
                     'date_create' => SORT_DESC,
                 ],
             ],
@@ -186,5 +185,5 @@ class AdvertReservationSearch extends AdvertReservation
 
         return $dataProvider;
     }
-    
+
 }

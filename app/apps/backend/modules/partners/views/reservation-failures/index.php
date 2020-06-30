@@ -37,7 +37,7 @@ echo $this->render('_search', ['model' => $searchModel]);
     </div>
 <?php endif; ?>
 
-<br />
+    <br/>
 
 <?php echo GridView::widget([
     'tableOptions' => ['class' => 'table table-bordered'],
@@ -64,24 +64,24 @@ echo $this->render('_search', ['model' => $searchModel]);
         [
             'format' => 'html',
             'attribute' => 'user_id',
-            'value' => function($model) {
+            'value' => function ($model) {
                 return \nepster\faceviewer\Widget::widget([
-                    'template' => '<div class="user-face"><div class="avatar">{face}</div>{name} {surname}</div>',
-                    'templateUrl' => ['/users/user/update', 'id' => $model->user_id],
-                    'data' => [
-                        'email' => Html::encode($model->user->email),
-                        'name' => Html::encode($model->user->profile->name),
-                        'surname' => Html::encode($model->user->profile->surname),
-                        'avatar_url' => $model->user->profile->avatar_url,
-                    ]
-                ]) . '<div>EMAIL: <b>'.Html::encode($model->user->email).'</b></div>';
+                        'template' => '<div class="user-face"><div class="avatar">{face}</div>{name} {surname}</div>',
+                        'templateUrl' => ['/users/user/update', 'id' => $model->user_id],
+                        'data' => [
+                            'email' => Html::encode($model->user->email),
+                            'name' => Html::encode($model->user->profile->name),
+                            'surname' => Html::encode($model->user->profile->surname),
+                            'avatar_url' => $model->user->profile->avatar_url,
+                        ]
+                    ]) . '<div>EMAIL: <b>' . Html::encode($model->user->email) . '</b></div>';
             }
         ],
 
         [
             'format' => 'html',
             'attribute' => 'reservation_id',
-            'value' => function($model) {
+            'value' => function ($model) {
                 return Html::a('Бронь № ' . $model->reservation_id, ['/partners/advert-reservation/update', 'id' => $model->reservation_id]);
             }
         ],

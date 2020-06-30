@@ -159,7 +159,6 @@ class m150101_232650_total_rbac extends Migration
         $auth->add($permission);
 
 
-
         # --- Реквизиты // details-history
         $permission = $auth->createPermission('agency-details-history-view');
         $permission->description = '<b>Разрешить просмотр заявки на отправку реквизитов в агенстве</b><p>Разрешение на просмотр любых заявок на отправку реквизитов агенства пользователям сайта.</p>';
@@ -176,8 +175,6 @@ class m150101_232650_total_rbac extends Migration
         $permission = $auth->createPermission('agency-details-history-send');
         $permission->description = '<b>Разрешить отправлять реквизиты агенства пользователям</b><p>Разрешение на отправку реквизитов агенства пользователям сайта.</p>';
         $auth->add($permission);
-
-
 
 
         # Обратный звонок
@@ -200,8 +197,6 @@ class m150101_232650_total_rbac extends Migration
         $auth->add($permission);
 
 
-
-
         # Недмижимость
         #=============================================================
 
@@ -217,8 +212,6 @@ class m150101_232650_total_rbac extends Migration
         $permission = $auth->createPermission('realty-rent-type-update');
         $permission->description = '<b>Разрешить редактировать типы аренды</b><p>Разрешение на редактирование любых типов аренды.</p>';
         $auth->add($permission);
-
-
 
 
         # Статьи
@@ -241,8 +234,6 @@ class m150101_232650_total_rbac extends Migration
         $auth->add($permission);
 
 
-
-
         # Страницы
         #=============================================================
 
@@ -261,8 +252,6 @@ class m150101_232650_total_rbac extends Migration
         $permission = $auth->createPermission('pages-delete');
         $permission->description = '<b>Разрешить удалять статические страницы</b><p>Разрешение на удаление любых статических страниц.</p>';
         $auth->add($permission);
-
-
 
 
         # Отзывы
@@ -289,8 +278,6 @@ class m150101_232650_total_rbac extends Migration
         $auth->add($permission);
 
 
-
-
         # Менрчант
         #=============================================================
 
@@ -305,8 +292,6 @@ class m150101_232650_total_rbac extends Migration
         $permission = $auth->createPermission('merchant-account-management');
         $permission->description = '<b>Разрешить Управление счетом</b><p>Разрешение управлять счетом любого пользователя (пополнение и списание средств со счета).</p>';
         $auth->add($permission);
-
-
 
 
         # Партнеры (доска объявлений)
@@ -394,8 +379,6 @@ class m150101_232650_total_rbac extends Migration
         $auth->add($permission);
 
 
-
-
         # Техническая поддержка
         #=============================================================
 
@@ -418,8 +401,6 @@ class m150101_232650_total_rbac extends Migration
         $permission = $auth->createPermission('helpdesk-multi-control');
         $permission->description = '<b>Разрешить массовое управление действиями технической поддержки</b><p>Разрешение на любое действие из массового управления технической поддержки.</p>';
         $auth->add($permission);
-
-
 
 
         # Сеотекст

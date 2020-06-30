@@ -29,7 +29,7 @@
                     .contactopenphone-btn {
                         display: none !important;
                     }
-                    
+
                     .bronirovanie-btn {
                         display: none !important;
                     }
@@ -46,23 +46,26 @@
     <div class="user-contacts">
         Телефон: {{ UserHelper.formatPhone(model.apartment.user.phone) }}
     </div>
-    
+
     <div class="text-center">
         <span class="btn btn-primary btn-special" onclick="writeMessage({{ model.apartment.user.id }})">Сообщение</span>
         {% if model.apartment.user.phone is empty %}
             &nbsp; &nbsp;
-            <a href="{{ path({0: '/partners/reservation/advert-reservation', 'advert_id' : model.advert_id}) }}" class="btn btn-orange btn-special">Забронировать</a>
+            <a href="{{ path({0: '/partners/reservation/advert-reservation', 'advert_id' : model.advert_id}) }}"
+               class="btn btn-orange btn-special">Забронировать</a>
         {% endif %}
     </div>
 
-    <br />
+    <br/>
 
 {% else %}
 
     <div class="text-center">
-        <span class="btn btn-primary btn-special contactopenphone-btn" onclick="fast_payment_widget('{{ constant('SERVICE_CONTACTS_OPEN_TO_USER', Service) }}', {'advert_id' : {{ model.advert_id }} })">Контакты</span>
+        <span class="btn btn-primary btn-special contactopenphone-btn"
+              onclick="fast_payment_widget('{{ constant('SERVICE_CONTACTS_OPEN_TO_USER', Service) }}', {'advert_id' : {{ model.advert_id }} })">Контакты</span>
         &nbsp; &nbsp;
-        <a href="{{ path({0: '/partners/reservation/advert-reservation', 'advert_id' : model.advert_id}) }}" class="btn btn-orange btn-special bronirovanie-btn">Забронировать</a>
+        <a href="{{ path({0: '/partners/reservation/advert-reservation', 'advert_id' : model.advert_id}) }}"
+           class="btn btn-orange btn-special bronirovanie-btn">Забронировать</a>
     </div>
 
 {% endif %}
@@ -77,7 +80,7 @@
         <br/>
 
         <h3>О себе:</h3>
-        <p>{{ model.apartment.user.profile.about_me ?: 'Нет данных'}}</p>
+        <p>{{ model.apartment.user.profile.about_me ?: 'Нет данных' }}</p>
 
         <br/>
 

@@ -31,7 +31,7 @@ class PreviewAdvertBoard extends Widget
      */
     public function init()
     {
-         parent::init();
+        parent::init();
 
         if (!$this->advert->apartment->metroStation) {
             $this->_address = $this->advert->apartment->address;
@@ -53,14 +53,14 @@ class PreviewAdvertBoard extends Widget
             if ($this->advert['rent_type'] == $advert['rent_type']) {
                 $active = ' active';
             }
-            
-             $href = Yii::$app->urlManager->createUrl([
-            '/partners/default/view',
-            'id' => $advert->advert_id,
-            'city' => $advert->apartment->city->name_eng
-        ]);
 
-            $this->_rentTypes .= Html::tag('div', $icon . '<a href=" '. $href  .'">' . '<span class="price">' . $advert->priceText . '</span></a>', [
+            $href = Yii::$app->urlManager->createUrl([
+                '/partners/default/view',
+                'id' => $advert->advert_id,
+                'city' => $advert->apartment->city->name_eng
+            ]);
+
+            $this->_rentTypes .= Html::tag('div', $icon . '<a href=" ' . $href . '">' . '<span class="price">' . $advert->priceText . '</span></a>', [
                 'class' => 'item' . $active,
                 'title' => $advert->rentType['name']
             ]);
@@ -90,19 +90,19 @@ class PreviewAdvertBoard extends Widget
             $now_available = 'Сейчас свободно';
         }
 
-        $selected =  $this->advert->selected ? ' selected' : '';
-        $contacts =  $this->advert->apartment->open_contacts ? '<div class="contacts topper" title="Контакты открыты"></div>' : '';
-        if(!$this->advert->apartment->open_contacts && $this->advert->apartment->user->checkActivityIfOlderThan('month', 1)) {
+        $selected = $this->advert->selected ? ' selected' : '';
+        $contacts = $this->advert->apartment->open_contacts ? '<div class="contacts topper" title="Контакты открыты"></div>' : '';
+        if (!$this->advert->apartment->open_contacts && $this->advert->apartment->user->checkActivityIfOlderThan('month', 1)) {
             $contacts = '<div class="contacts" title="Контакты открыты"></div>';
         }
         return ('
-            <div class="apartment-board col-sm-6 col-xs-6 col-md-3'.$selected.'">
+            <div class="apartment-board col-sm-6 col-xs-6 col-md-3' . $selected . '">
                 
                     <div class="image board-img">
                     <a href="' . $href . '" class="board-inside-fullink"></a>
                         ' . $this->previewTitleImage . '
                         ' . $online . '
-                         '. $now_available . '
+                         ' . $now_available . '
                         ' . $contacts . '
                         <div class="address"><span>' . $this->_address . '</span></div>
                     </div>

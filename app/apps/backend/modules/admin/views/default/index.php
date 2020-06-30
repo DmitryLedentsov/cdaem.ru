@@ -14,6 +14,7 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
+
 echo '<meta http-equiv="Refresh" content="1000" />';
 $this->title = 'Панель управления';
 
@@ -44,13 +45,15 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
                                     ?>
                                     <div class="clearfix">
                                         <div class="chat-member">
-                                            <h6><span class="status status-success"></span> <?= Html::encode($callback->phone) ?></h6>
+                                            <h6>
+                                                <span class="status status-success"></span> <?= Html::encode($callback->phone) ?>
+                                            </h6>
                                         </div>
                                         <div class="chat-actions">
                                             <?= HtmL::a('<i class="icon-phone2"></i>', ['/callback/default/update', 'id' => $callback->callback_id], ['class' => 'btn btn-link btn-icon btn-xs']) ?>
                                         </div>
                                     </div>
-                                    <?php
+                                <?php
                                 endforeach;
                             } else {
                                 echo '<p>В данный момент нет заявок</p>';
@@ -83,15 +86,15 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
                                 foreach ($detailsHistory as $detail) : ?>
 
                                     <?php
-                                        if ($detail->advert->apartment->titleImage) {
-                                            $aHtml = '<div class="thumbnail thumbnail-boxed">
+                                    if ($detail->advert->apartment->titleImage) {
+                                        $aHtml = '<div class="thumbnail thumbnail-boxed">
                                                     <div class="thumb">
                                                         ' . Html::img($detail->advert->apartment->titleImage->previewSrc, ['alt' => '']) . '
                                                     </div>
                                                 </div>';
-                                        } else {
-                                            $aHtml = '(картинка не задана)';
-                                        }
+                                    } else {
+                                        $aHtml = '(картинка не задана)';
+                                    }
                                     ?>
 
                                     <tr>
@@ -101,7 +104,7 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
                                         <td><?= 'Телефон: ' . Html::encode($detail->phone), '<br/> EMAIL: ', Html::encode($detail->email) ?></td>
                                         <td class="tdStatus"><?= Yii::$app->BasisFormat->helper('DateTime')->toFullDateTime($detail->date_create) ?></td>
                                     </tr>
-                                    <?php
+                                <?php
                                 endforeach;
                             } else {
                                 echo '<tr><td colspan="4">В данный момент нет резерваций</td></tr>';
@@ -145,15 +148,15 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
                                 foreach ($agencyReservations as $reservation) : ?>
 
                                     <?php
-                                        if ($reservation->apartment->titleImage) {
-                                            $aHtml = '<div class="thumbnail thumbnail-boxed">
+                                    if ($reservation->apartment->titleImage) {
+                                        $aHtml = '<div class="thumbnail thumbnail-boxed">
                                                 <div class="thumb">
                                                     ' . Html::img($reservation->apartment->titleImage->previewSrc, ['alt' => '']) . '
                                                 </div>
                                             </div>';
-                                        } else {
-                                            $aHtml = '(картинка не задана)';
-                                        }
+                                    } else {
+                                        $aHtml = '(картинка не задана)';
+                                    }
                                     ?>
 
                                     <tr>
@@ -163,7 +166,7 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
                                         <td><?= Html::encode($reservation->more_info) ?></td>
                                         <td><?= Yii::$app->BasisFormat->helper('DateTime')->toFullDateTime($reservation->date_arrived) ?></td>
                                     </tr>
-                                    <?php
+                                <?php
                                 endforeach;
                             } else {
                                 echo '<tr><td colspan="5">В данный момент нет резерваций</td></tr>';
@@ -190,7 +193,8 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
             <?php if (Yii::$app->user->can('agency-select-view')): ?>
                 <div class="col-md-6">
                     <div class="panel panel-default">
-                        <div class="panel-heading"><h6 class="panel-title"><i class="icon-home6"></i> Быстро подберём квартиру</h6></div>
+                        <div class="panel-heading"><h6 class="panel-title"><i class="icon-home6"></i> Быстро подберём
+                                квартиру</h6></div>
                         <div class="table-responsive pre-scrollable">
                             <table class="table table-striped table-bordered">
                                 <thead>
@@ -213,7 +217,7 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
                                             <td><?= $select->rent_types_array ? implode('<br/>', array_intersect_key($select->rentTypesList, array_flip($select->rent_types_array))) : '(не задано)' ?></td>
                                             <td><?= $select->metro_array ? implode('<br/>', array_intersect_key($select->metroStations, array_flip($select->metro_array))) : '(не задано)' ?></td>
                                         </tr>
-                                        <?php
+                                    <?php
                                     endforeach;
                                 } else {
                                     echo '<tr><td colspan="4">В данный момент нет заявок</td></tr>';
@@ -233,7 +237,8 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
             <?php if (Yii::$app->user->can('agency-want-pass-view')): ?>
                 <div class="col-md-6">
                     <div class="panel panel-default">
-                        <div class="panel-heading"><h6 class="panel-title"><i class="icon-home6"></i> Хочу сдать квартиру</h6></div>
+                        <div class="panel-heading"><h6 class="panel-title"><i class="icon-home6"></i> Хочу сдать
+                                квартиру</h6></div>
                         <div class="table-responsive pre-scrollable">
                             <table class="table table-striped table-bordered">
                                 <thead>
@@ -256,7 +261,7 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
                                             <td><?= implode('<br/>', array_intersect_key($wantPass->rentTypesList, array_flip($wantPass->rent_types_array ?: []))); ?></td>
                                             <td><?= implode('<br/>', array_intersect_key($wantPass->metroStations, array_flip($wantPass->metro_array ?: []))); ?></td>
                                         </tr>
-                                        <?php
+                                    <?php
                                     endforeach;
                                 } else {
                                     echo '<tr><td colspan="4">В данный момент нет заявок</td></tr>';
@@ -287,7 +292,8 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
         <div class="row">
             <div class="col-md-8">
                 <div class="panel panel-default">
-                    <div class="panel-heading"><h6 class="panel-title"><i class="icon-support"></i> Техническая поддержка</h6></div>
+                    <div class="panel-heading"><h6 class="panel-title"><i class="icon-support"></i> Техническая
+                            поддержка</h6></div>
                     <div class="table-responsive pre-scrollable">
                         <table class="table table-striped table-bordered">
                             <thead>
@@ -303,13 +309,13 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
                             if ($helpdesks) {
                                 foreach ($helpdesks as $helpdesk) : ?>
                                     <tr>
-                                        
+
                                         <td class="tdId"><?= HtmL::a($helpdesk->ticket_id, ['/helpdesk/default/view', 'id' => $helpdesk->ticket_id]) ?></td>
                                         <td><?= HtmL::a(Html::encode($helpdesk->theme), ['/helpdesk/default/view', 'id' => $helpdesk->ticket_id]) ?></td>
                                         <td class="tdStatus"><?= Yii::$app->BasisFormat->helper('Status')->getItem($helpdesk->priorityArray, $helpdesk->priority) ?></td>
                                         <td class="tdStatus"><?= Yii::$app->BasisFormat->helper('Status')->getItem($helpdesk->departmentArray, $helpdesk->department) ?></td>
                                     </tr>
-                                    <?php
+                                <?php
                                 endforeach;
                             } else {
                                 echo '<tr><td colspan="4">В данный момент нет обращений</td></tr>';

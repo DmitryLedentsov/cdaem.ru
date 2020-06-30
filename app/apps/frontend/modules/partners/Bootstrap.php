@@ -37,8 +37,8 @@ class Bootstrap implements \yii\base\BootstrapInterface
                 'reservation' => '/partners/reservation/index',
 
                 'search' => '/partners/default/index',
-                 Yii::$app->params['siteSubDomain'] . '/flats/<id:\d+>' => '/partners/default/view',
-                 Yii::$app->params['siteSubDomain'] . '/flats/<id:\d+>/others' => '/partners/default/others',
+                Yii::$app->params['siteSubDomain'] . '/flats/<id:\d+>' => '/partners/default/view',
+                Yii::$app->params['siteSubDomain'] . '/flats/<id:\d+>/others' => '/partners/default/others',
 
                 //'partner_thumb/<path:.*>' => '/partners/default/thumbs',
                 'partners/pre-region' => '/partners/default/pre-region',
@@ -46,7 +46,7 @@ class Bootstrap implements \yii\base\BootstrapInterface
                 'partners/ajax/reservation-failure/<id:\d+>' => '/partners/ajax/reservation-failure',
                 'partners/ajax/<a:\w+>' => '/partners/ajax/<a>',
 
-                 Yii::$app->params['siteSubDomain'] => '/partners/default/region',
+                Yii::$app->params['siteSubDomain'] => '/partners/default/region',
             ]
         );
     }

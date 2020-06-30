@@ -34,16 +34,16 @@ class AdvertisingAdvert extends \yii\base\Widget
             $result = '';
 
             foreach ($advertisement as $advert) {
-                $result .= '<a href="'.Url::toRoute(['/partners/default/view', 'id' => $advert->advert_id, 'city' => Yii::$app->request->get('city')]).'">
+                $result .= '<a href="' . Url::toRoute(['/partners/default/view', 'id' => $advert->advert_id, 'city' => Yii::$app->request->get('city')]) . '">
                         <div class="advert-preview cover" title="Карамзана, дом 1, корпус 3">
                         <div class="apartment-wrap">
                             <div class="image">
-                                    <img src="'.$advert->advert->apartment->titleImageSrc.'" alt="">
+                                    <img src="' . $advert->advert->apartment->titleImageSrc . '" alt="">
                                 </div>
                                 <div class="description">
                                     <strong>' . Yii::$app->formatter->asCurrency($advert->advert->price, ArrayHelper::getValue($advert->advert->getCurrencyList(), $advert->advert->currency)) . '</strong>
-                                    <p>'.$advert->advert->rentType->name.'</p>
-                                    '.$advert->text.'
+                                    <p>' . $advert->advert->rentType->name . '</p>
+                                    ' . $advert->text . '
                                 </div>
                             </div>
                         </div>

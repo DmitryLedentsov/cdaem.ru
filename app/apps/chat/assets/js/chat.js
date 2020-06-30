@@ -75,7 +75,7 @@ $(function () {
                     if (typeof response.reload != 'undefined' && response.reload == false) {
                         // ..
                     } else {
-                        setTimeout(function() {
+                        setTimeout(function () {
                             document.location.reload();
                         }, 1000);
                     }
@@ -97,6 +97,7 @@ $(function () {
                     messageSend();
                 }
             });
+
             /**
              * Отправить сообщение
              */
@@ -182,11 +183,11 @@ function getUserName(user) {
  */
 function getUserAvatar(avatar) {
     if (avatar) {
-        avatar = '/avatars/'+avatar;
+        avatar = '/avatars/' + avatar;
     } else {
         avatar = '/basic-images/no-avatar.png';
     }
-    return '<img src="'+avatar+'" alt="">';
+    return '<img src="' + avatar + '" alt="">';
 }
 
 

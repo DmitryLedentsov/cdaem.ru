@@ -1,4 +1,3 @@
-
 /* ========================================================
  *
  * Londinium - premium responsive admin template
@@ -12,9 +11,7 @@
  * ======================================================== */
 
 
-
-$(function() {
-
+$(function () {
 
 
     /* # Data tables
@@ -23,17 +20,16 @@ $(function() {
 
     //===== Setting Datatable defaults =====//
 
-    $.extend( $.fn.dataTable.defaults, {
+    $.extend($.fn.dataTable.defaults, {
         autoWidth: false,
         pagingType: 'full_numbers',
         dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
         language: {
             search: '<span>Filter:</span> _INPUT_',
             lengthMenu: '<span>Show:</span> _MENU_',
-            paginate: { 'first': 'First', 'last': 'Last', 'next': '>', 'previous': '<' }
+            paginate: {'first': 'First', 'last': 'Last', 'next': '>', 'previous': '<'}
         }
     });
-
 
 
     //===== Default datatable =====//
@@ -41,16 +37,14 @@ $(function() {
     $('.datatable table').dataTable();
 
 
-
     //===== Datatable with pager =====//
 
     $('.datatable-pager table').dataTable({
         pagingType: 'simple',
         language: {
-            paginate: { 'next': 'Next â†’', 'previous': 'â† Previous' }
+            paginate: {'next': 'Next â†’', 'previous': 'â† Previous'}
         }
     });
-
 
 
     //===== Media datatable =====//
@@ -58,11 +52,10 @@ $(function() {
     $('.datatable-media table').dataTable({
         columnDefs: [{
             orderable: false,
-            targets: [ 0 ]
+            targets: [0]
         }],
-        order: [[ 1, 'asc' ]]
+        order: [[1, 'asc']]
     });
-
 
 
     //===== Custom sort columns =====//
@@ -70,11 +63,10 @@ $(function() {
     $('.datatable-custom-sort table').dataTable({
         columnDefs: [{
             orderable: false,
-            targets: [ 0, 2 ]
+            targets: [0, 2]
         }],
-        order: [[ 1, 'asc' ]]
+        order: [[1, 'asc']]
     });
-
 
 
     //===== Invoices datatable =====//
@@ -82,11 +74,10 @@ $(function() {
     $('.datatable-invoices table').dataTable({
         columnDefs: [{
             orderable: false,
-            targets: [ 1, 6 ]
+            targets: [1, 6]
         }],
-        order: [[ 0, 'desc' ]]
+        order: [[0, 'desc']]
     });
-
 
 
     //===== Tasks datatable =====//
@@ -94,10 +85,9 @@ $(function() {
     $('.datatable-tasks table').dataTable({
         columnDefs: [{
             orderable: false,
-            targets: [ 5 ]
+            targets: [5]
         }]
     });
-
 
 
     //===== Saving state =====//
@@ -107,13 +97,11 @@ $(function() {
     });
 
 
-
     //===== Saving state =====//
 
     $('.datatable-state-saving table').dataTable({
         stateSave: true
     });
-
 
 
     //===== Datatable with selectable rows =====//
@@ -127,11 +115,10 @@ $(function() {
                     sExtends: 'collection',
                     sButtonText: 'Tools <span class="caret"></span>',
                     sButtonClass: 'btn btn-primary',
-                    aButtons:    [ 'select_all', 'select_none' ]
+                    aButtons: ['select_all', 'select_none']
                 }]
         }
     });
-
 
 
     //===== Datatable with tools =====//
@@ -143,56 +130,47 @@ $(function() {
             sSwfPath: "media/swf/copy_csv_xls_pdf.swf",
             aButtons: [
                 {
-                    sExtends:    'copy',
+                    sExtends: 'copy',
                     sButtonText: 'Copy',
                     sButtonClass: 'btn btn-default'
                 },
                 {
-                    sExtends:    'print',
+                    sExtends: 'print',
                     sButtonText: 'Print',
                     sButtonClass: 'btn btn-default'
                 },
                 {
-                    sExtends:    'collection',
+                    sExtends: 'collection',
                     sButtonText: 'Save <span class="caret"></span>',
                     sButtonClass: 'btn btn-primary',
-                    aButtons:    [ 'csv', 'xls', 'pdf' ]
+                    aButtons: ['csv', 'xls', 'pdf']
                 }
             ]
         }
     });
 
 
-
     //===== Datatable with custom column filtering =====//
 
     // Setup - add a text input to each footer cell
-    $('.datatable-add-row table tfoot th').each( function () {
+    $('.datatable-add-row table tfoot th').each(function () {
         var title = $('.datatable-add-row table thead th').eq($(this).index()).text();
-        $(this).html( '<input type="text" class="form-control" placeholder="Filter '+title+'" />' );
+        $(this).html('<input type="text" class="form-control" placeholder="Filter ' + title + '" />');
     });
 
     // DataTable
     var table = $('.datatable-add-row table').DataTable();
 
     // Apply the filter
-    $(".datatable-add-row table tfoot input").on( 'keyup change', function () {
+    $(".datatable-add-row table tfoot input").on('keyup change', function () {
         table
-            .column( $(this).parent().index()+':visible' )
-            .search( this.value )
+            .column($(this).parent().index() + ':visible')
+            .search(this.value)
             .draw();
     });
 
 
-
-
-
-
-
-
-    $('.dataTables_filter input[type=search]').attr('placeholder','Type to filter...');
-
-
+    $('.dataTables_filter input[type=search]').attr('placeholder', 'Type to filter...');
 
 
     /*
@@ -298,7 +276,9 @@ $(function() {
             var data = {results: []}, i, j, s;
             for (i = 1; i < 5; i++) {
                 s = "";
-                for (j = 0; j < i; j++) {s = s + query.term;}
+                for (j = 0; j < i; j++) {
+                    s = s + query.term;
+                }
                 data.results.push({id: query.term + i, text: s});
             }
             query.callback(data);
@@ -346,21 +326,16 @@ $(function() {
     );
 
 
-
-
-
     /* # Form Validation
      ================================================== */
 
     $(".validate").validate({
-        errorPlacement: function(error, element) {
-            if (element.parent().parent().attr("class") == "checker" || element.parent().parent().attr("class") == "choice" ) {
-                error.appendTo( element.parent().parent().parent().parent().parent() );
-            }
-            else if (element.parent().parent().attr("class") == "checkbox" || element.parent().parent().attr("class") == "radio" ) {
-                error.appendTo( element.parent().parent().parent() );
-            }
-            else {
+        errorPlacement: function (error, element) {
+            if (element.parent().parent().attr("class") == "checker" || element.parent().parent().attr("class") == "choice") {
+                error.appendTo(element.parent().parent().parent().parent().parent());
+            } else if (element.parent().parent().attr("class") == "checkbox" || element.parent().parent().attr("class") == "radio") {
+                error.appendTo(element.parent().parent().parent());
+            } else {
                 error.insertAfter(element);
             }
         },
@@ -427,12 +402,10 @@ $(function() {
             },
             agree: "Please accept our policy"
         },
-        success: function(label) {
+        success: function (label) {
             label.text('Success!').addClass('valid');
         }
     });
-
-
 
 
     /* # Bootstrap Multiselects
@@ -443,7 +416,7 @@ $(function() {
 
     $('.multi-select').multiselect({
         buttonClass: 'btn btn-default',
-        onChange:function(element, checked){
+        onChange: function (element, checked) {
             $.uniform.update();
         }
     });
@@ -453,7 +426,7 @@ $(function() {
 
     $('.multi-select-color').multiselect({
         buttonClass: 'btn btn-info',
-        onChange:function(element, checked){
+        onChange: function (element, checked) {
             $.uniform.update();
         }
     });
@@ -464,7 +437,7 @@ $(function() {
     $('.multi-select-all').multiselect({
         buttonClass: 'btn btn-default',
         includeSelectAllOption: true,
-        onChange:function(element, checked){
+        onChange: function (element, checked) {
             $.uniform.update();
         }
     });
@@ -474,9 +447,9 @@ $(function() {
 
     $('.multi-select-onchange').multiselect({
         buttonClass: 'btn btn-default',
-        onChange:function(element, checked){
+        onChange: function (element, checked) {
             $.uniform.update();
-            $.jGrowl('Change event invoked!', { header: 'Update', position: 'center', life: 1500 });
+            $.jGrowl('Change event invoked!', {header: 'Update', position: 'center', life: 1500});
         }
     });
 
@@ -486,7 +459,7 @@ $(function() {
     $('.multi-select-right').multiselect({
         buttonClass: 'btn btn-default',
         dropRight: true,
-        onChange:function(element, checked){
+        onChange: function (element, checked) {
             $.uniform.update();
         }
     });
@@ -497,20 +470,17 @@ $(function() {
     $('.multi-select-search').multiselect({
         buttonClass: 'btn btn-link btn-lg btn-icon',
         dropRight: true,
-        buttonText: function(options) {
+        buttonText: function (options) {
             if (options.length == 0) {
                 return '<b class="caret"></b>';
-            }
-            else {
+            } else {
                 return ' <b class="caret"></b>';
             }
         },
-        onChange:function(element, checked){
+        onChange: function (element, checked) {
             $.uniform.update();
         }
     });
-
-
 
 
     /* # jQuery UI Components
@@ -543,83 +513,81 @@ $(function() {
         "Scala",
         "Scheme"
     ];
-    $( ".autocomplete" ).autocomplete({
+    $(".autocomplete").autocomplete({
         source: availableTags
     });
 
 
-
     //===== Jquery UI sliders =====//
 
-    $( "#default-slider" ).slider();
+    $("#default-slider").slider();
 
-    $( "#increments-slider" ).slider({
-        value:100,
+    $("#increments-slider").slider({
+        value: 100,
         min: 0,
         max: 500,
         step: 50,
-        slide: function( event, ui ) {
-            $( "#donation-amount" ).val( "$" + ui.value );
+        slide: function (event, ui) {
+            $("#donation-amount").val("$" + ui.value);
         }
     });
-    $( "#donation-amount" ).val( "$" + $( "#increments-slider" ).slider( "value" ) );
+    $("#donation-amount").val("$" + $("#increments-slider").slider("value"));
 
-    $( "#range-slider, #range-slider1" ).slider({
+    $("#range-slider, #range-slider1").slider({
         range: true,
         min: 0,
         max: 500,
-        values: [ 75, 300 ],
-        slide: function( event, ui ) {
-            $( "#price-amount, #price-amount1" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+        values: [75, 300],
+        slide: function (event, ui) {
+            $("#price-amount, #price-amount1").val("$" + ui.values[0] + " - $" + ui.values[1]);
         }
     });
-    $( "#price-amount, #price-amount1" ).val( "$" + $( "#range-slider, #range-slider1" ).slider( "values", 0 ) +
-    " - $" + $( "#range-slider, #range-slider1" ).slider( "values", 1 ) );
+    $("#price-amount, #price-amount1").val("$" + $("#range-slider, #range-slider1").slider("values", 0) +
+        " - $" + $("#range-slider, #range-slider1").slider("values", 1));
 
-    $( "#slider-range-min, #slider-range-min1" ).slider({
+    $("#slider-range-min, #slider-range-min1").slider({
         range: "min",
         value: 37,
         min: 1,
         max: 700,
-        slide: function( event, ui ) {
-            $( "#min-amount, #min-amount1" ).val( "$" + ui.value );
+        slide: function (event, ui) {
+            $("#min-amount, #min-amount1").val("$" + ui.value);
         }
     });
-    $( "#min-amount, #min-amount1" ).val( "$" + $( "#slider-range-min, #slider-range-min1" ).slider( "value" ) );
+    $("#min-amount, #min-amount1").val("$" + $("#slider-range-min, #slider-range-min1").slider("value"));
 
-    $( "#slider-range-max, #slider-range-max1" ).slider({
+    $("#slider-range-max, #slider-range-max1").slider({
         range: "max",
         min: 1,
         max: 10,
         value: 2,
-        slide: function( event, ui ) {
-            $( "#max-amount, #max-amount1" ).val( ui.value );
+        slide: function (event, ui) {
+            $("#max-amount, #max-amount1").val(ui.value);
         }
     });
-    $( "#max-amount, #max-amount1" ).val( $( "#slider-range-max, #slider-range-max1" ).slider( "value" ) );
-
+    $("#max-amount, #max-amount1").val($("#slider-range-max, #slider-range-max1").slider("value"));
 
 
     //===== Spinner options =====//
 
-    $( "#spinner-default" ).spinner();
+    $("#spinner-default").spinner();
 
-    $( "#spinner-decimal" ).spinner({
+    $("#spinner-decimal").spinner({
         step: 0.01,
         numberFormat: "n"
     });
 
-    $( "#culture" ).change(function() {
-        var current = $( "#spinner-decimal" ).spinner( "value" );
-        Globalize.culture( $(this).val() );
-        $( "#spinner-decimal" ).spinner( "value", current );
+    $("#culture").change(function () {
+        var current = $("#spinner-decimal").spinner("value");
+        Globalize.culture($(this).val());
+        $("#spinner-decimal").spinner("value", current);
     });
 
-    $( "#currency" ).change(function() {
-        $( "#spinner-currency" ).spinner( "option", "culture", $( this ).val() );
+    $("#currency").change(function () {
+        $("#spinner-currency").spinner("option", "culture", $(this).val());
     });
 
-    $( "#spinner-currency" ).spinner({
+    $("#spinner-currency").spinner({
         min: 5,
         max: 2500,
         step: 25,
@@ -627,19 +595,19 @@ $(function() {
         numberFormat: "C"
     });
 
-    $( "#spinner-overflow" ).spinner({
-        spin: function( event, ui ) {
-            if ( ui.value > 10 ) {
-                $( this ).spinner( "value", -10 );
+    $("#spinner-overflow").spinner({
+        spin: function (event, ui) {
+            if (ui.value > 10) {
+                $(this).spinner("value", -10);
                 return false;
-            } else if ( ui.value < -10 ) {
-                $( this ).spinner( "value", 10 );
+            } else if (ui.value < -10) {
+                $(this).spinner("value", 10);
                 return false;
             }
         }
     });
 
-    $.widget( "ui.timespinner", $.ui.spinner, {
+    $.widget("ui.timespinner", $.ui.spinner, {
         options: {
             // seconds
             step: 60 * 1000,
@@ -647,72 +615,68 @@ $(function() {
             page: 60
         },
 
-        _parse: function( value ) {
-            if ( typeof value === "string" ) {
+        _parse: function (value) {
+            if (typeof value === "string") {
                 // already a timestamp
-                if ( Number( value ) == value ) {
-                    return Number( value );
+                if (Number(value) == value) {
+                    return Number(value);
                 }
-                return +Globalize.parseDate( value );
+                return +Globalize.parseDate(value);
             }
             return value;
         },
 
-        _format: function( value ) {
-            return Globalize.format( new Date(value), "t" );
+        _format: function (value) {
+            return Globalize.format(new Date(value), "t");
         }
     });
 
-    $( "#spinner-time" ).timespinner();
-    $( "#culture-time" ).change(function() {
-        var current = $( "#spinner-time" ).timespinner( "value" );
-        Globalize.culture( $(this).val() );
-        $( "#spinner-time" ).timespinner( "value", current );
+    $("#spinner-time").timespinner();
+    $("#culture-time").change(function () {
+        var current = $("#spinner-time").timespinner("value");
+        Globalize.culture($(this).val());
+        $("#spinner-time").timespinner("value", current);
     });
-
 
 
     //===== jQuery UI Datepicker =====//
 
-    $( ".datepicker" ).datepicker({
+    $(".datepicker").datepicker({
         showOtherMonths: true
     });
 
-    $( ".datepicker-inline" ).datepicker({ showOtherMonths: true });
+    $(".datepicker-inline").datepicker({showOtherMonths: true});
 
-    $( ".datepicker-multiple" ).datepicker({
+    $(".datepicker-multiple").datepicker({
         showOtherMonths: true,
         numberOfMonths: 3
     });
 
-    $( ".datepicker-trigger" ).datepicker({
+    $(".datepicker-trigger").datepicker({
         showOn: "button",
         buttonImage: "images/interface/datepicker_trigger.png",
         buttonImageOnly: true,
         showOtherMonths: true
     });
 
-    $( ".from-date" ).datepicker({
+    $(".from-date").datepicker({
         defaultDate: "+1w",
         numberOfMonths: 3,
         showOtherMonths: true,
-        onClose: function( selectedDate ) {
-            $( ".to-date" ).datepicker( "option", "minDate", selectedDate );
+        onClose: function (selectedDate) {
+            $(".to-date").datepicker("option", "minDate", selectedDate);
         }
     });
-    $( ".to-date" ).datepicker({
+    $(".to-date").datepicker({
         defaultDate: "+1w",
         numberOfMonths: 3,
         showOtherMonths: true,
-        onClose: function( selectedDate ) {
-            $( ".from-date" ).datepicker( "option", "maxDate", selectedDate );
+        onClose: function (selectedDate) {
+            $(".from-date").datepicker("option", "maxDate", selectedDate);
         }
     });
 
-    $( ".datepicker-restricted" ).datepicker({ minDate: -20, maxDate: "+1M +10D", showOtherMonths: true });
-
-
-
+    $(".datepicker-restricted").datepicker({minDate: -20, maxDate: "+1M +10D", showOtherMonths: true});
 
 
     /* # Bootstrap Plugins
@@ -726,7 +690,7 @@ $(function() {
 
     //===== Popover =====//
 
-    $("[data-toggle=popover]").popover().click(function(e) {
+    $("[data-toggle=popover]").popover().click(function (e) {
         e.preventDefault()
     });
 
@@ -744,14 +708,14 @@ $(function() {
 
     //===== Add fadeIn animation to dropdown =====//
 
-    $('.dropdown, .btn-group').on('show.bs.dropdown', function(e){
+    $('.dropdown, .btn-group').on('show.bs.dropdown', function (e) {
         $(this).find('.dropdown-menu').first().stop(true, true).fadeIn(100);
     });
 
 
     //===== Add fadeOut animation to dropdown =====//
 
-    $('.dropdown, .btn-group').on('hide.bs.dropdown', function(e){
+    $('.dropdown, .btn-group').on('hide.bs.dropdown', function (e) {
         $(this).find('.dropdown-menu').first().stop(true, true).fadeOut(100);
     });
 
@@ -763,9 +727,6 @@ $(function() {
     });
 
 
-
-
-
     /* # Form Related Plugins
      ================================================== */
 
@@ -773,18 +734,18 @@ $(function() {
     //===== Pluploader (multiple file uploader) =====//
 
     $(".multiple-uploader").pluploadQueue({
-        runtimes : 'html5, html4',
-        url : '../upload.php',
-        chunk_size : '1mb',
-        unique_names : true,
-        filters : {
-            max_file_size : '10mb',
+        runtimes: 'html5, html4',
+        url: '../upload.php',
+        chunk_size: '1mb',
+        unique_names: true,
+        filters: {
+            max_file_size: '10mb',
             mime_types: [
-                {title : "Image files", extensions : "jpg,gif,png"},
-                {title : "Zip files", extensions : "zip"}
+                {title: "Image files", extensions: "jpg,gif,png"},
+                {title: "Zip files", extensions: "zip"}
             ]
         },
-        resize : {width : 320, height : 240, quality : 90}
+        resize: {width: 320, height: 240, quality: 90}
     });
 
 
@@ -816,18 +777,16 @@ $(function() {
 
     //===== Tags Input =====//
 
-    $('.tags').tagsInput({width:'100%'});
+    $('.tags').tagsInput({width: '100%'});
     $('.tags-autocomplete').tagsInput({
-        width:'100%',
-        autocomplete_url:'tags_autocomplete.html'
+        width: '100%',
+        autocomplete_url: 'tags_autocomplete.html'
     });
 
 
     //===== Form elements styling =====//
 
-    $(".styled, .multiselect-container input").uniform({ radioClass: 'choice', selectAutoWidth: false });
-
-
+    $(".styled, .multiselect-container input").uniform({radioClass: 'choice', selectAutoWidth: false});
 
 
     /* # Interface Related Plugins
@@ -837,23 +796,65 @@ $(function() {
     //===== Sparkline charts =====//
 
     $('.bar-danger').sparkline(
-        'html', {type: 'bar', barColor: '#D65C4F', height: '35px', barWidth: "5px", barSpacing: "2px", zeroAxis: "false"}
+        'html', {
+            type: 'bar',
+            barColor: '#D65C4F',
+            height: '35px',
+            barWidth: "5px",
+            barSpacing: "2px",
+            zeroAxis: "false"
+        }
     );
     $('.bar-success').sparkline(
-        'html', {type: 'bar', barColor: '#65B688', height: '35px', barWidth: "5px", barSpacing: "2px", zeroAxis: "false"}
+        'html', {
+            type: 'bar',
+            barColor: '#65B688',
+            height: '35px',
+            barWidth: "5px",
+            barSpacing: "2px",
+            zeroAxis: "false"
+        }
     );
 
     $('.bar-primary').sparkline(
-        'html', {type: 'bar', barColor: '#32434D', height: '35px', barWidth: "5px", barSpacing: "2px", zeroAxis: "false"}
+        'html', {
+            type: 'bar',
+            barColor: '#32434D',
+            height: '35px',
+            barWidth: "5px",
+            barSpacing: "2px",
+            zeroAxis: "false"
+        }
     );
     $('.bar-warning').sparkline(
-        'html', {type: 'bar', barColor: '#EE8366', height: '35px', barWidth: "5px", barSpacing: "2px", zeroAxis: "false"}
+        'html', {
+            type: 'bar',
+            barColor: '#EE8366',
+            height: '35px',
+            barWidth: "5px",
+            barSpacing: "2px",
+            zeroAxis: "false"
+        }
     );
     $('.bar-info').sparkline(
-        'html', {type: 'bar', barColor: '#3CA2BB', height: '35px', barWidth: "5px", barSpacing: "2px", zeroAxis: "false"}
+        'html', {
+            type: 'bar',
+            barColor: '#3CA2BB',
+            height: '35px',
+            barWidth: "5px",
+            barSpacing: "2px",
+            zeroAxis: "false"
+        }
     );
     $('.bar-default').sparkline(
-        'html', {type: 'bar', barColor: '#ffffff', height: '35px', barWidth: "5px", barSpacing: "2px", zeroAxis: "false"}
+        'html', {
+            type: 'bar',
+            barColor: '#ffffff',
+            height: '35px',
+            barWidth: "5px",
+            barSpacing: "2px",
+            zeroAxis: "false"
+        }
     );
 
     /* Activate hidden Sparkline on tab show */
@@ -882,7 +883,7 @@ $(function() {
             endDate: moment(),
             minDate: '01/01/2012',
             maxDate: '12/31/2014',
-            dateLimit: { days: 60 },
+            dateLimit: {days: 60},
             ranges: {
                 'Today': [moment(), moment()],
                 'Yesterday': [moment().subtract('days', 1), moment().subtract('days', 1)],
@@ -901,24 +902,24 @@ $(function() {
                 fromLabel: 'From',
                 toLabel: 'To',
                 customRangeLabel: 'Custom Range',
-                daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr','Sa'],
+                daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
                 monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
                 firstDay: 1
             }
         },
-        function(start, end) {
-            $.jGrowl('Date range has been changed', { header: 'Update', position: 'center', life: 1500 });
+        function (start, end) {
+            $.jGrowl('Date range has been changed', {header: 'Update', position: 'center', life: 1500});
             $('#reportrange .date-range').html(start.format('<i>D</i> <b><i>MMM</i> <i>YYYY</i></b>') + '<em> - </em>' + end.format('<i>D</i> <b><i>MMM</i> <i>YYYY</i></b>'));
         }
     );
 
     /* Custom date display layout */
     $('#reportrange .date-range').html(moment().subtract('days', 29).format('<i>D</i> <b><i>MMM</i> <i>YYYY</i></b>') + '<em> - </em>' + moment().format('<i>D</i> <b><i>MMM</i> <i>YYYY</i></b>'));
-    $('#reportrange').on('show', function(ev, picker) {
+    $('#reportrange').on('show', function (ev, picker) {
         $('.range').addClass('range-shown');
     });
 
-    $('#reportrange').on('hide', function(ev, picker) {
+    $('#reportrange').on('hide', function (ev, picker) {
         $('.range').removeClass('range-shown');
     });
 
@@ -942,7 +943,7 @@ $(function() {
         },
         selectable: true,
         selectHelper: true,
-        select: function(start, end, allDay) {
+        select: function (start, end, allDay) {
             var title = prompt('Event Title:');
             if (title) {
                 calendar.fullCalendar('renderEvent',
@@ -965,19 +966,19 @@ $(function() {
             },
             {
                 title: 'Long Event',
-                start: new Date(y, m, d-5),
-                end: new Date(y, m, d-2)
+                start: new Date(y, m, d - 5),
+                end: new Date(y, m, d - 2)
             },
             {
                 id: 999,
                 title: 'Repeating Event',
-                start: new Date(y, m, d-3, 16, 0),
+                start: new Date(y, m, d - 3, 16, 0),
                 allDay: false
             },
             {
                 id: 999,
                 title: 'Repeating Event',
-                start: new Date(y, m, d+4, 16, 0),
+                start: new Date(y, m, d + 4, 16, 0),
                 allDay: false
             },
             {
@@ -993,8 +994,8 @@ $(function() {
             },
             {
                 title: 'Birthday Party',
-                start: new Date(y, m, d+1, 19, 0),
-                end: new Date(y, m, d+1, 22, 30),
+                start: new Date(y, m, d + 1, 19, 0),
+                end: new Date(y, m, d + 1, 22, 30),
                 allDay: false
             }
         ]
@@ -1013,7 +1014,7 @@ $(function() {
 
     //===== Time pickers =====//
 
-    $('#defaultValueExample, #time').timepicker({ 'scrollDefaultNow': true });
+    $('#defaultValueExample, #time').timepicker({'scrollDefaultNow': true});
 
     $('#durationExample').timepicker({
         'minTime': '2:00pm',
@@ -1022,12 +1023,12 @@ $(function() {
     });
 
     $('#onselectExample').timepicker();
-    $('#onselectExample').on('changeTime', function() {
+    $('#onselectExample').on('changeTime', function () {
         $('#onselectTarget').text($(this).val());
     });
 
-    $('#timeformatExample1, #timeformatExample3').timepicker({ 'timeFormat': 'H:i:s' });
-    $('#timeformatExample2, #timeformatExample4').timepicker({ 'timeFormat': 'h:i A' });
+    $('#timeformatExample1, #timeformatExample3').timepicker({'timeFormat': 'H:i:s'});
+    $('#timeformatExample2, #timeformatExample4').timepicker({'timeFormat': 'h:i A'});
 
 
     //===== Color picker =====//
@@ -1040,7 +1041,7 @@ $(function() {
 
     /* Change navbar background color */
     var topStyle = $('.navbar-inverse')[0].style;
-    $('.change-navbar-color').colorpicker().on('changeColor', function(ev){
+    $('.change-navbar-color').colorpicker().on('changeColor', function (ev) {
         topStyle.background = ev.color.toHex();
     });
 
@@ -1049,9 +1050,6 @@ $(function() {
 
     $.jGrowl.defaults.closer = false;
     $.jGrowl.defaults.easing = 'easeInOutCirc';
-
-
-
 
 
     /* # Default Layout Options
@@ -1063,13 +1061,11 @@ $(function() {
     $('.page-content').wrapInner('<div class="page-content-inner"></div>');
 
 
-
     //===== Applying offcanvas class =====//
 
     $(document).on('click', '.offcanvas', function () {
         $('body').toggleClass('offcanvas-active');
     });
-
 
 
     //===== Default navigation =====//
@@ -1087,16 +1083,14 @@ $(function() {
         if ($('body').hasClass('sidebar-narrow')) {
             $('.navigation').children('li').children('ul').css('display', '');
 
-            $('.sidebar-content').hide().delay().queue(function(){
+            $('.sidebar-content').hide().delay().queue(function () {
                 $(this).show().addClass('animated fadeIn').clearQueue();
             });
-        }
-
-        else {
+        } else {
             $('.navigation').children('li').children('ul').css('display', 'none');
             $('.navigation').children('li.active').children('ul').css('display', 'block');
 
-            $('.sidebar-content').hide().delay().queue(function(){
+            $('.sidebar-content').hide().delay().queue(function () {
                 $(this).show().addClass('animated fadeIn').clearQueue();
             });
         }
@@ -1109,29 +1103,23 @@ $(function() {
         if ($('body').hasClass('sidebar-narrow')) {
             $(this).parent('li > ul li').not('.disabled').toggleClass('active').children('ul').slideToggle(250);
             $(this).parent('li > ul li').not('.disabled').siblings().removeClass('active').children('ul').slideUp(250);
-        }
-
-        else {
+        } else {
             $(this).parent('li').not('.disabled').toggleClass('active').children('ul').slideToggle(250);
             $(this).parent('li').not('.disabled').siblings().removeClass('active').children('ul').slideUp(250);
         }
     });
 
 
-
     //===== Panel Options (collapsing, closing) =====//
 
     /* Collapsing */
-    $('[data-panel=collapse]').click(function(e){
+    $('[data-panel=collapse]').click(function (e) {
         e.preventDefault();
         var $target = $(this).parent().parent().next('div');
-        if($target.is(':visible'))
-        {
+        if ($target.is(':visible')) {
             $(this).children('i').removeClass('icon-arrow-up9');
             $(this).children('i').addClass('icon-arrow-down9');
-        }
-        else
-        {
+        } else {
             $(this).children('i').removeClass('icon-arrow-down9');
             $(this).children('i').addClass('icon-arrow-up9');
         }
@@ -1139,44 +1127,43 @@ $(function() {
     });
 
     /* Closing */
-    $('[data-panel=close]').click(function(e){
+    $('[data-panel=close]').click(function (e) {
         e.preventDefault();
         var $panelContent = $(this).parent().parent().parent();
         $panelContent.slideUp(200).remove(200);
     });
 
 
-
     //===== Showing spinner animation demo =====//
 
-    $('.run-first').click(function(){
+    $('.run-first').click(function () {
         $('body').append('<div class="overlay"><div class="opacity"></div><i class="icon-spinner2 spin"></i></div>');
         $('.overlay').fadeIn(150);
-        window.setTimeout(function(){
-            $('.overlay').fadeOut(150, function() {
+        window.setTimeout(function () {
+            $('.overlay').fadeOut(150, function () {
                 $(this).remove();
             });
-        },5000);
+        }, 5000);
     });
 
-    $('.run-second').click(function(){
+    $('.run-second').click(function () {
         $('body').append('<div class="overlay"><div class="opacity"></div><i class="icon-spinner3 spin"></i></div>');
         $('.overlay').fadeIn(150);
-        window.setTimeout(function(){
-            $('.overlay').fadeOut(150, function() {
+        window.setTimeout(function () {
+            $('.overlay').fadeOut(150, function () {
                 $(this).remove();
             });
-        },5000);
+        }, 5000);
     });
 
-    $('.run-third').click(function(){
+    $('.run-third').click(function () {
         $('body').append('<div class="overlay"><div class="opacity"></div><i class="icon-spinner7 spin"></i></div>');
         $('.overlay').fadeIn(150);
-        window.setTimeout(function(){
-            $('.overlay').fadeOut(150, function() {
+        window.setTimeout(function () {
+            $('.overlay').fadeOut(150, function () {
                 $(this).remove();
             });
-        },5000);
+        }, 5000);
     });
 
 
@@ -1189,15 +1176,14 @@ $(function() {
 
     //===== Disabling main navigation links =====//
 
-    $('.navigation .disabled a, .navbar-nav > .disabled > a').click(function (e){
+    $('.navigation .disabled a, .navbar-nav > .disabled > a').click(function (e) {
         e.preventDefault();
     });
 
 
-
     //===== Toggling active class in accordion groups =====//
 
-    $('.panel-trigger').click(function(e){
+    $('.panel-trigger').click(function (e) {
         e.preventDefault();
         $(this).toggleClass('active');
     });

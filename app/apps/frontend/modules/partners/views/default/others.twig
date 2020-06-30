@@ -6,7 +6,7 @@
 
 {% extends "@app/themes/basic/layouts/main.twig" %}
 
-{% block title %}{{ this.registerTitle('Снять ' ~ model.apartment.total_rooms ~ ' -комнатная ' ~ model.rentType.name ~ ' г. ' ~ model.apartment.city.name ~ ', ' ~ model.apartment.address) ~ ' | Сдаём.ру'}}{% endblock %}
+{% block title %}{{ this.registerTitle('Снять ' ~ model.apartment.total_rooms ~ ' -комнатная ' ~ model.rentType.name ~ ' г. ' ~ model.apartment.city.name ~ ', ' ~ model.apartment.address) ~ ' | Сдаём.ру' }}{% endblock %}
 
 {% block navbar %}
     {% include("@frontend/modules/office/views/layouts/navbar.twig") %}
@@ -23,15 +23,15 @@
                 'url' : '/'
             },
             'links':  [
-            {
-                'label': model.rentType.name,
-            },
-            {
-                'label': '№ ' ~ model.advert_id,
-            },
-            {
-                'label': 'Еще предложения',
-            },
+                {
+                    'label': model.rentType.name,
+                },
+                {
+                    'label': '№ ' ~ model.advert_id,
+                },
+                {
+                    'label': 'Еще предложения',
+                },
             ],
         }) }}
     </div>

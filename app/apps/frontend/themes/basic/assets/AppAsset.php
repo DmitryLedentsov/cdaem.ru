@@ -9,7 +9,8 @@ use yii\web\AssetBundle;
  * Менеджер ресурсов
  * @package frontend\themes\basic\assets
  */
-class AppAsset extends AssetBundle {
+class AppAsset extends AssetBundle
+{
 
     public $sourcePath = '@frontend/themes/basic/assets';
     public $css = [
@@ -23,7 +24,8 @@ class AppAsset extends AssetBundle {
     /**
      * @inheritdoc
      */
-    public function init() {
+    public function init()
+    {
         parent::init();
 
 
@@ -54,7 +56,7 @@ class AppAsset extends AssetBundle {
                 'js_dev/ui.js',
                 'js_dev/jquery.inputmask.js',
                 'js_dev/jquery.fancybox.min.js',
-                
+
             ];
         } else {
 
@@ -83,7 +85,8 @@ class AppAsset extends AssetBundle {
      * Получить url адрес папки с ресурсами
      * @return string
      */
-    public static function getAssetUrl() {
+    public static function getAssetUrl()
+    {
         $obj = new self();
         return \Yii::$app->assetManager->getPublishedUrl($obj->sourcePath);
     }

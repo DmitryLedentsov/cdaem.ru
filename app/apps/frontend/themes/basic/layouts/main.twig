@@ -2,12 +2,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="{{ app.charset }}" />
-    <noscript><meta http-equiv="refresh" content="0; URL={{ path(['/site/default/badbrowser']) }}"></noscript>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta charset="{{ app.charset }}"/>
+    <noscript>
+        <meta http-equiv="refresh" content="0; URL={{ path(['/site/default/badbrowser']) }}">
+    </noscript>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
     {{ html.csrfMetaTags() | raw }}
     <title>{% block title %}{% endblock %}</title>
     {{ this.serviceHead() | raw }}
@@ -21,8 +23,8 @@
 {{ use('yii/widgets/ActiveForm') }}
 {{ register_app_asset() }}
 {{ register_callback_asset() }}
- {{ use('frontend/themes/basic/assets/BootAsset') }}
-    {{ register_boot_asset() }}
+{{ use('frontend/themes/basic/assets/BootAsset') }}
+{{ register_boot_asset() }}
 {% block header %}{% endblock %}
 {% block navbar %}
     {{ this.render("@app/themes/basic/layouts/navbar.twig") | raw }}

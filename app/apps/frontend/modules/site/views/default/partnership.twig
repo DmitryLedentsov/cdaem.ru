@@ -19,23 +19,23 @@
 
 {% block breadcrumbs %}
     <div class="container">
-    <div class="breadcrumbs">
-        {{ use('yii/widgets/Breadcrumbs') }}
-        {{ breadcrumbs_widget({
-            'itemTemplate' : "<li>{link}</li>\n",
-            'homeLink' :
-            {
-                'label' : 'Главная',
-                'url' : '/'
-            },
-            'links':  [
-            {
-                'label': 'Сотрудничество',
-                'url': ['/site/default/partnership'],
-            },
-            ],
-        }) }}
-    </div>
+        <div class="breadcrumbs">
+            {{ use('yii/widgets/Breadcrumbs') }}
+            {{ breadcrumbs_widget({
+                'itemTemplate' : "<li>{link}</li>\n",
+                'homeLink' :
+                {
+                    'label' : 'Главная',
+                    'url' : '/'
+                },
+                'links':  [
+                    {
+                        'label': 'Сотрудничество',
+                        'url': ['/site/default/partnership'],
+                    },
+                ],
+            }) }}
+        </div>
     </div>
 {% endblock %}
 
@@ -59,13 +59,13 @@
 
         {% if app.session.hasFlash('danger') %}
             <div class="alert alert-danger" role="alert">
-                {{ app.session.getFlash('danger') | raw  }}
+                {{ app.session.getFlash('danger') | raw }}
             </div>
         {% endif %}
 
         {% if app.session.hasFlash('success') %}
             <div class="alert alert-success" role="alert">
-                {{ app.session.getFlash('success') | raw  }}
+                {{ app.session.getFlash('success') | raw }}
             </div>
         {% endif %}
 
@@ -78,9 +78,9 @@
 
         {{ use('yii/widgets/ActiveForm') }}
         {% set form = active_form_begin({
-        'id' : 'form-want-pass',
-        'options' : {'class' : 'horizontal', 'enctype' : 'multipart/form-data'},
-        'enableClientScript': false
+            'id' : 'form-want-pass',
+            'options' : {'class' : 'horizontal', 'enctype' : 'multipart/form-data'},
+            'enableClientScript': false
         }) %}
 
         <div class="container-certain primary text">

@@ -2,18 +2,9 @@
 
 namespace frontend\modules\office\controllers;
 
-use common\modules\users\models\frontend\UsersListSearch;
 use common\modules\users\models\UsersList;
-use common\modules\partners\models\Service;
-use common\modules\users\models\Profile;
 use frontend\modules\partners\models as models;
-use common\modules\users\models\User;
-use yii\helpers\ArrayHelper;
-use yii\web\HttpException;
-use yii\widgets\ActiveForm;
 use yii\web\Response;
-use yii\helpers\Html;
-use yii\helpers\Url;
 use Yii;
 
 /**
@@ -29,7 +20,7 @@ class AjaxController extends \frontend\components\Controller
     {
         return [
             'access' => [
-                'class' => \yii\filters\AccessControl::className(),
+                'class' => \yii\filters\AccessControl::class,
                 'rules' => [
                     [
                         'actions' => [],
@@ -43,7 +34,9 @@ class AjaxController extends \frontend\components\Controller
 
     /**
      * Социальные возможности
-     * @return Response
+     * @return array|Response
+     * @throws \Throwable
+     * @throws \yii\db\StaleObjectException
      */
     public function actionSocial()
     {
@@ -138,8 +131,10 @@ class AjaxController extends \frontend\components\Controller
     }
 
     /**
-     * Удаление рекламы Top-slider
-     * @return Response
+     * @param $advertisement_id
+     * @return array|Response
+     * @throws \Throwable
+     * @throws \yii\db\StaleObjectException
      */
     public function actionDeleteTopSlider($advertisement_id)
     {

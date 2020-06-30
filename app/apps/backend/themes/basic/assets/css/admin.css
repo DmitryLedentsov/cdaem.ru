@@ -39,7 +39,6 @@ textarea {
 }
 
 
-
 /* Fix Bootstrap */
 .has-feedback label ~ .form-control-feedback {
     top: 30px;

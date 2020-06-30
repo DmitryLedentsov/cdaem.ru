@@ -8,18 +8,34 @@
 /*-------------------------------------*/
 .office {
 
-  small {font-size: 10px;}
+  small {
+    font-size: 10px;
+  }
 
-  &.container {margin-top: 75px;}
+  &.container {
+    margin-top: 75px;
+  }
 
-  .color-success {color: #00AE5D;}
-  .color-danger {color: #F24941;}
-  .color-info {color: @color-style-primary-active;}
-  .color-closed {color: #A5A5A5;}
+  .color-success {
+    color: #00AE5D;
+  }
+
+  .color-danger {
+    color: #F24941;
+  }
+
+  .color-info {
+    color: @color-style-primary-active;
+  }
+
+  .color-closed {
+    color: #A5A5A5;
+  }
 
 
   // Просмотр апартаментов
   /*-------------------------------------*/
+
   .view-apartments {
     width: 27%;
     float: left;
@@ -57,6 +73,7 @@
 
   // Графическое меню
   /*-------------------------------------*/
+
   .graphical-menu {
     margin: 0;
     padding: 5px;
@@ -95,11 +112,32 @@
         display: inline-block;
         background: url("/basic-images/office-sprite.png") no-repeat;
 
-        &.message {height: 40px; background-position: 0 -282px; margin-bottom: -12px; margin-top: 10px;}
-        &.favorites {background-position: 0 -180px; margin-bottom: -10px}
-        &.ban {background-position: 8px -232px; margin-bottom: -10px}
-        &.bid {background-position: 0 -130px; margin-bottom: -10px}
-        &.reservations {background-position: 0 -322px; margin-bottom: -10px;}
+        &.message {
+          height: 40px;
+          background-position: 0 -282px;
+          margin-bottom: -12px;
+          margin-top: 10px;
+        }
+
+        &.favorites {
+          background-position: 0 -180px;
+          margin-bottom: -10px
+        }
+
+        &.ban {
+          background-position: 8px -232px;
+          margin-bottom: -10px
+        }
+
+        &.bid {
+          background-position: 0 -130px;
+          margin-bottom: -10px
+        }
+
+        &.reservations {
+          background-position: 0 -322px;
+          margin-bottom: -10px;
+        }
 
       }
 
@@ -113,6 +151,7 @@
 
   // Дополнительное меню
   /*-------------------------------------*/
+
   .extra-menu {
     margin-bottom: 25px;
     width: 85%;
@@ -138,6 +177,7 @@
 
       li {
         margin-right: 0;
+
         &.active {
           a {
             background: #FFAF3E;
@@ -174,6 +214,7 @@
 
   // Список апартаментов
   /*-------------------------------------*/
+
   .apartment-list {
     margin-top: 55px;
     min-height: 200px;
@@ -214,11 +255,13 @@
 
   // Загрузка контента в модальном окне
   /*-------------------------------------*/
+
   .load {
     .apartment-list {
       margin-top: 15px;
       min-height: 200px;
       padding-right: 0;
+
       .item {
         text-align: center;
 
@@ -226,6 +269,7 @@
           cursor: pointer;
         }
       }
+
       .name {
         font-size: 100%;
       }
@@ -235,6 +279,7 @@
 
   // Список пользователей
   /*-------------------------------------*/
+
   .user-list {
     margin-top: 55px;
     margin-left: -25px;
@@ -256,6 +301,7 @@
         width: 35%;
         float: left;
         padding-left: 15px;
+
         .avatar {
           height: 80px;
 
@@ -263,6 +309,7 @@
             min-height: 80px;
           }
         }
+
         .online {
           text-align: center;
           margin-top: 15px;
@@ -281,10 +328,12 @@
           overflow: hidden;
           height: 50px;
         }
+
         .settings {
           float: left;
           margin: 5px;
         }
+
         .btn {
           font-size: 120%;
           font-weight: 400;
@@ -299,6 +348,7 @@
 
   // Настройки
   /*-------------------------------------*/
+
   .settings-nav {
     position: relative;
     float: left;
@@ -323,7 +373,7 @@
         display: block;
         border: solid 1px #D9D9D9;
         padding-bottom: 5px;
-        .box-shadow(3px 7px 10px -3px rgba(0,0,0,0.35));
+        .box-shadow(3px 7px 10px -3px rgba(0, 0, 0, 0.35));
         .border-radius(5px);
       }
     }
@@ -357,15 +407,37 @@
     background: url("/basic-images/office-sprite.png") no-repeat;
     cursor: pointer;
 
-    &.control {background-position: 0 -385px;}
-    &.bookmark {background-position: 0 -420px;}
-    &.blacklist {background-position: -1px -458px;}
-    &.remove {background-position: -1px -502px;}
+    &.control {
+      background-position: 0 -385px;
+    }
 
-    &:hover.control {background-position: -34px -385px;}
-    &:hover.bookmark {background-position: -34px -420px;}
-    &:hover.blacklist {background-position: -35px -458px;}
-    &:hover.remove {background-position: -35px -502px;}
+    &.bookmark {
+      background-position: 0 -420px;
+    }
+
+    &.blacklist {
+      background-position: -1px -458px;
+    }
+
+    &.remove {
+      background-position: -1px -502px;
+    }
+
+    &:hover.control {
+      background-position: -34px -385px;
+    }
+
+    &:hover.bookmark {
+      background-position: -34px -420px;
+    }
+
+    &:hover.blacklist {
+      background-position: -35px -458px;
+    }
+
+    &:hover.remove {
+      background-position: -35px -502px;
+    }
   }
 
   .info {
@@ -398,6 +470,7 @@
       a {
         color: #c0c0c0;
       }
+
       .color-info, .color-success, span {
         color: #c0c0c0 !important;
       }
@@ -514,17 +587,21 @@
       &.links {
         width: 25%;
         padding-left: 15px;
+
         a {
           font-size: 120%;
         }
+
         p {
           margin: 0;
         }
+
         .edit {
           background: url('/basic-images/btn_edit_ads.png') no-repeat left center;
           height: 40px;
           padding: 5px 0 0 40px;
         }
+
         .reviews {
           background: url('/basic-images/btn_comments.png') no-repeat left center;
           height: 40px;
@@ -535,7 +612,6 @@
     }
 
 
-
     > .present {
       width: 18%;
       float: right;
@@ -544,43 +620,32 @@
   }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   .general-form {
 
     &.buy-ads {
 
-      label { }
+      label {
+      }
 
       .section {
         width: 35%;
-        .desc {text-align: left;}
-        &:first-child {width: 65%;}
+
+        .desc {
+          text-align: left;
+        }
+
+        &:first-child {
+          width: 65%;
+        }
       }
     }
 
   }
 
 
-
-
   // Калькулятор цен при покупке сервисов
   /*-------------------------------------*/
+
   .calculate {
     margin-bottom: 15px;
 
@@ -625,7 +690,6 @@
   }
 
 
-
   .reservation-filter {
     margin-bottom: 55px;
 
@@ -650,8 +714,6 @@
 
 
 }
-
-
 
 
 // Модальное окно выбора объявлений
@@ -680,8 +742,6 @@
     }
   }
 }
-
-
 
 
 // Форма добавления и редактирования апартаментов
@@ -773,8 +833,6 @@
 }
 
 
-
-
 .text-help-section {
   padding-right: 15px;
 
@@ -793,7 +851,6 @@
   }
 
 }
-
 
 
 #form-apartment {
@@ -840,8 +897,6 @@
     }
   }
 }
-
-
 
 
 // Список превью изображений
@@ -896,8 +951,6 @@
 }
 
 
-
-
 // Сервисы
 /*-------------------------------------*/
 #services {
@@ -916,7 +969,9 @@
       text-decoration: none;
     }
 
-    &:hover, &.active {border: solid 2px @color-style-orange-border;}
+    &:hover, &.active {
+      border: solid 2px @color-style-orange-border;
+    }
 
     .service-logo {
       width: 220px;
@@ -968,7 +1023,9 @@
         height: 45px;
         text-align: center;
 
-        p {margin : 0;}
+        p {
+          margin: 0;
+        }
 
         span {
           color: @color-style-primary-active;
@@ -976,7 +1033,9 @@
           font-size: 125%;
           font-weight: bold;
 
-          span {font-size: 100%;}
+          span {
+            font-size: 100%;
+          }
         }
       }
     }
@@ -985,23 +1044,99 @@
 }
 
 
-.service-icon-small { background: url('/basic-images/service-sprite-small.png') no-repeat top left; display: inline-block;}
-.service-icon-small.top { background-position: 0 0; width: 111px; height: 100px;}
-.service-icon-small.contacts-open { background-position: 0 -107px; width: 111px; height: 100px;}
-.service-icon-small.top-position { background-position: 0 -209px; width: 107px;  height: 100px;}
-.service-icon-small.selected { background-position: 0 -316px; width: 114px;  height: 100px;}
-.service-icon-small.a-one-section { background-position: 0 -528px; width: 95px; height: 100px;}
-.service-icon-small.a-all-sections { background-position: 0 -633px; width: 145px; height: 100px;}
-.service-icon-small.top-slider { background-position: 0 -733px;  width: 100px;  height: 100px;}
+.service-icon-small {
+  background: url('/basic-images/service-sprite-small.png') no-repeat top left;
+  display: inline-block;
+}
 
-.service-icon-big { background: url('/basic-images/service-sprite-big.png') no-repeat top left; display: inline-block;}
-.service-icon-big.top { background-position: 0 0; width: 165px; height: 148px; }
-.service-icon-big.contacts-open { background-position: 0 -163px; width: 160px; height: 142px; }
-.service-icon-big.top-position { background-position: 0 -320px; width: 161px; height: 141px; }
-.service-icon-big.selected { background-position: 0 -476px; width: 178px; height: 149px; }
-.service-icon-big.a-one-section { background-position: 0 -800px; width: 150px; height: 146px; }
-.service-icon-big.a-all-sections { background-position: 0 -961px; width: 219px; height: 130px; }
-.service-icon-big.top-slider { background-position: 0 -1106px; width: 154px; height: 133px; }
+.service-icon-small.top {
+  background-position: 0 0;
+  width: 111px;
+  height: 100px;
+}
+
+.service-icon-small.contacts-open {
+  background-position: 0 -107px;
+  width: 111px;
+  height: 100px;
+}
+
+.service-icon-small.top-position {
+  background-position: 0 -209px;
+  width: 107px;
+  height: 100px;
+}
+
+.service-icon-small.selected {
+  background-position: 0 -316px;
+  width: 114px;
+  height: 100px;
+}
+
+.service-icon-small.a-one-section {
+  background-position: 0 -528px;
+  width: 95px;
+  height: 100px;
+}
+
+.service-icon-small.a-all-sections {
+  background-position: 0 -633px;
+  width: 145px;
+  height: 100px;
+}
+
+.service-icon-small.top-slider {
+  background-position: 0 -733px;
+  width: 100px;
+  height: 100px;
+}
+
+.service-icon-big {
+  background: url('/basic-images/service-sprite-big.png') no-repeat top left;
+  display: inline-block;
+}
+
+.service-icon-big.top {
+  background-position: 0 0;
+  width: 165px;
+  height: 148px;
+}
+
+.service-icon-big.contacts-open {
+  background-position: 0 -163px;
+  width: 160px;
+  height: 142px;
+}
+
+.service-icon-big.top-position {
+  background-position: 0 -320px;
+  width: 161px;
+  height: 141px;
+}
+
+.service-icon-big.selected {
+  background-position: 0 -476px;
+  width: 178px;
+  height: 149px;
+}
+
+.service-icon-big.a-one-section {
+  background-position: 0 -800px;
+  width: 150px;
+  height: 146px;
+}
+
+.service-icon-big.a-all-sections {
+  background-position: 0 -961px;
+  width: 219px;
+  height: 130px;
+}
+
+.service-icon-big.top-slider {
+  background-position: 0 -1106px;
+  width: 154px;
+  height: 133px;
+}
 
 
 #calendar {
@@ -1019,16 +1154,17 @@
     display: none;
   }
 
-  .fc-day:hover{
-    background:#F1FAFF;
+  .fc-day:hover {
+    background: #F1FAFF;
     cursor: pointer;
   }
 
   /*Allow pointer-events through*/
+
   .fc-slats, /*horizontals*/
   .fc-content-skeleton, /*day numbers*/
-  .fc-bgevent /*events*/{
-    pointer-events:none
+  .fc-bgevent /*events*/ {
+    pointer-events: none
   }
 }
 
@@ -1058,6 +1194,7 @@
         float: left;
         margin-right: 15px;
       }
+
       &.time {
         width: 30%;
         float: left;

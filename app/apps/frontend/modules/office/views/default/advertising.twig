@@ -22,13 +22,13 @@
                 'url' : '/'
             },
             'links':  [
-            {
-                'label': 'Личный кабинет',
-                'url' : ['/office/default/index']
-            },
-            {
-                'label': 'Моя реклама',
-            },
+                {
+                    'label': 'Личный кабинет',
+                    'url' : ['/office/default/index']
+                },
+                {
+                    'label': 'Моя реклама',
+                },
             ],
         }) }}
     </div>
@@ -61,7 +61,9 @@
                         {% if advertisement.payment != 1 %}
                             <p class="color-danger">Не оплачено</p>
                             <br/>
-                            <p><span class="fast_payment_button" onclick="fast_payment_widget('{{ constant('SERVICE_ADVERTISING_TOP_SLIDER', Service) }}', {'advertisement_id' : {{ advertisement.advertisement_id }} })">Оплатить</span></p>
+                            <p><span class="fast_payment_button"
+                                     onclick="fast_payment_widget('{{ constant('SERVICE_ADVERTISING_TOP_SLIDER', Service) }}', {'advertisement_id' : {{ advertisement.advertisement_id }} })">Оплатить</span>
+                            </p>
                         {% else %}
                             <p class="color-success">Оплачено</p>
                         {% endif %}
@@ -74,7 +76,7 @@
                             <a href="{{ path({0:'/partners/default/view', 'id' : advertisement.advert.advert_id, 'city' : advertisement.advert.apartment.city.name_eng}) }}">{{ advertisement.advert.rentType.name }}</a>
                             <span class="{{ advert.top ? 'top color-success' : 'top color-danger' }}">{{ advertisement.advert.top ? 'В топе' : 'Не в топе' }}</span>
                         </span>
-                        <span class="color-info">
+                                <span class="color-info">
                            
                             {% if advertisement.advert.real_position %}
                                 {{ advertisement.advert.real_position }}
@@ -96,7 +98,7 @@
                         </p>
 
                         <p>
-                            Дата создания:  {{ DateTimeHelper.toFullDateTime(advertisement.date_create) | raw }}
+                            Дата создания: {{ DateTimeHelper.toFullDateTime(advertisement.date_create) | raw }}
 
                             {% if advertisement.payment %} <br>
                                 Дата оплаты: {{ DateTimeHelper.toFullDateTime(advertisement.date_payment) | raw }}
@@ -122,13 +124,15 @@
                 {{ preview_advert_tmp_widget({'advertisement' : advertisement}) }}
                 <br/><br/><br/>
                 <p class="text-center" style="font-weight: bold">
-                    <span class="link color-danger delete-top-slider" data-advertisement_id="{{ advertisement.advertisement_id }}">Удалить рекламу</span>
+                    <span class="link color-danger delete-top-slider"
+                          data-advertisement_id="{{ advertisement.advertisement_id }}">Удалить рекламу</span>
                 </p>
             </div>
         </div>
     {% else %}
         <div class="alert alert-info">
-            Вы не рекламировали ни одного объявления. <a href="{{ path(['/office/default/buy-ads']) }}">Добавить рекламное объявление</a>.
+            Вы не рекламировали ни одного объявления. <a href="{{ path(['/office/default/buy-ads']) }}">Добавить
+                рекламное объявление</a>.
         </div>
     {% endfor %}
 

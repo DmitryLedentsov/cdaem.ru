@@ -86,11 +86,12 @@ class AdvertisingTopSliderAdverts extends Widget
                     'advertisement' => $adv,
                 ]);
             }
-            
-            
+
+
             $user_type = \common\modules\users\models\Profile::find()->select('user_type')->where(['user_id' => Yii::$app->user->id])->scalar();
-            
-          if ($user_type == 3) {  $cachedData = '
+
+            if ($user_type == 3) {
+                $cachedData = '
                 <div class="ticker">
                     <div class="container clearfix">
                         <div class="options">
@@ -102,7 +103,8 @@ class AdvertisingTopSliderAdverts extends Widget
                         </div>
                     </div>
                 </div>
-          ';}else $cachedData = '
+          ';
+            } else $cachedData = '
                 <div class="ticker">
                     <div class="container clearfix">
                     <div class="options">
@@ -117,7 +119,7 @@ class AdvertisingTopSliderAdverts extends Widget
 
             Yii::$app->cache->set($cacheKey, $cachedData, 300, $cacheDependency);
         }
-        
+
         return $cachedData;
     }
 }

@@ -23,7 +23,7 @@ class AdvertsController extends Controller
     {
         return [
             'access' => [
-                'class' => \yii\filters\AccessControl::className(),
+                'class' => \yii\filters\AccessControl::class,
                 'rules' => [
                     [
                         'allow' => true,
@@ -93,7 +93,7 @@ class AdvertsController extends Controller
 
             if ($model->validate()) {
                 if ($model->save(false)) {
-                    
+
                     Yii::$app->session->setFlash('success', 'Данные успешно сохранены.');
                 } else {
                     Yii::$app->session->setFlash('danger', 'Возникла ошибка.');

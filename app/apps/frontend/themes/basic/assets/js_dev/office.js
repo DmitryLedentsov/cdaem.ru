@@ -37,7 +37,10 @@ $(function () {
         var $this = $(this);
         if (!$preloadFlag) {
             $preloadFlag = true;
-            $.post("/office/ajax/social", {type: $this.data('type'), interlocutor: $this.data('interlocutor')}, function (response) {
+            $.post("/office/ajax/social", {
+                type: $this.data('type'),
+                interlocutor: $this.data('interlocutor')
+            }, function (response) {
                 if ($.isPlainObject(response) && 'status' in response) {
                     if (response.status == 1) {
                         showStackInfo('Информация', response.message);
@@ -102,9 +105,9 @@ $(function () {
     });
 
     // Открыть окно для оплаты сервиса
-    var anchor = window.location.hash.replace("#","");
+    var anchor = window.location.hash.replace("#", "");
     if (anchor != "") {
-        var $service = $('#services .service[data-type="'+anchor+'"]');
+        var $service = $('#services .service[data-type="' + anchor + '"]');
         if ($service.length) {
             openWindowByService($service);
         }
@@ -122,15 +125,14 @@ $(function () {
         $('#modal-realty-objects-by-service').find('.advert-preview.selected').each(function (index) {
             if ($(this).data('advert')) {
                 $serviceData.selected.push($(this).data('advert'));
-            }
-            else if ($(this).data('apartment')) {
+            } else if ($(this).data('apartment')) {
                 $serviceData.selected.push($(this).data('apartment'));
             }
         });
         $('#selected-advert-count').html($serviceData.selected.length);
 
         var $selectedAdvertInfo = $('#selected-advert-info');
-        if ( $serviceData.selected.length > 0) {
+        if ($serviceData.selected.length > 0) {
             if (!$selectedAdvertInfo.length) {
                 $('#modal-realty-objects-by-service').find('.load').append('<div class="text-center"><span class="btn btn-primary btn-special" id="selected-advert-info">Рассчитать стоимость</span></div>');
             }
@@ -222,7 +224,7 @@ $(function () {
         $target.find('.alert-warning').remove();
         if ($this.val()) {
             $target.find('.item').hide();
-            var $targetItems = $target.find('[data-rent-type="'+$this.val()+'"]').parents('.item');
+            var $targetItems = $target.find('[data-rent-type="' + $this.val() + '"]').parents('.item');
             $targetItems.show();
             if (!$targetItems.length) {
                 $target.find('.apartment-list').prepend('<div class="alert alert-warning">В данном типе аренды нет объектов.</div>');
@@ -257,17 +259,16 @@ function openWindowByService($this) {
     }
 }
 
-     $(window).scroll(function(){
-	            if($(this).scrollTop()>62){
-	                $('#navigatio').addClass('fixed');
-	            }
-	            else if ($(this).scrollTop()<62){
-	                $('#navigatio').removeClass('fixed');
-	            }
-	        });
-                
-                     $("#opendescription2").click(function () {
-        $("#information-advert2").slideToggle("slow", function () {
-          
-        });
+$(window).scroll(function () {
+    if ($(this).scrollTop() > 62) {
+        $('#navigatio').addClass('fixed');
+    } else if ($(this).scrollTop() < 62) {
+        $('#navigatio').removeClass('fixed');
+    }
+});
+
+$("#opendescription2").click(function () {
+    $("#information-advert2").slideToggle("slow", function () {
+
     });
+});

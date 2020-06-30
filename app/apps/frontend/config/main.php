@@ -180,7 +180,7 @@ return [
             'enableCsrfValidation' => true,
             'enableCookieValidation' => true,
             'baseUrl' => '',
-            'as cityModelBehavior' => \common\behaviors\CityModelBehavior::className()
+            'as cityModelBehavior' => \common\behaviors\CityModelBehavior::class
         ],
         'log' => [
             'traceLevel' => 3,
@@ -191,7 +191,7 @@ return [
                 ],
                 [
                     'class' => 'yii\log\DbTarget',
-                    'levels' => ['info','error'],
+                    'levels' => ['info', 'error'],
                     'categories' => ['robokassa'],
                     // 'logFile' => '@frontend/runtime/logs/robokassa.log',
                     'logVars' => [],

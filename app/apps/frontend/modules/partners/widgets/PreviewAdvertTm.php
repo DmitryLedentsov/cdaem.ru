@@ -65,9 +65,7 @@ class PreviewAdvertTm extends Widget
                 ],
                 'title' => $this->advert->apartment->address,
             ];
-        }
-
-        else if (!empty($this->apartment) && $this->apartment instanceof Apartment) {
+        } else if (!empty($this->apartment) && $this->apartment instanceof Apartment) {
             $this->_previewExtraOptions = [
                 'data' => [
                     'apartment' => $this->apartment->apartment_id,
@@ -123,7 +121,7 @@ class PreviewAdvertTm extends Widget
             return $result;
         }
 
-        if($this->customUrl !== null) {
+        if ($this->customUrl !== null) {
             $url = $this->customUrl;
         } else {
             $url = [
@@ -134,6 +132,7 @@ class PreviewAdvertTm extends Widget
 
         return Html::a($result, $url);
     }
+
     /**
      * Данные апартаментов
      * @return string

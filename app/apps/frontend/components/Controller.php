@@ -14,7 +14,7 @@ class Controller extends \yii\web\Controller
 {
     /**
      * @inheritdoc
-     */    
+     */
     public $layout = false;
 
     /**

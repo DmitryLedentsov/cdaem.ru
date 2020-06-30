@@ -19,7 +19,7 @@ class Advert extends \common\modules\partners\models\Advert
             'update' => ['apartment_id', 'rent_type', 'price', 'currency'],
         ];
     }
-    
+
     /**
      * @inheritdoc
      */
@@ -32,9 +32,9 @@ class Advert extends \common\modules\partners\models\Advert
             ['currency', 'in', 'range' => array_keys($this->currencyList)],
             [['price'], 'number'],
             [['rent_type'], 'unique', 'targetClass' => '\common\modules\partners\models\Advert',
-                'targetAttribute' => ['apartment_id', 'rent_type'], 
+                'targetAttribute' => ['apartment_id', 'rent_type'],
                 'message' => 'Для этих апартаментов уже есть такой тип аренды',
-                'when' => function($model) {
+                'when' => function ($model) {
                     return $model->isNewRecord;
                 }
             ],
@@ -43,7 +43,7 @@ class Advert extends \common\modules\partners\models\Advert
             [['rent_type', 'price', 'currency',], 'required', 'on' => 'update'],
         ];
     }
-    
+
     /**
      * Текстовое представление обозначения на главной странице или нет
      * @return string
@@ -52,20 +52,20 @@ class Advert extends \common\modules\partners\models\Advert
     {
         return Yii::$app->BasisFormat->helper('Status')->getItem($this->mainPageArray, $this->main_page);
     }
-    
+
     /**
      * @return \yii\db\ActiveQuery
      */
     public function getApartment()
     {
-        return $this->hasOne(Apartment::className(), ['apartment_id' => 'apartment_id']);
+        return $this->hasOne(Apartment::class, ['apartment_id' => 'apartment_id']);
     }
-    
+
     /**
      * @return \yii\db\ActiveQuery
      */
     public function getRentType()
     {
-        return $this->hasOne(\common\modules\realty\models\RentType::className(), ['rent_type_id' => 'rent_type']);
+        return $this->hasOne(\common\modules\realty\models\RentType::class, ['rent_type_id' => 'rent_type']);
     }
 }

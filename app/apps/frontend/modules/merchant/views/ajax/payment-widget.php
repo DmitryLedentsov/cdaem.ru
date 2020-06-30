@@ -1,9 +1,9 @@
 <?php
 /**
-    Оплата покупки сервиса
-    @var \yii\web\View this
-    @var string $service
-    @var array $data
+ * Оплата покупки сервиса
+ * @var \yii\web\View this
+ * @var string $service
+ * @var array $data
  */
 
 use common\modules\partners\models\Service;
@@ -16,7 +16,7 @@ try {
     $description = '';
     $customViewByServiceContactsOpenForReservation = false;
 
-    switch($service::NAME) {
+    switch ($service::NAME) {
 
         case Service::SERVICE_CONTACTS_OPEN_TO_USER:
         case Service::SERVICE_CONTACTS_OPEN_FOR_TOTAL_BID:
@@ -31,12 +31,12 @@ try {
         case Service::SERVICE_CONTACTS_OPEN_FOR_RESERVATION:
             $defaultDesk = true;
             $customViewByServiceContactsOpenForReservation = true;
-            $reservation_id  = isset($data['reservation_id']) ? (int)$data['reservation_id'] : '0';
+            $reservation_id = isset($data['reservation_id']) ? (int)$data['reservation_id'] : '0';
             $helpUrl = Html::a('помощь', ['/pages/default/index', 'url' => 'help'], ['target' => '_blank']);
 
             $recommended = '<div id="recommended">';
 
-            $recommended .= '<p class="text-center">Воспользоваться услугой бронирования:</p><p class="text-center"><span class="btn btn-orange reservation-send" data-type="confirm" data-reservation="'.$reservation_id.'">Подтвердить бронь</span></p>';
+            $recommended .= '<p class="text-center">Воспользоваться услугой бронирования:</p><p class="text-center"><span class="btn btn-orange reservation-send" data-type="confirm" data-reservation="' . $reservation_id . '">Подтвердить бронь</span></p>';
             $recommended .= '<br/>';
             $recommended .= '<p class="text-center">Воспользоваться услугой "открыть контакты":</p><p class="text-center"><span id="c_open" class="btn btn-orange">Открыть контакты</span></p></div>';
             break;
@@ -74,8 +74,8 @@ echo \yii\helpers\Html::tag('div', $result, [
 
 if ($customViewByServiceContactsOpenForReservation) : ?>
     <script>
-        $(function() {
-            $(document).on('click', '#c_open', function(e) {
+        $(function () {
+            $(document).on('click', '#c_open', function (e) {
                 e.preventDefault();
                 $('#recommended').hide();
                 $('#fast-payment-widget').show();

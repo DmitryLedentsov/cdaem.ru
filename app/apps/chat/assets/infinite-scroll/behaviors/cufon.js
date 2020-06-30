@@ -12,9 +12,9 @@
 	
 */
 (function ($, undefined) {
-	$.extend($.infinitescroll.prototype,{
-		_callback_cufon: function infscr_callback_cufon(newElements) {
-			Cufon.refresh(newElements);
-		}
-	});
+    $.extend($.infinitescroll.prototype, {
+        _callback_cufon: function infscr_callback_cufon(newElements) {
+            Cufon.refresh(newElements);
+        }
+    });
 })(jQuery);

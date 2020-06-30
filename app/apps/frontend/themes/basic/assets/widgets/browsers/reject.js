@@ -1,6 +1,6 @@
 $.reject({
     // Specifies which browsers/versions will be blocked
-    reject : {
+    reject: {
         all: false, // Covers Everything (Nothing blocked)
         msie: 10 // Covers MSIE <= 6 (Blocked by default)
         /*

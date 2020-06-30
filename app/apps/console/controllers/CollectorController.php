@@ -86,6 +86,7 @@ class CollectorController extends \yii\console\Controller
 
         print_r($result);
     }
+
     /**
      * Garbage Collector Reservation
      * Сборщик мусора
@@ -103,8 +104,8 @@ class CollectorController extends \yii\console\Controller
         $count += models\AdvertReservation::updateAll(['closed' => 1], 'date_out <= :now', [':now' => date('Y-m-d H:i:s')]);
         return $count;
     }
-    
-     public function actionActreservation()
+
+    public function actionActreservation()
     {
         //models\Reservation
         $this->stdout('Чистит заявки' . PHP_EOL);
@@ -166,9 +167,7 @@ class CollectorController extends \yii\console\Controller
                     Yii::$app->consoleRunner->run('partners/reservation/send-mail-return-by-not-confirm ' . $params);
 
                     $offset--;
-                }
-
-                // Вернуть средства клиенту
+                } // Вернуть средства клиенту
                 else if ($reservation->confirm == models\AdvertReservation::RENTER && $this->checkExpireGone2($reservation->date_actuality)) {
                     $paymentId = Yii::$app->balance
                         ->setModule(Yii::$app->getModule('partners')->id)
@@ -267,15 +266,15 @@ class CollectorController extends \yii\console\Controller
 
                 $countSuccess++;
 
-            } catch(\Exception $e) {
+            } catch (\Exception $e) {
                 $transaction->rollBack();
                 $countError++;
                 Yii::error('Ошибка: [Обработка ID' . $failure->id . ' не прошло]', 'verify-failure');
             }
         }
 
-        $this->stdout('Процес выполнен. Обработано записей: '.($countSuccess + $countError).', возникло ошибок: ' . $countError . PHP_EOL, Console::FG_GREEN);
-        Yii::info('Процес выполнен. Обработано записей: '.($countSuccess + $countError).', возникло ошибок: ' . $countError, 'verify-failure');
+        $this->stdout('Процес выполнен. Обработано записей: ' . ($countSuccess + $countError) . ', возникло ошибок: ' . $countError . PHP_EOL, Console::FG_GREEN);
+        Yii::info('Процес выполнен. Обработано записей: ' . ($countSuccess + $countError) . ', возникло ошибок: ' . $countError, 'verify-failure');
     }
 
     /**
@@ -330,10 +329,10 @@ class CollectorController extends \yii\console\Controller
             }
         }
 
-        $this->stdout('Процес выполнен. Обработано объявлений: '.($count). PHP_EOL, Console::FG_GREEN);
-        Yii::info('Процес выполнен. Обработано объявлений: '.($count), 'apartments-watcher');
+        $this->stdout('Процес выполнен. Обработано объявлений: ' . ($count) . PHP_EOL, Console::FG_GREEN);
+        Yii::info('Процес выполнен. Обработано объявлений: ' . ($count), 'apartments-watcher');
     }
-    
+
     public function actionApartmentsW()
     {
         $batch = models\Apartment::find()
@@ -352,7 +351,7 @@ class CollectorController extends \yii\console\Controller
                 $apartment->open_contacts = 1;
                 $apartment->save(false);
 
-                
+
             }
         }
 
@@ -377,11 +376,11 @@ class CollectorController extends \yii\console\Controller
 
         return false;
     }
-    
-     private function checkExpireGone2($expireCondition)
+
+    private function checkExpireGone2($expireCondition)
     {
         $now = strtotime('now');
-       
+
 
         if ($now > $expireCondition) {
             return true;
@@ -407,12 +406,12 @@ class CollectorController extends \yii\console\Controller
             return true;
         }
 
-       /* $_src = $str;
-        $res = preg_replace('/\D/si', '', $_src);
+        /* $_src = $str;
+         $res = preg_replace('/\D/si', '', $_src);
 
-        if (mb_strlen($res) < 7) {
-            return true;
-        }*/
+         if (mb_strlen($res) < 7) {
+             return true;
+         }*/
 
         if (
             mb_stripos($str, 'один') === false &&

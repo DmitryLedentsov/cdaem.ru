@@ -40,7 +40,7 @@ return [
             'facePath' => Yii::$app->getModule('users')->avatarPath,
             'faceUrlDefault' => Yii::$app->params['siteDomain'] . '/basic-images',
             'userModel' => 'common\modules\users\models\User',
-            'userModelAttributes' => ['username', 'profile' => ['avatar_url', 'name', 'surname'] ],
+            'userModelAttributes' => ['username', 'profile' => ['avatar_url', 'name', 'surname']],
         ]);
 
     },
@@ -65,15 +65,15 @@ return [
             }
         }
     },
-	'defaultRoute' => 'admin/default/index',
-	'modules' => [
-		'admin' => [
-			'class' => 'backend\modules\admin\Module'
-		],
-		'users' => [
+    'defaultRoute' => 'admin/default/index',
+    'modules' => [
+        'admin' => [
+            'class' => 'backend\modules\admin\Module'
+        ],
+        'users' => [
             'class' => 'common\modules\users\Module',
             'controllerNamespace' => 'common\modules\users\controllers\backend',
-		],
+        ],
         'agency' => [
             'class' => 'common\modules\agency\Module',
             'controllerNamespace' => 'common\modules\agency\controllers\backend',
@@ -94,7 +94,7 @@ return [
             'class' => 'common\modules\reviews\Module',
             'controllerNamespace' => 'common\modules\reviews\controllers\backend',
         ],
-        
+
         'partners' => [
             'class' => 'backend\modules\partners\Module'
         ],
@@ -132,7 +132,7 @@ return [
         ],
         'request' => [
             'enableCsrfValidation' => true,
-			'enableCookieValidation' => true,
+            'enableCookieValidation' => true,
             'baseUrl' => ''
         ],
         'log' => [
@@ -148,8 +148,8 @@ return [
             'errorAction' => 'admin/default/error',
         ],
         'assetManager' => [
-             'basePath' => '@webroot/assets',
-             'baseUrl' => '@web/assets'
+            'basePath' => '@webroot/assets',
+            'baseUrl' => '@web/assets'
         ],
     ],
     'params' => $params,

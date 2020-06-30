@@ -53,12 +53,15 @@ jQuery(function () {
 
 
 $(document).ready(function () {
-    $("#country").on('change','',function(e){
+    $("#country").on('change', '', function (e) {
         if ($("#country option:selected").text() == "Russia") {
-        $("#phone").inputmask("+79999999999");}
+            $("#phone").inputmask("+79999999999");
+        }
         if ($("#country option:selected").text() == "Ukraine") {
-        $("#phone").inputmask("+380999999999"); }
-    if ($("#country option:selected").text() == "Belarus") {
-        $("#phone").inputmask("+375999999999"); } 
-});
+            $("#phone").inputmask("+380999999999");
+        }
+        if ($("#country option:selected").text() == "Belarus") {
+            $("#phone").inputmask("+375999999999");
+        }
+    });
 });

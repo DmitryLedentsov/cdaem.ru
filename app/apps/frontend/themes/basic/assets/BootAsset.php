@@ -14,12 +14,12 @@ class BootAsset extends AssetBundle
     /**
      * @inheritdoc
      */
-	public $sourcePath = '@frontend/themes/basic/assets';
+    public $sourcePath = '@frontend/themes/basic/assets';
 
     /**
      * @inheritdoc
      */
-	public $depends = [
+    public $depends = [
         'yii\web\JqueryAsset',
     ];
 
@@ -31,11 +31,11 @@ class BootAsset extends AssetBundle
         parent::init();
 
         $this->css = [
-             'widgets/bootstrap/bootstrap.min.css',
+            'widgets/bootstrap/bootstrap.min.css',
         ];
 
         $this->js = [
-              '',
+            '',
         ];
     }
 }

@@ -126,7 +126,7 @@ class ReservationSearch extends Reservation
             ],
         ]);
 
-        if(!empty($params['find']) AND $params['find'] == 'open') return $dataProvider; // Поиск не нужен
+        if (!empty($params['find']) and $params['find'] == 'open') return $dataProvider; // Поиск не нужен
 
         $this->load($params);
 
@@ -188,7 +188,7 @@ class ReservationSearch extends Reservation
         return $dataProvider;
     }
 
-    
+
     /**
      * Возвращает ActiveQuery глобальных заявок
      * @param $params - массив GET данных запроса
@@ -196,7 +196,7 @@ class ReservationSearch extends Reservation
      */
     private function ownerQuery($params)
     {
-        if (empty($params['find']) OR $params['find'] == 'all') {
+        if (empty($params['find']) or $params['find'] == 'all') {
             $query = Reservation::find()
                 ->joinWith([
                     'user' => function ($query) {
@@ -220,7 +220,7 @@ class ReservationSearch extends Reservation
             $query = Reservation::find()
                 ->where('0=1');
         }
-        
+
         return $query;
     }
 
@@ -248,7 +248,7 @@ class ReservationSearch extends Reservation
             return;
         }
 
-        if ($this->budget > 1 AND $this->budget < 9) {
+        if ($this->budget > 1 and $this->budget < 9) {
             $query->andWhere(['OR',
                 'money_from <= :start AND :start <= money_to',
                 'money_from <= :end AND :end <= money_to',
@@ -260,5 +260,5 @@ class ReservationSearch extends Reservation
 
         return;
     }
-    
+
 }

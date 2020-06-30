@@ -168,7 +168,7 @@ $filters = [
     [
         'class' => 'yii\filters\PageCache',
         'only' => ['update'],
-        'enabled' => Yii::$app->request->isGet AND \common\modules\partners\models\Apartment::find()
+        'enabled' => Yii::$app->request->isGet and \common\modules\partners\models\Apartment::find()
                 ->where(['user_id' => Yii::$app->user->id, 'apartment_id' => Yii::$app->request->get('id')])->exists(),
         'duration' => 300,
         'variations' => [

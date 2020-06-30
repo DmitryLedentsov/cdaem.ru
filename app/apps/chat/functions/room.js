@@ -4,8 +4,7 @@
  * @param cb
  * @returns {*}
  */
-function roomUserPush(data, cb)
-{
+function roomUserPush(data, cb) {
     if (data.roomHash) {
         findRoomByHash(data.roomHash, function (room) {
             if (room) {
@@ -45,8 +44,7 @@ function roomUserPush(data, cb)
  * @param cb
  * @returns {*}
  */
-function createRoom(data, cb)
-{
+function createRoom(data, cb) {
     var newRoom = {
         name: uuid.v1(),
         waiting: [data.user.id, data.interlocutor_id],
@@ -65,8 +63,7 @@ function createRoom(data, cb)
  * @param socketId
  * @param cb
  */
-function roomsClear(socketId, cb)
-{
+function roomsClear(socketId, cb) {
     var result = {
         clearRooms: 0,
         clearSockets: 0,

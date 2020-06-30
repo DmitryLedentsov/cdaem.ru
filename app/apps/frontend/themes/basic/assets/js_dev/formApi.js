@@ -266,8 +266,7 @@
 
                     $form.on('submit.formApi', methods.submitForm);
                 });
-            }
-            else {
+            } else {
                 // TODO: Оформить
                 console.log('Ваш браузер устарел');
             }
@@ -549,11 +548,9 @@
             $targetField.each(function () {
                 if (this.type == 'text' || this.type == 'textarea') {
                     this.value = '';
-                }
-                else if (this.type == 'radio' || this.type == 'checkbox') {
+                } else if (this.type == 'radio' || this.type == 'checkbox') {
                     this.checked = false;
-                }
-                else if (this.type == 'select-one' || this.type == 'select-multiple') {
+                } else if (this.type == 'select-one' || this.type == 'select-multiple') {
                     this.value = 'All';
                 }
             });
@@ -568,11 +565,9 @@
         $targetField.each(function () {
             if (this.type == 'text' || this.type == 'textarea') {
                 this.value = '';
-            }
-            else if (this.type == 'radio' || this.type == 'checkbox') {
+            } else if (this.type == 'radio' || this.type == 'checkbox') {
                 this.checked = false;
-            }
-            else if (this.type == 'select-one' || this.type == 'select-multiple') {
+            } else if (this.type == 'select-one' || this.type == 'select-multiple') {
                 this.value = 'All';
             }
         });

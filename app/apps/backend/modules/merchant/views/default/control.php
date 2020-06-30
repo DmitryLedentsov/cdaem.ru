@@ -40,26 +40,26 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
     </div>
 <?php endif; ?>
 
-<br />
+<br/>
 
 
 <h2>Управление счетом пользователя:</h2>
 
 <h6 class="heading-hr"><span class="icon-user"></span> Пользователь</h6>
 <?php
-    echo \nepster\faceviewer\Widget::widget([
-        'template' => '<div class="user-face"><div class="avatar">{face}</div>{name} {surname} <p>{funds}</p></div>',
-        'templateUrl' => ['/users/user/update', 'id' => $user->id],
-        'data' => [
-            'name' => Html::encode($user->profile->name),
-            'surname' => Html::encode($user->profile->surname),
-            'avatar_url' => $user->profile->avatar_url,
-            'funds' => Yii::$app->formatter->asCurrency($user->funds_main, 'rub'),
-        ]
-    ]);
+echo \nepster\faceviewer\Widget::widget([
+    'template' => '<div class="user-face"><div class="avatar">{face}</div>{name} {surname} <p>{funds}</p></div>',
+    'templateUrl' => ['/users/user/update', 'id' => $user->id],
+    'data' => [
+        'name' => Html::encode($user->profile->name),
+        'surname' => Html::encode($user->profile->surname),
+        'avatar_url' => $user->profile->avatar_url,
+        'funds' => Yii::$app->formatter->asCurrency($user->funds_main, 'rub'),
+    ]
+]);
 ?>
 
-<p><br /></p>
+<p><br/></p>
 
 <?php $form = ActiveForm::begin(); ?>
 
@@ -77,12 +77,12 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
 <div class="row">
     <div class="col-md-1 col-md-2 col-sm-2 col-xs-6 col-lg-2"><?= $form->field($model, 'funds') ?></div>
 </div>
-<br />
+<br/>
 
 <div class="form-group">
     <?= Html::submitButton(Yii::t('app', 'Отправить'), ['class' => 'btn btn-success']) ?>
 </div>
 
-<br />
+<br/>
 
 <?php ActiveForm::end(); ?>

@@ -4,13 +4,16 @@
     @var \yii\web\View this
     @var string $date
 */
+
 use yii\helpers\Html;
+
 ?>
 <div id="modal-realty-objects-by-calendar" class="modal fade" data-title="Укажите время аренды">
     <div class="office">
         <div class="load">
             <div class="text-center">
-                <button class="btn btn-orange" id="by-date">Информация за <?=date('d.m.Y', strtotime($date))?></button> &nbsp; &nbsp; &nbsp;
+                <button class="btn btn-orange" id="by-date">Информация
+                    за <?= date('d.m.Y', strtotime($date)) ?></button> &nbsp; &nbsp; &nbsp;
                 <button class="btn btn-orange" id="by-apartments">Все апаратменты</button>
             </div>
             <p><br/></p>
@@ -25,12 +28,12 @@ use yii\helpers\Html;
 
     $(function () {
 
-        $.get( "/partners/ajax/calendar-selected", {'type' : 'info', 'date' : '<?=$date?>'}, function( response ) {
+        $.get("/partners/ajax/calendar-selected", {'type': 'info', 'date': '<?=$date?>'}, function (response) {
             $('#objects-by-calendar').html(response);
         });
 
         $('#by-date').on('click', function () {
-            $.get( "/partners/ajax/calendar-selected", {'type' : 'info', 'date' : '<?=$date?>'}, function( response ) {
+            $.get("/partners/ajax/calendar-selected", {'type': 'info', 'date': '<?=$date?>'}, function (response) {
 
                 $('#objects-by-calendar').html(response);
 
@@ -38,7 +41,7 @@ use yii\helpers\Html;
         });
 
         $('#by-apartments').on('click', function () {
-            $.get( "/partners/ajax/calendar-selected", {'type' : 'selected', 'date' : '<?=$date?>'}, function( response ) {
+            $.get("/partners/ajax/calendar-selected", {'type': 'selected', 'date': '<?=$date?>'}, function (response) {
                 $('#objects-by-calendar').html(response);
                 init();
             });
@@ -48,7 +51,7 @@ use yii\helpers\Html;
 
             var clear = {};
 
-            $('.object-type').each(function( index ) {
+            $('.object-type').each(function (index) {
                 var $this = $(this);
                 if ($this.val() == -1) {
                     $this.parents('.options').find('.options-date').hide();
@@ -61,7 +64,7 @@ use yii\helpers\Html;
 
             $('.object-type').on('focus', function () {
                 previous = this.value;
-            }).change(function() {
+            }).change(function () {
 
                 var $this = $(this);
                 if ($this.val() == -1 || previous == -1) {
@@ -75,7 +78,7 @@ use yii\helpers\Html;
                 } else {
                     $this.parents('.options').find('.options-date').show();
                     var datepicker = $this.parents('.options').find('.datepicker');
-                    datepicker.each(function( index ) {
+                    datepicker.each(function (index) {
                         var $this = $(this);
                         if (!$this.val()) {
                             $this.val('<?=date('d.m.Y', strtotime($date))?>');
@@ -122,12 +125,12 @@ use yii\helpers\Html;
                 // Событие срабатывает при успешном запросе
                 success: function (formApi, response) {
                     if ($.isPlainObject(response) && 'status' in response) {
-                         if (response.status == 1) {
-                             showStackInfo('Информация', response.message);
-                             window.location.reload();
-                         } else {
-                             showStackError('Ошибка', response.message);
-                         }
+                        if (response.status == 1) {
+                            showStackInfo('Информация', response.message);
+                            window.location.reload();
+                        } else {
+                            showStackError('Ошибка', response.message);
+                        }
                     }
                 }
             });

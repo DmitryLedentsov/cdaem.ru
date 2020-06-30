@@ -21,12 +21,10 @@ class Captcha extends Widget
      */
     public function run()
     {
-        
-
         return $this->form->field($this->model, $this->name, [
             'template' => '<label class="control-label">&nbsp;</label><div class="code">{input}{error}</div>',
             'options' => ['class' => 'form-group verifycode'],
-        ])->widget(\himiklab\yii2\recaptcha\ReCaptcha::className());
+        ])->widget(\himiklab\yii2\recaptcha\ReCaptcha::class);
     }
 
     /**
@@ -34,7 +32,7 @@ class Captcha extends Widget
      */
     public static function getClassValidator()
     {
-        
-        return  \himiklab\yii2\recaptcha\ReCaptchaValidator::className();
+
+        return \himiklab\yii2\recaptcha\ReCaptchaValidator::class;
     }
 }

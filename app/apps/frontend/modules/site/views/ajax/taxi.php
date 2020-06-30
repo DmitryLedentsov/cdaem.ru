@@ -6,48 +6,51 @@
 */
 
 use yii\helpers\Html;
+
 ?>
 
 <div class="modal fade" id="modal-taxi" data-title="Заказать такси в Москве">
 
-    <?php echo Html::beginForm(['/site/default/taxi'], 'POST', ['id' => 'form-taxi', 'class' => 'horizontal'])?>
+    <?php echo Html::beginForm(['/site/default/taxi'], 'POST', ['id' => 'form-taxi', 'class' => 'horizontal']) ?>
 
     <div class="form-group required">
-        <label class="control-label" style="width: 120px"><?php echo $model->getAttributeLabel('name')?></label>
-        <?php echo Html::activeTextInput($model, 'name', ['class' => 'form-control', 'style' => 'width: 50%'])?>
+        <label class="control-label" style="width: 120px"><?php echo $model->getAttributeLabel('name') ?></label>
+        <?php echo Html::activeTextInput($model, 'name', ['class' => 'form-control', 'style' => 'width: 50%']) ?>
         <div class="help-block" style="padding-left: 120px"></div>
     </div>
 
     <div class="form-group required">
-        <label class="control-label" style="width: 120px"><?php echo $model->getAttributeLabel('phone')?></label>
-        <?php echo Html::activeTextInput($model, 'phone', ['class' => 'form-control', 'placeholder' => '+7 (___) ___-____', 'style' => 'width: 50%'])?>
+        <label class="control-label" style="width: 120px"><?php echo $model->getAttributeLabel('phone') ?></label>
+        <?php echo Html::activeTextInput($model, 'phone', ['class' => 'form-control', 'placeholder' => '+7 (___) ___-____', 'style' => 'width: 50%']) ?>
         <div class="help-block" style="padding-left: 120px"></div>
     </div>
 
     <div class="form-group required">
-        <label class="control-label" style="width: auto"><?php echo $model->getAttributeLabel('departureAddress')?></label>
-        <?php echo Html::activeTextInput($model, 'departureAddress', ['class' => 'form-control'])?>
+        <label class="control-label"
+               style="width: auto"><?php echo $model->getAttributeLabel('departureAddress') ?></label>
+        <?php echo Html::activeTextInput($model, 'departureAddress', ['class' => 'form-control']) ?>
         <div class="help-block"></div>
     </div>
 
     <div class="form-group required">
-        <label class="control-label" style="width: auto"><?php echo $model->getAttributeLabel('destinationAddress')?></label>
-        <?php echo Html::activeTextInput($model, 'destinationAddress', ['class' => 'form-control'])?>
+        <label class="control-label"
+               style="width: auto"><?php echo $model->getAttributeLabel('destinationAddress') ?></label>
+        <?php echo Html::activeTextInput($model, 'destinationAddress', ['class' => 'form-control']) ?>
         <div class="help-block"></div>
     </div>
 
     <div class="form-group required">
-        <label class="control-label" style="width: 215px"><?php echo $model->getAttributeLabel('carClass')?></label>
-        <?php echo Html::activeDropDownList($model, 'carClass', $model->getCarClassArray(), ['class' => 'form-control', 'style' => 'width: 51%'])?>
+        <label class="control-label" style="width: 215px"><?php echo $model->getAttributeLabel('carClass') ?></label>
+        <?php echo Html::activeDropDownList($model, 'carClass', $model->getCarClassArray(), ['class' => 'form-control', 'style' => 'width: 51%']) ?>
         <div class="help-block" style="padding-left: 215px"></div>
     </div>
 
     <div class="form-group required">
-        <label class="control-label" style="width: 215px;"><?php echo $model->getAttributeLabel('date')?></label>
+        <label class="control-label" style="width: 215px;"><?php echo $model->getAttributeLabel('date') ?></label>
         <div class="clearfix">
-            <?php echo Html::activeHiddenInput($model, 'date_delivery')?>
-            <div style="width:125px; float: left; margin-right: 5px;"><?php echo Html::activeTextInput($model, 'date', ['class' => 'form-control datepicker', 'readonly' => 'readonly'])?></div>
-            <div style="width:85px; float: left"><?php echo Html::activeTextInput($model, 'time', ['class' => 'form-control timepicker', 'readonly' => 'readonly'])?></div>
+            <?php echo Html::activeHiddenInput($model, 'date_delivery') ?>
+            <div style="width:125px; float: left; margin-right: 5px;"><?php echo Html::activeTextInput($model, 'date', ['class' => 'form-control datepicker', 'readonly' => 'readonly']) ?></div>
+            <div style="width:85px; float: left"><?php echo Html::activeTextInput($model, 'time', ['class' => 'form-control timepicker', 'readonly' => 'readonly']) ?></div>
         </div>
         <div class="help-block" style="padding-left: 215px"></div>
     </div>

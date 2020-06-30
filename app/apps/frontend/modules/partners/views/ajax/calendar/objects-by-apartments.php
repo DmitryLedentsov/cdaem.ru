@@ -6,13 +6,15 @@
     @var \frontend\modules\partners\models\Apartments $apartments
     @var string $date
 */
+
 use frontend\modules\partners\widgets\PreviewAdvertTmp;
 use yii\helpers\Html;
+
 ?>
 <?php if (!empty($apartments)): ?>
     <?= Html::beginForm('', 'post', ['id' => 'form-calendar']) ?>
     <?php foreach ($apartments as $apartment):
-        $data = $model->getFormatData($apartment, $date);  ?>
+        $data = $model->getFormatData($apartment, $date); ?>
 
         <div class="item control-date clearfix">
             <div class="object">
@@ -90,7 +92,7 @@ use yii\helpers\Html;
     <?php endforeach; ?>
 
     <div class="form-group text-center">
-        <input type="submit" class="btn btn-primary" value="Сохранить" />
+        <input type="submit" class="btn btn-primary" value="Сохранить"/>
     </div>
 
     <?= Html::endForm() ?>

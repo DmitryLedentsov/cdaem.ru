@@ -13,21 +13,21 @@
     <div class="breadcrumbs">
         {{ use('yii/widgets/Breadcrumbs') }}
         {{ breadcrumbs_widget({
-        'itemTemplate' : "<li>{link}</li>\n",
-        'homeLink' :
-        {
-        'label' : 'Главная',
-        'url' : '/'
-        },
-        'links':  [
-        {
-        'label': 'Личный кабинет',
-        'url' : ['/office/default/index']
-        },
-        {
-        'label': 'Бронь',
-        },
-        ],
+            'itemTemplate' : "<li>{link}</li>\n",
+            'homeLink' :
+            {
+                'label' : 'Главная',
+                'url' : '/'
+            },
+            'links':  [
+                {
+                    'label': 'Личный кабинет',
+                    'url' : ['/office/default/index']
+                },
+                {
+                    'label': 'Бронь',
+                },
+            ],
         }) }}
     </div>
 {% endblock %}
@@ -43,14 +43,16 @@
     {% for reservation in dataProvider.getModels() %}
         <div class="row apartment-item clearfix {% if reservation.closed != 0 %}closed{% endif %}">
             <div class="apartment-item-title">
-                <h3>{{ ApartmentHelper.getAddress(reservation.advert.apartment) }} | Объявление №{{ reservation.advert.advert_id }}</h3>
+                <h3>{{ ApartmentHelper.getAddress(reservation.advert.apartment) }} | Объявление
+                    №{{ reservation.advert.advert_id }}</h3>
             </div>
             <div class="col-md-6">
                 <div class="apartment-description">
 
                     <div class="apartment-blocks">
                         <div class="extra-list va" style="padding: 0 15px;">
-                            <p class="accent-time">Заявка создана: {{ this.renderDynamic('return \\nepster\\basis\\helpers\\DateTimeHelper::diffAgoPeriodRound("'~reservation.date_create~'");') | raw }}</p>
+                            <p class="accent-time">Заявка
+                                создана: {{ this.renderDynamic('return \\nepster\\basis\\helpers\\DateTimeHelper::diffAgoPeriodRound("'~reservation.date_create~'");') | raw }}</p>
                             <p><span class="color-info"><b>Заявка № {{ reservation.id }}</b></span></p>
                             <br/>
 
@@ -58,10 +60,13 @@
 
                                 {% if reservation.confirm == 2 %}
                                     <p>
-                                        Владелец подтвердил Ваше бронирование и внёс предварительно оплату, что является гарантией! Владелец ждёт от Вас подтверждения "Брони" и готов Вам предоставить своё жильё!
+                                        Владелец подтвердил Ваше бронирование и внёс предварительно оплату, что является
+                                        гарантией! Владелец ждёт от Вас подтверждения "Брони" и готов Вам предоставить
+                                        своё жильё!
                                     </p>
                                     <p class="text-center" style="font-weight: bold">
-                                        <span class="link color-success reservation-send" data-type="confirm" data-reservation="{{ reservation.id }}" data-user-type="renter">Подтвердить бронь</span>
+                                        <span class="link color-success reservation-send" data-type="confirm"
+                                              data-reservation="{{ reservation.id }}" data-user-type="renter">Подтвердить бронь</span>
                                     </p>
                                 {% else %}
                                     <p class="text-center color-danger">
@@ -73,7 +78,9 @@
 
                             {% if reservation.closed == 0 and reservation.confirm == 0 %}
                                 <p class="text-center" style="font-weight: bold">
-                                    <span class="link color-danger reservation-send" data-type="cancel" data-department="reservations" data-user-type="renter" data-reservation="{{ reservation.id }}">Отменить</span>
+                                    <span class="link color-danger reservation-send" data-type="cancel"
+                                          data-department="reservations" data-user-type="renter"
+                                          data-reservation="{{ reservation.id }}">Отменить</span>
                                 </p>
                             {% endif %}
                         </div>
@@ -98,7 +105,8 @@
                                     <span class="color-info">{{ reservation.childrenArray[reservation.children] }}</span>,
                                     <span class="color-info">{{ reservation.petsArray[reservation.pets] }}</span>
                                     <br/>
-                                    Актуально до <span class="color-info">{{ DateTimeHelper.toFullDateTime(reservation.date_actuality) }}</span>
+                                    Актуально до <span
+                                            class="color-info">{{ DateTimeHelper.toFullDateTime(reservation.date_actuality) }}</span>
                                 </p>
                             </div>
                             {% if reservation.confirm == 3 %}
@@ -123,13 +131,15 @@
                 </div>
                 <div class="extra-list">
 
-                    
 
                     {% if reservation.cancel == 0 %}
-                        <p>{{ reservation.advert.apartment.city.country.name }}, {{ reservation.advert.apartment.city.name }}, {{ reservation.advert.apartment.address }}</p>
+                        <p>{{ reservation.advert.apartment.city.country.name }}
+                            , {{ reservation.advert.apartment.city.name }}
+                            , {{ reservation.advert.apartment.address }}</p>
                         <p>
                             Комнат: <span class="color-info">{{ reservation.advert.apartment.total_rooms }}</span>,
-                            Спальных мест: <span class="color-info">{{ ArrayHelper.getValue( reservation.advert.apartment.bedsList,  reservation.advert.apartment.beds) }}</span>,
+                            Спальных мест: <span
+                                    class="color-info">{{ ArrayHelper.getValue( reservation.advert.apartment.bedsList,  reservation.advert.apartment.beds) }}</span>,
                             <br/> Общая площадь: <span class="color-info">{{ reservation.advert.apartment.total_area }} м2</span>,
                             <span class="color-info">{{ reservation.advert.apartment.remontName }}</span>
                         </p>
@@ -158,15 +168,18 @@
                     {% endif %}
 
                     {% if reservation.cancel == 1 %}
-                        <div class="alert alert-warning">Вы отменили заявку <p><b>Причина:</b> {{ reservation.cancel_reason }}</p></div>
+                        <div class="alert alert-warning">Вы отменили заявку <p>
+                                <b>Причина:</b> {{ reservation.cancel_reason }}</p></div>
                     {% endif %}
 
                     {% if reservation.cancel == 2 %}
-                        <div class="alert alert-warning">Владелец отменил заявку <p><b>Причина:</b> {{ reservation.cancel_reason }}</p></div>
+                        <div class="alert alert-warning">Владелец отменил заявку <p>
+                                <b>Причина:</b> {{ reservation.cancel_reason }}</p></div>
                     {% endif %}
 
                     {% if reservation.cancel == 3 %}
-                        <div class="alert alert-warning">Отменено системой <p><b>Причина:</b> {{ reservation.cancel_reason }}</p></div>
+                        <div class="alert alert-warning">Отменено системой <p>
+                                <b>Причина:</b> {{ reservation.cancel_reason }}</p></div>
                     {% endif %}
 
                     {% if reservation.landlord_open_contacts %}

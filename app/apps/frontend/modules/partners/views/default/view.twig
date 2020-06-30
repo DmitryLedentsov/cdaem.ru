@@ -8,7 +8,7 @@
 
 {% extends "@app/themes/basic/layouts/main.twig" %}
 
-{% block title %}{{ this.registerTitle('Снять ' ~ model.apartment.total_rooms ~ ' -комнатная ' ~ model.rentType.name ~ ' г. ' ~ model.apartment.city.name ~ ', ' ~ model.apartment.address) ~ ' | Сдаём.ру'}}{% endblock %}
+{% block title %}{{ this.registerTitle('Снять ' ~ model.apartment.total_rooms ~ ' -комнатная ' ~ model.rentType.name ~ ' г. ' ~ model.apartment.city.name ~ ', ' ~ model.apartment.address) ~ ' | Сдаём.ру' }}{% endblock %}
 
 {% block navbar %}
     {{ this.renderDynamic('return $this->render("@app/modules/office/views/layouts/navbar.twig");') | raw }}
@@ -25,13 +25,13 @@
                 'url' : app.params.siteDomain
             },
             'links':  [
-            {
-                'label': model.rentType.name,
-                'url' : app.request.hostInfo ~ '/?sect=' ~ model.rentType.rent_type_id
-            },
-            {
-                'label': '№ ' ~ model.advert_id,
-            },
+                {
+                    'label': model.rentType.name,
+                    'url' : app.request.hostInfo ~ '/?sect=' ~ model.rentType.rent_type_id
+                },
+                {
+                    'label': '№ ' ~ model.advert_id,
+                },
             ],
         }) }}
     </div>
@@ -55,7 +55,7 @@
     {{ use('frontend/themes/basic/assets/LightBoxAsset') }}
     {{ register_light_box_asset() }}
 
-    
+
 
     {{ this.render('@app/modules/partners/views/default/view/apartment.twig', {
         'model': model,

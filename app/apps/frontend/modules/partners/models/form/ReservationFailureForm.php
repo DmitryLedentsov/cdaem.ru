@@ -141,11 +141,11 @@ class ReservationFailureForm extends ReservationFailure
             $this->closed = 1;
         }
 
-        if (!$this->_reservation->save(false) OR !$this->save(false)) {
+        if (!$this->_reservation->save(false) or !$this->save(false)) {
             return false;
         }
 
-        if ($opponentFailure AND !$opponentFailure->save(false)) {
+        if ($opponentFailure and !$opponentFailure->save(false)) {
             return false;
         }
 

@@ -165,8 +165,7 @@ class Pay extends \yii\base\Model
                     $this->data = array_merge($this->data, $data);
                 }
             }
-            
-             
+
 
             return true;
         }
@@ -203,14 +202,14 @@ class Pay extends \yii\base\Model
                 return false;
             }
             if (!$this->_service->validateContact()) {
-              $this->addError('', 'Ваше объявление под бронью, Вы не можете оплатить!.');
-               return false;
+                $this->addError('', 'Ваше объявление под бронью, Вы не можете оплатить!.');
+                return false;
             }
             if (!$this->_service->validateContactOpen()) {
                 $this->addError('', 'У Вашего объявления открыты контакты или дождитесь активации уже оплаченых. Около 10 минут');
                 return false;
             }
-           
+
         }
     }
 
@@ -269,7 +268,7 @@ class Pay extends \yii\base\Model
                 Yii::$app->consoleRunner->run('service/send-mail ' . $this->_process->id . ' payment');
             }
 
-           Yii::$app->session->setFlash('info', 'Услуга успешно оплачена. Пожалуйста обратите внимание на поле "Дата включения" и без необходимости повторно не оплачивайте сервис.');
+            Yii::$app->session->setFlash('info', 'Услуга успешно оплачена. Пожалуйста обратите внимание на поле "Дата включения" и без необходимости повторно не оплачивайте сервис.');
 
             $response = [
                 'status' => 1,
@@ -321,7 +320,7 @@ class Pay extends \yii\base\Model
         }
 
         $serviceName = 'Услуга: "' . $this->_service->getName() . '"';
-       // $adverts_selected = $this->_service->_selected;
+        // $adverts_selected = $this->_service->_selected;
 
         $transaction->commit();
 

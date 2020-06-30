@@ -14,12 +14,12 @@ use yii\widgets\Breadcrumbs;
 
 $this->beginPage();
 ?>
-<!DOCTYPE html>
-<html lang="<?= Yii::$app->language ?>">
-<head>
-    <?= $this->render('//layouts/head'); ?>
-</head>
-<body class="full-width page-condensed">
+    <!DOCTYPE html>
+    <html lang="<?= Yii::$app->language ?>">
+    <head>
+        <?= $this->render('//layouts/head'); ?>
+    </head>
+    <body class="full-width page-condensed">
     <?php $this->beginBody(); ?>
     <?= $this->render('//layouts/navbar'); ?>
     <!-- Page container -->
@@ -29,6 +29,6 @@ $this->beginPage();
     </div>
     <!-- /page container -->
     <?php $this->endBody(); ?>
-</body>
-</html>
+    </body>
+    </html>
 <?php $this->endPage(); ?>
