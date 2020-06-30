@@ -14,7 +14,7 @@ bootstrap:
 	cp ./docker/docker-compose.override.yml.example ./docker/docker-compose.override.yml
 	cp ./docker/.env.example ./docker/.env
 	make build
-	make start
+	$(docker_compose) up -d
 	make composer cmd="global require "fxp/composer-asset-plugin:^1.3.1""
 	make composer cmd=install
 	make php-init
