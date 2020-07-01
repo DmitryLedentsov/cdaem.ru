@@ -6,11 +6,11 @@ return [
             'identityCookie' => [
                 'name' => '_identity',
                 'httpOnly' => true,
-                'domain' => '.cdaem.com',
+                'domain' => '.cdaem.ru',
             ],
         ],
         'session' => [
-            'cookieParams' => ['domain' => '.cdaem.com'],
+            'cookieParams' => ['domain' => '.cdaem.ru'],
         ],
     ],
 ];
