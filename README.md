@@ -183,6 +183,7 @@ ln -s /path/to/apps/frontend/web/ion.sound ion.sound
 ============
 DELETE FROM log WHERE category = 'Twig_Error_Runtime' ;
 DELETE FROM log WHERE category = 'yii\\web\\HttpException:404';
+DELETE FROM log WHERE category = 'yii\debug\Module::checkAccess';
 DELETE FROM log WHERE category = 'application';
 DELETE FROM log WHERE category = 'yii\\base\\ErrorException:1';
 DELETE FROM log WHERE category = 'yii\\base\\ErrorException:8';

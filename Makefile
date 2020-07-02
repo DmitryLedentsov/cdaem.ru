@@ -47,6 +47,12 @@ composer:
 	    $(app_run) sh -c "composer update"
     endif
 
+
+grunt-npm-install:
+	$(node_run) sh -c "cd /app/grunt && npm install"
+
+
+
 app_bash:
 	$(app_run) sh
 
@@ -58,15 +64,15 @@ php-yii:
     endif
 
 dump-geo-load:
-	$(db_run) sh -c "mysql -u cdaemru -p cdaemru --password='cdaemru' < /dumps/geo.sql"
+	$(db_run) sh -c "mysql -u root -p cdaemru --password='cdaemru' < /dumps/geo.sql"
 
 dump-dev:
-	$(db_run) sh -c "mysql -u cdaemru -p cdaemru --password='cdaemru' < /dumps/dev.cdaem.ru.sql"
+	$(db_run) sh -c "mysql -u root -p cdaemru --password='cdaemru' < /dumps/dev.cdaem.ru.sql"
 
 dump-import:
-	$(db_run) sh -c "mysql -u cdaemru -p cdaemru --password='cdaemru' < /dumps/articles.sql"
-	$(db_run) sh -c "mysql -u cdaemru -p cdaemru --password='cdaemru' < /dumps/pages.sql"
-	$(db_run) sh -c "mysql -u cdaemru -p cdaemru --password='cdaemru' < /dumps/seo_text.sql"
+	$(db_run) sh -c "mysql -u root -p cdaemru --password='cdaemru' < /dumps/articles.sql"
+	$(db_run) sh -c "mysql -u root -p cdaemru --password='cdaemru' < /dumps/pages.sql"
+	$(db_run) sh -c "mysql -u root -p cdaemru --password='cdaemru' < /dumps/seo_text.sql"
 
 php-init:
 	$(app_run) sh -c "php init"
