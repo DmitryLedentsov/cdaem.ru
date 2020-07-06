@@ -26,6 +26,8 @@ start:
 	$(docker_compose) up -d
 	make composer cmd=install
 	make php-yii cmd="migrate --interactive=0"
+	make cron-load
+	make cron-start
 
 stop:
 	$(docker_compose) down
@@ -81,3 +83,9 @@ pull:
 	git status
 	git pull
 	make restart
+
+cron-start:
+	$(docker_compose) exec -T --user=root app sh -c "crond"
+
+cron-load:
+	$(docker_compose) exec -T --user=root app sh -c "crontab /app/cron"
