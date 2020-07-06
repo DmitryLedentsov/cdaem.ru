@@ -13,6 +13,7 @@ db_run = $(docker_compose) exec --user=root db
 bootstrap:
 	cp ./docker/docker-compose.override.yml.example ./docker/docker-compose.override.yml
 	cp ./docker/.env.example ./docker/.env
+	cat ./docker/hosts.sh | sudo /bin/sh
 	make build
 	$(docker_compose) up -d
 	make composer cmd="global require "fxp/composer-asset-plugin:^1.3.1""
@@ -21,6 +22,8 @@ bootstrap:
 	make dump-geo-load
 	make php-yii cmd="migrate --interactive=0"
 	make dump-import
+	make cron-load
+	make cron-start
 
 start:
 	$(docker_compose) up -d
@@ -49,11 +52,8 @@ composer:
 	    $(app_run) sh -c "composer update"
     endif
 
-
 grunt-npm-install:
 	$(node_run) sh -c "cd /app/grunt && npm install"
-
-
 
 app_bash:
 	$(app_run) sh
@@ -66,15 +66,15 @@ php-yii:
     endif
 
 dump-geo-load:
-	$(db_run) sh -c "mysql -u root -p cdaemru --password='cdaemru' < /dumps/geo.sql"
+	$(db_run) sh -c "mysql -u root -p cdaem.ru --password='cdaemru' < /dumps/geo.sql"
 
 dump-dev:
-	$(db_run) sh -c "mysql -u root -p cdaemru --password='cdaemru' < /dumps/dev.cdaem.ru.sql"
+	$(db_run) sh -c "mysql -u root -p cdaem.ru --password='cdaemru' < /dumps/dev.cdaem.ru.sql"
 
 dump-import:
-	$(db_run) sh -c "mysql -u root -p cdaemru --password='cdaemru' < /dumps/articles.sql"
-	$(db_run) sh -c "mysql -u root -p cdaemru --password='cdaemru' < /dumps/pages.sql"
-	$(db_run) sh -c "mysql -u root -p cdaemru --password='cdaemru' < /dumps/seo_text.sql"
+	$(db_run) sh -c "mysql -u root -p cdaem.ru --password='cdaemru' < /dumps/articles.sql"
+	$(db_run) sh -c "mysql -u root -p cdaem.ru --password='cdaemru' < /dumps/pages.sql"
+	$(db_run) sh -c "mysql -u root -p cdaem.ru --password='cdaemru' < /dumps/seo_text.sql"
 
 php-init:
 	$(app_run) sh -c "php init"
