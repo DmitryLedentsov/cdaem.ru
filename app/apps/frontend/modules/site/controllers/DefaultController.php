@@ -57,8 +57,6 @@ class DefaultController extends \frontend\components\Controller
      */
     public function actionIndex($city = null)
     {
-        dd(1);
-
         $agencySearch = new AgencyAdvertSearch();
         $agencyDataProvider = $agencySearch->search(Yii::$app->request->queryParams);
 
