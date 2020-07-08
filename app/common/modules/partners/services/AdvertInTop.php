@@ -6,9 +6,7 @@ use common\modules\partners\interfaces\ServiceInterface;
 use frontend\modules\partners\models\Apartment;
 use frontend\modules\partners\models\Advert;
 use common\modules\partners\models\Service;
-use yii\validators\ExistValidator;
 use yii\validators\EmailValidator;
-use yii\base\InvalidConfigException;
 use yii\helpers\Json;
 use Yii;
 
@@ -99,7 +97,7 @@ final class AdvertInTop extends \yii\base\BaseObject implements ServiceInterface
                 $percent += 30;
             } else if ($amount >= 20) {
                 $percent += 27;
-            }  else if ($amount >= 10) {
+            } else if ($amount >= 10) {
                 $percent += 25;
             } else if ($amount >= 5) {
                 $percent += 22;
@@ -171,15 +169,14 @@ final class AdvertInTop extends \yii\base\BaseObject implements ServiceInterface
 
         return true;
     }
-    
-     public function validateContact()
+
+    public function validateContact()
     {
-        
         return true;
     }
-    
+
     public function validateContactOpen()
-    { 
+    {
         return true;
     }
 
@@ -237,7 +234,7 @@ final class AdvertInTop extends \yii\base\BaseObject implements ServiceInterface
 
             $advert = Advert::find()
                 ->with([
-                    'apartment' => function($query) {
+                    'apartment' => function ($query) {
                         $query->with(['city']);
                     },
                     'rentType'
@@ -258,14 +255,12 @@ final class AdvertInTop extends \yii\base\BaseObject implements ServiceInterface
             // Когда объявление вылетает из топа, контакты закрываются автоматически
             $advert->apartment->open_contacts = 0;
             $advert->apartment->save(false);
-
         }
 
         // Если у пользователя закрываются контакты хотябы одного объявления,
         // то он теряет статус VIP
         $this->_process->user->profile->vip = 0;
         $this->_process->user->profile->save(false);
-
 
         $this->updateAdvertsPositions();
 
