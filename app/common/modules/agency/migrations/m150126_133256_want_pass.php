@@ -16,7 +16,7 @@ class m150126_133256_want_pass extends Migration
         // Agency Apartment Want Pass
         $this->createTable('{{%agency_apartment_want_pass}}', [
             'apartment_want_pass_id' => Schema::TYPE_PK . ' COMMENT "№"',
-            'name'  => 'varchar(255) NOT NULL COMMENT "Ф.И.О."',
+            'name' => 'varchar(255) NOT NULL COMMENT "Ф.И.О."',
             'phone' => 'bigint COMMENT "Телефон"',
             'phone2' => 'bigint COMMENT "Второй телефон"',
             'email' => 'varchar(200) NOT NULL COMMENT "Почтовый адрес"',

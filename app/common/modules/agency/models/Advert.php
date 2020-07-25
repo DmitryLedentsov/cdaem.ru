@@ -16,7 +16,7 @@ use Yii;
 class Advert extends \yii\db\ActiveRecord
 {
     use ModuleTrait;
-    
+
     /**
      * @inheritdoc
      */
@@ -95,7 +95,7 @@ class Advert extends \yii\db\ActiveRecord
     {
         return static::find()
             ->joinWith([
-                'apartment' => function($query) {
+                'apartment' => function ($query) {
                     $query->visible()
                         ->with([
                             'user' => function ($query) {
@@ -149,7 +149,7 @@ class Advert extends \yii\db\ActiveRecord
      * @return array Список типов аренды
      */
     public static function getRentTypesList()
-    {        
+    {
         return RentType::rentTypeslist();
     }
 
@@ -177,13 +177,13 @@ class Advert extends \yii\db\ActiveRecord
     {
         return Yii::$app->formatter->asCurrency($this->price, ArrayHelper::getValue($this->currencyList, $this->currency));
     }
-    
+
     /**
      * Список доступных значений поля main_page
      */
     const MAIN_PAGE = 1; // Отображается на главной странице
     const NOT_MAIN_PAGE = 0; // Не отображается
-    
+
     /**
      * @return array Массив доступных значений поля main_page в текстовом представлении
      */

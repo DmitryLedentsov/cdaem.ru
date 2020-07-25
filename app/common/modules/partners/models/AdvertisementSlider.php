@@ -19,7 +19,7 @@ class AdvertisementSlider extends \yii\db\ActiveRecord
     {
         return '{{%partners_advertisement_slider}}';
     }
-    
+
     /**
      * @return AdvertisementSliderQuery
      */
@@ -52,7 +52,7 @@ class AdvertisementSlider extends \yii\db\ActiveRecord
     {
         $query = static::find()
             ->joinWith([
-                'advert' => function($query) {
+                'advert' => function ($query) {
                     $query->joinWith([
                         'apartment' => function ($query) {
                             $query
@@ -79,12 +79,12 @@ class AdvertisementSlider extends \yii\db\ActiveRecord
             ->orderBy(['date_payment' => SORT_DESC])
             ->limit($limit);
 
-            if ($city_id) {
-                $query->andWhere(['OR', Apartment::tableName() . '.city_id = :city_id', self::tableName() . '.advert_id IS NULL'])
-                    ->addParams([':city_id' => $city_id]);
-            }
+        if ($city_id) {
+            $query->andWhere(['OR', Apartment::tableName() . '.city_id = :city_id', self::tableName() . '.advert_id IS NULL'])
+                ->addParams([':city_id' => $city_id]);
+        }
 
-            return $query->all();
+        return $query->all();
     }
 
     /**

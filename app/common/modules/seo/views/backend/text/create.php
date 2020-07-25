@@ -10,7 +10,7 @@ use yii\helpers\Html;
 $this->title = 'Создать сео-текст';
 
 echo \backend\modules\admin\widgets\HeaderWidget::widget([
-    'title' =>  'Управление сео-текстами',
+    'title' => 'Управление сео-текстами',
     'description' => $this->title,
     'breadcrumb' => [
         [

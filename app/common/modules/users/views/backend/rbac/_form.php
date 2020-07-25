@@ -51,6 +51,7 @@ function getModuleName($id)
 {
     return explode('-', $id)[0];
 }
+
 ?>
 
 
@@ -64,30 +65,34 @@ function getModuleName($id)
 
     <ul class="nav nav-tabs">
         <?php
-            $c = 0;
-            foreach ($iModules as $module => $name):
-                ++$c;
-        ?>
-            <li class="<?php echo ($c == 1) ? 'active' : ''?>"><a href="#<?=$module?>" data-toggle="tab"><?=$name?></a></li>
+        $c = 0;
+        foreach ($iModules as $module => $name):
+            ++$c;
+            ?>
+            <li class="<?php echo ($c == 1) ? 'active' : '' ?>"><a href="#<?= $module ?>"
+                                                                   data-toggle="tab"><?= $name ?></a></li>
         <?php endforeach; ?>
     </ul>
 
     <div class="tab-content">
         <?php
-            $c = 0;
-            foreach ($iModules as $module => $name):
-                ++$c;
-        ?>
-            <div class="tab-pane fade in <?php echo ($c == 1) ? 'active' : ''?>" id="<?=$module?>" style="padding: 15px">
+        $c = 0;
+        foreach ($iModules as $module => $name):
+            ++$c;
+            ?>
+            <div class="tab-pane fade in <?php echo ($c == 1) ? 'active' : '' ?>" id="<?= $module ?>"
+                 style="padding: 15px">
                 <?php foreach ($permissions as $id => $permission): ?>
-                    <?php if ($module != getModuleName($id)) { continue; } ?>
+                    <?php if ($module != getModuleName($id)) {
+                        continue;
+                    } ?>
                     <?php $field = $form->field($model, 'permissions[' . $id . ']'); ?>
                     <?php echo $field->begin(); ?>
                     <?php
-                        echo Html::activeCheckbox($model, 'permissions[' . $id . ']', [
-                            'label' => Yii::t('users.rbac', $permission->description),
-                            'class' => 'pull-left',
-                        ]);
+                    echo Html::activeCheckbox($model, 'permissions[' . $id . ']', [
+                        'label' => Yii::t('users.rbac', $permission->description),
+                        'class' => 'pull-left',
+                    ]);
                     ?>
                     <?php echo $field->end(); ?>
 
@@ -97,9 +102,9 @@ function getModuleName($id)
         <?php endforeach; ?>
     </div>
 
-    <br />
+    <br/>
 
-    <?php echo Html::submitButton(Yii::t('users', 'SEND'), ['class' => 'btn btn-success']); ?>
+<?php echo Html::submitButton(Yii::t('users', 'SEND'), ['class' => 'btn btn-success']); ?>
 
 <?php ActiveForm::end(); ?>
 

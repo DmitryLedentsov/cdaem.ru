@@ -132,7 +132,7 @@ class GuestController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             if ($model->validate()) {
                 if ($model->login()) {
-                    $url = Yii::$app->request->referrer ?  Yii::$app->request->referrer : ['/office/default/index'];
+                    $url = Yii::$app->request->referrer ? Yii::$app->request->referrer : ['/office/default/index'];
                     return $this->redirect(['/office/default/index']);
                 }
             } else if (Yii::$app->request->isAjax) {

@@ -21,24 +21,24 @@ use yii\widgets\ActiveForm;
     </div>
 <?php endif; ?>
 
-<br />
+<br/>
 
 <?php $form = ActiveForm::begin(); ?>
 
-    <div class="row">
-        <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-2"><?= $form->field($formModel, 'phone')->textInput(['maxlength' => true]) ?></div>
+<div class="row">
+    <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-2"><?= $form->field($formModel, 'phone')->textInput(['maxlength' => true]) ?></div>
 
-        <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-2"><?= $form->field($formModel, 'active')->dropDownList(Yii::$app->formatter->booleanFormat) ?></div>
+    <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-2"><?= $form->field($formModel, 'active')->dropDownList(Yii::$app->formatter->booleanFormat) ?></div>
+</div>
+
+<br/>
+
+<?php if (Yii::$app->user->can('callback-update')) : ?>
+    <div class="form-group">
+        <?= Html::submitButton(Yii::t('app', 'Сохранить'), ['class' => 'btn btn-success']) ?>
     </div>
+<?php endif; ?>
 
-    <br />
-
-    <?php if (Yii::$app->user->can('callback-update')) : ?>
-        <div class="form-group">
-            <?= Html::submitButton(Yii::t('app', 'Сохранить'), ['class' => 'btn btn-success']) ?>
-        </div>
-    <?php endif; ?>
-
-    <br />
+<br/>
 
 <?php ActiveForm::end(); ?>

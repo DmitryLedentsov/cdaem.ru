@@ -10,7 +10,7 @@ use Yii;
  * @package common\modules\geo\models
  */
 class City extends \yii\db\ActiveRecord
-{   
+{
     /**
      * @inheritdoc
      */
@@ -26,7 +26,7 @@ class City extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Country::className(), ['country_id' => 'country_id']);
     }
-    
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -34,7 +34,7 @@ class City extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Region::className(), ['region_id' => 'region_id']);
     }
-    
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -103,14 +103,14 @@ class City extends \yii\db\ActiveRecord
             $rows = (new \yii\db\Query())
                 ->select(self::tableName() . '.city_id, ' . self::tableName() . '.name, ' . Country::tableName() . '.name AS country')
                 ->from(self::tableName())
-                ->leftJoin(Country::tableName(), Country::tableName(). '.country_id = ' . self::tableName() . '.country_id')
+                ->leftJoin(Country::tableName(), Country::tableName() . '.country_id = ' . self::tableName() . '.country_id')
                 ->orderBy([self::tableName() . '.name' => SORT_ASC])
                 ->all();
 
             $result = [];
 
             foreach ($rows as &$row) {
-                $result[$row['city_id']] = $row['name'] .' '. '('.$row['country'].')';
+                $result[$row['city_id']] = $row['name'] . ' ' . '(' . $row['country'] . ')';
                 unset($row);
             }
 

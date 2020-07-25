@@ -26,8 +26,8 @@ class AdvertQuery extends ActiveQuery
 
         return $this;
     }
-    
-     public function newyear($state = false)
+
+    public function newyear($state = false)
     {
         if ($state == true) {
             $this->andWhere(Advert::tableName() . '.newyear = 1');

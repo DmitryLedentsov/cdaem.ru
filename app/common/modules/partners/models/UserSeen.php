@@ -54,9 +54,9 @@ class UserSeen extends \yii\db\ActiveRecord
             'table_name' => $tableName,
         ])->andFilterWhere(['type' => $type])->one();
 
-        if ($model AND $model->last_update == $dateUpdate) return true;
+        if ($model and $model->last_update == $dateUpdate) return true;
 
-        if ($model AND $model->last_update > $dateUpdate) return true;
+        if ($model and $model->last_update > $dateUpdate) return true;
 
         if (!$model) {
             $model = new self();

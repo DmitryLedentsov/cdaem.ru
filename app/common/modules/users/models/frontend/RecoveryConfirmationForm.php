@@ -9,5 +9,5 @@ use Yii;
  */
 class RecoveryConfirmationForm extends \nepster\users\models\frontend\RecoveryConfirmationForm
 {
-    
+
 }

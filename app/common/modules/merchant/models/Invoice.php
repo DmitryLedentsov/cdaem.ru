@@ -32,7 +32,7 @@ class Invoice extends ActiveRecord
                 'attributes' => [
                     ActiveRecord::EVENT_BEFORE_INSERT => 'date_create',
                 ],
-                "value" => function() {
+                "value" => function () {
                     return date('Y-m-d H:i:s');
                 }
             ]
@@ -45,12 +45,12 @@ class Invoice extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'user_id'      => 'Пользователь',
-            'date_create'  => 'Дата создания',
+            'user_id' => 'Пользователь',
+            'date_create' => 'Дата создания',
             'date_payment' => 'Дата оплаты',
-            'funds'        => 'Средства',
-            'system'       => 'Система',
-            'paid'         => 'Оплата',
+            'funds' => 'Средства',
+            'system' => 'Система',
+            'paid' => 'Оплата',
         ];
     }
 
@@ -79,7 +79,7 @@ class Invoice extends ActiveRecord
     public static function getTypesArray()
     {
         return [
-            self::ROBOKASSA   => [
+            self::ROBOKASSA => [
                 'label' => 'ROBOKASSA',
                 'style' => '',
             ],

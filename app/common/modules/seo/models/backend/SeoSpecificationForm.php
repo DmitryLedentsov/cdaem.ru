@@ -54,7 +54,7 @@ class SeoSpecificationForm extends Model
                 'message' => 'Связка "Url" и "Поддомен" уже занята'],
 
             [['url', 'title', 'description', 'keywords'], 'required'],
-            
+
             [['service_head', 'service_footer'], 'string'],
         ];
     }

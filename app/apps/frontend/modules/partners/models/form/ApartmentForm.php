@@ -27,7 +27,7 @@ class ApartmentForm extends Apartment
     {
         return [
             'TimestampBehavior' => [
-                'class' => \yii\behaviors\TimestampBehavior::class,
+                'class' => \yii\behaviors\TimestampBehavior::className(),
                 'attributes' => [
                     \yii\db\ActiveRecord::EVENT_BEFORE_INSERT => ['date_create', 'date_update'],
                     \yii\db\ActiveRecord::EVENT_BEFORE_UPDATE => 'date_update',
@@ -37,7 +37,7 @@ class ApartmentForm extends Apartment
                 }
             ],
             'BlameableBehavior' => [
-                'class' => \yii\behaviors\BlameableBehavior::class,
+                'class' => \yii\behaviors\BlameableBehavior::className(),
                 'createdByAttribute' => 'user_id',
                 'updatedByAttribute' => false,
             ]
@@ -216,6 +216,8 @@ class ApartmentForm extends Apartment
         if ($this->scenario == 'user-update') {
 
             $currentAdvertsByRentType = [];
+
+            print_r($this->adverts->newAdverts);
 
             // Фиксируем новые изменения
             foreach ($this->adverts->newAdverts as $newAdvert) {

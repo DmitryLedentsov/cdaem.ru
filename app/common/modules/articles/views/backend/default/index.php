@@ -37,7 +37,6 @@ echo \backend\modules\admin\widgets\ExtraControlWidget::widget([
 <?php echo $this->render('_search', ['searchModel' => $searchModel, 'model' => $model]); ?>
 
 
-
 <?php if (Yii::$app->session->hasFlash('success')): ?>
     <div class="alert alert-success indent-bottom">
         <span class="icon-checkmark-circle"></span> <?php echo Yii::$app->session->getFlash('success') ?>
@@ -50,7 +49,7 @@ echo \backend\modules\admin\widgets\ExtraControlWidget::widget([
     </div>
 <?php endif; ?>
 
-    <br />
+    <br/>
 
 <?= GridView::widget([
     'tableOptions' => ['class' => 'table table-bordered'],
@@ -88,16 +87,14 @@ echo \backend\modules\admin\widgets\ExtraControlWidget::widget([
                 return Html::a(Yii::$app->params['siteDomain'] . '/stati/' . $model->slug, Yii::$app->params['siteDomain'] . '/stati/' . $model->slug);
             }
         ],
-                
-                
-         
+
 
         [
             'attribute' => 'name',
             'format' => 'html',
             'contentOptions' => ['class' => 'text-left'],
             'value' => function ($model) {
-                return Html::a($model->name, Yii::$app->params['siteDomain'] . '/stati/' . $model->slug );
+                return Html::a($model->name, Yii::$app->params['siteDomain'] . '/stati/' . $model->slug);
             }
         ],
 

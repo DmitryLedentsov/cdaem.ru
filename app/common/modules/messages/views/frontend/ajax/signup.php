@@ -6,9 +6,11 @@
     @var common\modules\users\models\Profile $profile
     @var int $interlocutorId
 */
+
 use common\modules\partners\models\Service;
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
+
 ?>
 
 <div id="modal-message" class="modal fade" data-title="Написать сообщение">
@@ -17,7 +19,8 @@ use yii\helpers\Html;
             <div class="alert alert-info">
                 <b>Внимание:</b>
                 Оставлять сообщения могут только зарегистрированные пользователи, поэтому Вам необходимо
-                <?= Html::a('войти', ['/users/guest/login'], ['target' => '_blank'])?> в свой аккаунт или <?= Html::a('зарегистрироваться', ['/users/guest/signup'], ['target' => '_blank'])?>.
+                <?= Html::a('войти', ['/users/guest/login'], ['target' => '_blank']) ?> в свой аккаунт
+                или <?= Html::a('зарегистрироваться', ['/users/guest/signup'], ['target' => '_blank']) ?>.
             </div>
 
             <?php

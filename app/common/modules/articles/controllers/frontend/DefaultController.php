@@ -36,7 +36,7 @@ class DefaultController extends \frontend\components\Controller
         if (YII_DEBUG) {
             return $behaviors;
         }
-        
+
         return array_merge($behaviors, require(__DIR__ . '/../../caching/default.php'));
     }
 
@@ -126,9 +126,7 @@ class DefaultController extends \frontend\components\Controller
         ]);
     }
 
-    
-    
-    
+
     public function actionNews($city = null)
     {
         $model = new Article;
@@ -143,9 +141,9 @@ class DefaultController extends \frontend\components\Controller
         }
 
         $countQuery = clone $query;
-       // $pages = new Pagination(['totalCount' => $countQuery->count()]);
+        // $pages = new Pagination(['totalCount' => $countQuery->count()]);
 
-       // $pages->defaultPageSize = $this->module->recordsPerPage;
+        // $pages->defaultPageSize = $this->module->recordsPerPage;
         $models = $query
             ->asArray()
             ->all();
@@ -153,9 +151,9 @@ class DefaultController extends \frontend\components\Controller
         return $this->render('news.twig', [
             'model' => $model,
             'models' => $models,
-          //  'pages' => $pages,
+            //  'pages' => $pages,
         ]);
     }
-    
-    
+
+
 }

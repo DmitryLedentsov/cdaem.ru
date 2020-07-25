@@ -40,7 +40,7 @@ class ArticleLinkSearch extends Model
 
         ]);
     }
-    
+
     /**
      * @inheritdoc
      */
@@ -57,12 +57,12 @@ class ArticleLinkSearch extends Model
      * @return ActiveDataProvider
      */
     public function search($params)
-    {        
+    {
         $query = ArticleLink::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            
+
         ]);
 
         $this->load($params);
@@ -73,7 +73,6 @@ class ArticleLinkSearch extends Model
             return $dataProvider;
         }
 
-      
 
         return $dataProvider;
     }

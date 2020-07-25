@@ -41,7 +41,7 @@ class m140418_204060_legal_person extends Migration
             'time_update' => Schema::TYPE_INTEGER . ' NULL DEFAULT NULL ',
         ], $tableOptions . ' COMMENT = "Данные юридических лиц"');
 
-        
+
         // Добавить колонку legal_person, указатель на юридическое лицо
         $this->addColumn('{{%users_profile}}', 'legal_person', Schema::TYPE_SMALLINT . ' NOT NULL DEFAULT 0 AFTER `birthday`');
 

@@ -13,8 +13,8 @@ class m150101_231642_partners extends Migration
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
         }
 
-		// Partners Apartments
-		$this->createTable('{{%partners_apartments}}', [
+        // Partners Apartments
+        $this->createTable('{{%partners_apartments}}', [
             'apartment_id' => Schema::TYPE_PK . ' COMMENT "№"',
             'user_id' => 'int NOT NULL COMMENT "Пользователь"',
             'city_id' => 'int NOT NULL COMMENT "Город"',
@@ -34,36 +34,34 @@ class m150101_231642_partners extends Migration
             'open_contacts' => Schema::TYPE_SMALLINT . ' NOT NULL DEFAULT 0 COMMENT "Контакты открыты"',
             'date_create' => 'datetime DEFAULT NULL COMMENT "Дата создания"',
             'date_update' => 'datetime DEFAULT NULL COMMENT "Дата редактирования"',
-		], $tableOptions . ' COMMENT = "Апартаменты пользователей"');
+        ], $tableOptions . ' COMMENT = "Апартаменты пользователей"');
 
-		// Index
-		$this->createIndex('{{%partners_apartments_user_id}}', '{{%partners_apartments}}', 'user_id');
-		$this->createIndex('{{%partners_apartments_city_id}}', '{{%partners_apartments}}', 'city_id');
+        // Index
+        $this->createIndex('{{%partners_apartments_user_id}}', '{{%partners_apartments}}', 'user_id');
+        $this->createIndex('{{%partners_apartments_city_id}}', '{{%partners_apartments}}', 'city_id');
         $this->createIndex('{{%partners_apartments_closest_city_id}}', '{{%partners_apartments}}', 'closest_city_id');
-        
+
         // Foreign Keys
         $this->addForeignKey('{{%partners_apartments_user_id}}', '{{%partners_apartments}}', 'user_id', '{{%users}}', 'id', 'CASCADE', 'CASCADE');
 
 
-
-		// Partners Apartment Images
-		$this->createTable('{{%partners_apartment_images}}', [
+        // Partners Apartment Images
+        $this->createTable('{{%partners_apartment_images}}', [
             'image_id' => Schema::TYPE_PK . ' COMMENT "№"',
             'apartment_id' => 'int NOT NULL',
             'default_img' => 'tinyint NOT NULL DEFAULT 0 COMMENT "Заглавная картинка"',
             'preview' => 'varchar(255) COMMENT "Файл меленькой фотографии"',
             'review' => 'varchar(255) COMMENT "Файл большой фотографии"',
             'sort' => Schema::TYPE_INTEGER . ' NOT NULL DEFAULT 0 COMMENT "Сортировка фото"',
-		], $tableOptions . ' COMMENT = "Изображения к апартаментам"');
+        ], $tableOptions . ' COMMENT = "Изображения к апартаментам"');
 
-		// Index
-		$this->createIndex('{{%partners_apartment_images_apartment_id}}', '{{%partners_apartment_images}}', 'apartment_id');
-        
+        // Index
+        $this->createIndex('{{%partners_apartment_images_apartment_id}}', '{{%partners_apartment_images}}', 'apartment_id');
+
         // Foreign Keys
-        $this->addForeignKey('{{%partners_apartment_images_apartment_id}}', '{{%partners_apartment_images}}', 'apartment_id', '{{%partners_apartments}}', 'apartment_id',  'CASCADE', 'CASCADE');
+        $this->addForeignKey('{{%partners_apartment_images_apartment_id}}', '{{%partners_apartment_images}}', 'apartment_id', '{{%partners_apartments}}', 'apartment_id', 'CASCADE', 'CASCADE');
 
 
-        
         // Partners Apartment Adverts Связь между апартаментами и типами аренды(Политика аренды)
         $this->createTable('{{%partners_adverts}}', [
             'advert_id' => Schema::TYPE_PK . ' COMMENT "№"',
@@ -85,21 +83,19 @@ class m150101_231642_partners extends Migration
         $this->addForeignKey('{{%partners_adverts_rent_type}}', '{{%partners_adverts}}', 'rent_type', '{{%realty_rent_type}}', 'rent_type_id', 'CASCADE', 'CASCADE');
 
 
-
         // Apartment Metro Stations
         $this->createTable('{{%partners_apartment_metro_stations}}', [
             'id' => Schema::TYPE_PK . ' COMMENT "№"',
             'apartment_id' => 'int NOT NULL COMMENT "ID города"',
             'metro_id' => 'int NOT NULL COMMENT "ID города"',
         ], $tableOptions . ' COMMENT = "Ближайшие станции метро к апартаментам"');
-        
+
         // Index
-		$this->createIndex('{{%partners_apartment_metro_stations_apartment_id}}', '{{%partners_apartment_metro_stations}}', 'apartment_id');
-        
+        $this->createIndex('{{%partners_apartment_metro_stations_apartment_id}}', '{{%partners_apartment_metro_stations}}', 'apartment_id');
+
         // Foreign Keys
         $this->addForeignKey('{{%partners_apartment_metro_stations_apartment_id}}', '{{%partners_apartment_metro_stations}}', 'apartment_id', '{{%partners_apartments}}', 'apartment_id', 'CASCADE', 'CASCADE');
     }
-
 
 
     public function safeDown()

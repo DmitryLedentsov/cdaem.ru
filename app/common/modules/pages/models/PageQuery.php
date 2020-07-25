@@ -13,7 +13,7 @@ use yii;
 class PageQuery extends ActiveQuery
 {
     use ModuleTrait;
-    
+
     /**
      * @param int $state
      * @return $this

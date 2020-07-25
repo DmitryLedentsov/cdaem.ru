@@ -8,7 +8,7 @@ use yii\helpers\Html;
 $this->title = 'Создать тип аренды';
 
 echo \backend\modules\admin\widgets\HeaderWidget::widget([
-    'title' =>  'Управление типами аренды',
+    'title' => 'Управление типами аренды',
     'description' => $this->title,
     'breadcrumb' => [
         [

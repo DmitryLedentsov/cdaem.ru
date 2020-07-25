@@ -9,6 +9,7 @@ use yii\web\HttpException;
 use yii\web\Response;
 use common\modules\articles\models\Article;
 use Yii;
+use common\modules\agency\models\SpecialAdvert;
 
 /**
  * Главный контроллер агенства
@@ -61,6 +62,7 @@ class DefaultController extends \frontend\components\Controller
      */
     public function actionIndex()
     {
+        $specialAdverts = SpecialAdvert::findActive();
         $agencySearch = new AgencyAdvertSearch();
         $agencyDataProvider = $agencySearch->allSearch(Yii::$app->request->get());
         $articlesQuery = Article::find()->orderBy(['date_create' => SORT_DESC]);
@@ -70,8 +72,9 @@ class DefaultController extends \frontend\components\Controller
             ->all();
         return $this->render('index.twig', [
             'agencySearch' => $agencySearch,
+            'specialAdverts' => $specialAdverts,
             'agencyDataProvider' => $agencyDataProvider,
-             'articles' => $articles,
+            'articles' => $articles,
         ]);
     }
 
@@ -100,8 +103,8 @@ class DefaultController extends \frontend\components\Controller
                     Yii::$app->response->format = Response::FORMAT_JSON;
                     if ($reservationForm->create()) {
                         $status = 1;
-                        $msg = '<p><strong>№ заявки: ' . $reservationForm->reservation_id. '</strong></p>';
-                        $msg.= '<p>Заявка на бронирование успешно отправлена. Ожидайте связи с оператором. <br/> Пожалуйста запомните номер заявки и сообщите его оператору.</p>';
+                        $msg = '<p><strong>№ заявки: ' . $reservationForm->reservation_id . '</strong></p>';
+                        $msg .= '<p>Заявка на бронирование успешно отправлена. Ожидайте связи с оператором. <br/> Пожалуйста запомните номер заявки и сообщите его оператору.</p>';
                     } else {
                         $status = 0;
                         $msg = 'Возникла критическая ошибка. Пожалуйста обратитесь в техническую поддержку.';
@@ -146,8 +149,8 @@ class DefaultController extends \frontend\components\Controller
                     Yii::$app->response->format = Response::FORMAT_JSON;
                     if ($reservationForm->create()) {
                         $status = 1;
-                        $msg = '<p><strong>№ заявки: ' . $reservationForm->reservation_id. '</strong></p>';
-                        $msg.= '<p>Заявка на бронирование успешно отправлена. Ожидайте связи с оператором. <br/> Пожалуйста запомните номер заявки и сообщите его оператору.</p>';
+                        $msg = '<p><strong>№ заявки: ' . $reservationForm->reservation_id . '</strong></p>';
+                        $msg .= '<p>Заявка на бронирование успешно отправлена. Ожидайте связи с оператором. <br/> Пожалуйста запомните номер заявки и сообщите его оператору.</p>';
                     } else {
                         $status = 0;
                         $msg = 'Возникла критическая ошибка. Пожалуйста обратитесь в техническую поддержку.';
@@ -195,7 +198,7 @@ class DefaultController extends \frontend\components\Controller
                     'status' => $status,
                     'message' => $msg,
                 ];
-            } else  {
+            } else {
                 return $errors;
             }
         }
@@ -228,7 +231,7 @@ class DefaultController extends \frontend\components\Controller
                     'status' => $status,
                     'message' => $msg,
                 ];
-            } else  {
+            } else {
                 return $errors;
             }
         }

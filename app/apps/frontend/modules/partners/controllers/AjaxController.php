@@ -30,7 +30,7 @@ class AjaxController extends \frontend\components\Controller
     {
         return [
             'access' => [
-                'class' => \yii\filters\AccessControl::class,
+                'class' => \yii\filters\AccessControl::className(),
                 'rules' => [
                     [
                         'actions' => [],

@@ -11,7 +11,7 @@ use yii\helpers\Url;
 /* @var $model common\modules\articles\models\Article */
 /* @var $form yii\widgets\ActiveForm */
 
-?> 
+?>
 
 <?php if (Yii::$app->session->hasFlash('success')): ?>
     <div class="alert alert-success indent-bottom">
@@ -25,7 +25,7 @@ use yii\helpers\Url;
     </div>
 <?php endif; ?>
 
-    <br />
+    <br/>
 
 <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
@@ -33,14 +33,14 @@ use yii\helpers\Url;
 
     <div class="row">
         <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-2"><?= $form->field($formModel, 'title')->textInput(['maxlength' => true]) ?></div>
-        
-       <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-2"><?= $form->field($formModel, 'link_page')->textInput(['maxlength' => true]) ?></div>
-       <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-2"><?= $form->field($formModel, 'article_id')->dropDownList($model->articlesList, ['prompt' => '']) ?></div>
+
+        <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-2"><?= $form->field($formModel, 'link_page')->textInput(['maxlength' => true]) ?></div>
+        <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-2"><?= $form->field($formModel, 'article_id')->dropDownList($model->articlesList, ['prompt' => '']) ?></div>
         <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-2"><?= $form->field($formModel, 'file')->fileInput(['class' => 'styled']) ?></div>
     </div>
 
     <h6 class="heading-hr"><i class="icon-text-width"></i> Содержимое</h6>
- 
+
     <div class="row">
         <div class="col-md-12 col-md-12 col-sm-12 col-xs-12 col-lg-12">
             <?= $form->field($formModel, 'text')->widget(\vova07\imperavi\Widget::className(), [
@@ -68,14 +68,14 @@ use yii\helpers\Url;
         </div>
     </div>
 
-    <br />
+    <br/>
 
-    <?php if (Yii::$app->user->can('articles-update')) : ?>
-        <div class="form-group">
-            <?= Html::submitButton(Yii::t('app', 'Сохранить'), ['class' => 'btn btn-success']) ?>
-        </div>
-    <?php endif; ?>
+<?php if (Yii::$app->user->can('articles-update')) : ?>
+    <div class="form-group">
+        <?= Html::submitButton(Yii::t('app', 'Сохранить'), ['class' => 'btn btn-success']) ?>
+    </div>
+<?php endif; ?>
 
-    <br />
+    <br/>
 
 <?php ActiveForm::end(); ?>

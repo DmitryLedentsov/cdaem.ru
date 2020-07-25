@@ -12,7 +12,8 @@
             <div class="description">
                 {% if onlyAgency == true %}
                     <div class="d-title"><h2>Проверенные квартиры от Сдаём.ру</h2></div>
-                    <p>Специалисты Сдаём.ру подберут вам проверенную квартиру в Москве по выгодным для Вас условиям! </p>
+                    <p>Специалисты Сдаём.ру подберут вам проверенную квартиру в Москве по выгодным для Вас
+                        условиям! </p>
                 {% else %}
                     <div class='d-title'>{{ metaData.agency_seo_short_desc | raw }}</div>
                 {% endif %}
@@ -46,7 +47,6 @@
     </div>
 
 
-
     <div class="container">
         <div class="row apartments multiple-items2">
             {% for advert in dataProvider.getModels() %}
@@ -60,29 +60,26 @@
             <div class="alert alert-danger" role="alert">
                 Апартаменты не найдены.
             </div>
-             <style>
-                    
-                    @media (max-width: 380px) {
-                         .agency {
+            <style>
+
+                @media (max-width: 380px) {
+                    .agency {
                         display: none;
                     }
-                    }
-                    
-                    @media (max-width: 480px) {
-                           .agency {
+                }
+
+                @media (max-width: 480px) {
+                    .agency {
                         display: none;
                     }
-                    }
-                   
-                </style>
+                }
+
+            </style>
         {% endif %}
 
-     
 
     </div>
 </div>
-
-
 
 
 {% if onlyAgency == true %}

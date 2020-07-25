@@ -120,15 +120,15 @@ final class AdvertisingTopSlider extends \yii\base\BaseObject implements Service
 
         return true;
     }
-    
-     public function validateContact()
+
+    public function validateContact()
     {
-        
+
         return true;
     }
-    
+
     public function validateContactOpen()
-    { 
+    {
         return true;
     }
 

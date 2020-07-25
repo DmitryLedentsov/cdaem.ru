@@ -1,13 +1,13 @@
 {{ use('yii/widgets/ActiveForm') }}
 {% set form = active_form_begin({
-'id' : 'form-want-pass',
-'options' : {'class' : 'horizontal', 'enctype' : 'multipart/form-data'},
-'enableClientScript': false
+    'id' : 'form-want-pass',
+    'options' : {'class' : 'horizontal', 'enctype' : 'multipart/form-data'},
+    'enableClientScript': false
 }) %}
 
 <div id="want-pass-result">
- <h1>Заполните нужные поля:</h1>
- 
+    <h1>Заполните нужные поля:</h1>
+
     <div class="fields-fix">
 
         {% if (model.scenario != 'partnership') %}
@@ -58,24 +58,27 @@
         }) | raw }}
 
         {{ form.field(model, 'address', {'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'}) | raw }}
-        <div id="liveYmap" style="width: 100%; height: 300px" data-address-tag="wantpassform-address" data-city-name="Москва"></div> <br />
+        <div id="liveYmap" style="width: 100%; height: 300px" data-address-tag="wantpassform-address"
+             data-city-name="Москва"></div>
+        <br/>
 
         <br/>
 
         <br/>
 
         <div class="form-group text-right">
-            <input type="submit" value="Отправить" class="btn btn-primary" />
+            <input type="submit" value="Отправить" class="btn btn-primary"/>
         </div>
 
         {# -------------------------------------------------------- #}
         <div class="modal fade" id="modal-subway-map" data-title="Выбрать на карте Москвы">
-              <div class="form-group text-center">
-                <input type="button" class="close-modal btn btn-primary" value="Выбрать" />
-            </div>
-            <div class="map"></div> <br />
             <div class="form-group text-center">
-                <input type="button" class="close-modal btn btn-primary" value="Выбрать" />
+                <input type="button" class="close-modal btn btn-primary" value="Выбрать"/>
+            </div>
+            <div class="map"></div>
+            <br/>
+            <div class="form-group text-center">
+                <input type="button" class="close-modal btn btn-primary" value="Выбрать"/>
             </div>
         </div>
         {# -------------------------------------------------------- #}

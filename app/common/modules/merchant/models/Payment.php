@@ -14,20 +14,20 @@ class Payment extends ActiveRecord
 {
     use ModuleTrait;
 
-	/**
-	 * @inheritdoc
-	 */
+    /**
+     * @inheritdoc
+     */
     public function behaviors()
     {
         return [
             'TimestampBehavior' => [
                 'class' => \yii\behaviors\TimestampBehavior::className(),
                 'attributes' => [
-                        ActiveRecord::EVENT_BEFORE_INSERT => 'date',
-                    ],
-                    "value" => function() {
-                        return date('Y-m-d H:i:s');
-                    }
+                    ActiveRecord::EVENT_BEFORE_INSERT => 'date',
+                ],
+                "value" => function () {
+                    return date('Y-m-d H:i:s');
+                }
             ]
         ];
     }
@@ -40,21 +40,21 @@ class Payment extends ActiveRecord
         return '{{%merchant_payments}}';
     }
 
-	/**
-	 * @inheritdoc
-	 */
-	public function attributeLabels()
-	{
-		return [
-			'user_id'   => 'Пользователь',
-			'date'      => 'Дата',
-			'funds'     => 'Средства',
-			'funds_was' => 'Было на счету',
-			'type'      => 'Тип',
-            'system'    => 'Система',
-            'module'    => 'Модуль',
-		];
-	}
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'user_id' => 'Пользователь',
+            'date' => 'Дата',
+            'funds' => 'Средства',
+            'funds_was' => 'Было на счету',
+            'type' => 'Тип',
+            'system' => 'Система',
+            'module' => 'Модуль',
+        ];
+    }
 
     /**
      * @return \yii\db\ActiveQuery
@@ -63,16 +63,16 @@ class Payment extends ActiveRecord
     {
         return $this->hasOne(\common\modules\users\models\User::className(), ['id' => 'user_id']);
     }
-    
-	/**
-	 * Тип Денежного Оборота
-	 * - Пополение
-	 * - Начисление
-	 * - Расходы
-	 */
-    const DEPOSIT  = 'DEPOSIT';
-    const BILLING  = 'BILLING';
-    const COSTS    = 'COSTS';
+
+    /**
+     * Тип Денежного Оборота
+     * - Пополение
+     * - Начисление
+     * - Расходы
+     */
+    const DEPOSIT = 'DEPOSIT';
+    const BILLING = 'BILLING';
+    const COSTS = 'COSTS';
 
     /**
      * Массив Доступных Данных
@@ -81,15 +81,15 @@ class Payment extends ActiveRecord
     public static function getTypeArray()
     {
         return [
-            self::DEPOSIT   => [
+            self::DEPOSIT => [
                 'label' => 'Пополнение',
                 'style' => 'color: green',
             ],
-            self::BILLING   => [
+            self::BILLING => [
                 'label' => 'Начисление',
                 'style' => 'color: green',
             ],
-            self::COSTS   => [
+            self::COSTS => [
                 'label' => 'Трата',
                 'style' => 'color: red',
             ]

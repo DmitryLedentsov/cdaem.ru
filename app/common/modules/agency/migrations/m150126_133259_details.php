@@ -30,7 +30,7 @@ class m150126_133259_details extends Migration
         $this->addForeignKey('{{%agency_details_history_advert_id}}', '{{%agency_details_history}}', 'advert_id', '{{%agency_adverts}}', 'advert_id', 'CASCADE', 'CASCADE');
     }
 
-    
+
     public function safeDown()
     {
         $this->dropTable('{{%agency_details_history}}');

@@ -29,7 +29,7 @@ class DefaultController extends \frontend\components\Controller
 
         return true;
     }
-    
+
     /**
      * Общая карта
      *

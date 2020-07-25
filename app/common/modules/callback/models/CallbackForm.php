@@ -33,7 +33,7 @@ class CallbackForm extends Model
             return false;
         }
 
-        $this->phone  = str_replace(['(', ')', '+', ' ', '-'], '', $this->phone);
+        $this->phone = str_replace(['(', ')', '+', ' ', '-'], '', $this->phone);
 
         return true;
     }

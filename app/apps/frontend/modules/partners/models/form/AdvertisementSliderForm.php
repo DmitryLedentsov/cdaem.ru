@@ -18,7 +18,7 @@ class AdvertisementSliderForm extends \frontend\modules\partners\models\Advertis
     {
         return [
             'TimestampBehavior' => [
-                'class' => \yii\behaviors\TimestampBehavior::class,
+                'class' => \yii\behaviors\TimestampBehavior::className(),
                 'attributes' => [
                     \yii\db\ActiveRecord::EVENT_BEFORE_INSERT => 'date_create',
                 ],
@@ -27,7 +27,7 @@ class AdvertisementSliderForm extends \frontend\modules\partners\models\Advertis
                 }
             ],
             'BlameableBehavior' => [
-                'class' => \yii\behaviors\BlameableBehavior::class,
+                'class' => \yii\behaviors\BlameableBehavior::className(),
                 'createdByAttribute' => 'user_id',
                 'updatedByAttribute' => false,
             ]

@@ -17,7 +17,7 @@ class Country extends \yii\db\ActiveRecord
     {
         return '{{%country}}';
     }
-    
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -25,7 +25,7 @@ class Country extends \yii\db\ActiveRecord
     {
         return $this->hasMany(City::className(), ['country_id' => 'country_id']);
     }
-    
+
     /**
      * @return \yii\db\ActiveQuery
      */

@@ -23,7 +23,7 @@ use yii\helpers\Url;
     </div>
 <?php endif; ?>
 
-    <br />
+    <br/>
 
 <?php $form = ActiveForm::begin(); ?>
 
@@ -46,40 +46,40 @@ use yii\helpers\Url;
         <div class="col-md-3 col-md-4 col-sm-4 col-xs-6 col-lg-2"><?= $form->field($formModel, 'moderation')->dropDownList(Yii::$app->formatter->booleanFormat) ?></div>
     </div>
 
-    <?php if ($formModel->scenario == 'update'): ?>
-        <div class="row">
-            <div class="col-md-4 col-md-4 col-sm-4 col-xs-6 col-lg-2"><?= $form->field($formModel, 'date_create')->widget(DateTimePicker::className(), [
-                    'type' => DateTimePicker::TYPE_INPUT,
-                    'options' => [
-                        'readonly' => 'readonly',
-                    ],
-                    'pluginOptions' => [
-                        'autoclose' => true,
-                        'format' => 'yyyy-mm-dd hh:ii:00',
-                        'todayHighlight' => true,
-                        'todayBtn' => true,
-                    ]
-                ]);
-                ?>
-            </div>
+<?php if ($formModel->scenario == 'update'): ?>
+    <div class="row">
+        <div class="col-md-4 col-md-4 col-sm-4 col-xs-6 col-lg-2"><?= $form->field($formModel, 'date_create')->widget(DateTimePicker::className(), [
+                'type' => DateTimePicker::TYPE_INPUT,
+                'options' => [
+                    'readonly' => 'readonly',
+                ],
+                'pluginOptions' => [
+                    'autoclose' => true,
+                    'format' => 'yyyy-mm-dd hh:ii:00',
+                    'todayHighlight' => true,
+                    'todayBtn' => true,
+                ]
+            ]);
+            ?>
         </div>
-    <?php endif; ?>
+    </div>
+<?php endif; ?>
 
     <h6 class="heading-hr"><i class="icon-text-width"></i> Содержимое</h6>
     <div class="row">
         <div class="col-md-12 col-md-12 col-sm-12 col-xs-12 col-lg-10">
-            <?= $form->field($formModel, 'text')->textarea()?>
+            <?= $form->field($formModel, 'text')->textarea() ?>
         </div>
     </div>
 
-    <br />
+    <br/>
 
-    <?php if (Yii::$app->user->can('reviews-update')) : ?>
-        <div class="form-group">
-            <?= Html::submitButton(Yii::t('app', 'Сохранить'), ['class' => 'btn btn-success']) ?>
-        </div>
-    <?php endif; ?>
+<?php if (Yii::$app->user->can('reviews-update')) : ?>
+    <div class="form-group">
+        <?= Html::submitButton(Yii::t('app', 'Сохранить'), ['class' => 'btn btn-success']) ?>
+    </div>
+<?php endif; ?>
 
-    <br />
+    <br/>
 
 <?php ActiveForm::end(); ?>

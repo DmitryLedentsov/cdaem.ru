@@ -17,7 +17,7 @@ class Districts extends \yii\db\ActiveRecord
     {
         return '{{%districts}}';
     }
-    
+
     /**
      * @return \yii\db\ActiveQuery
      */

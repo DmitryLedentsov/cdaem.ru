@@ -27,8 +27,6 @@ class ReservationSearch extends Reservation
     }
 
 
-
-
     /**
      * @inheritdoc
      */
@@ -39,7 +37,6 @@ class ReservationSearch extends Reservation
             'date_reserve' => 'Дата резервации'
         ]);
     }
-
 
 
     /**

@@ -32,14 +32,14 @@
                 'url' : '/'
             },
             'links':  [
-            {
-                'label': 'Авторизация',
-                'url': ['/users/guest/login'],
-            },
-            {
-                'label': 'Регистрация',
-                'url': ['/users/guest/signup'],
-            },
+                {
+                    'label': 'Авторизация',
+                    'url': ['/users/guest/login'],
+                },
+                {
+                    'label': 'Регистрация',
+                    'url': ['/users/guest/signup'],
+                },
             ],
         }) }}
     </div>
@@ -66,13 +66,13 @@
 
             {% if app.session.hasFlash('danger') %}
                 <div class="alert alert-danger" role="alert">
-                    {{ app.session.getFlash('danger') | raw  }}
+                    {{ app.session.getFlash('danger') | raw }}
                 </div>
             {% endif %}
 
             {% if app.session.hasFlash('success') %}
                 <div class="alert alert-success" role="alert">
-                    {{ app.session.getFlash('success') | raw  }}
+                    {{ app.session.getFlash('success') | raw }}
                 </div>
             {% endif %}
 
@@ -84,19 +84,18 @@
 
                 <div class="form-group">
                     <div class="col-l">
-                     <label class="control-label">Выберите страну мобильного оператора</label>
+                        <label class="control-label">Выберите страну мобильного оператора</label>
+                    </div>
+                    <div class="col-i">
+                        <select class="form-control" name="country" id="country">
+                            <option selected value="non">Выберите страну</option>
+                            <option value="Russia">Russia</option>
+                            <option value="Ukraine">Ukraine</option>
+                            <option value="Belarus">Belarus</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="col-i">
-                       <select class="form-control" name="country" id="country">
-                    <option selected value="non">Выберите страну</option>
-                    <option value="Russia">Russia</option>
-                    <option value="Ukraine">Ukraine</option>
-                    <option value="Belarus">Belarus</option>
-                </select>  
-                </div> 
-                </div>
-               
-                
+
                 {{ form.field(user, 'phone', {'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'}).textInput({'class' : 'phone form-control', 'prompt': ' ', 'id':'phone',}) | raw }}
 
                 {{ form.field(user, 'password', {'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'}).passwordInput() | raw }}
@@ -106,10 +105,6 @@
                 {{ form.field(profile, 'user_type', {
                     'options' : {'class' : 'form-group white'}, 'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'
                 }).dropDownList(StatusHelper.getList(profile.getUserTypeArray()), {'class' : 'form-control select-white', 'prompt': ' '}) | raw }}
-
-                {#
-                    {{ form.field(profile, 'user_partner', {'options' : {'class' : 'form-group white'}, 'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'}).dropDownList(StatusHelper.getList(profile.getUserPartnerArray())) | raw }}
-                #}
             </div>
         </div>
 
@@ -164,7 +159,7 @@
 
                 <div class="clearfix"></div>
 
-                <br />
+                <br/>
 
                 <p><b>Регистрируясь на сайте я соглашаюсь:</b></p>
 
@@ -172,24 +167,20 @@
 
                 {{ form.field(user, 'agreement').checkbox({'label' : 'С <a href="' ~ path({0 : '/pages/default/index', 'url' : 'agreement'}) ~ '" target="_blank">пользовательским соглашением</a>, с расценками на размещение платных объявлений, а также получать СМС-оповещения при использовании определенных сервисов на этом сайте.</label>'}) | raw }}
 
-                {#
-                <div class="form-group">
-                    <label>{{ html.checkbox('agreement', true) | raw }} С <a href="{{ path({0 : '/pages/default/index', 'url' : 'agreement'}) }}" target="_blank">пользовательским соглашением</a>, а так же с расценками на размещение платных объявлений на этом сайте.</label>
-                </div>
-                #}
-
-                <br />
+                <br/>
 
                 <p><b>Внимание:</b></p>
                 <p>
-                    После регистрации Вам будет отправлено письмо с инструкциями по активации аккаунта. Если письмо не пришло в течении 15 минут, Вы можете запросить <a href="{{ path('/users/guest/resend') }}">код активации</a> повторно.
+                    После регистрации Вам будет отправлено письмо с инструкциями по активации аккаунта. Если письмо не
+                    пришло в течении 15 минут, Вы можете запросить <a href="{{ path('/users/guest/resend') }}">код
+                        активации</a> повторно.
                 </p>
 
 
-                <br />
+                <br/>
 
                 <div class="form-group text-right">
-                    <input id="signup-button" type="submit" value="{{ t('users', 'SIGNUP') }}" class="btn btn-primary" />
+                    <input id="signup-button" type="submit" value="{{ t('users', 'SIGNUP') }}" class="btn btn-primary"/>
                 </div>
 
             </div>

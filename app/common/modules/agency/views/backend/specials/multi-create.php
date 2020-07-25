@@ -2,6 +2,7 @@
 /* @var $this yii\web\View */
 /* @var array $models */
 /* @var array $specialAdverts */
+
 /* @var array $selected */
 
 use yii\helpers\Html;
@@ -45,8 +46,10 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
 
                 <div class="row">
                     <div class="col-md-4 col-md-4 col-sm-4 col-xs-12 col-lg-2">
-                        <a href="<?php echo Url::to(['/agency/default/update', 'id' => $model->apartment_id]) ?>" target="_blank">
-                            <div class="thumbnail thumbnail-boxed"><div class="thumb">
+                        <a href="<?php echo Url::to(['/agency/default/update', 'id' => $model->apartment_id]) ?>"
+                           target="_blank">
+                            <div class="thumbnail thumbnail-boxed">
+                                <div class="thumb">
                                     <?php echo Html::img($model->titleImageSrc) ?>
                                 </div>
                             </div>
@@ -58,11 +61,11 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
 
                             foreach ($specialAdverts[$model->apartment_id] as $specialAdvert) {
 
-                                $checkbox = Html::checkbox('selected['.$specialAdvert->advert_id.']', in_array($specialAdvert->advert_id, array_keys($selected)), [
+                                $checkbox = Html::checkbox('selected[' . $specialAdvert->advert_id . ']', in_array($specialAdvert->advert_id, array_keys($selected)), [
                                     'label' => $specialAdvert->advert->rentType->name,
                                 ]);
 
-                                $form =  $this->render('_multi_form.php', [
+                                $form = $this->render('_multi_form.php', [
                                     'model' => $specialAdvert,
                                 ]);
 
@@ -71,7 +74,7 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
                                     'class' => 'rent-type-form',
                                 ]);
 
-                                echo Html::tag('div',  Html::tag('h4', $checkbox) . $form, [
+                                echo Html::tag('div', Html::tag('h4', $checkbox) . $form, [
                                     'class' => 'rent-type',
                                     'style' => 'border: solid 1px silver; padding: 10px 10px 5px 10px; margin-bottom: 25px;',
                                     'data' => [
@@ -80,7 +83,7 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
                                 ]);
                             }
                         } else {
-                            echo Html::tag('p', 'Нет объявлений для специальных предложений. <a href="'.Url::toRoute(['/agency/specials/index', 's[advert.apartment.apartment_id]' => $model->apartment_id]).'" target="_blank">Посмотреть все специальные предложения.</a>');
+                            echo Html::tag('p', 'Нет объявлений для специальных предложений. <a href="' . Url::toRoute(['/agency/specials/index', 's[advert.apartment.apartment_id]' => $model->apartment_id]) . '" target="_blank">Посмотреть все специальные предложения.</a>');
                         }
                         ?>
                     </div>

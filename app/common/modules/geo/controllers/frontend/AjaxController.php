@@ -62,7 +62,7 @@ class AjaxController extends \frontend\components\Controller
         if (!parent::beforeAction($action)) {
             return false;
         }
-        
+
         if (!Yii::$app->request->isAjax) {
             return $this->goBack();
         }
@@ -180,12 +180,12 @@ class AjaxController extends \frontend\components\Controller
         }
 
         return '<div class="balloon-info"><div class="clearfix">' .
-               '<div class="balloon-view">' .
-                    '<div class="balloon-image" style="background-image: url(' . $model->getTitleImageSrc() . ')"></div>' .
-               '</div>' .
-               '<div class="balloon-desc">' . $advertsHtml . '</div></div>' .
-                    '<p class="balloon-property">Этаж: ' . $model->floor . ', ' . $model->roomsName . ', Ремонт: ' . $model->remontName . '</p>' .
-               '</div>';
+            '<div class="balloon-view">' .
+            '<div class="balloon-image" style="background-image: url(' . $model->getTitleImageSrc() . ')"></div>' .
+            '</div>' .
+            '<div class="balloon-desc">' . $advertsHtml . '</div></div>' .
+            '<p class="balloon-property">Этаж: ' . $model->floor . ', ' . $model->roomsName . ', Ремонт: ' . $model->remontName . '</p>' .
+            '</div>';
     }
 
     /**

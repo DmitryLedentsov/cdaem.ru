@@ -18,7 +18,7 @@ class Metro extends \yii\db\ActiveRecord
     {
         return '{{%metro}}';
     }
-    
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -36,10 +36,6 @@ class Metro extends \yii\db\ActiveRecord
         $mskMetro = self::find()->where(['city_id' => 4400])->asArray()->all();
         return ArrayHelper::map($mskMetro, 'metro_id', 'name');
     }
-
-
-
-
 
 
     /**
@@ -251,7 +247,7 @@ class Metro extends \yii\db\ActiveRecord
             $metro['110_180'] = 77; // Варшавская (Каховская)
             $metro['116_181'] = 99; // Каширская (Каховская)
 
-            return array_search ($metroId, $metro);
+            return array_search($metroId, $metro);
         }
 
         return null;

@@ -46,7 +46,7 @@ echo \backend\modules\admin\widgets\ExtraControlWidget::widget([
     </div>
 <?php endif; ?>
 
-<br />
+    <br/>
 
 <?= GridView::widget([
     'tableOptions' => ['class' => 'table table-bordered'],

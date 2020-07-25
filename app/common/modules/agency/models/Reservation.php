@@ -14,7 +14,7 @@ use Yii;
 class Reservation extends ActiveRecord
 {
     use ModuleTrait;
-    
+
     /**
      * @inheritdoc
      */
@@ -39,7 +39,9 @@ class Reservation extends ActiveRecord
         return [
             'timestamp' => [
                 'class' => 'yii\behaviors\TimestampBehavior',
-                'value' => function () { return date("Y-m-d H:i:s"); },
+                'value' => function () {
+                    return date("Y-m-d H:i:s");
+                },
                 'attributes' => [
                     ActiveRecord::EVENT_BEFORE_INSERT => 'date_create',
                 ],
@@ -56,7 +58,7 @@ class Reservation extends ActiveRecord
             'reservation_id' => '№',
             'apartment_id' => 'Апартаменты',
             'name' => 'Ф.И.О.',
-            'email' =>'EMAIL',
+            'email' => 'EMAIL',
             'clients_count' => 'Количество человек',
             'transfer' => 'Трансфер',
             'date_arrived' => 'Время заезда',
@@ -68,7 +70,7 @@ class Reservation extends ActiveRecord
             'processed' => 'Обработанная',
         ];
     }
-    
+
     /**
      * Массив данных, откуда о нас узнали
      * @return array
@@ -91,7 +93,7 @@ class Reservation extends ActiveRecord
      */
     const PROCESSED = 1;
     const UNPROCESSED = 0;
-    
+
     /**
      * @return array Массив доступных данных статуса апартаментов
      */
@@ -99,13 +101,13 @@ class Reservation extends ActiveRecord
     {
         $statuses = [
             self::PROCESSED => [
-                    'label' => 'Обработаннная',
-                    'color' => 'green',
-                ],
+                'label' => 'Обработаннная',
+                'color' => 'green',
+            ],
             self::UNPROCESSED => [
-                    'label' => 'Необработанная',
-                    'color' => 'red',
-                ],
+                'label' => 'Необработанная',
+                'color' => 'red',
+            ],
         ];
 
         return $statuses;

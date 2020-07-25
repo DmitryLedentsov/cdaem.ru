@@ -2,7 +2,7 @@ var app = require('express')();
 var fs = require('fs');
 
 var server = require('https').createServer({
-    key: fs.readFileSync('/etc/letsencrypt/live/cdaem.com-0002/privkey.pem'),
+    key: fs.readFileSync('/etc/letsencrypt/live/cdaem.com-000/privkey.pem'),
     cert: fs.readFileSync('/etc/letsencrypt/live/cdaem.com-0002/cert.pem'),
     ca: fs.readFileSync('/etc/letsencrypt/live/cdaem.com-0002/chain.pem'),
     requestCert: false,

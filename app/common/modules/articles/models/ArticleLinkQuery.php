@@ -15,6 +15,6 @@ class ArticleLinkQuery extends ActiveQuery
      * @param int $state
      * @return $this
      */
-   
+
 
 }

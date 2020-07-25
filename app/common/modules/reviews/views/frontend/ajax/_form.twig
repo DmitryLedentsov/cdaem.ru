@@ -74,7 +74,7 @@
     <br/>
 
     {% if model.scenario == 'guest-create' %}
-          <h3>Подтвердите что вы не робот!</h3>
+        <h3>Подтвердите что вы не робот!</h3>
         {{ captcha_widget({'form': form, 'model': model, 'name': 'verifyCode'}) }}
 
         <p><br></p>
@@ -85,7 +85,7 @@
     <div class="clearfix"></div>
 
     <div class="form-group text-right">
-        <input type="submit" value="Отправить" class="btn btn-primary" />
+        <input type="submit" value="Отправить" class="btn btn-primary"/>
     </div>
 
     {{ active_form_end() }}
@@ -94,70 +94,70 @@
 
 
 <script>
-$(function() {
+    $(function () {
 
-    /**
-     * Отправка формы "Добавить отзыв"
-     */
-    $('#form-review').formApi({
+        /**
+         * Отправка формы "Добавить отзыв"
+         */
+        $('#form-review').formApi({
 
-        // Все поля
-        fields: [
-            "_csrf",
-            "ReviewForm[match_description]",
-            "ReviewForm[price_quality]",
-            "ReviewForm[cleanliness]",
-            "ReviewForm[entry]",
-            "ReviewForm[text]",
-            "ReviewForm[verifyCode]",
-            "ReviewForm[email]",
-            "ReviewForm[phone]",
-            "ReviewForm[password]",
-            "ReviewForm[agreement]"
-        ],
+            // Все поля
+            fields: [
+                "_csrf",
+                "ReviewForm[match_description]",
+                "ReviewForm[price_quality]",
+                "ReviewForm[cleanliness]",
+                "ReviewForm[entry]",
+                "ReviewForm[text]",
+                "ReviewForm[verifyCode]",
+                "ReviewForm[email]",
+                "ReviewForm[phone]",
+                "ReviewForm[password]",
+                "ReviewForm[agreement]"
+            ],
 
-        // Дополнительные поля, будут отправлены по кнопке submit
-        extraSubmitFields: {
-            submit: "submit"
-        },
+            // Дополнительные поля, будут отправлены по кнопке submit
+            extraSubmitFields: {
+                submit: "submit"
+            },
 
-        // Валидация полей
-        validateFields: [
-            "reviewform-match_description",
-            "reviewform-price_quality",
-            "reviewform-cleanliness",
-            "reviewform-entry",
-            "reviewform-text",
-            //"reviewform-verifyCode",
-            "reviewform-email",
-            "reviewform-phone",
-            "reviewform-password",
-            "reviewform-verifycode",
-            "reviewform-agreement"
-        ],
+            // Валидация полей
+            validateFields: [
+                "reviewform-match_description",
+                "reviewform-price_quality",
+                "reviewform-cleanliness",
+                "reviewform-entry",
+                "reviewform-text",
+                //"reviewform-verifyCode",
+                "reviewform-email",
+                "reviewform-phone",
+                "reviewform-password",
+                "reviewform-verifycode",
+                "reviewform-agreement"
+            ],
 
-        // Событие срабатывает при успешном запросе
-        success: function (formApi, response) {
-            if ($.isPlainObject(response) && 'status' in response) {
-                if (response.status == 1) {
-                    formApi.targetForm.parent().before('<div class="alert alert-success">' + response.message + '</div>');
-                    formApi.targetForm.parent().slideToggle("slow");
+            // Событие срабатывает при успешном запросе
+            success: function (formApi, response) {
+                if ($.isPlainObject(response) && 'status' in response) {
+                    if (response.status == 1) {
+                        formApi.targetForm.parent().before('<div class="alert alert-success">' + response.message + '</div>');
+                        formApi.targetForm.parent().slideToggle("slow");
 
-                } else {
-                    formApi.targetForm.parent().before('<div class="alert alert-danger">' + response.message + '</div>');
+                    } else {
+                        formApi.targetForm.parent().before('<div class="alert alert-danger">' + response.message + '</div>');
+                    }
+                }
+            },
+
+            // Событие срабатывает после завершения ajax запроса
+            complete: function (formApi, jqXHR, textStatus) {
+                // Обновить защитный код
+                if ($('#reviewform-verifycode-image').length) {
+                    $('#reviewform-verifycode-image').yiiCaptcha('refresh');
                 }
             }
-        },
+        });
 
-        // Событие срабатывает после завершения ajax запроса
-        complete: function (formApi, jqXHR, textStatus) {
-            // Обновить защитный код
-            if ($('#reviewform-verifycode-image').length) {
-                $('#reviewform-verifycode-image').yiiCaptcha('refresh');
-            }
-        }
+        initSelectPicker();
     });
-
-    initSelectPicker();
-});
 </script>

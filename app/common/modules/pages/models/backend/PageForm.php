@@ -31,7 +31,7 @@ class PageForm extends Model
 
         ]);
     }
-    
+
     /**
      * @inheritdoc
      */
@@ -43,7 +43,7 @@ class PageForm extends Model
             'delete' => [],
         ];
     }
-    
+
     /**
      * @inheritdoc
      */
@@ -52,7 +52,7 @@ class PageForm extends Model
         return [
             [['url', 'title', 'description', 'keywords', 'name', 'text', 'status', 'active'], 'required'],
             [['url', 'title', 'description', 'keywords', 'name', 'text', 'status', 'active'], 'required'],
-            
+
             [['page_id', 'status', 'active'], 'integer'],
             [['name'], 'string', 'max' => 200],
             [['title', 'description', 'keywords'], 'string'],

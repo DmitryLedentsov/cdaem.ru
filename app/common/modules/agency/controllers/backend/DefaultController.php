@@ -23,11 +23,8 @@ use Yii;
  */
 class DefaultController extends Controller
 {
-    
-    
-    
-    
-    
+
+
     /**
      * @inheritdoc
      */
@@ -54,7 +51,7 @@ class DefaultController extends Controller
         if (!parent::beforeAction($action)) {
             return false;
         }
-        
+
 
         $this->module->viewPath = '@common/modules/agency/views/backend';
 
@@ -102,7 +99,7 @@ class DefaultController extends Controller
      * @return mixed
      * @throws ForbiddenHttpException
      */
-     public function actionCreate()
+    public function actionCreate()
     {
         if (!Yii::$app->user->can('agency-apartment-create')) {
             throw new ForbiddenHttpException(Yii::t('users.rbac', 'ACCESS_DENIED'));
@@ -116,7 +113,7 @@ class DefaultController extends Controller
                     Yii::$app->session->setFlash('success', 'Данные успешно сохранены.');
                 } else {
                     Yii::$app->session->setFlash('danger', 'Возникла ошибка.');
-                
+
                 }
                 return $this->redirect(['update', 'id' => $formModel->apartment_id]);
             } elseif (Yii::$app->request->isAjax) {
@@ -140,7 +137,7 @@ class DefaultController extends Controller
      * @throws NotFoundHttpException
      */
     public function actionUpdate($id)
-            
+
     {
         if (($model = Apartment::findOne($id)) === null) {
             throw new NotFoundHttpException('The requested page does not exist.');
@@ -170,7 +167,7 @@ class DefaultController extends Controller
                     Yii::$app->session->setFlash('success', 'Данные успешно сохранены.');
                 } else {
                     Yii::$app->session->setFlash('danger', 'Возникла ошибка.');
-                    
+
                 }
                 return $this->redirect(['update', 'id' => $formModel->apartment_id]);
             } elseif (Yii::$app->request->isAjax) {

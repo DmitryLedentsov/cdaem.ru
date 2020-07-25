@@ -76,8 +76,7 @@ var currentRedactorId = null;
  * Дублирование изменений содержимого визуального редактора первого блока ко всем остальным
  * @param imperavi
  */
-function imperaviChangeCallback(imperavi)
-{
+function imperaviChangeCallback(imperavi) {
     var elementId = imperavi.$element.attr('id');
 
     var idArray = elementId.split('-');
@@ -114,11 +113,11 @@ function imperaviChangeCallback(imperavi)
         // Везде указываем текущее значение
         var $redactors = $(".rent-type[data-rent_type_id=" + rentTypeId + "] [name$='" + name + "']");
 
-         $redactors.each(function( index ) {
-         var $this = $(this);
-             if ($this.attr('id') != elementId) {
+        $redactors.each(function (index) {
+            var $this = $(this);
+            if ($this.attr('id') != elementId) {
                 $('#' + $this.attr('id')).redactor('code.set', currentRedactorText);
-             }
-         });
+            }
+        });
     }
 }

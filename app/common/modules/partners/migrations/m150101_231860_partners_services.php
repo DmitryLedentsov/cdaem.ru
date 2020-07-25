@@ -10,7 +10,7 @@ class m150101_231860_partners_services extends \yii\db\Migration
     /**
      * @inheritdoc
      */
-	public function safeUp()
+    public function safeUp()
     {
         $tableOptions = null;
         if ($this->db->driverName === 'mysql') {
@@ -40,8 +40,8 @@ class m150101_231860_partners_services extends \yii\db\Migration
     /**
      * @inheritdoc
      */
-	public function safeDown()
-	{
-		$this->dropTable('{{%partners_services}}');
-	}
+    public function safeDown()
+    {
+        $this->dropTable('{{%partners_services}}');
+    }
 }

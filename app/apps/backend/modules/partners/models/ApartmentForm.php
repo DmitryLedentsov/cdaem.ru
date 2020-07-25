@@ -23,7 +23,7 @@ class ApartmentForm extends \backend\modules\partners\models\Apartment
     {
         return [
             [
-                'class' => \yii\behaviors\TimestampBehavior::class,
+                'class' => \yii\behaviors\TimestampBehavior::className(),
                 'createdAtAttribute' => 'date_create',
                 'updatedAtAttribute' => 'date_update',
                 'value' => function ($event) {

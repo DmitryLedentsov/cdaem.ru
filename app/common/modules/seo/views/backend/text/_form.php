@@ -23,7 +23,7 @@ use yii\helpers\Url;
     </div>
 <?php endif; ?>
 
-    <br />
+    <br/>
 
 
 <?php $form = ActiveForm::begin(); ?>
@@ -35,8 +35,8 @@ use yii\helpers\Url;
     <div class="row">
         <div class="col-md-6 col-md-6 col-sm-6 col-xs-12 col-lg-2">
             <?php
-                $url = $model->isNewRecord ? '' : Html::a(Yii::$app->params['siteDomain'] . $model->url, Yii::$app->params['siteDomain'] . $model->url);
-                echo $form->field($model, 'url', ['template' => "{label}\n{input} " . $url . "\n{hint}\n{error}"])->textInput(['maxlength' => true]);
+            $url = $model->isNewRecord ? '' : Html::a(Yii::$app->params['siteDomain'] . $model->url, Yii::$app->params['siteDomain'] . $model->url);
+            echo $form->field($model, 'url', ['template' => "{label}\n{input} " . $url . "\n{hint}\n{error}"])->textInput(['maxlength' => true]);
             ?>
         </div>
         <div class="col-md-3 col-md-4 col-sm-4 col-xs-6 col-lg-2"><?= $form->field($model, 'type')->dropDownList($model->typeArray) ?></div>
@@ -46,18 +46,18 @@ use yii\helpers\Url;
     <h6 class="heading-hr"><i class="icon-text-width"></i> Текст</h6>
     <div class="row">
         <div class="col-md-12 col-md-12 col-sm-12 col-xs-12 col-lg-10">
-            <?= $form->field($model, 'text')->textarea()?>
+            <?= $form->field($model, 'text')->textarea() ?>
         </div>
     </div>
 
-    <br />
+    <br/>
 
-    <?php if (Yii::$app->user->can('seotext-update')) : ?>
-        <div class="form-group">
-            <?= Html::submitButton(Yii::t('app', 'Сохранить'), ['class' => 'btn btn-success']) ?>
-        </div>
-    <?php endif; ?>
+<?php if (Yii::$app->user->can('seotext-update')) : ?>
+    <div class="form-group">
+        <?= Html::submitButton(Yii::t('app', 'Сохранить'), ['class' => 'btn btn-success']) ?>
+    </div>
+<?php endif; ?>
 
-    <br />
+    <br/>
 
 <?php ActiveForm::end(); ?>

@@ -19,13 +19,9 @@ class Total extends \yii\base\Model
 
         if ($h >= 5 && $h <= 12) {
             return 'morning';
-        }
-
-        if ($h > 12 && $h <= 16) {
+        } else if ($h > 12 && $h <= 16) {
             return 'day';
-        }
-
-        if ($h > 16 && $h <= 21) {
+        } else if ($h > 16 && $h <= 21) {
             return 'evening';
         }
 

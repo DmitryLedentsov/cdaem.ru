@@ -18,6 +18,7 @@ use Yii;
  */
 class Sitemap extends \yii\base\Model
 {
+
     /**
      * Генерация общей карты сайта
      *
@@ -45,6 +46,7 @@ class Sitemap extends \yii\base\Model
             }
         }
 
+
         // Список ссылок на статьи
         $articles = Article::find()->select(['article_id'])->status()->asArray()->all();
         $result[] = Html::tag('url', Html::tag('loc', Url::to(
@@ -60,6 +62,7 @@ class Sitemap extends \yii\base\Model
             );
         }
 
+
         // Список ссылок на страницы
         $pages = Page::find()->select(['page_id', 'url'])->status()->asArray()->all();
         foreach ($pages as $page) {
@@ -72,9 +75,11 @@ class Sitemap extends \yii\base\Model
             );
         }
 
+
         // Список ссылок на страницы
         $types = RentType::find()->select(['rent_type_id', 'slug'])->visible()->asArray()->all();
         foreach ($types as $type) {
+
             $result[] = Html::tag('url', Html::tag('loc', Url::to(
                     ['/site/default/index',
                         'rentType' => $type['slug']
@@ -82,6 +87,7 @@ class Sitemap extends \yii\base\Model
                 Html::tag('priority', '0.9')
             );
         }
+
 
         // Ссылки на другие страницы
         $result[] = Html::tag('url', Html::tag('loc', Url::to(['/agency/default/index'], true)) .
@@ -103,6 +109,8 @@ class Sitemap extends \yii\base\Model
         $result[] = Html::tag('url', Html::tag('loc', Url::to(['/partners/default/index'], true)) .
             Html::tag('priority', '0.9')
         );
+        $sitemap = new Sitemap();
+
 
         return $this->render(implode('', $result));
     }
@@ -145,6 +153,7 @@ class Sitemap extends \yii\base\Model
      */
     public function render($content)
     {
+
         $xml = '<?xml version="1.0" encoding="utf-8"?>';
         return $xml . Html::tag('urlset', $content, [
                 'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance',

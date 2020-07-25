@@ -31,7 +31,7 @@ class DbSession extends \yii\web\DbSession
             ->where(['id' => $oldID])
             ->createCommand($this->db)
             ->queryOne();
-            
+
         if ($row !== false) {
             if ($deleteOldSession) {
                 $this->db->createCommand()

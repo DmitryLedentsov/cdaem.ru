@@ -19,17 +19,19 @@ use Yii;
  * Default Controller
  * @package common\modules\articles\controllers\backend
  */
-class DefaultController extends Controller {
+class DefaultController extends Controller
+{
 
     /**
      * @inheritdoc
      */
-    public function behaviors() {
+    public function behaviors()
+    {
         return [
             'access' => [
                 'class' => \yii\filters\AccessControl::className(),
                 'rules' => [
-                        [
+                    [
                         'allow' => true,
                         'roles' => Yii::$app->getModule('users')->accessGroupsToControlpanel,
                     ],
@@ -41,7 +43,8 @@ class DefaultController extends Controller {
     /**
      * @inheritdoc
      */
-    public function beforeAction($action) {
+    public function beforeAction($action)
+    {
         if (!parent::beforeAction($action)) {
             return false;
         }
@@ -54,7 +57,8 @@ class DefaultController extends Controller {
     /**
      * @inheritdoc
      */
-    public function actions() {
+    public function actions()
+    {
         return [
             'image-upload' => [
                 'class' => 'vova07\imperavi\actions\UploadAction',
@@ -69,7 +73,8 @@ class DefaultController extends Controller {
      * @return string
      * @throws ForbiddenHttpException
      */
-    public function actionIndex() {
+    public function actionIndex()
+    {
         if (!Yii::$app->user->can('articles-view')) {
             throw new ForbiddenHttpException(Yii::t('users.rbac', 'ACCESS_DENIED'));
         }
@@ -81,9 +86,9 @@ class DefaultController extends Controller {
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-                    'model' => $model,
-                    'searchModel' => $searchModel,
-                    'dataProvider' => $dataProvider,
+            'model' => $model,
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -92,7 +97,8 @@ class DefaultController extends Controller {
      * @return mixed
      * @throws ForbiddenHttpException
      */
-    public function actionCreate() {
+    public function actionCreate()
+    {
         if (!Yii::$app->user->can('articles-create')) {
             throw new ForbiddenHttpException(Yii::t('users.rbac', 'ACCESS_DENIED'));
         }
@@ -103,22 +109,22 @@ class DefaultController extends Controller {
         if ($modelForm->load(Yii::$app->request->post())) {
             if ($modelForm->validate()) {
                 $imageName = time();
-                $imageNameBg = 'bg'.time();
-                    $modelForm->file = UploadedFile::getInstance($modelForm, 'file');
-                    
-                    if (!empty($modelForm->file)) {
-                        $modelForm->file->saveAs(Yii::getAlias($modelForm->imagesPath) . '/' . $imageName . '.' . $modelForm->file->extension);
-                        $modelForm->title_img = $imageName . '.' . $modelForm->file->extension;
-                        
-                    }
-                    $modelForm->bgfile = UploadedFile::getInstance($modelForm, 'bgfile');
-                    if (!empty($modelForm->bgfile)) {
-                        $modelForm->bgfile->saveAs(Yii::getAlias($modelForm->imagesPath2) . '/' . $imageNameBg . '.' . $modelForm->bgfile->extension);
-                        $modelForm->background = $imageNameBg . '.' . $modelForm->bgfile->extension;
-                        
-                    }
+                $imageNameBg = 'bg' . time();
+                $modelForm->file = UploadedFile::getInstance($modelForm, 'file');
+
+                if (!empty($modelForm->file)) {
+                    $modelForm->file->saveAs(Yii::getAlias($modelForm->imagesPath) . '/' . $imageName . '.' . $modelForm->file->extension);
+                    $modelForm->title_img = $imageName . '.' . $modelForm->file->extension;
+
+                }
+                $modelForm->bgfile = UploadedFile::getInstance($modelForm, 'bgfile');
+                if (!empty($modelForm->bgfile)) {
+                    $modelForm->bgfile->saveAs(Yii::getAlias($modelForm->imagesPath2) . '/' . $imageNameBg . '.' . $modelForm->bgfile->extension);
+                    $modelForm->background = $imageNameBg . '.' . $modelForm->bgfile->extension;
+
+                }
                 if ($modelForm->create()) {
-                    
+
                     Yii::$app->session->setFlash('success', 'Данные успешно сохранены.');
                 } else {
                     Yii::$app->session->setFlash('danger', 'Возникла ошибка.');
@@ -131,13 +137,12 @@ class DefaultController extends Controller {
         }
 
         return $this->render('create', [
-                    'model' => $model,
-                    'formModel' => $modelForm,
+            'model' => $model,
+            'formModel' => $modelForm,
         ]);
     }
-    
-    
-    
+
+
     /**
      * Редактировать
      * @param $id
@@ -145,7 +150,8 @@ class DefaultController extends Controller {
      * @throws ForbiddenHttpException
      * @throws NotFoundHttpException
      */
-    public function actionUpdate($id) {
+    public function actionUpdate($id)
+    {
         if (!Yii::$app->user->can('articles-view')) {
             throw new ForbiddenHttpException(Yii::t('users.rbac', 'ACCESS_DENIED'));
         }
@@ -161,19 +167,19 @@ class DefaultController extends Controller {
             }
             if ($formModel->validate()) {
                 $imageName = time();
-                $imageNameBg = 'bg'.time();
-                    $formModel->file = UploadedFile::getInstance($formModel, 'file');
-                    if (!empty($formModel->file)) {
-                        $formModel->file->saveAs(Yii::getAlias($formModel->imagesPath) . '/' . $imageName . '.' . $formModel->file->extension);
-                        $formModel->title_img = $imageName . '.' . $formModel->file->extension;
-                        
-                    }
-                      $formModel->bgfile = UploadedFile::getInstance($formModel, 'bgfile');
-                    if (!empty($formModel->bgfile)) {
-                        $formModel->bgfile->saveAs(Yii::getAlias($formModel->imagesPath) . '/' . $imageNameBg . '.' . $formModel->bgfile->extension);
-                        $formModel->background = $imageNameBg . '.' . $formModel->bgfile->extension;
-                        
-                    }
+                $imageNameBg = 'bg' . time();
+                $formModel->file = UploadedFile::getInstance($formModel, 'file');
+                if (!empty($formModel->file)) {
+                    $formModel->file->saveAs(Yii::getAlias($formModel->imagesPath) . '/' . $imageName . '.' . $formModel->file->extension);
+                    $formModel->title_img = $imageName . '.' . $formModel->file->extension;
+
+                }
+                $formModel->bgfile = UploadedFile::getInstance($formModel, 'bgfile');
+                if (!empty($formModel->bgfile)) {
+                    $formModel->bgfile->saveAs(Yii::getAlias($formModel->imagesPath) . '/' . $imageNameBg . '.' . $formModel->bgfile->extension);
+                    $formModel->background = $imageNameBg . '.' . $formModel->bgfile->extension;
+
+                }
                 if ($formModel->update($model)) {
                     Yii::$app->session->setFlash('success', 'Данные успешно сохранены.');
                 } else {
@@ -187,8 +193,8 @@ class DefaultController extends Controller {
         }
 
         return $this->render('update', [
-                    'formModel' => $formModel,
-                    'model' => $model,
+            'formModel' => $formModel,
+            'model' => $model,
         ]);
     }
 
@@ -200,7 +206,8 @@ class DefaultController extends Controller {
      * @throws NotFoundHttpException
      * @throws \Exception
      */
-    public function actionDelete($id) {
+    public function actionDelete($id)
+    {
         if (!Yii::$app->user->can('articles-delete')) {
             throw new ForbiddenHttpException(Yii::t('users.rbac', 'ACCESS_DENIED'));
         }
@@ -221,7 +228,8 @@ class DefaultController extends Controller {
      * @return Article the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id) {
+    protected function findModel($id)
+    {
         if (($model = Article::findOne($id)) !== null) {
             return $model;
         }

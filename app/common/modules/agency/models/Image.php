@@ -12,7 +12,7 @@ use Yii;
 class Image extends \yii\db\ActiveRecord
 {
     use ModuleTrait;
-    
+
     /**
      * @inheritdoc
      */
@@ -49,8 +49,8 @@ class Image extends \yii\db\ActiveRecord
         }
 
         $alt = $this->apartment->city->name;
-        $alt.= ", ул. " . $this->apartment->address;
-        $alt.= $this->apartment->apartment ? ', кв. ' . $this->apartment->apartment : '';
+        $alt .= ", ул. " . $this->apartment->address;
+        $alt .= $this->apartment->apartment ? ', кв. ' . $this->apartment->apartment : '';
 
         return $alt;
     }
@@ -67,8 +67,8 @@ class Image extends \yii\db\ActiveRecord
         }
 
         $title = "Фото " . $this->apartment->city->name;
-        $title.= ", ул. " . $this->apartment->address;
-        $title.= $this->apartment->apartment ? ', кв. ' . $this->apartment->apartment : '';
+        $title .= ", ул. " . $this->apartment->address;
+        $title .= $this->apartment->apartment ? ', кв. ' . $this->apartment->apartment : '';
 
         return $title;
     }
@@ -108,7 +108,7 @@ class Image extends \yii\db\ActiveRecord
             return Yii::$app->params['siteDomain'] . Yii::$app->getModule('partners')->defaultImageSrc;
         }
     }
-    
+
     /**
      * Удаляет запись соответствующую этой($this) ActiveRecord из БД вместе с файлами из сервера
      * и в случае если удаленная запись была заглавной, назначается новая заглавная картинка, если существуют еще.
@@ -118,7 +118,7 @@ class Image extends \yii\db\ActiveRecord
     public function deleteWithFiles()
     {
         self::deleteFile($this->review, $this->preview);
-        
+
         if ($this->default_img == 1) {
             $newTitleImage = self::find()
                 ->where(['apartment_id' => $this->apartment_id, 'default_img' => 0])
@@ -128,10 +128,10 @@ class Image extends \yii\db\ActiveRecord
                 $newTitleImage->save();
             }
         }
-        
+
         return $this->delete();
     }
-    
+
     /**
      * Удаляет записи из БД вместе с файлами из сервера
      * @param string|array $condition
@@ -145,12 +145,12 @@ class Image extends \yii\db\ActiveRecord
         $count = 0;
         $apartments = [];
         foreach ($apartmentImages as $image) {
-            self::deleteFile ($image->review, $image->preview);
+            self::deleteFile($image->review, $image->preview);
             // Запоминаем с каких апартаментов удалили заглавные картинки
             if ($image->default_img == 1) $apartments[$image->apartment_id] = true;
             $count += $image->delete();
         }
-        
+
         // Назначаем заглавные апартаментам
         $apartmentIds = array_keys($apartments);
         foreach ($apartmentIds as $apartment_id) {
@@ -162,10 +162,10 @@ class Image extends \yii\db\ActiveRecord
                 $newTitleImage->save();
             }
         }
-        
+
         return $count;
     }
-    
+
     /**
      * @param string $review имья большого файла картинки
      * @param string $preview имья маленького файла картинки
@@ -194,7 +194,7 @@ class Image extends \yii\db\ActiveRecord
         $previewImage = Yii::$app->image->load($image->tempName);
 
         // Имя изображения
-        $fileName = 'photo_' . $filenamed . '_'.uniqid('4', false) . '.' . $image->extension;
+        $fileName = 'photo_' . $filenamed . '_' . uniqid('4', false) . '.' . $image->extension;
 
         // Ширина кропа
         $imageResizeWidth = $this->module->imageResizeWidth;
@@ -212,7 +212,7 @@ class Image extends \yii\db\ActiveRecord
 
         // Сохранить
         $imagesPath = $this->module->imagesPath;
-        if(!$reviewImage->save(Yii::getAlias($imagesPath) . DIRECTORY_SEPARATOR . $fileName, 80)) {
+        if (!$reviewImage->save(Yii::getAlias($imagesPath) . DIRECTORY_SEPARATOR . $fileName, 80)) {
             return false;
         }
 

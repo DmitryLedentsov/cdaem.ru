@@ -1,4 +1,5 @@
 <?php
+
 namespace common\behaviors;
 
 use Yii;
@@ -33,31 +34,30 @@ class VisitBehavior extends Behavior
      * @var string
      */
     public $application = 'site';
-    
-    
-   /**
-    * Назначаем обработчик для [[owner]] событий
-    * @return array события (array keys) с назначеными им обработчиками (array values)
-    */
+
+
+    /**
+     * Назначаем обработчик для [[owner]] событий
+     * @return array события (array keys) с назначеными им обработчиками (array values)
+     */
     public function events()
     {
         return [
             ActiveRecord::EVENT_AFTER_VALIDATE => 'history',
         ];
     }
-    
-    
+
+
     /**
-     * Создать новую запись 
+     * Создать новую запись
      */
     public function history($event)
     {
         // если валидация не прошла и есть ошибки при авторизации
-        if($event->sender->hasErrors()) {
+        if ($event->sender->hasErrors()) {
             // записываем их в историю подозрительных действий 
             return Suspicions::createHistory($this->application, 'login', 0, null, Json::encode($event->sender->getErrors()));
-        } 
-        // если ошибок при валидации не возникло, записываем историю посещений
+        } // если ошибок при валидации не возникло, записываем историю посещений
         else {
             return Visits::createHistory($this->application, $event->sender->user->id);
         }

@@ -26,10 +26,10 @@
                 'url' : '/'
             },
             'links':  [
-            {
-                'label': 'Карта города - ' ~ city.name,
-                'url': ['/geo/default/index'],
-            },
+                {
+                    'label': 'Карта города - ' ~ city.name,
+                    'url': ['/geo/default/index'],
+                },
             ],
         }) }}
     </div>
@@ -41,7 +41,7 @@
     {{ this.registerMetaTag({'name' : 'description', 'content' : ''}) }}
     {{ this.registerMetaTag({'name' : 'keywords', 'content' : ''}) }}
 
-  
+
 
     <div class="container">
 
@@ -122,12 +122,12 @@
                 white-space: nowrap;
                 text-overflow: ellipsis;
             }
-            
-         
+
 
         </style>
         <hr>
-        <div style="text-align:center;"><a class="backmap-btn-2" href="{{ path(['/partners/default/index']) }}">Назад к поиску</a></div>
+        <div style="text-align:center;"><a class="backmap-btn-2" href="{{ path(['/partners/default/index']) }}">Назад к
+                поиску</a></div>
         <div id="map"></div>
 
 
@@ -139,13 +139,13 @@
 
             function init() {
                 var myMap = new ymaps.Map('map', {
-                            center: [{{ city.longitude }}, {{ city.latitude }}],
-                            zoom: 10
-                        }),
-                        objectManager = new ymaps.ObjectManager({
-                            clusterize: true,
-                            gridSize: 32
-                        });
+                        center: [{{ city.longitude }}, {{ city.latitude }}],
+                        zoom: 10
+                    }),
+                    objectManager = new ymaps.ObjectManager({
+                        clusterize: true,
+                        gridSize: 32
+                    });
 
                 // Задаём опции кластеров
                 objectManager.clusters.options.set({
@@ -162,7 +162,7 @@
                 // При клике на некластеризованные объекты получаем содержимое балуна
                 objectManager.objects.events.add('click', function (e) {
                     var objectId = e.get('objectId');
-                    getBalloonData(objectId, function(data) {
+                    getBalloonData(objectId, function (data) {
                         render(data, objectId);
                     });
                 });
@@ -170,7 +170,7 @@
                 // В кластеризованных объектах отслеживаем изменение выбранного объекта
                 activeObjectMonitor.add('activeObject', function () {
                     var objectId = activeObjectMonitor.get('activeObject').id;
-                    getBalloonData(objectId, function(data) {
+                    getBalloonData(objectId, function (data) {
                         render(data, objectId);
                     });
                 });
@@ -201,33 +201,33 @@
 
                 myMap.geoObjects.add(objectManager);
                 $.ajax({
-                            url: '/geo/map',
-                            dataType: 'json'
-                        })
-                        .done(function (data) {
-                            objectManager.add(data);
-                        })
-                        .fail(function () {
-                            console.log("error");
-                        });
+                    url: '/geo/map',
+                    dataType: 'json'
+                })
+                    .done(function (data) {
+                        objectManager.add(data);
+                    })
+                    .fail(function () {
+                        console.log("error");
+                    });
 
 
                 // Функция, осуществляющая запрос за данными балуна на сервер.
                 function getBalloonData(objectId, done) {
                     var dataDeferred = ymaps.vow.defer();
                     $.ajax({
-                                url: '/geo/map/' + objectId,
-                                type: 'GET',
-                                dataType: 'html'
-                            })
-                            .done(function (data) {
-                                done(data);
-                                dataDeferred.resolve(data);
-                            })
-                            .fail(function () {
-                                console.log("full-story error");
-                                dataDeferred.resolve('error');
-                            });
+                        url: '/geo/map/' + objectId,
+                        type: 'GET',
+                        dataType: 'html'
+                    })
+                        .done(function (data) {
+                            done(data);
+                            dataDeferred.resolve(data);
+                        })
+                        .fail(function () {
+                            console.log("full-story error");
+                            dataDeferred.resolve('error');
+                        });
                 }
 
 
@@ -237,8 +237,7 @@
                     var objectState = objectManager.getObjectState(objectId);
                     if (objectState.isClustered) {
                         objectManager.clusters.balloon.open(objectState.cluster.id);
-                    }
-                    else {
+                    } else {
                         objectManager.objects.balloon.open(objectId);
                     }
                 }

@@ -21,7 +21,7 @@ use yii\helpers\Html;
     </div>
 <?php endif; ?>
 
-    <br />
+    <br/>
 
 <?php $form = ActiveForm::begin(); ?>
 
@@ -44,7 +44,7 @@ use yii\helpers\Html;
     </div>
 
     <div class="row">
-        <div class="col-md-6 col-md-6 col-sm-6 col-xs-12 col-lg-6"><?= $form->field($formModel, 'description')->textarea()?></div>
+        <div class="col-md-6 col-md-6 col-sm-6 col-xs-12 col-lg-6"><?= $form->field($formModel, 'description')->textarea() ?></div>
     </div>
 
 
@@ -53,12 +53,12 @@ use yii\helpers\Html;
         <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-8"><?= $form->field($formModel, 'metro_array')->checkBoxList($model->metroStations) ?></div>
     </div>
 
-    <br />
+    <br/>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Сохранить'), ['class' => 'btn btn-success']) ?>
     </div>
 
-    <br />
+    <br/>
 
 <?php ActiveForm::end(); ?>

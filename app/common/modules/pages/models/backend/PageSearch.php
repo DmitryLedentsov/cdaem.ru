@@ -44,7 +44,7 @@ class PageSearch extends Model
 
         ]);
     }
-    
+
     /**
      * @inheritdoc
      */
@@ -66,7 +66,7 @@ class PageSearch extends Model
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'sort'=> [
+            'sort' => [
                 'defaultOrder' => [
                     'page_id' => SORT_DESC
                 ],

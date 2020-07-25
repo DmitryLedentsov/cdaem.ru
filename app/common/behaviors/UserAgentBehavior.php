@@ -29,11 +29,11 @@ class UserAgentBehavior extends Behavior
         BaseActiveRecord::EVENT_BEFORE_INSERT => 'user_agent',
         BaseActiveRecord::EVENT_BEFORE_UPDATE => 'user_agent',
     ];
-    
+
     /**
      * Назначаем обработчик для [[owner]] событий
      * @return array события (array keys) с назначеными им обработчиками (array values)
-    */
+     */
     public function events()
     {
         $events = $this->attributes;
@@ -42,7 +42,7 @@ class UserAgentBehavior extends Behavior
         }
         return $events;
     }
-    
+
     /**
      * Добавляем USER_AGENT
      * @param Event $event Текущее событие
@@ -50,9 +50,9 @@ class UserAgentBehavior extends Behavior
     public function getCurrentUserAgent($event)
     {
         $attributes = isset($this->attributes[$event->name]) ? (array)$this->attributes[$event->name] : [];
-        
+
         if (!empty($attributes)) {
-            foreach($attributes as $source => $attribute) {
+            foreach ($attributes as $source => $attribute) {
                 $this->owner->$attribute = Yii::$app->request->userAgent;
             }
         }

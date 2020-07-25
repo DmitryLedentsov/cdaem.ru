@@ -30,14 +30,14 @@
                 'url' : '/'
             },
             'links':  [
-            {
-                'label': 'Регистрация',
-                'url': ['/users/guest/signup'],
-            },
-            {
-                'label': 'Авторизация',
-                'url': ['/users/guest/login'],
-            },
+                {
+                    'label': 'Регистрация',
+                    'url': ['/users/guest/signup'],
+                },
+                {
+                    'label': 'Авторизация',
+                    'url': ['/users/guest/login'],
+                },
             ],
         }) }}
     </div>
@@ -56,13 +56,13 @@
         <div class="container-certain primary" style="margin-bottom: 20%">
             {% if app.session.hasFlash('danger') %}
                 <div class="alert alert-danger" role="alert">
-                    {{ app.session.getFlash('danger') | raw  }}
+                    {{ app.session.getFlash('danger') | raw }}
                 </div>
             {% endif %}
 
             {% if app.session.hasFlash('success') %}
                 <div class="alert alert-success" role="alert">
-                    {{ app.session.getFlash('success') | raw  }}
+                    {{ app.session.getFlash('success') | raw }}
                 </div>
             {% endif %}
 
@@ -79,9 +79,9 @@
                 {{ form.field(model, 'repassword', {'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'}).passwordInput() | raw }}
 
                 <div class="form-group text-right">
-                    <a href="{{ path(['/users/guest/login']) }}">{{  t('users', 'SIGNIN') }}</a> |
-                    <a href="{{ path(['/users/guest/signup']) }}">{{  t('users', 'SIGNUP') }}</a> &nbsp;
-                    <input type="submit" value="{{ t('users', 'SEND') }}" class="btn btn-primary" />
+                    <a href="{{ path(['/users/guest/login']) }}">{{ t('users', 'SIGNIN') }}</a> |
+                    <a href="{{ path(['/users/guest/signup']) }}">{{ t('users', 'SIGNUP') }}</a> &nbsp;
+                    <input type="submit" value="{{ t('users', 'SEND') }}" class="btn btn-primary"/>
                 </div>
 
             </div>
@@ -90,5 +90,5 @@
 
         </div>
     </div>
-            
+
 {% endblock content %}

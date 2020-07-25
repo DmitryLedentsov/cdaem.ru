@@ -98,7 +98,7 @@ class ReservationForm extends \yii\base\Model
             return false;
         }
 
-        $this->phone  = str_replace(['(', ')', '+', ' ', '-'], '', $this->phone);
+        $this->phone = str_replace(['(', ')', '+', ' ', '-'], '', $this->phone);
 
 
         $validator = new \yii\validators\DateValidator();
@@ -144,7 +144,7 @@ class ReservationForm extends \yii\base\Model
             }
 
             // Дата съезда должна быть больше даты въезда минимум на 2 часа
-            if ( (($time2 - $time1) / 60 / 60) < 2 ) {
+            if ((($time2 - $time1) / 60 / 60) < 2) {
                 $this->addError('out_time', 'Минимальное время аренды 2 часа');
             }
 

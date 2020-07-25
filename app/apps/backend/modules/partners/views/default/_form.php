@@ -178,7 +178,7 @@ endif;
     <div class="row">
         <div class="col-md-6 col-md-6 col-sm-6 col-xs-12 col-lg-8">
             <?=
-            /*$form->field($model, 'description')->widget(\vova07\imperavi\Widget::class, [
+            /*$form->field($model, 'description')->widget(\vova07\imperavi\Widget::className(), [
                 'settings' => [
                     'lang' => 'ru',
                     'minHeight' => 200,

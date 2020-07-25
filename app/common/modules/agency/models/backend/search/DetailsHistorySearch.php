@@ -22,7 +22,7 @@ class DetailsHistorySearch extends DetailsHistory
             [['id'], 'integer'],
             [['phone'], 'number'],
             [['email'], 'string', 'max' => 200],
-            ['processed' , 'boolean'],
+            ['processed', 'boolean'],
         ];
     }
 

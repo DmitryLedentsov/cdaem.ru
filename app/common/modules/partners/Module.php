@@ -24,12 +24,12 @@ class Module extends \yii\base\Module
      * @var string
      */
     public $imagesPath = '@frontend/web/partner_imgs';
-    
+
     /**
      * @var string
      */
     public $imagesUrl = '/partner_imgs';
-    
+
     /**
      * @var string
      */
@@ -59,7 +59,7 @@ class Module extends \yii\base\Module
      * @var string
      */
     public $maxUploadImages = 10;
-    
+
     /**
      * @var string
      */

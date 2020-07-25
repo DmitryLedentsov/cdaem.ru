@@ -14,7 +14,7 @@ class AdvertReservation extends \common\modules\partners\models\AdvertReservatio
      */
     public function getAdvert()
     {
-        return $this->hasOne(Advert::class, ['advert_id' => 'advert_id']);
+        return $this->hasOne(Advert::className(), ['advert_id' => 'advert_id']);
     }
 
     public function userothreservarion($myid = null)

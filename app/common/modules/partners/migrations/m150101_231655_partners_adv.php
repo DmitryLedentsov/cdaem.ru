@@ -32,12 +32,11 @@ class m150101_231655_partners_adv extends Migration
         $this->addForeignKey('{{%partners_advertisement_slider_user_id}}', '{{%partners_advertisement_slider}}', 'user_id', '{{%users}}', 'id', 'CASCADE', 'CASCADE');
 
 
-
         // Таблица рекламирования партнерских апартаментов
         $this->createTable('{{%partners_advertisement}}', [
             'advertisement_id' => Schema::TYPE_PK,
             'advert_id' => 'int NOT NULL COMMENT "ID объявления"',
-            'text' =>  'varchar(255) COMMENT "Текст рекламы"',
+            'text' => 'varchar(255) COMMENT "Текст рекламы"',
         ], $tableOptions . ' COMMENT = "Реклама доски объявлений"');
 
         // Foreign Keys

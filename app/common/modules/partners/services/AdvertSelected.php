@@ -97,7 +97,7 @@ final class AdvertSelected extends \yii\base\BaseObject implements ServiceInterf
                 $percent += 15;
             } else if ($amount >= 20) {
                 $percent += 10;
-            }  else if ($amount >= 10) {
+            } else if ($amount >= 10) {
                 $percent += 7;
             } else if ($amount >= 5) {
                 $percent += 5;
@@ -167,15 +167,15 @@ final class AdvertSelected extends \yii\base\BaseObject implements ServiceInterf
 
         return true;
     }
-    
-     public function validateContact()
+
+    public function validateContact()
     {
-        
+
         return true;
     }
-    
+
     public function validateContactOpen()
-    { 
+    {
         return true;
     }
 

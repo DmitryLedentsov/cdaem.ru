@@ -17,7 +17,7 @@ use Yii;
 class Select extends \yii\db\ActiveRecord
 {
     use ModuleTrait;
-    
+
     /**
      * @inheritdoc
      */

@@ -13,7 +13,7 @@ use Yii;
 class HelpdeskAnswers extends \yii\db\ActiveRecord
 {
     use ModuleTrait;
-    
+
     /**
      * @inheritdoc
      */

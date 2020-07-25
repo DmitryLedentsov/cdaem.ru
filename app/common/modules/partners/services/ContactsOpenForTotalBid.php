@@ -150,18 +150,18 @@ final class ContactsOpenForTotalBid extends \yii\base\BaseObject implements Serv
         return true;
     }
 
-         public function validateContact()
+    public function validateContact()
     {
-        
+
         return true;
     }
-    
+
     public function validateContactOpen()
-    { 
+    {
         return true;
     }
-    
-    
+
+
     /**
      * @inheritdoc
      */

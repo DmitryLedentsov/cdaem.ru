@@ -1,4 +1,4 @@
-$(function() {
+$(function () {
 
     /**
      * Раскрыть форму
@@ -11,16 +11,15 @@ $(function() {
     /**
      * Раскрыть форму с активным чекбоксом
      */
-    $('#special-adverts-multi-create-apartments-list input:checkbox').each(function( index ) {
-        var $this = $( this );
+    $('#special-adverts-multi-create-apartments-list input:checkbox').each(function (index) {
+        var $this = $(this);
         checkedAction($this);
     });
 
 });
 
 
-function checkedAction($this)
-{
+function checkedAction($this) {
     var $targetAdvert = $this.parents('.rent-type');
 
     if ($this.prop('checked')) {

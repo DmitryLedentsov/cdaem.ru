@@ -24,7 +24,7 @@ use yii\helpers\Html;
     </div>
 <?php endif; ?>
 
-    <br />
+    <br/>
 
 <?php $form = ActiveForm::begin(); ?>
 
@@ -35,7 +35,7 @@ use yii\helpers\Html;
                 'type' => DateTimePicker::TYPE_COMPONENT_PREPEND,
                 'options' => ['readonly' => 'readonly'],
                 'pluginOptions' => [
-                    'autoclose'=>true,
+                    'autoclose' => true,
                     'format' => 'yyyy-mm-dd hh:ii:ss',
                     'todayBtn' => true,
                 ]
@@ -46,7 +46,7 @@ use yii\helpers\Html;
                 'type' => DateTimePicker::TYPE_COMPONENT_PREPEND,
                 'options' => ['readonly' => 'readonly'],
                 'pluginOptions' => [
-                    'autoclose'=>true,
+                    'autoclose' => true,
                     'format' => 'yyyy-mm-dd hh:ii:ss',
                     'todayBtn' => true,
                 ]
@@ -55,14 +55,14 @@ use yii\helpers\Html;
         </div>
     </div>
 
-    <br />
+    <br/>
 
     <h6 class="heading-hr"><i class="icon-text-width"></i> Содержимое</h6>
     <div class="row">
         <div class="col-md-6 col-md-6 col-sm-6 col-xs-6 col-lg-6"><?= $form->field($formModel, 'text')->textarea() ?></div>
     </div>
 
-    <br />
+    <br/>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Сохранить'), ['class' => 'btn btn-success']) ?>

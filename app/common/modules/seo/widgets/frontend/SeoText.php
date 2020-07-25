@@ -43,7 +43,6 @@ class SeoText extends Widget
         $hostInfo = str_replace('www.', '', Yii::$app->request->hostInfo);
 
 
-
         // TODO:
         ///////////////////////////////////////////////////////////
         /*if (Yii::$app->user->getId() === 1) {
@@ -53,7 +52,6 @@ class SeoText extends Widget
             echo '<br>';
         }*/
         ///////////////////////////////////////////////////////////
-
 
 
         if (Yii::$app->params['siteDomain'] == $hostInfo) {

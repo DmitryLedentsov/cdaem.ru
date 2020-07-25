@@ -48,7 +48,7 @@ echo $this->render('_search', ['model' => $searchModel]);
     </div>
 <?php endif; ?>
 
-<br />
+    <br/>
 
 <?php
 
@@ -111,7 +111,7 @@ echo GridView::widget([
                     return ('
                         <div class="thumbnail thumbnail-boxed">
                             <div class="thumb">
-                                '.Html::img($model->titleImage->previewSrc, ['alt' => $model->titleImage->preview]).'
+                                ' . Html::img($model->titleImage->previewSrc, ['alt' => $model->titleImage->preview]) . '
                             </div>
                         </div>
                     ');
@@ -129,11 +129,11 @@ echo GridView::widget([
                 $id = '<b>№ ' . $model->apartment_id . '</b>';
 
                 $address = 'Страна: ' . $model->city->country->name;
-                $address.= ', Город: ' . $model->city->name;
-                $address.= ', Район: ' . $model->mainDistrict->district_name;
-                $address.= '<br/>';
-                $address.= $model->address;
-                $address.= $model->apartment ? 'к. ' . $model->apartment : '';
+                $address .= ', Город: ' . $model->city->name;
+                $address .= ', Район: ' . $model->mainDistrict->district_name;
+                $address .= '<br/>';
+                $address .= $model->address;
+                $address .= $model->apartment ? 'к. ' . $model->apartment : '';
 
                 return $id . "&nbsp; <p><br/></p> " . $address;
             },
@@ -146,8 +146,8 @@ echo GridView::widget([
             'value' => function ($model) {
                 if (!$model->adverts) return '(не задано)';
                 $adverts = [];
-                foreach($model->adverts as $advert) {
-                    $adverts[] = Html::a('ID '.$advert->advert_id . ' ' . $advert->rentType->name . ' - ' . $advert->priceText, Yii::$app->params['siteDomain'] . '/advert/' . $advert->advert_id);
+                foreach ($model->adverts as $advert) {
+                    $adverts[] = Html::a('ID ' . $advert->advert_id . ' ' . $advert->rentType->name . ' - ' . $advert->priceText, Yii::$app->params['siteDomain'] . '/advert/' . $advert->advert_id);
                 }
 
                 return implode($adverts, '<br/>');

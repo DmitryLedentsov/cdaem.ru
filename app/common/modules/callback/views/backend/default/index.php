@@ -39,7 +39,7 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
     </div>
 <?php endif; ?>
 
-    <br />
+    <br/>
 
 <?php
 
@@ -105,7 +105,7 @@ echo GridView::widget([
                 return $model->active;
             }
         ],
-        
+
         [
             'attribute' => 'date_create',
             'format' => 'BasisFullDateTime',
@@ -114,7 +114,7 @@ echo GridView::widget([
                 return $model->date_create;
             }
         ],
-        
+
         [
             'attribute' => 'date_processed',
             'format' => 'BasisFullDateTime',

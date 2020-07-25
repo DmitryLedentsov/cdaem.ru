@@ -43,7 +43,7 @@ class ClickfrogUDPSender
 
             $headers = array("HTTP_HOST", "REMOTE_ADDR", "REQUEST_METHOD", "REQUEST_URI", "PATH_INFO", "HTTP_REFERER", "HTTP_X_FORWARDED_FOR", "QUERY_STRING", "REQUEST_URI_CLICKFROG", "HTTP_USER_AGENT");
             $srv = array();
-            foreach ($headers AS $h)
+            foreach ($headers as $h)
                 if (isset($_SERVER[$h]))
                     $srv[$h] = $_SERVER[$h];
             if (count($srv) == 0)

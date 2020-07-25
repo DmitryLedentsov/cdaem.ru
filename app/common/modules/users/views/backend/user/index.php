@@ -39,10 +39,10 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
     <p><br/></p>
 
 <?php
-    $actions = '';
+$actions = '';
 
-    if (Yii::$app->user->can('user-multi-control')) {
-        $actions = '
+if (Yii::$app->user->can('user-multi-control')) {
+    $actions = '
         <div class="table-actions">
             <label>' . Yii::t('users', 'ACTIONS') . ':</label>
             <select name="action" class="form-control" style="display: inline-block; width: auto">
@@ -55,7 +55,7 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
             </select>
             <button class="btn btn-primary">OK</button>
         </div>';
-    }
+}
 ?>
 
 <?php echo $this->render('_search', ['model' => $searchModel]); ?>

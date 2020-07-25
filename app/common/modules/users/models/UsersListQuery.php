@@ -14,7 +14,7 @@ class UsersListQuery extends \yii\db\ActiveQuery
     {
         return $this->andWhere([UsersList::tableName() . '.type' => $state]);
     }
-    
+
     /**
      * @return \common\modules\users\models\ProfileQuery
      */

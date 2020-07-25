@@ -63,7 +63,7 @@ class Image extends \yii\db\ActiveRecord
             return Yii::$app->params['siteDomain'] . $this->module->defaultImageSrc;
         }
     }
-    
+
     /**
      * Удаляет запись соответствующую этой($this) ActiveRecord из БД вместе с файлами из сервера
      * и в случае если удаленная запись была заглавной, назначается новая заглавная картинка, если существуют еще.
@@ -73,7 +73,7 @@ class Image extends \yii\db\ActiveRecord
     public function deleteWithFiles()
     {
         self::deleteFile($this->review, $this->preview);
-        
+
         if ($this->default_img == 1) {
             $newTitleImage = self::find()->where(['apartment_id' => $this->apartment_id, 'default_img' => 0])->one();
             if ($newTitleImage) {
@@ -81,10 +81,10 @@ class Image extends \yii\db\ActiveRecord
                 $newTitleImage->save();
             }
         }
-        
+
         return $this->delete();
     }
-    
+
     /**
      * Удаляет записи из БД вместе с файлами из сервера
      * WARNING: Если вы не укажете никакого условия, метод удалит все записи в этой таблице
@@ -99,12 +99,12 @@ class Image extends \yii\db\ActiveRecord
         $count = 0;
         $apartments = [];
         foreach ($apartmentImages as $image) {
-            self::deleteFile ($image->review, $image->preview);
+            self::deleteFile($image->review, $image->preview);
             // Запоминаем с каких апартаментов удалили заглавные картинки
             if ($image->default_img == 1) $apartments[$image->apartment_id] = true;
             $count += $image->delete();
         }
-        
+
         // Назначаем заглавные апартаментам
         $apartmentIds = array_keys($apartments);
         foreach ($apartmentIds as $apartment_id) {
@@ -114,10 +114,10 @@ class Image extends \yii\db\ActiveRecord
                 $newTitleImage->save();
             }
         }
-        
+
         return $count;
     }
-    
+
     /**
      * @param string $review имя большого файла картинки
      * @param string $preview имья маленького файла картинки
@@ -139,21 +139,18 @@ class Image extends \yii\db\ActiveRecord
      * @param bool $preview
      * @return bool
      */
-    
-       
-    
-    
-    
+
+
     public function upload($image, $watermark = true, $preview = true, $filenamed = "default")
     {
-         
-        
+
+
         // Инициализируем расширение image
         $reviewImage = Yii::$app->image->load($image->tempName);
         $previewImage = Yii::$app->image->load($image->tempName);
 
         // Имя изображения
-        $fileName = 'photo_kvartira_na_sutki' . $filenamed . '_'.uniqid('4', false) . '.' . $image->extension;
+        $fileName = 'photo_kvartira_na_sutki' . $filenamed . '_' . uniqid('4', false) . '.' . $image->extension;
         $fileName = strtolower($fileName);
 
         // Ширина кропа
@@ -172,7 +169,7 @@ class Image extends \yii\db\ActiveRecord
 
         // Сохранить
         $imagesPath = $this->module->imagesPath;
-        if(!$reviewImage->save(Yii::getAlias($imagesPath) . DIRECTORY_SEPARATOR . $fileName, 80)) {
+        if (!$reviewImage->save(Yii::getAlias($imagesPath) . DIRECTORY_SEPARATOR . $fileName, 80)) {
             return false;
         }
 

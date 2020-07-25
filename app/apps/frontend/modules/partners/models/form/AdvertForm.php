@@ -52,6 +52,7 @@ class AdvertForm extends \frontend\modules\partners\models\Advert
             // при сохранении апартамента останется одно последнее объявление.
             // Чтобы этого избежать и показать ошибку пользователю, обнулим свойство $this->rent_type, если в
             // запросе не было передано rent_type
+
             if (!isset(Yii::$app->request->post(self::formName())['rent_type']) || !is_array(Yii::$app->request->post(self::formName())['rent_type'])) {
                 $this->rent_type = null;
             }

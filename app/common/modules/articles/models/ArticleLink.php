@@ -1,6 +1,7 @@
 <?php
 
 namespace common\modules\articles\models;
+
 use yii\helpers\ArrayHelper;
 
 use Yii;
@@ -9,7 +10,8 @@ use Yii;
  * Статьи
  * @package common\modules\articles\models
  */
-class ArticleLink extends \yii\db\ActiveRecord {
+class ArticleLink extends \yii\db\ActiveRecord
+{
 
     public $file;
     public $imagesPath = '@frontend/web/images';
@@ -17,21 +19,24 @@ class ArticleLink extends \yii\db\ActiveRecord {
     /**
      * @inheritdoc
      */
-    public static function find() {
+    public static function find()
+    {
         return new ArticleQuery(get_called_class());
     }
 
     /**
      * @inheritdoc
      */
-    public static function tableName() {
+    public static function tableName()
+    {
         return '{{%articles_adv_links}}';
     }
 
     /**
      * @inheritdoc
      */
-    public function attributeLabels() {
+    public function attributeLabels()
+    {
         return [
             'id' => 'ID',
             'article_id' => 'ID_Статьи',
@@ -42,7 +47,7 @@ class ArticleLink extends \yii\db\ActiveRecord {
             'text' => 'Текст',
         ];
     }
-    
+
     public function getArticlesList()
     {
         $articles = Article::find()->orderBy(['date_create' => SORT_DESC])->asArray()->all();

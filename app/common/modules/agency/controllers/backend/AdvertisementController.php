@@ -231,7 +231,7 @@ class AdvertisementController extends Controller
             foreach ($model->adverts as $advert) {
                 if (!$advert->advertisement) {
                     $advertisements[$model->apartment_id][$advert->advert_id] = new AdvertisementForm(['scenario' => 'create']);
-                    $advertisements[$model->apartment_id][$advert->advert_id] ->advert_id = $advert->advert_id;
+                    $advertisements[$model->apartment_id][$advert->advert_id]->advert_id = $advert->advert_id;
                 }
             }
         }

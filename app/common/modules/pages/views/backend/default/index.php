@@ -48,7 +48,7 @@ echo \backend\modules\admin\widgets\ExtraControlWidget::widget([
     </div>
 <?php endif; ?>
 
-<br />
+    <br/>
 
 <?= GridView::widget([
     'tableOptions' => ['class' => 'table table-bordered'],
@@ -79,7 +79,7 @@ echo \backend\modules\admin\widgets\ExtraControlWidget::widget([
             'format' => 'html',
             'contentOptions' => ['class' => 'text-left'],
             'value' => function ($model) {
-                return Html::a(Yii::$app->params['siteDomain'] . '/page/' . $model->url, Yii::$app->params['siteDomain'] . '/page/' . $model->url );
+                return Html::a(Yii::$app->params['siteDomain'] . '/page/' . $model->url, Yii::$app->params['siteDomain'] . '/page/' . $model->url);
             }
         ],
 
@@ -88,7 +88,7 @@ echo \backend\modules\admin\widgets\ExtraControlWidget::widget([
             'format' => 'html',
             'contentOptions' => ['class' => 'text-left'],
             'value' => function ($model) {
-                return Html::a($model->name, Yii::$app->params['siteDomain'] . '/page/' . $model->url );
+                return Html::a($model->name, Yii::$app->params['siteDomain'] . '/page/' . $model->url);
             }
         ],
 

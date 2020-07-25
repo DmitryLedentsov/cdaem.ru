@@ -11,7 +11,6 @@ use yii\helpers\Html;
 ?>
 
 
-
 <?php if (Yii::$app->session->hasFlash('success')): ?>
     <div class="alert alert-success indent-bottom">
         <span class="icon-checkmark-circle"></span> <?php echo Yii::$app->session->getFlash('success') ?>
@@ -24,7 +23,7 @@ use yii\helpers\Html;
     </div>
 <?php endif; ?>
 
-    <br />
+    <br/>
 
 
 <?php $form = ActiveForm::begin(); ?>
@@ -32,8 +31,8 @@ use yii\helpers\Html;
     <h6 class="heading-hr"><span class="icon-user"></span> Пользователь</h6>
     <div class="row">
         <?php if (!$formModel->scenario == 'update') : ?>
-                <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-4"><?= $form->field($formModel, 'email')->textInput(['maxlength' => true]) ?></div>
-                <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-2"><?= $form->field($formModel, 'user_name')->textInput(['maxlength' => true]) ?></div>
+            <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-4"><?= $form->field($formModel, 'email')->textInput(['maxlength' => true]) ?></div>
+            <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-2"><?= $form->field($formModel, 'user_name')->textInput(['maxlength' => true]) ?></div>
         <?php else: ?>
             <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-2"><?= $form->field($formModel, 'user_id')->textInput(['maxlength' => true]) ?></div>
         <?php endif; ?>
@@ -56,12 +55,12 @@ use yii\helpers\Html;
         <div class="col-md-8 col-md-68 col-sm-8 col-xs-12 col-lg-8"><?= $form->field($formModel, 'text')->textarea() ?></div>
     </div>
 
-    <br />
+    <br/>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Сохранить'), ['class' => 'btn btn-success']) ?>
     </div>
 
-    <br />
+    <br/>
 
 <?php ActiveForm::end(); ?>

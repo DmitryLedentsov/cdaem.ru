@@ -49,29 +49,29 @@ use yii\helpers\Html;
 
 <?php endif; ?>
 
-<br />
+<br/>
 
 <?= ((Yii::$app->request->isAjax) ? '<div class="page-content">' : '') ?>
 
-    <?php $form = ActiveForm::begin(['id' => 'image_form']); ?>
+<?php $form = ActiveForm::begin(['id' => 'image_form']); ?>
 
-    <h6 class="heading-hr"><span class="icon-text-width"></span> Метатеги</h6>
-    <div class="row">
-        <div class="col-md-6 col-md-6 col-sm-6 col-xs-12 col-lg-6"><?= $form->field($formModel, 'alt')->textInput(['maxlength' => true]) ?></div>
-        <div class="col-md-6 col-md-6 col-sm-6 col-xs-12 col-lg-6"><?= $form->field($formModel, 'title')->textInput(['maxlength' => true]) ?></div>
+<h6 class="heading-hr"><span class="icon-text-width"></span> Метатеги</h6>
+<div class="row">
+    <div class="col-md-6 col-md-6 col-sm-6 col-xs-12 col-lg-6"><?= $form->field($formModel, 'alt')->textInput(['maxlength' => true]) ?></div>
+    <div class="col-md-6 col-md-6 col-sm-6 col-xs-12 col-lg-6"><?= $form->field($formModel, 'title')->textInput(['maxlength' => true]) ?></div>
+</div>
+
+<br/>
+
+<?php if (Yii::$app->user->can('agency-apartment-update')) : ?>
+    <div class="form-group">
+        <?= Html::submitButton(Yii::t('app', 'Сохранить'), ['class' => 'btn btn-success']) ?>
     </div>
+<?php endif; ?>
 
-    <br />
+<br/>
 
-    <?php if (Yii::$app->user->can('agency-apartment-update')) : ?>
-        <div class="form-group">
-            <?= Html::submitButton(Yii::t('app', 'Сохранить'), ['class' => 'btn btn-success']) ?>
-        </div>
-    <?php endif; ?>
-
-    <br />
-
-    <?php ActiveForm::end(); ?>
+<?php ActiveForm::end(); ?>
 
 <?= ((Yii::$app->request->isAjax) ? '</div>' : '') ?>
 

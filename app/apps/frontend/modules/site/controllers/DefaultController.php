@@ -11,6 +11,8 @@ use frontend\modules\site\models\Sitemap;
 use common\modules\pages\models\Page;
 use common\modules\geo\models\City;
 use frontend\modules\site\models\Taxi;
+use yii\base\Exception;
+use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\web\NotFoundHttpException;
 use yii\widgets\ActiveForm;
@@ -32,7 +34,7 @@ class DefaultController extends \frontend\components\Controller
     {
         return [
             'error' => [
-                'class' => \yii\web\ErrorAction::class,
+                'class' => \yii\web\ErrorAction::className(),
                 'view' => '@frontend/themes/basic/default/error.twig',
             ],
         ];
@@ -63,13 +65,11 @@ class DefaultController extends \frontend\components\Controller
         $partnersSearch = new PartnersAdvertSearch();
         $partnersAdverts = $partnersSearch->siteSearch(Yii::$app->request->queryParams);
         $articlesQuery = Article::find()->orderBy(['date_create' => SORT_DESC]);
-
         if (!is_null($city)) {
             $articlesQuery->where(['city' => $city]);
         } else {
             $articlesQuery->where('city IS NULL');
         }
-
         $articles = $articlesQuery->limit(1)->asArray()->all();
         $specialAdverts = SpecialAdvert::findActive();
         $articlesQuery2 = Article::find()
@@ -83,7 +83,6 @@ class DefaultController extends \frontend\components\Controller
 
         $articlesall3 = $articlesQuery2->limit(12)->asArray()->all();
         //$articlesall2 = array_shift($articlesall2);
-
         $i = 0;
         foreach ($articlesall3 as $item) {
             if ($i > 0) {
@@ -91,19 +90,16 @@ class DefaultController extends \frontend\components\Controller
             }
             $i++;
         }
-
         $metaData = RentType::findRentTypeBySlug(Yii::$app->request->get('rentType', '/'));
 
         if (!$metaData) {
             throw new NotFoundHttpException();
         }
-
         if ($metaData['slug'] != '/') {
             Yii::$app->view->registerLinkTag(['rel' => 'canonical', 'href' => URL::to('https://cdaem.ru/' . $metaData['slug'])]);
         } else {
             Yii::$app->view->registerLinkTag(['rel' => 'canonical', 'href' => URL::to('https://cdaem.ru')]);
         }
-
         return $this->render('index.twig', [
             'agencySearch' => $agencySearch,
             'agencyDataProvider' => $agencyDataProvider,
@@ -112,7 +108,7 @@ class DefaultController extends \frontend\components\Controller
             'specialAdverts' => $specialAdverts,
             'metaData' => $metaData,
             'articles' => $articles,
-            'articlesall2' => $articlesall2 ?? [],
+            'articlesall2' => $articlesall2,
         ]);
     }
 
@@ -124,11 +120,9 @@ class DefaultController extends \frontend\components\Controller
         $partnersAdverts = $partnersSearch->siteSearch(Yii::$app->request->queryParams);
         $specialAdverts = SpecialAdvert::findActive();
         $metaData = RentType::findRentTypeBySlug(Yii::$app->request->get('rentType', '/'));
-
         if (!$metaData) {
             throw new NotFoundHttpException();
         }
-
         return $this->render('dayindex.twig', [
             'agencySearch' => $agencySearch,
             'agencyDataProvider' => $agencyDataProvider,
@@ -156,18 +150,13 @@ class DefaultController extends \frontend\components\Controller
     public function actionPartnership()
     {
         $model = Page::getPageByUrl('partnership');
-
         if (!$model) {
             throw new NotFoundHttpException;
         }
-
         $formModel = new WantPassForm(['scenario' => 'partnership']);
-
         if ($formModel->load(Yii::$app->request->post())) {
-
             Yii::$app->response->format = Response::FORMAT_JSON;
             $errors = ActiveForm::validate($formModel);
-
             if (!$errors) {
                 if ($formModel->create()) {
                     $status = 1;
@@ -180,11 +169,10 @@ class DefaultController extends \frontend\components\Controller
                     'status' => $status,
                     'message' => $msg,
                 ];
+            } else {
+                return $errors;
             }
-
-            return $errors;
         }
-
         return $this->render('partnership.twig', [
             'model' => $model,
             'formModel' => $formModel,
@@ -200,7 +188,6 @@ class DefaultController extends \frontend\components\Controller
         if (!Yii::$app->request->isAjax) {
             return $this->goBack();
         }
-
         $model = new Taxi();
         if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
@@ -223,7 +210,6 @@ class DefaultController extends \frontend\components\Controller
             }
             return $errors;
         }
-
         return $this->renderAjax('../ajax/taxi.php', [
             'model' => $model
         ]);
@@ -239,22 +225,20 @@ class DefaultController extends \frontend\components\Controller
     public function actionSitemap($city = null)
     {
         Yii::$app->response->format = \yii\web\Response::FORMAT_RAW;
-
         $headers = Yii::$app->response->headers;
         $headers->add('Content-Type', 'text/xml');
-
         if ($city === null) {
             $sitemap = new Sitemap;
             return $sitemap->renderCommon();
+        } else {
+            $city = (substr($city, 0, 1) == '_') ? str_replace('_', '', $city) : $city;
+
+            if (!$city = City::find()->where(['name_eng' => trim($city)])->one()) {
+                throw new NotFoundHttpException;
+            }
+
+            return $sitemap->renderByCity($city);
         }
-
-        $city = (substr($city, 0, 1) == '_') ? str_replace('_', '', $city) : $city;
-
-        if (!$city = City::find()->where(['name_eng' => trim($city)])->one()) {
-            throw new NotFoundHttpException;
-        }
-
-        return $sitemap->renderByCity($city);
     }
 
 }

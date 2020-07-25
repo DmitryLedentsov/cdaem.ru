@@ -71,16 +71,14 @@ class RentTypePriceInfoNew extends Widget
             else if ($advert->rent_type == 4) {
                 $rentTypeTime = 'month';
                 $rFlag = 1;
-            }
-            
-             else if ($advert->rent_type == 9) {
+            } else if ($advert->rent_type == 9) {
                 $rentTypeTime = 'star';
                 $rFlag = 1;
             }
 
             if ($rFlag) {
                 $active = ($this->advert->rent_type == $advert->rent_type) ? ' class="active"' : '';
-                $this->_rentTypeHtmlN .= '<li '.$active.' title="' . $advert->rentType->name . '"><a href="'.Url::toRoute(['/agency/default/view', 'id' => $advert->advert_id]).'"><span class="icon-rent-type-b icon-rent-type-widget-b-' . $rentTypeTime . '"></span></a></li>';
+                $this->_rentTypeHtmlN .= '<li ' . $active . ' title="' . $advert->rentType->name . '"><a href="' . Url::toRoute(['/agency/default/view', 'id' => $advert->advert_id]) . '"><span class="icon-rent-type-b icon-rent-type-widget-b-' . $rentTypeTime . '"></span></a></li>';
             }
         }
 
@@ -91,7 +89,7 @@ class RentTypePriceInfoNew extends Widget
                 <div class="br-item">
                     <h4>' . $rentTypeText . ' <span>' . $this->advert->priceText . '</span></h4>
                     <div class="txt">
-                        '. $advertText  .'
+                        ' . $advertText . '
                     </div>
                 </div>';
 

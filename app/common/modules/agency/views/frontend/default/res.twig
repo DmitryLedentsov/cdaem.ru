@@ -8,10 +8,10 @@
 
 {% extends "@app/themes/basic/layouts/main.twig" %}
 
-{% block title %} {{model.meta_title}} {% endblock %}
+{% block title %} {{ model.meta_title }} {% endblock %}
 
 {% block header %}
-    
+
 {% endblock %}
 
 {% block breadcrumbs %}
@@ -32,12 +32,12 @@
                 'url' : '/'
             },
             'links':  [
-            {
-                'label': model.rentType.name,
-            },
-            {
-                'label': districts,
-            },
+                {
+                    'label': model.rentType.name,
+                },
+                {
+                    'label': districts,
+                },
             ],
         }) }}
     </div>
@@ -56,7 +56,7 @@
     {{ use('common/modules/agency/assets/frontend/AgencyAsset') }}
     {{ register_agency_asset() }}
 
- 
+
 
     {{ this.render('@common/modules/agency/views/frontend/default/view/bid.twig', {
         'model' : model,

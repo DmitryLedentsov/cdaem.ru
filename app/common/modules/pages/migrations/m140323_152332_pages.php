@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 use yii\db\Schema;
 
@@ -14,15 +14,15 @@ class m140323_152332_pages extends \yii\db\Migration
 
         // Static pages
         $this->createTable('{{%pages}}', [
-            'page_id'       => Schema::TYPE_PK,
-            'url'           => 'varchar(200) NOT NULL COMMENT "URL адрес страницы"',
-            'title'         => 'text NOT NULL COMMENT "Заголовок"',
-            'description'   => 'text NOT NULL COMMENT "Описание"',
-            'keywords'      => 'text NOT NULL COMMENT "Ключевые слова"',
-            'name'          => 'varchar(200) NOT NULL COMMENT "Название"',
-            'text'          => 'mediumtext NOT NULL COMMENT "Текст страницы"',
-            'status'        => 'tinyint(4) DEFAULT 0 COMMENT "Статус"',
-            'active'        => 'tinyint(1) DEFAULT 1 COMMENT "Доступна страница или нет"',
+            'page_id' => Schema::TYPE_PK,
+            'url' => 'varchar(200) NOT NULL COMMENT "URL адрес страницы"',
+            'title' => 'text NOT NULL COMMENT "Заголовок"',
+            'description' => 'text NOT NULL COMMENT "Описание"',
+            'keywords' => 'text NOT NULL COMMENT "Ключевые слова"',
+            'name' => 'varchar(200) NOT NULL COMMENT "Название"',
+            'text' => 'mediumtext NOT NULL COMMENT "Текст страницы"',
+            'status' => 'tinyint(4) DEFAULT 0 COMMENT "Статус"',
+            'active' => 'tinyint(1) DEFAULT 1 COMMENT "Доступна страница или нет"',
             'UNIQUE(`url`)',
         ], $tableOptions . ' COMMENT = "Статические страницы"');
 

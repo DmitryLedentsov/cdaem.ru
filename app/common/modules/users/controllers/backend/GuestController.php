@@ -39,7 +39,7 @@ class GuestController extends Controller
     public function beforeAction($action)
     {
         if (parent::beforeAction($action)) {
-           $this->module->viewPath = '@common/modules/users/views/backend';
+            $this->module->viewPath = '@common/modules/users/views/backend';
             return true;
         }
         return false;

@@ -12,7 +12,8 @@ use Yii;
  * Article
  * @package common\modules\articles\models\backend
  */
-class ArticleForm extends Model {
+class ArticleForm extends Model
+{
 
     public $article_id;
     public $slug;
@@ -36,7 +37,8 @@ class ArticleForm extends Model {
     /**
      * @inheritdoc
      */
-    public function attributeLabels() {
+    public function attributeLabels()
+    {
         return array_merge((new Article())->attributeLabels(), [
             'city' => 'Поддомен (город)'
         ]);
@@ -45,7 +47,8 @@ class ArticleForm extends Model {
     /**
      * @inheritdoc
      */
-    public function scenarios() {
+    public function scenarios()
+    {
         return [
             'create' => ['city', 'slug', 'name', 'short_text', 'title', 'description', 'keywords', 'full_text', 'visible', 'status', 'title_img', 'background'],
             'update' => ['city', 'slug', 'name', 'short_text', 'title', 'description', 'keywords', 'full_text', 'visible', 'status', 'date_create', 'title_img', 'background'],
@@ -56,27 +59,28 @@ class ArticleForm extends Model {
     /**
      * @inheritdoc
      */
-    public function rules() {
+    public function rules()
+    {
         return [
-                ['city', 'exist', 'targetAttribute' => 'name_eng', 'targetClass' => City::className(), 'message' => 'Такого поддомена не существует'],
-                ['city', 'default', 'value' => null],
-                [['file'], 'file', 'extensions' => 'jpg, png'],
-                [['bgfile'], 'file', 'extensions' => 'jpg, png'],
-                [['article_id', 'visible', 'status'], 'integer'],
-                [['slug', 'name', 'short_text', 'title_img'], 'string', 'max' => 255],
-                [['title', 'description', 'keywords'], 'string'],
-                ['date_create', 'date', 'format' => 'php:Y-m-d H:i:s'],
-                [['full_text'], 'string'],
-                [['slug', 'name', 'short_text', 'title', 'description', 'keywords', 'full_text', 'visible', 'status'], 'required', 'on' => 'create'],
-                [['slug', 'name', 'short_text', 'title', 'description', 'keywords', 'full_text', 'visible', 'status'], 'required', 'on' => 'update'],
+            ['city', 'exist', 'targetAttribute' => 'name_eng', 'targetClass' => City::className(), 'message' => 'Такого поддомена не существует'],
+            ['city', 'default', 'value' => null],
+            [['file'], 'file', 'extensions' => 'jpg, png'],
+            [['bgfile'], 'file', 'extensions' => 'jpg, png'],
+            [['article_id', 'visible', 'status'], 'integer'],
+            [['slug', 'name', 'short_text', 'title_img'], 'string', 'max' => 255],
+            [['title', 'description', 'keywords'], 'string'],
+            ['date_create', 'date', 'format' => 'php:Y-m-d H:i:s'],
+            [['full_text'], 'string'],
+            [['slug', 'name', 'short_text', 'title', 'description', 'keywords', 'full_text', 'visible', 'status'], 'required', 'on' => 'create'],
+            [['slug', 'name', 'short_text', 'title', 'description', 'keywords', 'full_text', 'visible', 'status'], 'required', 'on' => 'update'],
             // Url адрес
             ['slug', 'unique', 'targetAttribute' => 'slug', 'targetClass' => Article::className(), 'filter' =>
                 ($this->scenario == 'create') ? null : function ($query) {
                     $query->andWhere(['<>', 'article_id', $this->article_id]);
                 }
             ],
-                ['slug', 'string', 'min' => 1, 'max' => 32],
-                ['slug', 'match', 'pattern' => '/^[a-zA-Z0-9-_.]+$/'],
+            ['slug', 'string', 'min' => 1, 'max' => 32],
+            ['slug', 'match', 'pattern' => '/^[a-zA-Z0-9-_.]+$/'],
         ];
     }
 
@@ -84,7 +88,8 @@ class ArticleForm extends Model {
      * Создать
      * @return bool
      */
-    public function create() {
+    public function create()
+    {
         $model = new Article();
         $model->setAttributes($this->getAttributes(), false);
         $model->date_create = date('Y-m-d H:i:s');
@@ -102,7 +107,8 @@ class ArticleForm extends Model {
      * @param Article $model
      * @return bool
      */
-    public function update(Article $model) {
+    public function update(Article $model)
+    {
         $model->setAttributes($this->getAttributes(), false);
         //$model->date_update = date('Y-m-d H:i:s');
         return $model->save(false);
@@ -113,7 +119,8 @@ class ArticleForm extends Model {
      * @param Article $model
      * @return mixed
      */
-    public function delete(Article $model) {
+    public function delete(Article $model)
+    {
         return $model->delete();
     }
 

@@ -122,13 +122,13 @@ class Service extends ActiveRecord
             ->orderBy(['date_start' => SORT_ASC])
             ->all();
     }
-    
+
     public static function findProcessesInQueueApartament($id)
     {
         return self::find()
             ->andWhere('process = 0')
             ->andWhere('payment_id IS NOT NULL')
-                ->andWhere('date_create >= (now() - INTERVAL 1200 SECOND) ')
+            ->andWhere('date_create >= (now() - INTERVAL 1200 SECOND) ')
             //->andWhere('service =  oki')  
             ->andWhere('user_id = :id', [':id' => $id])
             ->all();

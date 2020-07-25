@@ -17,7 +17,7 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
             'url' => ['/agency/reservation/index'],
         ],
         [
-            'label' => 'Редактировать' . ' ID - '.$model->reservation_id,
+            'label' => 'Редактировать' . ' ID - ' . $model->reservation_id,
         ]
     ]
 ]);
@@ -36,7 +36,7 @@ echo \backend\modules\admin\widgets\ExtraControlWidget::widget([
 ]);
 ?>
 
-    <?= $this->render('_form', [
+<?= $this->render('_form', [
     'formModel' => $formModel,
     'model' => $model,
-    ]) ?>
+]) ?>

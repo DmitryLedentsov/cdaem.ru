@@ -13,14 +13,14 @@ class Module extends \nepster\users\Module
     /**
      * Доступ ролей в панель управления
      */
-    public $accessGroupsToControlpanel = ['admin', 'senior-dispatcher', 'dispatcher', 'seo', 'operator'];
+    public $accessGroupsToControlpanel = ['admin', 'senior-dispatcher', 'ekaterina', 'dispatcher', 'seo', 'operator', 'milana'];
 
     /**
      * Вес аватара 2mb
      */
     public $maxSize = 2097152;
 
-	public $requireEmailConfirmation = true;
+    public $requireEmailConfirmation = true;
 
     /**
      * Развер аватара

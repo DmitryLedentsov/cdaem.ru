@@ -11,7 +11,7 @@ use yii\helpers\Html;
 $this->title = 'Создать статью';
 
 echo \backend\modules\admin\widgets\HeaderWidget::widget([
-    'title' =>  'Управление статьями',
+    'title' => 'Управление статьями',
     'description' => $this->title,
     'breadcrumb' => [
         [

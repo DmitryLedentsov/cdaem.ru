@@ -124,26 +124,26 @@ class SpecificationController extends Controller
 
         if ($formModel->load(Yii::$app->request->post())) {
 
-           if (!Yii::$app->user->can('seo-specifications-update')) {
-               throw new ForbiddenHttpException(Yii::t('users.rbac', 'ACCESS_DENIED'));
-           }
+            if (!Yii::$app->user->can('seo-specifications-update')) {
+                throw new ForbiddenHttpException(Yii::t('users.rbac', 'ACCESS_DENIED'));
+            }
 
-           if ($formModel->validate()) {
-               if ($formModel->update($model)) {
-                   Yii::$app->session->setFlash('success', 'Данные успешно сохранены.');
-               } else {
-                   Yii::$app->session->setFlash('danger', 'Возникла ошибка.');
-               }
-               return $this->redirect(['update', 'id' => $formModel->id]);
-           } elseif (Yii::$app->request->isAjax) {
-               Yii::$app->response->format = Response::FORMAT_JSON;
-               return ActiveForm::validate($formModel);
-           }
+            if ($formModel->validate()) {
+                if ($formModel->update($model)) {
+                    Yii::$app->session->setFlash('success', 'Данные успешно сохранены.');
+                } else {
+                    Yii::$app->session->setFlash('danger', 'Возникла ошибка.');
+                }
+                return $this->redirect(['update', 'id' => $formModel->id]);
+            } elseif (Yii::$app->request->isAjax) {
+                Yii::$app->response->format = Response::FORMAT_JSON;
+                return ActiveForm::validate($formModel);
+            }
         }
 
         return $this->render('update', [
-           'formModel' => $formModel,
-           'model' => $model,
+            'formModel' => $formModel,
+            'model' => $model,
         ]);
     }
 
@@ -170,13 +170,13 @@ class SpecificationController extends Controller
         return $this->redirect(['index']);
     }
 
-   /**
-    * Finds the SeoSpecification model based on its primary key value.
-    * If the model is not found, a 404 HTTP exception will be thrown.
-    * @param integer $id
-    * @return SeoSpecification the loaded model
-    * @throws NotFoundHttpException if the model cannot be found
-    */
+    /**
+     * Finds the SeoSpecification model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param integer $id
+     * @return SeoSpecification the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
     protected function findModel($id)
     {
         if (($model = SeoSpecification::findOne($id)) !== null) {

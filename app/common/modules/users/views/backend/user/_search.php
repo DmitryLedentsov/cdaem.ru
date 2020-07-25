@@ -3,12 +3,13 @@
  * Поиск пользователей
  * @var $this yii\web\View
  * @var $model common\modules\users\models\backend\search\UserSearch
-*/
+ */
 
 use kartik\date\DatePicker;
 use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
+
 ?>
 
 

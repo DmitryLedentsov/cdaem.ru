@@ -36,7 +36,7 @@ class BootstrapBackend implements \yii\base\BootstrapInterface
             'url' => \yii\helpers\Url::toRoute(['/reviews/default/index']),
             'options' => [],
             'callback' => function ($params, $content) {
-                return Html::tag('li', Html::a( '<span class="label label-danger">'.Review::find()->moderation(0)->count().'</span> ' . $params['name'] . $params['icon'], $params['url']) . $content, $params['options']);
+                return Html::tag('li', Html::a('<span class="label label-danger">' . Review::find()->moderation(0)->count() . '</span> ' . $params['name'] . $params['icon'], $params['url']) . $content, $params['options']);
             },
             'access' => $reviewsAccess,
             'dropdown' => [

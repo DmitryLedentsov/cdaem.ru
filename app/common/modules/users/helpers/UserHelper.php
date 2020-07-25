@@ -68,18 +68,16 @@ class UserHelper
         if ($phone[0] == '+') {
             $phone = str_replace('+', '', $phone);
         }
-        if ($phone[0] == '+' && $phone[1] == '7'){
+        if ($phone[0] == '+' && $phone[1] == '7') {
             $phone = substr($phone, 2);
             $p = '8';
-        }
-        elseif($phone[0] == '+' && $phone[1] == '3'){
+        } elseif ($phone[0] == '+' && $phone[1] == '3') {
             $phone = substr($phone, 1);
-            $p = '+3'; 
-            }
-        else
+            $p = '+3';
+        } else
             $phone = substr($phone, 1);
-            $p = '8';
-            
+        $p = '8';
+
 
         if ($count >= 8) {
             $sPrefix = substr($phone, 0, $count - 8);
@@ -87,16 +85,15 @@ class UserHelper
             $sNumber2 = substr($phone, $count - 5, 2);
             $sNumber3 = substr($phone, $count - 3, 2);
 
-            return $p .'('. $sPrefix . ')-' . $sNumber1 . '-' . $sNumber2 . '-' . $sNumber3;
+            return $p . '(' . $sPrefix . ')-' . $sNumber1 . '-' . $sNumber2 . '-' . $sNumber3;
         }
 
         return $p . $phone;
     }
-    
-    
-    
+
+
     //Format phone 2
-    
+
     public static function formatPhone2($phone)
     {
         if (empty($phone)) {
@@ -115,12 +112,12 @@ class UserHelper
             $sNumber2 = substr($phone, $count - 4, 2);
             $sNumber3 = substr($phone, $count - 2, 2);
 
-            return '' . $sPrefix . ''. '-' . $sNumber1 . '-' . $sNumber2 . '-' . $sNumber3;
+            return '' . $sPrefix . '' . '-' . $sNumber1 . '-' . $sNumber2 . '-' . $sNumber3;
         }
 
         return $p . $phone;
     }
-    
+
 
     /**
      * Форматирует почтовый адрес

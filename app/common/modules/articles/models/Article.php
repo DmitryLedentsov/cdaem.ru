@@ -11,10 +11,11 @@ use yii\helpers\ArrayHelper;
  */
 class Article extends \yii\db\ActiveRecord
 {
-    
+
     public $file;
     public $bgfile;
     public $imagesPath = '@frontend/web/images';
+
     /**
      * @inheritdoc
      */
@@ -22,7 +23,7 @@ class Article extends \yii\db\ActiveRecord
     {
         return new ArticleQuery(get_called_class());
     }
-    
+
     /**
      * @inheritdoc
      */
@@ -31,12 +32,12 @@ class Article extends \yii\db\ActiveRecord
         return '{{%articles}}';
     }
 
-	/**
-	 * @inheritdoc
-	 */
-	public function attributeLabels()
-	{
-		return [
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
             'article_id' => 'ID',
             'slug' => 'Слаг',
             'title_img' => 'Имя файла изображения',
@@ -52,8 +53,8 @@ class Article extends \yii\db\ActiveRecord
             'visible' => 'Просмотр',
             'status' => 'Статус',
             'date_create' => 'Дата создания',
-		];
-	}
+        ];
+    }
 
     /**
      * Статусы статических страниц
@@ -86,19 +87,11 @@ class Article extends \yii\db\ActiveRecord
             ],
         ];
     }
-    
+
     public function getArticlelink()
     {
         return $this->hasMany(ArticleLink::className(), ['article_id' => 'article_id']);
     }
-    
-    
-    
-    
-     
-    
-    
-    
-  
-    
+
+
 }

@@ -163,8 +163,7 @@ class Balance
 
         if ($type == $model::DEPOSIT || $type == $model::BILLING) {
             $this->_user->$account += $amount;
-        }
-        else {
+        } else {
             $this->_user->$account -= $amount;
         }
 

@@ -1,4 +1,4 @@
-$(function() {
+$(function () {
 
     /**
      * Действия к изображениям
@@ -54,7 +54,6 @@ $(function() {
     });
 
 
-
     /**
      * Сортировка изображений
      */
@@ -63,7 +62,7 @@ $(function() {
             var $this = $(this);
             var url = $this.data('sort-url');
             $.ajax({
-                data: {sort : $this.sortable("toArray")},
+                data: {sort: $this.sortable("toArray")},
                 type: 'POST',
                 url: url
             });

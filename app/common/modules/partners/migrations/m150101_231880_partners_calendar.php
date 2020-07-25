@@ -10,7 +10,7 @@ class m150101_231880_partners_calendar extends \yii\db\Migration
     /**
      * @inheritdoc
      */
-	public function safeUp()
+    public function safeUp()
     {
         $tableOptions = null;
         if ($this->db->driverName === 'mysql') {
@@ -36,8 +36,8 @@ class m150101_231880_partners_calendar extends \yii\db\Migration
     /**
      * @inheritdoc
      */
-	public function safeDown()
-	{
-		$this->dropTable('{{%partners_calendar}}');
-	}
+    public function safeDown()
+    {
+        $this->dropTable('{{%partners_calendar}}');
+    }
 }

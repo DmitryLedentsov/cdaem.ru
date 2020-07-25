@@ -131,7 +131,7 @@ final class ContactsOpenForReservation extends \yii\base\BaseObject implements S
             return false;
         }
 
-        if ($this->_reservation->landlord_open_contacts == 1 OR $this->_reservation->confirm == 3) {
+        if ($this->_reservation->landlord_open_contacts == 1 or $this->_reservation->confirm == 3) {
             return false;
         }
 
@@ -143,15 +143,15 @@ final class ContactsOpenForReservation extends \yii\base\BaseObject implements S
 
         return true;
     }
-    
-        public function validateContact()
+
+    public function validateContact()
     {
-        
+
         return true;
     }
-    
+
     public function validateContactOpen()
-    { 
+    {
         return true;
     }
 

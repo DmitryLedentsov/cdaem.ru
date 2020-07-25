@@ -17,27 +17,26 @@ class m150126_133239_agency_extra extends Migration
         $this->createTable('{{%agency_special_adverts}}', [
             'special_id' => Schema::TYPE_PK,
             'advert_id' => 'int NOT NULL COMMENT "ID объявления"',
-            'text' =>  'varchar(255) COMMENT "Текст спец-предложения"',
+            'text' => 'varchar(255) COMMENT "Текст спец-предложения"',
             'date_create' => 'datetime NULL DEFAULT NULL COMMENT "Дата создания"',
             'date_start' => 'datetime NULL DEFAULT NULL COMMENT "Срок старта"',
             'date_expire' => 'datetime NULL DEFAULT NULL COMMENT "Срок истечения"',
         ], $tableOptions . ' COMMENT = "Специальные предложения"');
-        
+
         // Foreign Keys
         $this->addForeignKey('FK_agency_special_adverts_advert_id', '{{%agency_special_adverts}}', 'advert_id', '{{%agency_adverts}}', 'advert_id', 'CASCADE', 'CASCADE');
 
 
-        
         // Таблица рекламирования агентских апартаментов
         $this->createTable('{{%agency_advertisement}}', [
             'advertisement_id' => Schema::TYPE_PK,
             'advert_id' => 'int NOT NULL COMMENT "ID объявления"',
-            'text' =>  'varchar(255) COMMENT "Текст рекламы"',
+            'text' => 'varchar(255) COMMENT "Текст рекламы"',
             'date_create' => 'datetime NULL DEFAULT NULL COMMENT "Дата создания"',
             'date_start' => 'datetime NULL DEFAULT NULL COMMENT "Дата старта"',
             'date_expire' => 'datetime NULL DEFAULT NULL COMMENT "Дата истечения"',
         ], $tableOptions . ' COMMENT = "Реклама агенства"');
-        
+
         // Foreign Keys
         $this->addForeignKey('FK_agency_advertisement_advert_id', '{{%agency_advertisement}}', 'advert_id', '{{%agency_adverts}}', 'advert_id', 'CASCADE', 'CASCADE');
     }

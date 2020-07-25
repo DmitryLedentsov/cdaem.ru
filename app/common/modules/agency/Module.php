@@ -34,22 +34,22 @@ class Module extends \yii\base\Module
      * @var string
      */
     public $imagesUrl = '/images';
-    
+
     /**
      * @var string
      */
     public $previewImagesPath = '@frontend/web/images/thumbs';
-    
+
     /**
      * @var string
      */
     public $previewImagesUrl = '/images/thumbs';
-    
+
     /**
      * @var string
      */
     public $defaultImageSrc = '/basic-images/no_img.png';
-    
+
     /**
      * @var string
      */
@@ -59,7 +59,7 @@ class Module extends \yii\base\Module
      * @var string
      */
     public $imageUrl = '/images/thumbs';
-    
+
     /**
      * @var string
      */

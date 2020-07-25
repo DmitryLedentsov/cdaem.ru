@@ -41,7 +41,7 @@ class PreviewAdvert extends \yii\base\Widget
      * @var string
      */
     private $_rentTypes;
-    
+
     private $_rentNew;
 
     /**
@@ -90,37 +90,37 @@ class PreviewAdvert extends \yii\base\Widget
 
         // Список типов аренды
         foreach ($this->advert->apartment->adverts as $advert) {
-            
+
             $icon = '';
-            
+
             if ($advert->rentType['icons']) {
                 $icons = @json_decode($advert->rentType['icons'], true);
                 if (isset($icons['small-white'])) {
                     $icon = $icons['small-white'];
                 }
-               
+
             }
-            
-           if($advert->priceText > 0){
-               $this->_rentTypes .= Html::tag('div',   $icon . '<a href="/advert/'. $advert->advert_id  .'"><div class="price-d">' . $advert->priceText . '</div></a>', ['title' => $advert->rentType['name'],'class' => 'advert-infoprice']);
-               
-               } 
+
+            if ($advert->priceText > 0) {
+                $this->_rentTypes .= Html::tag('div', $icon . '<a href="/advert/' . $advert->advert_id . '"><div class="price-d">' . $advert->priceText . '</div></a>', ['title' => $advert->rentType['name'], 'class' => 'advert-infoprice']);
+
+            }
         }
-        
+
         foreach ($this->advert->apartment->adverts as $advert) {
-            
+
             $icon2 = '';
             if ($advert->rentType['icons']) {
-                
+
                 if (isset($icons['big-star'])) {
                     $icon2 = $icons['big-star'];
                 }
             }
-            
-           $this->_rentNew = $icon2;
+
+            $this->_rentNew = $icon2;
         }
-        
-        
+
+
     }
 
     /**
@@ -171,7 +171,7 @@ class PreviewAdvert extends \yii\base\Widget
     {
         return ('
             <div class="apartment-agency">
-                '. $this->_rentNew .'
+                ' . $this->_rentNew . '
                     <div class="header">
                         <div class="address"><span>' . $this->_district . ' ' . $this->_metro . '</span></div>
                         <div class="rooms">' . Yii::t('app', '{n, plural, =0{нет комнат} one{# комната} =5{# комнат}  few{# комнаты} many{# комнат} other{# комнаты} }', ['n' => $this->advert->apartment->total_rooms]) . '</div>
@@ -227,5 +227,5 @@ class PreviewAdvert extends \yii\base\Widget
                 </a>
             </div>
         ');
-    } 
+    }
 }

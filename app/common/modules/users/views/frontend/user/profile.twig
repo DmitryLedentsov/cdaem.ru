@@ -21,13 +21,13 @@
                 'url' : '/'
             },
             'links':  [
-            {
-                'label': 'Личный кабинет',
-                'url' : ['/office/default/index']
-            },
-            {
-                'label': 'Редактировать профиль',
-            },
+                {
+                    'label': 'Личный кабинет',
+                    'url' : ['/office/default/index']
+                },
+                {
+                    'label': 'Редактировать профиль',
+                },
             ],
         }) }}
     </div>
@@ -42,10 +42,13 @@
 
     <div class="options-group clearfix" style="margin: auto; text-align: center">
         <div class="options" style="display: inline-block; float: none">
-            <a href="{{ path(['/users/user/profile']) }}" {{ app.request.pathInfo == 'profile' ? 'class="active"' : '' }}>Редактировать профиль</a>
-            <a href="{{ path(['/users/user/password']) }}" {% if app.request.pathInfo == 'password' %}class="active"{% endif %}>Изменить пароль</a>
+            <a href="{{ path(['/users/user/profile']) }}" {{ app.request.pathInfo == 'profile' ? 'class="active"' : '' }}>Редактировать
+                профиль</a>
+            <a href="{{ path(['/users/user/password']) }}"
+               {% if app.request.pathInfo == 'password' %}class="active"{% endif %}>Изменить пароль</a>
             {% if app.user.identity.profile.legal_person %}
-                <a href="{{ path(['/users/user/legal-person']) }}" {% if app.request.pathInfo == 'legal-person' %}class="active"{% endif %}>Юридическое лицо</a>
+                <a href="{{ path(['/users/user/legal-person']) }}"
+                   {% if app.request.pathInfo == 'legal-person' %}class="active"{% endif %}>Юридическое лицо</a>
             {% endif %}
         </div>
     </div>
@@ -64,7 +67,8 @@
 
         <h3 style="margin: 0">Основное</h3>
         <span class="color-closed">Закрыто для редактирования</span><br>
-        <p style="font-size:18px; color:red;">Указываем только мобильный телефон, как основной, Вам будут приходить смс по броням. Дополнительный телефон любой.: (---)***-**-**</p>
+        <p style="font-size:18px; color:red;">Указываем только мобильный телефон, как основной, Вам будут приходить смс
+            по броням. Дополнительный телефон любой.: (---)***-**-**</p>
 
 
         <div class="form-group field-profile-name">
@@ -83,9 +87,11 @@
                 <label class="control-label">Телефон</label>
             </div>
             <div class="col-i">
-                <li class="btn btn-white btn-file"><a href="{{ path(['/helpdesk/default/helpphone']) }}" style="color:black;">Поменять номер</a></li>
+                <li class="btn btn-white btn-file"><a href="{{ path(['/helpdesk/default/helpphone']) }}"
+                                                      style="color:black;">Поменять номер</a></li>
                 <p><br/></p>
-                <input class="form-control" name="User[phone]" id="phone" value="{{ app.user.identity.phone }}" type="text" disabled="disabled">
+                <input class="form-control" name="User[phone]" id="phone" value="{{ app.user.identity.phone }}"
+                       type="text" disabled="disabled">
 
             </div>
         </div>
@@ -95,7 +101,8 @@
                 <label class="control-label">EMAIL</label>
             </div>
             <div class="col-i">
-                <input class="form-control" name="User[name]" value="{{ app.user.identity.email }}" type="email" disabled="disabled">
+                <input class="form-control" name="User[name]" value="{{ app.user.identity.email }}" type="email"
+                       disabled="disabled">
             </div>
         </div>
 
@@ -156,7 +163,7 @@
 
 
         <div class="form-group text-right">
-            <input type="submit" value="{{ t('users', 'SAVE') }}" class="btn btn-primary" />
+            <input type="submit" value="{{ t('users', 'SAVE') }}" class="btn btn-primary"/>
         </div>
         {{ active_form_end() }}
     </div>

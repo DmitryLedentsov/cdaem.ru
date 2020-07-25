@@ -24,7 +24,7 @@ class CollectorController extends \yii\console\Controller
      *
      * TODO: НЕОБХОДИМО НАСТРОИТЬ КРОН ДЛЯ ВЫПОЛНЕНИЯ ДАННОГО СЦЕНАРИЯ
      */
-    
+
 
     /**
      * Garbage Collector Reservation
@@ -97,9 +97,7 @@ class CollectorController extends \yii\console\Controller
                     Yii::$app->consoleRunner->run('partners/reservation/send-mail-return-by-not-confirm ' . $params);
 
                     $offset--;
-                }
-
-                // Вернуть средства клиенту
+                } // Вернуть средства клиенту
                 else if ($reservation->confirm == models\AdvertReservation::RENTER && $this->checkExpireGone($reservation->deal->date_payment_client, $expire)) {
                     $paymentId = Yii::$app->balance
                         ->setModule(Yii::$app->getModule('partners')->id)
@@ -198,15 +196,15 @@ class CollectorController extends \yii\console\Controller
 
                 $countSuccess++;
 
-            } catch(\Exception $e) {
+            } catch (\Exception $e) {
                 $transaction->rollBack();
                 $countError++;
                 Yii::error('Ошибка: [Обработка ID' . $failure->id . ' не прошло]', 'verify-failure');
             }
         }
 
-        $this->stdout('Процес выполнен. Обработано записей: '.($countSuccess + $countError).', возникло ошибок: ' . $countError . PHP_EOL, Console::FG_GREEN);
-        Yii::info('Процес выполнен. Обработано записей: '.($countSuccess + $countError).', возникло ошибок: ' . $countError, 'verify-failure');
+        $this->stdout('Процес выполнен. Обработано записей: ' . ($countSuccess + $countError) . ', возникло ошибок: ' . $countError . PHP_EOL, Console::FG_GREEN);
+        Yii::info('Процес выполнен. Обработано записей: ' . ($countSuccess + $countError) . ', возникло ошибок: ' . $countError, 'verify-failure');
     }
 
     /**
@@ -261,8 +259,8 @@ class CollectorController extends \yii\console\Controller
             }
         }
 
-        $this->stdout('Процес выполнен. Обработано объявлений: '.($count). PHP_EOL, Console::FG_GREEN);
-        Yii::info('Процес выполнен. Обработано объявлений: '.($count), 'apartments-watcher');
+        $this->stdout('Процес выполнен. Обработано объявлений: ' . ($count) . PHP_EOL, Console::FG_GREEN);
+        Yii::info('Процес выполнен. Обработано объявлений: ' . ($count), 'apartments-watcher');
     }
 
     /**
@@ -302,12 +300,12 @@ class CollectorController extends \yii\console\Controller
             return true;
         }
 
-       /* $_src = $str;
-        $res = preg_replace('/\D/si', '', $_src);
+        /* $_src = $str;
+         $res = preg_replace('/\D/si', '', $_src);
 
-        if (mb_strlen($res) < 7) {
-            return true;
-        }*/
+         if (mb_strlen($res) < 7) {
+             return true;
+         }*/
 
         if (
             mb_stripos($str, 'один') === false &&

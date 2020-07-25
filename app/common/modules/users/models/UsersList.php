@@ -59,20 +59,20 @@ class UsersList extends \yii\db\ActiveRecord
      */
     const BOOKMARK = 1;
     const BLACKLIST = 0;
-    
+
     /**
-    * @return \yii\db\ActiveQuery 
-    */ 
-   public function getInterlocutor() 
-   { 
-       return $this->hasOne(User::className(), ['id' => 'interlocutor_id']); 
-   } 
- 
-   /** 
-    * @return \yii\db\ActiveQuery 
-    */ 
-   public function getUser() 
-   { 
-       return $this->hasOne(User::className(), ['id' => 'user_id']); 
-   } 
+     * @return \yii\db\ActiveQuery
+     */
+    public function getInterlocutor()
+    {
+        return $this->hasOne(User::className(), ['id' => 'interlocutor_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
 }

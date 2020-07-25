@@ -24,7 +24,7 @@ use yii\helpers\Url;
     </div>
 <?php endif; ?>
 
-<br />
+    <br/>
 
 <?php $form = ActiveForm::begin(); ?>
 
@@ -32,8 +32,8 @@ use yii\helpers\Url;
     <div class="row">
         <div class="col-md-6 col-md-6 col-sm-6 col-xs-12 col-lg-3">
             <?php
-                $url = ($model->scenario == 'update') ? '' : Html::a(Yii::$app->params['siteDomain'] .'/page/'. $formModel->url, Yii::$app->params['siteDomain'] .'/page/'. $formModel->url);
-                echo $form->field($formModel, 'url', ['template' => "{label}\n{input} " . $url . "\n{hint}\n{error}"])->textInput(['maxlength' => true]);
+            $url = ($model->scenario == 'update') ? '' : Html::a(Yii::$app->params['siteDomain'] . '/page/' . $formModel->url, Yii::$app->params['siteDomain'] . '/page/' . $formModel->url);
+            echo $form->field($formModel, 'url', ['template' => "{label}\n{input} " . $url . "\n{hint}\n{error}"])->textInput(['maxlength' => true]);
             ?>
         </div>
         <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-3"><?= $form->field($formModel, 'name')->textInput(['maxlength' => true]) ?></div>
@@ -78,15 +78,15 @@ use yii\helpers\Url;
         </div>
     </div>
 
-    <br />
+    <br/>
 
-    <?php if (Yii::$app->user->can('pages-update')) : ?>
-        <div class="form-group">
-            <?= Html::submitButton(Yii::t('app', 'Сохранить'), ['class' => 'btn btn-success']) ?>
-        </div>
-    <?php endif; ?>
+<?php if (Yii::$app->user->can('pages-update')) : ?>
+    <div class="form-group">
+        <?= Html::submitButton(Yii::t('app', 'Сохранить'), ['class' => 'btn btn-success']) ?>
+    </div>
+<?php endif; ?>
 
-    <br />
+    <br/>
 
 
 <?php ActiveForm::end(); ?>

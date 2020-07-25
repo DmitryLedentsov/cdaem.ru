@@ -24,8 +24,8 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
 ?>
 
 
-    <?= $this->render('_form', [
+<?= $this->render('_form', [
     'formModel' => $formModel,
     'model' => $model,
-    ]) ?>
+]) ?>
 

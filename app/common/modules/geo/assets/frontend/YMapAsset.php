@@ -34,14 +34,14 @@ class YMapAsset extends AssetBundle
         if (YII_DEBUG) {
 
             $this->js = [
-                'https://api-maps.yandex.ru/2.0-stable/?load=package.standard&amp;lang=ru-RU',
+                'https://api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU&apikey=3dd27c27-e51a-4660-a191-5c0413af0c03',
                 'js_dev/ymap.js'
             ];
 
         } else {
 
             $this->js = [
-                'https://api-maps.yandex.ru/2.0-stable/?load=package.standard&amp;lang=ru-RU',
+                'https://api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU&apikey=3dd27c27-e51a-4660-a191-5c0413af0c03',
                 'js/ymap.js'
             ];
         }

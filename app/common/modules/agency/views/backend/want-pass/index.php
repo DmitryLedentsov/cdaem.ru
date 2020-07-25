@@ -12,7 +12,7 @@ use yii\widgets\Pjax;
 $this->title = 'Все заявки на "Хочу сдать"';
 
 echo \backend\modules\admin\widgets\HeaderWidget::widget([
-    'title' =>  $this->title,
+    'title' => $this->title,
     'description' => 'Все заявки',
     'breadcrumb' => [
         [
@@ -37,7 +37,7 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
     </div>
 <?php endif; ?>
 
-<br />
+    <br/>
 
 
 <?php
@@ -120,7 +120,7 @@ echo GridView::widget([
             'format' => 'html',
             'enableSorting' => false,
             'value' => function ($model) {
-                if(!$model->rent_types_array) {
+                if (!$model->rent_types_array) {
                     return '(не задано)';
                 }
                 return implode('<br/>', array_intersect_key($model->rentTypesList, array_flip($model->rent_types_array)));
@@ -137,9 +137,9 @@ echo GridView::widget([
                 } else {
                     $metroString = implode('<br/>', array_intersect_key($model->metroStations, array_flip($model->metro_array)));
                 }
-                
+
                 $result = 'Адрес: ' . $model->address . '<br />' . $metroString;
-                
+
                 return $result;
             },
         ],

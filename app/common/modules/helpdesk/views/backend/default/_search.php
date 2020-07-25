@@ -12,7 +12,6 @@ use yii\helpers\Html;
 ?>
 
 
-
 <?php $form = ActiveForm::begin([
     'action' => ['index'],
     'method' => 'get',

@@ -49,7 +49,7 @@ class ArticleSearch extends Model
 
         ]);
     }
-    
+
     /**
      * @inheritdoc
      */
@@ -66,7 +66,7 @@ class ArticleSearch extends Model
      * @return ActiveDataProvider
      */
     public function search($params)
-    {        
+    {
         $query = Article::find();
 
         $dataProvider = new ActiveDataProvider([

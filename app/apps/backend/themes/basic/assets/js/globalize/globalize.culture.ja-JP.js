@@ -19,7 +19,7 @@
         && typeof exports !== "undefined"
         && typeof module !== "undefined") {
         // Assume CommonJS
-        Globalize = require("app/apps/backend/themes/basic/assets/js/globalize/globalize");
+        Globalize = require("globalize");
     } else {
         // Global variable
         Globalize = window.Globalize;

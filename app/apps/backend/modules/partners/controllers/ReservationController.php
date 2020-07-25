@@ -23,7 +23,7 @@ class ReservationController extends Controller
     {
         return [
             'access' => [
-                'class' => \yii\filters\AccessControl::class,
+                'class' => \yii\filters\AccessControl::className(),
                 'rules' => [
                     [
                         'allow' => true,

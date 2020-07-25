@@ -55,7 +55,7 @@
     {{ use('common/modules/geo/assets/frontend/YMapAsset') }}
     {{ register_y_map_asset() }}
 
-   
+
 
     <div class="container">
 
@@ -63,21 +63,20 @@
 
             {% if app.session.hasFlash('danger') %}
                 <div class="alert alert-danger" role="alert">
-                    {{ app.session.getFlash('danger') | raw  }}
+                    {{ app.session.getFlash('danger') | raw }}
                 </div>
-               
+
             {% endif %}
 
             {% if app.session.hasFlash('success') %}
                 <div class="alert alert-success" role="alert">
-                    {{ app.session.getFlash('success') | raw  }}
+                    {{ app.session.getFlash('success') | raw }}
                 </div>
-           
-           
-                 {% endif %}
-            
 
-           
+
+            {% endif %}
+
+
             <br/>
 
             {{ this.render('_form-want-pass', {'model': formModel}) | raw }}

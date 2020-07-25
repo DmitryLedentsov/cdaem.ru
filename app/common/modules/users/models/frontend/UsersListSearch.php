@@ -21,7 +21,7 @@ class UsersListSearch extends UsersList
         return [
         ];
     }
-    
+
     /**
      * @inheritdoc
      */
@@ -37,13 +37,13 @@ class UsersListSearch extends UsersList
     {
         return '';
     }
-    
+
     /**
      * @param $params
      * @return ActiveDataProvider
      */
     public function search($params)
-    {        
+    {
         $query = UsersList::find()
             ->joinWith([
                 'interlocutor' => function ($query) {
@@ -61,11 +61,11 @@ class UsersListSearch extends UsersList
         $query->filterWhere([
             self::tableName() . '.user_id' => $params['user_id'],
         ]);
-        
+
         if (!empty($params['bookmarked'])) {
             $query->bookmarked();
         }
-        
+
         if (!empty($params['blacklisted'])) {
             $query->blacklisted();
         }

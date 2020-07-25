@@ -187,7 +187,7 @@ class DefaultController extends Controller
         $redirect = Yii::$app->request->referrer ? Yii::$app->request->referrer : ['index'];
         $action = Yii::$app->request->post('action');
         $ids = Yii::$app->request->post('selection');
-        
+
         if (!$ids || !is_array($ids)) {
             Yii::$app->session->setFlash('danger', 'Не выбрано ни одно действие');
             return $this->redirect($redirect);
@@ -206,7 +206,7 @@ class DefaultController extends Controller
         }
 
         Yii::$app->session->setFlash('success', 'Данные успешно сохранены');
-        
+
         return $this->redirect($redirect);
     }
 

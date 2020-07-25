@@ -8,12 +8,12 @@ use Yii;
 
 /**
  * class CalendarBlockerForm
- * Ôîðìà äëÿ ñîçäàíèÿ áëîêèðîâêè êàëåíäàðÿ íà âðåìÿ. Èñïîëüçóåòüñÿ, èñêëþ÷èòåëüíî, ïðè ïîäòâåðæäåíèè ðåçåðâàöèé
+ * ����� ��� �������� ���������� ��������� �� �����. �������������, �������������, ��� ������������� ����������
  *
- * Ñîçäàåòñÿ çàïèñü â êàëåíäàðå î òîì ÷òî íà äàííûé ïðîìåæóòîê âðåìåíè àïàðòàìåíò çàíÿò,
- * òàêæå îñóùåñòâëÿåòüñÿ ðàçáèòèå èëè ðåäàêòèðîâàíèå çàïèñåé "Ñåé÷àñ ñâîáîäíî" åñëè âðåìåííûå ïðîìåæóòêè ïåðåñåêàþòñÿ.
- * Åùå âûêëþ÷àåòñÿ "Ñåé÷àñ ñâîáîäíî" åñëè ñåé÷àñ íàõîäèòñÿ â êðàñíîì ïðîìåæóòêå.
- * Åùå óäàëÿþòñÿ âñå "ñåé÷àñ çàíÿòî" ó êîòîðûõ ïðîìåæóòêè âðåìåíè ïåðåñåêàþòñÿ ñ ýòèì ïðîìåæóòêîì.
+ * ��������� ������ � ��������� � ��� ��� �� ������ ���������� ������� ���������� �����,
+ * ����� ��������������� �������� ��� �������������� ������� "������ ��������" ���� ��������� ���������� ������������.
+ * ��� ����������� "������ ��������" ���� ������ ��������� � ������� ����������.
+ * ��� ��������� ��� "������ ������" � ������� ���������� ������� ������������ � ���� �����������.
  */
 class CalendarBlockerForm extends Model
 {
@@ -61,14 +61,14 @@ class CalendarBlockerForm extends Model
     }
 
     /**
-     * Íàõîäèì âñå áëîêåðû êîòîðûå ïåðåñåêàþòñÿ ñ ýòèì, è óäàëÿåì èõ
+     * ������� ��� ������� ������� ������������ � ����, � ������� ��
      * @return bool
      */
     protected function deleteOtherBlockers()
     {
-        // Õîòÿ ïðè ñîçäàíèè çàÿâêè íà áðîíèðîâàíèå àïàðòàìåíòîâ, äåëàåòñÿ ïðîâåðêà - íåòó ëè çàïèñåé î òîì, ÷òî âî âðåìåííîé
-        // ïðîìåæóòîê ýòè àïàðòàìåíòû çàíÿòû, âñ¸ æå þçåð ìîæåò ñîçäàòü áëîêåðû óæå ïîñëå ñîçäàíèÿ òàêîé çàÿâêè.
-        // Ïî ýòîìó äëÿ ÷èñòîòû òàêîãî ïðèëîæåíèÿ íóæíî óäàëèòü ïåðåñåêàþùèåñÿ çàïèñè
+        // ���� ��� �������� ������ �� ������������ ������������, �������� �������� - ���� �� ������� � ���, ��� �� ���������
+        // ���������� ��� ����������� ������, �� �� ���� ����� ������� ������� ��� ����� �������� ����� ������.
+        // �� ����� ��� ������� ������ ���������� ����� ������� �������������� ������
         $blockers = Calendar::find()->where([
             'apartment_id' => $this->apartment_id,
             'reserved' => Calendar::RESERVED,
@@ -92,7 +92,7 @@ class CalendarBlockerForm extends Model
     }
 
     /**
-     * Ïðîâåðÿåò ïðèñóòñòâèå çàïèñè "ñåé÷àñ ñâîáîäíî" ïåðåñåêàþùåéñÿ ñ ýòèì ïðîìåæóòêîì âðåìåíè
+     * ��������� ����������� ������ "������ ��������" �������������� � ���� ����������� �������
      * @return bool
      */
     protected function checkIntersections()
@@ -121,7 +121,7 @@ class CalendarBlockerForm extends Model
     protected function setApartmentAvailable()
     {
         $now = date('Y-m-d H:i:s');
-        if ($this->date_from <= $now and $now <= $this->date_to) { // Åñëè ñåé÷àñ íàõîäèòüñÿ âî âðåìåííîì ïðîìåæóòêå ýòîãî áëîêåðà
+        if ($this->date_from <= $now and $now <= $this->date_to) { // ���� ������ ���������� �� ��������� ���������� ����� �������
             $apartment = Apartment::findOne($this->apartment_id);
             if (!$apartment) return false;
             if ($apartment->now_available == 0) return true;
@@ -133,8 +133,8 @@ class CalendarBlockerForm extends Model
     }
 
     /**
-     * Ðàçáèâàåò, óêîðà÷èâàåò èëè óäàëÿåò çàïèñü "Ñåé÷àñ ñâîáîäíî"
-     * òàê ÷òîáû "çàíÿòî" íå ñîïðèêàñàëîñü ñî "ñâîáîäíî"
+     * ���������, ����������� ��� ������� ������ "������ ��������"
+     * ��� ����� "������" �� ������������� �� "��������"
      * @return bool
      */
     protected function divideIntersection($freeCalendar)
@@ -144,16 +144,16 @@ class CalendarBlockerForm extends Model
         $unfreeStart = new \DateTime($this->date_from);
         $unfreeEnd = new \DateTime($this->date_to);
 
-        // Çà îñíîâó áåðåì "Ñåé÷àñ ñâîáäíî"
+        // �� ������ ����� "������ �������"
         $startDiff = $freeStart->diff($unfreeStart);
         $endDiff = $freeEnd->diff($unfreeEnd);
 
-        if (!$startDiff->invert and !$endDiff->invert) { // òîëüêî êîíåö çåëåíîãî ïîïàäàåò â ïðîìåæóòîê êðàñíîãî
+        if (!$startDiff->invert and !$endDiff->invert) { // ������ ����� �������� �������� � ���������� ��������
 
             $freeCalendar->date_to = $this->date_from;
             return $freeCalendar->save(false);
 
-        } else if (!$startDiff->invert and $endDiff->invert) { // ïðîìåæóòîê êðàñíîãî íàõîäèòüñÿ öåëèêîì â çåëåíîì
+        } else if (!$startDiff->invert and $endDiff->invert) { // ���������� �������� ���������� ������� � �������
 
             $calendar = new Calendar();
             $calendar->date_from = $this->date_to;
@@ -167,11 +167,11 @@ class CalendarBlockerForm extends Model
             if ($calendar->save(false) && $freeCalendar->save(false)) return true;
             return false;
 
-        } else if ($startDiff->invert and !$endDiff->invert) { // ïðîìåæóòîê çåëåíîãî íàõîäèòñÿ öåëèêîì â êðàñíîì
+        } else if ($startDiff->invert and !$endDiff->invert) { // ���������� �������� ��������� ������� � �������
 
             return $freeCalendar->delete();
 
-        } else if ($startDiff->invert and $startDiff->invert) { // òîëüêî íà÷àëî çåëåíîãî ïîïàäàåò â ïðîìåæóòîê êðàñíîãî
+        } else if ($startDiff->invert and $startDiff->invert) { // ������ ������ �������� �������� � ���������� ��������
 
             $freeCalendar->date_from = $this->date_to;
             if ($freeCalendar->process == 1) {
@@ -179,7 +179,7 @@ class CalendarBlockerForm extends Model
             }
             return $freeCalendar->save(false);
 
-        } else { // À òóò äóðíÿ êàêàÿ-òî. Âðÿäëå ïîëó÷èòñÿ ñþäà ïîïàñòü.
+        } else { // � ��� ����� �����-��. ������ ��������� ���� �������.
             return false;
         }
     }

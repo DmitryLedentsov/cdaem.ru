@@ -47,7 +47,7 @@ echo \backend\modules\admin\widgets\ExtraControlWidget::widget([
     </div>
 <?php endif; ?>
 
-    <br />
+    <br/>
 
     <h3>Размещение сео-текстов на страницах сайта</h3> <br/>
 
@@ -90,7 +90,7 @@ echo \backend\modules\admin\widgets\ExtraControlWidget::widget([
             'contentOptions' => ['class' => 'text-left tdStatus', 'style' => 'vertical-align: top'],
             'value' => function ($model) {
 
-               return \yii\helpers\ArrayHelper::getValue($model->typeArray, $model->type);
+                return \yii\helpers\ArrayHelper::getValue($model->typeArray, $model->type);
             }
         ],
 

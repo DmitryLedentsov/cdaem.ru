@@ -29,11 +29,11 @@ class IpBehavior extends Behavior
         BaseActiveRecord::EVENT_BEFORE_INSERT => 'ip',
         BaseActiveRecord::EVENT_BEFORE_UPDATE => 'ip',
     ];
-    
+
     /**
      * Назначаем обработчик для [[owner]] событий
      * @return array события (array keys) с назначеными им обработчиками (array values)
-    */
+     */
     public function events()
     {
         $events = $this->attributes;
@@ -42,7 +42,7 @@ class IpBehavior extends Behavior
         }
         return $events;
     }
-    
+
     /**
      * Добавляем IP адрес
      * @param Event $event Текущее событие
@@ -50,9 +50,9 @@ class IpBehavior extends Behavior
     public function getCurrentIp($event)
     {
         $attributes = isset($this->attributes[$event->name]) ? (array)$this->attributes[$event->name] : [];
-        
+
         if (!empty($attributes)) {
-            foreach($attributes as $source => $attribute) {
+            foreach ($attributes as $source => $attribute) {
                 $this->owner->$attribute = Yii::$app->request->userIP;
             }
         }

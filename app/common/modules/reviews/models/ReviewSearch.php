@@ -53,7 +53,7 @@ class ReviewSearch extends Review
 
         if ($user) {
             $query->joinWith([
-                'apartment' => function($query) {
+                'apartment' => function ($query) {
                     $query->where(Apartment::tableName() . '.user_id = :user_id', [':user_id' => Yii::$app->user->id]);
                 },
             ]);

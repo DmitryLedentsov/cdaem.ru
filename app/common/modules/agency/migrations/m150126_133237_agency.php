@@ -14,7 +14,7 @@ class m150126_133237_agency extends Migration
         }
 
         // Agency Apartments
-		$this->createTable('{{%agency_apartments}}', [
+        $this->createTable('{{%agency_apartments}}', [
             'apartment_id' => Schema::TYPE_PK . ' COMMENT "№"',
             'user_id' => 'int NOT NULL COMMENT "Пользователь"',
             'city_id' => 'int NOT NULL COMMENT "Город"',
@@ -33,57 +33,54 @@ class m150126_133237_agency extends Migration
             'description' => 'text COMMENT "Описание"',
             'date_create' => 'datetime NULL DEFAULT NULL COMMENT "Дата создания"',
             'date_update' => 'datetime NULL DEFAULT NULL COMMENT "Дата редактирования"',
-		], $tableOptions . ' COMMENT = "Все апартаменты агенства"');
+        ], $tableOptions . ' COMMENT = "Все апартаменты агенства"');
 
-		// Index
-		$this->createIndex('agency_apartments_user_id', '{{%agency_apartments}}', 'user_id');
-		$this->createIndex('agency_apartments_city_id', '{{%agency_apartments}}', 'city_id');
+        // Index
+        $this->createIndex('agency_apartments_user_id', '{{%agency_apartments}}', 'user_id');
+        $this->createIndex('agency_apartments_city_id', '{{%agency_apartments}}', 'city_id');
         $this->createIndex('agency_apartments_closest_city_id', '{{%agency_apartments}}', 'closest_city_id');
-        
+
         // Foreign Keys
         $this->addForeignKey('FK_agency_apartments_user_id', '{{%agency_apartments}}', 'user_id', '{{%users}}', 'id', 'CASCADE', 'CASCADE');
-        
-        
-        
+
+
         // Apartment Images
-		$this->createTable('{{%agency_apartment_images}}', [
+        $this->createTable('{{%agency_apartment_images}}', [
             'image_id' => Schema::TYPE_PK . ' COMMENT "№"',
             'apartment_id' => 'int NOT NULL',
             'default_img' => 'tinyint NOT NULL DEFAULT 0 COMMENT "Заглавная картинка(1 да 0 нет)"',
             'preview' => 'varchar(255) COMMENT "Файл меленькой фотографии"',
             'review' => 'varchar(255) COMMENT "Файл большой фотографии"',
             'sort' => Schema::TYPE_INTEGER . ' NOT NULL DEFAULT 0 COMMENT "Сортировка фото"',
-		], $tableOptions . ' COMMENT = "Изображения к апартаментам агенства"');
+        ], $tableOptions . ' COMMENT = "Изображения к апартаментам агенства"');
 
-		// Index
-		$this->createIndex('agency_apartment_images_apartment_id', '{{%agency_apartment_images}}', 'apartment_id');
-        
+        // Index
+        $this->createIndex('agency_apartment_images_apartment_id', '{{%agency_apartment_images}}', 'apartment_id');
+
         // Foreign Keys
-        $this->addForeignKey('FK_agency_apartment_images_apartment_id', '{{%agency_apartment_images}}', 'apartment_id', '{{%agency_apartments}}', 'apartment_id',  'CASCADE', 'CASCADE');
+        $this->addForeignKey('FK_agency_apartment_images_apartment_id', '{{%agency_apartment_images}}', 'apartment_id', '{{%agency_apartments}}', 'apartment_id', 'CASCADE', 'CASCADE');
 
 
-
-        // Apartment Metro Stations        
+        // Apartment Metro Stations
         $this->createTable('{{%agency_apartment_metro_stations}}', [
             'id' => Schema::TYPE_PK . ' COMMENT "№"',
             'apartment_id' => 'int NOT NULL',
             'metro_id' => 'int NOT NULL COMMENT "ID города"',
         ], $tableOptions . ' COMMENT = "Ближайшие станции метро к апартаментам агенства"');
-        
+
         // Index        
-		$this->createIndex('agency_apartment_metro_stations_apartment_id', '{{%agency_apartment_metro_stations}}', 'apartment_id');
-        
+        $this->createIndex('agency_apartment_metro_stations_apartment_id', '{{%agency_apartment_metro_stations}}', 'apartment_id');
+
         // Foreign Keys
         $this->addForeignKey('FK_agency_apartment_metro_stations_apartment_id', '{{%agency_apartment_metro_stations}}', 'apartment_id', '{{%agency_apartments}}', 'apartment_id', 'CASCADE', 'CASCADE');
-
 
 
         // Agency Adverts Связь между апартаментами и типами аренды(Политика аренды)
         $this->createTable('{{%agency_adverts}}', [
             'advert_id' => Schema::TYPE_PK . ' COMMENT "№"',
-            'meta_title'         => 'text NOT NULL COMMENT "Заголовок"',
-            'meta_description'   => 'text NOT NULL COMMENT "Описание"',
-            'meta_keywords'      => 'text NOT NULL COMMENT "Ключевые слова"',
+            'meta_title' => 'text NOT NULL COMMENT "Заголовок"',
+            'meta_description' => 'text NOT NULL COMMENT "Описание"',
+            'meta_keywords' => 'text NOT NULL COMMENT "Ключевые слова"',
             'apartment_id' => 'int NOT NULL COMMENT "Апартаменты"',
             'rent_type' => 'int NOT NULL COMMENT "Тип аренды"',
             'price' => 'decimal(12,5) DEFAULT "0.00000" COMMENT "Стоимость аренды"',
@@ -103,7 +100,6 @@ class m150126_133237_agency extends Migration
         $this->addForeignKey('FK_agency_adverts_rent_type', '{{%agency_adverts}}', 'rent_type', '{{%realty_rent_type}}', 'rent_type_id', 'CASCADE', 'CASCADE');
 
 
-
         // Agency Apartment Reservations
         $this->createTable('{{%agency_apartment_reservations}}', [
             'reservation_id' => Schema::TYPE_PK . ' COMMENT "№"',
@@ -116,14 +112,14 @@ class m150126_133237_agency extends Migration
             'date_out' => 'datetime NULL DEFAULT NULL COMMENT "Время съезда"',
             'more_info' => 'varchar(255) COMMENT "Дополнительная информация"',
             'whau' => 'tinyint NOT NULL default 0 COMMENT "Откуда узнали о нас"',
-            'phone' =>  'bigint NOT NULL COMMENT "Телефон для связи"',
+            'phone' => 'bigint NOT NULL COMMENT "Телефон для связи"',
             'processed' => 'tinyint NOT NULL DEFAULT 0 COMMENT "Обработанная заявка"',
             'date_create' => 'datetime NULL DEFAULT NULL COMMENT "Дата создания заявки"',
         ], $tableOptions . ' COMMENT = "Заявки на бронирование Админа"');
-        
+
         // Index
         $this->createIndex('agency_apartment_reservations_apartment_id', '{{%agency_apartment_reservations}}', 'apartment_id');
-        
+
         // Foreign Keys
         $this->addForeignKey('FK_agency_apartment_reservations_apartment_id', '{{%agency_apartment_reservations}}', 'apartment_id', '{{%agency_apartments}}', 'apartment_id', 'CASCADE', 'CASCADE');
     }

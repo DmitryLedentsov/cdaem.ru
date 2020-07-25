@@ -40,11 +40,11 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
     </div>
 <?php endif; ?>
 
-<p><br/></p>
+    <p><br/></p>
 
 <?php echo Html::a(Yii::t('users.rbac', 'GROUP_CREATE'), ['create'], ['class' => 'btn btn-primary']); ?>
 
-<p><br/></p>
+    <p><br/></p>
 
 <?php
 echo GridView::widget([

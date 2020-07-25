@@ -11,7 +11,7 @@ use yii\helpers\Html;
 $this->title = 'Создать страницу';
 
 echo \backend\modules\admin\widgets\HeaderWidget::widget([
-    'title' =>  'Управление статическими страницами',
+    'title' => 'Управление статическими страницами',
     'description' => $this->title,
     'breadcrumb' => [
         [
@@ -28,4 +28,4 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
 echo $this->render('_form', [
     'formModel' => $formModel,
     'model' => $model,
-    ]);
+]);

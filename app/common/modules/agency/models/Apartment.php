@@ -19,7 +19,7 @@ use Yii;
 class Apartment extends \yii\db\ActiveRecord
 {
     use ModuleTrait;
-    
+
     /**
      * @inheritdoc
      */
@@ -175,7 +175,7 @@ class Apartment extends \yii\db\ActiveRecord
 
         return false;
     }
-    
+
     /**
      * Возвращает адрес заглавной картинки
      * Для уменьшения количества запросов к БД, рекомендуется использовать вместе с реляцией titleImage
@@ -191,7 +191,7 @@ class Apartment extends \yii\db\ActiveRecord
             }
         }
 
-        return  Yii::$app->params['siteDomain'] . Yii::$app->getModule('agency')->defaultImageSrc;
+        return Yii::$app->params['siteDomain'] . Yii::$app->getModule('agency')->defaultImageSrc;
     }
 
     /**
@@ -205,8 +205,8 @@ class Apartment extends \yii\db\ActiveRecord
         }
 
         $title = "Фото " . $this->city->name;
-        $title.= ", ул. " . $this->address;
-        $title.= $this->apartment ? ', кв. ' . $this->apartment : '';
+        $title .= ", ул. " . $this->address;
+        $title .= $this->apartment ? ', кв. ' . $this->apartment : '';
 
         return $title;
     }
@@ -222,12 +222,12 @@ class Apartment extends \yii\db\ActiveRecord
         }
 
         $alt = $this->city->name;
-        $alt.= ", ул. " . $this->address;
-        $alt.= $this->apartment ? ', кв. ' . $this->apartment : '';
+        $alt .= ", ул. " . $this->address;
+        $alt .= $this->apartment ? ', кв. ' . $this->apartment : '';
 
         return $alt;
     }
-    
+
     /**
      * Видимость на сайте
      * - Видно
@@ -235,7 +235,7 @@ class Apartment extends \yii\db\ActiveRecord
      */
     const VISIBLE = 1;
     const INVISIBLE = 0;
-    
+
     /**
      * Массив доступных данных видимости апартаментов на сайте
      * @return array
@@ -244,13 +244,13 @@ class Apartment extends \yii\db\ActiveRecord
     {
         $statuses = [
             self::VISIBLE => [
-                    'label' => 'Видимый',
-                    'style' => 'color: green',
-                ],
+                'label' => 'Видимый',
+                'style' => 'color: green',
+            ],
             self::INVISIBLE => [
-                    'label' => 'Невидимый',
-                    'style' => 'color: red',
-                ],
+                'label' => 'Невидимый',
+                'style' => 'color: red',
+            ],
         ];
 
         return $statuses;
@@ -334,8 +334,8 @@ class Apartment extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    
-    
+
+
     public function beforeSave($insert)
     {
         if (!parent::beforeSave($insert)) {
@@ -343,30 +343,30 @@ class Apartment extends \yii\db\ActiveRecord
         }
 
         //Определяем координаты по адресу
-      $geo = new \vitalik74\geocode\Geocode();
-      $fullAddress = $this->city->country->name . ' ' . $this->city->name . ' ' . $this->address;
+        $geo = new \vitalik74\geocode\Geocode();
+        $fullAddress = $this->city->country->name . ' ' . $this->city->name . ' ' . $this->address;
 
-       $api = $geo->get($fullAddress, ['kind' => 'house']);
-       $pos = null;
+        $api = $geo->get($fullAddress, ['kind' => 'house'], '520b7c80-9741-4818-82a7-760d250c2d88');
+        $pos = null;
         if (isset($api['response']['GeoObjectCollection']['featureMember'][0]['GeoObject']['Point']['pos'])) {
-          $pos = $api['response']['GeoObjectCollection']['featureMember'][0]['GeoObject']['Point']['pos'];
+            $pos = $api['response']['GeoObjectCollection']['featureMember'][0]['GeoObject']['Point']['pos'];
         }
         $longitude = null;
-       $latitude = null;
+        $latitude = null;
         if ($pos) {
-          $coord = @explode(' ', $pos);
-          $longitude = isset($coord[0]) ? $coord[0] : null;
-          $latitude = isset($coord[1]) ? $coord[1] : null;
-       }
+            $coord = @explode(' ', $pos);
+            $longitude = isset($coord[0]) ? $coord[0] : null;
+            $latitude = isset($coord[1]) ? $coord[1] : null;
+        }
 
-       if (!$longitude || !$latitude) {
-           throw new ErrorException('Failed to determine the coordinates. $longitude: ' . $longitude . ' $latitude: ' . $latitude);
-      }
+        if (!$longitude || !$latitude) {
+            throw new ErrorException('Failed to determine the coordinates. $longitude: ' . $longitude . ' $latitude: ' . $latitude);
+        }
 
         $this->latitude = $latitude;
-       $this->longitude = $longitude;
+        $this->longitude = $longitude;
 
         return true;
     }
-   
+
 }

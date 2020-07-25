@@ -6,24 +6,26 @@
     @var int $interlocutorId
 
 */
+
 use common\modules\partners\models\Service;
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
+
 ?>
 
 <div id="modal-message" class="modal fade" data-title="Написать сообщение">
     <div class="office">
         <div class="load">
             <?php
-                $form = ActiveForm::begin([
-                    'method' => 'post',
-                    'action' => ['/messages/default/create', 'interlocutorId' => $interlocutorId],
-                    'enableClientScript' => false,
-                    'id' => 'form-message'
-                ]);
-                echo $form->field($message, 'text')->textarea();
-                echo Html::tag('div', Html::submitButton('Отправить', ['class' => 'btn btn-primary']), ['class' => 'text-center']);
-                ActiveForm::end();
+            $form = ActiveForm::begin([
+                'method' => 'post',
+                'action' => ['/messages/default/create', 'interlocutorId' => $interlocutorId],
+                'enableClientScript' => false,
+                'id' => 'form-message'
+            ]);
+            echo $form->field($message, 'text')->textarea();
+            echo Html::tag('div', Html::submitButton('Отправить', ['class' => 'btn btn-primary']), ['class' => 'text-center']);
+            ActiveForm::end();
             ?>
         </div>
     </div>
@@ -63,9 +65,9 @@ use yii\helpers\Html;
             if ($.isPlainObject(response) && 'status' in response) {
                 $targetForm.hide();
                 if (response.status == 1) {
-                    $target.append('<div class="result"><div class="alert alert-info">'+response.message+'</div> <div class="text-center"><span class="link" id="again">Написать еще одно сообщение</span></div></div>');
+                    $target.append('<div class="result"><div class="alert alert-info">' + response.message + '</div> <div class="text-center"><span class="link" id="again">Написать еще одно сообщение</span></div></div>');
                 } else {
-                    $target.append('<div class="result"><div class="alert alert-danger">'+response.message+'</div> <div class="text-center"><span class="link" id="again">Попробовать еще раз</span></div></div>');
+                    $target.append('<div class="result"><div class="alert alert-danger">' + response.message + '</div> <div class="text-center"><span class="link" id="again">Попробовать еще раз</span></div></div>');
                 }
             }
         }
@@ -75,7 +77,7 @@ use yii\helpers\Html;
     /**
      * Отправить еще одно сообщение
      */
-    $(document).on('click', '#again', function() {
+    $(document).on('click', '#again', function () {
         $targetForm.show();
         $targetForm.data('formApi').reset();
         $targetForm.parent().find('.result').remove();

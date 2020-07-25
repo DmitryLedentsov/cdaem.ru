@@ -45,7 +45,7 @@ class AdvertSearch extends Advert
         $roomsList = ['all' => 'Кол-во комнат'];
         return ArrayHelper::merge($roomsList, TotalApartment::getRoomsArray());
     }
-    
+
     /**
      * Список округов города Москвы
      */
@@ -63,7 +63,7 @@ class AdvertSearch extends Advert
     {
         return Metro::getMskMetroArray();
     }
-    
+
     /**
      * Массив округов города Москвы
      * @return array|\yii\db\ActiveRecord[]
@@ -75,7 +75,7 @@ class AdvertSearch extends Advert
             ->asArray()
             ->all();
     }
-    
+
     /**
      * Список доступных рент тайпов
      * В отличии от rentTypesList, отдает вместо rent_type_id - slug
@@ -97,7 +97,7 @@ class AdvertSearch extends Advert
             ->asArray()
             ->all();
     }
-    
+
     /**
      * @inheritdoc
      */
@@ -110,7 +110,7 @@ class AdvertSearch extends Advert
             ['metro_array', 'each', 'rule' => ['in', 'range' => array_keys($this->mskMetroList)]],
         ];
     }
-    
+
     /**
      * @inheritdoc
      */
@@ -118,7 +118,7 @@ class AdvertSearch extends Advert
     {
         return Model::scenarios();
     }
-    
+
     /**
      * @inheritdoc
      */
@@ -126,7 +126,7 @@ class AdvertSearch extends Advert
     {
         return '';
     }
-    
+
     /**
      * @inheritdoc
      */
@@ -159,20 +159,20 @@ class AdvertSearch extends Advert
             'query' => $query,
             'pagination' => false,
         ]);
-        
+
         $this->load($params);
-        
+
         if (!$this->validate()) {
             $query->where('0=1');
             return $dataProvider;
         }
-        
+
         $query->orderBy('advert_id ASC');
-        
+
         if ($this->rooms != 'all') {
             $query->andFilterWhere(['total_rooms' => $this->rooms]);
         }
-        
+
         if ($this->district && $this->district != 'all') {
             $query->andWhere('district1=:district OR district2=:district', [':district' => ArrayHelper::map($this->districtsArray, 'name_eng', 'id')[$this->district]]);
         }
@@ -180,9 +180,9 @@ class AdvertSearch extends Advert
         if (!empty($this->metro_array)) {
             $query->andWhere(['IN', 'metro_id', $this->metro_array]);
         }
-        
+
         $query->andFilterWhere(['rent_type' => ArrayHelper::map($this->rentTypesArray, 'slug', 'rent_type_id')[$this->rentType]]);
-        
+
         return $dataProvider;
     }
 
@@ -203,12 +203,12 @@ class AdvertSearch extends Advert
         }
 
         $query->andFilterWhere(['rent_type' => [
-                ArrayHelper::map($this->rentTypesArray, 'slug', 'rent_type_id')[$this->rentType],
-                ArrayHelper::map($this->rentTypesArray, 'slug', 'rent_type_id')['zagorodniy_dom']
-            ]
+            ArrayHelper::map($this->rentTypesArray, 'slug', 'rent_type_id')[$this->rentType],
+            ArrayHelper::map($this->rentTypesArray, 'slug', 'rent_type_id')['zagorodniy_dom']
+        ]
         ]);
 
         return $dataProvider;
     }
-    
+
 }

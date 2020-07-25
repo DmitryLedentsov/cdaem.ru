@@ -4,12 +4,9 @@ namespace frontend\modules\merchant\widgets\robokassa;
 
 use yii\helpers\Html;
 use yii\base\Widget;
+use yii\web\View;
 use Yii;
 
-/**
- * Class PaymentSystemsList
- * @package frontend\modules\merchant\widgets\robokassa
- */
 class PaymentSystemsList extends Widget
 {
     /**

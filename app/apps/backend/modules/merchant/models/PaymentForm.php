@@ -19,7 +19,7 @@ class PaymentForm extends Payment
     {
         $behaviors = [
             [
-                'class' => \yii\behaviors\TimestampBehavior::class,
+                'class' => \yii\behaviors\TimestampBehavior::className(),
                 'createdAtAttribute' => 'date_create',
                 'updatedAtAttribute' => 'date_update',
                 'value' => function ($event) {

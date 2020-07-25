@@ -13,7 +13,7 @@ use yii\helpers\Html;
 $this->title = 'Редактировать страницу';
 
 echo \backend\modules\admin\widgets\HeaderWidget::widget([
-    'title' =>  'Управление статическими страницами',
+    'title' => 'Управление статическими страницами',
     'description' => $this->title,
     'breadcrumb' => [
         [
@@ -43,4 +43,4 @@ echo \backend\modules\admin\widgets\ExtraControlWidget::widget([
 echo $this->render('_form', [
     'formModel' => $formModel,
     'model' => $model,
-    ]);
+]);

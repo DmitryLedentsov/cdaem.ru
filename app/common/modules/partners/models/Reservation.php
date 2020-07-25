@@ -41,7 +41,7 @@ class Reservation extends \yii\db\ActiveRecord
      */
     public static function nonViewedCount($byWhom = 'renter', $city_id = null)
     {
-        $lastViewedDate = UserSeen::getLastDate(self::tableName(), $byWhom.$city_id);
+        $lastViewedDate = UserSeen::getLastDate(self::tableName(), $byWhom . $city_id);
         $query = self::find()->where(['>', 'date_update', $lastViewedDate]);
 
         if ($byWhom == 'owner') {
@@ -137,7 +137,7 @@ class Reservation extends \yii\db\ActiveRecord
      */
     public static function globalActiveCount($city_id = null)
     {
-        $query =  static::find()
+        $query = static::find()
             ->joinWith([
                 'user' => function ($query) {
                     $query->banned(0);

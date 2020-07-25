@@ -14,6 +14,7 @@ use yii\data\Pagination;
 use yii\web\Response;
 use Yii;
 
+
 /**
  * Платежный контроллер
  * @package frontend\modules\merchant\controllers
@@ -27,7 +28,7 @@ class DefaultController extends \frontend\components\Controller
     {
         $behaviors = [
             'access' => [
-                'class' => \yii\filters\AccessControl::class,
+                'class' => \yii\filters\AccessControl::className(),
                 'rules' => [
                     [
                         'allow' => true,
@@ -148,7 +149,7 @@ class DefaultController extends \frontend\components\Controller
 
     /**
      * Генерирует платежный виджет для выбора оплаты
-     * @return string|Response
+     * @return array|Response
      */
     public function actionPaymentWidget()
     {

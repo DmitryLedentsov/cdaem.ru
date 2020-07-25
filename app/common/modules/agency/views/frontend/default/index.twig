@@ -19,7 +19,9 @@
         <div class="cdaem special container">
             <div class="row">
                 <div class="logo col-xs-12 col-md-3">
-                    <a href="/"><img src="/basic-images/arenda-kvartir-posutochno-logo.png" alt="Cдаем.ру — квартиры без посредников " title="Cдаем.ру — квартиры без посредников " /></a>
+                    <a href="/"><img src="/basic-images/arenda-kvartir-posutochno-logo.png"
+                                     alt="Cдаем.ру — квартиры без посредников "
+                                     title="Cдаем.ру — квартиры без посредников "/></a>
                 </div>
 
                 <div class="seo-text col-xs-12 col-sm-6">
@@ -32,9 +34,12 @@
                     <div class="social-links">
                         <ul>
 
-                            <li><a href="https://www.facebook.com/cdaem.ru" rel="nofollow" target="_blank"><img src="/basic-images/facebook-ico.png" alt="facebook"/></a></li>
-                            <li><a href="https://vk.com/cdaemru" rel="nofollow" target="_blank"><img src="/basic-images/vk-ico.png" alt="vk"/></a></li>
-                            <li><a href="skype:cdaemru" rel="nofollow" target="_blank"><img src="/basic-images/skype-ico.png" alt="skype"/></a></li>
+                            <li><a href="https://www.facebook.com/cdaem.ru" rel="nofollow" target="_blank"><img
+                                            src="/basic-images/facebook-ico.png" alt="facebook"/></a></li>
+                            <li><a href="https://vk.com/cdaemru" rel="nofollow" target="_blank"><img
+                                            src="/basic-images/vk-ico.png" alt="vk"/></a></li>
+                            <li><a href="skype:cdaemru" rel="nofollow" target="_blank"><img
+                                            src="/basic-images/skype-ico.png" alt="skype"/></a></li>
                         </ul>
                     </div>
                 </div>
@@ -50,12 +55,16 @@
             <div class="row">
                 <div class="col-md-7 callback-title-link-block">
                     <span class="title-span">Квартиры от <a href="#" class="or-link">Сдаём.ру</a> без посредников - Москва</span>
-                    <div class="phones-block agency-white-block"> <span class="call absolute-p" data-toggle="modal" data-target="#modal-callback"></span>
-                        <a href="https://chat.whatsapp.com/HBYHOMkBYY89Jh2EElJuUv" rel="nofollow"><i class="fab fa-whatsapp fa-3x" style="line-height: 85px;" aria-hidden="true"></i></a></div>
+                    <div class="phones-block agency-white-block"><span class="call absolute-p" data-toggle="modal"
+                                                                       data-target="#modal-callback"></span>
+                        <a href="https://chat.whatsapp.com/HBYHOMkBYY89Jh2EElJuUv" rel="nofollow"><i
+                                    class="fab fa-whatsapp fa-3x" style="line-height: 85px;" aria-hidden="true"></i></a>
+                    </div>
                 </div>
                 <div class="col-md-3 callback-btn-block">
 
-                    <a href="{{ path(['/helpdesk/default/index']) }}" class="callback-btn">Связаться с диспетчером <br> Cdaem.ru</a>
+                    <a href="{{ path(['/helpdesk/default/index']) }}" class="callback-btn">Связаться с диспетчером <br>
+                        Cdaem.ru</a>
                 </div>
                 <div class="col-md-2">
                     <div class="callback-phone-block">
@@ -76,21 +85,22 @@
 
             {{ use('yii/widgets/Breadcrumbs') }}
             {{ breadcrumbs_widget({
-            'itemTemplate' : "<li>{link}</li>\n",
-            'homeLink' :
-            {
-                'label' : 'Главная',
-                'url' : '/'
-            },
-            'links':  [
-            {
-                'label': model.name,
-                'url': {0 : '/pages/default/index', 'url' : model.url},
-            },
-            ],
-        }) }}
+                'itemTemplate' : "<li>{link}</li>\n",
+                'homeLink' :
+                {
+                    'label' : 'Главная',
+                    'url' : '/'
+                },
+                'links':  [
+                    {
+                        'label': model.name,
+                        'url': {0 : '/pages/default/index', 'url' : model.url},
+                    },
+                ],
+            }) }}
 
-            <a href="{{ app.params['siteDomain'] }}/search" class="right-link breadcrumbs-links">Доска объявлений</a></div>
+            <a href="{{ app.params['siteDomain'] }}/search" class="right-link breadcrumbs-links">Доска объявлений</a>
+        </div>
     </div>
     {#
        Модальное окно для заказа обратного звонка
@@ -107,13 +117,15 @@
         {{ form.field(callback, 'phone').textInput({'placeholder' : '+7 (___) ___-____'}) | raw }}
 
         <div class="form-group text-center">
-            <input type="submit" value="Отправить" class="btn btn-primary" />
+            <input type="submit" value="Отправить" class="btn btn-primary"/>
         </div>
         {{ active_form_end() }}
         <div class="row-call">
             <div class="callback-phone-block">
-                <div class="row phone-1"><a href="tel:+79037991799"><span class="c-phone">+7 (903) 799-17-99</span></a></div>
-                <div class="row phone-2"><a href="tel:+79154559494"><span class="m-phone">+7 (915) 455-94-94</span></a></div>
+                <div class="row phone-1"><a href="tel:+79037991799"><span class="c-phone">+7 (903) 799-17-99</span></a>
+                </div>
+                <div class="row phone-2"><a href="tel:+79154559494"><span class="m-phone">+7 (915) 455-94-94</span></a>
+                </div>
             </div>
         </div>
     </div>
@@ -129,16 +141,18 @@
     {{ this.render("@common/modules/agency/views/frontend/default/_realty_2.twig", {
         'searchModel' : agencySearch,
         'dataProvider' : agencyDataProvider,
+        'specialAdverts': specialAdverts,
         'onlyAgency' : true
     }) | raw }}
     {{ use('frontend/themes/basic/assets/SlickAsset') }}
     {{ register_slick_asset() }}
     <style>
-        @media (max-width: 380px){
+        @media (max-width: 380px) {
             .bg-header {
                 height: 400px;
                 background-size: cover;
                 background-repeat: no-repeat;
-            }}
+            }
+        }
     </style>
 {% endblock content %}

@@ -27,7 +27,7 @@ class Apartment extends \yii\db\ActiveRecord
     {
         return '{{%partners_apartments}}';
     }
-    
+
     /**
      * @inheritdoc
      * @return ApartmentQuery
@@ -135,7 +135,7 @@ class Apartment extends \yii\db\ActiveRecord
     {
         return static::find()
             ->where('apartment_id = :apartment_id', [':apartment_id' => $id])
-            ->joinWith(['metroStations' => function($query) {
+            ->joinWith(['metroStations' => function ($query) {
                 $query->joinWith('metro');
             }])
             ->one();
@@ -150,7 +150,7 @@ class Apartment extends \yii\db\ActiveRecord
     {
         return static::find()
             ->where([self::tableName() . '.apartment_id' => $id, 'user_id' => Yii::$app->user->id])
-            ->joinWith(['metroStations' => function($query) {
+            ->joinWith(['metroStations' => function ($query) {
                 $query->joinWith('metro');
             }])
             ->one();
@@ -256,7 +256,7 @@ class Apartment extends \yii\db\ActiveRecord
             // Записывает количество городов Страны
             if (!isset($arSorter[$city['country_name']]))
                 $arSorter[$city['country_name']] = 1;
-            else $arSorter[$city['country_name']] ++;
+            else $arSorter[$city['country_name']]++;
         }
 
         //У кого городов больше всех тот первым идет
@@ -278,7 +278,7 @@ class Apartment extends \yii\db\ActiveRecord
      */
     const VISIBLE = 1;
     const INVISIBLE = 0;
-    
+
     /**
      * @return array Массив доступных данных видимости апартаментов на сайте
      */
@@ -288,7 +288,7 @@ class Apartment extends \yii\db\ActiveRecord
             self::VISIBLE => [
                 'label' => 'Видимый',
                 'style' => 'color: green',
-                ],
+            ],
             self::INVISIBLE => [
                 'label' => 'Невидимый',
                 'style' => 'color: red',
@@ -297,7 +297,7 @@ class Apartment extends \yii\db\ActiveRecord
 
         return $statuses;
     }
-    
+
     /**
      * Статус
      * - Активный
@@ -306,7 +306,7 @@ class Apartment extends \yii\db\ActiveRecord
     const ACTIVE = 1;
     const INACTIVE = 0;
     const BLOCKED = 2;
-    
+
     /**
      * @return array Массив доступных данных статуса апартаментов
      */
@@ -316,7 +316,7 @@ class Apartment extends \yii\db\ActiveRecord
             self::ACTIVE => [
                 'label' => 'Проверено',
                 'style' => 'color: green',
-                ],
+            ],
             self::INACTIVE => [
                 'label' => 'На модерации',
                 'style' => 'color: red',
@@ -325,7 +325,7 @@ class Apartment extends \yii\db\ActiveRecord
                 'label' => 'Заблокировано',
                 'style' => 'color: blue',
             ],
-            
+
         ];
     }
 
@@ -406,7 +406,7 @@ class Apartment extends \yii\db\ActiveRecord
         $geo = new \vitalik74\geocode\Geocode();
         $fullAddress = $this->city->country->name . ' ' . $this->city->name . ' ' . $this->address;
 
-        $api = $geo->get($fullAddress, ['kind' => 'house']);
+        $api = $geo->get($fullAddress, ['kind' => 'house'], '520b7c80-9741-4818-82a7-760d250c2d88');
         $pos = null;
         if (isset($api['response']['GeoObjectCollection']['featureMember'][0]['GeoObject']['Point']['pos'])) {
             $pos = $api['response']['GeoObjectCollection']['featureMember'][0]['GeoObject']['Point']['pos'];
@@ -419,8 +419,8 @@ class Apartment extends \yii\db\ActiveRecord
             $latitude = isset($coord[1]) ? $coord[1] : null;
         }
 
-       if (!$longitude || !$latitude) {
-           throw new ErrorException('Failed to determine the coordinates. $longitude: ' . $longitude . ' $latitude: ' . $latitude);
+        if (!$longitude || !$latitude) {
+            throw new ErrorException('Failed to determine the coordinates. $longitude: ' . $longitude . ' $latitude: ' . $latitude);
         }
 
         $this->latitude = $latitude;

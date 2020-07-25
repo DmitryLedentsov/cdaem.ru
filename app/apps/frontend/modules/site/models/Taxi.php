@@ -163,6 +163,8 @@ class Taxi extends \yii\base\Model
     public function afterValidate()
     {
         parent::afterValidate();
+
+
     }
 
     /**

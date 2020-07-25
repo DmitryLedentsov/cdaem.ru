@@ -12,7 +12,7 @@ use Yii;
 class Advertisement extends \yii\db\ActiveRecord
 {
     use ModuleTrait;
-    
+
     /**
      * @inheritdoc
      */

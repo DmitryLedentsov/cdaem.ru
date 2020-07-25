@@ -12,7 +12,7 @@ use Yii;
 class SpecialAdvert extends \yii\db\ActiveRecord
 {
     use ModuleTrait;
-    
+
     /**
      * @inheritdoc
      */
@@ -102,8 +102,8 @@ class SpecialAdvert extends \yii\db\ActiveRecord
                 ]);
             }
         ])
-        ->andWhere('date_expire > :date', [':date' => date("Y-m-d H:i:s")])
-        ->andWhere('date_start < :date', [':date' => date("Y-m-d H:i:s")])
-        ->all();
+            ->andWhere('date_expire > :date', [':date' => date("Y-m-d H:i:s")])
+            ->andWhere('date_start < :date', [':date' => date("Y-m-d H:i:s")])
+            ->all();
     }
 }

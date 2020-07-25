@@ -6,7 +6,9 @@
  * @var \common\modules\users\models\User $user
  * @var $content
  */
+
 use yii\helpers\Html;
 use yii\helpers\Url;
+
 ?>
-<p><?=$content?></p>
+<p><?= $content ?></p>

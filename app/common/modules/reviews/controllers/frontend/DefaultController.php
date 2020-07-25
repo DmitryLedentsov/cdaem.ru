@@ -16,49 +16,49 @@ use Yii;
  */
 class DefaultController extends \frontend\components\Controller
 {
-	/**
-	 * @inheritdoc
-	 */
-	public function behaviors()
-	{
-		$behaviors = [
-			'access' => [
-				'class' => \yii\filters\AccessControl::className(),
-				'rules' => [
-					[
-						'actions' => ['create'],
-						'allow' => true,
-						'roles' => ['?', '@'],
-					],
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        $behaviors = [
+            'access' => [
+                'class' => \yii\filters\AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['create'],
+                        'allow' => true,
+                        'roles' => ['?', '@'],
+                    ],
                     [
                         'actions' => ['index'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
-				],
-			],
-		];
+                ],
+            ],
+        ];
 
         if (YII_DEBUG) {
             return $behaviors;
         }
 
-		return array_merge($behaviors, require(__DIR__ . '/../../caching/default.php'));
-	}
+        return array_merge($behaviors, require(__DIR__ . '/../../caching/default.php'));
+    }
 
-	/**
-	 * @inheritdoc
-	 */
-	public function beforeAction($action)
-	{
-		if (!parent::beforeAction($action)) {
-			return false;
-		}
+    /**
+     * @inheritdoc
+     */
+    public function beforeAction($action)
+    {
+        if (!parent::beforeAction($action)) {
+            return false;
+        }
 
-		$this->module->viewPath = '@common/modules/reviews/views/frontend';
+        $this->module->viewPath = '@common/modules/reviews/views/frontend';
 
-		return true;
-	}
+        return true;
+    }
 
     /**
      * Все отзывы

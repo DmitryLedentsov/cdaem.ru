@@ -1,6 +1,6 @@
- {#
-    Карта
-    @var \yii\web\View this
+{#
+   Карта
+   @var \yii\web\View this
 
 #}
 
@@ -27,10 +27,10 @@
                 'url' : '/'
             },
             'links':  [
-            {
-                'label': 'Карта',
-                'url': ['/geo/default/index'],
-            },
+                {
+                    'label': 'Карта',
+                    'url': ['/geo/default/index'],
+                },
             ],
         }) }}
     </div>
@@ -139,54 +139,54 @@
 
             function init() {
                 var myMap = new ymaps.Map('map', {
-                            center: [55.76, 37.64],
-                            zoom: 10
-                        }, {
-                            searchControlProvider: 'yandex#search'
-                        }),
-                        objectManager = new ymaps.ObjectManager({
-                            clusterize: true,
-                            gridSize: 32
-                        });
+                        center: [55.76, 37.64],
+                        zoom: 10
+                    }, {
+                        searchControlProvider: 'yandex#search'
+                    }),
+                    objectManager = new ymaps.ObjectManager({
+                        clusterize: true,
+                        gridSize: 32
+                    });
 
                 //objectManager.objects.options.set('preset', 'islands#greenDotIcon');
                 //objectManager.clusters.options.set('preset', 'islands#greenClusterIcons');
                 myMap.geoObjects.add(objectManager);
 
-/*
-                var data = {
-                    "type": "FeatureCollection",
-                    "features": [
-                        {
-                            "type": "Feature",
-                            "id": 2,
-                            "geometry": {"type": "Point", "coordinates": [55.763338, 37.565466]},
-                            "properties": {
-                                "balloonContent": '<div class="balloon-info">' +
-                                '<div class="balloon-view">' +
-                                '<div class="balloon-image" style="background-image: url(/images/thumbs/1315.jpg_100x80.jpg)"></div>' +
-                                '<p>Комнат: --</p>' +
-                                '<p>Ремонт: --</p>' +
-                                '</div>' +
-                                '<div class="balloon-desc">' +
-                                '<p><span>На час:</span> --</p>' +
-                                '<p><span>На ночь:</span> --</p>' +
-                                '<p><span>На сутки:</span> --</p>' +
-                                '<a href="" class="balloon-more">Подробнее</a>' +
-                                '</div>' +
-                                '</div>',
-                                "hintContent": "Текст подсказки",
-                                //'iconLayout': 'islands#blueDotIcon',
-                            },
-                            "options": {
-                                //'preset': 'islands#blueDotIcon',
-                                'preset': 'islands#lightBlueDotIcon',
-                                //'iconLayout': 'islands#blueDotIcon',
-                                /*'iconLayout': 'default#image',
-                                'iconImageHref': '/basic-images/green-phone-icon.png',
-                                'fillImageHref':  '/basic-images/green-phone-icon.png',
-                                'iconImageSize': [30, 30],
-                                'iconImageOffset': [-15, -15]*//*
+                /*
+                                var data = {
+                                    "type": "FeatureCollection",
+                                    "features": [
+                                        {
+                                            "type": "Feature",
+                                            "id": 2,
+                                            "geometry": {"type": "Point", "coordinates": [55.763338, 37.565466]},
+                                            "properties": {
+                                                "balloonContent": '<div class="balloon-info">' +
+                                                '<div class="balloon-view">' +
+                                                '<div class="balloon-image" style="background-image: url(/images/thumbs/1315.jpg_100x80.jpg)"></div>' +
+                                                '<p>Комнат: --</p>' +
+                                                '<p>Ремонт: --</p>' +
+                                                '</div>' +
+                                                '<div class="balloon-desc">' +
+                                                '<p><span>На час:</span> --</p>' +
+                                                '<p><span>На ночь:</span> --</p>' +
+                                                '<p><span>На сутки:</span> --</p>' +
+                                                '<a href="" class="balloon-more">Подробнее</a>' +
+                                                '</div>' +
+                                                '</div>',
+                                                "hintContent": "Текст подсказки",
+                                                //'iconLayout': 'islands#blueDotIcon',
+                                            },
+                                            "options": {
+                                                //'preset': 'islands#blueDotIcon',
+                                                'preset': 'islands#lightBlueDotIcon',
+                                                //'iconLayout': 'islands#blueDotIcon',
+                                                /*'iconLayout': 'default#image',
+                                                'iconImageHref': '/basic-images/green-phone-icon.png',
+                                                'fillImageHref':  '/basic-images/green-phone-icon.png',
+                                                'iconImageSize': [30, 30],
+                                                'iconImageOffset': [-15, -15]*//*
                             },
                         }
                     ]
@@ -197,8 +197,8 @@
 
 
                 $.ajax({
-                 url: "/geo/map"
-                 }).done(function(data) {
+                    url: "/geo/map"
+                }).done(function (data) {
                     //objectManager.add(data);
 
 
@@ -208,7 +208,7 @@
                         var apt = data[i];
 
                         GeoObjects[i] = new ymaps.GeoObject({
-                            geometry: { type: "Point", coordinates: apt.lon, apt: apt.lat },
+                            geometry: {type: "Point", coordinates: apt.lon, apt: apt.lat},
                             properties: {
                                 clusterCaption: 'Маркер №' + apt.id,
                                 balloonContentBody: 'Содержимое балуна маркера №1.'
@@ -216,7 +216,7 @@
                         });
 
                         GeoObjects[i] = new ymaps.GeoObject({
-                            geometry: { type: "Point", coordinates: apt.lat, apt: apt.lon },
+                            geometry: {type: "Point", coordinates: apt.lat, apt: apt.lon},
                             properties: {
                                 clusterCaption: 'Маркер №' + apt.id,
                                 balloonContentBody: 'Содержимое балуна маркера №1.'
@@ -225,8 +225,6 @@
 
                         break;
                     }
-
-
 
 
                     var clusterer = new ymaps.Clusterer({
@@ -244,7 +242,6 @@
                     });
                     clusterer.add(GeoObjects);
                     myMap.geoObjects.add(clusterer);
-
 
 
                 });

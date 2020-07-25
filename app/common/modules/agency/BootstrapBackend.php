@@ -51,7 +51,7 @@ class BootstrapBackend implements \yii\base\BootstrapInterface
                     'options' => [],
                     'access' => \Yii::$app->user->can('agency-apartment-view'),
                     'callback' => function ($params, $content) {
-                        return Html::tag('li', Html::a($params['name'] . $params['icon'] . '<span class="label label-success">'.models\Apartment::find()->count().'</span>', $params['url']) . $content, $params['options']);
+                        return Html::tag('li', Html::a($params['name'] . $params['icon'] . '<span class="label label-success">' . models\Apartment::find()->count() . '</span>', $params['url']) . $content, $params['options']);
                     }
                 ],
 
@@ -63,7 +63,7 @@ class BootstrapBackend implements \yii\base\BootstrapInterface
                     'options' => [],
                     'access' => \Yii::$app->user->can('agency-reservation-view'),
                     'callback' => function ($params, $content) {
-                        return Html::tag('li', Html::a($params['name'] . $params['icon'] . '<span class="label label-success">'.models\Reservation::find()->processed(0)->count().'</span>', $params['url']) . $content, $params['options']);
+                        return Html::tag('li', Html::a($params['name'] . $params['icon'] . '<span class="label label-success">' . models\Reservation::find()->processed(0)->count() . '</span>', $params['url']) . $content, $params['options']);
                     }
                 ],
 
@@ -93,7 +93,7 @@ class BootstrapBackend implements \yii\base\BootstrapInterface
                     'options' => [],
                     'access' => \Yii::$app->user->can('agency-select-view'),
                     'callback' => function ($params, $content) {
-                        return Html::tag('li', Html::a($params['name'] . $params['icon'] . '<span class="label label-success">'.models\Select::find()->where(['status' => 0])->count().'</span>', $params['url']) . $content, $params['options']);
+                        return Html::tag('li', Html::a($params['name'] . $params['icon'] . '<span class="label label-success">' . models\Select::find()->where(['status' => 0])->count() . '</span>', $params['url']) . $content, $params['options']);
                     }
                 ],
 
@@ -105,7 +105,7 @@ class BootstrapBackend implements \yii\base\BootstrapInterface
                     'options' => [],
                     'access' => \Yii::$app->user->can('agency-want-pass-view'),
                     'callback' => function ($params, $content) {
-                        return Html::tag('li', Html::a($params['name'] . $params['icon'] . '<span class="label label-success">'.models\WantPass::find()->where(['status' => 0])->count().'</span>', $params['url']) . $content, $params['options']);
+                        return Html::tag('li', Html::a($params['name'] . $params['icon'] . '<span class="label label-success">' . models\WantPass::find()->where(['status' => 0])->count() . '</span>', $params['url']) . $content, $params['options']);
                     }
                 ],
 
@@ -117,7 +117,7 @@ class BootstrapBackend implements \yii\base\BootstrapInterface
                     'options' => [],
                     'access' => \Yii::$app->user->can('agency-details-history-view'),
                     'callback' => function ($params, $content) {
-                        return Html::tag('li', Html::a($params['name'] . $params['icon'] . '<span class="label label-success">'.models\DetailsHistory::find()->where(['processed' => 0])->count().'</span>', $params['url']) . $content, $params['options']);
+                        return Html::tag('li', Html::a($params['name'] . $params['icon'] . '<span class="label label-success">' . models\DetailsHistory::find()->where(['processed' => 0])->count() . '</span>', $params['url']) . $content, $params['options']);
                     }
                 ],
 

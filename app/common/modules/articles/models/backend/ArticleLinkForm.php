@@ -11,9 +11,10 @@ use Yii;
  * Article
  * @package common\modules\articles\models\backend
  */
-class ArticleLinkForm extends Model {
+class ArticleLinkForm extends Model
+{
 
-   
+
     public $article_id;
     public $id;
     public $title;
@@ -26,14 +27,16 @@ class ArticleLinkForm extends Model {
     /**
      * @inheritdoc
      */
-    public function attributeLabels() {
+    public function attributeLabels()
+    {
         return array_merge((new ArticleLink())->attributeLabels());
     }
 
     /**
      * @inheritdoc
      */
-    public function scenarios() {
+    public function scenarios()
+    {
         return [
             'create' => ['title', 'text', 'thumb_img', 'link_page', 'article_id'],
             'update' => ['title', 'text', 'thumb_img', 'link_page', 'article_id'],
@@ -44,25 +47,27 @@ class ArticleLinkForm extends Model {
     /**
      * @inheritdoc
      */
-    public function rules() {
+    public function rules()
+    {
         return [
-                [['file'], 'file', 'extensions' => 'jpg, png'],
-                [['id', 'article_id', 'visible', 'status'], 'integer'],
-                [['link_page', 'text', 'thumb_img'], 'string', 'max' => 255],
-                [['title'], 'string'],
-                [['title', 'text', 'link_page', 'article_id'], 'required', 'on' => 'create'],
-                [['title', 'text', 'link_page', 'article_id'], 'required', 'on' => 'update'],
-    ];
+            [['file'], 'file', 'extensions' => 'jpg, png'],
+            [['id', 'article_id', 'visible', 'status'], 'integer'],
+            [['link_page', 'text', 'thumb_img'], 'string', 'max' => 255],
+            [['title'], 'string'],
+            [['title', 'text', 'link_page', 'article_id'], 'required', 'on' => 'create'],
+            [['title', 'text', 'link_page', 'article_id'], 'required', 'on' => 'update'],
+        ];
     }
 
     /**
      * Создать ArticleLinks
      * @return bool
      */
-    public function create() {
+    public function create()
+    {
         $model = new ArticleLink();
         $model->setAttributes($this->getAttributes(), false);
-       
+
         if (!$model->save(false)) {
             return false;
         }
@@ -76,7 +81,8 @@ class ArticleLinkForm extends Model {
      * @param ArticleLinks $model
      * @return bool
      */
-    public function update(ArticleLink $model) {
+    public function update(ArticleLink $model)
+    {
         $model->setAttributes($this->getAttributes(), false);
         return $model->save(false);
     }
@@ -86,7 +92,8 @@ class ArticleLinkForm extends Model {
      * @param ArticleLinks $model
      * @return mixed
      */
-    public function delete(ArticleLink $model) {
+    public function delete(ArticleLink $model)
+    {
         return $model->delete();
     }
 

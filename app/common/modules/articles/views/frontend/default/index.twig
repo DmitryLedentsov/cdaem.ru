@@ -30,10 +30,10 @@
                 'url' : '/'
             },
             'links':  [
-            {
-                'label': 'Статьи',
-                'url': ['/articles/default/index'],
-            },
+                {
+                    'label': 'Статьи',
+                    'url': ['/articles/default/index'],
+                },
             ],
         }) }}
     </div>
@@ -47,20 +47,22 @@
     <div class="container slider-article-block">
         <div class="d-title"><h4>Блог Cdaem.ru</h4></div>
         <div class="article-block row">
-             {% for article in models %}
-            <div class="item-article col-md-3">
-                <div class="item-img" style="background: url(/images/{{ article.title_img | raw }})center center;">
-                    <div class="title-article"><h4><a href="{{ path('/articles/default/view', {'id' : article.slug}) }}">{{ article.name }}</a></h4></div>
-                </div>         
-            </div>
-        {% else %}
-            <div class="alert alert-danger" role="alert">
-                Статьи не найдены.
-            </div>
-        {% endfor %}
-        <div class="clearfix"></div>
+            {% for article in models %}
+                <div class="item-article col-md-3">
+                    <div class="item-img" style="background: url(/images/{{ article.title_img | raw }})center center;">
+                        <div class="title-article"><h4><a
+                                        href="{{ path('/articles/default/view', {'id' : article.slug}) }}">{{ article.name }}</a>
+                            </h4></div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="alert alert-danger" role="alert">
+                    Статьи не найдены.
+                </div>
+            {% endfor %}
+            <div class="clearfix"></div>
         </div>
-       
+
         {% if models %}
 
             {{ use('yii/widgets/LinkPager') }}

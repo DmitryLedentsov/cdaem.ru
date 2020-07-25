@@ -100,7 +100,7 @@ class Review extends ActiveRecord
 
         return static::find()
             ->joinWith([
-                'apartment' => function($query) use ($apartmentId, $userId) {
+                'apartment' => function ($query) use ($apartmentId, $userId) {
                     $query->where(Apartment::tableName() . '.user_id = :user_id', [':user_id' => $userId]);
                     if ($apartmentId) {
                         $query->andWhere(Apartment::tableName() . '.apartment_id = :apartment_id', [':apartment_id' => $apartmentId]);

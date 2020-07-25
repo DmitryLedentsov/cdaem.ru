@@ -32,6 +32,6 @@ class AdminAsset extends AssetBundle
         parent::init();
 
         $view = Yii::$app->getView();
-        $view->registerJsFile(Yii::$app->params['siteDomain'] . '/ion.sound/ion.sound.min.js', ['depends' => [\yii\web\JqueryAsset::class]]);
+        $view->registerJsFile(Yii::$app->params['siteDomain'] . '/ion.sound/ion.sound.min.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
     }
 }

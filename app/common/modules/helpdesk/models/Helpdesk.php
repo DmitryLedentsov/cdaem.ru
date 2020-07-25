@@ -74,7 +74,7 @@ class Helpdesk extends ActiveRecord
     const LETTERWORK = 'letterwork';
     const COMPLAINT = 'complaint';
     const LETTERPHONE = 'letterphone';
-    
+
 
     /**
      * @return array
@@ -90,11 +90,11 @@ class Helpdesk extends ActiveRecord
                 'label' => 'Жалоба',
                 'style' => 'color: red',
             ],
-             self::LETTERWORK => [
+            self::LETTERWORK => [
                 'label' => 'Письмо Работа',
                 'style' => 'color: black',
             ],
-            
+
             self::LETTERPHONE => [
                 'label' => 'Письмо номер телефона',
                 'style' => 'color: black',

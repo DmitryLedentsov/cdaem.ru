@@ -77,7 +77,7 @@ class WantPassForm extends Model
             ['email', 'email'],
 
             // Защитный код
-           
+
         ];
     }
 

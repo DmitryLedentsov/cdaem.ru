@@ -38,7 +38,7 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
     </div>
 <?php endif; ?>
 
-<p><br/></p>
+    <p><br/></p>
 
 <?php
 echo $this->render('_form', [

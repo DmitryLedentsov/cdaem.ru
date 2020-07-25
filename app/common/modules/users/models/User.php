@@ -129,7 +129,7 @@ class User extends \nepster\users\models\User
     {
         return $this->hasOne(Profile::className(), ['user_id' => 'id']);
     }
-    
+
     public function getApartment()
     {
         return $this->hasOne(Apartment::className(), ['apartment_id' => 'id']);
@@ -183,7 +183,7 @@ class User extends \nepster\users\models\User
         $user->setAttributes($data);
         if (isset($data['profile'])) {
             $profile->setAttributes($data['profile']);
-            
+
         }
         $user->populateRelation('profile', $profile);
         $user->save(false);
@@ -207,9 +207,12 @@ class User extends \nepster\users\models\User
         $timeInt = 1;
 
         switch ($dateInterval) {
-            case 'year': $timeInt *= 12;
-            case 'month': $timeInt *= 30;
-            case 'day': $timeInt *= 86400;
+            case 'year':
+                $timeInt *= 12;
+            case 'month':
+                $timeInt *= 30;
+            case 'day':
+                $timeInt *= 86400;
         }
 
         $timeInt *= $iteration;

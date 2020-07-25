@@ -9,22 +9,26 @@ use yii\helpers\Html;
 use Yii;
 
 
-class ModalHelp extends \yii\base\Widget {
+class ModalHelp extends \yii\base\Widget
+{
 
-    public function init() {
+    public function init()
+    {
         parent::init();
     }
 
     /**
      * @inheritdoc
      */
-    public function run() {
+    public function run()
+    {
 
         return $this->getModal();
     }
 
- 
-    protected function getModal() {
+
+    protected function getModal()
+    {
         return ('
             <div class="apartment-agency">
                 
@@ -50,8 +54,8 @@ class ModalHelp extends \yii\base\Widget {
                 
             </div>
         ');
-       
+
     }
 
-  
+
 }

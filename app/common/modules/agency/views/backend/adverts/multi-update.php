@@ -1,6 +1,7 @@
 <?php
 
 /* @var $this yii\web\View */
+
 /* @var array $models */
 
 use yii\widgets\ActiveForm;
@@ -42,7 +43,7 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
     <div id="adverts-multi-update-rent-types-list">
         <h3>Выберите типы аренды для работы: </h3>
         <?php
-            echo Html::checkboxList('rent-types-list', array_keys($rentTypesList), $rentTypesList);
+        echo Html::checkboxList('rent-types-list', array_keys($rentTypesList), $rentTypesList);
         ?>
     </div>
 
@@ -56,8 +57,10 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
 
                 <div class="row">
                     <div class="col-md-4 col-md-4 col-sm-4 col-xs-12 col-lg-2">
-                        <a href="<?php echo Url::to(['/agency/default/update', 'id' => $model->apartment_id]) ?>" target="_blank">
-                            <div class="thumbnail thumbnail-boxed"><div class="thumb">
+                        <a href="<?php echo Url::to(['/agency/default/update', 'id' => $model->apartment_id]) ?>"
+                           target="_blank">
+                            <div class="thumbnail thumbnail-boxed">
+                                <div class="thumb">
                                     <?php echo Html::img($model->titleImageSrc) ?>
                                 </div>
                             </div>
@@ -66,7 +69,7 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
                     <div class="col-md-8 col-md-8 col-sm-8 col-xs-12 col-lg-10">
                         <?php foreach ($model->adverts as $advert): ?>
                             <?php
-                            $form =  $this->render('_multi_form.php', [
+                            $form = $this->render('_multi_form.php', [
                                 'model' => $advert,
                             ]);
 

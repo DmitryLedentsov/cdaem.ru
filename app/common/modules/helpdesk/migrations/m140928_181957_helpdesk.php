@@ -12,7 +12,7 @@ class m140928_181957_helpdesk extends Migration
             // http://stackoverflow.com/questions/766809/whats-the-difference-between-utf8-general-ci-and-utf8-unicode-ci
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
         }
-        
+
         // Tickets
         $this->createTable('{{%helpdesk}}', [
             'ticket_id' => Schema::TYPE_PK,
@@ -27,11 +27,10 @@ class m140928_181957_helpdesk extends Migration
             'answered' => 'tinyint(1) NOT NULL DEFAULT "0" COMMENT "Есть или нет ответа"',
             'close' => 'tinyint(1) NOT NULL DEFAULT "0" COMMENT "Открытый или закрытый тикет"',
             'department' => 'varchar(255) NOT NULL  COMMENT "Отдел тех. поддержки"',
-            'ip'         => 'varchar(100)',
+            'ip' => 'varchar(100)',
             'user_agent' => 'varchar(255)',
         ],
-        $tableOptions . ' COMMENT = "Тикеты в тех. поддержку"');
-
+            $tableOptions . ' COMMENT = "Тикеты в тех. поддержку"');
 
 
         // Tickets answers
@@ -40,22 +39,22 @@ class m140928_181957_helpdesk extends Migration
             'ticket_id' => 'int(11) NOT NULL',
             'user_id' => 'int(11) NOT NULL',
             'text' => 'text',
-            'date' => $this->dateTime(),
-            ],
-        $tableOptions . ' COMMENT = "Ответы тех. поддержки"');
-        
-		// Index
-		$this->createIndex('helpdesk_answers_ticket_id', '{{%helpdesk_answers}}', 'ticket_id');
-		$this->createIndex('helpdesk_answers_user_id', '{{%helpdesk_answers}}', 'user_id');
-        
+            'date' => 'datetime NOT NULL DEFAULT "0000-00-00 00:00:00"',
+        ],
+            $tableOptions . ' COMMENT = "Ответы тех. поддержки"');
+
+        // Index
+        $this->createIndex('helpdesk_answers_ticket_id', '{{%helpdesk_answers}}', 'ticket_id');
+        $this->createIndex('helpdesk_answers_user_id', '{{%helpdesk_answers}}', 'user_id');
+
         // Foreign Keys
         $this->addForeignKey('{{%helpdesk_user_id}}', '{{%helpdesk}}', 'user_id', '{{%users}}', 'id', 'CASCADE', 'CASCADE');
-		$this->addForeignKey('{{%helpdesk_answers_ticket_id}}', '{{%helpdesk_answers}}', 'ticket_id', '{{%helpdesk}}', 'ticket_id', 'CASCADE', 'CASCADE');
+        $this->addForeignKey('{{%helpdesk_answers_ticket_id}}', '{{%helpdesk_answers}}', 'ticket_id', '{{%helpdesk}}', 'ticket_id', 'CASCADE', 'CASCADE');
     }
 
     public function safeDown()
     {
-		$this->dropTable('{{%helpdesk_answers}}');
+        $this->dropTable('{{%helpdesk_answers}}');
         $this->dropTable('{{%helpdesk}}');
     }
 }

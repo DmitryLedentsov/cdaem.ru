@@ -4,12 +4,9 @@ namespace frontend\modules\office\widgets;
 
 use frontend\modules\partners\models\Advert;
 use yii\base\Widget;
+use yii\helpers\Html;
 use Yii;
 
-/**
- * Class AdvertsPositions
- * @package frontend\modules\office\widgets
- */
 class AdvertsPositions extends Widget
 {
     /**

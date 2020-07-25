@@ -83,7 +83,6 @@ class RentType extends \yii\db\ActiveRecord
             ->select(['rent_type_id', 'name'])
             ->asArray()
             ->all();
-
         return ArrayHelper::map($rentTypes, 'rent_type_id', 'name');
     }
 }

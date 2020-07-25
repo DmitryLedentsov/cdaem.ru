@@ -11,7 +11,7 @@ use yii\widgets\DetailView;
 $this->title = 'Редактировать сео-текст';
 
 echo \backend\modules\admin\widgets\HeaderWidget::widget([
-    'title' =>  'Управление сео-текстами',
+    'title' => 'Управление сео-текстами',
     'description' => $this->title,
     'breadcrumb' => [
         [
@@ -40,5 +40,5 @@ echo \backend\modules\admin\widgets\ExtraControlWidget::widget([
 ]);
 
 echo $this->render('_form', [
-        'model' => $model,
-    ]);
+    'model' => $model,
+]);

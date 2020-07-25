@@ -47,7 +47,7 @@ use yii\helpers\Html;
         <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-1"><?= $form->field($model, 'apartment_id')->textInput(['maxlength' => true]) ?></div>
         <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-3"><?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?></div>
         <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-2"><?= $form->field($model, 'apartment')->textInput(['maxlength' => true]) ?></div>
-        <div class="col-md-3 col-md-4 col-sm-4 col-xs-6 col-lg-1"><?= $form->field($model, 'visible')->dropDownList(Yii::$app->formatter->booleanFormat, ['prompt' => 'Все'])?></div>
+        <div class="col-md-3 col-md-4 col-sm-4 col-xs-6 col-lg-1"><?= $form->field($model, 'visible')->dropDownList(Yii::$app->formatter->booleanFormat, ['prompt' => 'Все']) ?></div>
         <div class="col-md-3 col-md-4 col-sm-4 col-xs-6 col-lg-2"><?= $form->field($model, 'adverts.rent_type')->dropDownList($model->rentTypesList, ['prompt' => 'Все']) ?></div>
     </div>
 

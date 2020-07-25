@@ -22,22 +22,22 @@ use yii\helpers\Html;
     </div>
 <?php endif; ?>
 
-    <br />
+    <br/>
 
 
-<div class="row">
-    <?php foreach ($model->images_array as $image) : ?>
-        <div class="thumbnail thumbnail-boxed">
-            <div class="thumb">
-                <a href="<?= $image ?>" class="thumb-zoom lightbox" title="">
-                    <img src="<?= $image ?>" alt="">
-                </a>
+    <div class="row">
+        <?php foreach ($model->images_array as $image) : ?>
+            <div class="thumbnail thumbnail-boxed">
+                <div class="thumb">
+                    <a href="<?= $image ?>" class="thumb-zoom lightbox" title="">
+                        <img src="<?= $image ?>" alt="">
+                    </a>
+                </div>
             </div>
-        </div>
-    <?php endforeach; ?>
-</div>
+        <?php endforeach; ?>
+    </div>
 
-<br/>
+    <br/>
 
 
 <?php $form = ActiveForm::begin(); ?>
@@ -57,11 +57,11 @@ use yii\helpers\Html;
     </div>
 
     <div class="row">
-        <div class="col-md-6 col-md-6 col-sm-6 col-xs-12 col-lg-3"><?= $form->field($formModel, 'rent_types_array')->checkBoxList($model->rentTypesList)?></div>
+        <div class="col-md-6 col-md-6 col-sm-6 col-xs-12 col-lg-3"><?= $form->field($formModel, 'rent_types_array')->checkBoxList($model->rentTypesList) ?></div>
     </div>
 
     <div class="row">
-        <div class="col-md-6 col-md-6 col-sm-6 col-xs-12 col-lg-6"><?= $form->field($formModel, 'description')->textarea()?></div>
+        <div class="col-md-6 col-md-6 col-sm-6 col-xs-12 col-lg-6"><?= $form->field($formModel, 'description')->textarea() ?></div>
     </div>
 
     <h6 class="heading-hr"><i class="icon-ladder"></i> Метро</h6>
@@ -70,17 +70,17 @@ use yii\helpers\Html;
         <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-3"><?= $form->field($formModel, 'address') ?></div>
     </div>
 
-    <br />
+    <br/>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Сохранить'), ['class' => 'btn btn-success']) ?>
     </div>
 
-    <br />
+    <br/>
 
 <?php ActiveForm::end(); ?>
 
 
 <?php
-    $this->registerCss('#wantpass-rent_types_array label {display: block}');
+$this->registerCss('#wantpass-rent_types_array label {display: block}');
 ?>

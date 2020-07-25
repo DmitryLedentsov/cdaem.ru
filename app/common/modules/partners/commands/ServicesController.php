@@ -329,7 +329,7 @@ class ServicesController extends \yii\console\Controller
                 if ($result) {
                     throw new \Exception($result);
                 }
-                throw new \Exception('Failed to disable service "'.$service->getName().'" - ID' . $process->id);
+                throw new \Exception('Failed to disable service "' . $service->getName() . '" - ID' . $process->id);
             }
         } catch (\Exception $e) {
             $transaction->rollBack();

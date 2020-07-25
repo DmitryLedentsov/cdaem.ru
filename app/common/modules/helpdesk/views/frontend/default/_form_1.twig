@@ -6,9 +6,9 @@
 {{ use('frontend/modules/site/widgets/Captcha') }}
 
 {% set form = active_form_begin({
-'options' : {'class' : 'horizontal'},
-'id' : 'form-helpdesk-ask',
-'enableClientScript' : false
+    'options' : {'class' : 'horizontal'},
+    'id' : 'form-helpdesk-ask',
+    'enableClientScript' : false
 }) %}
 
 
@@ -24,9 +24,9 @@
         {{ form.field(formModel, 'text', {'template' : '<div class="col-l"><label class="control-label">Текст сообщения</label></div> <div class="col-i">{input}{error}</div>'}).textarea() | raw }}
 
         {{ captcha_widget({'form': form, 'model': model, 'name': 'verifyCode'}) }}
-        
-    <div class="form-group text-right">
-        <input type="submit" value="Отправить" class="btn btn-primary"/>
-    </div>
+
+<div class="form-group text-right">
+    <input type="submit" value="Отправить" class="btn btn-primary"/>
+</div>
 
 {{ active_form_end() }}

@@ -52,7 +52,7 @@ echo \backend\modules\admin\widgets\ExtraControlWidget::widget([
     </div>
 <?php endif; ?>
 
-    <br />
+    <br/>
 
 <?php
 $actions = '';
@@ -79,10 +79,10 @@ echo Html::beginForm(['multi-control']);
 
 echo GridView::widget([
     'tableOptions' => ['class' => 'table table-bordered'],
-    'layout' => '<div class="GridViewSummary">{summary}</div><div class="panel panel-default"><div class="table-responsive">{items}</div><div class="table-footer"> '.$actions.' {pager}</div></div>',
+    'layout' => '<div class="GridViewSummary">{summary}</div><div class="panel panel-default"><div class="table-responsive">{items}</div><div class="table-footer"> ' . $actions . ' {pager}</div></div>',
     'dataProvider' => $dataProvider,
     'columns' => [
-    
+
         [
             'class' => 'yii\grid\CheckboxColumn',
             'contentOptions' => ['class' => 'text-left tdCheckbox'],
@@ -115,7 +115,7 @@ echo GridView::widget([
                     return ('
                         <div class="thumbnail thumbnail-boxed">
                             <div class="thumb">
-                                '.Html::a(Html::img($model->apartment->titleImage->previewSrc, ['alt' => $model->apartment->titleImage->preview]), ['/partners/default/update', 'id' => $model->apartment->apartment_id]).'
+                                ' . Html::a(Html::img($model->apartment->titleImage->previewSrc, ['alt' => $model->apartment->titleImage->preview]), ['/partners/default/update', 'id' => $model->apartment->apartment_id]) . '
                             </div>
                         </div>
                     ');
@@ -131,14 +131,14 @@ echo GridView::widget([
             'contentOptions' => ['class' => 'text-left tdUserFull'],
             'value' => function ($model) {
                 return \nepster\faceviewer\Widget::widget([
-                    'template' => '<div class="user-face"><div class="avatar">{face}</div>{name} {surname}</div>',
-                    'templateUrl' => ['/users/user/update', 'id' => $model->user->id],
-                    'data' => [
-                        'name' => Html::encode($model->user->profile->name),
-                        'surname' => Html::encode($model->user->profile->surname),
-                        'avatar_url' => $model->user->profile->avatar_url,
-                    ]
-                ]).  '<div class="clearfix"></div> <br/> <div class="text-right">'. Html::a('Все отзывы', ['/reviews/default/index', 's[user_id]' => $model->user->id]) .'</div>';;
+                        'template' => '<div class="user-face"><div class="avatar">{face}</div>{name} {surname}</div>',
+                        'templateUrl' => ['/users/user/update', 'id' => $model->user->id],
+                        'data' => [
+                            'name' => Html::encode($model->user->profile->name),
+                            'surname' => Html::encode($model->user->profile->surname),
+                            'avatar_url' => $model->user->profile->avatar_url,
+                        ]
+                    ]) . '<div class="clearfix"></div> <br/> <div class="text-right">' . Html::a('Все отзывы', ['/reviews/default/index', 's[user_id]' => $model->user->id]) . '</div>';;
             }
         ],
 
@@ -157,10 +157,10 @@ echo GridView::widget([
             'contentOptions' => ['class' => 'text-left tdStatus'],
             'value' => function ($model) {
                 $rating = '';
-                $rating.= '<p>Описание:<br> ' . Yii::$app->BasisFormat->helper('Status')->getItem($model->ratingMatchDescriptionArray, $model->match_description) . '</p>';
-                $rating.= '<p>Цена и Качество:<br> ' . Yii::$app->BasisFormat->helper('Status')->getItem($model->ratingPriceAndQualityArray, $model->price_quality) . '</p>';
-                $rating.= '<p>Чистота:<br> ' . Yii::$app->BasisFormat->helper('Status')->getItem($model->ratingCleanlinessArray, $model->cleanliness) . '</p>';
-                $rating.= '<p>Заселение:<br> ' . Yii::$app->BasisFormat->helper('Status')->getItem($model->ratingEntryArray, $model->entry) . '</p>';
+                $rating .= '<p>Описание:<br> ' . Yii::$app->BasisFormat->helper('Status')->getItem($model->ratingMatchDescriptionArray, $model->match_description) . '</p>';
+                $rating .= '<p>Цена и Качество:<br> ' . Yii::$app->BasisFormat->helper('Status')->getItem($model->ratingPriceAndQualityArray, $model->price_quality) . '</p>';
+                $rating .= '<p>Чистота:<br> ' . Yii::$app->BasisFormat->helper('Status')->getItem($model->ratingCleanlinessArray, $model->cleanliness) . '</p>';
+                $rating .= '<p>Заселение:<br> ' . Yii::$app->BasisFormat->helper('Status')->getItem($model->ratingEntryArray, $model->entry) . '</p>';
                 return $rating;
             }
         ],

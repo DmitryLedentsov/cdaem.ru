@@ -111,7 +111,7 @@ class ReservationController extends \yii\console\Controller
 
                     // Отправить sms
                     $smsMessage = $emailData['userTypeText'] . ' ' . $emailData['typeText'] . ' заявку на бронь (№ ' . $reservation->id . ').';
-                    $smsMessage.= ($type == 'confirm') ? ' Подтвердите и Вы!' : '';
+                    $smsMessage .= ($type == 'confirm') ? ' Подтвердите и Вы!' : '';
                     $this->sendSms(
                         $reservation,
                         $type,

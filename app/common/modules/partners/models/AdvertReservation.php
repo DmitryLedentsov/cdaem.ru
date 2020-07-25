@@ -280,7 +280,7 @@ class AdvertReservation extends \yii\db\ActiveRecord
         }
 
         // Авторизированный пользователь - Арендатор и открывал контакты этой заявки
-        if ($this->landlord_open_contacts AND $this->landlord_id == Yii::$app->user->id) {
+        if ($this->landlord_open_contacts and $this->landlord_id == Yii::$app->user->id) {
             return true;
         }
 

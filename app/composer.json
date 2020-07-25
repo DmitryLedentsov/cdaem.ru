@@ -1,11 +1,12 @@
 {
+    "minimum-stability": "dev",
     "require": {
         "php": ">=5.4.0",
         "yiisoft/yii2": "2.0.35",
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-jui": "*",
         "yiisoft/yii2-swiftmailer": "*",
-        "yiisoft/yii2-twig": "*",
+        "yiisoft/yii2-twig": "2.4.0",
         "nepster-web/yii2-faceviewer-widget": "*",
         "nepster-web/yii2-module-users": "dev-master",
         "nepster-web/yii2-basis-components": "*",
@@ -16,10 +17,10 @@
         "kartik-v/yii2-widget-datetimepicker": "*",
         "vova07/yii2-imperavi-widget": "*",
         "himiklab/yii2-recaptcha-widget" : "*",
+        "ladamalina/yii2-smsc": "*",
         "giggsey/libphonenumber-for-php": "~6.0",
         "vitalik74/yii2-geocode-yandex": "*",
-        "execut/yii2-robots-txt": "dev-master",
-        "ladamalina/yii2-smsc": "dev-master"
+        "execut/yii2-robots-txt": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

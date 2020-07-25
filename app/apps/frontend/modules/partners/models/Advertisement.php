@@ -14,6 +14,6 @@ class Advertisement extends \common\modules\partners\models\Advertisement
      */
     public function getAdvert()
     {
-        return $this->hasOne(Advert::class, ['advert_id' => 'advert_id']);
+        return $this->hasOne(Advert::className(), ['advert_id' => 'advert_id']);
     }
 }

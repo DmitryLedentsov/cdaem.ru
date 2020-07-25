@@ -63,7 +63,7 @@ class Seotext extends ActiveRecord
     {
         parent::beforeValidate();
 
-        if ($this->scenario == 'create' || $this->scenario == 'update' ) {
+        if ($this->scenario == 'create' || $this->scenario == 'update') {
             $this->url = '/' . trim($this->url, '/');
         }
 

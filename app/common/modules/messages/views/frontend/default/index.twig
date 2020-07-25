@@ -20,13 +20,13 @@
                 'url' : '/'
             },
             'links':  [
-            {
-                'label': 'Личный кабинет',
-                'url' : ['/office/default/index']
-            },
-            {
-                'label': 'Сообщения',
-            },
+                {
+                    'label': 'Личный кабинет',
+                    'url' : ['/office/default/index']
+                },
+                {
+                    'label': 'Сообщения',
+                },
             ],
         }) }}
     </div>
@@ -50,7 +50,8 @@
 
             <div id="dialogs" class="no-border">
                 {% for model in dataProvider.models %}
-                    <table class="message {{ this.renderDynamic('return \\common\\modules\\messages\\models\\Mailbox::find()->select("read")->where(["id" => '~model.id~'])->scalar() == 0 ? "unread" : "";') | raw }}" onclick="location.href='{{ path({0 : '/messages/default/view', 'interlocutorId' : model.interlocutor_id}) }}'">
+                    <table class="message {{ this.renderDynamic('return \\common\\modules\\messages\\models\\Mailbox::find()->select("read")->where(["id" => '~model.id~'])->scalar() == 0 ? "unread" : "";') | raw }}"
+                           onclick="location.href='{{ path({0 : '/messages/default/view', 'interlocutorId' : model.interlocutor_id}) }}'">
                         <tr>
                             <td class="user">
                                 {% if model.interlocutor.isBanned() %}

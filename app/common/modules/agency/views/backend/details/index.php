@@ -12,7 +12,7 @@ use yii\grid\GridView;
 $this->title = 'Все заявки на отправку реквизитов';
 
 echo \backend\modules\admin\widgets\HeaderWidget::widget([
-    'title' =>  $this->title,
+    'title' => $this->title,
     'description' => 'Все заявки',
     'breadcrumb' => [
         [
@@ -37,7 +37,7 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
     </div>
 <?php endif; ?>
 
-<br />
+    <br/>
 
 <?php
 
@@ -97,7 +97,7 @@ echo GridView::widget([
                         Html::tag('strong', $model->advert->rentType->name) .
                         '<div class="thumbnail thumbnail-boxed">
                             <div class="thumb">
-                                '.Html::a(Html::img($model->advert->apartment->titleImage->previewSrc, ['alt' => $model->advert->apartment->titleImage->preview]), ['/agency/default/update', 'id' => $model->advert->apartment_id]).'
+                                ' . Html::a(Html::img($model->advert->apartment->titleImage->previewSrc, ['alt' => $model->advert->apartment->titleImage->preview]), ['/agency/default/update', 'id' => $model->advert->apartment_id]) . '
                             </div>
                         </div>
                     ');
@@ -112,7 +112,7 @@ echo GridView::widget([
             'label' => 'Контакты',
             'contentOptions' => ['class' => 'text-left'],
             'value' => function ($model) {
-                return '<p>' .  $model->phone . '</p>' . '<p>' .  Html::encode($model->email) . '</p>';
+                return '<p>' . $model->phone . '</p>' . '<p>' . Html::encode($model->email) . '</p>';
             }
         ],
 
@@ -122,7 +122,7 @@ echo GridView::widget([
             'label' => 'Подробнее',
             'contentOptions' => ['class' => 'text-left'],
             'value' => function ($model) {
-                return '<p>' .  ArrayHelper::getValue($model->getTypeArray(), $model->type) . '</p>' . '<p>' .  ArrayHelper::getValue($model->getPaymentArray(), $model->payment) . '</p>';
+                return '<p>' . ArrayHelper::getValue($model->getTypeArray(), $model->type) . '</p>' . '<p>' . ArrayHelper::getValue($model->getPaymentArray(), $model->payment) . '</p>';
             }
         ],
 

@@ -66,7 +66,7 @@ class ReviewForm extends Review
                 'attributes' => [
                     \yii\db\ActiveRecord::EVENT_BEFORE_INSERT => 'date_create',
                 ],
-                "value" => function() {
+                "value" => function () {
                     return date('Y-m-d H:i:s');
                 }
             ],

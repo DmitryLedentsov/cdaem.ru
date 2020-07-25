@@ -114,12 +114,12 @@ class ActionSearch extends Action
 
         if (!empty($this->date_from)) {
             $dateFrom = strtotime($this->date_from);
-            $query->andWhere(self::tableName(). '.time_create >= :date_from', [':date_from' => $dateFrom]);
+            $query->andWhere(self::tableName() . '.time_create >= :date_from', [':date_from' => $dateFrom]);
         }
 
         if (!empty($this->date_to)) {
             $dateTo = strtotime($this->date_to) + 86400; // Минимальный диапазон выборки 24 часа
-            $query->andWhere(self::tableName(). '.time_create <= :date_to', [':date_to' => $dateTo]);
+            $query->andWhere(self::tableName() . '.time_create <= :date_to', [':date_to' => $dateTo]);
         }
 
         if (!empty($this->application)) {

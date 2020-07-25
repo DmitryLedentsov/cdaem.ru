@@ -36,7 +36,7 @@ class Module extends \yii\base\Module
         /**
          * Включаем в список систем все именования сервисов
          */
-        $services = array_map(function($services) {
+        $services = array_map(function ($services) {
             $result = [];
             foreach ($services as $service => $name) {
                 $result[$service] = [
@@ -70,5 +70,5 @@ class Module extends \yii\base\Module
             'partners' => \common\modules\partners\models\ReservationDeal::getTypesArray()
         ]);
     }
-    
+
 }

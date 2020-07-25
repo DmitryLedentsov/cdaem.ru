@@ -48,7 +48,7 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
     <div class="row">
         <div class="col-md-3 col-md-4 col-sm-4 col-xs-6 col-lg-4">
             <?php foreach ($users as $user): ?>
-                <?php echo Html::a('ID'.$user->id.' ['.$user->email.']', ['/users/user/update', 'id' => $user->id]) ?>
+                <?php echo Html::a('ID' . $user->id . ' [' . $user->email . ']', ['/users/user/update', 'id' => $user->id]) ?>
             <?php endforeach; ?>
         </div>
     </div>
@@ -63,7 +63,7 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
 
     <div class="text-left">
         <?php
-            echo Html::submitButton(Yii::t('users', 'SEND'), ['class' => 'btn btn-success']);
+        echo Html::submitButton(Yii::t('users', 'SEND'), ['class' => 'btn btn-success']);
         ?>
     </div>
 

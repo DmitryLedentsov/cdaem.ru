@@ -31,7 +31,7 @@ class BootstrapBackend implements \yii\base\BootstrapInterface
             'url' => \yii\helpers\Url::toRoute(['/callback/default/index']),
             'options' => [],
             'callback' => function ($params, $content) use ($countCallback) {
-                return Html::tag('li', Html::a( '<span class="label label-danger">'. $countCallback .'</span> ' . $params['name'] . $params['icon'], $params['url']) . $content, $params['options']);
+                return Html::tag('li', Html::a('<span class="label label-danger">' . $countCallback . '</span> ' . $params['name'] . $params['icon'], $params['url']) . $content, $params['options']);
             },
             'dropdown' => [],
             'access' => \Yii::$app->user->can('callback-view'),

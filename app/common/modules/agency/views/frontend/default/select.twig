@@ -67,18 +67,18 @@
 
             {% if app.session.hasFlash('danger') %}
                 <div class="alert alert-danger" role="alert">
-                    {{ app.session.getFlash('danger') | raw  }}
+                    {{ app.session.getFlash('danger') | raw }}
                 </div>
             {% endif %}
 
             {% if app.session.hasFlash('success') %}
                 <div class="alert alert-success" role="alert">
-                    {{ app.session.getFlash('success') | raw  }}      
+                    {{ app.session.getFlash('success') | raw }}
                 </div>
             {% endif %}
 
             <h1>Заполните нужные поля:</h1>
-            <br />
+            <br/>
             <div id="select-result">
 
                 <div class="fields-fix">
@@ -116,14 +116,15 @@
                     {{ captcha_widget({'form': form, 'model': model, 'name': 'verifyCode'}) }}
 
                     <div class="form-group text-right" id="select_form">
-                        <input type="submit" value="Отправить" class="btn btn-primary" />
+                        <input type="submit" value="Отправить" class="btn btn-primary"/>
                     </div>
 
                     {# -------------------------------------------------------- #}
                     <div class="modal fade" id="modal-subway-map" data-title="Выбрать на карте Москвы">
-                        <div class="map"></div> <br />
+                        <div class="map"></div>
+                        <br/>
                         <div class="form-group text-center">
-                            <input type="button" class="close-modal btn btn-primary" value="Выбрать" />
+                            <input type="button" class="close-modal btn btn-primary" value="Выбрать"/>
                         </div>
                     </div>
                     {# -------------------------------------------------------- #}

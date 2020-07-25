@@ -104,6 +104,7 @@ class Advert extends \yii\db\ActiveRecord
      */
     public static function getFullData($id, $city_name_eng = null)
     {
+
         return static::find()
             ->joinWith([
                 'apartment' => function ($query) {
@@ -221,13 +222,13 @@ class Advert extends \yii\db\ActiveRecord
                     ]);
             },
         ])
-        ->with('rentType')           
-        ->andWhere(['city_id' => $cityId])
-        ->andFilterWhere(['rent_type' => $rentType])
-        ->top($top)
-        ->offset($pagination->offset)
-        ->limit($pagination->limit)
-        ->orderBy(['position' => SORT_ASC]);
+            ->with('rentType')
+            ->andWhere(['city_id' => $cityId])
+            ->andFilterWhere(['rent_type' => $rentType])
+            ->top($top)
+            ->offset($pagination->offset)
+            ->limit($pagination->limit)
+            ->orderBy(['position' => SORT_ASC]);
 
         return $query->all();
     }

@@ -19,17 +19,19 @@ use Yii;
  * Default Controller
  * @package common\modules\articles\controllers\backend
  */
-class ArticlelinkController extends Controller {
+class ArticlelinkController extends Controller
+{
 
     /**
      * @inheritdoc
      */
-    public function behaviors() {
+    public function behaviors()
+    {
         return [
             'access' => [
                 'class' => \yii\filters\AccessControl::className(),
                 'rules' => [
-                        [
+                    [
                         'allow' => true,
                         'roles' => Yii::$app->getModule('users')->accessGroupsToControlpanel,
                     ],
@@ -41,19 +43,20 @@ class ArticlelinkController extends Controller {
     /**
      * @inheritdoc
      */
-   
+
 
     /**
      * @inheritdoc
      */
-   
+
 
     /**
      * Все
      * @return string
      * @throws ForbiddenHttpException
      */
-    public function actionIndex() {
+    public function actionIndex()
+    {
         if (!Yii::$app->user->can('articles-view')) {
             throw new ForbiddenHttpException(Yii::t('users.rbac', 'ACCESS_DENIED'));
         }
@@ -65,9 +68,9 @@ class ArticlelinkController extends Controller {
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-                    'model' => $model,
-                    'searchModel' => $searchModel,
-                    'dataProvider' => $dataProvider,
+            'model' => $model,
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -76,25 +79,26 @@ class ArticlelinkController extends Controller {
      * @return mixed
      * @throws ForbiddenHttpException
      */
-    public function actionCreate() {
+    public function actionCreate()
+    {
         if (!Yii::$app->user->can('articles-create')) {
             throw new ForbiddenHttpException(Yii::t('users.rbac', 'ACCESS_DENIED'));
         }
-       
+
         $model = new ArticleLink();
         $modelForm = new ArticleLinkForm(['scenario' => 'create']);
 
         if ($modelForm->load(Yii::$app->request->post())) {
             if ($modelForm->validate()) {
                 $imageName = 'article_' . time();
-                    $modelForm->file = UploadedFile::getInstance($modelForm, 'file');
-                    if (!empty($modelForm->file)) {
-                        $modelForm->file->saveAs(Yii::getAlias($modelForm->imagesPath) . '/' . $imageName . '.' . $modelForm->file->extension);
-                        $modelForm->thumb_img = $imageName . '.' . $modelForm->file->extension;
-                        
-                    }
+                $modelForm->file = UploadedFile::getInstance($modelForm, 'file');
+                if (!empty($modelForm->file)) {
+                    $modelForm->file->saveAs(Yii::getAlias($modelForm->imagesPath) . '/' . $imageName . '.' . $modelForm->file->extension);
+                    $modelForm->thumb_img = $imageName . '.' . $modelForm->file->extension;
+
+                }
                 if ($modelForm->create()) {
-                    
+
                     Yii::$app->session->setFlash('success', 'Данные успешно сохранены.');
                 } else {
                     Yii::$app->session->setFlash('danger', 'Возникла ошибка.');
@@ -107,9 +111,9 @@ class ArticlelinkController extends Controller {
         }
 
         return $this->render('create', [
-                    'model' => $model,
-                    'formModel' => $modelForm,
-                   
+            'model' => $model,
+            'formModel' => $modelForm,
+
         ]);
     }
 
@@ -120,7 +124,8 @@ class ArticlelinkController extends Controller {
      * @throws ForbiddenHttpException
      * @throws NotFoundHttpException
      */
-    public function actionUpdate($id) {
+    public function actionUpdate($id)
+    {
         if (!Yii::$app->user->can('articles-view')) {
             throw new ForbiddenHttpException(Yii::t('users.rbac', 'ACCESS_DENIED'));
         }
@@ -136,12 +141,12 @@ class ArticlelinkController extends Controller {
             }
             if ($formModel->validate()) {
                 $imageName = 'article_' . time();
-                    $formModel->file = UploadedFile::getInstance($formModel, 'file');
-                    if (!empty($formModel->file)) {
-                        $formModel->file->saveAs(Yii::getAlias($formModel->imagesPath) . '/' . $imageName . '.' . $formModel->file->extension);
-                        $formModel->thumb_img = $imageName . '.' . $formModel->file->extension;
-                        
-                    }
+                $formModel->file = UploadedFile::getInstance($formModel, 'file');
+                if (!empty($formModel->file)) {
+                    $formModel->file->saveAs(Yii::getAlias($formModel->imagesPath) . '/' . $imageName . '.' . $formModel->file->extension);
+                    $formModel->thumb_img = $imageName . '.' . $formModel->file->extension;
+
+                }
                 if ($formModel->update($model)) {
                     Yii::$app->session->setFlash('success', 'Данные успешно сохранены.');
                 } else {
@@ -155,9 +160,9 @@ class ArticlelinkController extends Controller {
         }
 
         return $this->render('update', [
-                    'formModel' => $formModel,
-                    'model' => $model,
-                   
+            'formModel' => $formModel,
+            'model' => $model,
+
         ]);
     }
 
@@ -169,7 +174,8 @@ class ArticlelinkController extends Controller {
      * @throws NotFoundHttpException
      * @throws \Exception
      */
-    public function actionDelete($id) {
+    public function actionDelete($id)
+    {
         if (!Yii::$app->user->can('articles-delete')) {
             throw new ForbiddenHttpException(Yii::t('users.rbac', 'ACCESS_DENIED'));
         }
@@ -190,7 +196,8 @@ class ArticlelinkController extends Controller {
      * @return Article the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id) {
+    protected function findModel($id)
+    {
         if (($model = ArticleLink::findOne($id)) !== null) {
             return $model;
         }

@@ -21,13 +21,13 @@
                 'url' : '/'
             },
             'links':  [
-            {
-                'label': 'Личный кабинет',
-                'url' : ['/office/default/index']
-            },
-            {
-                'label': 'Юридическое лицо',
-            },
+                {
+                    'label': 'Личный кабинет',
+                    'url' : ['/office/default/index']
+                },
+                {
+                    'label': 'Юридическое лицо',
+                },
             ],
         }) }}
     </div>
@@ -44,10 +44,13 @@
 
     <div class="options-group clearfix" style="margin: auto; text-align: center">
         <div class="options" style="display: inline-block; float: none">
-            <a href="{{ path(['/users/user/profile']) }}" {{ app.request.pathInfo == 'profile' ? 'class="active"' : '' }}>Редактировать профиль</a>
-            <a href="{{ path(['/users/user/password']) }}" {% if app.request.pathInfo == 'password' %}class="active"{% endif %}>Изменить пароль</a>
+            <a href="{{ path(['/users/user/profile']) }}" {{ app.request.pathInfo == 'profile' ? 'class="active"' : '' }}>Редактировать
+                профиль</a>
+            <a href="{{ path(['/users/user/password']) }}"
+               {% if app.request.pathInfo == 'password' %}class="active"{% endif %}>Изменить пароль</a>
             {% if app.user.identity.profile.legal_person %}
-                <a href="{{ path(['/users/user/legal-person']) }}" {% if app.request.pathInfo == 'legal-person' %}class="active"{% endif %}>Юридическое лицо</a>
+                <a href="{{ path(['/users/user/legal-person']) }}"
+                   {% if app.request.pathInfo == 'legal-person' %}class="active"{% endif %}>Юридическое лицо</a>
             {% endif %}
         </div>
     </div>
@@ -83,14 +86,13 @@
         {{ form.field(model, 'physical_address', {'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'}) | raw }}
 
 
-
         <p><br/></p>
 
         {{ form.field(model, 'director', {'template' : '<div class="col-l">{label}</div> <div class="col-i"><div style="width:40%">{input}</div>{error}</div>'}) | raw }}
         {{ form.field(model, 'description', {'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'}).textarea() | raw }}
 
         <div class="form-group text-right">
-            <input type="submit" value="{{ t('users', 'SAVE') }}" class="btn btn-primary" />
+            <input type="submit" value="{{ t('users', 'SAVE') }}" class="btn btn-primary"/>
         </div>
         {{ active_form_end() }}
 

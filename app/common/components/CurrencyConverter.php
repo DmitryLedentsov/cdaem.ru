@@ -48,7 +48,7 @@ class CurrencyConverter extends Component
 
     public function getList()
     {
-        if(!empty($this->_list)) return $this->_list;
+        if (!empty($this->_list)) return $this->_list;
 
         $cachedData = Yii::$app->get($this->cacheComponent)->get($this->cacheKey);
 

@@ -28,13 +28,13 @@
                 'url' : '/'
             },
             'links':  [
-            {
-                'label': 'Статьи',
-                'url': ['/articles/default/index'],
-            },
-            {
-                'label': model.name,
-            }
+                {
+                    'label': 'Статьи',
+                    'url': ['/articles/default/index'],
+                },
+                {
+                    'label': model.name,
+                }
             ],
         }) }}
     </div>
@@ -52,8 +52,8 @@
                     <div class="col-md-10">
                         <div class="primary text">
                             <div class="article-v-title"><h2>{{ model.name }}</h2></div>
-                                    {% if model.full_text is empty %}
-                                        {% if model.short_text is empty %}
+                            {% if model.full_text is empty %}
+                                {% if model.short_text is empty %}
                                     Статья находится в стадии наполнения информацией.
                                 {% else %}
                                     {{ model.short_text | raw }}
@@ -68,8 +68,10 @@
                         <div class="row">
                             {% for data in model.articlelink %}
                                 <div class="col-md-12 articlelink-item">
-                                    <div class="img_wrap-articlelink" style="background: url(/images/{{ data.thumb_img }})center center;background-size:cover"></div>
-                                    <a href="{{ data.link_page }}" class="article-lnk"><span class="articlelink-title">{{ data.title }}</span></a>
+                                    <div class="img_wrap-articlelink"
+                                         style="background: url(/images/{{ data.thumb_img }})center center;background-size:cover"></div>
+                                    <a href="{{ data.link_page }}" class="article-lnk"><span
+                                                class="articlelink-title">{{ data.title }}</span></a>
                                     <a href="{{ data.link_page }}" class="article-nolnk"></a>
                                 </div>
                             {% endfor %}
@@ -80,11 +82,11 @@
 
 
 
-                {% else  %}
+                {% else %}
                     <div class="primary text">
                         <div class="article-v-title"><h2>{{ model.name }}</h2></div>
-                                {% if model.full_text is empty %}
-                                    {% if model.short_text is empty %}
+                        {% if model.full_text is empty %}
+                            {% if model.short_text is empty %}
                                 Статья находится в стадии наполнения информацией.
                             {% else %}
                                 {{ model.short_text | raw }}

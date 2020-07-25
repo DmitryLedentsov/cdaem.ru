@@ -1,4 +1,4 @@
-/*
+﻿/*
 *       Developed by Justin Mead
 *       ©2011 MeadMiracle
 *		www.meadmiracle.com / meadmiracle@gmail.com
@@ -141,8 +141,8 @@
     };
 
     function UpdateLabel(group) {
-        var showingCount = $("#" + group.view + " option").size();
-        var hiddenCount = $("#" + group.storage + " option").size();
+        var showingCount = $("#" + group.view + " option").length;
+        var hiddenCount = $("#" + group.storage + " option").length;
         $("#" + group.counter).text('Showing ' + showingCount + ' of ' + (showingCount + hiddenCount));
     }
 

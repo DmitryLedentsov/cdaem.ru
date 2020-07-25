@@ -19,19 +19,19 @@ class Callback extends \yii\db\ActiveRecord
     const PROCESSED = 1;
     const UNPROCESSED = 0;
 
-	/**
-	 * @inheritdoc
-	 */
-	public function attributeLabels()
-	{
-		return [
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
             'callback_id' => 'ID',
             'phone' => 'Телефон',
             'active' => 'Перезвонили',
             'date_create' => 'Дата создания',
             'date_processed' => 'Дата обработки',
-		];
-	}
+        ];
+    }
 
     /**
      * @inheritdoc
@@ -44,11 +44,11 @@ class Callback extends \yii\db\ActiveRecord
         ];
     }
 
-	/**
-	 * @inheritdoc
-	 */
-	public static function tableName()
-	{
-		return '{{%callback}}';
-	}
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return '{{%callback}}';
+    }
 }

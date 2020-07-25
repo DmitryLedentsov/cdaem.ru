@@ -21,27 +21,27 @@
 
 {% block breadcrumbs %}
     <div class="container">
-    <div class="breadcrumbs">
-        {{ use('yii/widgets/Breadcrumbs') }}
-        {{ breadcrumbs_widget({
-            'itemTemplate' : "<li>{link}</li>\n",
-            'homeLink' :
-            {
-                'label' : 'Главная',
-                'url' : '/'
-            },
-            'links':  [
-            {
-                'label': 'Регистрация',
-                'url': ['/users/guest/signup'],
-            },
-            {
-                'label': 'Авторизация',
-                'url': ['/users/guest/login'],
-            },
-            ],
-        }) }}
-    </div>
+        <div class="breadcrumbs">
+            {{ use('yii/widgets/Breadcrumbs') }}
+            {{ breadcrumbs_widget({
+                'itemTemplate' : "<li>{link}</li>\n",
+                'homeLink' :
+                {
+                    'label' : 'Главная',
+                    'url' : '/'
+                },
+                'links':  [
+                    {
+                        'label': 'Регистрация',
+                        'url': ['/users/guest/signup'],
+                    },
+                    {
+                        'label': 'Авторизация',
+                        'url': ['/users/guest/login'],
+                    },
+                ],
+            }) }}
+        </div>
     </div>
 {% endblock %}
 
@@ -59,13 +59,13 @@
 
             {% if app.session.hasFlash('danger') %}
                 <div class="alert alert-danger" role="alert">
-                    {{ app.session.getFlash('danger') | raw  }}
+                    {{ app.session.getFlash('danger') | raw }}
                 </div>
             {% endif %}
 
             {% if app.session.hasFlash('success') %}
                 <div class="alert alert-success" role="alert">
-                    {{ app.session.getFlash('success') | raw  }}
+                    {{ app.session.getFlash('success') | raw }}
                 </div>
             {% endif %}
 
@@ -87,10 +87,11 @@
                 <div class="clearfix"></div>
 
                 <div class="form-group text-right">
-                    <a href="{{ path(['/users/guest/signup']) }}" style="font-weight: bold">{{  t('users', 'SIGNUP') }}</a> |
-                    <a href="{{ path(['/users/guest/resend']) }}">{{  t('users', 'RESEND') }}</a> |
-                    <a href="{{ path(['/users/guest/recovery']) }}">{{  t('users', 'RECOVERY') }}</a> &nbsp;
-                    <input type="submit" value="{{ t('users', 'SIGNIN') }}" class="btn btn-primary" />
+                    <a href="{{ path(['/users/guest/signup']) }}"
+                       style="font-weight: bold">{{ t('users', 'SIGNUP') }}</a> |
+                    <a href="{{ path(['/users/guest/resend']) }}">{{ t('users', 'RESEND') }}</a> |
+                    <a href="{{ path(['/users/guest/recovery']) }}">{{ t('users', 'RECOVERY') }}</a> &nbsp;
+                    <input type="submit" value="{{ t('users', 'SIGNIN') }}" class="btn btn-primary"/>
                 </div>
 
             </div>

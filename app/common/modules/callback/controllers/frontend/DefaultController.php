@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace common\modules\callback\controllers\frontend;
 
@@ -15,50 +15,50 @@ use Yii;
  */
 class DefaultController extends \frontend\components\Controller
 {
-	/**
-	 * @inheritdoc
-	 */
-	public function behaviors()
-	{
-		return [
-			'access' => [
-				'class' => \yii\filters\AccessControl::className(),
-				'rules' => [
-					[
-						'actions' => ['index'],
-						'allow' => true,
-						'roles' => ['?', '@'],
-					],
-				],
-			],
-		];
-	}
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => \yii\filters\AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['index'],
+                        'allow' => true,
+                        'roles' => ['?', '@'],
+                    ],
+                ],
+            ],
+        ];
+    }
 
-	/**
-	 * @inheritdoc
-	 */
-	public function beforeAction($action)
-	{
-		if (!parent::beforeAction($action)) {
-			return false;
-		}
+    /**
+     * @inheritdoc
+     */
+    public function beforeAction($action)
+    {
+        if (!parent::beforeAction($action)) {
+            return false;
+        }
 
-		$this->module->viewPath = '@common/modules/callback/views/frontend';
+        $this->module->viewPath = '@common/modules/callback/views/frontend';
 
-		return true;
-	}
-    
-	/**
-	 * Обратный звонок
-	 * @return array|Response
-	 */
-	public function actionIndex()
-	{
+        return true;
+    }
+
+    /**
+     * Обратный звонок
+     * @return array|Response
+     */
+    public function actionIndex()
+    {
         if (!Yii::$app->request->isAjax) {
             return $this->goBack();
         }
 
-		Yii::$app->response->format = Response::FORMAT_JSON;
+        Yii::$app->response->format = Response::FORMAT_JSON;
 
         $model = new CallbackForm(['scenario' => 'create']);
         if ($model->load(Yii::$app->request->post())) {
@@ -76,14 +76,14 @@ class DefaultController extends \frontend\components\Controller
                     ];
                 }
             }
-            
+
             return $errors;
         }
 
-		return [
-			'status' => 0,
-			'message' => 'Возникла критическая ошибка'
-		];
+        return [
+            'status' => 0,
+            'message' => 'Возникла критическая ошибка'
+        ];
     }
 
 }

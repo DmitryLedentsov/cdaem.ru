@@ -98,7 +98,7 @@ final class AdvertisingInSection extends \yii\base\BaseObject implements Service
                 $percent += 25;
             } else if ($amount >= 20) {
                 $percent += 20;
-            }  else if ($amount >= 10) {
+            } else if ($amount >= 10) {
                 $percent += 17;
             } else if ($amount >= 5) {
                 $percent += 15;
@@ -168,16 +168,16 @@ final class AdvertisingInSection extends \yii\base\BaseObject implements Service
 
         return true;
     }
-    
-    
-     public function validateContact()
+
+
+    public function validateContact()
     {
-        
+
         return true;
     }
-    
+
     public function validateContactOpen()
-    { 
+    {
         return true;
     }
 

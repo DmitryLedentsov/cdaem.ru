@@ -58,7 +58,7 @@ class ReservationDeal extends \yii\db\ActiveRecord
      * - Владелец оплатил
      * - Клиент оплатил
      */
-    const CONFIRM_OWNER  = 'RESERVATION_CONFIRM_OWNER';
+    const CONFIRM_OWNER = 'RESERVATION_CONFIRM_OWNER';
     const CONFIRM_CLIENT = 'RESERVATION_CONFIRM_CLIENT';
     const RETURN_MONEY = 'RESERVATION_RETURN_MONEY';
     const RETURN_MONEY_FAILURE = 'RESERVATION_RETURN_MONEY_OF_FAILURE';
@@ -70,11 +70,11 @@ class ReservationDeal extends \yii\db\ActiveRecord
     public static function getTypesArray()
     {
         return [
-            self::CONFIRM_OWNER   => [
+            self::CONFIRM_OWNER => [
                 'label' => 'Подтвердил заявку',
                 'style' => '',
             ],
-            self::CONFIRM_CLIENT   => [
+            self::CONFIRM_CLIENT => [
                 'label' => 'Подтвердил заявку',
                 'style' => '',
             ],

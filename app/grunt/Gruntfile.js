@@ -1,5 +1,5 @@
 // Стандартный экспорт модуля в nodejs
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
     // Инициализация конфига GruntJS
     grunt.initConfig({
@@ -153,7 +153,7 @@ module.exports = function(grunt) {
                     'src/templates/layouts/!*'*/
                 ],
                 tasks: [
-                    'less', 
+                    'less',
                     'cssmin' //, 'uglify'
                 ],
                 options: {

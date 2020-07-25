@@ -240,13 +240,13 @@ class Pay extends \yii\base\Model
         if ($this->scenario == 'pay-account') {
 
             // Чтобы исключить случайные покупки на сайте, пользователь может оплачивать услуги 1 раз в минуту
-            if (Service::getCountRecordsForInterval(Yii::$app->user->id)) {
-                $transaction->rollBack();
-                return [
-                    'status' => 0,
-                    'message' => 'Последнее время оплаты услуги было зафиксировано менее 10 секунд назад. Чтобы исключить случайные покупки на сайте действует временное ограничение.',
-                ];
-            }
+            /*         if (Service::getCountRecordsForInterval(Yii::$app->user->id)) {
+                         $transaction->rollBack();
+                         return [
+                             'status' => 0,
+                             'message' => 'Последнее время оплаты услуги было зафиксировано менее 10 секунд назад. Чтобы исключить случайные покупки на сайте действует временное ограничение.',
+                         ];
+                     }*/
 
             // Списать средства у пользователя
             $paymentId = Yii::$app->balance

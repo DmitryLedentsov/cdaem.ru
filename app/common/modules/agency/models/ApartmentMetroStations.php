@@ -12,7 +12,7 @@ use Yii;
 class ApartmentMetroStations extends \yii\db\ActiveRecord
 {
     use ModuleTrait;
-    
+
     /**
      * @inheritdoc
      */

@@ -19,14 +19,14 @@ class m160324_152349_seo_specifications extends Migration
         }
 
         $this->createTable('{{seo_specifications}}', [
-            'id' => $this->primaryKey(). ' COMMENT "№"',
-            'city' => $this->string(128). ' COMMENT "Город"',
-            'url' => $this->string(). ' COMMENT "Url"',
-            'title' => $this->string(). ' COMMENT "Title"',
-            'description' => $this->string(). ' COMMENT "Description"',
-            'keywords' => $this->string(). ' COMMENT "Keywords"',
-            'date_create' => $this->dateTime(). ' COMMENT "Дата создания"',
-            'date_update' => $this->dateTime(). ' COMMENT "Дата редактирования"',
+            'id' => $this->primaryKey() . ' COMMENT "№"',
+            'city' => $this->string(128) . ' COMMENT "Город"',
+            'url' => $this->string() . ' COMMENT "Url"',
+            'title' => $this->string() . ' COMMENT "Title"',
+            'description' => $this->string() . ' COMMENT "Description"',
+            'keywords' => $this->string() . ' COMMENT "Keywords"',
+            'date_create' => $this->dateTime() . ' COMMENT "Дата создания"',
+            'date_update' => $this->dateTime() . ' COMMENT "Дата редактирования"',
         ], $tableOptions);
 
         $this->createIndex('idx_seo_specifications_city', '{{seo_specifications}}', 'city');

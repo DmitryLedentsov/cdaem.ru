@@ -14,24 +14,24 @@ use Yii;
  */
 class DefaultController extends \frontend\components\Controller
 {
-	/**
-	 * @inheritdoc
-	 */
-	public function behaviors()
-	{
-		return [
-			'access' => [
-				'class' => \yii\filters\AccessControl::className(),
-				'rules' => [
-					[
-						'allow' => true,
-						'actions' => [],
-						'roles' => ['?', '@']
-					],
-				]
-			]
-		];
-	}
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => \yii\filters\AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => [],
+                        'roles' => ['?', '@']
+                    ],
+                ]
+            ]
+        ];
+    }
 
     /**
      * @inheritdoc
@@ -75,8 +75,8 @@ class DefaultController extends \frontend\components\Controller
             'formModel' => $formModel,
         ]);
     }
-    
-    
+
+
     public function actionWorkvac()
     {
         $model = new Helpdesk();
@@ -100,8 +100,8 @@ class DefaultController extends \frontend\components\Controller
             'formModel' => $formModel,
         ]);
     }
-    
-      public function actionHelpphone()
+
+    public function actionHelpphone()
     {
         $model = new Helpdesk();
         $formModel = new HelpdeskForm(['scenario' => 'guest-ask-phone']);
@@ -110,11 +110,11 @@ class DefaultController extends \frontend\components\Controller
             if (!$errors) {
                 if ($formModel->phonehelp()) {
                     Yii::$app->session->setFlash('success', 'Обращение успешно отправлено. Ваша заявка будет расмотренна в течении суток.');
-                    
+
                 } else {
                     Yii::$app->session->setFlash('danger', 'При отправки обращения возникла ошибка.');
                 }
-                 return Yii::$app->controller->redirect(['/users/user/profile']);;
+                return Yii::$app->controller->redirect(['/users/user/profile']);;
             } else if (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
                 return $errors;

@@ -8,7 +8,7 @@ use yii\base\Model;
 use Yii;
 
 /**
- * 
+ *
  */
 class RentTypeSearch extends RentType
 {

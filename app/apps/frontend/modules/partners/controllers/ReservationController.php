@@ -27,7 +27,7 @@ class ReservationController extends \frontend\components\Controller
     {
         $behaviors = [
             'access' => [
-                'class' => \yii\filters\AccessControl::class,
+                'class' => \yii\filters\AccessControl::className(),
                 'rules' => [
                     [
                         'actions' => ['index', 'advert-reservation'],

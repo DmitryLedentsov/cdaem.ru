@@ -6,7 +6,9 @@ use common\modules\partners\interfaces\ServiceInterface;
 use frontend\modules\partners\models\Apartment;
 use frontend\modules\partners\models\Advert;
 use common\modules\partners\models\Service;
+use yii\validators\ExistValidator;
 use yii\validators\EmailValidator;
+use yii\base\InvalidConfigException;
 use yii\helpers\Json;
 use Yii;
 
@@ -172,6 +174,7 @@ final class AdvertInTop extends \yii\base\BaseObject implements ServiceInterface
 
     public function validateContact()
     {
+
         return true;
     }
 
@@ -255,12 +258,14 @@ final class AdvertInTop extends \yii\base\BaseObject implements ServiceInterface
             // Когда объявление вылетает из топа, контакты закрываются автоматически
             $advert->apartment->open_contacts = 0;
             $advert->apartment->save(false);
+
         }
 
         // Если у пользователя закрываются контакты хотябы одного объявления,
         // то он теряет статус VIP
         $this->_process->user->profile->vip = 0;
         $this->_process->user->profile->save(false);
+
 
         $this->updateAdvertsPositions();
 

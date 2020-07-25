@@ -12,7 +12,7 @@ use yii\widgets\DetailView;
 $this->title = 'Редактировать отзыв';
 
 echo \backend\modules\admin\widgets\HeaderWidget::widget([
-    'title' =>  'Управление отзывами',
+    'title' => 'Управление отзывами',
     'description' => $this->title,
     'breadcrumb' => [
         [
@@ -43,4 +43,4 @@ echo \backend\modules\admin\widgets\ExtraControlWidget::widget([
 echo $this->render('_form', [
     'model' => $model,
     'formModel' => $formModel,
-    ]);
+]);

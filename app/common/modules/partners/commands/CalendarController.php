@@ -37,7 +37,7 @@ class CalendarController extends \yii\console\Controller
         $countSuccess = 0;
         $countError = 0;
         foreach ($batchRecords as $records) {
-            foreach($records as $record) {
+            foreach ($records as $record) {
                 // Выключаем "Сейчас свободно" апартаменту
                 $apartment = models\Apartment::findOne($record->apartment_id);
                 // если апартамента не нашли
@@ -65,7 +65,7 @@ class CalendarController extends \yii\console\Controller
             ->batch();
 
         foreach ($batchRecords as $records) {
-            foreach($records as $record) {
+            foreach ($records as $record) {
                 // Включаем "Сейчас свободно" апартаменту
                 $apartment = models\Apartment::findOne($record->apartment_id);
                 // если апартамента не нашли
@@ -93,8 +93,8 @@ class CalendarController extends \yii\console\Controller
             ':endDateOfLastMonth' => $dateTime->format('Y-m-d H:i:s')
         ]);
 
-        $this->stdout('Процес выполнен. Обработано записей: '.($countSuccess + $countError).', возникло ошибок: ' . $countError . PHP_EOL, Console::FG_GREEN);
-        Yii::info('Процес выполнен. Обработано записей: '.($countSuccess + $countError).', возникло ошибок: ' . $countError, 'partners-calendar');
+        $this->stdout('Процес выполнен. Обработано записей: ' . ($countSuccess + $countError) . ', возникло ошибок: ' . $countError . PHP_EOL, Console::FG_GREEN);
+        Yii::info('Процес выполнен. Обработано записей: ' . ($countSuccess + $countError) . ', возникло ошибок: ' . $countError, 'partners-calendar');
     }
 
 

@@ -11,6 +11,7 @@ use kartik\date\DatePicker;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+
 ?>
 
 <?php $form = ActiveForm::begin(); ?>
@@ -19,16 +20,22 @@ use yii\helpers\Html;
     <div class="row">
         <div class="col-md-6 col-md-6 col-sm-6 col-xs-12 col-lg-6">
             <p><b><?= $user->getAttributeLabel('id') ?></b>: <?= $user->id ?></p>
-            <p><b><?= $user->getAttributeLabel('time_activity') ?></b>: <?= Yii::$app->BasisFormat->helper('DateTime')->toFullDateTime($user->time_activity) ?></p>
+            <p>
+                <b><?= $user->getAttributeLabel('time_activity') ?></b>: <?= Yii::$app->BasisFormat->helper('DateTime')->toFullDateTime($user->time_activity) ?>
+            </p>
             <p><b><?= $user->getAttributeLabel('ip_register') ?></b>: <?= $user->ip_register ?></p>
-            <p><b><?= $user->getAttributeLabel('time_register') ?></b>: <?= Yii::$app->BasisFormat->helper('DateTime')->toFullDateTime($user->time_register) ?></p>
-            <p><b><?= $user->getAttributeLabel('funds_main') ?></b>: <?= Yii::$app->formatter->asCurrency($user->funds_main, 'RUB') ?></p>
+            <p>
+                <b><?= $user->getAttributeLabel('time_register') ?></b>: <?= Yii::$app->BasisFormat->helper('DateTime')->toFullDateTime($user->time_register) ?>
+            </p>
+            <p>
+                <b><?= $user->getAttributeLabel('funds_main') ?></b>: <?= Yii::$app->formatter->asCurrency($user->funds_main, 'RUB') ?>
+            </p>
         </div>
         <div class="col-md-6 col-md-6 col-sm-6 col-xs-12 col-lg-6">
             <p>
                 <?php
-                    $online = $user->isOnline();
-                    echo $online ? Html::tag('span', Yii::t('users', 'ONLINE'), ['style' => 'color: green']) : Html::tag('span', Yii::t('users', 'OFFLINE'), ['style' => 'color: red']);
+                $online = $user->isOnline();
+                echo $online ? Html::tag('span', Yii::t('users', 'ONLINE'), ['style' => 'color: green']) : Html::tag('span', Yii::t('users', 'OFFLINE'), ['style' => 'color: red']);
                 ?>
             </p>
             <p>
@@ -49,9 +56,11 @@ use yii\helpers\Html;
                 }
                 ?>
             </p>
-            <p><?php   echo Html::a(Yii::t('users', 'USERS_SEND_EMAIL'), ['/users/user/send-email', 'ids[]' => $user->id]); ?></p>
-            <p><b><?php  echo Html::a('Управление счетом', ['/merchant/default/control', 'id' => $user->id]); ?></b></p>
-            <p><b><?php  echo Html::a('Апартаменты пользователя', ['/partners/default/index', 's[user_id]' => $user->id]); ?></b></p>
+            <p><?php echo Html::a(Yii::t('users', 'USERS_SEND_EMAIL'), ['/users/user/send-email', 'ids[]' => $user->id]); ?></p>
+            <p><b><?php echo Html::a('Управление счетом', ['/merchant/default/control', 'id' => $user->id]); ?></b></p>
+            <p>
+                <b><?php echo Html::a('Апартаменты пользователя', ['/partners/default/index', 's[user_id]' => $user->id]); ?></b>
+            </p>
         </div>
     </div>
 
@@ -62,9 +71,9 @@ use yii\helpers\Html;
     <h6 class="heading-hr"><?= Yii::t('users', 'USER') ?></h6>
     <div class="row">
         <div class="col-md-3 col-md-4 col-sm-4 col-xs-6 col-lg-4"><?= $form->field($user, 'group')->dropDownList(\nepster\users\rbac\models\AuthItem::getGroupsArray(), $user->isNewRecord ?
-            ['options' => [
-                'user' => ['selected ' => true]
-            ]] : []) ?>
+                ['options' => [
+                    'user' => ['selected ' => true]
+                ]] : []) ?>
         </div>
         <div class="col-md-3 col-md-4 col-sm-4 col-xs-6 col-lg-4"></div>
     </div>
@@ -134,7 +143,6 @@ use yii\helpers\Html;
         <div class="col-md-3 col-md-4 col-sm-4 col-xs-6 col-lg-2"><?= $form->field($profile, 'user_partner_verify')->dropDownList(Yii::$app->formatter->booleanFormat) ?></div>
         <div class="col-md-3 col-md-4 col-sm-4 col-xs-6 col-lg-2"><?= $form->field($profile, 'user_partner_rating') ?></div>
     </div>
-
 
 
     <p><br/></p>

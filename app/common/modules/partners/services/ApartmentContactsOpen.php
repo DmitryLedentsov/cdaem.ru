@@ -17,7 +17,8 @@ use Yii;
  *
  * @package common\modules\partners\services
  */
-final class ApartmentContactsOpen extends \yii\base\BaseObject implements ServiceInterface {
+final class ApartmentContactsOpen extends \yii\base\BaseObject implements ServiceInterface
+{
 
     /**
      * @var string Идентификатор сервиса
@@ -45,29 +46,33 @@ final class ApartmentContactsOpen extends \yii\base\BaseObject implements Servic
     /**
      * @inheritdoc
      */
-    public function getId() {
+    public function getId()
+    {
         return self::NAME;
     }
 
     /**
      * @inheritdoc
      */
-    public function getPrice() {
+    public function getPrice()
+    {
         return 5;
     }
 
     /**
      * @inheritdoc
      */
-    public function getName() {
+    public function getName()
+    {
         return 'Открыть контакты';
     }
 
     /**
      * @inheritdoc
      */
-    public function calculateDiscount($amount, array $data = []) {
-        $days = isset($data['days']) ? (int) $data['days'] : 1;
+    public function calculateDiscount($amount, array $data = [])
+    {
+        $days = isset($data['days']) ? (int)$data['days'] : 1;
         $price = isset($data['price']) ? $data['price'] : 1;
 
         if ($amount >= 3 || $days >= 7) {
@@ -139,21 +144,24 @@ final class ApartmentContactsOpen extends \yii\base\BaseObject implements Servic
     /**
      * @inheritdoc
      */
-    public function isTimeInterval() {
+    public function isTimeInterval()
+    {
         return true;
     }
 
     /**
      * @inheritdoc
      */
-    public function isInstant() {
+    public function isInstant()
+    {
         return false;
     }
 
     /**
      * @inheritdoc
      */
-    public function setProcess(Service $process) {
+    public function setProcess(Service $process)
+    {
         $this->_process = $process;
         return $this;
     }
@@ -161,9 +169,10 @@ final class ApartmentContactsOpen extends \yii\base\BaseObject implements Servic
     /**
      * @inheritdoc
      */
-    public function validate() {
+    public function validate()
+    {
         $data = Json::decode($this->_process->data);
-        $this->_selected = isset($data['selected']) ? (array) $data['selected'] : [];
+        $this->_selected = isset($data['selected']) ? (array)$data['selected'] : [];
         $this->_email = $this->_process->user ? $this->_process->user->email : null;
 
         // Проверяем почтовый адрес
@@ -188,19 +197,20 @@ final class ApartmentContactsOpen extends \yii\base\BaseObject implements Servic
 
     //////////////Проверка на бронь для открытия контактов
 
-    public function validateContact() {
+    public function validateContact()
+    {
         $data = Json::decode($this->_process->data);
-        $this->_selected = isset($data['selected']) ? (array) $data['selected'] : [];
+        $this->_selected = isset($data['selected']) ? (array)$data['selected'] : [];
         $this->_email = $this->_process->user ? $this->_process->user->email : null;
 
         foreach ($this->_selected as $apartmentId) {
             $apartment = \frontend\modules\partners\models\Apartment::findOne($apartmentId);
             foreach ($apartment->adverts as $advert) {
                 $reservationwidth = AdvertReservation::find()
-                                ->Where(['=', 'landlord_id', Yii::$app->user->id])
-                                ->andWhere(['!=', 'confirm', 3])
-                                ->andWhere(['!=', 'closed', true])
-                                ->andWhere(['advert_id' => $advert->advert_id])->one();
+                    ->Where(['=', 'landlord_id', Yii::$app->user->id])
+                    ->andWhere(['!=', 'confirm', 3])
+                    ->andWhere(['!=', 'closed', true])
+                    ->andWhere(['advert_id' => $advert->advert_id])->one();
             }
 
             if (!empty($reservationwidth))
@@ -212,9 +222,10 @@ final class ApartmentContactsOpen extends \yii\base\BaseObject implements Servic
 
     ////////////////
 
-    public function validateContactOpen() {
+    public function validateContactOpen()
+    {
         $data = Json::decode($this->_process->data);
-        $this->_selected = isset($data['selected']) ? (array) $data['selected'] : [];
+        $this->_selected = isset($data['selected']) ? (array)$data['selected'] : [];
         $this->_email = $this->_process->user ? $this->_process->user->email : null;
         //$this->_process;
         foreach ($this->_selected as $apartmentId) {
@@ -222,17 +233,17 @@ final class ApartmentContactsOpen extends \yii\base\BaseObject implements Servic
             $proceses = \common\modules\partners\models\Service::findProcessesInQueueApartament($this->_process->user->id);
             if ($apartment->open_contacts == 1) {
                 $isopen[] = $apartment;
-                
-            } 
-           if(!empty($proceses)) {
-             return false; 
+
             }
-            
-              if (!empty($isopen)){
+            if (!empty($proceses)) {
                 return false;
             }
-          
-                
+
+            if (!empty($isopen)) {
+                return false;
+            }
+
+
         }
 
 
@@ -244,7 +255,8 @@ final class ApartmentContactsOpen extends \yii\base\BaseObject implements Servic
     /**
      * @inheritdoc
      */
-    public function enable() {
+    public function enable()
+    {
         if (!$this->validate()) {
             return false;
         }
@@ -277,7 +289,8 @@ final class ApartmentContactsOpen extends \yii\base\BaseObject implements Servic
     /**
      * @inheritdoc
      */
-    public function disable() {
+    public function disable()
+    {
         if (!$this->validate()) {
             return false;
         }
@@ -285,9 +298,9 @@ final class ApartmentContactsOpen extends \yii\base\BaseObject implements Servic
         // Закрываем контакты
         foreach ($this->_selected as $apartmentId) {
             $apartment = \common\modules\partners\models\Apartment::find()
-                    ->joinWith('adverts')
-                    ->where([\common\modules\partners\models\Apartment::tableName() . '.apartment_id' => $apartmentId])
-                    ->one();
+                ->joinWith('adverts')
+                ->where([\common\modules\partners\models\Apartment::tableName() . '.apartment_id' => $apartmentId])
+                ->one();
             if ($apartment) {
                 $isTop = false;
                 foreach ($apartment->adverts as $advert) {
@@ -314,7 +327,8 @@ final class ApartmentContactsOpen extends \yii\base\BaseObject implements Servic
     /**
      * @inheritdoc
      */
-    public function getMailData() {
+    public function getMailData()
+    {
         return [
             'subject' => null,
             'view' => null,
@@ -327,21 +341,24 @@ final class ApartmentContactsOpen extends \yii\base\BaseObject implements Servic
     /**
      * @inheritdoc
      */
-    public function getSmsString() {
+    public function getSmsString()
+    {
         return null;
     }
 
     /**
      * @inheritdoc
      */
-    public function isNeedRollBackProcess() {
+    public function isNeedRollBackProcess()
+    {
         return true;
     }
 
     /**
      * @inheritdoc
      */
-    public function runBackgroundProcess() {
+    public function runBackgroundProcess()
+    {
         Yii::$app->consoleRunner->run('service/execute-instant-process ' . $this->_process->id);
     }
 

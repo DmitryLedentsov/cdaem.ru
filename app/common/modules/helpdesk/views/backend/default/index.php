@@ -36,7 +36,7 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
     </div>
 <?php endif; ?>
 
-<br />
+    <br/>
 
 
 <?php
@@ -105,20 +105,20 @@ echo GridView::widget([
             'format' => 'html',
             'label' => 'Пользователь',
             'contentOptions' => ['class' => 'text-left tdUserFull'],
-            'value' => function($model) {
+            'value' => function ($model) {
                 if ($model->user_id === null) {
                     return Html::encode($model->user_name) . '<br/>' . Html::encode($model->email);
                 } else {
                     return \nepster\faceviewer\Widget::widget([
-                        'template' => '<div class="user-face"><div class="avatar">{face}</div>{name} {surname}</div>',
-                        'templateUrl' => ['/users/user/update', 'id' => $model->user->id],
-                        'data' => [
-                            'email' => Html::encode($model->email),
-                            'name' => Html::encode($model->user->profile->name),
-                            'surname' => Html::encode($model->user->profile->surname),
-                            'avatar_url' => $model->user->profile->avatar_url,
-                        ]
-                    ]) . '<div>EMAIL: <b>'.Html::encode($model->user->email).'</b></div>';
+                            'template' => '<div class="user-face"><div class="avatar">{face}</div>{name} {surname}</div>',
+                            'templateUrl' => ['/users/user/update', 'id' => $model->user->id],
+                            'data' => [
+                                'email' => Html::encode($model->email),
+                                'name' => Html::encode($model->user->profile->name),
+                                'surname' => Html::encode($model->user->profile->surname),
+                                'avatar_url' => $model->user->profile->avatar_url,
+                            ]
+                        ]) . '<div>EMAIL: <b>' . Html::encode($model->user->email) . '</b></div>';
                 }
             }
         ],
@@ -127,7 +127,7 @@ echo GridView::widget([
             'attribute' => 'department',
             'format' => 'html',
             'contentOptions' => ['class' => 'text-center tdStatus'],
-            'value' => function($model) {
+            'value' => function ($model) {
                 return Yii::$app->BasisFormat->helper('Status')->getItem($model->departmentArray, $model->department);
             },
         ],
@@ -136,7 +136,7 @@ echo GridView::widget([
             'attribute' => 'theme',
             'format' => 'html',
             'contentOptions' => ['class' => 'text-left '],
-            'value' => function($model) {
+            'value' => function ($model) {
                 return Html::a(Html::encode($model->theme), ['default/view', 'id' => $model->ticket_id]);
             },
         ],
@@ -145,7 +145,7 @@ echo GridView::widget([
             'attribute' => 'priority',
             'format' => 'html',
             'contentOptions' => ['class' => 'text-center tdStatus'],
-            'value' => function($model) {
+            'value' => function ($model) {
                 return Yii::$app->BasisFormat->helper('Status')->getItem($model->priorityArray, $model->priority);
             },
         ],
@@ -154,7 +154,7 @@ echo GridView::widget([
             'attribute' => 'answered',
             'format' => 'html',
             'contentOptions' => ['class' => 'text-center tdStatus'],
-            'value' => function($model) {
+            'value' => function ($model) {
                 return Yii::$app->BasisFormat->helper('Status')->getItem($model->answeredArray, $model->answered);
             },
         ],
@@ -169,7 +169,7 @@ echo GridView::widget([
             'attribute' => 'source_type',
             'format' => 'html',
             'contentOptions' => ['class' => 'text-left tdStatus'],
-            'value' => function($model) {
+            'value' => function ($model) {
                 if ($model->source_type) {
                     return Yii::$app->BasisFormat->helper('Status')->getItem($model->sourceTypeArray, $model->source_type);
                 }

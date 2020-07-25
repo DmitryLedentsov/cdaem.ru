@@ -8,12 +8,14 @@ use yii\helpers\Html;
  * Bootstrap Backend
  * @package common\modules\articles
  */
-class BootstrapBackend implements \yii\base\BootstrapInterface {
+class BootstrapBackend implements \yii\base\BootstrapInterface
+{
 
     /**
      * @inheritdoc
      */
-    public function bootstrap($app) {
+    public function bootstrap($app)
+    {
         $articlesAccess = 1;
 
         if (!\Yii::$app->user->can('articles-view') && !\Yii::$app->user->can('articles-create')
@@ -33,7 +35,7 @@ class BootstrapBackend implements \yii\base\BootstrapInterface {
             'options' => [],
             'access' => $articlesAccess,
             'dropdown' => [
-                    [
+                [
                     'controller' => 'default',
                     'action' => 'index',
                     'name' => 'Все статьи',
@@ -41,7 +43,7 @@ class BootstrapBackend implements \yii\base\BootstrapInterface {
                     'options' => [],
                     'access' => \Yii::$app->user->can('articles-view'),
                 ],
-                    [
+                [
                     'controller' => 'default',
                     'action' => 'create',
                     'name' => 'Создать статью',
@@ -49,8 +51,8 @@ class BootstrapBackend implements \yii\base\BootstrapInterface {
                     'options' => [],
                     'access' => \Yii::$app->user->can('articles-create'),
                 ],
-                
-                   [
+
+                [
                     'controller' => 'articlelink',
                     'action' => 'create',
                     'name' => 'Весь рекламный контент',
@@ -58,7 +60,7 @@ class BootstrapBackend implements \yii\base\BootstrapInterface {
                     'options' => [],
                     'access' => \Yii::$app->user->can('articles-create'),
                 ],
-                    [
+                [
                     'controller' => 'articlelink',
                     'action' => 'create',
                     'name' => 'Создать рекламный контент',
@@ -71,7 +73,7 @@ class BootstrapBackend implements \yii\base\BootstrapInterface {
 
         // Add module URL rules.
         $app->urlManager->addRules([
-                ]
+            ]
         );
     }
 

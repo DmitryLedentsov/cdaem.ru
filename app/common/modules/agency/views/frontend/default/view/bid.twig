@@ -32,17 +32,17 @@
                         'options' : {'class' : 'form-group', 'style' : 'float: right'}
                     }).checkbox() | raw }}
                     <div>      {{ form.field(reservationForm, 'clients_count', {
-                        'template' : '<div class="">{label}</div> <div class="">{input}{error}</div>',
-                        'inputOptions' : {'maxlength' : 2, 'class' : 'form-control', 'style' : 'width: 70px;'},
-                        'options' : {'class' : 'form-group'}
-                    }) | raw }}
+                            'template' : '<div class="">{label}</div> <div class="">{input}{error}</div>',
+                            'inputOptions' : {'maxlength' : 2, 'class' : 'form-control', 'style' : 'width: 70px;'},
+                            'options' : {'class' : 'form-group'}
+                        }) | raw }}
                     </div>
 
 
                     <div>{{ form.field(reservationForm, 'more_info', {
-                        'template' : '<div class="">{label}</div> <div class="">{input}{error}</div>',
-                        'options' : {'class' : 'form-group'}
-                    }).textarea() | raw }}</div>
+                            'template' : '<div class="">{label}</div> <div class="">{input}{error}</div>',
+                            'options' : {'class' : 'form-group'}
+                        }).textarea() | raw }}</div>
                     <div class="clearfix"></div>
 
                 </div>
@@ -53,14 +53,18 @@
                         <div class="form-block-1">
                             {% set field = form.field(reservationForm, 'arrived_date', {'options' : {'class' : 'form-group date'}}) | raw %}
                             {{ field.begin() | raw }}
-                            <div class="field-wrap"><label class="label-form-b">{{ reservationForm.getAttributeLabel('arrived_date') }}</label></div>
+                            <div class="field-wrap"><label
+                                        class="label-form-b">{{ reservationForm.getAttributeLabel('arrived_date') }}</label>
+                            </div>
                             <div class="field-wrap">{{ html.activeTextInput(reservationForm, 'arrived_date', {'class' : 'form-control datepicker', 'readonly' : 'readonly'}) | raw }}</div>
                             {{ html.error(reservationForm, 'arrived_date', {'class' : 'help-block'}) | raw }}
                             {{ field.end() | raw }}
 
                             {% set field = form.field(reservationForm, 'arrived_time', {'options' : {'class' : 'form-group time'}}) | raw %}
                             {{ field.begin() | raw }}
-                            <div class="field-wrap"><label class="label-form-b">{{ reservationForm.getAttributeLabel('out_time') }}</label></div>
+                            <div class="field-wrap"><label
+                                        class="label-form-b">{{ reservationForm.getAttributeLabel('out_time') }}</label>
+                            </div>
                             <div class="field-wrap">{{ html.activeTextInput(reservationForm, 'arrived_time', {'class' : 'form-control timepicker', 'readonly' : 'readonly'}) | raw }}</div>
                             {{ html.error(reservationForm, 'arrived_time', {'class' : 'help-block'}) | raw }}
                             {{ field.end() | raw }}
@@ -68,14 +72,18 @@
                         <div class="date_out clearfix">
                             {% set field = form.field(reservationForm, 'out_date', {'options' : {'class' : 'form-group date'}}) | raw %}
                             {{ field.begin() | raw }}
-                            <div class="field-wrap"><label class="label-form-b">{{ reservationForm.getAttributeLabel('out_date') }}</label></div>
+                            <div class="field-wrap"><label
+                                        class="label-form-b">{{ reservationForm.getAttributeLabel('out_date') }}</label>
+                            </div>
                             <div class="field-wrap">{{ html.activeTextInput(reservationForm, 'out_date', {'class' : 'form-control datepicker', 'readonly' : 'readonly'}) | raw }}</div>
                             {{ html.error(reservationForm, 'out_date', {'class' : 'help-block'}) | raw }}
                             {{ field.end() | raw }}
 
                             {% set field = form.field(reservationForm, 'out_time', {'options' : {'class' : 'form-group time'}}) | raw %}
                             {{ field.begin() | raw }}
-                            <div class="field-wrap"><label class="label-form-b">{{ reservationForm.getAttributeLabel('out_time') }}</label></div>
+                            <div class="field-wrap"><label
+                                        class="label-form-b">{{ reservationForm.getAttributeLabel('out_time') }}</label>
+                            </div>
                             <div class="field-wrap">{{ html.activeTextInput(reservationForm, 'out_time', {'class' : 'form-control timepicker', 'readonly' : 'readonly'}) | raw }}</div>
                             {{ html.error(reservationForm, 'out_time', {'class' : 'help-block'}) | raw }}
                             {{ field.end() | raw }}
@@ -91,15 +99,13 @@
                     {{ captcha_widget({'form': form, 'model': reservationForm, 'name': 'verifyCode'}) }}
 
 
-
-
                 </div>
 
 
                 <div class="clearfix"></div>
 
                 <div class="form-group" style="text-align: center;">
-                    <input type="submit" value="Отправить" class="btn btn-primary pink-btn" />
+                    <input type="submit" value="Отправить" class="btn btn-primary pink-btn"/>
                 </div>
 
             </div>

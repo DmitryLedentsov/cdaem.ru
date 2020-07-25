@@ -16,27 +16,29 @@
 {% block navbar_bottom %}{% endblock %}
 
 {% block breadcrumbs %}
-    
+
     <div class="container">
         <div class="breadcrumbs">
-        
-        {{ use('yii/widgets/Breadcrumbs') }}
-        {{ breadcrumbs_widget({
-            'itemTemplate' : "<li>{link}</li>\n",
-            'homeLink' :
-            {
-                'label' : 'Главная',
-                'url' : '/'
-            },
-            'links':  [
-            {
-                'label': model.name,
-                'url': {0 : '/pages/default/index', 'url' : model.url},
-            },
-            ],
-        }) }}
 
-        <a href="{{ app.params['siteDomain'] }}/search" class="right-link breadcrumbs-links black">Доска объявлений</a> <a class="breadcrumbs-links right-link" href="{{ app.params['siteDomain'] }}">Квартиры от Сдаём.Ру</a> 
+            {{ use('yii/widgets/Breadcrumbs') }}
+            {{ breadcrumbs_widget({
+                'itemTemplate' : "<li>{link}</li>\n",
+                'homeLink' :
+                {
+                    'label' : 'Главная',
+                    'url' : '/'
+                },
+                'links':  [
+                    {
+                        'label': model.name,
+                        'url': {0 : '/pages/default/index', 'url' : model.url},
+                    },
+                ],
+            }) }}
+
+            <a href="{{ app.params['siteDomain'] }}/search" class="right-link breadcrumbs-links black">Доска
+                объявлений</a> <a class="breadcrumbs-links right-link" href="{{ app.params['siteDomain'] }}">Квартиры от
+                Сдаём.Ру</a>
         </div>
     </div>
 {% endblock %} 
@@ -48,9 +50,11 @@
     {{ this.registerMetaTag({'name' : 'keywords', 'content' : model.keywords }) }}
 
     <div class="pages">
-       
+
         <div class="container container-certain primary text">
-            <div class="page-title-block"><div class="title-wrap"><h3>{{ model.title|raw }}</h3></div></div>
+            <div class="page-title-block">
+                <div class="title-wrap"><h3>{{ model.title|raw }}</h3></div>
+            </div>
             {{ model.text|raw }}
         </div>
     </div>

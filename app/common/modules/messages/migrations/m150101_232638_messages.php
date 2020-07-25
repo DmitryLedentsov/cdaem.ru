@@ -24,7 +24,6 @@ class m150101_232638_messages extends Migration
         ], $tableOptions);
 
 
-
         /**
          * Почтовый ящик сообщений
          */
@@ -32,7 +31,7 @@ class m150101_232638_messages extends Migration
             'id' => Schema::TYPE_PK . ' COMMENT "ID сообщения"',
             'message_id' => Schema::TYPE_INTEGER . ' COMMENT "ID base сообщения"',
             'user_id' => Schema::TYPE_INTEGER . ' COMMENT "ID пользователя"',
-            'interlocutor_id' => Schema::TYPE_INTEGER. ' NOT NULL DEFAULT 0 COMMENT "Собеседник"',
+            'interlocutor_id' => Schema::TYPE_INTEGER . ' NOT NULL DEFAULT 0 COMMENT "Собеседник"',
             'read' => Schema::TYPE_SMALLINT . ' NOT NULL DEFAULT 0 COMMENT "Прочитано"',
             'inbox' => Schema::TYPE_SMALLINT . ' NOT NULL DEFAULT 0 COMMENT "Входящее/Исходящее"',
             'bin' => Schema::TYPE_SMALLINT . ' NOT NULL DEFAULT 0 COMMENT "В корзине"',

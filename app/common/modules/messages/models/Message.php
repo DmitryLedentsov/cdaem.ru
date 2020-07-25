@@ -121,9 +121,9 @@ class Message extends ActiveRecord
         $mailbox->message_id = $this->id;
         $mailbox->user_id = Yii::$app->user->id;
         $mailbox->interlocutor_id = $this->interlocutor_id;
-        $mailbox->read =  1;
-        $mailbox->inbox =  0;
-        $mailbox->bin =  0;
+        $mailbox->read = 1;
+        $mailbox->inbox = 0;
+        $mailbox->bin = 0;
         $mailbox->deleted = 0;
         $mailbox->save(false);
 
@@ -134,7 +134,7 @@ class Message extends ActiveRecord
             $mailbox->interlocutor_id = Yii::$app->user->id;
             $mailbox->read = 0;
             $mailbox->inbox = 1;
-            $mailbox->bin =  0;
+            $mailbox->bin = 0;
             $mailbox->deleted = 0;
             $mailbox->save(false);
         }

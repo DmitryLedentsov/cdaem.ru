@@ -116,29 +116,30 @@ class AdvertForm extends \yii\base\Model
     {
         $transaction = Yii::$app->db->beginTransaction();
 
-        try {
-            $model->setAttributes($this->getAttributes(), false);
+//         try {
+        $model->setAttributes($this->getAttributes(), false);
 
-            if (!$model->save(false)) {
-                throw new \Exception('Advert not save');
-            }
-
-            $this->advert_id = $model->advert_id;
-
-            $apartment = Apartment::findOne($model->apartment_id);
-            $apartment->date_update = date('Y-m-d H:i:s');
-
-            if (!$apartment->save(false)) {
-                throw new \Exception('Apartment not save');
-            }
-
-            $transaction->commit();
-            return true;
-
-        } catch (\Exception $e) {
-            $transaction->rollBack();
-            return false;
+        if (!$model->save(false)) {
+            throw new \Exception('Advert not save');
         }
+
+        $this->advert_id = $model->advert_id;
+
+        $apartment = Apartment::findOne($model->apartment_id);
+        $apartment->date_update = date('Y-m-d H:i:s');
+
+        if (!$apartment->save(false)) {
+            throw new \Exception('Apartment not save');
+        }
+
+
+        $transaction->commit();
+        return true;
+
+//         } catch (\Exception $e) {
+//             $transaction->rollBack();
+//             return false;
+//         }
     }
 
     /**

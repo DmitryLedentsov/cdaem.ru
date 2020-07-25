@@ -24,7 +24,7 @@ use yii\helpers\Url;
     </div>
 <?php endif; ?>
 
-    <br />
+    <br/>
 
 <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
@@ -36,21 +36,21 @@ use yii\helpers\Url;
         </div>
         <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-4">
             <?php
-                $url = '';
-                if ($formModel->scenario == 'update') {
+            $url = '';
+            if ($formModel->scenario == 'update') {
+                if ($formModel->city) {
+                    $url = '';
+                    $url = Yii::$app->params['siteDomain'];
                     if ($formModel->city) {
-                        $url = '';
-                        $url = Yii::$app->params['siteDomain'];
-                        if ($formModel->city) {
-                            $url = str_replace('<city>', $formModel->city, Yii::$app->params['siteSubDomain']);
-                        }
-                        $url .= '/stati/'. $formModel->slug;
-                        $url = Html::a($url, $url);
-                    } else {
-                        $url = Html::a(Yii::$app->params['siteDomain'] .'/stati/'. $formModel->slug, Yii::$app->params['siteDomain'] .'/stati/'. $formModel->slug);
+                        $url = str_replace('<city>', $formModel->city, Yii::$app->params['siteSubDomain']);
                     }
+                    $url .= '/stati/' . $formModel->slug;
+                    $url = Html::a($url, $url);
+                } else {
+                    $url = Html::a(Yii::$app->params['siteDomain'] . '/stati/' . $formModel->slug, Yii::$app->params['siteDomain'] . '/stati/' . $formModel->slug);
                 }
-                echo $form->field($formModel, 'slug', ['template' => "{label}\n{input} " . $url . "\n{hint}\n{error}"])->textInput(['maxlength' => true]);
+            }
+            echo $form->field($formModel, 'slug', ['template' => "{label}\n{input} " . $url . "\n{hint}\n{error}"])->textInput(['maxlength' => true]);
             ?>
         </div>
     </div>
@@ -58,31 +58,31 @@ use yii\helpers\Url;
     <div class="row">
         <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-2"><?= $form->field($formModel, 'name')->textInput(['maxlength' => true]) ?></div>
         <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-2"><?= $form->field($formModel, 'title_img')->textInput(['maxlength' => true]) ?></div>
-       
+
         <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-2"><?= $form->field($formModel, 'file')->fileInput(['class' => 'styled']) ?></div>
         <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-2"><?= $form->field($formModel, 'bgfile')->fileInput(['class' => 'styled']) ?></div>
         <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-2"><?= $form->field($formModel, 'status')->dropDownList(Yii::$app->BasisFormat->helper('Status')->getList($model->getStatusArray())) ?></div>
         <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-2"><?= $form->field($formModel, 'visible')->dropDownList(Yii::$app->formatter->booleanFormat) ?></div>
     </div>
 
-    <?php if (!$model->isNewRecord): ?>
-        <div class="row">
-            <div class="col-md-4 col-md-4 col-sm-4 col-xs-6 col-lg-2"><?= $form->field($formModel, 'date_create')->widget(DateTimePicker::className(), [
-                    'type' => DateTimePicker::TYPE_INPUT,
-                    'options' => [
-                        'readonly' => 'readonly',
-                    ],
-                    'pluginOptions' => [
-                        'autoclose' => true,
-                        'format' => 'yyyy-mm-dd hh:ii:00',
-                        'todayHighlight' => true,
-                        'todayBtn' => true,
-                    ]
-                ]);
-                ?>
-            </div>
+<?php if (!$model->isNewRecord): ?>
+    <div class="row">
+        <div class="col-md-4 col-md-4 col-sm-4 col-xs-6 col-lg-2"><?= $form->field($formModel, 'date_create')->widget(DateTimePicker::className(), [
+                'type' => DateTimePicker::TYPE_INPUT,
+                'options' => [
+                    'readonly' => 'readonly',
+                ],
+                'pluginOptions' => [
+                    'autoclose' => true,
+                    'format' => 'yyyy-mm-dd hh:ii:00',
+                    'todayHighlight' => true,
+                    'todayBtn' => true,
+                ]
+            ]);
+            ?>
         </div>
-    <?php endif; ?>
+    </div>
+<?php endif; ?>
 
     <h6 class="heading-hr"><span class="icon-tags"></span> Мета теги</h6>
     <div class="block-inner">
@@ -147,14 +147,14 @@ use yii\helpers\Url;
         </div>
     </div>
 
-    <br />
+    <br/>
 
-    <?php if (Yii::$app->user->can('articles-update')) : ?>
-        <div class="form-group">
-            <?= Html::submitButton(Yii::t('app', 'Сохранить'), ['class' => 'btn btn-success']) ?>
-        </div>
-    <?php endif; ?>
+<?php if (Yii::$app->user->can('articles-update')) : ?>
+    <div class="form-group">
+        <?= Html::submitButton(Yii::t('app', 'Сохранить'), ['class' => 'btn btn-success']) ?>
+    </div>
+<?php endif; ?>
 
-    <br />
+    <br/>
 
 <?php ActiveForm::end(); ?>

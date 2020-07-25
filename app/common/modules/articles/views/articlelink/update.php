@@ -12,7 +12,7 @@ use yii\widgets\DetailView;
 $this->title = 'Редактировать рекламу';
 
 echo \backend\modules\admin\widgets\HeaderWidget::widget([
-    'title' =>  'Управление ссылками к статьям',
+    'title' => 'Управление ссылками к статьям',
     'description' => $this->title,
     'breadcrumb' => [
         [
@@ -41,6 +41,6 @@ echo \backend\modules\admin\widgets\ExtraControlWidget::widget([
 ]);
 
 echo $this->render('_form', [
-        'formModel' => $formModel,
-        'model' => $model,
-    ]);
+    'formModel' => $formModel,
+    'model' => $model,
+]);
