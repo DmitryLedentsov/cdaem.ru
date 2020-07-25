@@ -212,7 +212,7 @@ return [
             ],
         ],
         'currencyConverter' => [
-            'class' => 'common\components\CurrencyConverter',
+            'class' => \common\components\CurrencyConverter::class,
         ],
         'reCaptcha' => require('reCaptcha.php'),
     ],
