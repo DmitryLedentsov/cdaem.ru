@@ -64,7 +64,7 @@ class DefaultController extends \frontend\components\Controller
     {
         $behaviors = [
             'access' => [
-                'class' => \yii\filters\AccessControl::className(),
+                'class' => \yii\filters\AccessControl::class,
                 'rules' => [
                     [
                         'actions' => ['help', 'index', 'pre-region', 'region', 'view', 'preview', 'thumbs', 'others', 'delete'],

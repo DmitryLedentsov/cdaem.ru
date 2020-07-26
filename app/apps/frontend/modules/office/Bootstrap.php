@@ -6,6 +6,7 @@ use Yii;
 
 /**
  * Office module bootstrap class.
+ * @package frontend\modules\office
  */
 class Bootstrap implements \yii\base\BootstrapInterface
 {
@@ -34,14 +35,3 @@ class Bootstrap implements \yii\base\BootstrapInterface
         );
     }
 }
-
-
-
-
-
-
-
-
-
-
-

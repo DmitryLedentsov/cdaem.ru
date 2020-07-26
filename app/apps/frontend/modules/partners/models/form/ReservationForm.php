@@ -92,7 +92,7 @@ class ReservationForm extends Reservation
     {
         return [
             [
-                'class' => TimestampBehavior::className(),
+                'class' => TimestampBehavior::class,
                 'attributes' => [
                     \yii\db\ActiveRecord::EVENT_BEFORE_INSERT => ['date_create', 'date_update'],
                     \yii\db\ActiveRecord::EVENT_BEFORE_UPDATE => 'date_update',

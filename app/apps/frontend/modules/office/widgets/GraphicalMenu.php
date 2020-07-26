@@ -9,6 +9,10 @@ use frontend\modules\partners\models\AdvertReservation;
 use yii\base\Widget;
 use Yii;
 
+/**
+ * Class GraphicalMenu
+ * @package frontend\modules\office\widgets
+ */
 class GraphicalMenu extends Widget
 {
     /**
@@ -24,7 +28,7 @@ class GraphicalMenu extends Widget
      */
     public function run()
     {
-        if (Yii::$app->user->identity->profile->user_type == Profile::WANT_RENT) {
+        if (Yii::$app->user->identity->profile->user_type === Profile::WANT_RENT) {
             $reservationsForAll = Reservation::nonViewedCount('renter');
             $reservationsForAdvert = AdvertReservation::nonViewedCount('renter');
         } else {

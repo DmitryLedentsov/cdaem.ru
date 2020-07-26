@@ -1,4 +1,4 @@
-*/10 * * * * php php /app/cron-test.php
+*/10 * * * * php /app/cron-test.php
 
 
 */10 * * * * php /home/cdaemru/www/dev/yii service/processes

@@ -3,18 +3,12 @@
 namespace frontend\modules\office\controllers;
 
 use common\modules\users\models\frontend\UsersListSearch;
-use common\modules\users\models\UsersList;
-use common\modules\partners\models\Service;
 use common\modules\users\models\Profile;
 use frontend\modules\partners\models as models;
 use common\modules\pages\models\Page;
-use common\modules\users\models\User;
-use yii\helpers\ArrayHelper;
 use yii\web\HttpException;
 use yii\widgets\ActiveForm;
 use yii\web\Response;
-use yii\helpers\Html;
-use yii\helpers\Url;
 use Yii;
 
 /**
@@ -31,7 +25,7 @@ class DefaultController extends \frontend\components\Controller
     {
         $behaviors = [
             'access' => [
-                'class' => \yii\filters\AccessControl::className(),
+                'class' => \yii\filters\AccessControl::class,
                 'rules' => [
                     [
                         'actions' => [],
@@ -86,10 +80,9 @@ class DefaultController extends \frontend\components\Controller
     {
         if (!Yii::$app->user->isGuest && Yii::$app->user->identity->profile->user_type == Profile::WANT_RENT) {
             $this->redirect(['default/home']);
-        } else {
-            return $this->redirect(['/office/apartments']);
         }
-        ///return Yii::$app->runAction('/messages/default/index');
+
+        return $this->redirect(['/office/apartments']);
     }
 
     public function actionHome()
@@ -97,7 +90,8 @@ class DefaultController extends \frontend\components\Controller
         $searchModel = new models\search\AdvertSearch();
 
         return $this->render('home.twig', [
-            'searchModel' => $searchModel]);
+            'searchModel' => $searchModel,
+        ]);
     }
 
 

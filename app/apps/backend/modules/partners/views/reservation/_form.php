@@ -54,7 +54,7 @@ use kartik\datetime\DateTimePicker;
 <div class="row">
 
     <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-3">
-        <?= $form->field($model, 'date_arrived')->widget(DateTimePicker::className(), [
+        <?= $form->field($model, 'date_arrived')->widget(DateTimePicker::class, [
             'type' => DateTimePicker::TYPE_COMPONENT_PREPEND,
             'options' => ['readonly' => 'readonly'],
             'pluginOptions' => [
@@ -66,7 +66,7 @@ use kartik\datetime\DateTimePicker;
     </div>
 
     <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-3">
-        <?= $form->field($model, 'date_out')->widget(DateTimePicker::className(), [
+        <?= $form->field($model, 'date_out')->widget(DateTimePicker::class, [
             'type' => DateTimePicker::TYPE_COMPONENT_PREPEND,
             'options' => ['readonly' => 'readonly'],
             'pluginOptions' => [
@@ -86,7 +86,7 @@ use kartik\datetime\DateTimePicker;
 <div class="row">
 
     <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-3">
-        <?= $form->field($model, 'date_actuality')->widget(DateTimePicker::className(), [
+        <?= $form->field($model, 'date_actuality')->widget(DateTimePicker::class, [
             'type' => DateTimePicker::TYPE_COMPONENT_PREPEND,
             'options' => ['readonly' => 'readonly'],
             'pluginOptions' => [

@@ -4,9 +4,12 @@ namespace frontend\modules\office\widgets;
 
 use frontend\modules\partners\models\Advert;
 use yii\base\Widget;
-use yii\helpers\Html;
 use Yii;
 
+/**
+ * Class AdvertsCount
+ * @package frontend\modules\office\widgets
+ */
 class AdvertsCount extends Widget
 {
     /**

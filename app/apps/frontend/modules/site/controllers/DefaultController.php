@@ -34,7 +34,7 @@ class DefaultController extends \frontend\components\Controller
     {
         return [
             'error' => [
-                'class' => \yii\web\ErrorAction::className(),
+                'class' => \yii\web\ErrorAction::class,
                 'view' => '@frontend/themes/basic/default/error.twig',
             ],
         ];

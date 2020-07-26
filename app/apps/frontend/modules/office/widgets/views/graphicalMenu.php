@@ -2,7 +2,6 @@
 
 use yii\helpers\Url;
 
-
 ?>
 
 <ul class="graphical-menu clearfix">

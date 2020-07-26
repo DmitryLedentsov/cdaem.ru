@@ -29,7 +29,7 @@ class DefaultController extends \backend\components\Controller
     {
         return [
             'access' => [
-                'class' => \yii\filters\AccessControl::className(),
+                'class' => \yii\filters\AccessControl::class,
                 'rules' => [
 
                     [
@@ -54,7 +54,7 @@ class DefaultController extends \backend\components\Controller
     {
         return [
             'error' => [
-                'class' => \yii\web\ErrorAction::className(),
+                'class' => \yii\web\ErrorAction::class,
                 'view' => '@backend/themes/basic/default/error',
             ],
         ];
