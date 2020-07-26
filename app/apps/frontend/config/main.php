@@ -43,12 +43,12 @@ return [
         }
 
         // Настройки по умолчанию для виджета faceviewer
-        \Yii::$container->set('nepster\faceviewer\Widget', [
+        \Yii::$container->set(\nepster\faceviewer\Widget::class, [
             'faceDefault' => 'no-avatar.png',
             'faceUrl' => Yii::$app->getModule('users')->avatarUrl,
             'facePath' => Yii::$app->getModule('users')->avatarPath,
             'faceUrlDefault' => '/basic-images',
-            'userModel' => 'common\modules\users\models\User',
+            'userModel' => \common\modules\users\models\User::class,
             'userModelAttributes' => ['email', 'profile' => ['avatar_url', 'name', 'surname']],
         ]);
     },
@@ -135,7 +135,7 @@ return [
 
         ],*/
         'view' => [
-            'class' => '\frontend\components\View',
+            'class' => \frontend\components\View::class,
             'defaultExtension' => 'twig',
             'theme' => [
                 'pathMap' => [
@@ -146,7 +146,7 @@ return [
             ],
             'renderers' => [
                 'twig' => [
-                    'class' => 'yii\twig\ViewRenderer',
+                    'class' => \yii\twig\ViewRenderer::class,
                     'cachePath' => '@runtime/Twig/cache',
                     'options' => [
                         'auto_reload' => true,
@@ -184,11 +184,11 @@ return [
             'traceLevel' => 3,
             'targets' => [
                 [
-                    'class' => 'yii\log\DbTarget',
+                    'class' => \yii\log\DbTarget::class,
                     'levels' => ['error', 'warning'],
                 ],
                 [
-                    'class' => 'yii\log\DbTarget',
+                    'class' => yii\log\DbTarget::class,
                     'levels' => ['info', 'error'],
                     'categories' => ['robokassa'],
                     // 'logFile' => '@frontend/runtime/logs/robokassa.log',

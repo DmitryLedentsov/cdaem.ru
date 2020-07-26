@@ -1,3 +1,15 @@
+@font-face {
+  font-family: Lato-regular;
+  /* Гарнитура шрифта */
+  src: url(/fonts/LatoRegular.ttf);
+  /* Путь к файлу со шрифтом */
+}
+@font-face {
+  font-family: Open-Sans-Regular;
+  /* Гарнитура шрифта */
+  src: url(/fonts/OpenSansRegular.ttf);
+  /* Путь к файлу со шрифтом */
+}
 /* --------------------------------- */
 /* --------------------------------- */
 /**
@@ -9,528 +21,637 @@
 **/
 /*-------------------------------------*/
 .deals {
-    margin-top: 15px;
-    width: 100%;
+  margin-top: 15px;
+  width: 100%;
 }
-
 .deals .apartment-agency {
-    width: 325px !important;
-    height: 250px !important;
+  width: 290px !important;
+  height: 215px !important;
 }
-
+.fourrow .apartment-agency {
+  width: 305px !important;
+  height: 220px !important;
+}
+.fourrow .apartment-agency .group {
+  top: 40px;
+  position: absolute;
+  width: 120px;
+  font-size: 13px;
+  line-height: 30px;
+}
 .agency .apartment-agency,
 .deals .apartment-agency {
-    width: 25%;
-    height: 220px;
-    display: block;
-    float: left;
+  width: 410px;
+  height: 275px;
+  display: block;
+  float: left;
 }
-
 .agency .apartment-agency .header .address,
 .deals .apartment-agency .header .address {
-    font-size: 80%;
-    padding-top: 3px;
+  font-size: 80%;
+  line-height: 28px;
 }
-
 /*-------------------------------------*/
 .agency {
-    margin-top: 35px;
+  padding: 35px 0px;
+  background: url(/basic-images/Layer42.png) center center no-repeat;
+  background-size: cover;
 }
-
 .agency .content {
-    margin: auto;
+  margin: auto;
 }
-
 .agency .agency-filter {
-    height: 60px;
-    margin: 15px 0 5px 0;
+  height: 80px;
+  margin: 15px 0 5px 0;
 }
-
 .agency .agency-filter .description {
-    width: 41%;
-    float: left;
-    font-size: 82%;
-    line-height: 1.2em;
+  width: 41%;
+  float: left;
+  font-size: 82%;
+  line-height: 1.2em;
 }
-
+.agency .agency-filter .description.agency-all {
+  width: 50%;
+}
 .agency .agency-filter .description h1,
 .agency .agency-filter .description h2,
 .agency .agency-filter .description h3 {
-    font-size: 180%;
-    line-height: 1.3em;
-    margin-top: -5px;
+  font-size: 180%;
+  line-height: 1.3em;
+  margin-top: -5px;
 }
-
 .agency .agency-filter .description strong {
-    font-size: 115%;
+  font-size: 115%;
 }
-
 .agency .agency-filter .filters {
-    width: 59%;
-    float: left;
-    padding-bottom: 5px;
+  width: 59%;
+  float: left;
+  padding-bottom: 5px;
 }
-
+.agency .agency-filter .filters.agency-all {
+  width: 50%;
+}
 .agency .agency-filter .filters .select-filter-text {
-    display: inline-block;
-    float: right;
-    padding: 15px 0;
-    font-size: 120%;
+  display: inline-block;
+  float: right;
+  padding: 15px 0;
+  font-size: 120%;
 }
-
 .agency .agency-filter .filters .select-filter {
-    float: right;
-    margin-left: 15px;
+  float: right;
+  margin-left: 15px;
 }
-
 .agency .agency-filter .filters .select-filter:last-child {
-    margin-left: 0;
+  margin-left: 0;
 }
-
 .agency .agency-filter .filters .select-filter .btn {
-    font-size: 1.35em;
-    padding: 12px 10px;
-    height: 55px;
+  font-size: 16px;
+  padding: 12px 10px;
+  height: 50px;
+  text-align: center;
 }
-
 .agency .agency-filter .filters .select-filter select {
-    width: 100%;
+  width: 100%;
 }
-
 /*-------------------------------------*/
 /*-------------------------------------*/
 .apartments {
-    margin-top: 15px;
-    padding: 0 5%;
+  margin-top: 15px;
+  margin-bottom: 35px;
 }
-
 .apartment-agency {
-    position: relative;
-    padding: 10px;
-    display: inline-block;
-    overflow: hidden;
+  position: relative;
+  padding: 10px;
+  display: inline-block;
+  overflow: hidden;
 }
-
 .apartment-agency .header {
-    overflow: hidden;
-    height: 40px;
-    padding: 8px;
-    background: #595959;
-    color: #ffffff;
-    font-weight: 600;
+  overflow: hidden;
+  height: 40px;
+  padding: 5px;
+  background: #466b7d;
+  color: #ffffff;
+  font-weight: 600;
+  z-index: 1;
+  position: relative;
 }
-
 .apartment-agency .header .address {
-    width: 75%;
-    float: left;
-    overflow: hidden;
-    font-size: 110%;
+  width: 75%;
+  float: left;
+  overflow: hidden;
+  font-size: 110%;
 }
-
 .apartment-agency .header .rooms {
-    width: 25%;
-    float: right;
-    overflow: hidden;
-    font-size: 80%;
-    text-align: right;
-    padding-top: 2px;
+  width: 25%;
+  float: right;
+  overflow: hidden;
+  font-size: 80%;
+  text-align: right;
+  line-height: 30px;
 }
-
 .apartment-agency .image {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    border-bottom: solid 4px #00C0F3;
-    color: #ffffff;
-    font-weight: 600;
-    font-size: 140%;
-    overflow: hidden;
-    margin-top: -40px;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 140%;
+  overflow: hidden;
+  margin-top: -40px;
 }
-
 .apartment-agency .image img {
-    min-width: 100%;
-    max-width: 100%;
-    height: 100%;
-    position: absolute;
-    z-index: -1;
+  min-width: 100%;
+  max-width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 0;
 }
-
 .apartment-agency .image .group {
-    top: 40px;
-    position: relative;
+  top: 40px;
+  position: absolute;
+  width: 150px;
+  right: 0px;
+  background: rgba(255, 255, 255, 0.3);
 }
-
 .apartment-agency .image .price {
-    clear: left;
-    text-align: right;
-    float: right;
-    padding: 3px 5px 3px 5px;
-    background: rgba(0, 0, 0, 0.4);
+  clear: left;
+  text-align: right;
+  float: right;
+  padding: 3px 5px 3px 5px;
+  color: black;
 }
-
 .apartment-agency .image .type {
-    clear: right;
-    overflow: hidden;
-    float: right;
-    padding: 0 5px;
-    background: rgba(0, 0, 0, 0.4);
+  clear: right;
+  overflow: hidden;
+  color: black;
+  font-size: 100% !important;
 }
-
 .apartment-agency .image .type span {
-    margin: 0 2px;
+  margin: 0 2px;
 }
-
 .apartment-agency .image .metro {
-    background: rgba(0, 0, 0, 0.4);
-    padding: 3px 5px 3px 10px;
-    margin-left: -5px;
-    position: absolute;
-    bottom: 0;
-    color: #ffffff;
-    font-weight: 400;
-    font-size: 60%;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-    -ms-border-radius: 3px;
-    -o-box-shadow: 3px;
-    -khtml-border-radius: 3px;
-    border-radius: 3px;
+  background-color: rgba(19, 19, 19, 0.56);
+  padding: 3px 5px 3px 10px;
+  margin-left: -5px;
+  position: absolute;
+  bottom: 0;
+  color: #ffffff;
+  font-weight: 400;
+  font-size: 60%;
 }
-
+.apartment-agency .image .metro:after {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 21px;
+  background: url(/basic-images/ap-info-bg.png) right;
+  position: absolute;
+  right: -20px;
+  bottom: 0;
+}
 .apartment-agency .image .special-text {
-    font-size: 80%;
-    position: absolute;
-    padding: 3px 5px;
-    bottom: 25px;
-    color: #00C0F3;
+  font-size: 80%;
+  position: absolute;
+  padding: 3px 5px;
+  bottom: 25px;
+  color: #00C0F3;
 }
-
 .apartment-agency .image .special-text a {
-    text-decoration: none;
-    font-weight: normal;
+  text-decoration: none;
+  font-weight: normal;
 }
-
+.apartment-agency.special-adv .header {
+  background: #6f0a0e;
+}
+.apartment-agency.special-adv .group-adv {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  height: 40px;
+  border: 3px solid red;
+  right: 0px;
+  background: white;
+}
+.apartment-agency.special-adv .metro {
+  bottom: 40px;
+}
+.special-advert-block {
+  background: url(/basic-images/RoundedRectangle14.png) no-repeat;
+  background-size: cover;
+  padding: 32px 15px;
+}
+.special-block {
+  margin-top: 30px;
+}
 /*-------------------------------------*/
 .payment-methods-warning {
-    font-size: 110%;
-    margin-top: 100px;
-    color: #F9160A;
-    /*.opacity(90);*/
+  font-size: 110%;
+  margin-top: 50px;
+  color: #F9160A;
+  /*.opacity(90);*/
 }
-
 .payment-methods-warning span {
-    font-size: 110%;
-    font-weight: bold;
+  font-size: 110%;
+  font-weight: bold;
 }
-
 .payment-methods {
-    margin-top: 15px;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    border-top: solid 1px #D6D6D6;
-    border-bottom: solid 1px #D6D6D6;
+  margin-top: 15px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-top: solid 1px #D6D6D6;
+  border-bottom: solid 1px #D6D6D6;
 }
-
 .payment-methods .pm-icon {
-    cursor: pointer;
+  cursor: pointer;
 }
-
 .payment-methods h5 {
-    text-transform: uppercase;
-    font-size: 1.3em;
-    color: #2F98CF;
-    padding: 5px 0 5px 15px;
-    text-align: left;
+  text-transform: uppercase;
+  font-size: 1em;
+  color: #2F98CF;
 }
-
 .payment-methods .desc {
-    text-transform: uppercase;
-    text-align: center;
-    font-size: 1.15em;
-    margin-top: 5px;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 1.15em;
+  margin-top: 5px;
 }
-
 .payment-methods .method-1.no-active,
 .payment-methods .method-2.no-active,
 .payment-methods .method-3.no-active,
 .payment-methods .method-4.no-active {
-    filter: progid:DXImageTransform.Microsoft.Alpha(opacity=20);
-    -moz-opacity: 0.2;
-    -webkit-opacity: 0.2;
-    zoom: 1;
-    /* для элемента в ИЕ, у которого не заданы width и height */
-    -ms-box-shadow: 0.2;
-    -khtml-opacity: 0.2;
-    opacity: 0.2;
+  filter: progid:DXImageTransform.Microsoft.Alpha(opacity=20);
+  -moz-opacity: 0.2;
+  -webkit-opacity: 0.2;
+  zoom: 1;
+  /* для элемента в ИЕ, у которого не заданы width и height */
+  -ms-box-shadow: 0.2;
+  -khtml-opacity: 0.2;
+  opacity: 0.2;
 }
-
 .payment-methods .method-1 {
-    width: 22%;
-    float: left;
-    text-align: center;
-    border-right: solid 1px #D6D6D6;
+  text-align: center;
+  border-right: solid 1px #D6D6D6;
 }
-
 .payment-methods .method-2 {
-    width: 54%;
-    float: left;
-    text-align: center;
-    border-right: solid 1px #D6D6D6;
+  text-align: center;
+  border-right: solid 1px #D6D6D6;
 }
-
 .payment-methods .method-2 .pm-icon {
-    margin-right: 3%;
+  margin-right: 2%;
 }
-
 .payment-methods .method-2 .pm-icon:last-child {
-    margin-right: 0;
+  margin-right: 0;
 }
-
 .payment-methods .method-3 {
-    width: 14%;
-    float: left;
-    text-align: center;
-    border-right: solid 1px #D6D6D6;
+  text-align: center;
+  border-right: solid 1px #D6D6D6;
 }
-
 .payment-methods .method-4 {
-    width: 10%;
-    float: left;
-    text-align: center;
+  text-align: center;
 }
-
 .payment-methods .pm-icon {
-    position: relative;
+  position: relative;
 }
-
 .payment-methods .payment-process .alert {
-    font-size: 130%;
+  font-size: 130%;
 }
-
 .payment-methods .payment-info {
-    width: 400px;
-    min-height: 50px;
-    display: none;
-    text-align: left;
-    padding: 15px 10px;
-    position: absolute;
-    left: -25px;
-    bottom: 80px;
-    background: #FCF8F1;
-    border: solid 1px #B4B4B4;
-    cursor: auto !important;
-    font-size: 75%;
-    z-index: 10;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-box-shadow: 5px;
-    -khtml-border-radius: 5px;
-    border-radius: 5px;
-    -moz-box-shadow: 3px 3px 7px -3px rgba(0, 0, 0, 0.5);
-    -webkit-box-shadow: 3px 3px 7px -3px rgba(0, 0, 0, 0.5);
-    -ms-box-shadow: 3px 3px 7px -3px rgba(0, 0, 0, 0.5);
-    -o-box-shadow: 3px 3px 7px -3px rgba(0, 0, 0, 0.5);
-    -khtml-box-shadow: 3px 3px 7px -3px rgba(0, 0, 0, 0.5);
-    box-shadow: 3px 3px 7px -3px rgba(0, 0, 0, 0.5);
+  width: 400px;
+  min-height: 50px;
+  display: none;
+  text-align: left;
+  padding: 15px 10px;
+  position: absolute;
+  left: -25px;
+  bottom: 80px;
+  background: #FCF8F1;
+  border: solid 1px #B4B4B4;
+  cursor: auto !important;
+  font-size: 75%;
+  z-index: 10;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-box-shadow: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  -moz-box-shadow: 3px 3px 7px -3px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 3px 3px 7px -3px rgba(0, 0, 0, 0.5);
+  -ms-box-shadow: 3px 3px 7px -3px rgba(0, 0, 0, 0.5);
+  -o-box-shadow: 3px 3px 7px -3px rgba(0, 0, 0, 0.5);
+  -khtml-box-shadow: 3px 3px 7px -3px rgba(0, 0, 0, 0.5);
+  box-shadow: 3px 3px 7px -3px rgba(0, 0, 0, 0.5);
 }
-
 .payment-methods .payment-info .horizontal .col-l {
-    width: 130px;
+  width: 130px;
 }
-
 .payment-methods .payment-info .horizontal label.control-label {
-    width: 100%;
+  width: 100%;
 }
-
 .payment-methods .payment-info p {
-    margin: 0;
+  margin: 0;
 }
-
 .payment-methods .payment-info b {
-    font-size: 120%;
+  font-size: 120%;
 }
-
 .payment-methods .payment-info h3 {
-    font-size: 150%;
-    text-align: center;
-    color: #2F98CF;
-    margin-bottom: 5px;
+  font-size: 150%;
+  text-align: center;
+  color: #2F98CF;
+  margin-bottom: 5px;
 }
-
 .payment-methods .payment-info .link {
-    margin-top: 5px;
-    font-size: 120%;
+  margin-top: 5px;
+  font-size: 120%;
 }
-
 .payment-methods .payment-info .link a,
 .payment-methods .payment-info .link a.link {
-    border-bottom: dashed 1px #00C0F3;
-    margin-right: 25px;
+  border-bottom: dashed 1px #00C0F3;
+  margin-right: 25px;
 }
-
 .payment-methods .payment-info .link a:hover,
 .payment-methods .payment-info .link a.link:hover {
-    text-decoration: none;
+  text-decoration: none;
 }
-
 .payment-methods .payment-info:before {
-    content: '';
-    position: absolute;
-    border-left: 15px solid transparent;
-    border-right: 15px solid transparent;
-    border-top: 15px solid #B4B4B4;
-    left: 55px;
-    bottom: -15px;
+  content: '';
+  position: absolute;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-top: 15px solid #B4B4B4;
+  left: 55px;
+  bottom: -15px;
 }
-
 .payment-methods .payment-info:after {
-    content: '';
-    position: absolute;
-    border-left: 13px solid transparent;
-    border-right: 13px solid transparent;
-    border-top: 13px solid #FCF8F1;
-    left: 57px;
-    bottom: -13px;
+  content: '';
+  position: absolute;
+  border-left: 13px solid transparent;
+  border-right: 13px solid transparent;
+  border-top: 13px solid #FCF8F1;
+  left: 57px;
+  bottom: -13px;
 }
-
 .payment-methods .right .payment-info {
-    left: -300px;
+  left: -300px;
 }
-
 .payment-methods .right .payment-info:before {
-    left: auto;
-    right: 55px;
+  left: auto;
+  right: 55px;
 }
-
 .payment-methods .right .payment-info:after {
-    left: auto;
-    right: 57px;
+  left: auto;
+  right: 57px;
 }
-
 /*-------------------------------------*/
-#gallery {
-    height: 170px;
+#carousel {
+  overflow: hidden;
+}
+#carousel .owl-item {
+  padding: 5px 0;
+}
+#carousel .image-box {
+  width: 250px;
+  height: 165px;
+  /*padding: 5px;
+    background: #E9E9E9;
+    border: solid 1px #B4B4B4;
     overflow: hidden;
-    margin-bottom: 50px;
+    .border-radius(5px);
+    .box-shadow(2px 2px 5px -3px rgba(0,0,0,0.5));*/
 }
-
-#gallery .owl-item {
-    padding: 5px 0;
+#carousel .image-box > .image {
+  height: 100%;
+  text-align: center;
+  overflow: hidden;
 }
-
-#gallery .image-box {
-    width: 194px;
-    height: 165px;
-    /*padding: 5px;
-          background: #E9E9E9;
-          border: solid 1px #B4B4B4;
-          overflow: hidden;
-          .border-radius(5px);
-          .box-shadow(2px 2px 5px -3px rgba(0,0,0,0.5));*/
+#carousel .image-box > .image img {
+  height: 250px;
 }
-
-#gallery .image-box > .image {
-    height: 100%;
-    text-align: center;
-    overflow: hidden;
-}
-
-#gallery .image-box > .image img {
-    width: 100%;
-    height: 155px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-box-shadow: 5px;
-    -khtml-border-radius: 5px;
-    border-radius: 5px;
-}
-
 /*-------------------------------------*/
 .info sup {
-    position: relative;
-    font-size: 0.7em;
-    top: -4px;
+  position: relative;
+  font-size: 0.7em;
+  top: -4px;
 }
-
-.info .description {
-    overflow: hidden;
-}
-
 .info .description h1,
 .info .description h2,
 .info .description h3,
 .info .description h4,
 .info .description h5,
 .info .description h6 {
-    color: #2F98CF;
+  color: #2F98CF;
 }
-
 .info .description .info-title {
-    margin-top: 5px;
-    font-size: 1.5em;
-    text-align: center;
-    text-transform: uppercase;
+  margin-top: 5px;
+  font-size: 1.5em;
+  text-align: center;
+  text-transform: uppercase;
+  color: black;
 }
-
 .info .description .rent-type-group {
-    text-align: center;
+  text-align: center;
 }
-
 .info .description .rent-type-group .r-group {
-    margin: 25px 5px 0 5px;
-    width: 100px;
-    height: 70px;
-    display: inline-block;
-    text-align: center;
-    overflow: hidden;
+  margin: 25px 5px 0 5px;
+  width: 100px;
+  height: 70px;
+  display: inline-block;
+  text-align: center;
+  overflow: hidden;
 }
-
 .info .description .rent-type-group .r-group .icon-rent-type {
-    height: 40px;
-    display: inline-block;
+  height: 40px;
+  display: inline-block;
 }
-
 .info .description .rent-type-group .r-group span {
-    display: block;
+  display: block;
 }
-
-.info > .properties {
-    width: 25%;
-    float: right;
-    margin-left: 5%;
+.info .description .rent-type-group .b-group {
+  margin: 25px 5px 0 20px;
+  height: 70px;
+  display: inline-block;
+  text-align: center;
+  overflow: hidden;
 }
-
+.info .description .rent-type-group .b-group .icon-rent-type {
+  height: 40px;
+  display: inline-block;
+}
+.info .description .rent-type-group .b-group span {
+  display: block;
+}
 .info > .properties h4.title {
-    text-align: center;
-    font-size: 1.2em;
-    text-transform: uppercase;
-    margin-bottom: 15px;
+  text-align: center;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  margin-bottom: 15px;
 }
-
+.info > .properties h4.title-r {
+  font-size: 1.2em;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+}
 .info > .properties .desc {
-    margin-top: 25px;
+  margin-top: 20px;
 }
-
 .info > .properties .desc p {
-    margin: 0;
-    font-size: 1.15em;
+  margin: 0;
+  font-size: 1.15em;
 }
-
 .info > .properties .desc p span {
-    color: #2F98CF;
+  color: #466b7d;
 }
-
 .info > .properties .devices {
-    margin-top: 25px;
+  margin-top: 20px;
 }
-
+.info > .properties .devices .list {
+  padding: 0 65px;
+  text-align: center;
+}
 .info > .properties .devices .list li {
-    width: 33.3333%;
-    height: 100px;
-    float: left;
-    text-align: center;
-    padding: 12px 0;
+  display: inline-block;
+  text-align: center;
+}
+.agency-info {
+  margin-top: 46px;
+}
+.agency-info h3 {
+  color: #bb0b13;
+  text-transform: uppercase;
+  font-size: 18px;
+}
+.agency-info p {
+  font-style: italic;
+  margin-bottom: 10px;
+}
+.apartment-view {
+  background: url(/basic-images/Layer42.png) center center no-repeat;
+  background-size: cover;
+}
+.reviews .list {
+  border-top: solid 5px #f4ad49;
+  background: #FCF8F1;
+  padding-bottom: 25px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-box-shadow: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  -moz-box-shadow: 5px 5px 10px -5px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 5px 5px 10px -5px rgba(0, 0, 0, 0.5);
+  -ms-box-shadow: 5px 5px 10px -5px rgba(0, 0, 0, 0.5);
+  -o-box-shadow: 5px 5px 10px -5px rgba(0, 0, 0, 0.5);
+  -khtml-box-shadow: 5px 5px 10px -5px rgba(0, 0, 0, 0.5);
+  box-shadow: 5px 5px 10px -5px rgba(0, 0, 0, 0.5);
+}
+.reviews .title {
+  margin: 2% 0;
+  padding-left: 2%;
+  font-size: 180%;
+  float: left;
+}
+.reviews .title span {
+  color: #2F98CF;
+  font-weight: 600;
+}
+.reviews .add {
+  margin: 3% 0;
+  padding-right: 2%;
+  font-size: 120%;
+  float: right;
+}
+.reviews .review-item {
+  padding: 25px;
+}
+.reviews .review-item:nth-child(2n + 1) {
+  background: #E9E9E9;
+}
+.reviews .review-item .represent {
+  width: 18%;
+  float: left;
+  text-align: center;
+}
+.reviews .review-item .represent .avatar {
+  width: 100px;
+  height: 100px;
+  display: inline-block;
+  overflow: hidden;
+  border: solid 1px #FFE3B4;
+  -moz-box-shadow: 0 0 7px -5px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 0 7px -5px rgba(0, 0, 0, 0.5);
+  -ms-box-shadow: 0 0 7px -5px rgba(0, 0, 0, 0.5);
+  -o-box-shadow: 0 0 7px -5px rgba(0, 0, 0, 0.5);
+  -khtml-box-shadow: 0 0 7px -5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 7px -5px rgba(0, 0, 0, 0.5);
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-box-shadow: 50%;
+  -khtml-border-radius: 50%;
+  border-radius: 50%;
+}
+.reviews .review-item .represent .avatar img {
+  width: 100%;
+  min-width: 100px;
+  min-height: 100px;
+}
+.reviews .review-item .represent .name {
+  font-weight: 600;
+}
+.reviews .review-item .info {
+  overflow: hidden;
+  padding: 0 15px;
+  font-size: 110%;
+}
+.reviews .review-item .info .characteristics {
+  margin-top: 25px;
+  text-align: center;
+}
+.reviews .review-item .info .characteristics li {
+  display: inline-block;
+  text-align: center;
+  padding-bottom: 5px;
+  margin: 0 5px;
+}
+.reviews .review-item .info .characteristics li span {
+  display: inline-block;
+  padding-top: 5px;
+  width: 35px;
+  height: 35px;
+  overflow: hidden;
+  font-size: 120%;
+  font-weight: 600;
+  color: #ffffff;
+  position: relative;
+  margin-bottom: -10px;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-box-shadow: 50%;
+  -khtml-border-radius: 50%;
+  border-radius: 50%;
+}
+.reviews .review-item .info .characteristics li span.r-5 {
+  background: #00C184;
+}
+.reviews .review-item .info .characteristics li span.r-4 {
+  background: #8DC000;
+}
+.reviews .review-item .info .characteristics li span.r-3 {
+  background: #FFC741;
+}
+.reviews .review-item .info .characteristics li span.r-2 {
+  background: #FF6969;
+}
+.reviews .review-item .info .characteristics li span.r-1 {
+  background: #FF2B00;
+}
+.reviews .review-item .info .characteristics li span sup {
+  position: relative;
+  top: -10px;
+  font-size: 60%;
+}
+.reviews .pagination {
+  margin: 15px 0 25px 0;
 }
