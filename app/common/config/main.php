@@ -228,6 +228,7 @@ return [
         ],
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
+            'cache' => 'file-cache',
         ],
         'image' => [
             'class' => 'yii\image\ImageDriver',
@@ -253,6 +254,9 @@ return [
             'class' => 'common\modules\merchant\components\Balance',
         ],
         'cache' => [
+            'class' => 'yii\caching\FileCache',
+        ],
+        'file-cache' => [
             'class' => 'yii\caching\FileCache',
         ],
         'BasisFormat' => [

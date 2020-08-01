@@ -5,8 +5,10 @@
  * @var yii\base\View $this Представление
  * @var $searchModel backend\modules\merchant\models\PaymentSearch
  * @var $dataProvider yii\data\ActiveDataProvider
+ * @var $paidAdverts array
  */
 
+use common\modules\partners\models\Service;
 use yii\helpers\Html;
 use yii\grid\GridView;
 
@@ -59,14 +61,36 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
             'attribute' => 'service',
             'format' => 'html',
             'contentOptions' => ['class' => 'text-left'],
-            'value' => function ($model) {
+            'value' => function (Service $model) use ($paidAdverts) {
 
                 $serviceName = Yii::$app->BasisFormat->helper('Status')->getItem(
                     Yii::$app->getModule('merchant')->systems['partners'],
                     $model->service
                 );
 
-                return $serviceName;
+                $result = '';
+                $advertIdList = $apartmentIdList = [];
+
+                foreach ($model->getSelectedAdvertIdList() as $advertId) {
+                    if (isset($paidAdverts[$advertId])) {
+                        $advertIdList[$advertId] = $paidAdverts[$advertId]->advert_id;
+                        $apartmentIdList[$paidAdverts[$advertId]->apartment_id] = $paidAdverts[$advertId]->apartment_id;
+                    } else {
+                        $result .= Html::tag('span', '№' . $advertId, ['style' => 'color: red']) . '  ';
+                    }
+                }
+
+                $result.= Html::tag('div', 'Объявления', ['style' => 'margin-top: 7px;']);
+                foreach ($advertIdList as $advertId) {
+                    $result .= Html::a('№' . $advertId, ['/partners/adverts/update', 'id' => $advertId]) . '  ';
+                }
+
+                $result.= Html::tag('div', 'Апартаменты', ['style' => 'margin-top: 7px;']);
+                foreach ($apartmentIdList as $apartmentId) {
+                    $result .= Html::a('№' . $apartmentId, ['/partners/default/update', 'id' => $apartmentId]) . '  ';
+                }
+
+                return Html::tag('div', Html::tag('strong', $serviceName)) . $result;
             }
         ],
 
@@ -75,21 +99,20 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
             'format' => 'html',
             'contentOptions' => ['class' => 'text-center'],
             'value' => function ($model) {
+
                 if (empty($model->payment_id)) {
                     return Html::tag('span', 'Не оплачен', ['style' => 'color: red']);
                 }
 
-                /*
-                if ($model->payment) {
-
-                    dd($model, $model->payment->funds);
-                }
-                dd($model->payment);*/
-
-                return Html::a('№' . $model->payment_id, [
+                $paymentLink = Html::a('№' . $model->payment_id, [
                     '/merchant/default/index',
                     's[payment_id]' => $model->payment_id
                 ]);
+
+                $fundsInfo = Yii::$app->formatter->asCurrency($model->payment->funds, 'rub');;
+                $fundsInfo = Html::tag('div', sprintf('Общая сумма: %s', $fundsInfo));
+
+                return $paymentLink . $fundsInfo;
             }
         ],
 

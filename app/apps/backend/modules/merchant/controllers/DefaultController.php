@@ -5,8 +5,12 @@ namespace backend\modules\merchant\controllers;
 use backend\modules\merchant\models\ServiceSearch;
 use backend\modules\merchant\models\PaymentSearch;
 use backend\modules\merchant\models\PaymentForm;
+use common\modules\partners\models\Advert;
+use common\modules\partners\models\Service;
 use common\modules\users\models\User;
 use backend\components\Controller;
+use yii\data\ActiveDataProvider;
+use yii\helpers\ArrayHelper;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use Yii;
@@ -69,8 +73,11 @@ class DefaultController extends Controller
         $searchModel = new ServiceSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+        $paidAdverts = $this->getPaidAdverts($dataProvider);
+
         return $this->render('service', [
             'searchModel' => $searchModel,
+            'paidAdverts' => $paidAdverts,
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -111,5 +118,27 @@ class DefaultController extends Controller
             'model' => $model,
             'systemsArray' => $systems,
         ]);
+    }
+
+    /**
+     * TODO: to helper
+     *
+     * @param ActiveDataProvider $dataProvider
+     * @return array
+     */
+    private function getPaidAdverts(ActiveDataProvider $dataProvider): array
+    {
+        $advertIdList = [];
+
+        /** @var Service $model */
+        foreach ($dataProvider->getModels() as $model) {
+            foreach ($model->getSelectedAdvertIdList() as $advertId) {
+                $advertIdList[$advertId] = $advertId;
+            }
+        }
+
+        $services = Advert::find()->where(['advert_id' => $advertIdList])->with('apartment')->all();
+
+        return ArrayHelper::index($services, 'advert_id');
     }
 }

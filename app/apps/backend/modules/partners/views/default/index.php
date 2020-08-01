@@ -176,7 +176,7 @@ echo GridView::widget([
                     $adverts[] = Html::a('ID ' . $advert->advert_id . ' ' . $advert->rentType->name . ' - ' . $advert->priceText, $url);
                 }
 
-                return implode($adverts, '<br/>');
+                return implode('<br/>', $adverts);
             },
         ],
 

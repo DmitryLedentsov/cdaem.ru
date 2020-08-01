@@ -86,6 +86,30 @@ class Service extends ActiveRecord
     }
 
     /**
+     * @return array
+     */
+    public function getSelectedAdvertIdList(): array
+    {
+        $data = Json::decode($this->data ?? '{}');
+
+        $result = [];
+
+        if (isset($data['selected']) && is_array($data['selected'])) {
+            foreach ($data['selected'] as $select) {
+                $result[$select] = $select;
+            }
+        }
+        if (isset($data['advertisement_id'])) {
+            $result[(int)$data['advertisement_id']] = (int)$data['advertisement_id'];
+        }
+        if (isset($data['advert_id'])) {
+            $result[(int)$data['advert_id']] = (int)$data['advert_id'];
+        }
+
+        return array_unique($result);
+    }
+
+    /**
      * @return \yii\db\ActiveQuery
      */
     public function getUser()
@@ -98,7 +122,7 @@ class Service extends ActiveRecord
      */
     public function getPayment()
     {
-        return $this->hasOne(Payment::class, ['payment_id' => 'id']);
+        return $this->hasOne(Payment::class, ['payment_id' => 'payment_id']);
     }
 
     /**
@@ -111,9 +135,11 @@ class Service extends ActiveRecord
     {
         $query = self::find();
         $query->andWhere('id = :id', [':id' => $id]);
+
         if ($process !== false) {
             $query->process($process);
         }
+
         return $query->one();
     }
 
