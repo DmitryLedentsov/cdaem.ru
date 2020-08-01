@@ -52,7 +52,7 @@ class FixtureHelper extends Module
     {
         return [
             'user' => [
-                'class' => UserFixture::className(),
+                'class' => UserFixture::class,
                 'dataFile' => '@tests/codeception/common/fixtures/data/init_login.php',
             ],
         ];

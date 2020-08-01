@@ -21,7 +21,7 @@ use common\modules\users\models\Suspicions;
  * {
  *     return [
  *         'VisitBehavior' => [
- *             'class' => \common\behaviors\VisitBehavior::className(),
+ *             'class' => \common\behaviors\VisitBehavior::class,
  *         ],
  *     ];
  * }

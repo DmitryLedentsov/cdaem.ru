@@ -50,7 +50,7 @@ class ReservationDeal extends \yii\db\ActiveRecord
      */
     public function getReservation()
     {
-        return $this->hasOne(AdvertReservation::className(), ['reservation_id' => 'reservation_id']);
+        return $this->hasOne(AdvertReservation::class, ['reservation_id' => 'reservation_id']);
     }
 
     /**

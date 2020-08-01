@@ -1,19 +1,19 @@
 <?php
 
 return [
-    'class' => 'yii\swiftmailer\Mailer',
+    'class' => \yii\swiftmailer\Mailer::class,
     'viewPath' => '@common/mails',
     'htmlLayout' => '@common/mails/layouts/html',
     'textLayout' => '@common/mails/layouts',
     'useFileTransport' => false,
     'messageConfig' => [
-        'from' => ['type.apartment@yandex.ua' => 'Cdaem.ru']
+        'from' => ['cdaem.ru@yandex.ru' => 'Cdaem.ru']
     ],
     'transport' => [
         'class' => 'Swift_SmtpTransport',
         'host' => 'smtp.yandex.ru',
-        'username' => 'type.apartment@yandex.ua',
-        'password' => '123456789q',
+        'username' => 'cdaem.ru@yandex.ru',
+        'password' => 'fd_lkwre42',
         'port' => '465',
         'encryption' => 'ssl',
     ],

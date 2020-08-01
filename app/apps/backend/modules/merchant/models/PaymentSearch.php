@@ -76,10 +76,8 @@ class PaymentSearch extends Payment
             'date(date)' => $this->date,
         ]);
 
-
         return $dataProvider;
     }
-
 
     /**
      * @return mixed

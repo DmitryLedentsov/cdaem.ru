@@ -130,6 +130,6 @@ class AdvertisementSlider extends \yii\db\ActiveRecord
      */
     public function getUser()
     {
-        return $this->hasOne(\common\modules\users\models\User::className(), ['id' => 'user_id']);
+        return $this->hasOne(\common\modules\users\models\User::class, ['id' => 'user_id']);
     }
 }

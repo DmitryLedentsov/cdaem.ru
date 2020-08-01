@@ -2,8 +2,6 @@
 
 namespace frontend\components;
 
-use yii\web\Response;
-use yii\helpers\Url;
 use Yii;
 
 /**

@@ -31,7 +31,7 @@ use yii\helpers\Html;
     <h6 class="heading-hr"><span class="icon-info"></span> Основное</h6>
     <div class="row">
         <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-2"><?= $form->field($formModel, 'advert_id')->textInput(['maxlength' => true]) ?></div>
-        <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-3"><?= $form->field($formModel, 'date_start')->widget(DateTimePicker::className(), [
+        <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-3"><?= $form->field($formModel, 'date_start')->widget(DateTimePicker::class, [
                 'type' => DateTimePicker::TYPE_COMPONENT_PREPEND,
                 'options' => ['readonly' => 'readonly'],
                 'pluginOptions' => [
@@ -42,7 +42,7 @@ use yii\helpers\Html;
             ]);
             ?>
         </div>
-        <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-3"><?= $form->field($formModel, 'date_expire')->widget(DateTimePicker::className(), [
+        <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-3"><?= $form->field($formModel, 'date_expire')->widget(DateTimePicker::class, [
                 'type' => DateTimePicker::TYPE_COMPONENT_PREPEND,
                 'options' => ['readonly' => 'readonly'],
                 'pluginOptions' => [

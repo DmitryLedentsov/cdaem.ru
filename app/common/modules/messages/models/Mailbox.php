@@ -63,7 +63,7 @@ class Mailbox extends ActiveRecord
      */
     public function getInterlocutor()
     {
-        return $this->hasOne(\common\modules\users\models\User::className(), ['id' => 'interlocutor_id']);
+        return $this->hasOne(\common\modules\users\models\User::class, ['id' => 'interlocutor_id']);
     }
 
     /**
@@ -71,7 +71,7 @@ class Mailbox extends ActiveRecord
      */
     public function getMessage()
     {
-        return $this->hasOne(Message::className(), ['id' => 'message_id']);
+        return $this->hasOne(Message::class, ['id' => 'message_id']);
     }
 
     /**
@@ -79,7 +79,7 @@ class Mailbox extends ActiveRecord
      */
     public function getUser()
     {
-        return $this->hasOne(\common\modules\users\models\User::className(), ['id' => 'user_id']);
+        return $this->hasOne(\common\modules\users\models\User::class, ['id' => 'user_id']);
     }
 
     /**

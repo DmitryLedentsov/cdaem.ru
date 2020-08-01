@@ -10,27 +10,27 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => [
         'log',
-        'frontend\modules\site\Bootstrap',
+        common\modules\site\Bootstrap::class,
 
-        'common\modules\helpdesk\BootstrapFrontend',
+        common\modules\helpdesk\BootstrapFrontend::class,
 
-        'common\modules\users\Bootstrap',
-        'common\modules\messages\Bootstrap',
+        common\modules\users\Bootstrap::class,
+        common\modules\messages\Bootstrap::class,
 
-        'common\modules\pages\BootstrapFrontend',
-        'common\modules\articles\BootstrapFrontend',
+        common\modules\pages\BootstrapFrontend::class,
+        common\modules\articles\BootstrapFrontend::class,
 
-        'common\modules\callback\BootstrapFrontend',
-        'common\modules\reviews\BootstrapFrontend',
+        common\modules\callback\BootstrapFrontend::class,
+        common\modules\reviews\BootstrapFrontend::class,
 
-        'common\modules\geo\BootstrapFrontend',
+        common\modules\geo\BootstrapFrontend::class,
 
-        'frontend\modules\office\Bootstrap',
-        'frontend\modules\merchant\Bootstrap',
-        'frontend\modules\partners\Bootstrap',
+        frontend\modules\office\Bootstrap::class,
+        frontend\modules\merchant\Bootstrap::class,
+        frontend\modules\partners\Bootstrap::class,
 
-        'common\modules\agency\BootstrapFrontend',
-        'common\modules\seo\BootstrapFrontend',
+        common\modules\agency\BootstrapFrontend::class,
+        common\modules\seo\BootstrapFrontend::class,
     ],
     'on beforeRequest' => function ($event) {
 
@@ -55,54 +55,53 @@ return [
     'defaultRoute' => 'site/default/index',
     'modules' => [
         'agency' => [
-            'class' => 'common\modules\agency\Module',
+            'class' => common\modules\agency\Module::class,
             'controllerNamespace' => 'common\modules\agency\controllers\frontend',
         ],
         'helpdesk' => [
-            'class' => 'common\modules\helpdesk\Module',
+            'class' => common\modules\helpdesk\Module::class,
             'controllerNamespace' => 'common\modules\helpdesk\controllers\frontend',
         ],
         'site' => [
-            'class' => 'frontend\modules\site\Module'
+            'class' => common\modules\site\Module::class
         ],
         'users' => [
-            'class' => 'common\modules\users\Module',
+            'class' => common\modules\users\Module::class,
             'controllerNamespace' => 'common\modules\users\controllers\frontend',
         ],
         'messages' => [
-            'class' => 'common\modules\messages\Module',
+            'class' => common\modules\messages\Module::class,
             'controllerNamespace' => 'common\modules\messages\controllers\frontend',
         ],
         'callback' => [
-            'class' => 'common\modules\callback\Module',
+            'class' => common\modules\callback\Module::class,
             'controllerNamespace' => 'common\modules\callback\controllers\frontend',
         ],
         'reviews' => [
-            'class' => 'common\modules\reviews\Module',
+            'class' => common\modules\reviews\Module::class,
             'controllerNamespace' => 'common\modules\reviews\controllers\frontend',
         ],
         'pages' => [
-            'class' => 'common\modules\pages\Module',
+            'class' => common\modules\pages\Module::class,
             'controllerNamespace' => 'common\modules\pages\controllers\frontend',
         ],
         'articles' => [
-            'class' => 'common\modules\articles\Module',
+            'class' => common\modules\articles\Module::class,
             'controllerNamespace' => 'common\modules\articles\controllers\frontend',
         ],
         'geo' => [
-            'class' => 'common\modules\geo\Module',
+            'class' => common\modules\geo\Module::class,
             'controllerNamespace' => 'common\modules\geo\controllers\frontend',
         ],
-
         'partners' => [
-            'class' => 'frontend\modules\partners\Module',
+            'class' => frontend\modules\partners\Module::class,
         ],
 
         'office' => [
-            'class' => 'frontend\modules\office\Module',
+            'class' => frontend\modules\office\Module::class,
         ],
         'merchant' => [
-            'class' => 'frontend\modules\merchant\Module',
+            'class' => frontend\modules\merchant\Module::class,
         ],
     ],
     'components' => [
@@ -168,7 +167,7 @@ return [
                         'json_encode' => '\yii\helpers\Json::encode',
                         'dump' => '\yii\helpers\BaseVarDumper::dump',
                         'getAssetUrl' => '\frontend\themes\basic\assets\AppAsset::getAssetUrl',
-                        'getPartOfTheDay' => '\frontend\modules\site\models\Total::getNamePartOfTheDay',
+                        'getPartOfTheDay' => '\common\modules\site\models\Total::getNamePartOfTheDay',
                         'strpos' => 'strpos',
                     ],
                 ],

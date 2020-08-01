@@ -1,7 +1,5 @@
 <div class='container actual-articles'>
-
     <div class="d-title"><h4 class="">Актуальные статьи</h4></div>
-
     {% for article in articles if article.article_id > 68 %}
         <div class='act-item-article'>
             <h4>{{ article.name }}</h4>
@@ -22,10 +20,7 @@
             </div>
         {% endfor %}
     </div>
-
     <div class="all-articles-link">
         <a class="newblue-btn" href="{{ path(['/articles/default/index']) }}"><span>Все статьи</span></a>
     </div>
-
-
 </div>

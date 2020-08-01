@@ -3,8 +3,6 @@
 namespace backend\modules\merchant\models;
 
 use common\modules\users\models\User;
-use yii\web\UploadedFile;
-use yii\helpers\ArrayHelper;
 use Yii;
 
 /**
@@ -37,7 +35,7 @@ class PaymentForm extends Payment
     public function scenarios()
     {
         return [
-            self::SCENARIO_DEFAULT => ['system', 'type', 'funds']
+            self::SCENARIO_DEFAULT => ['system', 'type', 'funds'],
         ];
     }
 
@@ -61,6 +59,7 @@ class PaymentForm extends Payment
     public function process()
     {
         $transaction = Yii::$app->db->beginTransaction();
+
         try {
             if ($this->type == self::COSTS) {
                 // Списать средства
@@ -77,9 +76,12 @@ class PaymentForm extends Payment
                     ->billing($this->funds, $this->system);
             }
             $transaction->commit();
+
             return true;
+
         } catch (\Exception $e) {
             $transaction->rollBack();
+
             return false;
         }
     }

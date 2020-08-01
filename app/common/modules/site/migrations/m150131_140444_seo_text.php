@@ -2,6 +2,9 @@
 
 use yii\db\Schema;
 
+/**
+ * Class m150131_140444_seo_text
+ */
 class m150131_140444_seo_text extends \yii\db\Migration
 {
     public function safeUp()

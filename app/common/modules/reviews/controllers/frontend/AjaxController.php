@@ -21,7 +21,7 @@ class AjaxController extends \frontend\components\Controller
     {
         return [
             'access' => [
-                'class' => AccessControl::className(),
+                'class' => AccessControl::class,
                 'rules' => [
                     [
                         'actions' => [],

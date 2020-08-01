@@ -3,9 +3,11 @@
 namespace frontend\modules\merchant\widgets\robokassa;
 
 use yii\base\Widget;
-use yii\web\View;
-use Yii;
 
+/**
+ * Class RenderForm
+ * @package frontend\modules\merchant\widgets\robokassa
+ */
 class RenderForm extends Widget
 {
     /**

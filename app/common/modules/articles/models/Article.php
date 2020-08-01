@@ -90,7 +90,7 @@ class Article extends \yii\db\ActiveRecord
 
     public function getArticlelink()
     {
-        return $this->hasMany(ArticleLink::className(), ['article_id' => 'article_id']);
+        return $this->hasMany(ArticleLink::class, ['article_id' => 'article_id']);
     }
 
 

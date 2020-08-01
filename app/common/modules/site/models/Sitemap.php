@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\modules\site\models;
+namespace common\modules\site\models;
 
 use common\modules\agency\models\Apartment as AgencyApartment;
 use common\modules\partners\models\Apartment;
@@ -14,7 +14,7 @@ use Yii;
 
 /**
  * Sitemap
- * @package frontend\modules\site\models
+ * @package common\modules\site\models
  */
 class Sitemap extends \yii\base\Model
 {
@@ -46,13 +46,13 @@ class Sitemap extends \yii\base\Model
             }
         }
 
-
         // Список ссылок на статьи
         $articles = Article::find()->select(['article_id'])->status()->asArray()->all();
         $result[] = Html::tag('url', Html::tag('loc', Url::to(
                 ['/articles/default/index'], true)) .
             Html::tag('priority', '0.9')
         );
+
         foreach ($articles as $article) {
             $result[] = Html::tag('url', Html::tag('loc', Url::to(
                     ['/articles/default/view',
@@ -61,7 +61,6 @@ class Sitemap extends \yii\base\Model
                 Html::tag('priority', '0.7')
             );
         }
-
 
         // Список ссылок на страницы
         $pages = Page::find()->select(['page_id', 'url'])->status()->asArray()->all();
@@ -75,7 +74,6 @@ class Sitemap extends \yii\base\Model
             );
         }
 
-
         // Список ссылок на страницы
         $types = RentType::find()->select(['rent_type_id', 'slug'])->visible()->asArray()->all();
         foreach ($types as $type) {
@@ -87,7 +85,6 @@ class Sitemap extends \yii\base\Model
                 Html::tag('priority', '0.9')
             );
         }
-
 
         // Ссылки на другие страницы
         $result[] = Html::tag('url', Html::tag('loc', Url::to(['/agency/default/index'], true)) .
@@ -109,8 +106,6 @@ class Sitemap extends \yii\base\Model
         $result[] = Html::tag('url', Html::tag('loc', Url::to(['/partners/default/index'], true)) .
             Html::tag('priority', '0.9')
         );
-        $sitemap = new Sitemap();
-
 
         return $this->render(implode('', $result));
     }
@@ -132,6 +127,7 @@ class Sitemap extends \yii\base\Model
 
         // Список ссылок на объявления
         $apartments = $this->findPartnerApartments($city->city_id);
+
         foreach ($apartments as $apartment) {
             foreach ($apartment['adverts'] as $advert) {
                 $result[] = Html::tag('url', Html::tag('loc', Url::to(
@@ -153,7 +149,6 @@ class Sitemap extends \yii\base\Model
      */
     public function render($content)
     {
-
         $xml = '<?xml version="1.0" encoding="utf-8"?>';
         return $xml . Html::tag('urlset', $content, [
                 'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance',

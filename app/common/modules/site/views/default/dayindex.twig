@@ -27,7 +27,7 @@
                     </div>
                 </div>
                 <div class="cls col-sm-6 col-xs-12 col-md-3">
-                    <div class="login-links">{{ this.renderDynamic('return $this->render("@app/modules/site/views/default/logged.twig");') | raw }}</div>
+                    <div class="login-links">{{ this.renderDynamic('return $this->render("@common/modules/site/views/default/logged.twig");') | raw }}</div>
                     <div class="social-links">
                         <ul>
                             <li><img src="/basic-images/Message-ico.png" alt="messege"/></li>
@@ -46,7 +46,7 @@
             </div>
         </div>
         <div class="notion">
-            {% include('@app/modules/site/views/default/_header.twig') %}
+            {% include('@common/modules/site/views/default/_header.twig') %}
         </div>
 
     </header>

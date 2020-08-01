@@ -28,7 +28,7 @@ class Message extends ActiveRecord
     {
         return [
             [
-                'class' => \yii\behaviors\TimestampBehavior::className(),
+                'class' => \yii\behaviors\TimestampBehavior::class,
                 'createdAtAttribute' => 'date_create',
                 'updatedAtAttribute' => false,
                 'value' => function ($event) {
@@ -146,6 +146,6 @@ class Message extends ActiveRecord
      */
     public function getUserMessagesMailboxes()
     {
-        return $this->hasMany(Mailbox::className(), ['message_id' => 'id']);
+        return $this->hasMany(Mailbox::class, ['message_id' => 'id']);
     }
 }

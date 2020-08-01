@@ -59,7 +59,7 @@ class PageForm extends Model
             ['text', 'string'],
 
             // Url адрес
-            ['url', 'unique', 'targetAttribute' => 'url', 'targetClass' => Page::className(), 'filter' =>
+            ['url', 'unique', 'targetAttribute' => 'url', 'targetClass' => Page::class, 'filter' =>
                 ($this->scenario == 'create') ? null : function ($query) {
                     $query->andWhere(['<>', 'page_id', $this->page_id]);
                 }

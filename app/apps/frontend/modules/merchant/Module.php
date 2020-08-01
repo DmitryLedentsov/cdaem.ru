@@ -2,8 +2,6 @@
 
 namespace frontend\modules\merchant;
 
-use Yii;
-
 /**
  * Merchant module
  */

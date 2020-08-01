@@ -9,7 +9,7 @@
 {% block title %}  {{ this.registerTitle(model.title ~ ' | Сдаём.ру') }} {% endblock %}
 
 {% block header %}
-    {{ use('frontend/modules/site/widgets/BgHeader') }}
+    {{ use('common/modules/site/widgets/BgHeader') }}
     {{ bg_header_widget({'title': 'Сотрудничество'}) }}
 {% endblock %}
 
@@ -53,7 +53,7 @@
     {{ use('common/modules/agency/assets/frontend/AgencyAsset') }}
     {{ register_agency_asset() }}
 
-    {{ use('frontend/modules/site/widgets/Captcha') }}
+    {{ use('common/modules/site/widgets/Captcha') }}
 
     <div class="container pages">
 

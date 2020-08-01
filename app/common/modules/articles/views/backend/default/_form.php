@@ -67,7 +67,7 @@ use yii\helpers\Url;
 
 <?php if (!$model->isNewRecord): ?>
     <div class="row">
-        <div class="col-md-4 col-md-4 col-sm-4 col-xs-6 col-lg-2"><?= $form->field($formModel, 'date_create')->widget(DateTimePicker::className(), [
+        <div class="col-md-4 col-md-4 col-sm-4 col-xs-6 col-lg-2"><?= $form->field($formModel, 'date_create')->widget(DateTimePicker::class, [
                 'type' => DateTimePicker::TYPE_INPUT,
                 'options' => [
                     'readonly' => 'readonly',
@@ -96,7 +96,7 @@ use yii\helpers\Url;
     <h6 class="heading-hr"><i class="icon-text-width"></i> Содержимое</h6>
     <div class="row">
         <div class="col-md-12 col-md-12 col-sm-12 col-xs-12 col-lg-12">
-            <?= $form->field($formModel, 'short_text')->widget(\vova07\imperavi\Widget::className(), [
+            <?= $form->field($formModel, 'short_text')->widget(\vova07\imperavi\Widget::class, [
                 'settings' => [
                     'lang' => 'ru',
                     'minHeight' => 200,
@@ -122,7 +122,7 @@ use yii\helpers\Url;
     </div>
     <div class="row">
         <div class="col-md-12 col-md-12 col-sm-12 col-xs-12 col-lg-12">
-            <?= $form->field($formModel, 'full_text')->widget(\vova07\imperavi\Widget::className(), [
+            <?= $form->field($formModel, 'full_text')->widget(\vova07\imperavi\Widget::class, [
                 'settings' => [
                     'lang' => 'ru',
                     'minHeight' => 200,

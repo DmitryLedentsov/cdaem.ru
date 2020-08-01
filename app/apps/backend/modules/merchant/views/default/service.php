@@ -10,7 +10,6 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 
-
 $this->title = 'История оплаты сервисов';
 
 echo \backend\modules\admin\widgets\HeaderWidget::widget([
@@ -61,7 +60,13 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
             'format' => 'html',
             'contentOptions' => ['class' => 'text-left'],
             'value' => function ($model) {
-                return Yii::$app->BasisFormat->helper('Status')->getItem(Yii::$app->getModule('merchant')->systems['partners'], $model->service);
+
+                $serviceName = Yii::$app->BasisFormat->helper('Status')->getItem(
+                    Yii::$app->getModule('merchant')->systems['partners'],
+                    $model->service
+                );
+
+                return $serviceName;
             }
         ],
 
@@ -71,11 +76,20 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
             'contentOptions' => ['class' => 'text-center'],
             'value' => function ($model) {
                 if (empty($model->payment_id)) {
-
                     return Html::tag('span', 'Не оплачен', ['style' => 'color: red']);
-                } else {
-                    return Html::a('№' . $model->payment_id, ['/merchant/default/index', 's[payment_id]' => $model->payment_id]);
                 }
+
+                /*
+                if ($model->payment) {
+
+                    dd($model, $model->payment->funds);
+                }
+                dd($model->payment);*/
+
+                return Html::a('№' . $model->payment_id, [
+                    '/merchant/default/index',
+                    's[payment_id]' => $model->payment_id
+                ]);
             }
         ],
 

@@ -6,7 +6,6 @@ use yii\base\Model;
 use common\modules\partners\models\Service;
 use yii\data\ActiveDataProvider;
 use Yii;
-use yii\helpers\ArrayHelper;
 
 /**
  * Class ServiceSearch

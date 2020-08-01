@@ -21,7 +21,7 @@ class DefaultController extends Controller
     {
         return [
             'access' => [
-                'class' => \yii\filters\AccessControl::className(),
+                'class' => \yii\filters\AccessControl::class,
                 'rules' => [
                     [
                         'actions' => [],
@@ -31,7 +31,7 @@ class DefaultController extends Controller
                 ]
             ],
             'verbs' => [
-                'class' => \yii\filters\VerbFilter::className(),
+                'class' => \yii\filters\VerbFilter::class,
                 'actions' => [
                     'delete' => ['post'],
                 ],

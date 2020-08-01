@@ -15,13 +15,23 @@ class Payment extends ActiveRecord
     use ModuleTrait;
 
     /**
+     * Тип Денежного Оборота
+     * - Пополение
+     * - Начисление
+     * - Расходы
+     */
+    const DEPOSIT = 'DEPOSIT';
+    const BILLING = 'BILLING';
+    const COSTS = 'COSTS';
+
+    /**
      * @inheritdoc
      */
     public function behaviors()
     {
         return [
             'TimestampBehavior' => [
-                'class' => \yii\behaviors\TimestampBehavior::className(),
+                'class' => \yii\behaviors\TimestampBehavior::class,
                 'attributes' => [
                     ActiveRecord::EVENT_BEFORE_INSERT => 'date',
                 ],
@@ -61,18 +71,8 @@ class Payment extends ActiveRecord
      */
     public function getUser()
     {
-        return $this->hasOne(\common\modules\users\models\User::className(), ['id' => 'user_id']);
+        return $this->hasOne(\common\modules\users\models\User::class, ['id' => 'user_id']);
     }
-
-    /**
-     * Тип Денежного Оборота
-     * - Пополение
-     * - Начисление
-     * - Расходы
-     */
-    const DEPOSIT = 'DEPOSIT';
-    const BILLING = 'BILLING';
-    const COSTS = 'COSTS';
 
     /**
      * Массив Доступных Данных
@@ -116,6 +116,7 @@ class Payment extends ActiveRecord
         $payment->funds_was = $fundsWas;
         $payment->funds = $funds;
         $payment->save(false);
+
         return $payment->payment_id;
     }
 }

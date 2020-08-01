@@ -57,7 +57,7 @@ use yii\helpers\url;
     </div>
     <div class="row">
         <div class="col-md-12 col-md-12 col-sm-12 col-xs-12 col-lg-8">
-            <?= $form->field($model, 'agency_rules')->widget(\vova07\imperavi\Widget::className(), [
+            <?= $form->field($model, 'agency_rules')->widget(\vova07\imperavi\Widget::class, [
                 'settings' => [
                     'lang' => 'ru',
                     'minHeight' => 200,

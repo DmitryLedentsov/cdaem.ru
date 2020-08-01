@@ -72,7 +72,7 @@ class HelpdeskForm extends \yii\base\Model
             [['email'], 'string', 'max' => 255],
             [['theme', 'user_name'], 'string', 'max' => 100],
             ['partners_advert_id', 'required'],
-            ['partners_advert_id', 'exist', 'targetClass' => Advert::className(), 'targetAttribute' => 'advert_id'],
+            ['partners_advert_id', 'exist', 'targetClass' => Advert::class, 'targetAttribute' => 'advert_id'],
         ];
     }
 

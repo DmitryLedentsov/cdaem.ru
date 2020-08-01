@@ -1,12 +1,12 @@
 <?php
 
-namespace frontend\modules\site\models;
+namespace common\modules\site\models;
 
 use Yii;
 
 /**
  * Заказ такси
- * @package frontend\modules\site\models
+ * @package common\modules\site\models
  */
 class Taxi extends \yii\base\Model
 {
@@ -163,8 +163,6 @@ class Taxi extends \yii\base\Model
     public function afterValidate()
     {
         parent::afterValidate();
-
-
     }
 
     /**
@@ -178,6 +176,7 @@ class Taxi extends \yii\base\Model
 
         $subject = 'Заказ Такси';
         $setTo = 'taxireversi@mail.ru';
+
         $data = [
             'name' => $this->name,
             'phone' => $this->phone,
@@ -187,7 +186,7 @@ class Taxi extends \yii\base\Model
             'date_delivery' => $this->date_delivery,
         ];
 
-        $send = $mail->compose('taxi', $data)
+        $mail->compose('taxi', $data)
             ->setFrom(Yii::$app->getMailer()->messageConfig['from'])
             ->setTo($setTo)
             ->setSubject($subject)

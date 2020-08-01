@@ -1,12 +1,10 @@
 <?php
 
-namespace frontend\modules\site;
-
-use Yii;
+namespace common\modules\site;
 
 /**
  * Bootstrap
- * @package frontend\modules\site
+ * @package common\modules\site
  */
 class Bootstrap implements \yii\base\BootstrapInterface
 {

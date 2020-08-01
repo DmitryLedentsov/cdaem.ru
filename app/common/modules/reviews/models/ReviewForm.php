@@ -62,7 +62,7 @@ class ReviewForm extends Review
     {
         return [
             'TimestampBehavior' => [
-                'class' => \yii\behaviors\TimestampBehavior::className(),
+                'class' => \yii\behaviors\TimestampBehavior::class,
                 'attributes' => [
                     \yii\db\ActiveRecord::EVENT_BEFORE_INSERT => 'date_create',
                 ],

@@ -3,7 +3,6 @@
 namespace frontend\modules\merchant\models;
 
 use yii\data\ActiveDataProvider;
-use yii\base\Model;
 use Yii;
 
 /**

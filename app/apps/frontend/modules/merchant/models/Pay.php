@@ -5,7 +5,6 @@ namespace frontend\modules\merchant\models;
 use common\modules\partners\traits\ModuleTrait;
 use common\modules\partners\models\Service;
 use common\modules\users\models\User;
-use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
 use Yii;
 
@@ -37,7 +36,7 @@ class Pay extends \yii\base\Model
 
     /**
      * Кол-во средств для пополнения
-     * @var decimal
+     * @var float
      */
     public $amount;
 
@@ -49,7 +48,7 @@ class Pay extends \yii\base\Model
 
     /**
      * Общая стоимость к оплате
-     * @var decimal
+     * @var float
      */
     private $_price;
 
@@ -166,7 +165,6 @@ class Pay extends \yii\base\Model
                 }
             }
 
-
             return true;
         }
 
@@ -178,7 +176,7 @@ class Pay extends \yii\base\Model
      */
     public function afterValidate()
     {
-        if ($this->scenario != 'payment') {
+        if ($this->scenario !== 'payment') {
             // Инициализация сервиса
             $this->_service = Yii::$app->service->load($this->service);
             $this->_price = $this->_price ? $this->_price : $this->_service->getPrice();
@@ -240,13 +238,13 @@ class Pay extends \yii\base\Model
         if ($this->scenario == 'pay-account') {
 
             // Чтобы исключить случайные покупки на сайте, пользователь может оплачивать услуги 1 раз в минуту
-            /*         if (Service::getCountRecordsForInterval(Yii::$app->user->id)) {
-                         $transaction->rollBack();
-                         return [
-                             'status' => 0,
-                             'message' => 'Последнее время оплаты услуги было зафиксировано менее 10 секунд назад. Чтобы исключить случайные покупки на сайте действует временное ограничение.',
-                         ];
-                     }*/
+            /* if (Service::getCountRecordsForInterval(Yii::$app->user->id)) {
+                $transaction->rollBack();
+                return [
+                    'status' => 0,
+                    'message' => 'Последнее время оплаты услуги было зафиксировано менее 10 секунд назад. Чтобы исключить случайные покупки на сайте действует временное ограничение.',
+                ];
+            } */
 
             // Списать средства у пользователя
             $paymentId = Yii::$app->balance
@@ -270,21 +268,17 @@ class Pay extends \yii\base\Model
 
             Yii::$app->session->setFlash('info', 'Услуга успешно оплачена. Пожалуйста обратите внимание на поле "Дата включения" и без необходимости повторно не оплачивайте сервис.');
 
-            $response = [
+            return [
                 'status' => 1,
                 'message' => 'Услуга успешно оплачена. В течении нескольких минут Вам будет отправлено письмо с дальнейшими инструкциями.',
                 'funds' => Yii::$app->formatter->asCurrency(Yii::$app->user->identity->funds_main - $this->_price, 'RUB'),
                 'redirect' => ['/office/orders']
             ];
 
-            return $response;
-
-        } else {
-
-            // Оплата с помощью платежной системы
-            return $this->paymentSystem($transaction);
-
         }
+
+        // Оплата с помощью платежной системы
+        return $this->paymentSystem($transaction);
     }
 
     /**

@@ -3,7 +3,7 @@
     @var \common\helpdesk\models\Helpdesk model
     @var \common\helpdesk\models\form\HelpdeskForm formModel
 #}
-{{ use('frontend/modules/site/widgets/Captcha') }}
+{{ use('common/modules/site/widgets/Captcha') }}
 {% set form = active_form_begin({
     'options' : {'class' : 'horizontal'},
     'id' : 'form-helpdesk-ask',

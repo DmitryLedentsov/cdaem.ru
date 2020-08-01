@@ -24,7 +24,7 @@ class City extends \yii\db\ActiveRecord
      */
     public function getCountry()
     {
-        return $this->hasOne(Country::className(), ['country_id' => 'country_id']);
+        return $this->hasOne(Country::class, ['country_id' => 'country_id']);
     }
 
     /**
@@ -32,7 +32,7 @@ class City extends \yii\db\ActiveRecord
      */
     public function getRegion()
     {
-        return $this->hasOne(Region::className(), ['region_id' => 'region_id']);
+        return $this->hasOne(Region::class, ['region_id' => 'region_id']);
     }
 
     /**
@@ -40,7 +40,7 @@ class City extends \yii\db\ActiveRecord
      */
     public function getMetro()
     {
-        return $this->hasMany(Metro::className(), ['city_id' => 'city_id']);
+        return $this->hasMany(Metro::class, ['city_id' => 'city_id']);
     }
 
     /**

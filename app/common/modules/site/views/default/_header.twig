@@ -6,20 +6,24 @@
         'action' : 'partners/pre-region',
         'enableClientScript' : false,
     }) %}
-    <div class="phones-block visible-xs"><span class="call absolute-p" data-toggle="modal"
-                                               data-target="#modal-callback"></span>
-
-        <a href="https://chat.whatsapp.com/HBYHOMkBYY89Jh2EElJuUv" rel="nofollow"><i class="fab fa-whatsapp fa-3x"
-                                                                                     style="line-height: 85px;"
-                                                                                     aria-hidden="true"></i></a></div>
+    <div class="phones-block visible-xs">
+        <span class="call absolute-p" data-toggle="modal" data-target="#modal-callback"></span>
+        <a href="https://chat.whatsapp.com/HBYHOMkBYY89Jh2EElJuUv" rel="nofollow">
+            <i class="fab fa-whatsapp fa-3x" style="line-height: 85px;" aria-hidden="true"></i>
+        </a>
+    </div>
     <div class="search-block">
         <div class="input-search">
             <input type="text" name="city" class="form-control city-drop-down-list"
                    data-url="{{ path(['/geo/ajax/select-city']) }}" placeholder="Укажите город"/>
         </div>
         <br>
-        <div class="search-map-2 hidden-xs"><a href="{{ path(['/geo/default/index']) }}" class="header-img">Открыть на
-                карте<img class="searchmap-img" src="/basic-images/Shape14.png" alt="карта"/></a></div>
+        <div class="search-map-2 hidden-xs">
+            <a href="{{ path(['/geo/default/index']) }}" class="header-img">
+                Открыть на карте
+                <img class="searchmap-img" src="/basic-images/Shape14.png" alt="карта"/>
+            </a>
+        </div>
         <div class="input-submit">
             <input type="submit" value="Найти" class="btn btn-primary"/>
         </div>

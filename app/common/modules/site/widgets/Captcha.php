@@ -1,14 +1,13 @@
 <?php
 
-namespace frontend\modules\site\widgets;
+namespace common\modules\site\widgets;
 
-use yii\helpers\Html;
 use yii\base\Widget;
 use Yii;
 
 /**
  * Captcha
- * @package frontend\modules\site\widgets
+ * @package common\modules\site\widgets
  */
 class Captcha extends Widget
 {
@@ -21,8 +20,6 @@ class Captcha extends Widget
      */
     public function run()
     {
-
-
         return $this->form->field($this->model, $this->name, [
             'template' => '<label class="control-label">&nbsp;</label><div class="code">{input}{error}</div>',
             'options' => ['class' => 'form-group verifycode'],
@@ -34,7 +31,6 @@ class Captcha extends Widget
      */
     public static function getClassValidator()
     {
-
         return \himiklab\yii2\recaptcha\ReCaptchaValidator::class;
     }
 }

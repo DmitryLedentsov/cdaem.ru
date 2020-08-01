@@ -9,7 +9,7 @@ use Yii;
 
 /**
  * Виджет отображает Seo текст на странице
- * @package frontend\modules\site\widgets
+ * @package common\modules\site\widgets
  */
 class SeoText extends Widget
 {

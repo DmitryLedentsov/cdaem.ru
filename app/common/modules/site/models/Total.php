@@ -1,11 +1,10 @@
 <?php
 
-namespace frontend\modules\site\models;
-
-use Yii;
+namespace common\modules\site\models;
 
 /**
- * Общая модель
+ * Class Total
+ * @package common\modules\site\models
  */
 class Total extends \yii\base\Model
 {
@@ -19,9 +18,13 @@ class Total extends \yii\base\Model
 
         if ($h >= 5 && $h <= 12) {
             return 'morning';
-        } else if ($h > 12 && $h <= 16) {
+        }
+
+        if ($h > 12 && $h <= 16) {
             return 'day';
-        } else if ($h > 16 && $h <= 21) {
+        }
+
+        if ($h > 16 && $h <= 21) {
             return 'evening';
         }
 

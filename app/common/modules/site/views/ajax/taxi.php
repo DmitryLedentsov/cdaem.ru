@@ -2,7 +2,7 @@
 /*
     Форма заказа такси
     @var \yii\web\View this
-    @var frontend\modules\site\models\Taxi $model
+    @var common\modules\site\models\Taxi $model
 */
 
 use yii\helpers\Html;

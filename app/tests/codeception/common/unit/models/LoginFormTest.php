@@ -85,7 +85,7 @@ class LoginFormTest extends DbTestCase
     {
         return [
             'user' => [
-                'class' => UserFixture::className(),
+                'class' => UserFixture::class,
                 'dataFile' => '@tests/codeception/common/unit/fixtures/data/models/user.php'
             ],
         ];

@@ -54,8 +54,8 @@ class AnswerForm extends Model
     {
         return [
             [['ticket_id', 'user_id', 'priority', 'answered', 'close'], 'integer'],
-            ['user_id', 'exist', 'targetClass' => User::className(), 'targetAttribute' => 'id'],
-            ['ticket_id', 'exist', 'targetClass' => Helpdesk::className(), 'targetAttribute' => 'ticket_id'],
+            ['user_id', 'exist', 'targetClass' => User::class, 'targetAttribute' => 'id'],
+            ['ticket_id', 'exist', 'targetClass' => Helpdesk::class, 'targetAttribute' => 'ticket_id'],
             ['text', 'string'],
         ];
     }

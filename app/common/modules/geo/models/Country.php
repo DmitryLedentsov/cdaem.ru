@@ -23,7 +23,7 @@ class Country extends \yii\db\ActiveRecord
      */
     public function getCities()
     {
-        return $this->hasMany(City::className(), ['country_id' => 'country_id']);
+        return $this->hasMany(City::class, ['country_id' => 'country_id']);
     }
 
     /**
@@ -31,6 +31,6 @@ class Country extends \yii\db\ActiveRecord
      */
     public function getRegions()
     {
-        return $this->hasMany(Region::className(), ['country_id' => 'country_id']);
+        return $this->hasMany(Region::class, ['country_id' => 'country_id']);
     }
 }

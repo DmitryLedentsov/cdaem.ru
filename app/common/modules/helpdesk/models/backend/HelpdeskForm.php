@@ -65,7 +65,7 @@ class HelpdeskForm extends \yii\base\Model
     {
         return [
             [['ticket_id', 'user_id', 'priority', 'answered', 'close'], 'integer'],
-            ['user_id', 'exist', 'targetClass' => User::className(), 'targetAttribute' => 'id'],
+            ['user_id', 'exist', 'targetClass' => User::class, 'targetAttribute' => 'id'],
             ['email', 'email'],
             [['theme', 'user_name'], 'string', 'max' => 100],
             ['text', 'string'],

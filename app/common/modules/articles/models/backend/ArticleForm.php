@@ -62,7 +62,7 @@ class ArticleForm extends Model
     public function rules()
     {
         return [
-            ['city', 'exist', 'targetAttribute' => 'name_eng', 'targetClass' => City::className(), 'message' => 'Такого поддомена не существует'],
+            ['city', 'exist', 'targetAttribute' => 'name_eng', 'targetClass' => City::class, 'message' => 'Такого поддомена не существует'],
             ['city', 'default', 'value' => null],
             [['file'], 'file', 'extensions' => 'jpg, png'],
             [['bgfile'], 'file', 'extensions' => 'jpg, png'],
@@ -74,7 +74,7 @@ class ArticleForm extends Model
             [['slug', 'name', 'short_text', 'title', 'description', 'keywords', 'full_text', 'visible', 'status'], 'required', 'on' => 'create'],
             [['slug', 'name', 'short_text', 'title', 'description', 'keywords', 'full_text', 'visible', 'status'], 'required', 'on' => 'update'],
             // Url адрес
-            ['slug', 'unique', 'targetAttribute' => 'slug', 'targetClass' => Article::className(), 'filter' =>
+            ['slug', 'unique', 'targetAttribute' => 'slug', 'targetClass' => Article::class, 'filter' =>
                 ($this->scenario == 'create') ? null : function ($query) {
                     $query->andWhere(['<>', 'article_id', $this->article_id]);
                 }

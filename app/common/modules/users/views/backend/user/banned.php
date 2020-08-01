@@ -57,7 +57,7 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
 
     <div class="row">
         <div class="col-md-3 col-md-4 col-sm-4 col-xs-4 col-lg-3">
-            <?= $form->field($model, 'time_banned')->widget(DatePicker::className(), [
+            <?= $form->field($model, 'time_banned')->widget(DatePicker::class, [
                 'type' => DatePicker::TYPE_INPUT,
                 'options' => [
                     'readonly' => 'readonly',

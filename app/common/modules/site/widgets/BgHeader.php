@@ -1,32 +1,31 @@
 <?php
 
-namespace frontend\modules\site\widgets;
+namespace common\modules\site\widgets;
 
 use yii\helpers\Html;
 use yii\base\Widget;
 use Yii;
 
 /**
- * Виджет отображает случайшую шапку
+ * Class BgHeader
+ * @package common\modules\site\widgets
  */
-class BgHead extends Widget
+class BgHeader extends Widget
 {
     /**
      * @var string
      */
     public $title;
 
-    public $background;
+    /**
+     * @var string
+     */
+    public $dir = '@app/web/basic-images/bg-header';
 
     /**
      * @var string
      */
-    public $dir = '@app/web/images';
-
-    /**
-     * @var string
-     */
-    public $url = '/images';
+    public $url = '/basic-images/bg-header';
 
     /**
      * @var array
@@ -67,14 +66,10 @@ class BgHead extends Widget
      */
     public function run()
     {
-        $content = Html::tag('h1', ($this->title), ['id' => 'bg-head-title']);
-        $background = $this->background;
-        if ($this->background == null) {
-            $background = 'article-no-img.jpg';
-        }
+        $content = Html::tag('h1', ($this->title), ['id' => 'bg-header-title']);
         return Html::tag('div', $content, [
-            'class' => 'bg-header-2',
-            'style' => 'background: url(' . $this->url . '/' . $background . ')center center;background-size:cover',
+            'class' => 'bg-header',
+            'style' => 'background-image: url(' . $this->url . '/' . $this->_file . ')',
         ]);
     }
 }

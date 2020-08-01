@@ -98,7 +98,7 @@ class User extends \common\modules\users\models\User
      */
     public function getPerson()
     {
-        return $this->hasOne(LegalPerson::className(), ['user_id' => 'id']);
+        return $this->hasOne(LegalPerson::class, ['user_id' => 'id']);
     }
 
     /**
@@ -106,6 +106,6 @@ class User extends \common\modules\users\models\User
      */
     public function getProfile()
     {
-        return $this->hasOne(Profile::className(), ['user_id' => 'id']);
+        return $this->hasOne(Profile::class, ['user_id' => 'id']);
     }
 }

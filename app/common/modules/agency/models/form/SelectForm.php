@@ -54,7 +54,7 @@ class SelectForm extends Model
 
             // Защитный код
             ['verifyCode', 'required', 'message' => 'Подтвердите, что Вы не робот'],
-            ['verifyCode', \frontend\modules\site\widgets\Captcha::getClassValidator()],
+            ['verifyCode', \common\modules\site\widgets\Captcha::getClassValidator()],
         ];
     }
 

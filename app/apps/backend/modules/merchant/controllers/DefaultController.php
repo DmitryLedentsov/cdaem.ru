@@ -5,13 +5,10 @@ namespace backend\modules\merchant\controllers;
 use backend\modules\merchant\models\ServiceSearch;
 use backend\modules\merchant\models\PaymentSearch;
 use backend\modules\merchant\models\PaymentForm;
-use backend\modules\merchant\models\Payment;
 use common\modules\users\models\User;
 use backend\components\Controller;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
-use yii\widgets\ActiveForm;
-use yii\web\Response;
 use Yii;
 
 /**

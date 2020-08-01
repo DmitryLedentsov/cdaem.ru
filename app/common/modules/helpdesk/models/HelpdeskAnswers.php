@@ -41,7 +41,7 @@ class HelpdeskAnswers extends \yii\db\ActiveRecord
      */
     public function getHelpdesk()
     {
-        return $this->hasOne(Helpdesk::className(), ['ticket_id' => 'ticket_id']);
+        return $this->hasOne(Helpdesk::class, ['ticket_id' => 'ticket_id']);
     }
 
     /**
@@ -49,6 +49,6 @@ class HelpdeskAnswers extends \yii\db\ActiveRecord
      */
     public function getUser()
     {
-        return $this->hasOne(User::className(), ['id' => 'user_id']);
+        return $this->hasOne(User::class, ['id' => 'user_id']);
     }
 }

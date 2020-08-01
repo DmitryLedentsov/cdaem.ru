@@ -68,7 +68,7 @@ class Apartment extends \yii\db\ActiveRecord
      */
     public function getUser()
     {
-        return $this->hasOne(\common\modules\users\models\User::className(), ['id' => 'user_id']);
+        return $this->hasOne(\common\modules\users\models\User::class, ['id' => 'user_id']);
     }
 
     /**
@@ -76,7 +76,7 @@ class Apartment extends \yii\db\ActiveRecord
      */
     public function getCity()
     {
-        return $this->hasOne(\common\modules\geo\models\City::className(), ['city_id' => 'city_id']);
+        return $this->hasOne(\common\modules\geo\models\City::class, ['city_id' => 'city_id']);
     }
 
     /**
@@ -84,7 +84,7 @@ class Apartment extends \yii\db\ActiveRecord
      */
     public function getMainDistrict()
     {
-        return $this->hasOne(\common\modules\geo\models\Districts::className(), ['id' => 'district1']);
+        return $this->hasOne(\common\modules\geo\models\Districts::class, ['id' => 'district1']);
     }
 
     /**
@@ -92,7 +92,7 @@ class Apartment extends \yii\db\ActiveRecord
      */
     public function getSemiDistrict()
     {
-        return $this->hasOne(\common\modules\geo\models\Districts::className(), ['id' => 'district2']);
+        return $this->hasOne(\common\modules\geo\models\Districts::class, ['id' => 'district2']);
     }
 
     /**
@@ -100,7 +100,7 @@ class Apartment extends \yii\db\ActiveRecord
      */
     public function getMetroStations()
     {
-        return $this->hasMany(ApartmentMetroStations::className(), ['apartment_id' => 'apartment_id']);
+        return $this->hasMany(ApartmentMetroStations::class, ['apartment_id' => 'apartment_id']);
     }
 
     /**
@@ -108,7 +108,7 @@ class Apartment extends \yii\db\ActiveRecord
      */
     public function getMetroStation()
     {
-        return $this->hasOne(ApartmentMetroStations::className(), ['apartment_id' => 'apartment_id']);
+        return $this->hasOne(ApartmentMetroStations::class, ['apartment_id' => 'apartment_id']);
     }
 
     /**
@@ -116,7 +116,7 @@ class Apartment extends \yii\db\ActiveRecord
      */
     public function getReservations()
     {
-        return $this->hasMany(Reservation::className(), ['apartment_id' => 'apartment_id']);
+        return $this->hasMany(Reservation::class, ['apartment_id' => 'apartment_id']);
     }
 
     /**
@@ -124,7 +124,7 @@ class Apartment extends \yii\db\ActiveRecord
      */
     public function getAdverts()
     {
-        return $this->hasMany(Advert::className(), ['apartment_id' => 'apartment_id']);
+        return $this->hasMany(Advert::class, ['apartment_id' => 'apartment_id']);
     }
 
     /**
@@ -132,7 +132,7 @@ class Apartment extends \yii\db\ActiveRecord
      */
     public function getTitleImage()
     {
-        return $this->hasOne(Image::className(), ['apartment_id' => 'apartment_id'])
+        return $this->hasOne(Image::class, ['apartment_id' => 'apartment_id'])
             ->orderBy('default_img DESC')->inverseOf('apartment');
     }
 
@@ -141,7 +141,7 @@ class Apartment extends \yii\db\ActiveRecord
      */
     /*public function getAlternateTitleImage()
     {
-        return $this->hasOne(Image::className(), ['apartment_id' => 'apartment_id'])
+        return $this->hasOne(Image::class, ['apartment_id' => 'apartment_id'])
             ->andWhere(['default_img' => 0]);
     }*/
 
@@ -150,7 +150,7 @@ class Apartment extends \yii\db\ActiveRecord
      */
     public function getImages()
     {
-        return $this->hasMany(Image::className(), ['apartment_id' => 'apartment_id'])->inverseOf('apartment');
+        return $this->hasMany(Image::class, ['apartment_id' => 'apartment_id'])->inverseOf('apartment');
     }
 
     /**
@@ -159,7 +159,7 @@ class Apartment extends \yii\db\ActiveRecord
      */
     public function getOrderedImages()
     {
-        return $this->hasMany(Image::className(), ['apartment_id' => 'apartment_id'])->orderBy('sort ASC')->inverseOf('apartment');
+        return $this->hasMany(Image::class, ['apartment_id' => 'apartment_id'])->orderBy('sort ASC')->inverseOf('apartment');
     }
 
     /**
