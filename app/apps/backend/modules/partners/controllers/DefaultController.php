@@ -205,7 +205,6 @@ class DefaultController extends Controller
             return $response;
         }
 
-
         $oldDefaultImg = Image::find()->where([
             'apartment_id' => $newDefaultImg->apartment_id,
             'default_img' => 1,
