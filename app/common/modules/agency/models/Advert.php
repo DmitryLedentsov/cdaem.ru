@@ -57,7 +57,7 @@ class Advert extends \yii\db\ActiveRecord
      */
     public function getRentType()
     {
-        return $this->hasOne(RentType::className(), ['rent_type_id' => 'rent_type']);
+        return $this->hasOne(RentType::class, ['rent_type_id' => 'rent_type']);
     }
 
     /**
@@ -65,7 +65,7 @@ class Advert extends \yii\db\ActiveRecord
      */
     public function getApartment()
     {
-        return $this->hasOne(Apartment::className(), ['apartment_id' => 'apartment_id']);
+        return $this->hasOne(Apartment::class, ['apartment_id' => 'apartment_id']);
     }
 
     /**
@@ -73,7 +73,7 @@ class Advert extends \yii\db\ActiveRecord
      */
     public function getAdvertisement()
     {
-        return $this->hasOne(Advertisement::className(), ['advert_id' => 'advert_id'])
+        return $this->hasOne(Advertisement::class, ['advert_id' => 'advert_id'])
             ->andWhere('date_expire >= :date', [':date' => date('Y-m-d H:i:s')]);
     }
 
@@ -82,7 +82,7 @@ class Advert extends \yii\db\ActiveRecord
      */
     public function getSpecial()
     {
-        return $this->hasOne(SpecialAdvert::className(), ['advert_id' => 'advert_id'])
+        return $this->hasOne(SpecialAdvert::class, ['advert_id' => 'advert_id'])
             ->andWhere('date_expire >= :date', [':date' => date('Y-m-d H:i:s')]);
     }
 

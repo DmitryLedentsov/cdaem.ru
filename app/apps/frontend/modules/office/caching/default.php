@@ -18,12 +18,12 @@ $filters = [
     ],*/
 
     [
-        'class' => 'yii\filters\PageCache',
+        'class' => \yii\filters\PageCache::class,
         'only' => ['orders'],
         'duration' => 300,
         'variations' => array_merge($pageExistQueryParams, ['user_id' => Yii::$app->user->id]),
         'dependency' => [
-            'class' => 'yii\caching\ChainedDependency',
+            'class' => \yii\caching\ChainedDependency::class,
             'dependencies' => [
                 new \yii\caching\DbDependency([
                     'sql' => "SELECT COUNT(IF(`process` = 1, 1, NULL)) as `processed`, COUNT(IF(`process` = 0, 1, NULL)) as `awaiting`
@@ -49,7 +49,7 @@ $filters = [
     ],
 
     [
-        'class' => 'yii\filters\PageCache',
+        'class' => \yii\filters\PageCache::class,
         'only' => ['top-slider'],
         'duration' => 300,
         'variations' => array_merge($pageExistQueryParams, [
@@ -58,7 +58,7 @@ $filters = [
 
         ]),
         'dependency' => [
-            'class' => 'yii\caching\ChainedDependency',
+            'class' => \yii\caching\ChainedDependency::class,
             'dependencies' => [
                 new \yii\caching\DbDependency([
                     'sql' => "SELECT COUNT(IF(`payment` = 1, 1, NULL)) as `paid`,
@@ -93,7 +93,7 @@ $filters = [
     ],
 
     [
-        'class' => 'yii\filters\PageCache',
+        'class' => yii\filters\PageCache::class,
         'only' => ['bookmark', 'blacklist'],
         'duration' => 300,
         'variations' => array_merge($pageExistQueryParams, [
@@ -102,7 +102,7 @@ $filters = [
 
         ]),
         'dependency' => [
-            'class' => 'yii\caching\ChainedDependency',
+            'class' => yii\caching\ChainedDependency::class,
             'dependencies' => [
                 new \yii\caching\DbDependency([
                     'sql' => "SELECT MAX(date_update), count(*) FROM {{%partners_apartments}} WHERE user_id = :user_id",

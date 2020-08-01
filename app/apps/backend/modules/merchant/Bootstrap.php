@@ -2,10 +2,9 @@
 
 namespace backend\modules\merchant;
 
-use yii\helpers\Html;
-
 /**
- * Merchant module bootstrap class.
+ * Class Bootstrap
+ * @package backend\modules\merchant
  */
 class Bootstrap implements \yii\base\BootstrapInterface
 {

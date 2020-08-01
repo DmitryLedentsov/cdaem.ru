@@ -6,7 +6,6 @@ use yii\base\Model;
 use common\modules\partners\models\Service;
 use yii\data\ActiveDataProvider;
 use Yii;
-use yii\helpers\ArrayHelper;
 
 /**
  * Class ServiceSearch
@@ -64,7 +63,7 @@ class ServiceSearch extends Service
      */
     public function search($params)
     {
-        $query = Service::find();
+        $query = Service::find()->with(['user', 'payment']);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

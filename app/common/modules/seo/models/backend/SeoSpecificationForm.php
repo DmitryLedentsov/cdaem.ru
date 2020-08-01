@@ -41,11 +41,11 @@ class SeoSpecificationForm extends Model
     public function rules()
     {
         return [
-            ['city', 'exist', 'targetAttribute' => 'name_eng', 'targetClass' => City::className(), 'message' => 'Такого поддомена не существует'],
+            ['city', 'exist', 'targetAttribute' => 'name_eng', 'targetClass' => City::class, 'message' => 'Такого поддомена не существует'],
             ['city', 'default', 'value' => null],
 
             [['url', 'title', 'description', 'keywords'], 'string', 'max' => 255],
-            [['url', 'city'], 'unique', 'targetAttribute' => ['url', 'city'], 'targetClass' => SeoSpecification::className(),
+            [['url', 'city'], 'unique', 'targetAttribute' => ['url', 'city'], 'targetClass' => SeoSpecification::class,
                 'filter' => function ($query) {
                     if ($this->id) {
                         $query->andWhere(['NOT', ['id' => $this->id]]);

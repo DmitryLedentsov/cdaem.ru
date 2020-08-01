@@ -14,7 +14,7 @@ use yii\base\Behavior;
  * {
  *     return [
  *         'UserAgentBehavior' => [
- *             'class' => UserAgentBehavior::className(),
+ *             'class' => UserAgentBehavior::class,
  *             'attributes' => [
  *                 ActiveRecord::EVENT_BEFORE_INSERT => 'user_agent',
  *                 ActiveRecord::EVENT_BEFORE_UPDATE => 'user_agent',

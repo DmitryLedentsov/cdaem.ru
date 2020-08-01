@@ -52,7 +52,7 @@ $mainPageSelected = $formModel->scenario == 'create' ? true : false;
             <?= $form->field($formModel, 'text')->label('Описание для правого блока с типами аренды (например для акции)')->textArea() ?>
         </div>
         <div class="col-md-6 col-md-6 col-sm-6 col-xs-12 col-lg-8">
-            <?= $form->field($formModel, 'info')->label('Дополнительное описание')->widget(\vova07\imperavi\Widget::className(), [
+            <?= $form->field($formModel, 'info')->label('Дополнительное описание')->widget(\vova07\imperavi\Widget::class, [
                 'settings' => [
                     'lang' => 'ru',
                     'minHeight' => 200,
@@ -76,7 +76,7 @@ $mainPageSelected = $formModel->scenario == 'create' ? true : false;
             ?>
         </div>
         <div class="col-md-6 col-md-6 col-sm-6 col-xs-12 col-lg-8">
-            <?= $form->field($formModel, 'rules')->label('Правила заселения для типа аренды')->widget(\vova07\imperavi\Widget::className(), [
+            <?= $form->field($formModel, 'rules')->label('Правила заселения для типа аренды')->widget(\vova07\imperavi\Widget::class, [
                 'settings' => [
                     'lang' => 'ru',
                     'minHeight' => 200,

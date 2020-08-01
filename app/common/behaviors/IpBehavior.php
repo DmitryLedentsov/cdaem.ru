@@ -14,7 +14,7 @@ use yii\base\Behavior;
  * {
  *     return [
  *         'IpBehavior' => [
- *             'class' => IpBehavior::className(),
+ *             'class' => IpBehavior::class,
  *             'attributes' => [
  *                 ActiveRecord::EVENT_BEFORE_INSERT => 'ip',
  *                 ActiveRecord::EVENT_BEFORE_UPDATE => 'ip',

@@ -15,7 +15,7 @@ class Apartment extends \common\modules\partners\models\Apartment
      */
     public function getImages()
     {
-        return $this->hasMany(Image::className(), ['apartment_id' => 'apartment_id']);
+        return $this->hasMany(Image::class, ['apartment_id' => 'apartment_id']);
     }
 
     /**
@@ -24,7 +24,7 @@ class Apartment extends \common\modules\partners\models\Apartment
      */
     public function getOrderedImages()
     {
-        return $this->hasMany(Image::className(), ['apartment_id' => 'apartment_id'])->orderBy('sort ASC');
+        return $this->hasMany(Image::class, ['apartment_id' => 'apartment_id'])->orderBy('sort ASC');
     }
 
     /**
@@ -32,7 +32,7 @@ class Apartment extends \common\modules\partners\models\Apartment
      */
     public function getTitleImage()
     {
-        return $this->hasOne(Image::className(), ['apartment_id' => 'apartment_id'])->andWhere(['default_img' => 1]);
+        return $this->hasOne(Image::class, ['apartment_id' => 'apartment_id'])->andWhere(['default_img' => 1]);
     }
 
     /**
@@ -40,7 +40,7 @@ class Apartment extends \common\modules\partners\models\Apartment
      */
     public function getAlternateTitleImage()
     {
-        return $this->hasOne(Image::className(), ['apartment_id' => 'apartment_id'])->andWhere(['default_img' => 0]);
+        return $this->hasOne(Image::class, ['apartment_id' => 'apartment_id'])->andWhere(['default_img' => 0]);
     }
 
     /**
@@ -48,7 +48,7 @@ class Apartment extends \common\modules\partners\models\Apartment
      */
     public function getMetroStations()
     {
-        return $this->hasMany(MetroStations::className(), ['apartment_id' => 'apartment_id']);
+        return $this->hasMany(MetroStations::class, ['apartment_id' => 'apartment_id']);
     }
 
     /**
@@ -56,7 +56,7 @@ class Apartment extends \common\modules\partners\models\Apartment
      */
     public function getMetroStation()
     {
-        return $this->hasOne(MetroStations::className(), ['apartment_id' => 'apartment_id']);
+        return $this->hasOne(MetroStations::class, ['apartment_id' => 'apartment_id']);
     }
 
     /**
@@ -64,7 +64,7 @@ class Apartment extends \common\modules\partners\models\Apartment
      */
     public function getAdverts()
     {
-        return $this->hasMany(Advert::className(), ['apartment_id' => 'apartment_id']);
+        return $this->hasMany(Advert::class, ['apartment_id' => 'apartment_id']);
     }
 
     /**
@@ -72,7 +72,7 @@ class Apartment extends \common\modules\partners\models\Apartment
      */
     public function getCalenderActualRecord()
     {
-        return $this->hasOne(Calendar::className(), ['apartment_id' => 'apartment_id'])
+        return $this->hasOne(Calendar::class, ['apartment_id' => 'apartment_id'])
             ->andWhere(['process' => 1, 'reserved' => Calendar::FREE]);
     }
 

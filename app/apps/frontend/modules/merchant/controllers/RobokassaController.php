@@ -6,7 +6,6 @@ use common\modules\merchant\models\Payment;
 use frontend\modules\merchant\models\Invoice;
 use common\modules\partners\models\Service;
 use common\modules\users\models\User;
-use yii\web\HttpException;
 use Yii;
 
 /**
@@ -28,7 +27,7 @@ class RobokassaController extends \frontend\components\Controller
     {
         return [
             'access' => [
-                'class' => \yii\filters\AccessControl::className(),
+                'class' => \yii\filters\AccessControl::class,
                 'rules' => [
                     [
                         'allow' => true,
@@ -55,12 +54,15 @@ class RobokassaController extends \frontend\components\Controller
     {
         if (!Yii::$app->request->post()) {
             Yii::info('ERROR: Возникла критическая ошибка: сервер Robokassa не смог передать данные для верификации платежа.', 'robokassa');
+
             return $this->goHome();
         }
 
         $invoiceId = Yii::$app->request->getBodyParam('InvId', null);
+
         //Yii::info('TRACE: Запрос от Robokassa на  верификацию платежа, счет №' . $invoiceId, 'robokassa');
         $transaction = Yii::$app->db->beginTransaction();
+
         try {
             $invoice = Invoice::findOne($invoiceId);
             if ($invoice) {
@@ -76,8 +78,11 @@ class RobokassaController extends \frontend\components\Controller
             } else {
                 Yii::info('ERROR: Счет №' . $invoiceId . ' не найден в базе данных', 'robokassa');
             }
+
             $transaction->commit();
+
             echo 'OK' . $invoiceId;
+
         } catch (\Exception $e) {
             $transaction->rollBack();
             Yii::info('ERROR: Возникла критическая ошибка: ' . $e->getMessage(), 'robokassa');
@@ -98,7 +103,9 @@ class RobokassaController extends \frontend\components\Controller
             }
             return $this->goHome();
         }
+
         $transaction = Yii::$app->db->beginTransaction();
+
         try {
             $invoiceId = Yii::$app->request->post('InvId', null);
             $invoice = Invoice::findOne($invoiceId);
@@ -111,14 +118,19 @@ class RobokassaController extends \frontend\components\Controller
             } else {
                 Yii::$app->session->setFlash('danger', 'Возникла ошибка. Счет №' . $invoiceId . ' не найден в базе данных. Пожалуйста обратитесь в службу технической поддержки.');
             }
+
             $transaction->commit();
+
             if ($invoice && $invoice->process_id) {
                 return $this->redirect(['/office/default/orders']);
             }
+
             return $this->redirect(['/merchant/default/index']);
+
         } catch (\Exception $e) {
             $transaction->rollBack();
             Yii::$app->session->setFlash('danger', 'Возникла критическая ошибка. Пожалуйста, обратитесь в службу технической поддержки.');
+
             return $this->redirect(['/merchant/default/index']);
         }
     }
@@ -136,7 +148,9 @@ class RobokassaController extends \frontend\components\Controller
             }
             return $this->goHome();
         }
+
         Yii::$app->session->setFlash('danger', 'Возникла критическая ошибка. Пожалуйста, обратитесь в службу технической поддержки.');
+
         return $this->redirect(['/merchant/default/index']);
     }
 
@@ -206,7 +220,6 @@ class RobokassaController extends \frontend\components\Controller
                 // Идентификатор платежа у процесса оплаты
                 $process->payment_id = $paymentId;
                 $process->save(false);
-
             }
 
             return true;

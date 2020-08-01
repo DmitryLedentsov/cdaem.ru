@@ -4,7 +4,7 @@ use yii\helpers\Html;
 
 ?>
 
-    <h3>Мои объявления:</h3>
+<h3>Мои объявления:</h3>
 
 <?php if (!empty($userAdvertsCount)) : ?>
     <?php foreach ($userAdvertsCount as $advertsType): ?>

@@ -14,7 +14,7 @@ class Apartment extends \common\modules\partners\models\Apartment
      */
     public function getAdverts()
     {
-        return $this->hasMany(Advert::className(), ['apartment_id' => 'apartment_id']);
+        return $this->hasMany(Advert::class, ['apartment_id' => 'apartment_id']);
     }
 
     /**
@@ -22,7 +22,7 @@ class Apartment extends \common\modules\partners\models\Apartment
      */
     public function getCity()
     {
-        return $this->hasOne(\common\modules\geo\models\City::className(), ['city_id' => 'city_id']);
+        return $this->hasOne(\common\modules\geo\models\City::class, ['city_id' => 'city_id']);
     }
 
     /**
@@ -30,7 +30,7 @@ class Apartment extends \common\modules\partners\models\Apartment
      */
     public function getTitleImage()
     {
-        return $this->hasOne(Image::className(), ['apartment_id' => 'apartment_id'])
+        return $this->hasOne(Image::class, ['apartment_id' => 'apartment_id'])
             ->andWhere(['default_img' => 1]);
     }
 
@@ -39,7 +39,7 @@ class Apartment extends \common\modules\partners\models\Apartment
      */
     public function getImages()
     {
-        return $this->hasMany(Image::className(), ['apartment_id' => 'apartment_id']);
+        return $this->hasMany(Image::class, ['apartment_id' => 'apartment_id']);
     }
 
     /**
@@ -48,7 +48,7 @@ class Apartment extends \common\modules\partners\models\Apartment
      */
     public function getOrderedImages()
     {
-        return $this->hasMany(Image::className(), ['apartment_id' => 'apartment_id'])->orderBy('sort ASC');
+        return $this->hasMany(Image::class, ['apartment_id' => 'apartment_id'])->orderBy('sort ASC');
     }
 
     /**
@@ -56,7 +56,7 @@ class Apartment extends \common\modules\partners\models\Apartment
      */
     public function getUser()
     {
-        return $this->hasOne(\common\modules\users\models\User::className(), ['id' => 'user_id']);
+        return $this->hasOne(\common\modules\users\models\User::class, ['id' => 'user_id']);
     }
 
     /**
@@ -64,6 +64,6 @@ class Apartment extends \common\modules\partners\models\Apartment
      */
     public function getMainDistrict()
     {
-        return $this->hasOne(\common\modules\geo\models\Districts::className(), ['id' => 'district1']);
+        return $this->hasOne(\common\modules\geo\models\Districts::class, ['id' => 'district1']);
     }
 }

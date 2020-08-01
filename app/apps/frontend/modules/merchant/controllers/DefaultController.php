@@ -3,17 +3,12 @@
 namespace frontend\modules\merchant\controllers;
 
 use frontend\modules\merchant\models\PaymentSearch;
-use common\modules\partners\models\Service;
 use frontend\modules\merchant\models\Payment;
 use frontend\modules\merchant\models\Invoice;
 use frontend\modules\merchant\models\Pay;
-use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
-use yii\web\HttpException;
-use yii\data\Pagination;
 use yii\web\Response;
 use Yii;
-
 
 /**
  * Платежный контроллер
@@ -28,7 +23,7 @@ class DefaultController extends \frontend\components\Controller
     {
         $behaviors = [
             'access' => [
-                'class' => \yii\filters\AccessControl::className(),
+                'class' => \yii\filters\AccessControl::class,
                 'rules' => [
                     [
                         'allow' => true,
@@ -149,7 +144,7 @@ class DefaultController extends \frontend\components\Controller
 
     /**
      * Генерирует платежный виджет для выбора оплаты
-     * @return array|Response
+     * @return string|Response
      */
     public function actionPaymentWidget()
     {

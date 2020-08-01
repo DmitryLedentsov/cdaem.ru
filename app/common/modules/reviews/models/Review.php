@@ -60,7 +60,7 @@ class Review extends ActiveRecord
      */
     public function getApartment()
     {
-        return $this->hasOne(Apartment::className(), ['apartment_id' => 'apartment_id']);
+        return $this->hasOne(Apartment::class, ['apartment_id' => 'apartment_id']);
     }
 
     /**
@@ -68,7 +68,7 @@ class Review extends ActiveRecord
      */
     public function getUser()
     {
-        return $this->hasOne(\common\modules\users\models\User::className(), ['id' => 'user_id']);
+        return $this->hasOne(\common\modules\users\models\User::class, ['id' => 'user_id']);
     }
 
     /**

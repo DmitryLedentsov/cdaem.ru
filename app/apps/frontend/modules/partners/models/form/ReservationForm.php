@@ -92,7 +92,7 @@ class ReservationForm extends Reservation
     {
         return [
             [
-                'class' => TimestampBehavior::className(),
+                'class' => TimestampBehavior::class,
                 'attributes' => [
                     \yii\db\ActiveRecord::EVENT_BEFORE_INSERT => ['date_create', 'date_update'],
                     \yii\db\ActiveRecord::EVENT_BEFORE_UPDATE => 'date_update',
@@ -245,7 +245,7 @@ class ReservationForm extends Reservation
             ['actuality_duration', 'in', 'range' => array_keys($this->actualityList)],
 
             ['verifyCode', 'required', 'message' => 'Подтвердите, что Вы не робот'],
-            ['verifyCode', \frontend\modules\site\widgets\Captcha::getClassValidator()],
+            ['verifyCode', \common\modules\site\widgets\Captcha::getClassValidator()],
 
             ['agreement', 'compare', 'compareValue' => '1', 'message' => 'Необходимо согласиться с условиями пользовательского соглашения.'],
         ];

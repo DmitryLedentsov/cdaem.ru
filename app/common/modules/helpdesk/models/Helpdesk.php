@@ -224,7 +224,7 @@ class Helpdesk extends ActiveRecord
      */
     public function getUser()
     {
-        return $this->hasOne(User::className(), ['id' => 'user_id']);
+        return $this->hasOne(User::class, ['id' => 'user_id']);
     }
 
     /**
@@ -232,6 +232,6 @@ class Helpdesk extends ActiveRecord
      */
     public function getHelpdeskAnswers()
     {
-        return $this->hasMany(HelpdeskAnswers::className(), ['ticket_id' => 'ticket_id']);
+        return $this->hasMany(HelpdeskAnswers::class, ['ticket_id' => 'ticket_id']);
     }
 }

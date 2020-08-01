@@ -1,14 +1,17 @@
 {
-  "name": "grunt",
-  "version": "1.0.0",
   "dependencies": {
-    "grunt": "*",
+    "grunt": "1.2.1",
     "grunt-contrib-cssmin": "*",
-    "grunt-contrib-uglify": "*",
-    "grunt-contrib-less": "*",
-    "grunt-contrib-watch": "*",
-    "grunt-image": "*"
+    "grunt-contrib-uglify": "4.0.1",
+    "grunt-contrib-less": "2.0.0",
+    "grunt-contrib-watch": "1.1.0",
+    "grunt-image": "3.0.0"
   },
-  "analyze": true,
-  "license": "MIT"
+  "scripts": {
+    "dev": "npm run development",
+    "development": "NODE_ENV=development node_modules/grunt/bin/grunt",
+    "prod": "npm run production",
+    "production": "NODE_ENV=production node_modules/grunt/bin/grunt"
+  },
+  "analyze": true
 }

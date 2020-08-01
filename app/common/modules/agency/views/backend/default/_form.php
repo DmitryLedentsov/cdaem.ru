@@ -187,7 +187,7 @@ use yii\bootstrap\Modal;
     <h6 class="heading-hr"><i class="icon-text-width"></i> Дополнительно</h6>
     <div class="row">
         <div class="col-md-6 col-md-6 col-sm-6 col-xs-12 col-lg-8">
-            <?= $form->field($formModel, 'description')->widget(\vova07\imperavi\Widget::className(), [
+            <?= $form->field($formModel, 'description')->widget(\vova07\imperavi\Widget::class, [
                 'settings' => [
                     'lang' => 'ru',
                     'minHeight' => 200,

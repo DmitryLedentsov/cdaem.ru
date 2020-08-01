@@ -2,8 +2,6 @@
 
 namespace frontend\modules\merchant\models;
 
-use Yii;
-
 /**
  * Class Invoice
  */

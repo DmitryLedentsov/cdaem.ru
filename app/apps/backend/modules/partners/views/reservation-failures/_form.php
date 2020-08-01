@@ -50,7 +50,7 @@ use kartik\datetime\DateTimePicker;
 <div class="row">
 
     <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-3">
-        <?= $form->field($model, 'date_to_process')->widget(DateTimePicker::className(), [
+        <?= $form->field($model, 'date_to_process')->widget(DateTimePicker::class, [
             'type' => DateTimePicker::TYPE_COMPONENT_PREPEND,
             'options' => ['readonly' => 'readonly'],
             'pluginOptions' => [

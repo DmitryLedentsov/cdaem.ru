@@ -1,3 +1,6 @@
+*/10 * * * * php /app/cron-test.php
+
+
 */10 * * * * php /home/cdaemru/www/dev/yii service/processes
 0 */1 * * * php /home/cdaemru/www/dev/yii service/calculate-position
 0 */1 * * * php /home/cdaemru/www/dev/yii partners/collector/reservation-verify-payment

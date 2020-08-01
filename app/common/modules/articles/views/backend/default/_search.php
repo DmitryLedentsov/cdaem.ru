@@ -21,7 +21,7 @@ use yii\widgets\ActiveForm;
     <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-3"><?= $form->field($searchModel, 'short_text')->textInput(['maxlength' => true]) ?></div>
     <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-2"><?= $form->field($searchModel, 'visible')->dropDownList(Yii::$app->formatter->booleanFormat, ['prompt' => 'Все']) ?></div>
     <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-2"><?= $form->field($searchModel, 'status')->dropDownList(Yii::$app->BasisFormat->helper('Status')->getList($model->getStatusArray()), ['prompt' => 'Все']) ?></div>
-    <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-2"><?= $form->field($searchModel, 'date_create')->widget(DatePicker::className(), [
+    <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-2"><?= $form->field($searchModel, 'date_create')->widget(DatePicker::class, [
             'type' => DatePicker::TYPE_INPUT,
             'options' => [
                 'readonly' => 'readonly',

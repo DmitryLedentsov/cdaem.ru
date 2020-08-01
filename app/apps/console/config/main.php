@@ -72,7 +72,7 @@ return [
                 '@common/modules/callback/migrations',
                 '@common/modules/helpdesk/migrations',
                 '@common/modules/articles/migrations',
-                '@frontend/modules/site/migrations',
+                '@common/modules/site/migrations',
                 '@common/modules/agency/migrations',
                 '@common/modules/partners/migrations',
                 '@common/modules/merchant/migrations',

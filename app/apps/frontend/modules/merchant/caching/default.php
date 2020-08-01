@@ -5,7 +5,6 @@ $pageExistQueryParams['page'] = empty($pageExistQueryParams['page']) ? '1' : $pa
 
 
 $filters = [
-
     [
         'class' => 'yii\filters\PageCache',
         'only' => ['index'],

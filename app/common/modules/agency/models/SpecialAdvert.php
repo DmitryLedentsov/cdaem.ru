@@ -54,7 +54,7 @@ class SpecialAdvert extends \yii\db\ActiveRecord
      */
     public function getRentType()
     {
-        return $this->hasOne(\common\modules\realty\models\RentType::className(), ['rent_type_id' => 'rent_type']);
+        return $this->hasOne(\common\modules\realty\models\RentType::class, ['rent_type_id' => 'rent_type']);
     }
 
     /**
@@ -62,7 +62,7 @@ class SpecialAdvert extends \yii\db\ActiveRecord
      */
     public function getAdvert()
     {
-        return $this->hasOne(Advert::className(), ['advert_id' => 'advert_id']);
+        return $this->hasOne(Advert::class, ['advert_id' => 'advert_id']);
     }
 
     /**

@@ -178,7 +178,7 @@ class AdvertReservationForm extends AdvertReservation
 
             // Защитный код
             ['verifyCode', 'required', 'message' => 'Подтвердите, что Вы не робот', 'on' => 'unauthorized'],
-            ['verifyCode', \frontend\modules\site\widgets\Captcha::getClassValidator()],
+            ['verifyCode', \common\modules\site\widgets\Captcha::getClassValidator()],
         ];
     }
 

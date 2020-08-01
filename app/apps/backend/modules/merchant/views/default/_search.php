@@ -18,7 +18,7 @@ use yii\widgets\ActiveForm;
     <div class="col-md-2 col-md-2 col-sm-2 col-xs-6 col-lg-1"><?= $form->field($model, 'user_id')->textInput(['maxlength' => true]) ?></div>
     <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-2"><?= $form->field($model, 'type')->dropDownList(Yii::$app->BasisFormat->helper('Status')->getList($model->getTypeArray()), ['prompt' => 'Все']) ?></div>
     <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-2"><?= $form->field($model, 'system')->dropDownList($model->getSystems(), ['prompt' => 'Все']) ?></div>
-    <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-2"><?= $form->field($model, 'date')->widget(DatePicker::className(), [
+    <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-2"><?= $form->field($model, 'date')->widget(DatePicker::class, [
             'type' => DatePicker::TYPE_INPUT,
             'options' => [
                 'readonly' => 'readonly',

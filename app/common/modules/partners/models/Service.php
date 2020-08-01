@@ -2,10 +2,9 @@
 
 namespace common\modules\partners\models;
 
+use common\modules\merchant\models\Payment;
 use common\modules\partners\models\scopes\ServiceQuery;
 use common\modules\partners\traits\ModuleTrait;
-use common\modules\users\models\User;
-use yii\base\InvalidParamException;
 use yii\db\ActiveRecord;
 use yii\helpers\Json;
 use Yii;
@@ -17,6 +16,38 @@ use Yii;
 class Service extends ActiveRecord
 {
     use ModuleTrait;
+
+    /**
+     * Статусы процесса
+     *    Процесс активирован и в стадии выполнения
+     *    Процесс выполнен
+     *    Процесс в ожидании
+     */
+    const PROCESS_IMPLEMENTATION = -1;
+    const PROCESS_FINISHED = 1;
+    const PROCESS_PENDING = 0;
+
+    /**
+     * Все доступные сервисы
+     *    Добавить объявление в рекламный слайдер
+     *    Рекламировать объявление в разделе
+     *    Отправить контакты владельца пользователю
+     *    Открыть контакты объявления
+     *    Поднять позицию объявления
+     *    Выделить объявление
+     *    Поднять объявление в топ
+     *    Открыть контакты пользователя, который забронировал апаратаменты
+     *    Открыть контакты пользователя, который оставил общую заявку на резервацию
+     */
+    const SERVICE_ADVERTISING_TOP_SLIDER = 'ADVERTISING_TOP_SLIDER';
+    const SERVICE_ADVERTISING_IN_SECTION = 'ADVERTISING_IN_SECTION';
+    const SERVICE_CONTACTS_OPEN_TO_USER = 'CONTACTS_OPEN_TO_USER';
+    const SERVICE_APARTMENT_CONTACTS_OPEN = 'APARTMENT_CONTACTS_OPEN';
+    const SERVICE_ADVERT_TOP_POSITION = 'ADVERT_TOP_POSITION';
+    const SERVICE_ADVERT_SELECTED = 'ADVERT_SELECTED';
+    const SERVICE_ADVERT_IN_TOP = 'ADVERT_IN_TOP';
+    const SERVICE_CONTACTS_OPEN_FOR_TOTAL_BID = 'CONTACTS_OPEN_FOR_TOTAL_BID';
+    const SERVICE_CONTACTS_OPEN_FOR_RESERVATION = 'CONTACTS_OPEN_FOR_RESERVATION';
 
     /**
      * @inheritdoc
@@ -55,44 +86,44 @@ class Service extends ActiveRecord
     }
 
     /**
+     * @return array
+     */
+    public function getSelectedAdvertIdList(): array
+    {
+        $data = Json::decode($this->data ?? '{}');
+
+        $result = [];
+
+        if (isset($data['selected']) && is_array($data['selected'])) {
+            foreach ($data['selected'] as $select) {
+                $result[$select] = $select;
+            }
+        }
+        if (isset($data['advertisement_id'])) {
+            $result[(int)$data['advertisement_id']] = (int)$data['advertisement_id'];
+        }
+        if (isset($data['advert_id'])) {
+            $result[(int)$data['advert_id']] = (int)$data['advert_id'];
+        }
+
+        return array_unique($result);
+    }
+
+    /**
      * @return \yii\db\ActiveQuery
      */
     public function getUser()
     {
-        return $this->hasOne(\common\modules\users\models\User::className(), ['id' => 'user_id']);
+        return $this->hasOne(\common\modules\users\models\User::class, ['id' => 'user_id']);
     }
 
     /**
-     * Статусы процесса
-     *    Процесс активирован и в стадии выполнения
-     *    Процесс выполнен
-     *    Процесс в ожидании
+     * @return \yii\db\ActiveQuery
      */
-    const PROCESS_IMPLEMENTATION = -1;
-    const PROCESS_FINISHED = 1;
-    const PROCESS_PENDING = 0;
-
-    /**
-     * Все доступные сервисы
-     *    Добавить объявление в рекламный слайдер
-     *    Рекламировать объявление в разделе
-     *    Отправить контакты владельца пользователю
-     *    Открыть контакты объявления
-     *    Поднять позицию объявления
-     *    Выделить объявление
-     *    Поднять объявление в топ
-     *    Открыть контакты пользователя, который забронировал апаратаменты
-     *    Открыть контакты пользователя, который оставил общую заявку на резервацию
-     */
-    const SERVICE_ADVERTISING_TOP_SLIDER = 'ADVERTISING_TOP_SLIDER';
-    const SERVICE_ADVERTISING_IN_SECTION = 'ADVERTISING_IN_SECTION';
-    const SERVICE_CONTACTS_OPEN_TO_USER = 'CONTACTS_OPEN_TO_USER';
-    const SERVICE_APARTMENT_CONTACTS_OPEN = 'APARTMENT_CONTACTS_OPEN';
-    const SERVICE_ADVERT_TOP_POSITION = 'ADVERT_TOP_POSITION';
-    const SERVICE_ADVERT_SELECTED = 'ADVERT_SELECTED';
-    const SERVICE_ADVERT_IN_TOP = 'ADVERT_IN_TOP';
-    const SERVICE_CONTACTS_OPEN_FOR_TOTAL_BID = 'CONTACTS_OPEN_FOR_TOTAL_BID';
-    const SERVICE_CONTACTS_OPEN_FOR_RESERVATION = 'CONTACTS_OPEN_FOR_RESERVATION';
+    public function getPayment()
+    {
+        return $this->hasOne(Payment::class, ['payment_id' => 'payment_id']);
+    }
 
     /**
      * Поиск необработанного процесса активации сервиса по $id
@@ -104,9 +135,11 @@ class Service extends ActiveRecord
     {
         $query = self::find();
         $query->andWhere('id = :id', [':id' => $id]);
+
         if ($process !== false) {
             $query->process($process);
         }
+
         return $query->one();
     }
 

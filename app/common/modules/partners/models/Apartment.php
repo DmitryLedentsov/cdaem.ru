@@ -83,7 +83,7 @@ class Apartment extends \yii\db\ActiveRecord
      */
     public function getMetroStations()
     {
-        return $this->hasMany(MetroStations::className(), ['apartment_id' => 'apartment_id']);
+        return $this->hasMany(MetroStations::class, ['apartment_id' => 'apartment_id']);
     }
 
     /**
@@ -91,7 +91,7 @@ class Apartment extends \yii\db\ActiveRecord
      */
     public function getAdverts()
     {
-        return $this->hasMany(Advert::className(), ['apartment_id' => 'apartment_id']);
+        return $this->hasMany(Advert::class, ['apartment_id' => 'apartment_id']);
     }
 
     /**
@@ -99,7 +99,7 @@ class Apartment extends \yii\db\ActiveRecord
      */
     public function getUser()
     {
-        return $this->hasOne(\common\modules\users\models\User::className(), ['id' => 'user_id']);
+        return $this->hasOne(\common\modules\users\models\User::class, ['id' => 'user_id']);
     }
 
     /**
@@ -107,7 +107,7 @@ class Apartment extends \yii\db\ActiveRecord
      */
     public function getCity()
     {
-        return $this->hasOne(City::className(), ['city_id' => 'city_id']);
+        return $this->hasOne(City::class, ['city_id' => 'city_id']);
     }
 
     /**
@@ -115,7 +115,7 @@ class Apartment extends \yii\db\ActiveRecord
      */
     public function getReviews()
     {
-        return $this->hasMany(\common\modules\reviews\models\Review::className(), ['apartment_id' => 'apartment_id']);
+        return $this->hasMany(\common\modules\reviews\models\Review::class, ['apartment_id' => 'apartment_id']);
     }
 
     /**

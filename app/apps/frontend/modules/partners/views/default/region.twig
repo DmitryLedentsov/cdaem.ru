@@ -19,7 +19,7 @@
     {% elseif foo['f']  == 'Квартира на ночь' %}
         {% set fo = {'f': 'Квартиру на ночь' } %}
     {% endif %}
-    {{ use('frontend/modules/site/widgets/BgHeader') }}
+    {{ use('common/modules/site/widgets/BgHeader') }}
     {{ bg_header_widget({'title': 'Снять ' ~  fo['f']  ~ '  ' ~ city.name }) }}
 {% endblock %}
 

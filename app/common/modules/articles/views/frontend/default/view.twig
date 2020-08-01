@@ -11,7 +11,7 @@
     {% include("@frontend/modules/office/views/layouts/navbar.twig") %}
 {% endblock %}
 {% block header %}
-    {{ use('frontend/modules/site/widgets/BgHead') }}
+    {{ use('common/modules/site/widgets/BgHead') }}
     {{ bg_head_widget({'title': model.name, 'background': model.background}) }}
 {% endblock %}
 

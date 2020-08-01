@@ -19,155 +19,60 @@ return [
                             'Disallow' => [
                                 ['/signup'],
                                 ['/login'],
-                                ['/*/login',
-                                ],
-                                [
-                                    '/badbrowser',
-                                ],
-                                [
-                                    '/resend',
-                                ],
-                                [
-                                    '/call',
-                                ],
-                                [
-                                    '/recovery',
-                                ],
-                                [
-                                    '/page/agreement',
-                                ],
-                                [
-                                    '/users/guest/resend',
-                                ],
-                                [
-                                    '/fonts',
-                                ],
-                                [
-                                    '/brw',
-                                ],
-                                [
-                                    '/userpic',
-                                ],
-                                [
-                                    '/pic',
-                                ],
-                                [
-                                    '/imgs',
-                                ],
-                                [
-                                    '/images-help',
-                                ],
-                                [
-                                    '/uploads',
-                                ],
-                                [
-                                    '/tmp',
-                                ],
-                                [
-                                    '/ion.sound',
-                                ],
-                                [
-                                    '/email-images',
-                                ],
-                                [
-                                    '/reservation/*',
-                                ],
-                                [
-                                    '/page/FAQ',
-                                ],
+                                ['/*/login'],
+                                ['/badbrowser'],
+                                ['/resend'],
+                                ['/call'],
+                                ['/recovery'],
+                                ['/page/agreement'],
+                                ['/users/guest/resend'],
+                                ['/fonts'],
+                                ['/brw'],
+                                ['/userpic'],
+                                ['/pic'],
+                                ['/imgs'],
+                                ['/images-help'],
+                                ['/uploads'],
+                                ['/tmp'],
+                                ['/ion.sound'],
+                                ['/email-images'],
+                                ['/reservation/*'],
+                                ['/page/FAQ'],
                             ],
                             'Allow' => [
-                                [
-                                    '/partner_thumb',
-                                ],
-                                [
-                                    '/partner_imgs',
-                                ],
-                                [
-                                    '/images',
-                                ],
-                                [
-                                    '/basic-images',
-                                ],
-                                [
-                                    '/css',
-                                ],
-                                [
-                                    '/*.css$',
-                                ],
-                                [
-                                    '/*.js$',
-                                ],
-                                [
-                                    '/js',
-                                ],
+                                ['/partner_thumb'],
+                                ['/partner_imgs'],
+                                ['/images'],
+                                ['/basic-images'],
+                                ['/css'],
+                                ['/*.css$'],
+                                ['/*.js$'],
+                                ['/js'],
                             ],
                         ],
                         'Googlebot' => [
                             'Disallow' => [
-                                [
-                                    '/signup',
-                                ],
-                                [
-                                    '/login',
-                                ],
-                                [
-                                    '/*/login',
-                                ],
-                                [
-                                    '/badbrowser',
-                                ],
-                                [
-                                    '/resend',
-                                ],
-                                [
-                                    '/call',
-                                ],
-                                [
-                                    '/recovery',
-                                ],
-                                [
-                                    '/page/agreement',
-                                ],
-                                [
-                                    '/users/guest/resend',
-                                ],
-                                [
-                                    '/fonts',
-                                ],
-                                [
-                                    '/brw',
-                                ],
-                                [
-                                    '/userpic',
-                                ],
-                                [
-                                    '/pic',
-                                ],
-                                [
-                                    '/imgs',
-                                ],
-                                [
-                                    '/images-help',
-                                ],
-                                [
-                                    '/uploads',
-                                ],
-                                [
-                                    '/tmp',
-                                ],
-                                [
-                                    '/ion.sound',
-                                ],
-                                [
-                                    '/email-images',
-                                ],
-                                [
-                                    '/reservation/*',
-                                ],
-                                [
-                                    '/page/FAQ',
-                                ],
+                                ['/signup'],
+                                ['/login'],
+                                ['/*/login'],
+                                ['/badbrowser'],
+                                ['/resend'],
+                                ['/call'],
+                                ['/recovery'],
+                                ['/page/agreement'],
+                                ['/users/guest/resend'],
+                                ['/fonts'],
+                                ['/brw'],
+                                ['/userpic'],
+                                ['/pic'],
+                                ['/imgs'],
+                                ['/images-help'],
+                                ['/uploads'],
+                                ['/tmp'],
+                                ['/ion.sound'],
+                                ['/email-images'],
+                                ['/reservation/*'],
+                                ['/page/FAQ'],
                             ],
                             'Allow' => [
                                 [
@@ -323,6 +228,7 @@ return [
         ],
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
+            'cache' => 'file-cache',
         ],
         'image' => [
             'class' => 'yii\image\ImageDriver',
@@ -348,6 +254,9 @@ return [
             'class' => 'common\modules\merchant\components\Balance',
         ],
         'cache' => [
+            'class' => 'yii\caching\FileCache',
+        ],
+        'file-cache' => [
             'class' => 'yii\caching\FileCache',
         ],
         'BasisFormat' => [

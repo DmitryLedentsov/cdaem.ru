@@ -119,7 +119,7 @@ class User extends \nepster\users\models\User
      */
     public function getPerson()
     {
-        return $this->hasOne(LegalPerson::className(), ['user_id' => 'id']);
+        return $this->hasOne(LegalPerson::class, ['user_id' => 'id']);
     }
 
     /**
@@ -127,12 +127,12 @@ class User extends \nepster\users\models\User
      */
     public function getProfile()
     {
-        return $this->hasOne(Profile::className(), ['user_id' => 'id']);
+        return $this->hasOne(Profile::class, ['user_id' => 'id']);
     }
 
     public function getApartment()
     {
-        return $this->hasOne(Apartment::className(), ['apartment_id' => 'id']);
+        return $this->hasOne(Apartment::class, ['apartment_id' => 'id']);
     }
 
     /**

@@ -60,7 +60,7 @@ class Advert extends \yii\db\ActiveRecord
      */
     public function getRentType()
     {
-        return $this->hasOne(\common\modules\realty\models\RentType::className(), ['rent_type_id' => 'rent_type']);
+        return $this->hasOne(\common\modules\realty\models\RentType::class, ['rent_type_id' => 'rent_type']);
     }
 
     /**
@@ -68,7 +68,7 @@ class Advert extends \yii\db\ActiveRecord
      */
     public function getApartment()
     {
-        return $this->hasOne(Apartment::className(), ['apartment_id' => 'apartment_id']);
+        return $this->hasOne(Apartment::class, ['apartment_id' => 'apartment_id']);
     }
 
     /**

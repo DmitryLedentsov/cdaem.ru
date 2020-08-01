@@ -18,6 +18,8 @@ bootstrap:
 	$(docker_compose) up -d
 	make composer cmd="global require "fxp/composer-asset-plugin:^1.3.1""
 	make composer cmd=install
+	make npm-grunt cmd=install
+	make npm-grunt cmd='run dev'
 	make php-init
 	make dump-geo-load
 	make php-yii cmd="migrate --interactive=0"
@@ -52,8 +54,12 @@ composer:
 	    $(app_run) sh -c "composer update"
     endif
 
-grunt-npm-install:
-	$(node_run) sh -c "cd /app/grunt && npm install"
+npm-grunt:
+    ifneq ($(cmd),)
+	    $(node_run) sh -c "cd /app/grunt && npm $(cmd)"
+    else
+	    $(node_run) sh -c "cd /app/grunt && npm"
+    endif
 
 app_bash:
 	$(app_run) sh

@@ -98,7 +98,7 @@ class Reservation extends \yii\db\ActiveRecord
      */
     public function getUser()
     {
-        return $this->hasOne(\common\modules\users\models\User::className(), ['id' => 'user_id']);
+        return $this->hasOne(\common\modules\users\models\User::class, ['id' => 'user_id']);
     }
 
     /**
@@ -106,7 +106,7 @@ class Reservation extends \yii\db\ActiveRecord
      */
     public function getCity()
     {
-        return $this->hasOne(\common\modules\geo\models\City::className(), ['city_id' => 'city_id']);
+        return $this->hasOne(\common\modules\geo\models\City::class, ['city_id' => 'city_id']);
     }
 
     /**
@@ -114,7 +114,7 @@ class Reservation extends \yii\db\ActiveRecord
      */
     public function getPayments()
     {
-        return $this->hasMany(ReservationsPayment::className(), ['reservation_id' => 'id']);
+        return $this->hasMany(ReservationsPayment::class, ['reservation_id' => 'id']);
     }
 
     /**

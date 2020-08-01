@@ -20,7 +20,7 @@ use yii\helpers\Html;
     <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-3"><?= $form->field($model, 'text') ?></div>
 
 
-    <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-2"><?= $form->field($model, 'date_expire')->widget(DatePicker::className(), [
+    <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-2"><?= $form->field($model, 'date_expire')->widget(DatePicker::class, [
             'type' => DatePicker::TYPE_INPUT,
             'options' => [
                 'readonly' => 'readonly',

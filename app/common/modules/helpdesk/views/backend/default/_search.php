@@ -29,7 +29,7 @@ use yii\helpers\Html;
         <div class="col-md-3 col-md-4 col-sm-4 col-xs-6 col-lg-1"><?= $form->field($searchModel, 'department')->dropDownList(ArrayHelper::getColumn($model->departmentArray, 'label'), ['prompt' => 'Все']) ?></div>
         <div class="col-md-3 col-md-4 col-sm-4 col-xs-6 col-lg-1"><?= $form->field($searchModel, 'source_type')->dropDownList(ArrayHelper::getColumn($model->sourceTypeArray, 'label'), ['prompt' => 'Все']) ?></div>
 
-        <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-1"><?= $form->field($searchModel, 'date_create')->widget(DatePicker::className(), [
+        <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-1"><?= $form->field($searchModel, 'date_create')->widget(DatePicker::class, [
                 'type' => DatePicker::TYPE_INPUT,
                 'options' => [
                     'readonly' => 'readonly',

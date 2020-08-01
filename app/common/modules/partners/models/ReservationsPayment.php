@@ -40,7 +40,7 @@ class ReservationsPayment extends \yii\db\ActiveRecord
      */
     public function getReservation()
     {
-        return $this->hasOne(Reservation::className(), ['id' => 'reservation_id']);
+        return $this->hasOne(Reservation::class, ['id' => 'reservation_id']);
     }
 
     /**
@@ -48,6 +48,6 @@ class ReservationsPayment extends \yii\db\ActiveRecord
      */
     public function getUser()
     {
-        return $this->hasOne(\common\modules\users\models\User::className(), ['id' => 'user_id']);
+        return $this->hasOne(\common\modules\users\models\User::class, ['id' => 'user_id']);
     }
 }

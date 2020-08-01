@@ -54,8 +54,8 @@ class ReservationFailure extends \yii\db\ActiveRecord
             [['user_id', 'reservation_id', 'processed', 'closed'], 'integer'],
             [['date_create', 'date_update', 'date_to_process'], 'safe'],
             ['text', 'string'],
-            [['reservation_id'], 'exist', 'skipOnError' => true, 'targetClass' => PartnersAdvertReservations::className(), 'targetAttribute' => ['reservation_id' => 'id']],
-            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['user_id' => 'id']],
+            [['reservation_id'], 'exist', 'skipOnError' => true, 'targetClass' => PartnersAdvertReservations::class, 'targetAttribute' => ['reservation_id' => 'id']],
+            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => Users::class, 'targetAttribute' => ['user_id' => 'id']],
         ];
     }*/
 
@@ -83,7 +83,7 @@ class ReservationFailure extends \yii\db\ActiveRecord
      */
     public function getReservation()
     {
-        return $this->hasOne(AdvertReservation::className(), ['id' => 'reservation_id']);
+        return $this->hasOne(AdvertReservation::class, ['id' => 'reservation_id']);
     }
 
     /**
@@ -91,7 +91,7 @@ class ReservationFailure extends \yii\db\ActiveRecord
      */
     public function getUser()
     {
-        return $this->hasOne(User::className(), ['id' => 'user_id']);
+        return $this->hasOne(User::class, ['id' => 'user_id']);
     }
 
     /**

@@ -48,7 +48,7 @@ use yii\helpers\Url;
 
 <?php if ($formModel->scenario == 'update'): ?>
     <div class="row">
-        <div class="col-md-4 col-md-4 col-sm-4 col-xs-6 col-lg-2"><?= $form->field($formModel, 'date_create')->widget(DateTimePicker::className(), [
+        <div class="col-md-4 col-md-4 col-sm-4 col-xs-6 col-lg-2"><?= $form->field($formModel, 'date_create')->widget(DateTimePicker::class, [
                 'type' => DateTimePicker::TYPE_INPUT,
                 'options' => [
                     'readonly' => 'readonly',

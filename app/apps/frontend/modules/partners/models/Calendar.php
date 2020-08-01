@@ -14,6 +14,6 @@ class Calendar extends \common\modules\partners\models\Calendar
      */
     public function getApartment()
     {
-        return $this->hasOne(Apartment::className(), ['apartment_id' => 'apartment_id']);
+        return $this->hasOne(Apartment::class, ['apartment_id' => 'apartment_id']);
     }
 }

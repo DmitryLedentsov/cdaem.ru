@@ -117,7 +117,7 @@ use yii\helpers\Html;
     </div>
     <div class="row">
         <div class="col-md-3 col-md-4 col-sm-4 col-xs-6 col-lg-4">
-            <?= $form->field($profile, 'birthday')->widget(DatePicker::className(), [
+            <?= $form->field($profile, 'birthday')->widget(DatePicker::class, [
                 'type' => DatePicker::TYPE_INPUT,
                 'options' => [
                     'readonly' => 'readonly',
@@ -178,7 +178,7 @@ use yii\helpers\Html;
     </div>
     <div class="row">
         <div class="col-md-3 col-md-4 col-sm-4 col-xs-6 col-lg-4">
-            <?= $form->field($person, 'register_date')->widget(DatePicker::className(), [
+            <?= $form->field($person, 'register_date')->widget(DatePicker::class, [
                 'type' => DatePicker::TYPE_INPUT,
                 'options' => [
                     'readonly' => 'readonly',

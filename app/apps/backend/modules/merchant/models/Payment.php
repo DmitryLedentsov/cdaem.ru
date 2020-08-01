@@ -2,10 +2,9 @@
 
 namespace backend\modules\merchant\models;
 
-use Yii;
-
 /**
- * @inheritdoc
+ * @inheritDoc
+ * @package backend\modules\merchant\models
  */
 class Payment extends \common\modules\merchant\models\Payment
 {

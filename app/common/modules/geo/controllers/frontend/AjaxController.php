@@ -34,7 +34,7 @@ class AjaxController extends \frontend\components\Controller
     {
         return [
             'corsFilter' => [
-                'class' => \yii\filters\Cors::className(),
+                'class' => \yii\filters\Cors::class,
                 'cors' => [
                     'Origin' => ['*'],
                     'Access-Control-Request-Method' => ['GET', 'HEAD', 'OPTIONS'],
@@ -42,7 +42,7 @@ class AjaxController extends \frontend\components\Controller
                 ],
             ],
             'access' => [
-                'class' => \yii\filters\AccessControl::className(),
+                'class' => \yii\filters\AccessControl::class,
                 'rules' => [
                     [
                         'actions' => [],

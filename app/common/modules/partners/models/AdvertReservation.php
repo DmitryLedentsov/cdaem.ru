@@ -58,9 +58,9 @@ class AdvertReservation extends \yii\db\ActiveRecord
             [['user_id', 'landlord_id', 'advert_id', 'children', 'pets', 'clients_count', 'landlord_open_contacts', 'cancel', 'closed'], 'integer'],
             [['date_arrived', 'date_out', 'date_actuality', 'date_create', 'date_update'], 'safe'],
             [['more_info', 'cancel_reason'], 'string', 'max' => 255],
-            [['advert_id'], 'exist', 'skipOnError' => true, 'targetClass' => PartnersAdverts::className(), 'targetAttribute' => ['advert_id' => 'advert_id']],
-            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['user_id' => 'id']],
-            [['landlord_id'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['landlord_id' => 'id']],
+            [['advert_id'], 'exist', 'skipOnError' => true, 'targetClass' => PartnersAdverts::class, 'targetAttribute' => ['advert_id' => 'advert_id']],
+            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => Users::class, 'targetAttribute' => ['user_id' => 'id']],
+            [['landlord_id'], 'exist', 'skipOnError' => true, 'targetClass' => Users::class, 'targetAttribute' => ['landlord_id' => 'id']],
         ];
     }
     */
@@ -292,7 +292,7 @@ class AdvertReservation extends \yii\db\ActiveRecord
      */
     public function getAdvert()
     {
-        return $this->hasOne(Advert::className(), ['advert_id' => 'advert_id']);
+        return $this->hasOne(Advert::class, ['advert_id' => 'advert_id']);
     }
 
     /**
@@ -300,7 +300,7 @@ class AdvertReservation extends \yii\db\ActiveRecord
      */
     public function getUser()
     {
-        return $this->hasOne(User::className(), ['id' => 'user_id']);
+        return $this->hasOne(User::class, ['id' => 'user_id']);
     }
 
     /**
@@ -308,7 +308,7 @@ class AdvertReservation extends \yii\db\ActiveRecord
      */
     public function getLandlord()
     {
-        return $this->hasOne(User::className(), ['id' => 'landlord_id']);
+        return $this->hasOne(User::class, ['id' => 'landlord_id']);
     }
 
     /**
@@ -316,7 +316,7 @@ class AdvertReservation extends \yii\db\ActiveRecord
      */
     public function getDeal()
     {
-        return $this->hasOne(ReservationDeal::className(), ['reservation_id' => 'id']);
+        return $this->hasOne(ReservationDeal::class, ['reservation_id' => 'id']);
     }
 
     /**
@@ -324,7 +324,7 @@ class AdvertReservation extends \yii\db\ActiveRecord
      */
     public function getFailure()
     {
-        return $this->hasOne(ReservationFailure::className(), ['reservation_id' => 'id']);
+        return $this->hasOne(ReservationFailure::class, ['reservation_id' => 'id']);
     }
 
     /**
@@ -332,7 +332,7 @@ class AdvertReservation extends \yii\db\ActiveRecord
      */
     public function getFailures()
     {
-        return $this->hasMany(ReservationFailure::className(), ['reservation_id' => 'id']);
+        return $this->hasMany(ReservationFailure::class, ['reservation_id' => 'id']);
     }
 
     /**

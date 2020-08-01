@@ -1,21 +1,25 @@
 <div class="fixednav visible-xs">
     {% if app.user.id %} {% if app.user.identity.profile.user_type != constant('\\common\\modules\\users\\models\\Profile::WANT_RENT') %}
-        <a class="fixed-item" href="{{ path(['/partners/default/apartments']) }}" style="color:white;"><i
-                    class="fa fa-book"></i></a> {% endif %}{% endif %}
-    <a class="fixed-item" href="{{ path(['/office/dialogs']) }}" style="color:white;"><i class="fa fa-envelope"></i></a>
-    <a class="fixed-item" href="{{ path(['/office/reservations']) }}" style="color:white;"><i
-                class="fas fa-key"></i></a>
-    <a class="fixed-item" href="{{ path(['/office/total-bid/all']) }}" style="color:white;"><i
-                class="fab fa-algolia"></i></a>
-    <a class="fixed-item" href="{{ path(['/partners/default/index']) }}" style="color:white;"><i
-                class="fa fa-search"></i></a>
+        <a class="fixed-item" href="{{ path(['/partners/default/apartments']) }}" style="color:white;">
+            <i class="fa fa-book"></i></a> {% endif %}{% endif %}
+    <a class="fixed-item" href="{{ path(['/office/dialogs']) }}" style="color:white;">
+        <i class="fa fa-envelope"></i>
+    </a>
+    <a class="fixed-item" href="{{ path(['/office/reservations']) }}" style="color:white;">
+        <i class="fas fa-key"></i>
+    </a>
+    <a class="fixed-item" href="{{ path(['/office/total-bid/all']) }}" style="color:white;">
+        <i class="fab fa-algolia"></i>
+    </a>
+    <a class="fixed-item" href="{{ path(['/partners/default/index']) }}" style="color:white;">
+        <i class="fa fa-search"></i>
+    </a>
     <a class="fixed-item" id="item-iu"><i class="fa fa-user-circle"></i></a>
     <a class="fixed-item" id="item-br"><i class="fa fa-bars"></i></a>
 
 </div>
 
 <div class="tutut" id="pp">
-
 
     {% if app.user.id %}
         {% if app.user.identity.profile.user_type != constant('\\common\\modules\\users\\models\\Profile::WANT_RENT') %}

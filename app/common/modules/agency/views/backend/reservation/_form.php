@@ -35,7 +35,7 @@ use kartik\datetime\DateTimePicker;
     <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-1"><?= $form->field($formModel, 'transfer')->dropDownList(Yii::$app->formatter->booleanFormat) ?></div>
 </div>
 <div class="row">
-    <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-3"><?= $form->field($formModel, 'date_arrived')->widget(DateTimePicker::className(), [
+    <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-3"><?= $form->field($formModel, 'date_arrived')->widget(DateTimePicker::class, [
             'type' => DateTimePicker::TYPE_COMPONENT_PREPEND,
             'options' => ['readonly' => 'readonly'],
             'pluginOptions' => [
@@ -45,7 +45,7 @@ use kartik\datetime\DateTimePicker;
             ]
         ]); ?>
     </div>
-    <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-3"><?= $form->field($formModel, 'date_out')->widget(DateTimePicker::className(), [
+    <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-3"><?= $form->field($formModel, 'date_out')->widget(DateTimePicker::class, [
             'type' => DateTimePicker::TYPE_COMPONENT_PREPEND,
             'options' => ['readonly' => 'readonly'],
             'pluginOptions' => [

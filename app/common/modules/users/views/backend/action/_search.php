@@ -25,7 +25,7 @@ use yii\helpers\Html;
         <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-1"><?= $form->field($model, 'username') ?></div>
         <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-1"><?= $form->field($model, 'ip') ?></div>
         <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-2">
-            <?= $form->field($model, 'date_from')->widget(DatePicker::className(), [
+            <?= $form->field($model, 'date_from')->widget(DatePicker::class, [
                 'type' => DatePicker::TYPE_INPUT,
                 'options' => [
                     'readonly' => 'readonly',
@@ -39,7 +39,7 @@ use yii\helpers\Html;
             ?>
         </div>
         <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-2">
-            <?= $form->field($model, 'date_to')->widget(DatePicker::className(), [
+            <?= $form->field($model, 'date_to')->widget(DatePicker::class, [
                 'type' => DatePicker::TYPE_INPUT,
                 'options' => [
                     'readonly' => 'readonly',

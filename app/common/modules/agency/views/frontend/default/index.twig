@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <div class="cls col-sm-6 col-xs-12 col-md-3">
-                    <div>{{ this.renderDynamic('return $this->render("@app/modules/site/views/default/logged.twig");') | raw }}</div>
+                    <div>{{ this.renderDynamic('return $this->render("@common/modules/site/views/default/logged.twig");') | raw }}</div>
                     <div class="social-links">
                         <ul>
 
@@ -46,7 +46,7 @@
                 <div class="clearfix"></div>
             </div>
         </div>
-        {{ use('frontend/modules/site/widgets/BgHeader') }}
+        {{ use('common/modules/site/widgets/BgHeader') }}
         {{ bg_header_widget({'title': 'Проверенные квартиры от <span class="orange-part">Сдаём.ру</span>'}) }}
     </header>
 

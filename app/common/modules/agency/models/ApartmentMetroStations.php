@@ -49,6 +49,6 @@ class ApartmentMetroStations extends \yii\db\ActiveRecord
      */
     public function getMetro()
     {
-        return $this->hasOne(\common\modules\geo\models\Metro::className(), ['metro_id' => 'metro_id']);
+        return $this->hasOne(\common\modules\geo\models\Metro::class, ['metro_id' => 'metro_id']);
     }
 }
