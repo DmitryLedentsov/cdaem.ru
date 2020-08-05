@@ -1,13 +1,13 @@
-PROJECT_NAME=cdaem_ru
+PROJECT_NAME = cdaem_ru
 
-USER_ID=$(shell id -u)
-GROUP_ID=$(shell id -g)
+USER_ID = $(shell id -u)
+GROUP_ID = $(shell id -g)
 
 docker_compose = docker-compose -p ${PROJECT_NAME} -f ./docker/docker-compose.yml -f ./docker/docker-compose.override.yml
 
-app_run = $(docker_compose) exec -T --user="${USER_ID}" app
-node_run = $(docker_compose) run --user="${USER_ID}" --rm node
-db_run = $(docker_compose) exec --user=root db
+app_run := $(docker_compose) exec -T --user="${USER_ID}" app
+node_run := $(docker_compose) run --user="${USER_ID}" --rm node
+db_run := $(docker_compose) exec --user=root db
 
 
 bootstrap:
@@ -94,4 +94,4 @@ cron-start:
 	$(docker_compose) exec -T --user=root app sh -c "crond"
 
 cron-load:
-	$(docker_compose) exec -T --user=root app sh -c "crontab /app/cron"
+	$(docker_compose) exec -T --user=root app sh -c "crontab -u www-data /etc/cron"

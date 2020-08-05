@@ -1,6 +1,6 @@
 <?php
 
-$file = 'cron-test.txt';
+$file = sprintf('%s/cron-test.txt', __DIR__);
 
 $current = date('Y-m-d H:i:s') . "\n";
 
