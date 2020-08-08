@@ -131,6 +131,12 @@ return [
             ],
 
         ],*/
+        'request' => [
+            'enableCsrfValidation' => true,
+            'enableCookieValidation' => true,
+            'baseUrl' => '',
+            'as cityModelBehavior' => \common\behaviors\CityModelBehavior::class
+        ],
         'view' => [
             'class' => \frontend\components\View::class,
             'defaultExtension' => 'twig',
