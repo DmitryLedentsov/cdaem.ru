@@ -64,58 +64,54 @@ return [
     'defaultRoute' => 'admin/default/index',
     'modules' => [
         'admin' => [
-            'class' => 'backend\modules\admin\Module'
+            'class' => \backend\modules\admin\Module::class,
         ],
         'users' => [
-            'class' => 'common\modules\users\Module',
+            'class' => \common\modules\users\Module::class,
             'controllerNamespace' => 'common\modules\users\controllers\backend',
         ],
         'agency' => [
-            'class' => 'common\modules\agency\Module',
+            'class' => \common\modules\agency\Module::class,
             'controllerNamespace' => 'common\modules\agency\controllers\backend',
         ],
         'helpdesk' => [
-            'class' => 'common\modules\helpdesk\Module',
+            'class' => \common\modules\helpdesk\Module::class,
             'controllerNamespace' => 'common\modules\helpdesk\controllers\backend',
         ],
         'seo' => [
-            'class' => 'common\modules\seo\Module',
+            'class' => \common\modules\seo\Module::class,
             'controllerNamespace' => 'common\modules\seo\controllers\backend',
         ],
         'callback' => [
-            'class' => 'common\modules\callback\Module',
+            'class' => \common\modules\callback\Module::class,
             'controllerNamespace' => 'common\modules\callback\controllers\backend',
         ],
         'reviews' => [
-            'class' => 'common\modules\reviews\Module',
+            'class' => \common\modules\reviews\Module::class,
             'controllerNamespace' => 'common\modules\reviews\controllers\backend',
         ],
-
         'partners' => [
-            'class' => 'backend\modules\partners\Module'
+            'class' => \backend\modules\partners\Module::class,
         ],
         'merchant' => [
-            'class' => 'backend\modules\merchant\Module'
+            'class' => \backend\modules\merchant\Module::class,
         ],
         'articles' => [
-            'class' => 'common\modules\articles\Module',
+            'class' => \common\modules\articles\Module::class,
             'controllerNamespace' => 'common\modules\articles\controllers\backend',
         ],
         'pages' => [
-            'class' => 'common\modules\pages\Module',
+            'class' => \common\modules\pages\Module::class,
             'controllerNamespace' => 'common\modules\pages\controllers\backend',
         ],
         'realty' => [
-            'class' => 'common\modules\realty\Module',
+            'class' => \common\modules\realty\Module::class,
             'controllerNamespace' => 'common\modules\realty\controllers\backend',
-        ],
-        'logs' => [
-            'class' => 'backend\modules\logs\Module',
         ],
     ],
     'components' => [
         'navigation' => [
-            'class' => '\backend\components\Navigation',
+            'class' => \backend\components\Navigation::class,
         ],
         'view' => [
             'theme' => [
@@ -124,20 +120,6 @@ return [
                     '@app/modules' => '@app/themes/basic/modules',
                 ],
                 'baseUrl' => '@web/themes/basic',
-            ],
-        ],
-        'request' => [
-            'enableCsrfValidation' => true,
-            'enableCookieValidation' => true,
-            'baseUrl' => ''
-        ],
-        'log' => [
-            'traceLevel' => YII_DEBUG ? 3 : 0,
-            'targets' => [
-                [
-                    'class' => 'yii\log\DbTarget',
-                    'levels' => ['error', 'warning'],
-                ],
             ],
         ],
         'errorHandler' => [

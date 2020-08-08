@@ -155,7 +155,7 @@ class AdvertReservationForm extends AdvertReservation
      */
     public function rules()
     {
-        return [
+        return array_merge([
             [['pets', 'children', 'clients_count', 'actuality_duration', 'arrived_date', 'arrived_time', 'out_date', 'out_time'], 'required'],
             [['phone', 'email', 'password', 'agreement'], 'required', 'on' => 'unauthorized'],
 
@@ -175,11 +175,7 @@ class AdvertReservationForm extends AdvertReservation
             ['phone', 'unique', 'targetClass' => '\common\modules\users\models\User', 'targetAttribute' => 'phone'],
             ['phone', '\common\validators\PhoneValidator', 'message' => 'Некорректный формат номера'],
             ['agreement', 'compare', 'compareValue' => '1', 'message' => 'Необходимо согласиться с условиями пользовательского соглашения.'],
-
-            // Защитный код
-            ['verifyCode', 'required', 'message' => 'Подтвердите, что Вы не робот', 'on' => 'unauthorized'],
-            ['verifyCode', \common\modules\site\widgets\Captcha::getClassValidator()],
-        ];
+        ], \common\modules\site\widgets\Captcha::getValidationRules());
     }
 
     /**

@@ -63,8 +63,10 @@ class DefaultController extends \frontend\components\Controller
     public function actionIndex()
     {
         $specialAdverts = SpecialAdvert::findActive();
+
         $agencySearch = new AgencyAdvertSearch();
         $agencyDataProvider = $agencySearch->allSearch(Yii::$app->request->get());
+
         $articlesQuery = Article::find()->orderBy(['date_create' => SORT_DESC]);
         $articles = $articlesQuery
             ->limit(13)

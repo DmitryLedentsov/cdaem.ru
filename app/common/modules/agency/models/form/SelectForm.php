@@ -31,7 +31,7 @@ class SelectForm extends Model
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return array_merge((new Select)->attributeLabels(), [
             'verifyCode' => 'Защитный код',
@@ -41,11 +41,10 @@ class SelectForm extends Model
     /**
      * @inheritdoc
      */
-    public function rules()
+    public function rules(): array
     {
-        return [
+        return array_merge([
             [['rent_types_array', 'rooms', 'phone', 'metro_array'], 'required'],
-
             ['phone', '\common\validators\PhoneValidator', 'message' => 'Некорректный формат номера'],
             ['rent_types_array', 'default', 'value' => []],
             ['rent_types_array', 'each', 'rule' => ['in', 'range' => array_keys($this->rentTypesList)]],
@@ -57,17 +56,13 @@ class SelectForm extends Model
             [['name'], 'string', 'max' => 255],
             [['email'], 'string', 'max' => 200],
             ['email', 'email'],
-
-            // Защитный код
-            ['verifyCode', 'required', 'message' => 'Подтвердите, что Вы не робот'],
-            ['verifyCode', \common\modules\site\widgets\Captcha::getClassValidator()],
-        ];
+        ], \common\modules\site\widgets\Captcha::getValidationRules());
     }
 
     /**
      * @inheritdoc
      */
-    public function beforeValidate()
+    public function beforeValidate(): bool
     {
         if (!parent::beforeValidate()) {
             return false;
@@ -82,7 +77,7 @@ class SelectForm extends Model
      * Создать
      * @return bool
      */
-    public function create()
+    public function create(): bool
     {
         $model = new Select();
         $model->setAttributes($this->getAttributes(), false);
@@ -97,7 +92,7 @@ class SelectForm extends Model
      * Список типов аренды
      * @return array
      */
-    public static function getRentTypesList()
+    public static function getRentTypesList(): array
     {
         return Select::getRentTypesList();
     }
@@ -106,7 +101,7 @@ class SelectForm extends Model
      * Список типов аренды
      * @return array
      */
-    public static function getMetroStations()
+    public static function getMetroStations(): array
     {
         return Select::getMetroStations();
     }
@@ -115,7 +110,7 @@ class SelectForm extends Model
      * Список доступных вариантов количества комнат
      * @return array
      */
-    public static function getRoomsList()
+    public static function getRoomsList(): array
     {
         return Select::getRoomsList();
     }

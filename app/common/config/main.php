@@ -75,123 +75,49 @@ return [
                                 ['/page/FAQ'],
                             ],
                             'Allow' => [
-                                [
-                                    '/partner_thumb',
-                                ],
-                                [
-                                    '/partner_imgs',
-                                ],
-                                [
-                                    '/images',
-                                ],
-                                [
-                                    '/basic-images',
-                                ],
-                                [
-                                    '/css',
-                                ],
-                                [
-                                    '/*.css$',
-                                ],
-                                [
-                                    '/*.js$',
-                                ],
-                                [
-                                    '/js',
-                                ],
+                                ['/partner_thumb'],
+                                ['/partner_imgs'],
+                                ['/images'],
+                                ['/basic-images'],
+                                ['/css'],
+                                ['/*.css$'],
+                                ['/*.js$'],
+                                ['/js'],
                             ],
                         ],
                         'Yandex' => [
                             'Disallow' => [
-                                [
-                                    '/signup',
-                                ],
-                                [
-                                    '/login',
-                                ],
-                                [
-                                    '/*/login',
-                                ],
-                                [
-                                    '/badbrowser',
-                                ],
-                                [
-                                    '/resend',
-                                ],
-                                [
-                                    '/call',
-                                ],
-                                [
-                                    '/recovery',
-                                ],
-                                [
-                                    '/page/agreement',
-                                ],
-                                [
-                                    '/users/guest/resend',
-                                ],
-                                [
-                                    '/fonts',
-                                ],
-                                [
-                                    '/brw',
-                                ],
-                                [
-                                    '/userpic',
-                                ],
-                                [
-                                    '/pic',
-                                ],
-                                [
-                                    '/imgs',
-                                ],
-                                [
-                                    '/images-help',
-                                ],
-                                [
-                                    '/uploads',
-                                ],
-                                [
-                                    '/tmp',
-                                ],
-                                [
-                                    '/ion.sound',
-                                ],
-                                [
-                                    '/email-images',
-                                ],
-                                [
-                                    '/reservation/*',
-                                ],
-                                [
-                                    '/page/FAQ',
-                                ],
+                                ['/signup'],
+                                ['/login'],
+                                ['/*/login'],
+                                ['/badbrowser'],
+                                ['/resend'],
+                                ['/call'],
+                                ['/recovery'],
+                                ['/page/agreement'],
+                                ['/users/guest/resend'],
+                                ['/fonts'],
+                                ['/brw'],
+                                ['/userpic'],
+                                ['/pic'],
+                                ['/imgs'],
+                                ['/images-help'],
+                                ['/uploads'],
+                                ['/tmp'],
+                                ['/ion.sound'],
+                                ['/email-images'],
+                                ['/reservation/*'],
+                                ['/page/FAQ'],
                             ],
                             'Allow' => [
-                                [
-                                    '/partner_thumb',
-                                ],
-                                [
-                                    '/partner_imgs',
-                                ],
-                                [
-                                    '/images',
-                                ],
-                                [
-                                    '/basic-images',
-                                ],
-                                [
-                                    '/css',
-                                ],
-                                [
-                                    '/*.css$',
-                                ],
-                                [
-                                    '/*.js$',
-                                ],
-                                [
-                                    '/js',
-                                ],
+                                ['/partner_thumb'],
+                                ['/partner_imgs'],
+                                ['/images'],
+                                ['/basic-images'],
+                                ['/css'],
+                                ['/*.css$'],
+                                ['/*.js$'],
+                                ['/js'],
                             ],
                         ],
                     ],
@@ -211,6 +137,28 @@ return [
         ],
         'response' => [
             'class' => 'common\components\Response',
+        ],
+        'request' => [
+            'enableCsrfValidation' => true,
+            'enableCookieValidation' => true,
+            'baseUrl' => '',
+            'as cityModelBehavior' => \common\behaviors\CityModelBehavior::class
+        ],
+        'log' => [
+            'traceLevel' => YII_DEBUG ? 3 : 0,
+            'targets' => [
+                [
+                    'class' => \yii\log\DbTarget::class,
+                    'levels' => ['error', 'warning'],
+                ],
+                [
+                    'class' => yii\log\DbTarget::class,
+                    'levels' => ['info', 'error'],
+                    'categories' => ['robokassa'],
+                    // 'logFile' => '@frontend/runtime/logs/robokassa.log',
+                    'logVars' => [],
+                ],
+            ],
         ],
         'session' => [
             'class' => 'yii\web\DbSession',
@@ -295,7 +243,11 @@ return [
             'resultUrl' => ['/merchant/robokassa/result'],
             'successUrl' => ['/merchant/robokassa/success'],
             'failureUrl' => ['/merchant/robokassa/failure']
-        ]
+        ],
+        'currencyConverter' => [
+            'class' => \common\components\CurrencyConverter::class,
+        ],
+        'reCaptcha' => require('reCaptcha.php'),
     ],
     'params' => require(__DIR__ . '/params.php')
 ];

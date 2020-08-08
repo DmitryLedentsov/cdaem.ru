@@ -8,7 +8,7 @@ use common\modules\realty\models\RentType;
 use common\modules\agency\models\Apartment;
 
 /**
- * Поисковая модель апаратментов
+ * Поисковая модель апартаментов
  * @package common\modules\agency\models\backend\search
  */
 class ApartmentSearch extends Apartment
@@ -118,7 +118,7 @@ class ApartmentSearch extends Apartment
     }
 
     /**
-     * Спиоск типов аренды
+     * Список типов аренды
      */
     public function getRentTypesList()
     {
