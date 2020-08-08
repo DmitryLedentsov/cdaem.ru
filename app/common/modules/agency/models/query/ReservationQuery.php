@@ -2,8 +2,8 @@
 
 namespace common\modules\agency\models\query;
 
-use common\modules\agency\models\Reservation;
 use yii\db\ActiveQuery;
+use common\modules\agency\models\Reservation;
 
 /**
  * Reservation Query

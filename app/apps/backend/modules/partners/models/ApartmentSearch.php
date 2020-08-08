@@ -2,10 +2,10 @@
 
 namespace backend\modules\partners\models;
 
-use common\modules\realty\models\RentType;
-use yii\data\ActiveDataProvider;
-use yii\base\Model;
 use Yii;
+use yii\base\Model;
+use yii\data\ActiveDataProvider;
+use common\modules\realty\models\RentType;
 
 /**
  * @inheritdoc

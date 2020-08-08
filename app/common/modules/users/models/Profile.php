@@ -2,24 +2,14 @@
 
 namespace common\modules\users\models;
 
-use yii\web\UploadedFile;
-use yii\db\ActiveRecord;
 use Yii;
+use yii\web\UploadedFile;
 
 /**
  * @inheritdoc
  */
 class Profile extends \nepster\users\models\Profile
 {
-    /*
-        public $day;
-
-        public $month;
-
-        public $year;
-    */
-
-
     /**
      * Фотография
      * @var mixed
@@ -187,7 +177,6 @@ class Profile extends \nepster\users\models\Profile
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {
-
             if (is_object($this->image) && $avatarUrl = $this->uploadAvatar()) {
                 $this->avatar_url = $avatarUrl;
             }
@@ -198,6 +187,7 @@ class Profile extends \nepster\users\models\Profile
 
             return true;
         }
+
         return false;
     }
 
@@ -209,8 +199,11 @@ class Profile extends \nepster\users\models\Profile
      * - Агенство
      */
     const WANT_RENT = 1;
+
     const MEDIATOR = 2;
+
     const OWNER = 3;
+
     const AGENCY = 4;
 
     /**
@@ -240,6 +233,7 @@ class Profile extends \nepster\users\models\Profile
      * - Посредник
      */
     const NO_PARTNER = 0;
+
     const PARTNER = 1;
 
     /**

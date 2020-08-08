@@ -2,9 +2,8 @@
 
 namespace common\modules\partners\models;
 
-use common\modules\partners\models\Apartment;
-use common\modules\partners\traits\ModuleTrait;
 use Yii;
+use common\modules\partners\traits\ModuleTrait;
 
 /**
  * Изображения
@@ -43,11 +42,12 @@ class Image extends \yii\db\ActiveRecord
     public function getPreviewSrc()
     {
         $file = Yii::getAlias(Yii::$app->getModule('partners')->imagesPath) . '/' . $this->review;
+
         if (file_exists($file)) {
             return Yii::$app->params['siteDomain'] . $this->module->previewImagesUrl . '/' . $this->preview;
-        } else {
-            return Yii::$app->params['siteDomain'] . $this->module->defaultImageSrc;
         }
+
+        return Yii::$app->params['siteDomain'] . $this->module->defaultImageSrc;
     }
 
     /**
@@ -57,11 +57,12 @@ class Image extends \yii\db\ActiveRecord
     public function getReviewSrc()
     {
         $file = Yii::getAlias(Yii::$app->getModule('partners')->imagesPath) . '/' . $this->review;
+
         if (file_exists($file)) {
             return Yii::$app->params['siteDomain'] . $this->module->imagesUrl . '/' . $this->review;
-        } else {
-            return Yii::$app->params['siteDomain'] . $this->module->defaultImageSrc;
         }
+
+        return Yii::$app->params['siteDomain'] . $this->module->defaultImageSrc;
     }
 
     /**
@@ -101,7 +102,9 @@ class Image extends \yii\db\ActiveRecord
         foreach ($apartmentImages as $image) {
             self::deleteFile($image->review, $image->preview);
             // Запоминаем с каких апартаментов удалили заглавные картинки
-            if ($image->default_img == 1) $apartments[$image->apartment_id] = true;
+            if ($image->default_img == 1) {
+                $apartments[$image->apartment_id] = true;
+            }
             $count += $image->delete();
         }
 
@@ -139,12 +142,8 @@ class Image extends \yii\db\ActiveRecord
      * @param bool $preview
      * @return bool
      */
-
-
     public function upload($image, $watermark = true, $preview = true, $filenamed = "default")
     {
-
-
         // Инициализируем расширение image
         $reviewImage = Yii::$app->image->load($image->tempName);
         $previewImage = Yii::$app->image->load($image->tempName);

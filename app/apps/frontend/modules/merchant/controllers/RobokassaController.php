@@ -2,11 +2,11 @@
 
 namespace frontend\modules\merchant\controllers;
 
-use common\modules\merchant\models\Payment;
-use frontend\modules\merchant\models\Invoice;
-use common\modules\partners\models\Service;
-use common\modules\users\models\User;
 use Yii;
+use common\modules\users\models\User;
+use common\modules\merchant\models\Payment;
+use common\modules\partners\models\Service;
+use frontend\modules\merchant\models\Invoice;
 
 /**
  * @TODO: Полностью переделать
@@ -82,7 +82,6 @@ class RobokassaController extends \frontend\components\Controller
             $transaction->commit();
 
             echo 'OK' . $invoiceId;
-
         } catch (\Exception $e) {
             $transaction->rollBack();
             Yii::info('ERROR: Возникла критическая ошибка: ' . $e->getMessage(), 'robokassa');
@@ -99,8 +98,10 @@ class RobokassaController extends \frontend\components\Controller
         if (!Yii::$app->request->post()) {
             if (Yii::$app->user->id) {
                 Yii::$app->session->setFlash('danger', 'Возникла критическая ошибка. Пожалуйста, обратитесь в службу технической поддержки.');
+
                 return $this->redirect(['/merchant/default/index']);
             }
+
             return $this->goHome();
         }
 
@@ -126,7 +127,6 @@ class RobokassaController extends \frontend\components\Controller
             }
 
             return $this->redirect(['/merchant/default/index']);
-
         } catch (\Exception $e) {
             $transaction->rollBack();
             Yii::$app->session->setFlash('danger', 'Возникла критическая ошибка. Пожалуйста, обратитесь в службу технической поддержки.');
@@ -144,8 +144,10 @@ class RobokassaController extends \frontend\components\Controller
         if (!Yii::$app->request->post()) {
             if (Yii::$app->user->id) {
                 Yii::$app->session->setFlash('danger', 'Возникла критическая ошибка. Пожалуйста, обратитесь в службу технической поддержки.');
+
                 return $this->redirect(['/merchant/default/index']);
             }
+
             return $this->goHome();
         }
 
@@ -186,7 +188,6 @@ class RobokassaController extends \frontend\components\Controller
 
             // Если есть идентификатор процесса, значит оплата идет сразу за сервис
             if (!empty($invoice->process_id) && $process = Service::findProcessById($invoice->process_id)) {
-
                 if (!is_null($invoice->user_id)) {
 
                     // Списать средства у пользователя
@@ -194,7 +195,6 @@ class RobokassaController extends \frontend\components\Controller
                         ->setModule('partners')
                         ->setUser(User::findOne($invoice->user_id))
                         ->costs($invoice->funds, $process->service);
-
                 } else {
 
                     // Инициализация сервиса
@@ -214,7 +214,6 @@ class RobokassaController extends \frontend\components\Controller
                     if ($service->isInstant()) {
                         $service->runBackgroundProcess();
                     }
-
                 }
 
                 // Идентификатор платежа у процесса оплаты

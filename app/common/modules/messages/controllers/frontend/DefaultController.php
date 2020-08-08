@@ -2,16 +2,16 @@
 
 namespace common\modules\messages\controllers\frontend;
 
-use common\modules\messages\models\frontend\MailboxSearch;
-use common\modules\messages\models\Mailbox;
-use common\modules\messages\models\Message;
+use Yii;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
+use yii\web\NotFoundHttpException;
+use frontend\components\Controller;
 use common\modules\users\models\User;
 use common\modules\users\models\UsersList;
-use frontend\components\Controller;
-use yii\web\NotFoundHttpException;
-use yii\widgets\ActiveForm;
-use yii\web\Response;
-use Yii;
+use common\modules\messages\models\Mailbox;
+use common\modules\messages\models\Message;
+use common\modules\messages\models\frontend\MailboxSearch;
 
 /**
  * Class DefaultController
@@ -39,9 +39,9 @@ class DefaultController extends Controller
 
         if (YII_DEBUG) {
             return $behaviors;
-        } else {
-            return array_merge($behaviors, require(__DIR__ . '/../../caching/default.php'));
         }
+
+        return array_merge($behaviors, require(__DIR__ . '/../../caching/default.php'));
     }
 
     /**
@@ -51,10 +51,11 @@ class DefaultController extends Controller
     {
         if (parent::beforeAction($action)) {
             $this->module->viewPath = '@common/modules/messages/views/frontend';
+
             return true;
-        } else {
-            return false;
         }
+
+        return false;
     }
 
     /**
@@ -120,22 +121,26 @@ class DefaultController extends Controller
                             'status' => 1,
                             'message' => 'Сообщение отправлено',
                         ];
-                    } else {
-                        return [
-                            'status' => 0,
-                            'message' => 'Возникла критическая ошибка',
-                        ];
                     }
+
+                    return [
+                        'status' => 0,
+                        'message' => 'Возникла критическая ошибка',
+                    ];
                 }
+
                 return [];
             }
+
             return $errors;
         }
+
+        return [];
     }
 
     /**
      * @param $id
-     * @return null|static
+     * @return array|\yii\db\ActiveRecord
      * @throws NotFoundHttpException
      */
     protected function findInterlocutor($id)
@@ -145,15 +150,21 @@ class DefaultController extends Controller
             ->one();
 
         if (!$model) {
-            throw new NotFoundHttpException('Такого пользователя несуществует');
-        } elseif ($model->isBanned()) {
-            $this->readAllMessages($model->id);
-            throw new NotFoundHttpException('Такого пользователя несуществует');
-        } else {
-            return $model;
+            throw new NotFoundHttpException('Такого пользователя не существует');
         }
+
+        if ($model->isBanned()) {
+            $this->readAllMessages($model->id);
+
+            throw new NotFoundHttpException('Такого пользователя не существует');
+        }
+
+        return $model;
     }
 
+    /**
+     * @param $id
+     */
     protected function readAllMessages($id)
     {
         Mailbox::updateAll(['read' => 1], ['user_id' => Yii::$app->user->id, 'interlocutor_id' => $id]);

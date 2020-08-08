@@ -7,12 +7,12 @@ $pageExistQueryParams['page'] = empty($pageExistQueryParams['page']) ? '1' : $pa
 
 $filters = [
     [
-        'class' => 'yii\filters\PageCache',
+        'class' => \yii\filters\PageCache::class,
         'only' => ['region'],
         'duration' => 300,
         'variations' => $pageExistQueryParams,
         'dependency' => [
-            'class' => 'yii\caching\DbDependency',
+            'class' => \yii\caching\DbDependency::class,
             'sql' => "SELECT MAX(update_time) FROM tables_update_time WHERE `table` IN (
                         'users_banned',
                         'partners_adverts',
@@ -27,7 +27,7 @@ $filters = [
     /*
      * ���������� ��-�� ���� ��� ��� ���� ������������ ����� (navbar)
      [
-        'class' => 'yii\filters\HttpCache',
+        'class' => \yii\filters\HttpCache::class,,
         'only' => ['index'],
         'lastModified' => function ($action, $params) {
             $q = new \yii\db\Query();
@@ -36,17 +36,17 @@ $filters = [
     ]*/
 
     [
-        'class' => 'yii\filters\PageCache',
+        'class' => \yii\filters\PageCache::class,
         'only' => ['index'],
         'duration' => 300,
         'dependency' => [
-            'class' => 'yii\caching\DbDependency',
+            'class' => \yii\caching\DbDependency::class,
             'sql' => "SELECT update_time FROM {{%tables_update_time}} WHERE `table` IN ('partners_apartments', 'partners_advertisement_slider', 'users_banned')"
         ]
     ],
 
     [
-        'class' => 'yii\filters\PageCache',
+        'class' => \yii\filters\PageCache::class,
         'only' => ['view'],
         'duration' => 300,
         'variations' => Yii::$app->request->queryParams,
@@ -82,7 +82,7 @@ $filters = [
     ],
 
     [
-        'class' => 'yii\filters\PageCache',
+        'class' => \yii\filters\PageCache::class,
         'only' => ['others'],
         'duration' => 300,
         'variations' => Yii::$app->request->queryParams,
@@ -113,7 +113,7 @@ $filters = [
     ],
 
     [
-        'class' => 'yii\filters\PageCache',
+        'class' => \yii\filters\PageCache::class,
         'only' => ['apartments'],
         'duration' => 300,
         'variations' => array_merge($pageExistQueryParams, ['user_id' => Yii::$app->user->id]),
@@ -143,7 +143,7 @@ $filters = [
     ],
 
     [
-        'class' => 'yii\filters\PageCache',
+        'class' => \yii\filters\PageCache::class,
         'only' => ['create'],
         'enabled' => Yii::$app->request->isGet,
         'duration' => 300,
@@ -166,7 +166,7 @@ $filters = [
     ],
 
     [
-        'class' => 'yii\filters\PageCache',
+        'class' => \yii\filters\PageCache::class,
         'only' => ['update'],
         'enabled' => Yii::$app->request->isGet and \common\modules\partners\models\Apartment::find()
                 ->where(['user_id' => Yii::$app->user->id, 'apartment_id' => Yii::$app->request->get('id')])->exists(),

@@ -2,10 +2,9 @@
 
 namespace common\modules\seo\models\backend;
 
+use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use common\modules\seo\models\SeoSpecification;
-use yii\base\Model;
-use Yii;
 
 /**
  * Class SeoSpecificationSearch
@@ -14,10 +13,15 @@ use Yii;
 class SeoSpecificationSearch extends Model
 {
     public $id;
+
     public $city;
+
     public $url;
+
     public $title;
+
     public $description;
+
     public $keywords;
 
     /**
@@ -53,12 +57,6 @@ class SeoSpecificationSearch extends Model
         if (!$this->validate()) {
             return $dataProvider;
         }
-
-        /*
-        $query->andFilterWhere([
-            'id' => $this->id,
-        ]);
-        */
 
         $query->andFilterWhere(['like', 'city', $this->city])
             ->andFilterWhere(['like', 'url', $this->url])

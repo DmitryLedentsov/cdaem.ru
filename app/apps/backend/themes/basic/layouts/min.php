@@ -6,8 +6,8 @@
  * @var string $content Контент
  */
 
-use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
 
 \backend\themes\basic\assets\BaseAsset::register($this);

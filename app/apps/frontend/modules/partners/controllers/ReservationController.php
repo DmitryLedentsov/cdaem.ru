@@ -2,17 +2,17 @@
 
 namespace frontend\modules\partners\controllers;
 
-use frontend\modules\partners\models as models;
-use frontend\modules\partners\models\AdvertReservation;
-use frontend\modules\partners\models\Advert;
+use Yii;
+use yii\web\Response;
+use yii\web\HttpException;
+use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
 use common\modules\geo\models\City;
 use common\modules\users\models\Profile;
 use common\modules\partners\models\UserSeen;
-use yii\web\HttpException;
-use yii\widgets\ActiveForm;
-use yii\web\Response;
-use yii\helpers\ArrayHelper;
-use Yii;
+use frontend\modules\partners\models\Advert;
+use frontend\modules\partners\models as models;
+use frontend\modules\partners\models\AdvertReservation;
 
 /**
  * Заявки на резервацию
@@ -74,9 +74,11 @@ class ReservationController extends \frontend\components\Controller
                 } else {
                     Yii::$app->session->setFlash('danger', 'Возникла критическая ошибка. Пожалуйста обратитесь в техническую поддержку.');
                 }
+
                 return $this->refresh();
             } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return $errors;
             }
         }
@@ -99,13 +101,16 @@ class ReservationController extends \frontend\components\Controller
             ->all();
         if (!empty($reservationtakewidth)) {
             Yii::$app->session->setFlash('danger', 'У вас есть неподтвержденная бронь! Пожалуйста подтвердите свою заявку, или отмените прежде чем сделать новую ');
+
             return $this->redirect(['/office/reservations']);
         }
 
         $advert = $this->findAdvert($advert_id);
         $otheradvert = $this->findOtherAdvert($advert->apartment->user_id);
         $form = new models\form\AdvertReservationForm();
-        if (Yii::$app->user->isGuest) $form->scenario = 'unauthorized';
+        if (Yii::$app->user->isGuest) {
+            $form->scenario = 'unauthorized';
+        }
         $form->advert_id = $advert_id;
         $form->landlord_id = $advert->apartment->user_id;
         if ($form->load(Yii::$app->request->post())) {
@@ -130,9 +135,11 @@ class ReservationController extends \frontend\components\Controller
                     Yii::$app->session->setFlash('danger', 'Возникла критическая ошибка. Пожалуйста обратитесь в техническую поддержку.');
                 }
                 $transaction->commit();
+
                 return $this->refresh();
             } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return $errors;
             }
         }
@@ -194,8 +201,6 @@ class ReservationController extends \frontend\components\Controller
      * Просмотр арендодателем заявок на бронь его объявлений
      * @return string
      */
-
-
     public function actionReservations()
     {
         // Если тип пользователя "Хочу снять" выполняем специализированный экнш
@@ -248,7 +253,6 @@ class ReservationController extends \frontend\components\Controller
         ]);
     }
 
-
     /**
      * Находит ApartmentAdverts model по полю advert_id
      * Незабаненного пользователя
@@ -276,12 +280,14 @@ class ReservationController extends \frontend\components\Controller
         if (!$advert) {
             throw new HttpException(404, 'Вы ищете страницу, которой не существует');
         }
+
         return $advert;
     }
 
     protected function findOtherAdvert($user_id)
     {
         $userAdverts = Advert::getAdvertsByUser($user_id, 10);
+
         return $userAdverts;
         //findApartmentsByAvailable($userId = null)
     }

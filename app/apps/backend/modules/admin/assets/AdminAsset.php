@@ -2,8 +2,8 @@
 
 namespace backend\modules\admin\assets;
 
-use yii\web\AssetBundle;
 use Yii;
+use yii\web\AssetBundle;
 
 /**
  * Менеджер ресурсов
@@ -20,7 +20,7 @@ class AdminAsset extends AssetBundle
     ];
 
     public $depends = [
-        'yii\web\JqueryAsset',
+        \yii\web\JqueryAsset::class,
         'yii\jui\JuiAsset',
     ];
 

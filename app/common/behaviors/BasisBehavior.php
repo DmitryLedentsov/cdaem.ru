@@ -24,5 +24,4 @@ class BasisBehavior extends \yii\base\Behavior
     {
         return Yii::$app->BasisFormat->helper('Status')->booleanString($string);
     }
-
 }

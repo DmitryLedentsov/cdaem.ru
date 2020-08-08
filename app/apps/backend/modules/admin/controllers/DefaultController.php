@@ -2,19 +2,19 @@
 
 namespace backend\modules\admin\controllers;
 
-use common\modules\callback\models\Callback;
-use common\modules\agency\models\WantPass;
-use common\modules\agency\models\Select;
-use common\modules\agency\models\DetailsHistory;
-use common\modules\agency\models\Reservation;
-use common\modules\helpdesk\models\Helpdesk;
-use backend\modules\admin\models\LogSearch;
+use Yii;
+use yii\web\Response;
 use yii\base\Exception;
-use yii\base\InvalidParamException;
 use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
-use yii\web\Response;
-use Yii;
+use yii\base\InvalidParamException;
+use common\modules\agency\models\Select;
+use common\modules\agency\models\WantPass;
+use backend\modules\admin\models\LogSearch;
+use common\modules\callback\models\Callback;
+use common\modules\helpdesk\models\Helpdesk;
+use common\modules\agency\models\Reservation;
+use common\modules\agency\models\DetailsHistory;
 
 /**
  * Default Controller
@@ -198,5 +198,4 @@ class DefaultController extends \backend\components\Controller
 
         return $array;
     }
-
 }

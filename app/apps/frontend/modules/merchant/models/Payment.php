@@ -7,5 +7,4 @@ namespace frontend\modules\merchant\models;
  */
 class Payment extends \common\modules\merchant\models\Payment
 {
-
 }

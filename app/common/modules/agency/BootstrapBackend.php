@@ -2,8 +2,8 @@
 
 namespace common\modules\agency;
 
-use common\modules\agency\models as models;
 use yii\helpers\Html;
+use common\modules\agency\models as models;
 
 /**
  * Bootstrap Backned
@@ -133,7 +133,8 @@ class BootstrapBackend implements \yii\base\BootstrapInterface
         ]);
 
         // Add module URL rules.
-        $app->urlManager->addRules([
+        $app->urlManager->addRules(
+            [
 
             ]
         );

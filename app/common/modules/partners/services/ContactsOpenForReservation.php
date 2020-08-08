@@ -2,13 +2,13 @@
 
 namespace common\modules\partners\services;
 
-use common\modules\partners\interfaces\ServiceInterface;
-use frontend\modules\partners\models\AdvertReservation;
-use common\modules\partners\models\Service;
-use common\modules\users\models\User;
-use yii\validators\EmailValidator;
-use yii\helpers\Json;
 use Yii;
+use yii\helpers\Json;
+use yii\validators\EmailValidator;
+use common\modules\users\models\User;
+use common\modules\partners\models\Service;
+use frontend\modules\partners\models\AdvertReservation;
+use common\modules\partners\interfaces\ServiceInterface;
 
 /**
  * Сервис [Contacts Open For Reservation]
@@ -102,6 +102,7 @@ final class ContactsOpenForReservation extends \yii\base\BaseObject implements S
     public function setProcess(Service $process)
     {
         $this->_process = $process;
+
         return $this;
     }
 
@@ -146,7 +147,6 @@ final class ContactsOpenForReservation extends \yii\base\BaseObject implements S
 
     public function validateContact()
     {
-
         return true;
     }
 

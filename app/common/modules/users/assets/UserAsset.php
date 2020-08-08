@@ -20,7 +20,7 @@ class UserAsset extends AssetBundle
      * @inheritdoc
      */
     public $depends = [
-        'yii\web\JqueryAsset',
+        \yii\web\JqueryAsset::class,
     ];
 
     /**
@@ -31,17 +31,13 @@ class UserAsset extends AssetBundle
         parent::init();
 
         if (YII_DEBUG) {
-
             $this->js = [
                 'js_dev/users.js',
             ];
-
         } else {
-
             $this->js = [
                 'js/users.js',
             ];
-
         }
     }
 }

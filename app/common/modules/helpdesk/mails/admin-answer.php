@@ -2,8 +2,8 @@
 
 /* @var $model \common\modules\helpdesk\models\HelpdeskAnswers */
 
-use yii\helpers\Json;
 use yii\helpers\Html;
+use yii\helpers\Json;
 
 $domain = Yii::$app->params['siteDomain'];
 ?>

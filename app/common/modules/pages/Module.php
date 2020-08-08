@@ -2,8 +2,6 @@
 
 namespace common\modules\pages;
 
-use Yii;
-
 /**
  * Общий модуль [[Pages]]
  * Осуществляет всю работу со статическими страницами.
@@ -49,5 +47,4 @@ class Module extends \yii\base\Module
      * @var integer Количество записей на главной странице модуля.
      */
     public $recordsPerPage = 18;
-
 }

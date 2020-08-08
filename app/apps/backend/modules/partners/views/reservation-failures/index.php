@@ -53,10 +53,13 @@ echo $this->render('_search', ['model' => $searchModel]);
                     return Html::a('<span class="icon-wrench"></span>', ['/partners/reservation-failures/update', 'id' => $model->id]);
                 },
                 'delete' => function ($url, $model) {
-                    return Html::a('<span class="icon-remove3"></span>', ['/partners/reservation-failures/delete', 'id' => $model->id],
+                    return Html::a(
+                        '<span class="icon-remove3"></span>',
+                        ['/partners/reservation-failures/delete', 'id' => $model->id],
                         ['data' => [
                             'confirm' => 'Удалить?',
-                        ]]);
+                        ]]
+                    );
                 }
             ],
         ],
@@ -105,7 +108,9 @@ echo $this->render('_search', ['model' => $searchModel]);
             'format' => 'html',
             'value' => function ($model) {
                 $color = 'red';
-                if ($model->processed) $color = 'green';
+                if ($model->processed) {
+                    $color = 'green';
+                }
                 $value = Yii::$app->BasisFormat->helper('Status')->booleanString($model->processed);
 
                 return $value;
@@ -143,4 +148,3 @@ echo $this->render('_search', ['model' => $searchModel]);
         ],
     ],
 ]);
-

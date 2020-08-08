@@ -28,5 +28,4 @@ class InterfaceAssets extends AssetBundle
 
     public $depends = [
     ];
-
 }

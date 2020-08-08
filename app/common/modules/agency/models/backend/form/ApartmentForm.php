@@ -2,14 +2,13 @@
 
 namespace common\modules\agency\models\backend\form;
 
-use common\modules\realty\models\Apartment as TotalApartment;
-use common\modules\agency\models\ApartmentMetroStations;
-use common\modules\agency\models\Apartment;
-use common\modules\agency\models\Image;
-use yii\base\Exception;
+use Yii;
+use Exception;
 use yii\web\UploadedFile;
 use yii\helpers\ArrayHelper;
-use Yii;
+use common\modules\agency\models\Image;
+use common\modules\agency\models\Apartment;
+use common\modules\agency\models\ApartmentMetroStations;
 
 /**
  * Apartment Form
@@ -18,26 +17,47 @@ use Yii;
 class ApartmentForm extends \yii\base\Model
 {
     public $apartment_id;
+
     public $user_id;
+
     public $city_id;
+
     public $closest_city_id;
+
     public $address;
+
     public $apartment;
+
     public $district1;
+
     public $district2;
+
     public $floor;
+
     public $total_rooms;
+
     public $total_area;
+
     public $beds;
+
     public $visible;
+
     public $remont;
+
     public $metro_walk;
+
     public $description;
+
     public $date_create;
+
     public $date_update;
+
     public $orderedImages = [];
+
     public $files;
+
     public $metroStations;
+
     public $translit;
 
     /**
@@ -102,8 +122,10 @@ class ApartmentForm extends \yii\base\Model
     {
         if (parent::beforeValidate()) {
             $this->files = UploadedFile::getInstances($this, 'files');
+
             return true;
         }
+
         return false;
     }
 
@@ -118,7 +140,6 @@ class ApartmentForm extends \yii\base\Model
         $transaction = Yii::$app->db->beginTransaction();
 
         try {
-
             $model = new Apartment();
             $model->setAttributes($this->getAttributes(), false);
             $model->user_id = Yii::$app->user->id;
@@ -140,13 +161,12 @@ class ApartmentForm extends \yii\base\Model
             }
 
             $transaction->commit();
-            return true;
 
+            return true;
         } catch (\Exception $e) {
             $transaction->rollBack();
-            //return false;
-            throw new \Exception($e);
-            exit();
+
+            throw new Exception($e);
         }
     }
 
@@ -163,7 +183,6 @@ class ApartmentForm extends \yii\base\Model
         $transaction = Yii::$app->db->beginTransaction();
 
         try {
-
             $model->setAttributes($this->getAttributes(), false);
             $model->date_update = date('Y-m-d H:i:s');
 
@@ -180,12 +199,12 @@ class ApartmentForm extends \yii\base\Model
             }
 
             $transaction->commit();
-            return true;
 
-        } catch (\Exception $e) {
+            return true;
+        } catch (Exception $e) {
             $transaction->rollBack();
-            throw new \Exception($e);
-            return false;
+
+            throw new Exception($e);
         }
     }
 
@@ -202,11 +221,12 @@ class ApartmentForm extends \yii\base\Model
 
             $this->_metroStationsArray = ArrayHelper::getColumn($this->metroStations, 'metro_id');
         }
+
         return $this->_metroStationsArray;
     }
 
     /**
-     * Записыват свойство $_metroStationsArray
+     * Записывают свойство $_metroStationsArray
      * @param $values
      */
     public function setMetroStationsArray($values)
@@ -223,28 +243,32 @@ class ApartmentForm extends \yii\base\Model
     public function rus2translit($text)
     {
         // Русский алфавит
-        $rus_alphabet = array(
+        $rus_alphabet = [
             'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й',
             'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф',
             'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь', 'Э', 'Ю', 'Я',
             'а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й',
             'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф',
             'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я', ' ', '/', ','
-        );
+        ];
 
         // Английская транслитерация
-        $rus_alphabet_translit = array(
+        $rus_alphabet_translit = [
             'A', 'B', 'V', 'G', 'D', 'E', 'IO', 'ZH', 'Z', 'I', 'I',
             'K', 'L', 'M', 'N', 'O', 'P', 'R', 'S', 'T', 'U', 'F',
             'H', 'C', 'CH', 'SH', 'SH', '`', 'Y', '`', 'E', 'IU', 'IA',
             'a', 'b', 'v', 'g', 'd', 'e', 'io', 'zh', 'z', 'i', 'i',
             'k', 'l', 'm', 'n', 'o', 'p', 'r', 's', 't', 'u', 'f',
             'h', 'c', 'ch', 'sh', 'sh', '`', 'y', '`', 'e', 'iu', 'ia', '_', '_', '_'
-        );
+        ];
 
         return str_replace($rus_alphabet, $rus_alphabet_translit, $text);
     }
 
+    /**
+     * @param bool $newApartment
+     * @return bool
+     */
     protected function createImages($newApartment = true)
     {
         $translit = $this->rus2translit($this->address);

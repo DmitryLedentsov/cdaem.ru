@@ -92,10 +92,13 @@ echo GridView::widget([
                     return Html::a('<span class="icon-wrench"></span>', ['/partners/default/update', 'id' => $model->apartment_id]);
                 },
                 'delete' => function ($url, $model) {
-                    return Html::a('<span class="icon-remove3"></span>', ['/partners/default/delete', 'id' => $model->apartment_id],
+                    return Html::a(
+                        '<span class="icon-remove3"></span>',
+                        ['/partners/default/delete', 'id' => $model->apartment_id],
                         ['data' => [
                             'confirm' => 'Удалить?',
-                        ]]);
+                        ]]
+                    );
                 }
             ],
         ],
@@ -114,6 +117,7 @@ echo GridView::widget([
                         </div>
                     ');
                 }
+
                 return null;
             },
         ],
@@ -142,7 +146,6 @@ echo GridView::widget([
             'format' => 'html',
             'contentOptions' => ['class' => 'text-left tdText'],
             'value' => function ($model) {
-
                 $id = '<b>№ ' . $model->apartment_id . '</b>';
 
                 $address = '';
@@ -166,7 +169,6 @@ echo GridView::widget([
             'value' => function ($model) {
                 $adverts = [];
                 foreach ($model->adverts as $advert) {
-
                     $url = '';
 
                     if ($model->city) {

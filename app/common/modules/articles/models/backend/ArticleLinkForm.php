@@ -2,10 +2,9 @@
 
 namespace common\modules\articles\models\backend;
 
-use common\modules\articles\models\ArticleLink;
-use yii\web\UploadedFile;
+use Throwable;
 use yii\base\Model;
-use Yii;
+use common\modules\articles\models\ArticleLink;
 
 /**
  * Article
@@ -13,15 +12,20 @@ use Yii;
  */
 class ArticleLinkForm extends Model
 {
-
-
     public $article_id;
+
     public $id;
+
     public $title;
+
     public $text;
+
     public $thumb_img;
+
     public $link_page;
+
     public $file;
+
     public $imagesPath = '@frontend/web/images';
 
     /**
@@ -73,28 +77,28 @@ class ArticleLinkForm extends Model
         }
 
         $this->id = $model->id;
+
         return true;
     }
 
     /**
-     * Редктировать
-     * @param ArticleLinks $model
+     * @param ArticleLink $model
      * @return bool
      */
     public function update(ArticleLink $model)
     {
         $model->setAttributes($this->getAttributes(), false);
+
         return $model->save(false);
     }
 
     /**
-     * Удалить
-     * @param ArticleLinks $model
-     * @return mixed
+     * @param ArticleLink $model
+     * @return bool|false|int
+     * @throws Throwable
      */
     public function delete(ArticleLink $model)
     {
         return $model->delete();
     }
-
 }

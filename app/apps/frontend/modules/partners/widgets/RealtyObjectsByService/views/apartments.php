@@ -6,12 +6,10 @@
  * @var array $models frontend\modules\partners\models\Apartments
  */
 
-use frontend\modules\partners\widgets\PreviewAdvertTmp;
 use yii\helpers\Html;
-
+use frontend\modules\partners\widgets\PreviewAdvertTmp;
 
 if ($models) {
-
     $result = '';
     foreach ($models as $apartment) {
         $PreviewAdvert = PreviewAdvertTmp::widget([
@@ -25,11 +23,8 @@ if ($models) {
     echo Html::tag('div', $result, [
         'class' => 'apartment-list clearfix'
     ]);
-
 } else {
-
     echo Html::tag('div', 'Вы еще не добавили ни одного объявления. ' . Html::a('Добавить', ['/partners/default/create']), [
         'class' => 'alert alert-info'
     ]);
 }
-

@@ -2,11 +2,10 @@
 
 namespace common\modules\helpdesk\commands;
 
-use common\modules\helpdesk\models\HelpdeskAnswers;
-use common\modules\helpdesk\models\Helpdesk;
-use yii\helpers\Console;
-use yii\log\Logger;
 use Yii;
+use yii\log\Logger;
+use yii\helpers\Console;
+use common\modules\helpdesk\models\HelpdeskAnswers;
 
 /**
  * Mail Controller
@@ -34,7 +33,6 @@ class MailController extends \yii\console\Controller
             ->one();
 
         if ($model) {
-
             if ($model->helpdesk->email) {
                 $email = $model->helpdesk->email;
             } else {
@@ -67,6 +65,7 @@ class MailController extends \yii\console\Controller
     {
         $mail = Yii::$app->getMailer();
         $mail->viewPath = $this->mailViewPath;
+
         return $mail->compose($view, $data)
             ->setFrom(Yii::$app->getMailer()->messageConfig['from'])
             ->setTo($email)

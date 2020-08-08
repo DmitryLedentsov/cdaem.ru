@@ -2,11 +2,11 @@
 
 namespace common\modules\messages\controllers\backend;
 
+use Yii;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
 use backend\components\Controller;
 use yii\web\NotFoundHttpException;
-use yii\widgets\ActiveForm;
-use yii\web\Response;
-use Yii;
 
 /**
  * DefaultController
@@ -46,8 +46,10 @@ class DefaultController extends Controller
     {
         if (parent::beforeAction($action)) {
             $this->module->viewPath = '@common/modules/messages/views/backend';
+
             return true;
         }
+
         return false;
     }
 }

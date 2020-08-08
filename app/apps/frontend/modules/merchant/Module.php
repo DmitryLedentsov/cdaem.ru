@@ -7,5 +7,4 @@ namespace frontend\modules\merchant;
  */
 class Module extends \common\modules\merchant\Module
 {
-
 }

@@ -2,15 +2,15 @@
 
 namespace frontend\modules\partners\controllers;
 
-use frontend\modules\partners\models as models;
-use common\modules\partners\models\Service;
+use Yii;
+use yii\helpers\Html;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
 use common\modules\realty\models\RentType;
+use common\modules\partners\models\Service;
+use frontend\modules\partners\models as models;
 use frontend\modules\partners\models\form\ReservationFailureForm;
 use frontend\modules\partners\models\form\AdvertReservationConfirmForm;
-use yii\widgets\ActiveForm;
-use yii\web\Response;
-use yii\helpers\Html;
-use Yii;
 
 /**
  * Class AjaxController
@@ -46,6 +46,7 @@ class AjaxController extends \frontend\components\Controller
             if (!Yii::$app->request->isAjax) {
                 return $this->goBack();
             }
+
             return true;
         }
 
@@ -63,13 +64,13 @@ class AjaxController extends \frontend\components\Controller
         Yii::$app->response->format = Response::FORMAT_JSON;
 
         if (Yii::$app->request->isPost) {
-
             $failure = new ReservationFailureForm(['reservation_id' => $id]);
             $failure->load(Yii::$app->request->post());
 
             if ($failure->create()) {
                 // Отправить уведомление
                 Yii::$app->consoleRunner->run('partners/reservation/send-mail-nezaezd ' . $id);
+
                 return [
                     'status' => 1,
                     'message' => 'Данные успешно сохранены',
@@ -78,14 +79,15 @@ class AjaxController extends \frontend\components\Controller
                 if ($failure->hasErrors()) {
                     return current($failure->getErrors());
                 }
+
                 return [
                     'status' => 0,
                     'message' => 'Возникла критическая ошибка',
                 ];
             }
-
         } else {
             Yii::$app->response->format = Response::FORMAT_HTML;
+
             return $this->renderAjax('reservation-failure.php', [
                 'reservationId' => $id
             ]);
@@ -103,7 +105,6 @@ class AjaxController extends \frontend\components\Controller
         $transaction = Yii::$app->db->beginTransaction();
 
         try {
-
             $action = trim(Yii::$app->request->post('action', 'confirm'));
             $type = trim(Yii::$app->request->post('type', 'cancel'));
             $reservationId = trim(Yii::$app->request->post('reservation_id'));
@@ -114,7 +115,6 @@ class AjaxController extends \frontend\components\Controller
 
             if ($action == 'send') {
                 if ($type == 'confirm') {
-
                     $reservation = null;
                     $query = AdvertReservationConfirmForm::find()
                         ->closed(0)
@@ -133,6 +133,7 @@ class AjaxController extends \frontend\components\Controller
 
                     if (!$reservation) {
                         $transaction->commit();
+
                         return [
                             'status' => 0,
                             'message' => 'Возникла критическая ошибка',
@@ -150,7 +151,6 @@ class AjaxController extends \frontend\components\Controller
                     if ($reservation->confirm()) {
                         $transaction->commit();
                         if ($user_id != 0) {
-
                             return [
                                 'status' => 0,
                                 'message' => 'У арендатора есть неподтвержденная бронь, в целях безопасности дождитесь подтверждения со стороны клиента!!!',
@@ -166,11 +166,11 @@ class AjaxController extends \frontend\components\Controller
                     }
 
                     $transaction->rollBack();
+
                     return [
                         'status' => 0,
                         'message' => current($reservation->getErrors()),
                     ];
-
                 } else {
 
                     // ОТМЕНА глобальной резервации. Возможна только WANT_RENT'ом
@@ -241,7 +241,6 @@ class AjaxController extends \frontend\components\Controller
                     $reservation->load(Yii::$app->request->post());
 
                     if ($reservation->cancel()) {
-
                         $transaction->commit();
 
                         // Только в бронях к адвертам при отмене нужно когото уведомлять.
@@ -262,9 +261,7 @@ class AjaxController extends \frontend\components\Controller
                         $reservation->getFirstError('cancel_reason')
                     ];
                 }
-
             } else {
-
                 $transaction->commit();
 
                 $advertPrice = models\AdvertReservation::find()
@@ -282,7 +279,6 @@ class AjaxController extends \frontend\components\Controller
 
                 ]);
             }
-
         } catch (\Exception $e) {
             $transaction->rollBack();
 
@@ -317,7 +313,6 @@ class AjaxController extends \frontend\components\Controller
         $transaction = Yii::$app->db->beginTransaction();
 
         try {
-
             Yii::$app->response->format = Response::FORMAT_HTML;
 
             // Калькулятор стоимости выбранных бъектов
@@ -358,7 +353,6 @@ class AjaxController extends \frontend\components\Controller
                 ]);
             } // Оплата выбранных объектов
             else {
-
                 $data = Yii::$app->session->get('buy-service');
 
                 if (empty($data)) {
@@ -393,7 +387,6 @@ class AjaxController extends \frontend\components\Controller
                     'date' => $data['date'],
                 ]);
             }
-
         } catch (\Exception $e) {
             Yii::$app->session->remove('buy-service');
             $transaction->rollBack();
@@ -420,7 +413,6 @@ class AjaxController extends \frontend\components\Controller
         $transaction = Yii::$app->db->beginTransaction();
 
         try {
-
             $image = models\Image::find()
                 ->joinWith([
                     'apartment' => function ($query) {
@@ -443,7 +435,7 @@ class AjaxController extends \frontend\components\Controller
                     ];
                 }
             } // Сделать изображение главным
-            else if ($action == 'index') {
+            elseif ($action == 'index') {
                 if ($image) {
                     $connection = Yii::$app->db;
                     $connection->createCommand()
@@ -462,9 +454,9 @@ class AjaxController extends \frontend\components\Controller
             }
 
             $transaction->commit();
-
         } catch (\Exception $e) {
             $transaction->rollBack();
+
             return [
                 'status' => 0
             ];
@@ -513,7 +505,6 @@ class AjaxController extends \frontend\components\Controller
     public function actionCalendarSelected()
     {
         if (Yii::$app->request->isPost) {
-
             Yii::$app->response->format = Response::FORMAT_JSON;
             $transaction = Yii::$app->db->beginTransaction();
 
@@ -538,7 +529,6 @@ class AjaxController extends \frontend\components\Controller
                 $transaction->commit();
 
                 return $errors;
-
             } catch (\Exception $e) {
                 Yii::$app->session->remove('buy-service');
                 $transaction->rollBack();

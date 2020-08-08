@@ -2,13 +2,13 @@
 
 namespace common\modules\agency\models;
 
-use common\modules\realty\models\Apartment as ApartmentConfig;
-use common\modules\agency\traits\ModuleTrait;
-use common\modules\realty\models\RentType;
-use common\modules\geo\models\Metro;
-use yii\helpers\ArrayHelper;
-use yii\helpers\Json;
 use Yii;
+use yii\helpers\Json;
+use yii\helpers\ArrayHelper;
+use common\modules\geo\models\Metro;
+use common\modules\realty\models\RentType;
+use common\modules\agency\traits\ModuleTrait;
+use common\modules\realty\models\Apartment as ApartmentConfig;
 
 /**
  * Заявки на подберем квартиру
@@ -17,6 +17,15 @@ use Yii;
 class Select extends \yii\db\ActiveRecord
 {
     use ModuleTrait;
+
+    /**
+     * Статусы зявок
+     * PROCESSED - Обработанная
+     * UNPROCESSED - Необработанная
+     */
+    const PROCESSED = 1;
+
+    const UNPROCESSED = 0;
 
     /**
      * @inheritdoc
@@ -47,14 +56,6 @@ class Select extends \yii\db\ActiveRecord
             'date_create' => 'Дата создания',
         ];
     }
-
-    /**
-     * Статусы зявок
-     * PROCESSED - Обработанная
-     * UNPROCESSED - Необработанная
-     */
-    const PROCESSED = 1;
-    const UNPROCESSED = 0;
 
     /**
      * Список статусов
@@ -112,6 +113,7 @@ class Select extends \yii\db\ActiveRecord
             ->where(['city_id' => 4400])
             ->asArray()
             ->all();
+
         return ArrayHelper::map($metro, 'metro_id', 'name');
     }
 

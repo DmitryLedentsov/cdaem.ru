@@ -2,12 +2,12 @@
 
 namespace common\modules\reviews\widgets\frontend;
 
-use common\modules\reviews\models\ReviewSearch;
-use common\modules\reviews\models\ReviewForm;
-use common\modules\reviews\models\Review;
-use yii\helpers\Html;
-use yii\base\Widget;
 use Yii;
+use yii\base\Widget;
+use yii\helpers\Html;
+use common\modules\reviews\models\Review;
+use common\modules\reviews\models\ReviewForm;
+use common\modules\reviews\models\ReviewSearch;
 
 /**
  * Show Reviews

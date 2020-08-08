@@ -2,8 +2,8 @@
 
 namespace common\modules\partners\models\scopes;
 
-use common\modules\partners\models\Service;
 use yii\db\ActiveQuery;
+use common\modules\partners\models\Service;
 
 /**
  * Class ServiceQuery
@@ -18,6 +18,7 @@ class ServiceQuery extends ActiveQuery
     public function process($state = 0)
     {
         $this->andWhere([Service::tableName() . '.process' => $state]);
+
         return $this;
     }
 }

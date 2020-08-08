@@ -3,7 +3,6 @@
 namespace common\modules\geo\assets\frontend;
 
 use yii\web\AssetBundle;
-use Yii;
 
 /**
  * Менеджер ресурсов
@@ -30,9 +29,7 @@ class MetroMskAsset extends AssetBundle
     {
         parent::init();
 
-
         if (YII_DEBUG) {
-
             $this->css = [
                 'css_dev/metro-msk.css'
             ];
@@ -40,9 +37,7 @@ class MetroMskAsset extends AssetBundle
             $this->js = [
                 'js_dev/metro-msk.js'
             ];
-
         } else {
-
             $this->css = [
                 'css/metro-msk.css'
             ];
@@ -50,8 +45,6 @@ class MetroMskAsset extends AssetBundle
             $this->js = [
                 'js/metro-msk.js'
             ];
-
-
         }
     }
 }

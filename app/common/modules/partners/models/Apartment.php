@@ -2,15 +2,15 @@
 
 namespace common\modules\partners\models;
 
-use common\modules\realty\models\Apartment as TotalApartment;
-use common\modules\partners\models\scopes\ApartmentQuery;
-use frontend\modules\partners\models\MetroStations;
-use common\modules\partners\traits\ModuleTrait;
-use common\modules\geo\models\Country;
-use common\modules\geo\models\City;
+use Yii;
 use yii\base\ErrorException;
 use yii\helpers\ArrayHelper;
-use Yii;
+use common\modules\geo\models\City;
+use common\modules\geo\models\Country;
+use common\modules\partners\traits\ModuleTrait;
+use frontend\modules\partners\models\MetroStations;
+use common\modules\partners\models\scopes\ApartmentQuery;
+use common\modules\realty\models\Apartment as TotalApartment;
 
 /**
  * Апартаменты
@@ -45,6 +45,7 @@ class Apartment extends \yii\db\ActiveRecord
     {
         if (parent::beforeDelete()) {
             Image::deleteAllWithFiles(['apartment_id' => $this->apartment_id]);
+
             return true;
         }
 
@@ -119,11 +120,14 @@ class Apartment extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return bool|int|string|null
      */
     public function getReviewsCount()
     {
-        return \common\modules\reviews\models\Review::find()->where(['apartment_id' => $this->apartment_id])->moderation()->count();
+        return \common\modules\reviews\models\Review::find()
+            ->where(['apartment_id' => $this->apartment_id])
+            ->moderation()
+            ->count();
     }
 
     /**
@@ -254,9 +258,11 @@ class Apartment extends \yii\db\ActiveRecord
             $alphCitiesList[$city['country_name']][$firstLetter][] = $city;
 
             // Записывает количество городов Страны
-            if (!isset($arSorter[$city['country_name']]))
+            if (!isset($arSorter[$city['country_name']])) {
                 $arSorter[$city['country_name']] = 1;
-            else $arSorter[$city['country_name']]++;
+            } else {
+                $arSorter[$city['country_name']]++;
+            }
         }
 
         //У кого городов больше всех тот первым идет
@@ -277,6 +283,7 @@ class Apartment extends \yii\db\ActiveRecord
      * - Не видно
      */
     const VISIBLE = 1;
+
     const INVISIBLE = 0;
 
     /**
@@ -284,7 +291,7 @@ class Apartment extends \yii\db\ActiveRecord
      */
     public static function getVisibleArray()
     {
-        $statuses = [
+        return [
             self::VISIBLE => [
                 'label' => 'Видимый',
                 'style' => 'color: green',
@@ -294,8 +301,6 @@ class Apartment extends \yii\db\ActiveRecord
                 'style' => 'color: red',
             ],
         ];
-
-        return $statuses;
     }
 
     /**
@@ -304,7 +309,9 @@ class Apartment extends \yii\db\ActiveRecord
      * - Не активный
      */
     const ACTIVE = 1;
+
     const INACTIVE = 0;
+
     const BLOCKED = 2;
 
     /**
@@ -338,11 +345,16 @@ class Apartment extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return string Текстовое представление типа ремонта
+     * Текстовое представление типа ремонта
+     * @return mixed|null
      */
     public function getRemontName()
     {
-        if ($this->remont) return ArrayHelper::getValue($this->remontList, $this->remont);
+        if ($this->remont) {
+            return ArrayHelper::getValue($this->remontList, $this->remont);
+        }
+
+        return null;
     }
 
     /**
@@ -353,6 +365,7 @@ class Apartment extends \yii\db\ActiveRecord
         if ($this->total_rooms) {
             return ArrayHelper::getValue($this->roomsList, $this->total_rooms);
         }
+
         return null;
     }
 

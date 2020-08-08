@@ -1,7 +1,7 @@
 <?php
 
-use yii\db\Migration;
 use yii\db\Schema;
+use yii\db\Migration;
 
 class m150101_232990_log extends Migration
 {
@@ -24,7 +24,6 @@ class m150101_232990_log extends Migration
 
         $this->createIndex('idx_log_level', '{{log}}', 'level');
         $this->createIndex('idx_log_category', '{{log}}', 'category');
-
     }
 
     public function safeDown()

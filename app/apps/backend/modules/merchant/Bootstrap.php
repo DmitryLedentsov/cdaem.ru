@@ -44,7 +44,8 @@ class Bootstrap implements \yii\base\BootstrapInterface
         ]);
 
         // Add module URL rules.
-        $app->urlManager->addRules([
+        $app->urlManager->addRules(
+            [
 
             ]
         );

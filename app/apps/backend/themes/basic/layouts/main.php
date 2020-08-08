@@ -5,13 +5,13 @@
  * @var string $content Контент
  */
 
-use yii\helpers\Html;
+use yii\web\View;
 use yii\helpers\Url;
-use yii\widgets\Breadcrumbs;
+use yii\helpers\Html;
 
 \backend\themes\basic\assets\BaseAsset::register($this);
 
-use yii\web\View;
+use yii\widgets\Breadcrumbs;
 
 $this->beginPage();
 ?>

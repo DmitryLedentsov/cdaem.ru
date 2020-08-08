@@ -2,9 +2,6 @@
 
 namespace common\modules\users\models\backend;
 
-use yii\db\ActiveRecord;
-use Yii;
-
 /**
  * @inheritdoc
  */
@@ -65,14 +62,13 @@ class Profile extends \common\modules\users\models\Profile
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {
-
             if ($this->scenario == 'create') {
                 $this->user_partner_rating = 0;
             }
 
             return true;
         }
+
         return false;
     }
-
 }

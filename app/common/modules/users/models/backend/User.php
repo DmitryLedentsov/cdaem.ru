@@ -2,8 +2,6 @@
 
 namespace common\modules\users\models\backend;
 
-use Yii;
-
 /**
  * @inheritdoc
  */
@@ -66,8 +64,10 @@ class User extends \common\modules\users\models\User
             } else {
                 $this->password = $this->getOldAttribute('password');
             }
+
             return true;
         }
+
         return true;
     }
 

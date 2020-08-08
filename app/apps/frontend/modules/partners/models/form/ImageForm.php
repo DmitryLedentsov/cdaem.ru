@@ -2,8 +2,8 @@
 
 namespace frontend\modules\partners\models\form;
 
-use yii\web\UploadedFile;
 use Yii;
+use yii\web\UploadedFile;
 
 /**
  * @inheritdoc
@@ -58,7 +58,6 @@ class ImageForm extends \frontend\modules\partners\models\Image
     public function beforeValidate()
     {
         if (parent::beforeValidate()) {
-
             $this->files = UploadedFile::getInstances($this, 'files');
 
             return true;

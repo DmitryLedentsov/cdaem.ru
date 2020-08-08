@@ -4,7 +4,6 @@ namespace common\modules\helpdesk\models\backend;
 
 use common\modules\users\models\User;
 use common\modules\helpdesk\models\Helpdesk;
-use Yii;
 
 /**
  * Helpdesk Form
@@ -13,20 +12,35 @@ use Yii;
 class HelpdeskForm extends \yii\base\Model
 {
     public $ticket_id;
+
     public $user_id;
+
     public $email;
+
     public $theme;
+
     public $user_name;
+
     public $text;
+
     public $date_create;
+
     public $date_close;
+
     public $priority;
+
     public $answered;
+
     public $close;
+
     public $department;
+
     public $partners_advert_id;
+
     public $source_type;
+
     public $ip;
+
     public $user_agent;
 
     /**
@@ -83,7 +97,7 @@ class HelpdeskForm extends \yii\base\Model
 
     /**
      * @param Helpdesk $model
-     * @return Helpdesk
+     * @return bool
      */
     public function update(Helpdesk $model)
     {

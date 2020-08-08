@@ -6,8 +6,8 @@
  * @var array $data
  */
 
-use common\modules\partners\models\Service;
 use yii\helpers\Html;
+use common\modules\partners\models\Service;
 
 try {
     $service = Yii::$app->service->load($service);
@@ -55,7 +55,6 @@ try {
     ]);
     $result = Html::tag('div', $result, $customViewByServiceContactsOpenForReservation ? ['style' => 'display: none', 'id' => 'fast-payment-widget'] : []);
     $result = $result . $recommended;
-
 } catch (\Exception $e) {
     $result = Html::tag('div', 'Возникла критическая ошибка, пожалуйста попробуйте еще раз или обратитесь в службу технической поддержки.', [
         'class' => 'alert alert-danger'

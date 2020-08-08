@@ -1,7 +1,7 @@
 <?php
 
-use yii\grid\GridView;
 use yii\helpers\Html;
+use yii\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\modules\agency\models\backend\search\ApartmentSearch */
@@ -94,10 +94,13 @@ echo GridView::widget([
                     return Html::a('<span class="icon-wrench"></span>', ['/agency/default/update', 'id' => $model->apartment_id]);
                 },
                 'delete' => function ($url, $model) {
-                    return Html::a('<span class="icon-remove3"></span>', ['/agency/default/delete', 'id' => $model->apartment_id],
+                    return Html::a(
+                        '<span class="icon-remove3"></span>',
+                        ['/agency/default/delete', 'id' => $model->apartment_id],
                         ['data' => [
                             'confirm' => 'Удалить?',
-                        ]]);
+                        ]]
+                    );
                 }
             ],
         ],
@@ -116,6 +119,7 @@ echo GridView::widget([
                         </div>
                     ');
                 }
+
                 return null;
             },
         ],
@@ -125,7 +129,6 @@ echo GridView::widget([
             'format' => 'html',
             'contentOptions' => ['class' => 'text-left tdText'],
             'value' => function ($model) {
-
                 $id = '<b>№ ' . $model->apartment_id . '</b>';
 
                 $address = 'Страна: ' . $model->city->country->name;
@@ -144,7 +147,9 @@ echo GridView::widget([
             'format' => 'html',
             'contentOptions' => ['class' => 'text-left tdText'],
             'value' => function ($model) {
-                if (!$model->adverts) return '(не задано)';
+                if (!$model->adverts) {
+                    return '(не задано)';
+                }
                 $adverts = [];
                 foreach ($model->adverts as $advert) {
                     $adverts[] = Html::a('ID ' . $advert->advert_id . ' ' . $advert->rentType->name . ' - ' . $advert->priceText, Yii::$app->params['siteDomain'] . '/advert/' . $advert->advert_id);

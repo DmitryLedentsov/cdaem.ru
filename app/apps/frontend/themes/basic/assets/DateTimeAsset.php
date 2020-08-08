@@ -2,8 +2,8 @@
 
 namespace frontend\themes\basic\assets;
 
-use yii\web\AssetBundle;
 use Yii;
+use yii\web\AssetBundle;
 
 /**
  * Менеджер ресурсов
@@ -20,7 +20,7 @@ class DateTimeAsset extends AssetBundle
      * @inheritdoc
      */
     public $depends = [
-        'yii\web\JqueryAsset',
+        \yii\web\JqueryAsset::class,
     ];
 
     /**
@@ -36,18 +36,14 @@ class DateTimeAsset extends AssetBundle
 
 
         if (YII_DEBUG) {
-
             $this->js = [
                 'widgets/bootstrap-date/moment-with-locales.js',
                 'widgets/bootstrap-date/bootstrap-datetimepicker.js',
             ];
-
         } else {
-
             $this->js = [
                 'widgets/bootstrap-date/bootstrap-datetimepicker.min.js',
             ];
-
         }
     }
 }

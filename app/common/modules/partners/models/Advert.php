@@ -2,15 +2,13 @@
 
 namespace common\modules\partners\models;
 
-use common\modules\partners\models\Apartment;
-use common\modules\partners\models\scopes\AdvertQuery;
-use common\modules\partners\traits\ModuleTrait;
-use common\modules\realty\models\Apartment as TotalApartment;
-use common\modules\realty\models\RentType;
-use yii\db\Query;
-use yii\helpers\ArrayHelper;
-use yii\data\Pagination;
 use Yii;
+use yii\data\Pagination;
+use yii\helpers\ArrayHelper;
+use common\modules\realty\models\RentType;
+use common\modules\partners\traits\ModuleTrait;
+use common\modules\partners\models\scopes\AdvertQuery;
+use common\modules\realty\models\Apartment as TotalApartment;
 
 /**
  * Объявления
@@ -104,7 +102,6 @@ class Advert extends \yii\db\ActiveRecord
      */
     public static function getFullData($id, $city_name_eng = null)
     {
-
         return static::find()
             ->joinWith([
                 'apartment' => function ($query) {
@@ -191,7 +188,6 @@ class Advert extends \yii\db\ActiveRecord
         return $query->all();
     }
 
-
     /**
      * Поиск объявлений по городу
      * @param $cityId
@@ -232,7 +228,6 @@ class Advert extends \yii\db\ActiveRecord
 
         return $query->all();
     }
-
 
     /**
      * Кол-во объявлений

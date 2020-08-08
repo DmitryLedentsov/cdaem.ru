@@ -3,7 +3,6 @@
 namespace common\modules\site\widgets;
 
 use yii\base\Widget;
-use Yii;
 
 /**
  * Captcha
@@ -12,7 +11,9 @@ use Yii;
 class Captcha extends Widget
 {
     public $form;
+
     public $model;
+
     public $name;
 
     /**

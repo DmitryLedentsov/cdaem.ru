@@ -16,7 +16,8 @@ class BootstrapFrontend implements \yii\base\BootstrapInterface
     public function bootstrap($app)
     {
         // Add module URL rules.
-        $app->urlManager->addRules([
+        $app->urlManager->addRules(
+            [
                 Yii::$app->params['siteSubDomain'] . '/stati' => '/articles/default/index',
                 Yii::$app->params['siteSubDomain'] . '/stati/<id>' => '/articles/default/view',
 

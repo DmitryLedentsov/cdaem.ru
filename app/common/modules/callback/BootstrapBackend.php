@@ -2,9 +2,8 @@
 
 namespace common\modules\callback;
 
-use common\modules\callback\models\Callback;
 use yii\helpers\Html;
-use Yii;
+use common\modules\callback\models\Callback;
 
 /**
  * Bootstrap Backend
@@ -38,10 +37,10 @@ class BootstrapBackend implements \yii\base\BootstrapInterface
         ]);
 
         // Add module URL rules.
-        $app->urlManager->addRules([
+        $app->urlManager->addRules(
+            [
 
             ]
         );
-
     }
 }

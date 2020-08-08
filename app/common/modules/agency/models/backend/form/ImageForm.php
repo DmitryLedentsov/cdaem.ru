@@ -2,14 +2,19 @@
 
 namespace common\modules\agency\models\backend\form;
 
-use common\modules\agency\models\Image;
 use yii\base\Model;
-use Yii;
+use common\modules\agency\models\Image;
 
+/**
+ * Class ImageForm
+ * @package common\modules\agency\models\backend\form
+ */
 class ImageForm extends Model
 {
     public $image_id;
+
     public $title;
+
     public $alt;
 
     /**
@@ -52,7 +57,7 @@ class ImageForm extends Model
     public function update(Image $model)
     {
         $model->setAttributes($this->getAttributes(), false);
+
         return $model->save(false);
     }
-
 }

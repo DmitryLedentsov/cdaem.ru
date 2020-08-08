@@ -2,13 +2,13 @@
 
 namespace common\modules\users\controllers\backend;
 
-use common\modules\users\models as models;
-use nepster\users\rbac\models\AuthItem;
-use yii\web\Controller;
-use yii\web\NotFoundHttpException;
-use yii\widgets\ActiveForm;
-use yii\web\Response;
 use Yii;
+use yii\web\Response;
+use yii\web\Controller;
+use yii\widgets\ActiveForm;
+use yii\web\NotFoundHttpException;
+use nepster\users\rbac\models\AuthItem;
+use common\modules\users\models as models;
 
 /**
  * Контроллер для управления правами доступа
@@ -44,8 +44,10 @@ class RbacController extends Controller
     {
         if (parent::beforeAction($action)) {
             $this->module->viewPath = '@common/modules/users/views/backend';
+
             return true;
         }
+
         return false;
     }
 
@@ -79,9 +81,11 @@ class RbacController extends Controller
                 } else {
                     Yii::$app->session->setFlash('success', Yii::t('users', 'FAIL_UPDATE'));
                 }
+
                 return $this->redirect(['index']);
-            } else if (Yii::$app->request->isAjax) {
+            } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validate($model);
             }
         }
@@ -110,9 +114,11 @@ class RbacController extends Controller
                 } else {
                     Yii::$app->session->setFlash('success', Yii::t('users', 'FAIL_UPDATE'));
                 }
+
                 return $this->redirect(['/users/rbac/index']);
-            } else if (Yii::$app->request->isAjax) {
+            } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validate($model);
             }
         }

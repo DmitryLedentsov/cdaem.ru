@@ -3,7 +3,6 @@
 namespace common\modules\agency\models\form;
 
 use common\modules\agency\models\Reservation;
-use Yii;
 
 /**
  * Reservation Form
@@ -12,20 +11,35 @@ use Yii;
 class ReservationForm extends \yii\base\Model
 {
     public $reservation_id;
+
     public $name;
+
     public $email;
+
     public $phone;
+
     public $transfer;
+
     public $apartment_id;
+
     public $clients_count;
+
     public $more_info;
+
     public $whau;
+
     public $arrived_date;
+
     public $arrived_time;
+
     public $out_date;
+
     public $out_time;
+
     public $verifyCode;
+
     public $date_arrived;
+
     public $date_out;
 
     /**
@@ -126,7 +140,6 @@ class ReservationForm extends \yii\base\Model
 
 
         if (!$errorFlag) {
-
             $this->date_arrived = new \DateTime($date_arrived);
             $this->date_arrived = $this->date_arrived->format('Y-m-d H:i:s');
 
@@ -147,7 +160,6 @@ class ReservationForm extends \yii\base\Model
             if ((($time2 - $time1) / 60 / 60) < 2) {
                 $this->addError('out_time', 'Минимальное время аренды 2 часа');
             }
-
         }
 
         return true;
@@ -166,6 +178,7 @@ class ReservationForm extends \yii\base\Model
         }
         $model->date_create = date('Y-m-d H:i:s');
         $this->reservation_id = $model->reservation_id;
+
         return true;
     }
 
@@ -176,5 +189,4 @@ class ReservationForm extends \yii\base\Model
     {
         return Reservation::getWhauArray();
     }
-
 }

@@ -2,7 +2,6 @@
 
 namespace common\modules\users\models;
 
-use yii\db\ActiveRecord;
 use Yii;
 
 /**
@@ -119,35 +118,16 @@ class LegalPerson extends \nepster\users\models\LegalPerson
     /**
      * @inheritdoc
      */
-    /*public function beforeValidate()
-    {
-        if (parent::beforeValidate()) {
-
-            $validator = new \yii\validators\DateValidator();
-            $validator->format = 'php:d.m.Y';
-
-
-            if (!$validator->validate($this->register_date)) {
-                $this->addError('register_date', 'Некорректный формат');
-            }
-
-            return true;
-        }
-
-        return false;
-    }*/
-
-    /**
-     * @inheritdoc
-     */
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {
             if (!$this->user_id) {
                 $this->user_id = Yii::$app->user->id;
             }
+
             return true;
         }
+
         return false;
     }
 }

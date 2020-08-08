@@ -1,8 +1,8 @@
 <?php
 
-use \yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\grid\GridView;
+use \yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\modules\agency\models\backend\search\DetailsHistorySearch */
@@ -78,10 +78,13 @@ echo GridView::widget([
                     return Html::a('<span class="icon-wrench"></span>', ['/agency/details/update', 'id' => $model->id]);
                 },
                 'delete' => function ($url, $model) {
-                    return Html::a('<span class="icon-remove3"></span>', ['/agency/details/delete', 'id' => $model->id],
+                    return Html::a(
+                        '<span class="icon-remove3"></span>',
+                        ['/agency/details/delete', 'id' => $model->id],
                         ['data' => [
                             'confirm' => 'Удалить?',
-                        ]]);
+                        ]]
+                    );
                 }
             ],
         ],
@@ -102,6 +105,7 @@ echo GridView::widget([
                         </div>
                     ');
                 }
+
                 return null;
             },
         ],
@@ -148,4 +152,3 @@ echo GridView::widget([
 ]);
 
 echo Html::endForm();
-

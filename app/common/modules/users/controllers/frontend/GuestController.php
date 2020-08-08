@@ -2,12 +2,12 @@
 
 namespace common\modules\users\controllers\frontend;
 
-use common\modules\users\models as models;
+use Yii;
+use yii\helpers\Url;
+use yii\web\Response;
 use yii\widgets\ActiveForm;
 use frontend\components\Controller;
-use yii\web\Response;
-use yii\helpers\Url;
-use Yii;
+use common\modules\users\models as models;
 
 /**
  * @package common\modules\users\controllers\frontend
@@ -42,6 +42,7 @@ class GuestController extends Controller
             if (!Yii::$app->user->isGuest) {
                 $this->goBack();
             }
+
             return true;
         }
 
@@ -62,7 +63,6 @@ class GuestController extends Controller
                 $user->populateRelation('profile', $profile);
                 if ($user->save(false)) {
                     if ($this->module->requireEmailConfirmation === true) {
-
                         Yii::$app->consoleRunner->run('users/control/send-email ' . $user->email . ' signup "' . Yii::t('users', 'SUBJECT_SIGNUP') . '"');
                         Yii::$app->session->setFlash('success', Yii::t('users', 'SUCCESS_SIGNUP_WITHOUT_LOGIN', [
                             'url' => Url::toRoute('resend')
@@ -71,13 +71,16 @@ class GuestController extends Controller
                         Yii::$app->user->login($user);
                         Yii::$app->session->setFlash('success', Yii::t('users', 'SUCCESS_SIGNUP_WITH_LOGIN'));
                     }
+
                     return $this->redirect(['login']);
                 } else {
                     Yii::$app->session->setFlash('danger', Yii::t('users', 'FAIL_SIGNUP'));
+
                     return $this->refresh();
                 }
-            } else if (Yii::$app->request->isAjax) {
+            } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validateMultiple([$user, $profile]);
             }
         }
@@ -102,17 +105,21 @@ class GuestController extends Controller
                     if ($user = $model->resend()) {
                         Yii::$app->consoleRunner->run('users/control/send-email ' . $user->email . ' signup "' . Yii::t('users', 'SUBJECT_SIGNUP') . '"');
                         Yii::$app->session->setFlash('success', Yii::t('users', 'SUCCESS_RESEND'));
+
                         return $this->redirect(['login']);
                     } else {
                         Yii::$app->session->setFlash('danger', Yii::t('users', 'FAIL_RESEND'));
+
                         return $this->refresh();
                     }
                 } else {
                     Yii::$app->session->setFlash('success', Yii::t('users', 'FAIL_RESEND_OFF'));
+
                     return $this->refresh();
                 }
-            } else if (Yii::$app->request->isAjax) {
+            } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validate($model);
             }
         }
@@ -133,10 +140,12 @@ class GuestController extends Controller
             if ($model->validate()) {
                 if ($model->login()) {
                     $url = Yii::$app->request->referrer ? Yii::$app->request->referrer : ['/office/default/index'];
+
                     return $this->redirect(['/office/default/index']);
                 }
-            } else if (Yii::$app->request->isAjax) {
+            } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validate($model);
             }
         }
@@ -157,6 +166,7 @@ class GuestController extends Controller
         } else {
             Yii::$app->session->setFlash('danger', Yii::t('users', 'FAIL_ACTIVATION'));
         }
+
         return $this->redirect(['login']);
     }
 
@@ -175,9 +185,11 @@ class GuestController extends Controller
                 } else {
                     Yii::$app->session->setFlash('danger', Yii::t('users', 'FAIL_RECOVERY'));
                 }
+
                 return $this->refresh();
-            } else if (Yii::$app->request->isAjax) {
+            } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validate($model);
             }
         }
@@ -196,6 +208,7 @@ class GuestController extends Controller
 
         if (!$model->isValidToken()) {
             Yii::$app->session->setFlash('danger', Yii::t('users', 'FAIL_RECOVERY_CONFIRMATION_WITH_INVALID_KEY'));
+
             return $this->redirect(['recovery']);
         }
 
@@ -203,13 +216,16 @@ class GuestController extends Controller
             if ($model->validate()) {
                 if ($model->recovery()) {
                     Yii::$app->session->setFlash('success', Yii::t('users', 'SUCCESS_RECOVERY_CONFIRMATION'));
+
                     return $this->redirect(['login']);
                 } else {
                     Yii::$app->session->setFlash('danger', Yii::t('users', 'FAIL_RECOVERY_CONFIRMATION'));
+
                     return $this->refresh();
                 }
             } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validate($model);
             }
         }

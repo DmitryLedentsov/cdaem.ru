@@ -2,18 +2,18 @@
 
 namespace backend\modules\merchant\controllers;
 
-use backend\modules\merchant\models\ServiceSearch;
-use backend\modules\merchant\models\PaymentSearch;
-use backend\modules\merchant\models\PaymentForm;
+use Yii;
+use yii\helpers\ArrayHelper;
+use yii\data\ActiveDataProvider;
+use backend\components\Controller;
+use yii\web\NotFoundHttpException;
+use yii\web\ForbiddenHttpException;
+use common\modules\users\models\User;
 use common\modules\partners\models\Advert;
 use common\modules\partners\models\Service;
-use common\modules\users\models\User;
-use backend\components\Controller;
-use yii\data\ActiveDataProvider;
-use yii\helpers\ArrayHelper;
-use yii\web\ForbiddenHttpException;
-use yii\web\NotFoundHttpException;
-use Yii;
+use backend\modules\merchant\models\PaymentForm;
+use backend\modules\merchant\models\PaymentSearch;
+use backend\modules\merchant\models\ServiceSearch;
 
 /**
  * Class DefaultController
@@ -110,6 +110,7 @@ class DefaultController extends Controller
             } else {
                 Yii::$app->session->setFlash('danger', 'Возникла ошибка.');
             }
+
             return $this->refresh();
         }
 

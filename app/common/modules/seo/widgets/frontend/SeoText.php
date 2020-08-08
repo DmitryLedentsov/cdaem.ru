@@ -2,10 +2,10 @@
 
 namespace common\modules\seo\widgets\frontend;
 
-use common\modules\seo\models\Seotext as SeotextModel;
-use yii\helpers\Html;
-use yii\base\Widget;
 use Yii;
+use yii\base\Widget;
+use yii\helpers\Html;
+use common\modules\seo\models\Seotext as SeotextModel;
 
 /**
  * Виджет отображает Seo текст на странице
@@ -41,18 +41,6 @@ class SeoText extends Widget
         parent::init();
 
         $hostInfo = str_replace('www.', '', Yii::$app->request->hostInfo);
-
-
-        // TODO:
-        ///////////////////////////////////////////////////////////
-        /*if (Yii::$app->user->getId() === 1) {
-            echo Yii::$app->params['siteDomain'] . ' == ' . $hostInfo;
-            echo '<br>';
-            echo 'Yii::$app->request->url: ' . Yii::$app->request->url;
-            echo '<br>';
-        }*/
-        ///////////////////////////////////////////////////////////
-
 
         if (Yii::$app->params['siteDomain'] == $hostInfo) {
             $currentUrl = Yii::$app->request->url;

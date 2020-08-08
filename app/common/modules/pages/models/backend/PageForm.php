@@ -2,9 +2,8 @@
 
 namespace common\modules\pages\models\backend;
 
-use common\modules\pages\models\Page;
 use yii\base\Model;
-use Yii;
+use common\modules\pages\models\Page;
 
 /**
  * Page Form
@@ -13,13 +12,21 @@ use Yii;
 class PageForm extends Model
 {
     public $page_id;
+
     public $url;
+
     public $title;
+
     public $description;
+
     public $keywords;
+
     public $name;
+
     public $text;
+
     public $status;
+
     public $active;
 
     /**
@@ -83,17 +90,19 @@ class PageForm extends Model
         }
 
         $this->page_id = $model->page_id;
+
         return true;
     }
 
     /**
-     * Редктировать
+     * Редактировать
      * @param Page $model
      * @return bool
      */
     public function update(Page $model)
     {
         $model->setAttributes($this->getAttributes(), false);
+
         return $model->save(false);
     }
 

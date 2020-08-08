@@ -2,9 +2,9 @@
 
 namespace backend\modules\admin\widgets;
 
+use Yii;
 use yii\base\Widget;
 use yii\helpers\Html;
-use Yii;
 
 /**
  * Admin Extra Control Widget

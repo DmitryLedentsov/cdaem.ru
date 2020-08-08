@@ -2,12 +2,12 @@
 
 namespace frontend\modules\partners\helpers;
 
-use common\modules\partners\models\Apartment;
-use common\modules\partners\models\Service;
-use yii\base\InvalidParamException;
-use yii\helpers\ArrayHelper;
-use yii\helpers\Html;
 use Yii;
+use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
+use yii\base\InvalidParamException;
+use common\modules\partners\models\Service;
+use common\modules\partners\models\Apartment;
 
 /**
  * Class ApartmentHelper
@@ -22,8 +22,6 @@ class ApartmentHelper
      */
     public static function getAddress(Apartment $model)
     {
-
-
         if ($model->city) {
             $result = [];
             $result[] = $model->address;
@@ -31,6 +29,7 @@ class ApartmentHelper
             if ($model->city->country) {
                 $result[] = $model->city->country->name;
             }
+
             return implode(', ', $result);
         }
 
@@ -44,11 +43,9 @@ class ApartmentHelper
             foreach ($model->adverts as $advert) {
                 $positions = Yii::$app->getView()->renderDynamic('if ($positions = \\common\\modules\\partners\\models\\Advert::find()->select("real_position")->where(["advert_id" => ' . $advert->advert_id . '])->scalar()) { return $positions; } else {return "pos";} ');
             }
-
         }
 
         return $positions;
-
     }
 
     /**
@@ -79,12 +76,12 @@ class ApartmentHelper
         if (!$model->open_contacts) {
             $result .= '<p class="color-success">Доступно бронирование</p>';
         }
+
         return $result;
     }
 
     public static function getInfoNew(Apartment $model)
     {
-
         $contacts = $model->open_contacts ? '<span class="color-success">открыты</span>' : '<span class="color-closed-2">закрыты <span class="no-payment-2">' . Html::a('(Оплатить)', ['/office/default/services', '#' => Service::SERVICE_APARTMENT_CONTACTS_OPEN]) . '</span></span>';
         $result = '<p><span class="opencontact">Контакты:</span><span class="opencontactstatus">' . $contacts . '</span></p>';
         if (!$model->open_contacts) {
@@ -97,7 +94,6 @@ class ApartmentHelper
         return $result;
     }
 
-
     /**
      * Возвращает список объявлений апартамента
      * @param Apartment $model
@@ -105,8 +101,6 @@ class ApartmentHelper
      */
     public static function getAdverts(Apartment $model)
     {
-
-
         if ($model->adverts) {
             $result = '';
             foreach ($model->adverts as $advert) {
@@ -121,12 +115,12 @@ class ApartmentHelper
                 $result .= '<span class="color-info">' . $position . ' позиция</span>';
                 $result .= '<p>';
             }
+
             return $result;
         } else {
             return '<p>Объявления не созданы</p>';
         }
     }
-
 
     public static function getAdvertsNew(Apartment $model)
     {
@@ -145,11 +139,10 @@ class ApartmentHelper
             $result = '';
 
             foreach ($model->adverts as $advert) {
-
                 if ($advert->position < $advert->old_position) {
                     $positionClass = 'up';
                     $positionText = 'Позиция поднята';
-                } else if ($advert->position > $advert->old_position) {
+                } elseif ($advert->position > $advert->old_position) {
                     $positionClass = 'down';
                     $positionText = 'Позиция опущена';
                 } else {
@@ -177,14 +170,13 @@ class ApartmentHelper
                 $result .= Html::a($advert->rentType->name, ['/partners/default/view', 'id' => $advert->advert_id, 'city' => $advert->apartment->city->name_eng], $options = ['class' => 'rentypelink']);
 
                 $result .= '</div>';
-
             }
+
             return $result;
         } else {
             return '<p>Объявления не созданы</p>';
         }
     }
-
 
     public static function getAdvertsMini(Apartment $model)
     {
@@ -213,7 +205,7 @@ class ApartmentHelper
                     $result .= $mypos;
                     $result .= '</div>';
                     $i++;
-                } else if ($advert->position == $advert->old_position) {
+                } elseif ($advert->position == $advert->old_position) {
                     $positionClass = 'no-change-new';
                     $positionText = 'Без изменений';
                     $mypos = Html::tag('div', '', [
@@ -228,7 +220,7 @@ class ApartmentHelper
                     $result .= $mypos;
                     $result .= '</div>';
                     $i++;
-                } else if ($advert->position < $advert->old_position) {
+                } elseif ($advert->position < $advert->old_position) {
                     $positionClass = 'up-new';
                     $positionText = 'Позиция поднята';
                     $mypos = Html::tag('div', '', [
@@ -245,11 +237,10 @@ class ApartmentHelper
                     $i++;
                 }
             }
+
             return $result;
         } else {
             return '<p>Объявления не созданы</p>';
         }
     }
-
-
 }

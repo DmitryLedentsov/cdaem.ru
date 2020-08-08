@@ -2,8 +2,8 @@
 
 namespace common\modules\callback\assets\frontend;
 
-use yii\web\AssetBundle;
 use Yii;
+use yii\web\AssetBundle;
 
 /**
  * Менеджер ресурсов
@@ -20,7 +20,7 @@ class CallbackAsset extends AssetBundle
      * @inheritdoc
      */
     public $depends = [
-        'yii\web\JqueryAsset',
+        \yii\web\JqueryAsset::class,
     ];
 
     /**
@@ -32,17 +32,13 @@ class CallbackAsset extends AssetBundle
 
 
         if (YII_DEBUG) {
-
             $this->js = [
                 'js_dev/callback.js'
             ];
-
         } else {
-
             $this->js = [
                 'js/callback.js'
             ];
-
         }
     }
 }

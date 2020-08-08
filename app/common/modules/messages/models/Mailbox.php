@@ -3,11 +3,8 @@
 namespace common\modules\messages\models;
 
 use yii\db\ActiveRecord;
-use Yii;
 
-/**
- * This is the model class for table "{{%user_messages_mailbox}}".
- *
+/** *
  * @property integer $id
  * @property integer $message_id
  * @property integer $user_id
@@ -92,12 +89,18 @@ class Mailbox extends ActiveRecord
     }
 
     /**
-     * Разговоры этого пользователя с не забаненными пользователями
-     * @return list of Mailbox instances
+     * Разговоры этого пользователя с незабаненными пользователями
+     * @return Mailbox[]
      */
     public static function findAllThisUserConversations()
     {
-        $ids = self::find()->select('max(id)')->deleted(0)->thisUser()->groupBy('interlocutor_id')->asArray()->column();
+        $ids = self::find()->select('max(id)')
+            ->deleted(0)
+            ->thisUser()
+            ->groupBy('interlocutor_id')
+            ->asArray()
+            ->column();
+
         return self::findAll($ids);
     }
 
@@ -108,12 +111,15 @@ class Mailbox extends ActiveRecord
     public function readMessage()
     {
         if (!$this->dirtyAttributes) {
-            if ($this->read == 1) return true;
+            if ($this->read == 1) {
+                return true;
+            }
             $this->read = 1;
             if ($this->save(false)) {
                 return true;
             }
         }
+
         return false;
     }
 
@@ -130,6 +136,7 @@ class Mailbox extends ActiveRecord
                 return true;
             }
         }
+
         return false;
     }
 }

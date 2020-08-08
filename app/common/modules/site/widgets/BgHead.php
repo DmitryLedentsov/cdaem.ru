@@ -2,9 +2,9 @@
 
 namespace common\modules\site\widgets;
 
-use yii\helpers\Html;
-use yii\base\Widget;
 use Yii;
+use yii\base\Widget;
+use yii\helpers\Html;
 
 /**
  * Виджет отображает случайшую шапку
@@ -50,7 +50,6 @@ class BgHead extends Widget
         $files = scandir($dir);
 
         foreach ($files as $key => $file) {
-
             $array = array_filter(explode(".", $file));
             $ext = end($array);
 
@@ -72,6 +71,7 @@ class BgHead extends Widget
         if ($this->background == null) {
             $background = 'article-no-img.jpg';
         }
+
         return Html::tag('div', $content, [
             'class' => 'bg-header-2',
             'style' => 'background: url(' . $this->url . '/' . $background . ')center center;background-size:cover',

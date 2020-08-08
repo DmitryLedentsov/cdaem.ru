@@ -2,9 +2,8 @@
 
 namespace common\modules\merchant\models;
 
-use common\modules\merchant\traits\ModuleTrait;
 use yii\db\ActiveRecord;
-use Yii;
+use common\modules\merchant\traits\ModuleTrait;
 
 /**
  * Модель счет-фактура

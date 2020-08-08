@@ -2,8 +2,8 @@
 
 namespace backend\modules\merchant\models;
 
-use yii\data\ActiveDataProvider;
 use Yii;
+use yii\data\ActiveDataProvider;
 
 /**
  * Class PaymentSearch

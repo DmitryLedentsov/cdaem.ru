@@ -2,8 +2,8 @@
 
 namespace common\modules\messages\traits;
 
-use common\modules\messages\Module;
 use Yii;
+use common\modules\messages\Module;
 
 /**
  * Class ModuleTrait
@@ -30,6 +30,7 @@ trait ModuleTrait
                 $this->_module = Yii::$app->getModule('messages');
             }
         }
+
         return $this->_module;
     }
 }

@@ -2,11 +2,11 @@
 
 namespace common\modules\users\models\backend\search;
 
-use common\modules\users\models\backend\Profile;
-use common\modules\users\models\backend\User;
-use yii\data\ActiveDataProvider;
-use yii\base\Model;
 use Yii;
+use yii\base\Model;
+use yii\data\ActiveDataProvider;
+use common\modules\users\models\backend\User;
+use common\modules\users\models\backend\Profile;
 
 /**
  * @inheritdoc
@@ -93,6 +93,7 @@ class UserSearch extends User
     public function scenarios()
     {
         $scenarios = Model::scenarios();
+
         return array_merge($scenarios, [
             'profile.user_type',
             'profile.user_partner',

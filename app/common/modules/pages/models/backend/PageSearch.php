@@ -2,10 +2,9 @@
 
 namespace common\modules\pages\models\backend;
 
-use common\modules\pages\models\Page;
-use yii\data\ActiveDataProvider;
 use yii\base\Model;
-use Yii;
+use yii\data\ActiveDataProvider;
+use common\modules\pages\models\Page;
 
 /**
  * Page Search
@@ -14,13 +13,21 @@ use Yii;
 class PageSearch extends Model
 {
     public $name;
+
     public $title;
+
     public $description;
+
     public $keywords;
+
     public $text;
+
     public $page_id;
+
     public $status;
+
     public $active;
+
     public $url;
 
     /**

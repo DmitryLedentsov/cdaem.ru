@@ -2,12 +2,9 @@
 
 namespace common\modules\agency\widgets\frontend;
 
-use common\modules\agency\models\Advert;
-use yii\helpers\ArrayHelper;
-use yii\helpers\Html;
-use yii\helpers\Url;
 use yii\base\Widget;
-use Yii;
+use yii\helpers\Url;
+use yii\helpers\Html;
 
 /**
  * Информационный блок типов аренды
@@ -52,7 +49,6 @@ class RentTypePriceInfo extends Widget
         }
 
         foreach ($this->adverts as $advert) {
-
             $rFlag = 0;
 
             // Квартира на чаc
@@ -60,15 +56,15 @@ class RentTypePriceInfo extends Widget
                 $rentTypeTime = 'hour';
                 $rFlag = 1;
             } // Квартира на сутки
-            else if ($advert->rent_type == 2) {
+            elseif ($advert->rent_type == 2) {
                 $rentTypeTime = 'day';
                 $rFlag = 1;
             } // Квартира на ночь
-            else if ($advert->rent_type == 3) {
+            elseif ($advert->rent_type == 3) {
                 $rentTypeTime = 'night';
                 $rFlag = 1;
             } // Квартира на месяц
-            else if ($advert->rent_type == 4) {
+            elseif ($advert->rent_type == 4) {
                 $rentTypeTime = 'month';
                 $rFlag = 1;
             }
@@ -79,7 +75,6 @@ class RentTypePriceInfo extends Widget
             }
         }
 
-
         $advertText = $this->advert->text ? $this->advert->text : 'Нет описания';
 
         $this->_rentTypeHtmlB .= '
@@ -89,7 +84,6 @@ class RentTypePriceInfo extends Widget
                         ' . $advertText . '
                     </div>
                 </div>';
-
     }
 
     /**
@@ -98,6 +92,7 @@ class RentTypePriceInfo extends Widget
     public function run()
     {
         $_rentTypeHtmlN = '';
+
         if ($this->_rentTypeHtmlN) {
             $_rentTypeHtmlN = Html::tag('ul', $this->_rentTypeHtmlN, ['class' => 'links']);
         }

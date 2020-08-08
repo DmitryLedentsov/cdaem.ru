@@ -5,8 +5,8 @@
  * @var $model nepster\users\rbac\models\AuthItem
  */
 
-use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 
 $this->title = Yii::t('users.rbac', 'GROUP_CREATE');
 

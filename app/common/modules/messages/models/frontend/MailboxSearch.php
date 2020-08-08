@@ -2,11 +2,9 @@
 
 namespace common\modules\messages\models\frontend;
 
-use common\modules\messages\models\Mailbox;
-use yii\data\ActiveDataProvider;
-use yii\helpers\ArrayHelper;
 use yii\base\Model;
-use Yii;
+use yii\data\ActiveDataProvider;
+use common\modules\messages\models\Mailbox;
 
 /**
  * Class MailboxSearch

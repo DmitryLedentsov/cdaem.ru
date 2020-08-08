@@ -9,7 +9,6 @@ class m150101_231677_partners_coords extends Migration
     {
         $this->addColumn('{{%partners_apartments}}', 'latitude', 'DECIMAL(17,14)  DEFAULT NULL');
         $this->addColumn('{{%partners_apartments}}', 'longitude', 'DECIMAL(17,14)  DEFAULT NULL');
-
     }
 
     public function safeDown()

@@ -2,11 +2,11 @@
 
 namespace common\modules\agency\widgets\frontend;
 
-use common\modules\agency\models\Advertisement;
-use yii\helpers\ArrayHelper;
-use yii\helpers\Html;
-use yii\helpers\Url;
 use Yii;
+use yii\helpers\Url;
+use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
+use common\modules\agency\models\Advertisement;
 
 /**
  * Advertising Advert

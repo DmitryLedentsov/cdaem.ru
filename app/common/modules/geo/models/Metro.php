@@ -3,7 +3,6 @@
 namespace common\modules\geo\models;
 
 use yii\helpers\ArrayHelper;
-use Yii;
 
 /**
  * Class Metro
@@ -34,18 +33,17 @@ class Metro extends \yii\db\ActiveRecord
     public static function getMskMetroArray()
     {
         $mskMetro = self::find()->where(['city_id' => 4400])->asArray()->all();
+
         return ArrayHelper::map($mskMetro, 'metro_id', 'name');
     }
 
-
     /**
      * Массив метро станций Москвы в формате metro_id => name
-     * @return array
+     * @return false|int|string
      */
     public static function getClientMetroIdByDbMetroIdFromCity($metroId, $cityId)
     {
         if ($cityId == 4400) {
-
             $metro['105_161'] = 57; // Алтуфьево (Серпуховско-Тимирязевская)
             $metro['104_160'] = 68; // Бибирево (Серпуховско-Тимирязевская)
             $metro['103_159'] = 142; // Отрадное (Серпуховско-Тимирязевская)
@@ -252,5 +250,4 @@ class Metro extends \yii\db\ActiveRecord
 
         return null;
     }
-
 }

@@ -5,9 +5,9 @@
  * @var array $users Выбранные пользователи
  */
 
+use yii\helpers\Html;
 use kartik\date\DatePicker;
 use yii\widgets\ActiveForm;
-use yii\helpers\Html;
 
 $this->title = Yii::t('users', 'USERS_BANNED');
 

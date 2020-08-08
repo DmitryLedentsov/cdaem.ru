@@ -2,8 +2,6 @@
 
 namespace common\modules\partners;
 
-use Yii;
-
 /**
  * Общий модуль [[Partners]]
  * Осуществляет всю работу с апартаментами доски объявлений
@@ -77,7 +75,7 @@ class Module extends \yii\base\Module
 
     /**
      * Цена рекламного объявления
-     * @var decimal
+     * @var float
      */
     public $priceAdvertisement = 30;
 
@@ -89,13 +87,13 @@ class Module extends \yii\base\Module
 
     /**
      * Процент, который платит владелец при подтверждении заявки
-     * @var decimal
+     * @var float
      */
     public $ownerReservationPercent = 5;
 
     /**
      * Процент, который платит клиент при подтверждении заявки
-     * @var decimal
+     * @var float
      */
     public $clientReservationPercent = 5;
 

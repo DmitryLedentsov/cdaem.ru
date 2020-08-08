@@ -2,11 +2,9 @@
 
 namespace common\modules\pages\controllers\frontend;
 
-use common\modules\pages\models\Page;
-use yii\web\HttpException;
-use yii\helpers\Html;
-use yii\helpers\Url;
 use Yii;
+use yii\web\HttpException;
+use common\modules\pages\models\Page;
 
 /**
  * Default controller

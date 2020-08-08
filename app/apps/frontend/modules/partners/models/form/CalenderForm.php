@@ -2,12 +2,12 @@
 
 namespace frontend\modules\partners\models\form;
 
-use frontend\modules\partners\models\Apartment;
-use frontend\modules\partners\models\Calendar;
-use yii\base\Exception;
-use yii\base\Model;
-use yii\validators\ExistValidator;
 use Yii;
+use yii\base\Model;
+use yii\base\Exception;
+use yii\validators\ExistValidator;
+use frontend\modules\partners\models\Calendar;
+use frontend\modules\partners\models\Apartment;
 
 /**
  * Форма для сохранения календаря "Быстрое заселение"
@@ -107,7 +107,6 @@ class CalenderForm extends Calendar
     public function beforeValidate()
     {
         if (parent::beforeValidate()) {
-
             if (!is_array($this->type)) {
                 $calendarApartmentId = $this->calendarApartmentId;
 
@@ -118,8 +117,6 @@ class CalenderForm extends Calendar
                 $this->time_start = [$calendarApartmentId => $this->time_start];
                 $this->date_end = [$calendarApartmentId => $this->date_end];
                 $this->time_end = [$calendarApartmentId => $this->time_end];
-
-
             }
 
             foreach ($this->type as $apartmentId => $type) {
@@ -128,11 +125,9 @@ class CalenderForm extends Calendar
                 }
 
                 if ($this->_apartments[$apartmentId] = Apartment::findApartmentByUser($apartmentId, Yii::$app->user->id)) {
-
                     $dateError = false;
 
                     if ($type != '-1') {
-
                         $validator = new \yii\validators\DateValidator();
                         $validator->format = 'php:d.m.Y H:i';
 
@@ -195,10 +190,9 @@ class CalenderForm extends Calendar
     public function process()
     {
         foreach ($this->_rentData as $apartmentId => $data) {
-
             if ($data['type'] == -1) {
                 $this->ignore($data);
-            } else if ($data['type'] == 1) {
+            } elseif ($data['type'] == 1) {
                 $this->unavailable($data);
             } else {
                 $this->available($data);
@@ -266,7 +260,7 @@ class CalenderForm extends Calendar
             if (!$data['type'] && strtotime($data['date_start']) >= time()) {
                 $this->_apartments[$apartmentId]->now_available = 1;
                 $this->_apartments[$apartmentId]->save(false);
-            } else if ($data['type'] && strtotime($data['date_start']) >= time()) {
+            } elseif ($data['type'] && strtotime($data['date_start']) >= time()) {
                 $this->_apartments[$apartmentId]->now_available = 0;
                 $this->_apartments[$apartmentId]->save(false);
             }
@@ -324,6 +318,7 @@ class CalenderForm extends Calendar
             $this->addError('time_start[' . $this->_apartments[$data['calendarApartmentId']]->apartment_id . ']', '');
             $this->addError('date_end[' . $this->_apartments[$data['calendarApartmentId']]->apartment_id . ']', '');
             $this->addError('time_end[' . $this->_apartments[$data['calendarApartmentId']]->apartment_id . ']', 'Промежуток времени пересекается с другими записями.');
+
             return;
         }
 
@@ -345,6 +340,7 @@ class CalenderForm extends Calendar
                 $this->hasManualErrors = true;
                 $this->addError('date_start[' . $this->_apartments[$data['calendarApartmentId']]->apartment_id . ']', '');
                 $this->addError('time_start[' . $this->_apartments[$data['calendarApartmentId']]->apartment_id . ']', 'Дата старта должна быть больше текущей даты');
+
                 return;
             }
             $calendar = new Calendar();
@@ -355,7 +351,6 @@ class CalenderForm extends Calendar
             $calendar->process = 0;
             $calendar->save(false);
         }
-
     }
 
     /**
@@ -386,6 +381,7 @@ class CalenderForm extends Calendar
             $this->addError('time_start[' . $this->_apartments[$data['calendarApartmentId']]->apartment_id . ']', '');
             $this->addError('date_end[' . $this->_apartments[$data['calendarApartmentId']]->apartment_id . ']', '');
             $this->addError('time_end[' . $this->_apartments[$data['calendarApartmentId']]->apartment_id . ']', 'Промежуток времени пересекается с другими записями.');
+
             return;
         }
 
@@ -407,6 +403,7 @@ class CalenderForm extends Calendar
                 $this->hasManualErrors = true;
                 $this->addError('date_start[' . $this->_apartments[$data['calendarApartmentId']]->apartment_id . ']', '');
                 $this->addError('time_start[' . $this->_apartments[$data['calendarApartmentId']]->apartment_id . ']', 'Дата старта должна быть больше текущей даты');
+
                 return;
             }
             $calendar = new Calendar();
@@ -490,7 +487,6 @@ class CalenderForm extends Calendar
         }
     }
 
-
     /**
      * Проверяет не пересекаеться временной промежуток $data другие промежутки, не учитывая $calendar_id
      * одного апартамента
@@ -522,7 +518,6 @@ class CalenderForm extends Calendar
         return $query->exists();
     }
 
-
     /**
      * Возвращает проверенную дату
      * @param $date
@@ -539,7 +534,6 @@ class CalenderForm extends Calendar
 
         return $date;
     }
-
 
     /**
      * Преобразовать данные для удобной обработки
@@ -594,6 +588,7 @@ class CalenderForm extends Calendar
         $time_start = isset($this->time_start[$apartmentId]) ? $this->time_start[$apartmentId] : '';
 
         $date_start = $date_start . ' ' . $time_start;
+
         return $date_start;
     }
 
@@ -608,6 +603,7 @@ class CalenderForm extends Calendar
         $time_end = isset($this->time_end[$apartmentId]) ? $this->time_end[$apartmentId] : '';
 
         $date_end = $date_end . ' ' . $time_end;
+
         return $date_end;
     }
 }

@@ -2,11 +2,11 @@
 
 namespace common\modules\reviews\controllers\frontend;
 
-use common\modules\reviews\models\ReviewForm;
-use yii\filters\AccessControl;
-use yii\widgets\ActiveForm;
-use yii\web\Response;
 use Yii;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
+use yii\filters\AccessControl;
+use common\modules\reviews\models\ReviewForm;
 
 /**
  * Ajax Controller
@@ -75,12 +75,12 @@ class AjaxController extends \frontend\components\Controller
                         'status' => 1,
                         'message' => 'Ваш отзыв добавлен в базу данных и ожидает модерации.'
                     ];
-                } else {
-                    return [
-                        'status' => 0,
-                        'message' => 'Возникла критическая ошибка. Пожалуйста обратитесь в техническую поддержку.'
-                    ];
                 }
+
+                return [
+                    'status' => 0,
+                    'message' => 'Возникла критическая ошибка. Пожалуйста обратитесь в техническую поддержку.'
+                ];
             }
 
             return $errors;

@@ -2,10 +2,9 @@
 
 namespace common\modules\reviews\models\backend;
 
-use common\modules\reviews\models\Review;
-use yii\data\ActiveDataProvider;
 use yii\base\Model;
-use Yii;
+use yii\data\ActiveDataProvider;
+use common\modules\reviews\models\Review;
 
 /**
  * Review Search
@@ -14,14 +13,23 @@ use Yii;
 class ReviewSearch extends Model
 {
     public $review_id;
+
     public $apartment_id;
+
     public $user_id;
+
     public $match_description;
+
     public $price_quality;
+
     public $cleanliness;
+
     public $entry;
+
     public $visible;
+
     public $moderation;
+
     public $date_create;
 
     /**

@@ -2,12 +2,12 @@
 
 namespace common\modules\agency\models;
 
-use common\modules\agency\models\query\AdvertQuery;
-use common\modules\agency\traits\ModuleTrait;
-use common\modules\realty\models\Apartment as TotalApartment;
-use common\modules\realty\models\RentType;
-use yii\helpers\ArrayHelper;
 use Yii;
+use yii\helpers\ArrayHelper;
+use common\modules\realty\models\RentType;
+use common\modules\agency\traits\ModuleTrait;
+use common\modules\agency\models\query\AdvertQuery;
+use common\modules\realty\models\Apartment as TotalApartment;
 
 /**
  * Объявления апартаментов
@@ -16,6 +16,13 @@ use Yii;
 class Advert extends \yii\db\ActiveRecord
 {
     use ModuleTrait;
+
+    /**
+     * Список доступных значений поля main_page
+     */
+    const MAIN_PAGE = 1; // Отображается на главной странице
+
+    const NOT_MAIN_PAGE = 0; // Не отображается
 
     /**
      * @inheritdoc
@@ -177,12 +184,6 @@ class Advert extends \yii\db\ActiveRecord
     {
         return Yii::$app->formatter->asCurrency($this->price, ArrayHelper::getValue($this->currencyList, $this->currency));
     }
-
-    /**
-     * Список доступных значений поля main_page
-     */
-    const MAIN_PAGE = 1; // Отображается на главной странице
-    const NOT_MAIN_PAGE = 0; // Не отображается
 
     /**
      * @return array Массив доступных значений поля main_page в текстовом представлении

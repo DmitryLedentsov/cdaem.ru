@@ -24,13 +24,10 @@ class AdvertAsset extends AssetBundle
         parent::init();
 
         if (YII_DEBUG) {
-
             $this->css = [
                 'css_dev/search.css',
             ];
-
         } else {
-
             $this->css = [
                 'css/search.css',
             ];

@@ -2,18 +2,16 @@
 
 namespace common\modules\articles\models;
 
-use Yii;
-use yii\helpers\ArrayHelper;
-
 /**
  * Статьи
  * @package common\modules\articles\models
  */
 class Article extends \yii\db\ActiveRecord
 {
-
     public $file;
+
     public $bgfile;
+
     public $imagesPath = '@frontend/web/images';
 
     /**
@@ -64,7 +62,9 @@ class Article extends \yii\db\ActiveRecord
      * - Закрыта от пользователей
      */
     const STATUS_ALL = 1;
+
     const STATUS_REGISTER = 2;
+
     const STATUS_CLOSE = 0;
 
     /**
@@ -92,6 +92,4 @@ class Article extends \yii\db\ActiveRecord
     {
         return $this->hasMany(ArticleLink::class, ['article_id' => 'article_id']);
     }
-
-
 }

@@ -2,13 +2,13 @@
 
 namespace frontend\modules\partners\models\form;
 
+use Yii;
+use yii\behaviors\TimestampBehavior;
+use common\modules\users\models\User;
+use frontend\modules\partners\models\Advert;
 use frontend\modules\partners\models\Reservation;
 use common\modules\partners\models\ReservationDeal;
-use common\modules\users\models\User;
 use frontend\modules\partners\models\CalendarBlockerForm;
-use yii\behaviors\TimestampBehavior;
-use frontend\modules\partners\models\Advert;
-use Yii;
 
 /**
  * @package frontend\modules\partners\models\form
@@ -77,7 +77,6 @@ class ReservationConfirmForm extends Reservation
     public function beforeValidate()
     {
         if (parent::beforeValidate()) {
-
             if ($this->scenario == 'cancel') {
                 if (!$this->defineCancel()) {
                     return false;
@@ -88,12 +87,14 @@ class ReservationConfirmForm extends Reservation
             if ($this->scenario == 'confirm') {
                 if (!$this->userType = $this->defineUser()) {
                     $this->addError('userType', 'Вы не можете управлять данной заявкой');
+
                     return false;
                 }
             }
 
             return true;
         }
+
         return false;
     }
 
@@ -103,25 +104,29 @@ class ReservationConfirmForm extends Reservation
      */
     private function defineCancel()
     {
-        if ($this->advert_id != NULL and $this->deal) {
+        if ($this->advert_id != null and $this->deal) {
             $this->addError('cancel_reason', 'Вы не можете отменить данную заявку, так как заявка ожидает подтверждения');
+
             return false;
         }
 
         if (!$this->userType = $this->defineUser()) {
             $this->addError('userType', 'Вы не можете управлять данной заявкой');
+
             return false;
         }
 
         // Отмена клиентом заявки
         if ($this->user_id == Yii::$app->user->id) {
             $this->cancel = 1;
+
             return true;
         }
 
         // Отмена владельцем заявки
         if ($this->landlord_id == Yii::$app->user->id) {
             $this->cancel = 2;
+
             return true;
         }
 
@@ -146,11 +151,13 @@ class ReservationConfirmForm extends Reservation
             // Уже платил
             if ($deal && $deal->payment_owner == 1) {
                 $this->addError('userType', 'Вы уже подтверждали заявку');
+
                 return false;
             }
             // Если валюта не РУБЛЬ
             if ($this->advert->currency != 1) {
                 $this->addError('userType', 'Для подтверждения заявки валюта стоимости вашего объявления должна быть "Рубль"');
+
                 return false;
             }
 
@@ -162,6 +169,7 @@ class ReservationConfirmForm extends Reservation
             // Если не хватает денег
             if ($this->advert->apartment->user->funds_main < $priceToPay) {
                 $this->addError('userType', 'На вашем счету недостаточно средств');
+
                 return false;
             }
 
@@ -176,11 +184,13 @@ class ReservationConfirmForm extends Reservation
             // Уже платил
             if ($deal && $deal->payment_client == 1) {
                 $this->addError('userType', 'Вы уже подтверждали заявку');
+
                 return false;
             }
             // Если валюта не РУБЛЬ
             if ($this->advert->currency != 1) {
                 $this->addError('userType', 'Для подтверждения заявки валюта стоимости объявления должна быть "Рубль"');
+
                 return false;
             }
 
@@ -191,6 +201,7 @@ class ReservationConfirmForm extends Reservation
             // Если не хватает денег
             if ($this->user->funds_main < $priceToPay) {
                 $this->addError('userType', 'На вашем счету недостаточно средств');
+
                 return false;
             }
 
@@ -243,5 +254,4 @@ class ReservationConfirmForm extends Reservation
 
         return true;
     }
-
 }

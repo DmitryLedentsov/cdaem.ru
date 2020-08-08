@@ -2,17 +2,16 @@
 
 namespace common\modules\helpdesk\controllers\backend;
 
-use common\modules\helpdesk\models\backend\AnswerForm;
-use common\modules\helpdesk\models\backend\HelpdeskSearch;
-use common\modules\helpdesk\models\backend\HelpdeskForm;
-use common\modules\helpdesk\models\HelpdeskAnswers;
-use common\modules\helpdesk\models\Helpdesk;
+use Yii;
+use yii\helpers\Url;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
 use yii\web\NotFoundHttpException;
 use yii\web\ForbiddenHttpException;
-use yii\widgets\ActiveForm;
-use yii\web\Response;
-use yii\helpers\Url;
-use Yii;
+use common\modules\helpdesk\models\Helpdesk;
+use common\modules\helpdesk\models\backend\AnswerForm;
+use common\modules\helpdesk\models\backend\HelpdeskForm;
+use common\modules\helpdesk\models\backend\HelpdeskSearch;
 
 /**
  * Default Controller
@@ -97,7 +96,6 @@ class DefaultController extends \backend\components\Controller
         $formModel->ticket_id = $id;
 
         if ($formModel->load(Yii::$app->request->post())) {
-
             if (!Yii::$app->user->can('helpdesk-answer')) {
                 throw new ForbiddenHttpException(Yii::t('users.rbac', 'ACCESS_DENIED'));
             }
@@ -108,9 +106,11 @@ class DefaultController extends \backend\components\Controller
                 } else {
                     Yii::$app->session->setFlash('danger', 'Возникла ошибка.');
                 }
+
                 return $this->refresh();
             } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validate($formModel);
             }
         }
@@ -150,9 +150,11 @@ class DefaultController extends \backend\components\Controller
                 } else {
                     Yii::$app->session->setFlash('danger', 'Возникла ошибка.');
                 }
+
                 return $this->refresh();
             } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validate($formModel);
             }
         }
@@ -177,13 +179,16 @@ class DefaultController extends \backend\components\Controller
         if (!Yii::$app->user->can('helpdesk-delete')) {
             throw new ForbiddenHttpException(Yii::t('users.rbac', 'ACCESS_DENIED'));
         }
+
         $model = $this->findModel($id);
         $formModel = new HelpdeskForm(['scenario' => 'delete']);
+
         if ($formModel->validate() && $formModel->delete($model)) {
             Yii::$app->session->setFlash('success', 'Данные успешно удалены.');
         } else {
             Yii::$app->session->setFlash('danger', 'Возникла ошибка.');
         }
+
         return $this->redirect(Url::previous());
     }
 
@@ -205,11 +210,11 @@ class DefaultController extends \backend\components\Controller
 
         if (!$ids || !is_array($ids)) {
             Yii::$app->session->setFlash('danger', 'Не выбрано ни одной действие');
+
             return $this->redirect($redirect);
         }
 
         switch ($action) {
-
             case 'delete':
                 $deletedRows = Helpdesk::deleteAll(['in', 'ticket_id', $ids]);
                 break;
@@ -222,7 +227,7 @@ class DefaultController extends \backend\components\Controller
 
     /**
      * @param $id
-     * @return null|static
+     * @return Helpdesk
      * @throws NotFoundHttpException
      */
     protected function findModel($id)
@@ -230,6 +235,7 @@ class DefaultController extends \backend\components\Controller
         if (($model = Helpdesk::findOne($id)) !== null) {
             return $model;
         }
+
         throw new NotFoundHttpException('Страница не найдена.');
     }
 }

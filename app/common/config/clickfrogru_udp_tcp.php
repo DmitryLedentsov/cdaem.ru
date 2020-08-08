@@ -1,30 +1,29 @@
 <?php
 
 /*
-	Подключите данный скрипт на страницы, на которые ведут рекламные объявления. При необходимости подключите скрипт на все страницы Вашего сайта.
-	В большинстве случаев подключать легче в основной шаблон сайта или в шаблоны, которые отвечают за header и footer.
+    Подключите данный скрипт на страницы, на которые ведут рекламные объявления. При необходимости подключите скрипт на все страницы Вашего сайта.
+    В большинстве случаев подключать легче в основной шаблон сайта или в шаблоны, которые отвечают за header и footer.
 
-	Пример: в шаблон добавляется строка
-		include_once($path);
-		где $path - путь к данному скрипту;	
-	Например:
-	<?php 
-		$path = "./clickfrogru_udp_tcp.php";
-		include_once($path);
-	?>
-	
-	Если код подключен, но не определяется, и проверка кода по адресу http://ваш.домен/clickfrogru_udp_tcp.php говорит "Серверный скрипт: нет", попробуйте скачать и подключить этот скрипт - http://a.clickfrog.ru/clickfrogru_tcp.zip
-	Если код подключен, но не определяется, и проверка кода по адресу http://ваш.домен/clickfrogru_udp_tcp.php говорит "Серверный скрипт: есть" - вы некорректно подключили файл clickfrogru_udp_tcp.php к страницам вашего сайта.
+    Пример: в шаблон добавляется строка
+        include_once($path);
+        где $path - путь к данному скрипту;
+    Например:
+    <?php
+        $path = "./clickfrogru_udp_tcp.php";
+        include_once($path);
+    ?>
+
+    Если код подключен, но не определяется, и проверка кода по адресу http://ваш.домен/clickfrogru_udp_tcp.php говорит "Серверный скрипт: нет", попробуйте скачать и подключить этот скрипт - http://a.clickfrog.ru/clickfrogru_tcp.zip
+    Если код подключен, но не определяется, и проверка кода по адресу http://ваш.домен/clickfrogru_udp_tcp.php говорит "Серверный скрипт: есть" - вы некорректно подключили файл clickfrogru_udp_tcp.php к страницам вашего сайта.
 */
 
 class ClickfrogUDPSender
 {
-    private static $CLFG_REQUEST = array('_COUNTER_UDP_PORT' => '83', '_COUNTER_HOST' => 'stat.clickfrog.ru', '_COUNTER_GET' => '/server_side_action.php');
+    private static $CLFG_REQUEST = ['_COUNTER_UDP_PORT' => '83', '_COUNTER_HOST' => 'stat.clickfrog.ru', '_COUNTER_GET' => '/server_side_action.php'];
 
     public static function sendto()
     {
         try {
-
             $occur = false;
             if (isset($_SERVER['HTTP_REFERER']) && isset($_SERVER['HTTP_HOST'])) {
                 if (preg_match("/^(https?:\/\/)?(www.)?([^\/?]+)/i", $_SERVER['HTTP_REFERER'], $ref_matches) && preg_match("/^(https?:\/\/)?(www.)?([^\/?]+)/i", $_SERVER['HTTP_HOST'], $d_matches)) {
@@ -36,18 +35,22 @@ class ClickfrogUDPSender
                 $occur = true;
             }
 
-            if (!$occur)
+            if (!$occur) {
                 return 0;
+            }
 
             $s_udp = @fsockopen("udp://" . self::$CLFG_REQUEST['_COUNTER_HOST'], self::$CLFG_REQUEST['_COUNTER_UDP_PORT'], $errno, $errstr);
 
-            $headers = array("HTTP_HOST", "REMOTE_ADDR", "REQUEST_METHOD", "REQUEST_URI", "PATH_INFO", "HTTP_REFERER", "HTTP_X_FORWARDED_FOR", "QUERY_STRING", "REQUEST_URI_CLICKFROG", "HTTP_USER_AGENT");
-            $srv = array();
-            foreach ($headers as $h)
-                if (isset($_SERVER[$h]))
+            $headers = ["HTTP_HOST", "REMOTE_ADDR", "REQUEST_METHOD", "REQUEST_URI", "PATH_INFO", "HTTP_REFERER", "HTTP_X_FORWARDED_FOR", "QUERY_STRING", "REQUEST_URI_CLICKFROG", "HTTP_USER_AGENT"];
+            $srv = [];
+            foreach ($headers as $h) {
+                if (isset($_SERVER[$h])) {
                     $srv[$h] = $_SERVER[$h];
-            if (count($srv) == 0)
+                }
+            }
+            if (count($srv) == 0) {
                 exit;
+            }
 
             $msg = 'header=' . @urlencode(@json_encode($srv));
             $msg_id = self::msgid($msg);
@@ -67,8 +70,9 @@ class ClickfrogUDPSender
                 }
             }
             @fclose($s_udp);
-            if ($err_id !== false && $err_id === 1)
+            if ($err_id !== false && $err_id === 1) {
                 self::sendto_tcp($msg);
+            }
         } catch (Exception $e) {
         }
     }
@@ -110,8 +114,10 @@ class ClickfrogUDPSender
             list($usec, $sec) = explode(" ", microtime());
             $res = ((float)$usec + (float)$sec) * 10000;
         }
-        if (strlen($res) > 8)
+        if (strlen($res) > 8) {
             return substr($res, strlen($res) - 8, 8);
+        }
+
         return $res;
     }
 
@@ -119,8 +125,6 @@ class ClickfrogUDPSender
     {
         return sprintf("%08x%08x", crc32($data), self::getmicrotime());
     }
-
 }
 
 ClickfrogUDPSender::sendto();
-?>

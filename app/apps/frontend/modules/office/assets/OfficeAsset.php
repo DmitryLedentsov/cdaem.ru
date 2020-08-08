@@ -31,7 +31,6 @@ class OfficeAsset extends AssetBundle
         parent::init();
 
         if (YII_DEBUG) {
-
             $this->css = [
                 'css_dev/office.css',
             ];
@@ -39,9 +38,7 @@ class OfficeAsset extends AssetBundle
             $this->js = [
                 'js_dev/office.js',
             ];
-
         } else {
-
             $this->css = [
                 'css/office.css',
             ];
@@ -49,7 +46,6 @@ class OfficeAsset extends AssetBundle
             $this->js = [
                 'js/office.js',
             ];
-
         }
     }
 }

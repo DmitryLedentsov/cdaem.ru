@@ -3,7 +3,6 @@
 namespace common\modules\partners\models;
 
 use common\modules\partners\models\scopes\ReservationDealQuery;
-use Yii;
 
 /**
  * История сделок бронирования
@@ -59,8 +58,11 @@ class ReservationDeal extends \yii\db\ActiveRecord
      * - Клиент оплатил
      */
     const CONFIRM_OWNER = 'RESERVATION_CONFIRM_OWNER';
+
     const CONFIRM_CLIENT = 'RESERVATION_CONFIRM_CLIENT';
+
     const RETURN_MONEY = 'RESERVATION_RETURN_MONEY';
+
     const RETURN_MONEY_FAILURE = 'RESERVATION_RETURN_MONEY_OF_FAILURE';
 
     /**

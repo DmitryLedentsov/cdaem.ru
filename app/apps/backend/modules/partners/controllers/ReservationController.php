@@ -3,13 +3,13 @@
 namespace backend\modules\partners\controllers;
 
 use Yii;
-use backend\modules\partners\models\Reservation;
-use backend\modules\partners\models\ReservationSearch;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
 use backend\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\ForbiddenHttpException;
-use yii\web\Response;
-use yii\widgets\ActiveForm;
+use backend\modules\partners\models\Reservation;
+use backend\modules\partners\models\ReservationSearch;
 
 /**
  * ReservationController implements the CRUD actions for Reservation model.
@@ -71,7 +71,6 @@ class ReservationController extends Controller
         $model->scenario = 'update';
 
         if ($model->load(Yii::$app->request->post())) {
-
             if (!Yii::$app->user->can('partners-reservation-update')) {
                 throw new ForbiddenHttpException(Yii::t('users.rbac', 'ACCESS_DENIED'));
             }
@@ -82,9 +81,11 @@ class ReservationController extends Controller
                 } else {
                     Yii::$app->session->setFlash('danger', 'Возникла ошибка.');
                 }
+
                 return $this->redirect(['update', 'id' => $model->id]);
             } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validate($model);
             }
         }

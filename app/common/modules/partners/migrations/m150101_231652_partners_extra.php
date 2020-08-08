@@ -12,7 +12,6 @@ class m150101_231652_partners_extra extends Migration
         $this->addForeignKey('{{%helpdesk_partners_advert_id}}', '{{%helpdesk}}', 'partners_advert_id', '{{%partners_adverts}}', 'advert_id', 'CASCADE', 'CASCADE');
     }
 
-
     public function safeDown()
     {
         return false;

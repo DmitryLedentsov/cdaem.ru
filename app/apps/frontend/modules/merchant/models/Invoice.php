@@ -7,5 +7,4 @@ namespace frontend\modules\merchant\models;
  */
 class Invoice extends \common\modules\merchant\models\Invoice
 {
-
 }

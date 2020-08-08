@@ -2,11 +2,11 @@
 
 namespace frontend\modules\partners\models\search;
 
+use Yii;
+use yii\base\Model;
+use yii\data\ActiveDataProvider;
 use frontend\modules\partners\models\Reservation;
 use common\modules\partners\models\ReservationsPayment;
-use yii\data\ActiveDataProvider;
-use yii\base\Model;
-use Yii;
 
 /**
  * @inheritdoc
@@ -126,12 +126,15 @@ class ReservationSearch extends Reservation
             ],
         ]);
 
-        if (!empty($params['find']) and $params['find'] == 'open') return $dataProvider; // Поиск не нужен
+        if (!empty($params['find']) and $params['find'] == 'open') {
+            return $dataProvider;
+        } // Поиск не нужен
 
         $this->load($params);
 
         if (!$this->validate()) {
             $query->where('0=1');
+
             return $dataProvider;
         }
 
@@ -147,6 +150,7 @@ class ReservationSearch extends Reservation
                 $query->andWhere(['city_id' => Yii::$app->request->cityModel->city_id]);
             } else {
                 $query->where('0=1');
+
                 return $dataProvider;
             }
         }
@@ -188,7 +192,6 @@ class ReservationSearch extends Reservation
         return $dataProvider;
     }
 
-
     /**
      * Возвращает ActiveQuery глобальных заявок
      * @param $params - массив GET данных запроса
@@ -205,7 +208,7 @@ class ReservationSearch extends Reservation
                 ])
                 ->andWhere(['!=', Reservation::tableName() . '.user_id', Yii::$app->user->id])
                 ->lastThreeMonths();
-        } else if ($params['find'] == 'open') {
+        } elseif ($params['find'] == 'open') {
             $query = Reservation::find()
                 ->joinWith([
                     'user' => function ($query) {
@@ -240,11 +243,13 @@ class ReservationSearch extends Reservation
 
         if ($this->budget == 1) {
             $query->andWhere('money_to <= :start', $params[1]);
+
             return;
         }
 
         if ($this->budget == 9) {
             $query->andWhere('money_from >= :end', $params[9]);
+
             return;
         }
 
@@ -255,10 +260,10 @@ class ReservationSearch extends Reservation
                 ':start <= money_from AND money_from <= :end',
                 ':start <= money_to AND money_to <= :end',
             ], $params[$this->budget]);
+
             return;
         }
 
         return;
     }
-
 }

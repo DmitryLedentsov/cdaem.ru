@@ -6,8 +6,8 @@
  * @var array $users Выбранные пользователи
  */
 
-use yii\widgets\ActiveForm;
 use yii\helpers\Html;
+use yii\widgets\ActiveForm;
 
 $this->title = Yii::t('users', 'USERS_SEND_EMAIL');
 

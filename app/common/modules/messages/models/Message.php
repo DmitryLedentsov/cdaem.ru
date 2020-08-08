@@ -2,10 +2,10 @@
 
 namespace common\modules\messages\models;
 
-use common\modules\messages\traits\ModuleTrait;
+use Yii;
 use yii\db\ActiveRecord;
 use common\modules\users\models\UsersList;
-use Yii;
+use common\modules\messages\traits\ModuleTrait;
 
 /**
  * Class Message
@@ -107,7 +107,9 @@ class Message extends ActiveRecord
             'type' => UsersList::BLACKLIST
         ])->exists();
 
-        if ($usersList) $this->addError('text', 'Пользователь, которому вы пишите, поместил вас в чорный список');
+        if ($usersList) {
+            $this->addError('text', 'Пользователь, которому вы пишите, поместил вас в чорный список');
+        }
     }
 
     /**
@@ -138,7 +140,6 @@ class Message extends ActiveRecord
             $mailbox->deleted = 0;
             $mailbox->save(false);
         }
-
     }
 
     /**

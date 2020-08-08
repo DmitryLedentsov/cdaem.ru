@@ -67,10 +67,13 @@ echo \backend\modules\admin\widgets\ExtraControlWidget::widget([
                     return Html::a('<span class="icon-wrench"></span>', ['/seo/text/update', 'id' => $model->text_id]);
                 },
                 'delete' => function ($url, $model) {
-                    return Html::a('<span class="icon-remove3"></span>', ['/seo/text/delete', 'id' => $model->text_id],
+                    return Html::a(
+                        '<span class="icon-remove3"></span>',
+                        ['/seo/text/delete', 'id' => $model->text_id],
                         ['data' => [
                             'confirm' => 'Удалить?',
-                        ]]);
+                        ]]
+                    );
                 }
             ],
         ],
@@ -89,7 +92,6 @@ echo \backend\modules\admin\widgets\ExtraControlWidget::widget([
             'format' => 'html',
             'contentOptions' => ['class' => 'text-left tdStatus', 'style' => 'vertical-align: top'],
             'value' => function ($model) {
-
                 return \yii\helpers\ArrayHelper::getValue($model->typeArray, $model->type);
             }
         ],

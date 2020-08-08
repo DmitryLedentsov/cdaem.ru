@@ -6,9 +6,9 @@
  * @var $dataProvider yii\data\ActiveDataProvider
  */
 
-use yii\helpers\ArrayHelper;
-use yii\grid\GridView;
 use yii\helpers\Html;
+use yii\grid\GridView;
+use yii\helpers\ArrayHelper;
 
 $this->title = Yii::t('users.rbac', 'GROUPS');
 

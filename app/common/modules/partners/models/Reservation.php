@@ -2,12 +2,12 @@
 
 namespace common\modules\partners\models;
 
+use Yii;
+use yii\helpers\ArrayHelper;
+use common\modules\realty\models\RentType;
+use common\modules\partners\traits\ModuleTrait;
 use common\modules\partners\models\scopes\ReservationQuery;
 use common\modules\realty\models\Apartment as TotalApartment;
-use common\modules\realty\models\RentType;
-use yii\helpers\ArrayHelper;
-use common\modules\partners\traits\ModuleTrait;
-use Yii;
 
 /**
  * Резервации
@@ -91,6 +91,7 @@ class Reservation extends \yii\db\ActiveRecord
      * Значения полей cancel
      */
     const CLIENT = 1;
+
     const OWNER = 2;
 
     /**

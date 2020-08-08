@@ -3,7 +3,6 @@
 namespace common\modules\agency\models\backend\form;
 
 use common\modules\agency\models\DetailsHistory;
-use Yii;
 
 /**
  * Details History Form
@@ -12,10 +11,15 @@ use Yii;
 class DetailsHistoryForm extends \yii\base\Model
 {
     public $id;
+
     public $phone;
+
     public $email;
+
     public $processed;
+
     public $type;
+
     public $payment;
 
     /**
@@ -60,6 +64,7 @@ class DetailsHistoryForm extends \yii\base\Model
     public function update(DetailsHistory $model)
     {
         $model->setAttributes($this->getAttributes(), false);
+
         return $model->save(false);
     }
 }

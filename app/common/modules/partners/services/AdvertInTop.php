@@ -2,15 +2,13 @@
 
 namespace common\modules\partners\services;
 
-use common\modules\partners\interfaces\ServiceInterface;
-use frontend\modules\partners\models\Apartment;
-use frontend\modules\partners\models\Advert;
-use common\modules\partners\models\Service;
-use yii\validators\ExistValidator;
-use yii\validators\EmailValidator;
-use yii\base\InvalidConfigException;
-use yii\helpers\Json;
 use Yii;
+use yii\helpers\Json;
+use yii\validators\EmailValidator;
+use common\modules\partners\models\Service;
+use frontend\modules\partners\models\Advert;
+use frontend\modules\partners\models\Apartment;
+use common\modules\partners\interfaces\ServiceInterface;
 
 /**
  * Сервис [Advert In Top]
@@ -76,32 +74,31 @@ final class AdvertInTop extends \yii\base\BaseObject implements ServiceInterface
         $price = isset($data['price']) ? $data['price'] : 1;
 
         if ($amount >= 3 || $days >= 7) {
-
             $percent = 0;
 
             if ($days >= 28) {
                 $percent = 35;
-            } else if ($days >= 21) {
+            } elseif ($days >= 21) {
                 $percent = 30;
-            } else if ($days >= 14) {
+            } elseif ($days >= 14) {
                 $percent = 20;
-            } else if ($days >= 7) {
+            } elseif ($days >= 7) {
                 $percent = 10;
             }
 
             if ($amount >= 60) {
                 $percent += 50;
-            } else if ($amount >= 50) {
+            } elseif ($amount >= 50) {
                 $percent += 45;
-            } else if ($amount >= 40) {
+            } elseif ($amount >= 40) {
                 $percent += 43;
-            } else if ($amount >= 30) {
+            } elseif ($amount >= 30) {
                 $percent += 30;
-            } else if ($amount >= 20) {
+            } elseif ($amount >= 20) {
                 $percent += 27;
-            } else if ($amount >= 10) {
+            } elseif ($amount >= 10) {
                 $percent += 25;
-            } else if ($amount >= 5) {
+            } elseif ($amount >= 5) {
                 $percent += 22;
             }
 
@@ -137,6 +134,7 @@ final class AdvertInTop extends \yii\base\BaseObject implements ServiceInterface
     public function setProcess(Service $process)
     {
         $this->_process = $process;
+
         return $this;
     }
 
@@ -174,7 +172,6 @@ final class AdvertInTop extends \yii\base\BaseObject implements ServiceInterface
 
     public function validateContact()
     {
-
         return true;
     }
 
@@ -234,7 +231,6 @@ final class AdvertInTop extends \yii\base\BaseObject implements ServiceInterface
 
         // Поднимаем объявления в топ
         foreach ($this->_selected as $advertId) {
-
             $advert = Advert::find()
                 ->with([
                     'apartment' => function ($query) {
@@ -258,7 +254,6 @@ final class AdvertInTop extends \yii\base\BaseObject implements ServiceInterface
             // Когда объявление вылетает из топа, контакты закрываются автоматически
             $advert->apartment->open_contacts = 0;
             $advert->apartment->save(false);
-
         }
 
         // Если у пользователя закрываются контакты хотябы одного объявления,

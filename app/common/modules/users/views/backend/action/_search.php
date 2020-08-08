@@ -5,10 +5,10 @@
  * @var $model common\modules\users\models\backend\search\ActionSearch
  */
 
-use kartik\date\DatePicker;
-use yii\helpers\ArrayHelper;
-use yii\widgets\ActiveForm;
 use yii\helpers\Html;
+use kartik\date\DatePicker;
+use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
 
 ?>
 

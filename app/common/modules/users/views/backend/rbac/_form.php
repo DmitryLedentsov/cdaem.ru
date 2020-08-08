@@ -5,10 +5,10 @@
  * @var $model nepster\users\rbac\models\AuthItem
  */
 
+use yii\rbac\Item;
+use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
-use yii\helpers\Html;
-use yii\rbac\Item;
 
 $permissions = $model->getRolePermissions();
 
@@ -84,8 +84,8 @@ function getModuleName($id)
                  style="padding: 15px">
                 <?php foreach ($permissions as $id => $permission): ?>
                     <?php if ($module != getModuleName($id)) {
-                        continue;
-                    } ?>
+                continue;
+            } ?>
                     <?php $field = $form->field($model, 'permissions[' . $id . ']'); ?>
                     <?php echo $field->begin(); ?>
                     <?php

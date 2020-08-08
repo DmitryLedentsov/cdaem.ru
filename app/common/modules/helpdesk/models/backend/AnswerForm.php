@@ -2,11 +2,11 @@
 
 namespace common\modules\helpdesk\models\backend;
 
-use common\modules\helpdesk\models\HelpdeskAnswers;
-use common\modules\helpdesk\models\Helpdesk;
-use common\modules\users\models\User;
-use yii\base\Model;
 use Yii;
+use yii\base\Model;
+use common\modules\users\models\User;
+use common\modules\helpdesk\models\Helpdesk;
+use common\modules\helpdesk\models\HelpdeskAnswers;
 
 /**
  * Answer Form
@@ -15,7 +15,9 @@ use Yii;
 class AnswerForm extends Model
 {
     public $ticket_id;
+
     public $user_id;
+
     public $text;
 
     /**
@@ -76,6 +78,7 @@ class AnswerForm extends Model
             } else {
                 $transaction->commit();
             }
+
             return $result;
         } catch (\Exception $e) {
             $transaction->rollBack();
@@ -99,12 +102,13 @@ class AnswerForm extends Model
         $ticket->answered = 1;
         $ticket->close = 1;
 
-        if (!$ticket->save(false) or !$model->save(false))
+        if (!$ticket->save(false) or !$model->save(false)) {
             return false;
+        }
 
         // Отправить email
         Yii::$app->consoleRunner->run('helpdesk/mail/admin-answer ' . $model->answer_id);
+
         return true;
     }
-
 }

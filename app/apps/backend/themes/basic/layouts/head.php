@@ -6,8 +6,8 @@
  * @var array $params Основные параметры представления
  */
 
-use yii\helpers\Html;
 use yii\web\View;
+use yii\helpers\Html;
 
 ?>
     <title><?php echo Html::encode($this->title); ?></title>

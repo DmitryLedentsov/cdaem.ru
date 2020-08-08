@@ -2,9 +2,9 @@
 
 namespace common\modules\helpdesk\models\form;
 
-use common\modules\helpdesk\models\Helpdesk;
-use common\modules\partners\models\Advert;
 use Yii;
+use common\modules\partners\models\Advert;
+use common\modules\helpdesk\models\Helpdesk;
 
 /**
  * Helpdesk Form
@@ -12,13 +12,18 @@ use Yii;
  */
 class HelpdeskForm extends \yii\base\Model
 {
-
     public $theme;
+
     public $text;
+
     public $priority;
+
     public $email;
+
     public $user_name;
+
     public $partners_advert_id;
+
     public $source_type;
 
     /**
@@ -85,6 +90,7 @@ class HelpdeskForm extends \yii\base\Model
         $model = $this->createModel();
         $model->source_type = Helpdesk::TYPE_AGENCY;
         $model->department = Helpdesk::LETTER;
+
         return $model->save();
     }
 
@@ -93,6 +99,7 @@ class HelpdeskForm extends \yii\base\Model
         $model = $this->createModel();
         $model->source_type = Helpdesk::TYPE_AGENCY;
         $model->department = Helpdesk::LETTERWORK;
+
         return $model->save();
     }
 
@@ -102,6 +109,7 @@ class HelpdeskForm extends \yii\base\Model
         $model->source_type = Helpdesk::TYPE_AGENCY;
         $model->department = Helpdesk::LETTERPHONE;
         $model->text = "Поменяйте мне основной номер телефона пожалуйста";
+
         return $model->save();
     }
 
@@ -114,6 +122,7 @@ class HelpdeskForm extends \yii\base\Model
         $model = $this->createModel();
         $model->source_type = Helpdesk::TYPE_PARTNERS;
         $model->department = Helpdesk::LETTER;
+
         return $model->save();
     }
 
@@ -127,6 +136,7 @@ class HelpdeskForm extends \yii\base\Model
         $model->source_type = Helpdesk::TYPE_PARTNERS;
         $model->department = Helpdesk::COMPLAINT;
         $model->partners_advert_id = $this->partners_advert_id;
+
         return $model->save();
     }
 
@@ -155,7 +165,7 @@ class HelpdeskForm extends \yii\base\Model
         $model->ip = Yii::$app->request->userIp;
         $model->user_agent = Yii::$app->request->userAgent;
         $model->source_type = $this->source_type;
+
         return $model;
     }
-
 }

@@ -3,9 +3,9 @@
 namespace common\behaviors;
 
 use Yii;
-use yii\db\BaseActiveRecord;
-use yii\db\Expression;
+use yii\base\Event;
 use yii\base\Behavior;
+use yii\db\BaseActiveRecord;
 
 /**
  * UserAgentBehavior автоматически заполняет указанные атрибуты с текущим USER_AGENT пользователя
@@ -40,6 +40,7 @@ class UserAgentBehavior extends Behavior
         foreach ($events as $i => $event) {
             $events[$i] = 'getCurrentUserAgent';
         }
+
         return $events;
     }
 

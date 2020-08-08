@@ -7,8 +7,8 @@
     @var datetime $date
 */
 
-use common\modules\partners\models\Service;
 use yii\helpers\Html;
+use common\modules\partners\models\Service;
 
 $serviceLogo = '';
 

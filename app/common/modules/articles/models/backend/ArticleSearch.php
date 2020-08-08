@@ -2,10 +2,9 @@
 
 namespace common\modules\articles\models\backend;
 
-use common\modules\articles\models\Article;
-use yii\data\ActiveDataProvider;
 use yii\base\Model;
-use Yii;
+use yii\data\ActiveDataProvider;
+use common\modules\articles\models\Article;
 
 /**
  * Article Search
@@ -14,16 +13,27 @@ use Yii;
 class ArticleSearch extends Model
 {
     public $name;
+
     public $short_text;
+
     public $slug;
+
     public $title;
+
     public $description;
+
     public $keywords;
+
     public $title_img;
+
     public $full_text;
+
     public $visible;
+
     public $status;
+
     public $article_id;
+
     public $date_create;
 
     /**

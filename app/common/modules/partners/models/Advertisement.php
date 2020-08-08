@@ -3,7 +3,6 @@
 namespace common\modules\partners\models;
 
 use common\modules\partners\traits\ModuleTrait;
-use Yii;
 
 /**
  * Реклама

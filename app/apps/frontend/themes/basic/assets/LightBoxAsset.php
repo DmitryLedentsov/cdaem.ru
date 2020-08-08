@@ -20,7 +20,7 @@ class LightBoxAsset extends AssetBundle
      * @inheritdoc
      */
     public $depends = [
-        'yii\web\JqueryAsset',
+        \yii\web\JqueryAsset::class,
     ];
 
     /**
@@ -35,13 +35,10 @@ class LightBoxAsset extends AssetBundle
         ];
 
         if (YII_DEBUG) {
-
             $this->js = [
                 'widgets/light-box/js/lightbox.js',
             ];
-
         } else {
-
             $this->js = [
                 'widgets/light-box/js/lightbox.min.js',
             ];

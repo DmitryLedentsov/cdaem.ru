@@ -2,10 +2,10 @@
 
 namespace common\modules\partners\commands;
 
+use Yii;
+use yii\helpers\Console;
 use common\modules\partners\models\AdvertReservation;
 use common\modules\partners\models\ReservationFailure;
-use yii\helpers\Console;
-use Yii;
 
 /**
  * Reservation
@@ -48,13 +48,11 @@ class ReservationController extends \yii\console\Controller
                     $reservation->landlord->phone,
                     'Вам поступила Бронь (№ ' . $reservation->id . '), подтвердите!'
                 );
-
             } else {
 
                 // Если оба пользователя подтвердили заявку
                 // Необходимо отправить два письма с разными данными
                 if ($reservation->confirm == AdvertReservation::BOTH) {
-
                     $subject = 'Заявка на бронь №' . $reservation->id . ' успешно подтверждена обеими сторонами на сайте - ' . Yii::$app->params['siteDomain'];
 
                     // Отправить EMAIL
@@ -83,7 +81,8 @@ class ReservationController extends \yii\console\Controller
                     $this->sendSms(
                         $reservation,
                         $type,
-                        $reservation->user->phone, 'Заявка на бронь (№ ' . $reservation->id . ') подтверждена обеими сторонами'
+                        $reservation->user->phone,
+                        'Заявка на бронь (№ ' . $reservation->id . ') подтверждена обеими сторонами'
                     );
                     $this->sendSms(
                         $reservation,
@@ -119,17 +118,14 @@ class ReservationController extends \yii\console\Controller
                         $smsMessage
                     );
                 }
-
             }
 
             $this->stdout('SUCCESS' . PHP_EOL, Console::FG_GREEN);
-
         } catch (\Exception $e) {
             $this->setErrorLogReport($e, 'reservation-email', 'Заявка на бронь ID' . $reservationId);
             $this->stdout('FAIL: process ID' . $reservationId . ' ' . $e->getMessage() . PHP_EOL, Console::FG_RED);
         }
     }
-
 
     /**
      * Send email nezaezd By ReservationId
@@ -217,13 +213,11 @@ class ReservationController extends \yii\console\Controller
 
             Yii::info('Незаезд: Заявка на бронь ID' . $reservationId . ' - Успешно', 'reservation-email');
             $this->stdout('SUCCESS' . PHP_EOL, Console::FG_GREEN);
-
         } catch (\Exception $e) {
             $this->setErrorLogReport($e, 'reservation-email', 'Незаезд: Заявка на бронь ID' . $reservationId);
             $this->stdout('FAIL: process ID' . $reservationId . ' ' . $e->getMessage() . PHP_EOL, Console::FG_RED);
         }
     }
-
 
     /**
      * Отправка сообщения после возврата средств по заявке "Незаезд"
@@ -260,13 +254,11 @@ class ReservationController extends \yii\console\Controller
             );
 
             $this->stdout('SUCCESS' . PHP_EOL, Console::FG_GREEN);
-
         } catch (\Exception $e) {
             $this->setErrorLogReport($e, 'reservation-email', 'Незаезд: Заявка ID' . $failureId);
             $this->stdout('FAIL: process ID' . $failureId . ' ' . $e->getMessage() . PHP_EOL, Console::FG_RED);
         }
     }
-
 
     /**
      * Send email nezaezd By ReservationId
@@ -308,7 +300,6 @@ class ReservationController extends \yii\console\Controller
                     $reservation->user->phone,
                     'Возврат средств. Владелец не подтвердил заявку на бронь (№ ' . $reservation->id . ')'
                 );
-
             } else {
                 // Отправить EMAIL
                 $this->sendEmail(
@@ -333,13 +324,11 @@ class ReservationController extends \yii\console\Controller
             }
 
             $this->stdout('SUCCESS' . PHP_EOL, Console::FG_GREEN);
-
         } catch (\Exception $e) {
             $this->setErrorLogReport($e, 'reservation-email', 'Возврат средств по заявке на бронь ID' . $reservationId);
             $this->stdout('FAIL: process ID' . $reservationId . ' ' . $e->getMessage() . PHP_EOL, Console::FG_RED);
         }
     }
-
 
     /**
      * Получить данные для отправки на почту
@@ -385,7 +374,6 @@ class ReservationController extends \yii\console\Controller
         ];
     }
 
-
     /**
      * @param $e
      * @param $cat
@@ -400,7 +388,6 @@ class ReservationController extends \yii\console\Controller
         $log .= 'File: ' . $e->getFile() . ':' . $e->getLine();
         Yii::error($log, $cat);
     }
-
 
     /**
      * Отправить письмо
@@ -430,7 +417,6 @@ class ReservationController extends \yii\console\Controller
         }
     }
 
-
     /**
      * @param AdvertReservation $reservation
      * @param $type
@@ -445,6 +431,7 @@ class ReservationController extends \yii\console\Controller
 
         if (!$tel) {
             Yii::error('Ошибка при отправке SMS: reservationId = ' . $reservation->id . ' type: ' . $type . ' tel: ' . $tel . ' error: номер телефона не указан', 'reservation-sms');
+
             return;
         }
 
@@ -452,6 +439,7 @@ class ReservationController extends \yii\console\Controller
         $tel = (substr($tel, 0, 2) === '+8') ? str_replace('+8', '+7', $tel) : $tel;
 
         $phoneUtil = \libphonenumber\PhoneNumberUtil::getInstance();
+
         try {
             $swissNumberProto = $phoneUtil->parse($tel, "RU");
             $isValid = $phoneUtil->isValidNumber($swissNumberProto);
@@ -461,6 +449,7 @@ class ReservationController extends \yii\console\Controller
 
         if (!$isValid) {
             Yii::error('Ошибка при отправке SMS: reservationId = ' . $reservation->id . ' type: ' . $type . ' tel: ' . $tel . ' error: номер телефона некорректный', 'reservation-sms');
+
             return;
         }
 

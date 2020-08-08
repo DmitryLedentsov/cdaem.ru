@@ -2,9 +2,9 @@
 
 namespace common\modules\users\controllers\frontend;
 
-use common\modules\users\models as models;
-use yii\web\Controller;
 use Yii;
+use yii\web\Controller;
+use common\modules\users\models as models;
 
 /**
  * Class DefaultController
@@ -37,6 +37,7 @@ class DefaultController extends Controller
     {
         if (parent::beforeAction($action)) {
             $this->module->viewPath = '@common/modules/users/views/frontend';
+
             return true;
         }
 

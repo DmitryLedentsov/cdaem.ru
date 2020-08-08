@@ -2,12 +2,10 @@
 
 namespace common\modules\agency\models\backend\search;
 
+use yii\data\ActiveDataProvider;
+use common\modules\agency\models\Advert;
 use common\modules\realty\models\RentType;
 use common\modules\agency\models\Apartment;
-use common\modules\agency\models\Advert;
-use yii\data\ActiveDataProvider;
-use yii\base\Model;
-use Yii;
 
 /**
  * Поисковая модель апаратментов

@@ -2,12 +2,11 @@
 
 namespace common\modules\agency\models\backend\search;
 
-use common\modules\agency\models\Apartment;
-use common\modules\agency\models\Advert;
-use common\modules\agency\models\Advertisement;
-use yii\data\ActiveDataProvider;
 use yii\base\Model;
-use Yii;
+use yii\data\ActiveDataProvider;
+use common\modules\agency\models\Advert;
+use common\modules\agency\models\Apartment;
+use common\modules\agency\models\Advertisement;
 
 /**
  * Поисковая модель рекламных объявлений

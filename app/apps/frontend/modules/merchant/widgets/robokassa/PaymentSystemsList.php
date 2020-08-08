@@ -2,9 +2,9 @@
 
 namespace frontend\modules\merchant\widgets\robokassa;
 
-use yii\helpers\Html;
-use yii\base\Widget;
 use Yii;
+use yii\base\Widget;
+use yii\helpers\Html;
 
 /**
  * Class PaymentSystemsList
@@ -99,7 +99,7 @@ class PaymentSystemsList extends Widget
 
             return Html::tag('select', $options, $this->selectOptions);
         }
+
         return $this->_list;
     }
-
 }

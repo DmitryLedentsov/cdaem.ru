@@ -2,9 +2,9 @@
 
 namespace common\modules\agency\models\backend\form;
 
+use Yii;
 use common\modules\agency\models\Advert;
 use common\modules\agency\models\Apartment;
-use Yii;
 
 /**
  * Advert Form
@@ -13,16 +13,27 @@ use Yii;
 class AdvertForm extends \yii\base\Model
 {
     public $advert_id;
+
     public $meta_title;
+
     public $meta_description;
+
     public $meta_keywords;
+
     public $apartment_id;
+
     public $rent_type;
+
     public $price;
+
     public $currency;
+
     public $text;
+
     public $main_page;
+
     public $info;
+
     public $rules;
 
     /**
@@ -96,10 +107,11 @@ class AdvertForm extends \yii\base\Model
             }
 
             $transaction->commit();
-            return true;
 
+            return true;
         } catch (\Exception $e) {
             $transaction->rollBack();
+
             return false;
         }
     }
@@ -116,7 +128,6 @@ class AdvertForm extends \yii\base\Model
     {
         $transaction = Yii::$app->db->beginTransaction();
 
-//         try {
         $model->setAttributes($this->getAttributes(), false);
 
         if (!$model->save(false)) {
@@ -132,14 +143,9 @@ class AdvertForm extends \yii\base\Model
             throw new \Exception('Apartment not save');
         }
 
-
         $transaction->commit();
-        return true;
 
-//         } catch (\Exception $e) {
-//             $transaction->rollBack();
-//             return false;
-//         }
+        return true;
     }
 
     /**
@@ -155,17 +161,17 @@ class AdvertForm extends \yii\base\Model
         $transaction = Yii::$app->db->beginTransaction();
 
         try {
-
             $model->delete();
             $apartment = Apartment::findOne($model->apartment_id);
             $apartment->date_update = date('Y-m-d H:i:s');
             $apartment->save(false);
 
             $transaction->commit();
-            return true;
 
+            return true;
         } catch (\Exception $e) {
             $transaction->rollBack();
+
             return false;
         }
     }

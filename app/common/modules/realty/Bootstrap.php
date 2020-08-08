@@ -2,8 +2,6 @@
 
 namespace common\modules\realty;
 
-use yii\helpers\Html;
-
 /**
  * Realty module bootstrap class.
  */
@@ -15,7 +13,6 @@ class Bootstrap implements \yii\base\BootstrapInterface
     public function bootstrap($app)
     {
         if ($app->navigation) {
-
             $realtyAccess = 1;
 
             if (!\Yii::$app->user->can('realty-rent-type-view')
@@ -46,9 +43,9 @@ class Bootstrap implements \yii\base\BootstrapInterface
             ]);
         }
 
-
         // Add module URL rules.
-        $app->urlManager->addRules([
+        $app->urlManager->addRules(
+            [
 
             ]
         );

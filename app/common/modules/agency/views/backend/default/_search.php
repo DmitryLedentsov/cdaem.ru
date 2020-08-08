@@ -1,8 +1,8 @@
 <?php
 
-use yii\helpers\ArrayHelper;
-use yii\widgets\ActiveForm;
 use yii\helpers\Html;
+use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $model common\modules\agency\models\backend\search\ApartmentSearch */

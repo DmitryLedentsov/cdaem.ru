@@ -2,21 +2,21 @@
 
 namespace common\modules\site\controllers;
 
+use Yii;
+use yii\helpers\Url;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
+use yii\web\NotFoundHttpException;
+use common\modules\geo\models\City;
+use common\modules\site\models\Taxi;
+use common\modules\pages\models\Page;
+use common\modules\site\models\Sitemap;
+use common\modules\realty\models\RentType;
+use common\modules\articles\models\Article;
+use common\modules\agency\models\SpecialAdvert;
 use common\modules\agency\models\form\WantPassForm;
 use common\modules\agency\models\search\AdvertSearch as AgencyAdvertSearch;
 use frontend\modules\partners\models\search\AdvertSearch as PartnersAdvertSearch;
-use common\modules\agency\models\SpecialAdvert;
-use common\modules\realty\models\RentType;
-use common\modules\site\models\Sitemap;
-use common\modules\pages\models\Page;
-use common\modules\geo\models\City;
-use common\modules\site\models\Taxi;
-use yii\helpers\Url;
-use yii\web\NotFoundHttpException;
-use yii\widgets\ActiveForm;
-use yii\web\Response;
-use common\modules\articles\models\Article;
-use Yii;
 
 /**
  * Главный контроллер сайта
@@ -177,6 +177,7 @@ class DefaultController extends \frontend\components\Controller
                     $status = 1;
                     $msg = 'Возникла критическая ошибка. Пожалуйста обратитесь в техническую поддержку.';
                 }
+
                 return [
                     'status' => $status,
                     'message' => $msg,
@@ -215,11 +216,13 @@ class DefaultController extends \frontend\components\Controller
                             'message' => 'Заказ принят службой  TAXIREVERSi! 8(495)-979-9977'
                         ];
                     }
+
                     return [
                         'status' => 0,
                         'message' => 'Возникла критическая ошибка.'
                     ];
                 }
+
                 return [];
             }
 
@@ -262,5 +265,4 @@ class DefaultController extends \frontend\components\Controller
 
         return $sitemap->renderByCity($city);
     }
-
 }

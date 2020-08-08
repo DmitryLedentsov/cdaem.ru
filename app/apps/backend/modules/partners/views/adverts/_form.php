@@ -1,7 +1,7 @@
 <?php
 
-use yii\widgets\ActiveForm;
 use yii\helpers\Html;
+use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model backend\modules\partners\models\Advert */

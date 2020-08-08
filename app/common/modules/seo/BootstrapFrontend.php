@@ -2,8 +2,6 @@
 
 namespace common\modules\seo;
 
-use Yii;
-
 /**
  * Bootstrap Frontend
  * @package common\modules\seo
@@ -16,7 +14,8 @@ class BootstrapFrontend implements \yii\base\BootstrapInterface
     public function bootstrap($app)
     {
         // Add module URL rules.
-        $app->urlManager->addRules([
+        $app->urlManager->addRules(
+            [
 
             ]
         );

@@ -80,10 +80,13 @@ echo GridView::widget([
                     return Html::a('<span class="icon-wrench"></span>', ['/callback/default/update', 'id' => $model->callback_id]);
                 },
                 'delete' => function ($url, $model) {
-                    return Html::a('<span class="icon-remove3"></span>', ['/callback/default/delete', 'id' => $model->callback_id],
+                    return Html::a(
+                        '<span class="icon-remove3"></span>',
+                        ['/callback/default/delete', 'id' => $model->callback_id],
                         ['data' => [
                             'confirm' => 'Удалить?',
-                        ]]);
+                        ]]
+                    );
                 }
             ],
         ],
@@ -128,4 +131,3 @@ echo GridView::widget([
 ]);
 
 echo Html::endForm();
-

@@ -2,10 +2,9 @@
 
 namespace common\modules\articles\models\backend;
 
-use common\modules\articles\models\ArticleLink;
-use yii\data\ActiveDataProvider;
 use yii\base\Model;
-use Yii;
+use yii\data\ActiveDataProvider;
+use common\modules\articles\models\ArticleLink;
 
 /**
  * Article Search
@@ -14,10 +13,15 @@ use Yii;
 class ArticleLinkSearch extends Model
 {
     public $id;
+
     public $text;
+
     public $title;
+
     public $thumb_img;
+
     public $link_page;
+
     public $article_id;
 
     /**
@@ -72,7 +76,6 @@ class ArticleLinkSearch extends Model
             // $query->where('0=1');
             return $dataProvider;
         }
-
 
         return $dataProvider;
     }

@@ -2,10 +2,9 @@
 
 namespace frontend\modules\partners\models\search;
 
-
-use frontend\modules\partners\models\AdvertReservation;
-use yii\data\ActiveDataProvider;
 use Yii;
+use yii\data\ActiveDataProvider;
+use frontend\modules\partners\models\AdvertReservation;
 
 /**
  * @inheritdoc
@@ -49,7 +48,6 @@ class AdvertReservationSearch extends AdvertReservation
 
 
     ////////////
-
 
     public function AlltypetSearch($iduser = null)
     {
@@ -96,7 +94,6 @@ class AdvertReservationSearch extends AdvertReservation
     }
 
     ///////////
-
 
     public function landlordSearch($params = [])
     {
@@ -185,5 +182,4 @@ class AdvertReservationSearch extends AdvertReservation
 
         return $dataProvider;
     }
-
 }

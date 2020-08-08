@@ -2,15 +2,13 @@
 
 namespace common\modules\partners\services;
 
-use common\modules\partners\interfaces\ServiceInterface;
-use frontend\modules\partners\models\Advert;
-use common\modules\partners\models\Service;
-use common\modules\users\models\User;
-use yii\validators\ExistValidator;
-use yii\validators\EmailValidator;
-use yii\base\InvalidConfigException;
-use yii\helpers\Json;
 use Yii;
+use yii\helpers\Json;
+use yii\validators\EmailValidator;
+use common\modules\users\models\User;
+use common\modules\partners\models\Service;
+use frontend\modules\partners\models\Advert;
+use common\modules\partners\interfaces\ServiceInterface;
 
 /**
  * Сервис [Service Contacts Open To User]
@@ -103,6 +101,7 @@ final class ContactsOpenToUser extends \yii\base\BaseObject implements ServiceIn
     public function setProcess(Service $process)
     {
         $this->_process = $process;
+
         return $this;
     }
 
@@ -138,7 +137,6 @@ final class ContactsOpenToUser extends \yii\base\BaseObject implements ServiceIn
 
     public function validateContact()
     {
-
         return true;
     }
 

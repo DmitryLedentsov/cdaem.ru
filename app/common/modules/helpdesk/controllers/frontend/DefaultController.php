@@ -2,11 +2,11 @@
 
 namespace common\modules\helpdesk\controllers\frontend;
 
-use common\modules\helpdesk\models\form\HelpdeskForm;
-use common\modules\helpdesk\models\Helpdesk;
-use yii\widgets\ActiveForm;
-use yii\web\Response;
 use Yii;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
+use common\modules\helpdesk\models\Helpdesk;
+use common\modules\helpdesk\models\form\HelpdeskForm;
 
 /**
  * Техническая поддержка
@@ -64,19 +64,24 @@ class DefaultController extends \frontend\components\Controller
                 } else {
                     Yii::$app->session->setFlash('danger', 'При отправки обращения возникла ошибка.');
                 }
+
                 return $this->refresh();
-            } else if (Yii::$app->request->isAjax) {
+            } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return $errors;
             }
         }
+
         return $this->render('index.twig', [
             'model' => $model,
             'formModel' => $formModel,
         ]);
     }
 
-
+    /**
+     * @return array|string|\yii\console\Response|Response
+     */
     public function actionWorkvac()
     {
         $model = new Helpdesk();
@@ -89,18 +94,24 @@ class DefaultController extends \frontend\components\Controller
                 } else {
                     Yii::$app->session->setFlash('danger', 'При отправки обращения возникла ошибка.');
                 }
+
                 return $this->refresh();
-            } else if (Yii::$app->request->isAjax) {
+            } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return $errors;
             }
         }
+
         return $this->render('workvac.twig', [
             'model' => $model,
             'formModel' => $formModel,
         ]);
     }
 
+    /**
+     * @return array|string|Response
+     */
     public function actionHelpphone()
     {
         $model = new Helpdesk();
@@ -110,16 +121,19 @@ class DefaultController extends \frontend\components\Controller
             if (!$errors) {
                 if ($formModel->phonehelp()) {
                     Yii::$app->session->setFlash('success', 'Обращение успешно отправлено. Ваша заявка будет расмотренна в течении суток.');
-
                 } else {
                     Yii::$app->session->setFlash('danger', 'При отправки обращения возникла ошибка.');
                 }
-                return Yii::$app->controller->redirect(['/users/user/profile']);;
-            } else if (Yii::$app->request->isAjax) {
+
+                return Yii::$app->controller->redirect(['/users/user/profile']);
+            }
+            if (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return $errors;
             }
         }
+
         return $this->render('helpphone.twig', [
             'model' => $model,
             'formModel' => $formModel,
@@ -143,9 +157,12 @@ class DefaultController extends \frontend\components\Controller
                 } else {
                     Yii::$app->session->setFlash('danger', 'При отправки обращения возникла ошибка.');
                 }
+
                 return $this->refresh();
-            } else if (Yii::$app->request->isAjax) {
+            }
+            if (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return $errors;
             }
         }

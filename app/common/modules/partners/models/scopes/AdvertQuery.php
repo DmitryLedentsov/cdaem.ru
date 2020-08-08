@@ -2,9 +2,8 @@
 
 namespace common\modules\partners\models\scopes;
 
-use common\modules\partners\models\Advert;
 use yii\db\ActiveQuery;
-use yii\db\Expression;
+use common\modules\partners\models\Advert;
 
 /**
  * Class AdvertQuery

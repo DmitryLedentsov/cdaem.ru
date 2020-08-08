@@ -63,7 +63,8 @@ class Bootstrap implements \yii\base\BootstrapInterface
         ];
 
         // Add module URL rules.
-        $app->urlManager->addRules([
+        $app->urlManager->addRules(
+            [
                 'activation/<token>' => 'users/guest/activation',
                 'recovery-confirmation/<token>' => 'users/guest/recovery-confirmation',
                 '<_a:(login|signup|activation|resend|recovery)>' => 'users/guest/<_a>',

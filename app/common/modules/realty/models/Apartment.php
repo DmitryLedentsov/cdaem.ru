@@ -3,10 +3,10 @@
 namespace common\modules\realty\models;
 
 use yii\db\ActiveRecord;
-use Yii;
 
 /**
  * Данные апартаментов
+ * @package common\modules\realty\models
  */
 class Apartment extends ActiveRecord
 {

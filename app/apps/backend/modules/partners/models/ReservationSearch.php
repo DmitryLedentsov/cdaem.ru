@@ -18,7 +18,6 @@ class ReservationSearch extends Reservation
      */
     public $actuality;
 
-
     /**
      * @inheritdoc
      */

@@ -2,12 +2,12 @@
 
 namespace common\modules\helpdesk\controllers\frontend;
 
-use common\modules\helpdesk\models\form\HelpdeskForm;
-use common\modules\helpdesk\models\Helpdesk;
-use yii\filters\AccessControl;
-use yii\widgets\ActiveForm;
-use yii\web\Response;
 use Yii;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
+use yii\filters\AccessControl;
+use common\modules\helpdesk\models\Helpdesk;
+use common\modules\helpdesk\models\form\HelpdeskForm;
 
 /**
  * Ajax Controller
@@ -42,10 +42,13 @@ class AjaxController extends \frontend\components\Controller
         if (!parent::beforeAction($action)) {
             return false;
         }
+
         if (!Yii::$app->request->isAjax) {
             return $this->goHome();
         }
+
         $this->module->viewPath = '@common/modules/helpdesk/views/frontend';
+
         return true;
     }
 
@@ -77,13 +80,14 @@ class AjaxController extends \frontend\components\Controller
                         'status' => 1,
                         'message' => 'Ваша заявка успешно остановлена, пожалуйста ожидайте звонка от диспетчера.'
                     ];
-                } else {
-                    return [
-                        'status' => 0,
-                        'message' => 'Возникла критическая ошибка.'
-                    ];
                 }
+
+                return [
+                    'status' => 0,
+                    'message' => 'Возникла критическая ошибка.'
+                ];
             }
+
             return $errors;
         }
 

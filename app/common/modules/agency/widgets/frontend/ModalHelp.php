@@ -2,31 +2,25 @@
 
 namespace common\modules\agency\widgets\frontend;
 
-use yii\bootstrap\Modal;
-use common\modules\agency\models\SpecialAdvert;
-use common\modules\agency\models\Advert;
-use yii\helpers\Html;
 use Yii;
 
-
+/**
+ * Class ModalHelp
+ * @package common\modules\agency\widgets\frontend
+ */
 class ModalHelp extends \yii\base\Widget
 {
-
-    public function init()
-    {
-        parent::init();
-    }
-
     /**
      * @inheritdoc
      */
     public function run()
     {
-
         return $this->getModal();
     }
 
-
+    /**
+     * @return string
+     */
     protected function getModal()
     {
         return ('
@@ -54,8 +48,5 @@ class ModalHelp extends \yii\base\Widget
                 
             </div>
         ');
-
     }
-
-
 }

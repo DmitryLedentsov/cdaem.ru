@@ -4,10 +4,10 @@ namespace backend\modules\admin\models;
 
 use Yii;
 use yii\base\Model;
+use yii\helpers\ArrayHelper;
 use yii\caching\DbDependency;
 use yii\data\ActiveDataProvider;
 use backend\modules\admin\models\Log;
-use yii\helpers\ArrayHelper;
 
 /**
  * Class LogSearch
@@ -16,10 +16,15 @@ use yii\helpers\ArrayHelper;
 class LogSearch extends Model
 {
     public $id;
+
     public $level;
+
     public $category;
+
     public $prefix;
+
     public $message;
+
     public $log_time;
 
     /**

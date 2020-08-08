@@ -2,13 +2,13 @@
 
 namespace frontend\modules\merchant\controllers;
 
-use frontend\modules\merchant\models\PaymentSearch;
-use frontend\modules\merchant\models\Payment;
-use frontend\modules\merchant\models\Invoice;
-use frontend\modules\merchant\models\Pay;
-use yii\widgets\ActiveForm;
-use yii\web\Response;
 use Yii;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
+use frontend\modules\merchant\models\Pay;
+use frontend\modules\merchant\models\Invoice;
+use frontend\modules\merchant\models\Payment;
+use frontend\modules\merchant\models\PaymentSearch;
 
 /**
  * Платежный контроллер
@@ -85,10 +85,11 @@ class DefaultController extends \frontend\components\Controller
                 // Редирект на робокассу
                 $title = 'Пополнение счета';
                 $email = Yii::$app->user->identity->email;
-                return Yii::$app->robokassa->payment($invoice->funds, $invoice->invoice_id, $title, $invoice->system, $email, 'ru');
 
-            } else if (Yii::$app->request->isAjax) {
+                return Yii::$app->robokassa->payment($invoice->funds, $invoice->invoice_id, $title, $invoice->system, $email, 'ru');
+            } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validate($model);
             }
         }
@@ -131,9 +132,9 @@ class DefaultController extends \frontend\components\Controller
                     'message' => $error[0]
                 ];
             }
-
         } catch (\Exception $e) {
             $transaction->rollBack();
+
             return [
                 'status' => 0,
                 //'message' => $e->getMessage() . ' ' . $e->getCode(),

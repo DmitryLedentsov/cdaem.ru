@@ -2,9 +2,6 @@
 
 namespace common\modules\geo;
 
-use yii\helpers\Html;
-use Yii;
-
 /**
  * Bootstrap Backend
  * @package common\modules\geo
@@ -16,6 +13,5 @@ class BootstrapBackend implements \yii\base\BootstrapInterface
      */
     public function bootstrap($app)
     {
-
     }
 }

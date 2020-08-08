@@ -2,9 +2,9 @@
 
 namespace frontend\modules\partners\models\form;
 
-use frontend\modules\partners\models\Advert;
-use yii\validators\ExistValidator;
 use Yii;
+use yii\validators\ExistValidator;
+use frontend\modules\partners\models\Advert;
 
 /**
  * @inheritdoc
@@ -59,7 +59,6 @@ class AdvertForm extends \frontend\modules\partners\models\Advert
 
             // Проверить и собрать все типы аренды, которые необходимо сохранить или обновить
             if ($this->rent_type && is_array($this->rent_type)) {
-
                 $result = [];
 
                 foreach ($this->rent_type as $rentTypeId) {
@@ -79,7 +78,6 @@ class AdvertForm extends \frontend\modules\partners\models\Advert
                 }
 
                 $this->newAdverts = $result;
-
             } else {
                 $this->addError('rent_type', 'Укажите объявления для недвижимости');
             }
@@ -107,7 +105,6 @@ class AdvertForm extends \frontend\modules\partners\models\Advert
         }
 
         if (!in_array($advert['currency'], array_keys(self::getCurrencyList()))) {
-
             return false;
         }
 

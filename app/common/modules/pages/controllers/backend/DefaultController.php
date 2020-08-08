@@ -2,15 +2,15 @@
 
 namespace common\modules\pages\controllers\backend;
 
-use common\modules\pages\models\backend\PageSearch;
-use common\modules\pages\models\backend\PageForm;
-use common\modules\pages\models\Page;
-use yii\web\ForbiddenHttpException;
-use yii\web\NotFoundHttpException;
-use yii\widgets\ActiveForm;
-use yii\web\Response;
-use yii\helpers\Url;
 use Yii;
+use yii\helpers\Url;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
+use yii\web\NotFoundHttpException;
+use yii\web\ForbiddenHttpException;
+use common\modules\pages\models\Page;
+use common\modules\pages\models\backend\PageForm;
+use common\modules\pages\models\backend\PageSearch;
 
 /**
  * Default Controller
@@ -109,9 +109,11 @@ class DefaultController extends \backend\components\Controller
                 } else {
                     Yii::$app->session->setFlash('danger', 'Возникла ошибка.');
                 }
+
                 return $this->redirect(['update', 'id' => $modelForm->page_id]);
             } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validate($modelForm);
             }
         }
@@ -150,9 +152,11 @@ class DefaultController extends \backend\components\Controller
                 } else {
                     Yii::$app->session->setFlash('danger', 'Возникла ошибка.');
                 }
+
                 return $this->refresh();
             } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validate($formModel);
             }
         }
@@ -178,11 +182,13 @@ class DefaultController extends \backend\components\Controller
         }
         $model = $this->findModel($id);
         $formModel = new PageForm(['scenario' => 'delete']);
+
         if ($formModel->validate() && $formModel->delete($model)) {
             Yii::$app->session->setFlash('success', 'Данные успешно удалены.');
         } else {
             Yii::$app->session->setFlash('danger', 'Возникла ошибка.');
         }
+
         return $this->redirect(Url::previous());
     }
 
@@ -198,6 +204,7 @@ class DefaultController extends \backend\components\Controller
         if (($model = Page::findOne(['page_id' => $id])) !== null) {
             return $model;
         }
+
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 }

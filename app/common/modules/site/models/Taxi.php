@@ -11,7 +11,9 @@ use Yii;
 class Taxi extends \yii\base\Model
 {
     const CAR_ECONOMY = 'economy';
+
     const CAR_BUSINESS = 'business';
+
     const CAR_VIP = 'vip';
 
     /**
@@ -123,7 +125,6 @@ class Taxi extends \yii\base\Model
     public function beforeValidate()
     {
         if (parent::beforeValidate()) {
-
             $this->phone = str_replace(['(', ')', '+', ' ', '-'], '', $this->phone);
 
             $validator = new \yii\validators\DateValidator();

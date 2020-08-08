@@ -64,10 +64,13 @@ echo $this->render('_search', ['model' => $searchModel]);
                     return Html::a('<span class="icon-wrench"></span>', ['/partners/advert-reservation/update', 'id' => $model->id]);
                 },
                 'delete' => function ($url, $model) {
-                    return Html::a('<span class="icon-remove3"></span>', ['/partners/advert-reservation/delete', 'id' => $model->id],
+                    return Html::a(
+                        '<span class="icon-remove3"></span>',
+                        ['/partners/advert-reservation/delete', 'id' => $model->id],
                         ['data' => [
                             'confirm' => 'Удалить?',
-                        ]]);
+                        ]]
+                    );
                 }
             ],
         ],
@@ -175,8 +178,11 @@ echo $this->render('_search', ['model' => $searchModel]);
                 $value .= 'Отменена: ' . Yii::$app->BasisFormat->helper('Status')->booleanString($model->cancel, true) . '<br/>';
                 $value .= 'Дата создания: ' . $model->date_create . '<br/>';
                 $color = 'green';
-                if ($model->date_actuality < date('Y-m-d H:i:s')) $color = 'red';
+                if ($model->date_actuality < date('Y-m-d H:i:s')) {
+                    $color = 'red';
+                }
                 $value .= 'Актуальна до: <span style = "color:' . $color . '">' . Yii::$app->BasisFormat->helper('DateTime')->toFullDateTime($model->date_actuality) . '</span>';
+
                 return $value;
             }
         ],
@@ -187,11 +193,15 @@ echo $this->render('_search', ['model' => $searchModel]);
             'contentOptions' => ['class' => 'text-left tdStatus'],
             'value' => function ($model) {
                 $color = 'gray';
-                if ($model->confirm) $color = 'blue';
+                if ($model->confirm) {
+                    $color = 'blue';
+                }
                 $value = '<span style = "color:' . $color . '">' . $model->confirmText . '</span><br/>';
                 if ($model->failure) {
                     $color = 'red';
-                    if ($model->failure->processed == 1 or $model->failure->closed == 0) $color = 'green';
+                    if ($model->failure->processed == 1 or $model->failure->closed == 0) {
+                        $color = 'green';
+                    }
                     $value .= '<span style = "color:' . $color . '">"Незаезд"' . Html::a(' История ', ['/partners/reservation-failures/index', 's[reservation_id]' => $model->id]) . '</span><br/>';
                 }
 
@@ -206,4 +216,3 @@ echo $this->render('_search', ['model' => $searchModel]);
         ],
     ],
 ]);
-

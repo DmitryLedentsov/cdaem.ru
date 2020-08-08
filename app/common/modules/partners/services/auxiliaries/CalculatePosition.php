@@ -2,12 +2,9 @@
 
 namespace common\modules\partners\services\auxiliaries;
 
-use frontend\modules\partners\models\Apartment;
-use frontend\modules\partners\models\Advert;
-use common\modules\partners\models\Service;
 use common\modules\users\models\User;
-use yii\base\InvalidConfigException;
-use Yii;
+use frontend\modules\partners\models\Advert;
+use frontend\modules\partners\models\Apartment;
 
 /**
  * Дополнительная библиотека для пересчета позиций
@@ -44,6 +41,7 @@ final class CalculatePosition extends \yii\base\BaseObject
         if ($advert->apartment->visible == Apartment::VISIBLE) {
             return true;
         }
+
         return false;
     }
 
@@ -57,6 +55,7 @@ final class CalculatePosition extends \yii\base\BaseObject
         if ($advert->apartment->status == Apartment::ACTIVE && $advert->apartment->user->status == User::STATUS_ACTIVE) {
             return true;
         }
+
         return false;
     }
 
@@ -82,16 +81,18 @@ final class CalculatePosition extends \yii\base\BaseObject
             if (!isset($this->advertsTopPositions[$advert->apartment->city_id]['real_position'])) {
                 $this->advertsTopPositions[$advert->apartment->city_id]['real_position'] = 1;
             }
+
             return $this->advertsTopPositions[$advert->apartment->city_id];
-        } else {
-            if (!isset($this->advertsPositions[$advert->apartment->city_id][$advert->rent_type]['position'])) {
-                $this->advertsPositions[$advert->apartment->city_id][$advert->rent_type]['position'] = 1;
-            }
-            if (!isset($this->advertsPositions[$advert->apartment->city_id][$advert->rent_type]['real_position'])) {
-                $this->advertsPositions[$advert->apartment->city_id][$advert->rent_type]['real_position'] = 1;
-            }
-            return $this->advertsPositions[$advert->apartment->city_id][$advert->rent_type];
         }
+
+        if (!isset($this->advertsPositions[$advert->apartment->city_id][$advert->rent_type]['position'])) {
+            $this->advertsPositions[$advert->apartment->city_id][$advert->rent_type]['position'] = 1;
+        }
+        if (!isset($this->advertsPositions[$advert->apartment->city_id][$advert->rent_type]['real_position'])) {
+            $this->advertsPositions[$advert->apartment->city_id][$advert->rent_type]['real_position'] = 1;
+        }
+
+        return $this->advertsPositions[$advert->apartment->city_id][$advert->rent_type];
     }
 
     /**
@@ -116,9 +117,7 @@ final class CalculatePosition extends \yii\base\BaseObject
 
 
         foreach ($query as $adverts) {
-
             foreach ($adverts as &$advert) {
-
                 if (!empty($this->_selected) && in_array($advert->advert_id, $this->_selected)) {
                     continue;
                 }
@@ -142,7 +141,6 @@ final class CalculatePosition extends \yii\base\BaseObject
                  * Отмечаем real_position как текущий position
                  */
                 if (!$this->isVisible($advert)) {
-
                     $advert->old_position = $advert->position;
 
                     $advert->position = $repository['position'];
@@ -150,7 +148,6 @@ final class CalculatePosition extends \yii\base\BaseObject
                     $advert->save(false);
 
                     $repository['real_position']--;
-
                 } else {
 
                     /**
@@ -180,7 +177,6 @@ final class CalculatePosition extends \yii\base\BaseObject
     private function updateFirstAdvertsPositions()
     {
         if (!empty($this->_selected)) {
-
             $adverts = Advert::find()
                 ->joinWith(['apartment'])
                 ->where(['advert_id' => $this->_selected])
@@ -200,5 +196,4 @@ final class CalculatePosition extends \yii\base\BaseObject
             }
         }
     }
-
 }

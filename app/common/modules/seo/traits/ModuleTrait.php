@@ -2,8 +2,8 @@
 
 namespace common\modules\seo\traits;
 
-use common\modules\seo\Module;
 use Yii;
+use common\modules\seo\Module;
 
 /**
  * Class ModuleTrait
@@ -30,6 +30,7 @@ trait ModuleTrait
                 $this->_module = Yii::$app->getModule('seo');
             }
         }
+
         return $this->_module;
     }
 }

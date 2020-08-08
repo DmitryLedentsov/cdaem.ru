@@ -2,13 +2,13 @@
 
 namespace common\modules\users\controllers\backend;
 
-use common\modules\users\models as models;
+use Yii;
+use yii\web\Response;
+use yii\web\Controller;
+use yii\widgets\ActiveForm;
 use yii\web\NotFoundHttpException;
 use yii\web\ForbiddenHttpException;
-use yii\web\Controller;
-use yii\web\Response;
-use yii\widgets\ActiveForm;
-use Yii;
+use common\modules\users\models as models;
 
 /**
  * Контроллер управления действиями пользователей
@@ -45,8 +45,10 @@ class ActionController extends Controller
 
         if (parent::beforeAction($action)) {
             $this->module->viewPath = '@common/modules/users/views/backend';
+
             return true;
         }
+
         return false;
     }
 

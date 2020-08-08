@@ -2,9 +2,9 @@
 
 namespace frontend\modules\partners\models;
 
-use common\modules\partners\models\Calendar;
-use yii\base\Model;
 use Yii;
+use yii\base\Model;
+use common\modules\partners\models\Calendar;
 
 /**
  * class CalendarBlockerForm
@@ -18,8 +18,11 @@ use Yii;
 class CalendarBlockerForm extends Model
 {
     public $reserved = 1;
+
     public $apartment_id;
+
     public $date_from;
+
     public $date_to;
 
     /**
@@ -39,15 +42,23 @@ class CalendarBlockerForm extends Model
 
     public function process($validate = true)
     {
-        if ($validate && !$this->validate()) return false;
+        if ($validate && !$this->validate()) {
+            return false;
+        }
 
-        if (!$this->deleteOtherBlockers()) return false;
+        if (!$this->deleteOtherBlockers()) {
+            return false;
+        }
 
-        if (!$this->setApartmentAvailable()) return false;
+        if (!$this->setApartmentAvailable()) {
+            return false;
+        }
 
         if ($this->checkIntersections()) {
             foreach ($this->freeCalendars as $freeCalendar) {
-                if (!$this->divideIntersection($freeCalendar)) return false;
+                if (!$this->divideIntersection($freeCalendar)) {
+                    return false;
+                }
             }
         }
 
@@ -82,10 +93,14 @@ class CalendarBlockerForm extends Model
             ':date_to' => $this->date_to
         ])->all();
 
-        if (!$blockers) return true;
+        if (!$blockers) {
+            return true;
+        }
 
         foreach ($blockers as $blocker) {
-            if (!$blocker->delete()) return false;
+            if (!$blocker->delete()) {
+                return false;
+            }
         }
 
         return true;
@@ -112,6 +127,7 @@ class CalendarBlockerForm extends Model
 
         if ($calendars) {
             $this->freeCalendars = $calendars;
+
             return true;
         }
 
@@ -123,9 +139,14 @@ class CalendarBlockerForm extends Model
         $now = date('Y-m-d H:i:s');
         if ($this->date_from <= $now and $now <= $this->date_to) { // ���� ������ ���������� �� ��������� ���������� ����� �������
             $apartment = Apartment::findOne($this->apartment_id);
-            if (!$apartment) return false;
-            if ($apartment->now_available == 0) return true;
+            if (!$apartment) {
+                return false;
+            }
+            if ($apartment->now_available == 0) {
+                return true;
+            }
             $apartment->now_available = 0;
+
             return $apartment->save(false);
         }
 
@@ -151,9 +172,9 @@ class CalendarBlockerForm extends Model
         if (!$startDiff->invert and !$endDiff->invert) { // ������ ����� �������� �������� � ���������� ��������
 
             $freeCalendar->date_to = $this->date_from;
-            return $freeCalendar->save(false);
 
-        } else if (!$startDiff->invert and $endDiff->invert) { // ���������� �������� ���������� ������� � �������
+            return $freeCalendar->save(false);
+        } elseif (!$startDiff->invert and $endDiff->invert) { // ���������� �������� ���������� ������� � �������
 
             $calendar = new Calendar();
             $calendar->date_from = $this->date_to;
@@ -164,24 +185,24 @@ class CalendarBlockerForm extends Model
 
             $freeCalendar->date_to = $this->date_from;
 
-            if ($calendar->save(false) && $freeCalendar->save(false)) return true;
-            return false;
+            if ($calendar->save(false) && $freeCalendar->save(false)) {
+                return true;
+            }
 
-        } else if ($startDiff->invert and !$endDiff->invert) { // ���������� �������� ��������� ������� � �������
+            return false;
+        } elseif ($startDiff->invert and !$endDiff->invert) { // ���������� �������� ��������� ������� � �������
 
             return $freeCalendar->delete();
-
-        } else if ($startDiff->invert and $startDiff->invert) { // ������ ������ �������� �������� � ���������� ��������
+        } elseif ($startDiff->invert and $startDiff->invert) { // ������ ������ �������� �������� � ���������� ��������
 
             $freeCalendar->date_from = $this->date_to;
             if ($freeCalendar->process == 1) {
                 $freeCalendar->process = 0;
             }
-            return $freeCalendar->save(false);
 
+            return $freeCalendar->save(false);
         } else { // � ��� ����� �����-��. ������ ��������� ���� �������.
             return false;
         }
     }
-
 }

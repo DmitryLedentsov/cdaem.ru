@@ -2,14 +2,14 @@
 
 namespace common\modules\seo\controllers\backend;
 
-use common\modules\seo\models\backend\SeotextSearch;
-use common\modules\seo\models\Seotext;
-use backend\components\Controller;
-use yii\web\ForbiddenHttpException;
-use yii\web\NotFoundHttpException;
-use yii\widgets\ActiveForm;
-use yii\web\Response;
 use Yii;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
+use backend\components\Controller;
+use yii\web\NotFoundHttpException;
+use yii\web\ForbiddenHttpException;
+use common\modules\seo\models\Seotext;
+use common\modules\seo\models\backend\SeotextSearch;
 
 /**
  * Text Controller
@@ -89,9 +89,11 @@ class TextController extends Controller
                 } else {
                     Yii::$app->session->setFlash('danger', 'Возникла ошибка.');
                 }
+
                 return $this->redirect(['index']);
             } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validate($model);
             }
         }
@@ -127,9 +129,11 @@ class TextController extends Controller
                 } else {
                     Yii::$app->session->setFlash('danger', 'Возникла ошибка.');
                 }
+
                 return $this->refresh();
             } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validate($model);
             }
         }
@@ -170,6 +174,7 @@ class TextController extends Controller
         if (($model = Seotext::findOne($id)) !== null) {
             return $model;
         }
+
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 }

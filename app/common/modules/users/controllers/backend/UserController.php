@@ -2,13 +2,13 @@
 
 namespace common\modules\users\controllers\backend;
 
-use common\modules\users\models as models;
-use yii\web\ForbiddenHttpException;
-use yii\web\NotFoundHttpException;
-use yii\web\Controller;
-use yii\web\Response;
-use yii\widgets\ActiveForm;
 use Yii;
+use yii\web\Response;
+use yii\web\Controller;
+use yii\widgets\ActiveForm;
+use yii\web\NotFoundHttpException;
+use yii\web\ForbiddenHttpException;
+use common\modules\users\models as models;
 
 /**
  * Контроллер для управления пользователями
@@ -16,7 +16,6 @@ use Yii;
  */
 class UserController extends Controller
 {
-
     /**
      * @inheritdoc
      */
@@ -47,8 +46,10 @@ class UserController extends Controller
     {
         if (parent::beforeAction($action)) {
             $this->module->viewPath = '@common/modules/users/views/backend';
+
             return true;
         }
+
         return false;
     }
 
@@ -59,6 +60,7 @@ class UserController extends Controller
     public function actionLogout()
     {
         Yii::$app->user->logout();
+
         return $this->goHome();
     }
 
@@ -105,19 +107,21 @@ class UserController extends Controller
             $profile->phone2 = $user->phone;
 
             if (!ActiveForm::validateMultiple([$user, $profile, $person])) {
-
                 $user->populateRelation('profile', $profile);
                 $user->populateRelation('person', $person);
 
                 if ($user->save(false)) {
                     Yii::$app->session->setFlash('success', Yii::t('users', 'SUCCESS_UPDATE'));
+
                     return $this->redirect(['index']);
                 } else {
                     Yii::$app->session->setFlash('danger', Yii::t('users', 'FAIL_UPDATE'));
                 }
+
                 return $this->refresh();
-            } else if (Yii::$app->request->isAjax) {
+            } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validateMultiple([$user, $profile, $person]);
             }
         }
@@ -165,11 +169,11 @@ class UserController extends Controller
             } else {
                 Yii::$app->session->setFlash('danger', Yii::t('users', 'FAIL_UPDATE'));
             }
+
             return $this->redirect(['update', 'id' => $user->id]);
         }
 
         if (Yii::$app->request->isPost) {
-
             if (!Yii::$app->user->can('user-update')) {
                 throw new ForbiddenHttpException(Yii::t('users.rbac', 'ACCESS_DENIED'));
             }
@@ -185,9 +189,11 @@ class UserController extends Controller
                 } else {
                     Yii::$app->session->setFlash('danger', Yii::t('users', 'FAIL_UPDATE'));
                 }
+
                 return $this->refresh();
-            } else if (Yii::$app->request->isAjax) {
+            } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validateMultiple([$user, $profile, $person]);
             }
         }
@@ -224,6 +230,7 @@ class UserController extends Controller
         } else {
             Yii::$app->session->setFlash('danger', Yii::t('users', 'FAIL_UPDATE'));
         }
+
         return $this->redirect(['index']);
     }
 
@@ -243,7 +250,6 @@ class UserController extends Controller
         $users = models\User::findIdentities($params);
 
         if ($users) {
-
             switch (Yii::$app->request->post('action')) {
 
                 case 'sendemail': // Отправить письмо
@@ -251,6 +257,7 @@ class UserController extends Controller
                     foreach ($users as $user) {
                         $ids[] = $user->id;
                     }
+
                     return $this->redirect(['send-email', 'ids' => $ids]);
                     break;
 
@@ -286,17 +293,15 @@ class UserController extends Controller
 
                 default:
                     Yii::$app->session->setFlash('success', Yii::t('users', 'ACTION_INCORRECT'));
+
                     return $this->redirect(['index']);
             }
 
             Yii::$app->user->action(Yii::$app->user->id, $this->module->id, 'multi-control', [Yii::$app->request->post('action') => $params]);
 
             Yii::$app->session->setFlash('success', Yii::t('users', 'ACTIONS_MADE'));
-
         } else {
-
             Yii::$app->session->setFlash('danger', Yii::t('users', 'NO_SET_USERS'));
-
         }
 
         return $this->redirect(['index']);
@@ -325,9 +330,11 @@ class UserController extends Controller
                 if ($model->send(true)) {
                     Yii::$app->session->setFlash('success', Yii::t('users', 'Задание поставлено в очередь'));
                 }
+
                 return $this->refresh();
-            } else if (Yii::$app->request->isAjax) {
+            } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validate($model);
             }
         }
@@ -337,7 +344,6 @@ class UserController extends Controller
             'users' => $users
         ]);
     }
-
 
     /**
      * Заблокировать пользователей
@@ -358,13 +364,16 @@ class UserController extends Controller
             if ($model->validate()) {
                 if ($model->bannedUsers($users)) {
                     Yii::$app->session->setFlash('success', Yii::t('users', 'SUCCESS_UPDATE'));
+
                     return $this->redirect(['index']);
                 } else {
                     Yii::$app->session->setFlash('danger', Yii::t('users', 'FAIL_UPDATE'));
                 }
+
                 return $this->refresh();
-            } else if (Yii::$app->request->isAjax) {
+            } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validate($model);
             }
         }
@@ -390,6 +399,4 @@ class UserController extends Controller
 
         throw new NotFoundHttpException(Yii::t('users', 'USER_NOT_FOUND'));
     }
-
-
 }

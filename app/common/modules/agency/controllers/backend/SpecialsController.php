@@ -2,17 +2,17 @@
 
 namespace common\modules\agency\controllers\backend;
 
-use common\modules\agency\models\backend\search\SpecialAdvertSearch;
-use common\modules\agency\models\backend\form\SpecialAdvertForm;
+use Yii;
+use yii\helpers\Url;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
+use backend\components\Controller;
+use yii\web\NotFoundHttpException;
+use yii\web\ForbiddenHttpException;
 use common\modules\agency\models\Apartment;
 use common\modules\agency\models\SpecialAdvert;
-use backend\components\Controller;
-use yii\web\ForbiddenHttpException;
-use yii\web\NotFoundHttpException;
-use yii\widgets\ActiveForm;
-use yii\web\Response;
-use yii\helpers\Url;
-use Yii;
+use common\modules\agency\models\backend\form\SpecialAdvertForm;
+use common\modules\agency\models\backend\search\SpecialAdvertSearch;
 
 /**
  * Specials Controller
@@ -96,9 +96,11 @@ class SpecialsController extends Controller
                 } else {
                     Yii::$app->session->setFlash('danger', 'Возникла ошибка.');
                 }
+
                 return $this->redirect(['update', 'id' => $formModel->special_id]);
             } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validate($formModel);
             }
         }
@@ -127,7 +129,6 @@ class SpecialsController extends Controller
         $formModel->setAttributes($model->getAttributes(), false);
 
         if ($formModel->load(Yii::$app->request->post())) {
-
             if (!Yii::$app->user->can('agency-special-advert-update')) {
                 throw new ForbiddenHttpException(Yii::t('users.rbac', 'ACCESS_DENIED'));
             }
@@ -138,9 +139,11 @@ class SpecialsController extends Controller
                 } else {
                     Yii::$app->session->setFlash('danger', 'Возникла ошибка.');
                 }
+
                 return $this->redirect(['update', 'id' => $formModel->special_id]);
             } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validate($formModel);
             }
         }
@@ -238,7 +241,6 @@ class SpecialsController extends Controller
         $selected = [];
 
         if (Yii::$app->request->isPost) {
-
             $selected = (array)Yii::$app->request->post('selected');
             $adverts = (array)Yii::$app->request->post('SpecialAdvertForm');
             $countRecords = 0;
@@ -280,8 +282,8 @@ class SpecialsController extends Controller
     {
         if (($model = SpecialAdvert::findOne($id)) !== null) {
             return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
         }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
     }
 }

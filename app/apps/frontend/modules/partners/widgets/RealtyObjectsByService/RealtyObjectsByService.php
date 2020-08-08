@@ -2,13 +2,13 @@
 
 namespace frontend\modules\partners\widgets\RealtyObjectsByService;
 
-use frontend\modules\partners\models as models;
-use common\modules\partners\models\Service;
-use common\modules\realty\models\RentType;
-use yii\base\InvalidParamException;
+use Yii;
 use yii\base\Widget;
 use yii\helpers\Html;
-use Yii;
+use yii\base\InvalidParamException;
+use common\modules\realty\models\RentType;
+use common\modules\partners\models\Service;
+use frontend\modules\partners\models as models;
 
 /**
  * Генерирует html код объектов пользователя для выбора и активации сервисов

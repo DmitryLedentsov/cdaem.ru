@@ -64,10 +64,13 @@ echo \backend\modules\admin\widgets\ExtraControlWidget::widget([
                     return Html::a('<span class="icon-wrench"></span>', ['/seo/specification/update', 'id' => $model->id]);
                 },
                 'delete' => function ($url, $model) {
-                    return Html::a('<span class="icon-remove3"></span>', ['/seo/specification/delete', 'id' => $model->id],
+                    return Html::a(
+                        '<span class="icon-remove3"></span>',
+                        ['/seo/specification/delete', 'id' => $model->id],
                         ['data' => [
                             'confirm' => 'Удалить?',
-                        ]]);
+                        ]]
+                    );
                 }
             ],
         ],

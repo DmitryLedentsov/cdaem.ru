@@ -2,10 +2,9 @@
 
 namespace common\modules\seo\models\backend;
 
-use common\modules\seo\models\Seotext;
-use yii\data\ActiveDataProvider;
 use yii\base\Model;
-use Yii;
+use yii\data\ActiveDataProvider;
+use common\modules\seo\models\Seotext;
 
 /**
  * Seotext Search
@@ -14,7 +13,9 @@ use Yii;
 class SeotextSearch extends Model
 {
     public $url;
+
     public $type;
+
     public $visible;
 
     /**

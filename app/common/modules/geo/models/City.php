@@ -2,8 +2,8 @@
 
 namespace common\modules\geo\models;
 
-use yii\db\Connection;
 use Yii;
+use yii\db\Connection;
 
 /**
  * Class City
@@ -60,7 +60,10 @@ class City extends \yii\db\ActiveRecord
      */
     public static function findByNameEng($name_eng)
     {
-        if (!$name_eng) return null;
+        if (!$name_eng) {
+            return null;
+        }
+
         return self::findOne(['name_eng' => $name_eng]);
     }
 
@@ -99,7 +102,6 @@ class City extends \yii\db\ActiveRecord
         $dependency = null;
 
         return Yii::$app->db->cache(function (Connection $db) {
-
             $rows = (new \yii\db\Query())
                 ->select(self::tableName() . '.city_id, ' . self::tableName() . '.name, ' . Country::tableName() . '.name AS country')
                 ->from(self::tableName())
@@ -117,7 +119,6 @@ class City extends \yii\db\ActiveRecord
             unset($rows);
 
             return $result;
-
         }, $duration, $dependency);
     }
 }

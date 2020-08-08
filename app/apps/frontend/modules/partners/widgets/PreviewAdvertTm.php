@@ -2,14 +2,14 @@
 
 namespace frontend\modules\partners\widgets;
 
-use frontend\modules\partners\models\AdvertisementSlider;
-use frontend\modules\partners\models\Apartment;
-use frontend\modules\partners\models\Advert;
-use yii\base\InvalidParamException;
-use yii\helpers\ArrayHelper;
+use Yii;
 use yii\base\Widget;
 use yii\helpers\Html;
-use Yii;
+use yii\helpers\ArrayHelper;
+use yii\base\InvalidParamException;
+use frontend\modules\partners\models\Advert;
+use frontend\modules\partners\models\Apartment;
+use frontend\modules\partners\models\AdvertisementSlider;
 
 /**
  * Виджет отображает блок объявления в различных вариантах.
@@ -65,7 +65,7 @@ class PreviewAdvertTm extends Widget
                 ],
                 'title' => $this->advert->apartment->address,
             ];
-        } else if (!empty($this->apartment) && $this->apartment instanceof Apartment) {
+        } elseif (!empty($this->apartment) && $this->apartment instanceof Apartment) {
             $this->_previewExtraOptions = [
                 'data' => [
                     'apartment' => $this->apartment->apartment_id,
@@ -86,31 +86,23 @@ class PreviewAdvertTm extends Widget
 
 
         if (!empty($this->advert) && $this->advert instanceof Advert) {
-
             $advert = $this->advert;
             $present = $this->getAdvertByAdvert();
 
             if ($this->advert->selected) {
                 $selected = ' selected';
             }
-
-        } else if (!empty($this->advertisement) && $this->advertisement instanceof AdvertisementSlider) {
-
+        } elseif (!empty($this->advertisement) && $this->advertisement instanceof AdvertisementSlider) {
             $advert = $this->advertisement->advert;
             $present = $this->getAdvertByAdvertisement();
 
             if ($this->advertisement->advert && $this->advertisement->advert->selected) {
                 $selected = ' selected';
             }
-
-        } else if (!empty($this->apartment) && $this->apartment instanceof Apartment) {
-
+        } elseif (!empty($this->apartment) && $this->apartment instanceof Apartment) {
             $present = $this->getAdvertByApartment();
-
         } else {
-
             throw new InvalidParamException('Param "Advert" or "Advertisement" or "Apartment" must be correct set');
-
         }
 
         $result = Html::tag('div', $present, ['class' => 'apartment-wrap']);
@@ -148,7 +140,6 @@ class PreviewAdvertTm extends Widget
         }
 
         if ($type == 'no-bg') {
-
             if (!$apartment->now_available) {
                 return ' no-bg';
             }
@@ -240,11 +231,10 @@ class PreviewAdvertTm extends Widget
     protected function verifyAdvertPosition()
     {
         if ($this->enableAdvertPosition === true && !empty($this->advert)) {
-
             if ($this->advert->position < $this->advert->old_position) {
                 $positionClass = 'up';
                 $positionText = 'Позиция поднята';
-            } else if ($this->advert->position > $this->advert->old_position) {
+            } elseif ($this->advert->position > $this->advert->old_position) {
                 $positionClass = 'down';
                 $positionText = 'Позиция опущена';
             } else {
@@ -256,10 +246,8 @@ class PreviewAdvertTm extends Widget
                 'class' => 'position ' . $positionClass,
                 'title' => $positionText,
             ]);
-
         }
 
         return '';
     }
-
 }

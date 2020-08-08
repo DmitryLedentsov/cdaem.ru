@@ -2,14 +2,14 @@
 
 namespace backend\modules\partners\controllers;
 
-use backend\modules\partners\models\Advert;
-use backend\components\Controller;
-use yii\web\ForbiddenHttpException;
-use yii\web\NotFoundHttpException;
-use yii\widgets\ActiveForm;
-use yii\web\Response;
-use yii\helpers\Url;
 use Yii;
+use yii\helpers\Url;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
+use backend\components\Controller;
+use yii\web\NotFoundHttpException;
+use yii\web\ForbiddenHttpException;
+use backend\modules\partners\models\Advert;
 
 /**
  * AdvertsController implements the CRUD actions for ApartmentAdverts model.
@@ -54,12 +54,14 @@ class AdvertsController extends Controller
                 if ($model->save(false)) {
                     Yii::$app->session->setFlash('success', 'Данные успешно сохранены.');
                 } else {
-//			 print_r($model->getErrors());
+                    //			 print_r($model->getErrors());
                     Yii::$app->session->setFlash('danger', 'Возникла ошибка.');
                 }
+
                 return $this->redirect(['update', 'id' => $model->advert_id]);
             } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validate($model);
             }
         }
@@ -87,22 +89,22 @@ class AdvertsController extends Controller
 
 
         if ($model->load(Yii::$app->request->post())) {
-
             if (!Yii::$app->user->can('partners-advert-update')) {
                 throw new ForbiddenHttpException(Yii::t('users.rbac', 'ACCESS_DENIED'));
             }
 
             if ($model->validate()) {
                 if ($model->save(false)) {
-
                     Yii::$app->session->setFlash('success', 'Данные успешно сохранены.');
                 } else {
                     print_r($model->getErrors());
                     Yii::$app->session->setFlash('danger', 'Возникла ошибка.');
                 }
+
                 return $this->redirect(['update', 'id' => $model->advert_id]);
             } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validate($model);
             }
         }
@@ -133,6 +135,7 @@ class AdvertsController extends Controller
         if (Yii::$app->request->referrer == $update_url) {
             $apartment_id = $model->apartment_id;
             $model->delete();
+
             return $this->redirect(['/partners/default/update', 'id' => $apartment_id]);
         }
 

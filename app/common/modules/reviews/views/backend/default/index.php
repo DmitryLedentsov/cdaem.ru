@@ -7,9 +7,9 @@
  * @var $dataProvider yii\data\ActiveDataProvider
  */
 
-use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\widgets\Pjax;
+use yii\grid\GridView;
 
 $this->title = 'Все отзывы';
 
@@ -98,10 +98,13 @@ echo GridView::widget([
                     return Html::a('<span class="icon-wrench"></span>', ['/reviews/default/update', 'id' => $model->review_id]);
                 },
                 'delete' => function ($url, $model) {
-                    return Html::a('<span class="icon-remove3"></span>', ['/reviews/default/delete', 'id' => $model->review_id],
+                    return Html::a(
+                        '<span class="icon-remove3"></span>',
+                        ['/reviews/default/delete', 'id' => $model->review_id],
                         ['data' => [
                             'confirm' => 'Удалить?',
-                        ]]);
+                        ]]
+                    );
                 }
             ],
         ],
@@ -120,6 +123,7 @@ echo GridView::widget([
                         </div>
                     ');
                 }
+
                 return null;
             },
 
@@ -138,7 +142,8 @@ echo GridView::widget([
                             'surname' => Html::encode($model->user->profile->surname),
                             'avatar_url' => $model->user->profile->avatar_url,
                         ]
-                    ]) . '<div class="clearfix"></div> <br/> <div class="text-right">' . Html::a('Все отзывы', ['/reviews/default/index', 's[user_id]' => $model->user->id]) . '</div>';;
+                    ]) . '<div class="clearfix"></div> <br/> <div class="text-right">' . Html::a('Все отзывы', ['/reviews/default/index', 's[user_id]' => $model->user->id]) . '</div>';
+                ;
             }
         ],
 
@@ -161,6 +166,7 @@ echo GridView::widget([
                 $rating .= '<p>Цена и Качество:<br> ' . Yii::$app->BasisFormat->helper('Status')->getItem($model->ratingPriceAndQualityArray, $model->price_quality) . '</p>';
                 $rating .= '<p>Чистота:<br> ' . Yii::$app->BasisFormat->helper('Status')->getItem($model->ratingCleanlinessArray, $model->cleanliness) . '</p>';
                 $rating .= '<p>Заселение:<br> ' . Yii::$app->BasisFormat->helper('Status')->getItem($model->ratingEntryArray, $model->entry) . '</p>';
+
                 return $rating;
             }
         ],

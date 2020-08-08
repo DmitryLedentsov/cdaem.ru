@@ -2,13 +2,12 @@
 
 namespace common\modules\partners\services;
 
-use common\modules\partners\interfaces\ServiceInterface;
-use common\modules\partners\models\Service;
-use yii\validators\ExistValidator;
-use yii\validators\EmailValidator;
-use yii\base\InvalidConfigException;
-use yii\helpers\Json;
 use Yii;
+use yii\helpers\Json;
+use yii\validators\EmailValidator;
+use yii\validators\ExistValidator;
+use common\modules\partners\models\Service;
+use common\modules\partners\interfaces\ServiceInterface;
 
 /**
  * Сервис [Advertising In Section]
@@ -73,34 +72,32 @@ final class AdvertisingInSection extends \yii\base\BaseObject implements Service
         $days = isset($data['days']) ? (int)$data['days'] : 1;
         $price = isset($data['price']) ? $data['price'] : 1;
 
-
         if ($amount >= 3 || $days >= 7) {
-
             $percent = 0;
 
             if ($days >= 28) {
                 $percent = 25;
-            } else if ($days >= 21) {
+            } elseif ($days >= 21) {
                 $percent = 20;
-            } else if ($days >= 14) {
+            } elseif ($days >= 14) {
                 $percent = 15;
-            } else if ($days >= 7) {
+            } elseif ($days >= 7) {
                 $percent = 10;
             }
 
             if ($amount >= 60) {
                 $percent += 40;
-            } else if ($amount >= 50) {
+            } elseif ($amount >= 50) {
                 $percent += 35;
-            } else if ($amount >= 40) {
+            } elseif ($amount >= 40) {
                 $percent += 30;
-            } else if ($amount >= 30) {
+            } elseif ($amount >= 30) {
                 $percent += 25;
-            } else if ($amount >= 20) {
+            } elseif ($amount >= 20) {
                 $percent += 20;
-            } else if ($amount >= 10) {
+            } elseif ($amount >= 10) {
                 $percent += 17;
-            } else if ($amount >= 5) {
+            } elseif ($amount >= 5) {
                 $percent += 15;
             }
 
@@ -136,6 +133,7 @@ final class AdvertisingInSection extends \yii\base\BaseObject implements Service
     public function setProcess(Service $process)
     {
         $this->_process = $process;
+
         return $this;
     }
 
@@ -169,10 +167,8 @@ final class AdvertisingInSection extends \yii\base\BaseObject implements Service
         return true;
     }
 
-
     public function validateContact()
     {
-
         return true;
     }
 
@@ -234,6 +230,7 @@ final class AdvertisingInSection extends \yii\base\BaseObject implements Service
                 }
             }
         }
+
         return true;
     }
 
@@ -275,5 +272,4 @@ final class AdvertisingInSection extends \yii\base\BaseObject implements Service
     {
         Yii::$app->consoleRunner->run('service/execute-instant-process ' . $this->_process->id);
     }
-
 }

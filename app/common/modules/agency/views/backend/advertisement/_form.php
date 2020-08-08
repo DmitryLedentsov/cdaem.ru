@@ -1,9 +1,9 @@
 <?php
 
 use yii\helpers\Html;
+use kartik\date\DatePicker;
 use yii\widgets\ActiveForm;
 use kartik\datetime\DateTimePicker;
-use kartik\date\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $model common\modules\agency\models\Advertisement */

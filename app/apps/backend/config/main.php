@@ -40,10 +40,8 @@ return [
             'userModel' => 'common\modules\users\models\User',
             'userModelAttributes' => ['username', 'profile' => ['avatar_url', 'name', 'surname']],
         ]);
-
     },
     'on beforeAction' => function ($event) {
-
         $relogin = false;
         if (!Yii::$app->user->isGuest) {
             $group = Yii::$app->user->identity->group;

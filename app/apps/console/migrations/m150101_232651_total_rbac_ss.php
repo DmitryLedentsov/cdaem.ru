@@ -1,7 +1,7 @@
 <?php
 
-use yii\db\Migration;
 use yii\db\Schema;
+use yii\db\Migration;
 
 class m150101_232651_total_rbac_ss extends Migration
 {

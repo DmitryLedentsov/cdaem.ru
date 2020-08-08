@@ -2,9 +2,8 @@
 
 namespace common\modules\agency\models\backend\form;
 
-use common\modules\agency\models\SpecialAdvert;
 use common\modules\agency\models\Advert;
-use Yii;
+use common\modules\agency\models\SpecialAdvert;
 
 /**
  * Special Advert Form
@@ -13,9 +12,13 @@ use Yii;
 class SpecialAdvertForm extends \yii\base\Model
 {
     public $special_id;
+
     public $advert_id;
+
     public $text;
+
     public $date_start;
+
     public $date_expire;
 
     /**
@@ -74,6 +77,7 @@ class SpecialAdvertForm extends \yii\base\Model
         }
 
         $this->special_id = $model->special_id;
+
         return true;
     }
 
@@ -86,6 +90,7 @@ class SpecialAdvertForm extends \yii\base\Model
     public function update(SpecialAdvert $model)
     {
         $model->setAttributes($this->getAttributes(), false);
+
         return $model->save(false);
     }
 

@@ -2,8 +2,8 @@
 
 namespace common\modules\callback\traits;
 
-use common\modules\callback\Module;
 use Yii;
+use common\modules\callback\Module;
 
 /**
  * Class ModuleTrait
@@ -30,6 +30,7 @@ trait ModuleTrait
                 $this->_module = Yii::$app->getModule('callback');
             }
         }
+
         return $this->_module;
     }
 }

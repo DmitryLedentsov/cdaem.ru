@@ -3,10 +3,9 @@
 namespace common\modules\users\models\backend\search;
 
 use yii\rbac\Item;
-use nepster\users\rbac\models\AuthItem;
-use yii\data\ActiveDataProvider;
 use yii\base\Model;
-use Yii;
+use yii\data\ActiveDataProvider;
+use nepster\users\rbac\models\AuthItem;
 
 /**
  * @inheritdoc

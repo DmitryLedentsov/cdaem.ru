@@ -2,15 +2,14 @@
 
 namespace frontend\modules\partners\models\form;
 
-use frontend\modules\partners\models\AdvertisementSlider;
 use Yii;
+use frontend\modules\partners\models\AdvertisementSlider;
 
 /**
  * @inheritdoc
  */
 class AdvertisementSliderForm extends \frontend\modules\partners\models\AdvertisementSlider
 {
-
     /**
      * @inheritdoc
      */
@@ -83,7 +82,6 @@ class AdvertisementSliderForm extends \frontend\modules\partners\models\Advertis
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {
-
             $this->payment = 0;
             $this->visible = 1;
 
@@ -105,7 +103,6 @@ class AdvertisementSliderForm extends \frontend\modules\partners\models\Advertis
         $this->scenario = 'user-rent';
 
         if ($type) {
-
             if ($type == $this::TYPE_CLIENT) {
                 $this->scenario = 'user-client';
             }
@@ -115,5 +112,4 @@ class AdvertisementSliderForm extends \frontend\modules\partners\models\Advertis
             }
         }
     }
-
 }

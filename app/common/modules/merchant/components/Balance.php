@@ -2,12 +2,10 @@
 
 namespace common\modules\merchant\components;
 
-use yii\base\InvalidConfigException;
-use yii\base\InvalidParamException;
-use yii\db\ActiveRecord;
-use yii\base\Module;
 use Yii;
-
+use yii\base\Module;
+use yii\db\ActiveRecord;
+use yii\base\InvalidArgumentException;
 
 /**
  * Управление балансом пользователя
@@ -49,9 +47,10 @@ class Balance
     public function setModule($module)
     {
         if (!Yii::$app->getModule($module) instanceof Module) {
-            throw new InvalidParamException(get_class($this) . ': Unkown module: ' . $module);
+            throw new InvalidArgumentException(get_class($this) . ': Unkown module: ' . $module);
         }
         $this->_module = $module;
+
         return $this;
     }
 
@@ -63,9 +62,10 @@ class Balance
     public function setUser($user)
     {
         if (!$user instanceof ActiveRecord) {
-            throw new InvalidParamException(get_class($this) . ': Class user must extends ActiveRecord');
+            throw new InvalidArgumentException(get_class($this) . ': Class user must extends ActiveRecord');
         }
         $this->_user = $user;
+
         return $this;
     }
 
@@ -77,9 +77,10 @@ class Balance
     public function setModel($model)
     {
         if (!$model instanceof ActiveRecord) {
-            throw new InvalidParamException(get_class($this) . ': Payment model must extends ActiveRecord');
+            throw new InvalidArgumentException(get_class($this) . ': Payment model must extends ActiveRecord');
         }
         $this->_model = $model;
+
         return $this;
     }
 
@@ -93,6 +94,7 @@ class Balance
     public function deposit($amount, $system, $account = null)
     {
         $model = $this->_model;
+
         return $this->change($model::DEPOSIT, $system, $amount, $account);
     }
 
@@ -106,6 +108,7 @@ class Balance
     public function billing($amount, $system, $account = null)
     {
         $model = $this->_model;
+
         return $this->change($model::BILLING, $system, $amount, $account);
     }
 
@@ -119,6 +122,7 @@ class Balance
     public function costs($amount, $system, $account = null)
     {
         $model = $this->_model;
+
         return $this->change($model::COSTS, $system, $amount, $account);
     }
 
@@ -133,17 +137,17 @@ class Balance
     private function change($type, $system, $amount, $account)
     {
         if (!Yii::$app->getModule('merchant')) {
-            throw new InvalidParamException('Module ' . $this->_module . '" not initialized');
+            throw new InvalidArgumentException('Module ' . $this->_module . '" not initialized');
         }
 
         $systemsArray = Yii::$app->getModule('merchant')->systems;
 
         if (!isset($systemsArray[$this->_module])) {
-            throw new InvalidParamException(get_class($this) . ': Module "' . $this->_module . '" not founds in systems list');
+            throw new InvalidArgumentException(get_class($this) . ': Module "' . $this->_module . '" not founds in systems list');
         }
 
         if (!isset($systemsArray[$this->_module][$system])) {
-            throw new InvalidParamException(get_class($this) . ': System "' . $system . '" not founds in systems list');
+            throw new InvalidArgumentException(get_class($this) . ': System "' . $system . '" not founds in systems list');
         }
 
         $account = $account ? $account : $this->accounts[0];
@@ -153,7 +157,7 @@ class Balance
         }
 
         if (!isset($this->_user->$account)) {
-            throw new InvalidParamException(get_class($this) . ': Unkown account: ' . $account);
+            throw new InvalidArgumentException(get_class($this) . ': Unkown account: ' . $account);
         }
 
         // Было средств на счету
@@ -173,5 +177,4 @@ class Balance
         // Запись в историю денежного оборота
         return call_user_func_array([$model, $this->_method], [$this->_module, $type, $system, $this->_user->id, $was, $amount]);
     }
-
 }

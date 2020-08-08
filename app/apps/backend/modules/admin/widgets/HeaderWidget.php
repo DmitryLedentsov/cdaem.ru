@@ -2,10 +2,10 @@
 
 namespace backend\modules\admin\widgets;
 
-use yii\widgets\Breadcrumbs;
+use Yii;
 use yii\base\Widget;
 use yii\helpers\Html;
-use Yii;
+use yii\widgets\Breadcrumbs;
 
 /**
  * Admin Header Widget

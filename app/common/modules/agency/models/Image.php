@@ -2,8 +2,8 @@
 
 namespace common\modules\agency\models;
 
-use common\modules\agency\traits\ModuleTrait;
 use Yii;
+use common\modules\agency\traits\ModuleTrait;
 
 /**
  * Изображения к апартаментам
@@ -88,11 +88,12 @@ class Image extends \yii\db\ActiveRecord
     public function getPreviewSrc()
     {
         $file = Yii::getAlias(Yii::$app->getModule('agency')->imagesPath) . '/' . $this->review;
+
         if (file_exists($file)) {
             return Yii::$app->params['siteDomain'] . Yii::$app->getModule('agency')->previewImagesUrl . '/' . $this->preview;
-        } else {
-            return Yii::$app->params['siteDomain'] . Yii::$app->getModule('agency')->defaultImageSrc;
         }
+
+        return Yii::$app->params['siteDomain'] . Yii::$app->getModule('agency')->defaultImageSrc;
     }
 
     /**
@@ -102,11 +103,12 @@ class Image extends \yii\db\ActiveRecord
     public function getReviewSrc()
     {
         $file = Yii::getAlias(Yii::$app->getModule('agency')->imagesPath) . '/' . $this->review;
+
         if (file_exists($file)) {
             return Yii::$app->params['siteDomain'] . Yii::$app->getModule('agency')->imagesUrl . '/' . $this->review;
-        } else {
-            return Yii::$app->params['siteDomain'] . Yii::$app->getModule('partners')->defaultImageSrc;
         }
+
+        return Yii::$app->params['siteDomain'] . Yii::$app->getModule('partners')->defaultImageSrc;
     }
 
     /**
@@ -147,7 +149,9 @@ class Image extends \yii\db\ActiveRecord
         foreach ($apartmentImages as $image) {
             self::deleteFile($image->review, $image->preview);
             // Запоминаем с каких апартаментов удалили заглавные картинки
-            if ($image->default_img == 1) $apartments[$image->apartment_id] = true;
+            if ($image->default_img == 1) {
+                $apartments[$image->apartment_id] = true;
+            }
             $count += $image->delete();
         }
 
@@ -232,5 +236,4 @@ class Image extends \yii\db\ActiveRecord
 
         return $fileName;
     }
-
 }

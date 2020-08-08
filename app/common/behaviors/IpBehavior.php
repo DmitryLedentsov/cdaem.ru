@@ -3,9 +3,9 @@
 namespace common\behaviors;
 
 use Yii;
-use yii\db\BaseActiveRecord;
-use yii\db\Expression;
+use yii\base\Event;
 use yii\base\Behavior;
+use yii\db\BaseActiveRecord;
 
 /**
  * IpBehavior автоматически заполняет указанные атрибуты с текущим ip адресом пользователя
@@ -32,7 +32,7 @@ class IpBehavior extends Behavior
 
     /**
      * Назначаем обработчик для [[owner]] событий
-     * @return array события (array keys) с назначеными им обработчиками (array values)
+     * @return array события (array keys) с назначенными им обработчиками (array values)
      */
     public function events()
     {
@@ -40,6 +40,7 @@ class IpBehavior extends Behavior
         foreach ($events as $i => $event) {
             $events[$i] = 'getCurrentIp';
         }
+
         return $events;
     }
 

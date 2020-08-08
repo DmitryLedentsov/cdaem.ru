@@ -17,6 +17,7 @@ class MailboxQuery extends \yii\db\ActiveQuery
     public function read($state = 1)
     {
         $this->andWhere([Mailbox::tableName() . '.read' => $state]);
+
         return $this;
     }
 
@@ -28,6 +29,7 @@ class MailboxQuery extends \yii\db\ActiveQuery
     public function unread($state = 0)
     {
         $this->andWhere([Mailbox::tableName() . '.read' => $state]);
+
         return $this;
     }
 
@@ -39,6 +41,7 @@ class MailboxQuery extends \yii\db\ActiveQuery
     public function inbox($state = 1)
     {
         $this->andWhere([Mailbox::tableName() . '.inbox' => $state]);
+
         return $this;
     }
 
@@ -50,6 +53,7 @@ class MailboxQuery extends \yii\db\ActiveQuery
     public function outbox($state = 0)
     {
         $this->andWhere([Mailbox::tableName() . '.inbox' => $state]);
+
         return $this;
     }
 
@@ -61,6 +65,7 @@ class MailboxQuery extends \yii\db\ActiveQuery
     public function deleted($state = 1)
     {
         $this->andWhere([Mailbox::tableName() . '.deleted' => $state]);
+
         return $this;
     }
 
@@ -71,6 +76,7 @@ class MailboxQuery extends \yii\db\ActiveQuery
     public function thisUser()
     {
         $this->andWhere([Mailbox::tableName() . '.user_id' => \Yii::$app->user->id]);
+
         return $this;
     }
 }

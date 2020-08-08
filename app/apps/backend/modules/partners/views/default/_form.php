@@ -1,10 +1,10 @@
 <?php
 
+use yii\helpers\Url;
+use yii\helpers\Html;
+use yii\grid\GridView;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
-use yii\grid\GridView;
-use yii\helpers\Html;
-use yii\helpers\Url;
 use backend\modules\partners\assets\PartnersAsset;
 
 /* @var $this yii\web\View */
@@ -58,10 +58,13 @@ PartnersAsset::register($this);
                         return Html::a('<span class="icon-wrench"></span>', ['/partners/adverts/update', 'id' => $model->advert_id]);
                     },
                     'delete' => function ($url, $model) {
-                        return Html::a('<span class="icon-remove3"></span>', ['/partners/adverts/delete', 'id' => $model->advert_id],
+                        return Html::a(
+                            '<span class="icon-remove3"></span>',
+                            ['/partners/adverts/delete', 'id' => $model->advert_id],
                             ['data' => [
                                 'confirm' => 'Удалить?',
-                            ]]);
+                            ]]
+                        );
                     }
                 ],
             ],

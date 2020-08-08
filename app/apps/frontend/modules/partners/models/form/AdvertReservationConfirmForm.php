@@ -2,12 +2,12 @@
 
 namespace frontend\modules\partners\models\form;
 
-use frontend\modules\partners\models\AdvertReservation;
-use common\modules\partners\models\ReservationDeal;
-use common\modules\users\models\User;
-use frontend\modules\partners\models\CalendarBlockerForm;
-use frontend\modules\partners\models\Advert;
 use Yii;
+use common\modules\users\models\User;
+use frontend\modules\partners\models\Advert;
+use common\modules\partners\models\ReservationDeal;
+use frontend\modules\partners\models\AdvertReservation;
+use frontend\modules\partners\models\CalendarBlockerForm;
 
 /**
  * @package frontend\modules\partners\models\form
@@ -52,10 +52,15 @@ class AdvertReservationConfirmForm extends AdvertReservation
      */
     public function cancel()
     {
-        if (Yii::$app->user->id == $this->user_id) $this->cancel = AdvertReservation::RENTER;
-        if (Yii::$app->user->id == $this->landlord_id) $this->cancel = AdvertReservation::LANDLORD;
+        if (Yii::$app->user->id == $this->user_id) {
+            $this->cancel = AdvertReservation::RENTER;
+        }
+        if (Yii::$app->user->id == $this->landlord_id) {
+            $this->cancel = AdvertReservation::LANDLORD;
+        }
         $this->closed = 1;
         $this->date_update = date('Y-m-d H:i:s');
+
         return $this->save();
     }
 
@@ -77,12 +82,14 @@ class AdvertReservationConfirmForm extends AdvertReservation
             // Уже платил
             if ($deal && $deal->payment_owner == 1) {
                 $this->addError('error', 'Вы уже подтверждали заявку');
+
                 return false;
             }
 
             // Если валюта не РУБЛЬ
             if ($this->advert->currency != 1) {
                 $this->addError('error', 'Для подтверждения заявки валюта стоимости вашего объявления должна быть "Рубль"');
+
                 return false;
             }
 
@@ -94,6 +101,7 @@ class AdvertReservationConfirmForm extends AdvertReservation
             // Если не хватает денег
             if ($this->landlord->funds_main < $priceToPay) {
                 $this->addError('error', 'На вашем счету недостаточно средств');
+
                 return false;
             }
 
@@ -108,11 +116,13 @@ class AdvertReservationConfirmForm extends AdvertReservation
             // Уже платил
             if ($deal && $deal->payment_client == 1) {
                 $this->addError('error', 'Вы уже подтверждали заявку');
+
                 return false;
             }
             // Если валюта не РУБЛЬ
             if ($this->advert->currency != 1) {
                 $this->addError('error', 'Для подтверждения заявки валюта стоимости объявления должна быть "Рубль"');
+
                 return false;
             }
 
@@ -123,6 +133,7 @@ class AdvertReservationConfirmForm extends AdvertReservation
             // Если не хватает денег
             if ($this->user->funds_main < $priceToPay) {
                 $this->addError('error', 'На вашем счету недостаточно средств');
+
                 return false;
             }
 
@@ -181,5 +192,4 @@ class AdvertReservationConfirmForm extends AdvertReservation
 
         return true;
     }
-
 }

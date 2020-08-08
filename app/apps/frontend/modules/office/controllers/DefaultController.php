@@ -2,14 +2,14 @@
 
 namespace frontend\modules\office\controllers;
 
-use common\modules\users\models\frontend\UsersListSearch;
-use common\modules\users\models\Profile;
-use frontend\modules\partners\models as models;
-use common\modules\pages\models\Page;
+use Yii;
+use yii\web\Response;
 use yii\web\HttpException;
 use yii\widgets\ActiveForm;
-use yii\web\Response;
-use Yii;
+use common\modules\pages\models\Page;
+use common\modules\users\models\Profile;
+use frontend\modules\partners\models as models;
+use common\modules\users\models\frontend\UsersListSearch;
 
 /**
  * Главный контроллер офиса
@@ -17,7 +17,6 @@ use Yii;
  */
 class DefaultController extends \frontend\components\Controller
 {
-
     /**
      * @inheritdoc
      */
@@ -53,7 +52,6 @@ class DefaultController extends \frontend\components\Controller
      */
     public function beforeAction($action)
     {
-
         $actions = ['apartments', 'services', 'send-offer', 'services', 'services'];
 
         if (in_array($action->id, $actions)) {
@@ -61,6 +59,7 @@ class DefaultController extends \frontend\components\Controller
                 $userType = Yii::$app->BasisFormat->helper('Status')->getItem(Profile::getUserTypeArray(), Yii::$app->user->identity->profile->user_type);
                 //Yii::$app->session->setFlash('danger', '<b>Внимание:</b> <br/> Ваш тип аккаунта: "'. $userType . '" и Вы не можете производить данное действие. ');
                 $this->redirect(['/office/default/index']);
+
                 return false;
             }
         }
@@ -93,7 +92,6 @@ class DefaultController extends \frontend\components\Controller
             'searchModel' => $searchModel,
         ]);
     }
-
 
     /**
      * Мои покупки
@@ -140,12 +138,15 @@ class DefaultController extends \frontend\components\Controller
             if (!$errors) {
                 if ($advertisementForm->save(false)) {
                     Yii::$app->session->setFlash('success', 'Ваша заявка принята. Пожалуйста произведите оплату и Ваше рекламное объявление появится вверху в течении нескольких секунд.');
+
                     return $this->redirect(['/office/default/top-slider']);
                 } else {
                     Yii::$app->session->setFlash('danger', 'Возникла критическая ошибка. Пожалуйста обратитесь в техническую поддержку.');
+
                     return $this->refresh();
                 }
             }
+
             return $errors;
         }
 
@@ -224,6 +225,4 @@ class DefaultController extends \frontend\components\Controller
             'page' => $page
         ]);
     }
-
-
 }

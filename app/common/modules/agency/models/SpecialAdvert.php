@@ -3,7 +3,6 @@
 namespace common\modules\agency\models;
 
 use common\modules\agency\traits\ModuleTrait;
-use Yii;
 
 /**
  * Специальные предложения
@@ -70,27 +69,6 @@ class SpecialAdvert extends \yii\db\ActiveRecord
      */
     public static function findActive()
     {
-        /* return self::find()
-             ->where(['>', 'date_expire', time()])
-             ->all();*/
-
-
-        /*return static::find()->joinWith([
-            'apartment' => function ($query) {
-                $query->visible()
-                    ->with([
-                        'city',
-                        'adverts' => function ($query) {
-                            $query->with('rentType');
-                        },
-                        'titleImage',
-                        'metroStation' => function ($query) {
-                            $query->with('metro');
-                        }
-                    ]);
-            },
-        ])->with('rentType')->all();*/
-
         return static::find()->joinWith([
             'advert' => function ($query) {
                 $query->joinWith([

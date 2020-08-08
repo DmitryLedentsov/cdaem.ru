@@ -3,11 +3,10 @@
 namespace common\modules\articles\models;
 
 use yii\db\ActiveQuery;
-use yii;
 
 /**
- * Article Query
- * @package \common\modules\pages\models\query
+ * Class ArticleQuery
+ * @package common\modules\articles\models
  */
 class ArticleQuery extends ActiveQuery
 {
@@ -18,7 +17,7 @@ class ArticleQuery extends ActiveQuery
     public function status($state = Article::STATUS_ALL)
     {
         $this->andWhere([Article::tableName() . '.status' => $state]);
+
         return $this;
     }
-
 }

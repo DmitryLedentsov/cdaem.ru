@@ -2,15 +2,12 @@
 
 namespace common\modules\articles;
 
-use yii\helpers\Html;
-
 /**
  * Bootstrap Backend
  * @package common\modules\articles
  */
 class BootstrapBackend implements \yii\base\BootstrapInterface
 {
-
     /**
      * @inheritdoc
      */
@@ -72,9 +69,9 @@ class BootstrapBackend implements \yii\base\BootstrapInterface
         ]);
 
         // Add module URL rules.
-        $app->urlManager->addRules([
+        $app->urlManager->addRules(
+            [
             ]
         );
     }
-
 }

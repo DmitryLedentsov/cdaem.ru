@@ -18,6 +18,7 @@ class Reservation extends \common\modules\partners\models\Reservation
         if ($this->city) {
             return $this->city->country->name . ', ' . $this->city->name . ', ' . $this->address;
         }
+
         return '';
     }
 }

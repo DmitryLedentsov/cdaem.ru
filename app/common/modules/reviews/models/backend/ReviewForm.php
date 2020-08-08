@@ -2,9 +2,9 @@
 
 namespace common\modules\reviews\models\backend;
 
-use common\modules\reviews\models\Review;
-use yii\base\Model;
 use yii;
+use yii\base\Model;
+use common\modules\reviews\models\Review;
 
 /**
  * Форма "Написать отзыв"
@@ -13,15 +13,25 @@ use yii;
 class ReviewForm extends Model
 {
     public $review_id;
+
     public $apartment_id;
+
     public $match_description;
+
     public $price_quality;
+
     public $cleanliness;
+
     public $entry;
+
     public $user_id;
+
     public $visible;
+
     public $moderation;
+
     public $text;
+
     public $date_create;
 
     /**
@@ -71,7 +81,6 @@ class ReviewForm extends Model
             ['cleanliness', 'in', 'range' => array_keys(Review::getRatingCleanlinessArray())],
             ['entry', 'in', 'range' => array_keys(Review::getRatingEntryArray())],
 
-
             ['moderation', 'in', 'range' => array_keys(Yii::$app->formatter->booleanFormat)],
             ['visible', 'in', 'range' => array_keys(Yii::$app->formatter->booleanFormat)],
 
@@ -96,6 +105,7 @@ class ReviewForm extends Model
         }
 
         $this->review_id = $model->review_id;
+
         return true;
     }
 
@@ -107,6 +117,7 @@ class ReviewForm extends Model
     public function update(Review $model)
     {
         $model->setAttributes($this->getAttributes(), false);
+
         return $model->save(false);
     }
 
@@ -119,5 +130,4 @@ class ReviewForm extends Model
     {
         return $model->delete();
     }
-
 }

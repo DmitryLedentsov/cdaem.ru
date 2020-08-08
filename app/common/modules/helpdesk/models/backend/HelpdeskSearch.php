@@ -2,10 +2,9 @@
 
 namespace common\modules\helpdesk\models\backend;
 
-use common\modules\helpdesk\models\Helpdesk;
-use yii\data\ActiveDataProvider;
 use yii\base\Model;
-use Yii;
+use yii\data\ActiveDataProvider;
+use common\modules\helpdesk\models\Helpdesk;
 
 /**
  * Helpdesk Search
@@ -14,19 +13,33 @@ use Yii;
 class HelpdeskSearch extends Model
 {
     public $ticket_id;
+
     public $user_id;
+
     public $user_name;
+
     public $priority;
+
     public $answered;
+
     public $close;
+
     public $email;
+
     public $source_type;
+
     public $theme;
+
     public $text;
+
     public $department;
+
     public $date_create;
+
     public $date_close;
+
     public $ip;
+
     public $user_agent;
 
     /**

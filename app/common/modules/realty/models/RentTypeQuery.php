@@ -2,9 +2,7 @@
 
 namespace common\modules\realty\models;
 
-use yii\helpers\ArrayHelper;
 use yii\db\ActiveQuery;
-use Yii;
 
 /**
  * Rent Type Query
@@ -19,7 +17,7 @@ class RentTypeQuery extends ActiveQuery
     public function visible($state = 1)
     {
         $this->andWhere([RentType::tableName() . '.visible' => $state]);
+
         return $this;
     }
-
 }

@@ -2,12 +2,8 @@
 
 namespace common\modules\agency\commands;
 
-use common\modules\agency\models\Image;
-use yii\helpers\ArrayHelper;
-use yii\helpers\Console;
-use yii\helpers\Url;
-use yii\log\Logger;
 use Yii;
+use common\modules\agency\models\Image;
 
 /**
  * Сборщик мусора
@@ -41,7 +37,9 @@ class CollectorController extends \yii\console\Controller
         while ($image) {
             $image = Image::find()->limit(1)->offset($offset)->asArray()->one();
             $offset++;
-            if (!$image) continue;
+            if (!$image) {
+                continue;
+            }
             if (!file_exists($path . $image['review'])) {
                 $result['deleted_rows'] += (new \yii\db\Query())
                     ->createCommand()
@@ -55,10 +53,13 @@ class CollectorController extends \yii\console\Controller
         $result['deleted_previews'] = 0;
         $result['files'] = [];
         if ($handle = opendir($path)) {
-
             while (false !== ($file = readdir($handle))) {
-                if ($file == '.gitignore') continue;
-                if (!is_file($path . $file)) continue;
+                if ($file == '.gitignore') {
+                    continue;
+                }
+                if (!is_file($path . $file)) {
+                    continue;
+                }
 
                 $image = Image::find()->where(['review' => $file])->asArray()->one();
                 if (!$image) {
@@ -70,16 +71,18 @@ class CollectorController extends \yii\console\Controller
         }
         // Удаление маленьких файлов
         if ($handle = opendir($thumbsPath)) {
-
             while (false !== ($file = readdir($handle))) {
-                if ($file == '.gitignore') continue;
-                if (!is_file($thumbsPath . $file)) continue;
+                if ($file == '.gitignore') {
+                    continue;
+                }
+                if (!is_file($thumbsPath . $file)) {
+                    continue;
+                }
 
                 $image = Image::find()->where(['preview' => $file])->asArray()->one();
                 if (!$image) {
                     $result['deleted_previews'] += @unlink($thumbsPath . $file);
                 }
-
             }
             closedir($handle);
         }

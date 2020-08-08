@@ -2,14 +2,12 @@
 
 namespace common\modules\partners\services;
 
+use Yii;
+use yii\helpers\Json;
+use yii\validators\EmailValidator;
+use common\modules\partners\models\Service;
 use common\modules\partners\interfaces\ServiceInterface;
 use frontend\modules\partners\models\AdvertisementSlider;
-use common\modules\partners\models\Service;
-use yii\validators\ExistValidator;
-use yii\validators\EmailValidator;
-use yii\base\InvalidConfigException;
-use yii\helpers\Json;
-use Yii;
 
 /**
  * Сервис [Advertising Top Slider]
@@ -96,6 +94,7 @@ final class AdvertisingTopSlider extends \yii\base\BaseObject implements Service
     public function setProcess(Service $process)
     {
         $this->_process = $process;
+
         return $this;
     }
 
@@ -123,7 +122,6 @@ final class AdvertisingTopSlider extends \yii\base\BaseObject implements Service
 
     public function validateContact()
     {
-
         return true;
     }
 
@@ -143,6 +141,7 @@ final class AdvertisingTopSlider extends \yii\base\BaseObject implements Service
 
         $this->_advertisement->payment = 1;
         $this->_advertisement->date_payment = date('Y-m-d H:i:s');
+
         return $this->_advertisement->save(false);
     }
 

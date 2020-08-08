@@ -2,12 +2,12 @@
 
 namespace frontend\modules\partners\widgets;
 
-use frontend\modules\partners\models\Advertisement;
-use common\modules\geo\models\City;
-use yii\helpers\ArrayHelper;
-use yii\helpers\Html;
-use yii\helpers\Url;
 use Yii;
+use yii\helpers\Url;
+use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
+use common\modules\geo\models\City;
+use frontend\modules\partners\models\Advertisement;
 
 /**
  * Class AdvertisingAdvert
@@ -30,7 +30,6 @@ class AdvertisingAdvert extends \yii\base\Widget
         $advertisement = Advertisement::getRelevantAds(Yii::$app->request->cityId);
 
         if ($advertisement) {
-
             $result = '';
 
             foreach ($advertisement as $advert) {

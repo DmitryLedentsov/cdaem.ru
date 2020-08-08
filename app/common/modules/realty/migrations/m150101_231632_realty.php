@@ -125,7 +125,6 @@ class m150101_231632_realty extends Migration
         ]);
     }
 
-
     public function safeDown()
     {
         $this->dropTable('{{%realty_rent_type}}');

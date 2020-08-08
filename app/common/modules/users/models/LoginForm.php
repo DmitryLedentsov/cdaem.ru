@@ -21,6 +21,7 @@ class LoginForm extends \nepster\users\models\LoginForm
     public function attributeLabels()
     {
         $labels = parent::attributeLabels();
+
         return array_merge($labels, [
             'username' => Yii::t('users', 'MAIL_OR_PHONE'),
         ]);
@@ -70,8 +71,7 @@ class LoginForm extends \nepster\users\models\LoginForm
 
             // Записываем попытку успешной авторизации в историю
             Yii::$app->user->action($userId, $this->module->id, 'auth');
-
-        } else if (!$userBanned) {
+        } elseif (!$userBanned) {
 
             // Записываем попытку неудачной авторизации в историю
             $data = [
@@ -91,34 +91,20 @@ class LoginForm extends \nepster\users\models\LoginForm
 
     /**
      * Поиск пользователя
-     * @return \nepster\users\models\User
+     * @param $username
+     * @return array|\yii\db\ActiveRecord[]
      */
     public function getUser($username)
     {
         $scope = $this->scenario == 'admin' ? 'control' : null;
 
-        /*
-        $validator = new \yii\validators\EmailValidator();
-
-        // Поиск пользователя по EMAIL
-        if ($validator->validate($username)) {
-            return User::findByEmail($username, [$scope]);
-        }
-        // Поиск пользователя по телефону
-        else if(strncasecmp($username, "+", 1) === 0) {
-            $username = str_replace('+', '', $username);
-            return User::findByPhone($username, [$scope]);
-        }
-
-        return User::findByUsername($username, [$scope]);
-        */
-
         // Поиск пользователя по телефону
         if (strncasecmp($username, "+", 1) === 0) {
             $username = str_replace('+', '', $username);
+
             return User::findByPhone($username, [$scope]);
-        } else {
-            return User::findByEmail($username, [$scope]);
         }
+
+        return User::findByEmail($username, [$scope]);
     }
 }

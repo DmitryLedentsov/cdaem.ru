@@ -4,8 +4,8 @@
  * @var yii\base\View $this Представление
  */
 
-use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\helpers\Html;
 
 ?>
 

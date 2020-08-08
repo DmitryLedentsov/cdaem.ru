@@ -2,16 +2,13 @@
 
 namespace common\modules\geo\controllers\frontend;
 
-use frontend\modules\partners\models\Apartment as ApartmentPartners;
-use common\modules\agency\models\Apartment as ApartmentAgency;
-use common\modules\geo\models\City;
+use Yii;
 use yii\base\Model;
-use yii\web\HttpException;
-use yii\helpers\Json;
-use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\web\Response;
-use Yii;
+use common\modules\geo\models\City;
+use common\modules\agency\models\Apartment as ApartmentAgency;
+use frontend\modules\partners\models\Apartment as ApartmentPartners;
 
 /**
  * Ajax гео контроллер
@@ -190,7 +187,7 @@ class AjaxController extends \frontend\components\Controller
 
     /**
      * Карта московского метро
-     * @return string
+     * @return array
      */
     public function actionMap()
     {
@@ -233,63 +230,6 @@ class AjaxController extends \frontend\components\Controller
 
         return $result;
     }
-
-    /**
-     * @param Model $model
-     * @return array
-     */
-    /*private function getFeatureInfo(Model $model)
-    {
-        $advertsHtml = '';
-        foreach ($model->adverts as $advert) {
-            $name = $advert->rentType->short_name;
-            $price = 'Нет указано';
-
-
-            if ($model instanceof ApartmentAgency) {
-                $currency = 'rub';
-                $url = Url::to(['/agency/default/view', 'id' => $advert->advert_id]);
-            } else {
-                $currency = $advert->currencyName;
-                $url = Url::to(['/partners/default/view', 'id' => $advert->advert_id, 'city' => '------']);
-            }
-
-            if ($advert->price > 0) {
-                $price = Yii::$app->formatter->asCurrency($advert->price, $currency);
-            }
-
-            $advertsHtml .= '<p><a href="' . $url . '"><span>' . $name . ':</span> ' . $price . '</a></p>';
-        }
-
-        return [
-            'type' => "Feature",
-            'id' => $model->apartment_id,
-            'geometry' => [
-                'type' => 'Point',
-                'coordinates' => [$model->latitude, $model->longitude]
-            ],
-            'properties' => [
-                'balloonContent' => '<div class="balloon-info"><div class="clearfix">' .
-                    '<div class="balloon-view">' .
-                    '<div class="balloon-image" style="background-image: url(' . $model->getTitleImageSrc() . ')"></div>' .
-                    '</div>' .
-                    '<div class="balloon-desc">' . $advertsHtml . '</div></div>' .
-                    '<p class="balloon-property">Этаж: ' . $model->floor . ', ' . $model->roomsName . ', Ремонт: ' . $model->remontName . '</p>' .
-                    '</div>',
-                'hintContent' => $model->address,
-            ],
-            'options' => [
-                //'preset' => 'islands#blueDotIcon',
-                'preset' => ($model instanceof ApartmentAgency) ? 'islands#blueDotIcon' : 'islands#lightBlueDotIcon',
-                //'iconLayout' => 'islands#blueDotIcon',
-                /*'iconLayout' => 'default#image',
-                'iconImageHref' => '/basic-images/green-phone-icon.png',
-                'fillImageHref' => '/basic-images/green-phone-icon.png',
-                'iconImageSize' => [30, 30],
-                'iconImageOffset' => [-15, -15]*//*
-            ],
-        ];
-    }*/
 
     /**
      * @param Model $model

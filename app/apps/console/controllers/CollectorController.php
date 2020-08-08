@@ -2,10 +2,10 @@
 
 namespace console\controllers;
 
-use common\modules\partners\models as models;
-use common\modules\users\models\User;
-use yii\helpers\Console;
 use Yii;
+use yii\helpers\Console;
+use common\modules\users\models\User;
+use common\modules\partners\models as models;
 
 /**
  * Сборщик мусора
@@ -39,7 +39,9 @@ class CollectorController extends \yii\console\Controller
         while ($image) {
             $image = models\Image::find()->limit(1)->offset($offset)->asArray()->one();
             $offset++;
-            if (!$image) continue;
+            if (!$image) {
+                continue;
+            }
             if (!file_exists($path . $image['review'])) {
                 $result['deleted_rows'] += (new \yii\db\Query())
                     ->createCommand()
@@ -52,33 +54,37 @@ class CollectorController extends \yii\console\Controller
         $result['deleted_reviews'] = 0;
         $result['deleted_previews'] = 0;
         if ($handle = opendir($path)) {
-
             while (false !== ($file = readdir($handle))) {
-                if ($file == '.gitignore') continue;
-                if (!is_file($path . $file)) continue;
+                if ($file == '.gitignore') {
+                    continue;
+                }
+                if (!is_file($path . $file)) {
+                    continue;
+                }
 
                 $image = models\Image::find()->where(['review' => $file])->asArray()->one();
                 if (!$image) {
                     $result['deleted_reviews'] += @unlink($path . $file);
                     $result['deleted_previews'] += @unlink($thumbsPath . $file);
                 }
-
             }
             closedir($handle);
         }
 
         // Удаление маленьких файлов
         if ($handle = opendir($thumbsPath)) {
-
             while (false !== ($file = readdir($handle))) {
-                if ($file == '.gitignore') continue;
-                if (!is_file($thumbsPath . $file)) continue;
+                if ($file == '.gitignore') {
+                    continue;
+                }
+                if (!is_file($thumbsPath . $file)) {
+                    continue;
+                }
 
                 $image = models\Image::find()->where(['preview' => $file])->asArray()->one();
                 if (!$image) {
                     $result['deleted_previews'] += @unlink($thumbsPath . $file);
                 }
-
             }
 
             closedir($handle);
@@ -102,6 +108,7 @@ class CollectorController extends \yii\console\Controller
         $this->stdout('Чистит заявки' . PHP_EOL);
         $count = models\Reservation::updateAll(['closed' => 1], 'date_out <= :now', [':now' => date('Y-m-d H:i:s')]);
         $count += models\AdvertReservation::updateAll(['closed' => 1], 'date_out <= :now', [':now' => date('Y-m-d H:i:s')]);
+
         return $count;
     }
 
@@ -114,7 +121,6 @@ class CollectorController extends \yii\console\Controller
 
         return $count;
     }
-
 
     /**
      * Reservation verify payment
@@ -135,11 +141,9 @@ class CollectorController extends \yii\console\Controller
         $reservation = true;
 
         while ($reservation) {
-
             $transaction = Yii::$app->db->beginTransaction();
 
             try {
-
                 $reservation = models\AdvertReservation::find()
                     ->joinWith('deal')
                     ->where([
@@ -168,7 +172,7 @@ class CollectorController extends \yii\console\Controller
 
                     $offset--;
                 } // Вернуть средства клиенту
-                else if ($reservation->confirm == models\AdvertReservation::RENTER && $this->checkExpireGone2($reservation->date_actuality)) {
+                elseif ($reservation->confirm == models\AdvertReservation::RENTER && $this->checkExpireGone2($reservation->date_actuality)) {
                     $paymentId = Yii::$app->balance
                         ->setModule(Yii::$app->getModule('partners')->id)
                         ->setUser(User::findOne($reservation->user_id))
@@ -190,7 +194,6 @@ class CollectorController extends \yii\console\Controller
 
                 Yii::info('Заявка ID' . $reservation->id . ' - возврат денег прошел успешно', 'reservation-verify-payment');
                 $this->stdout('SUCCESS: reservation ID ' . $reservation->id . PHP_EOL, Console::FG_GREEN);
-
             } catch (\Exception $e) {
                 $transaction->rollBack();
 
@@ -202,7 +205,6 @@ class CollectorController extends \yii\console\Controller
         }
     }
 
-
     /**
      * Возврат денег по заявкам "Незаезд"
      */
@@ -213,10 +215,8 @@ class CollectorController extends \yii\console\Controller
         $failures = models\ReservationFailure::find()->processed(0)->closed(0)->timeHasCome();
 
         foreach ($failures->each() as $failure) {
-
             $transaction = Yii::$app->db->beginTransaction();
             try {
-
                 if ($failure->reservation->user_id == $failure->user_id) {
                     // Клиент
                     $fundsToReturn = $failure->reservation->deal->funds_client;
@@ -265,7 +265,6 @@ class CollectorController extends \yii\console\Controller
                 Yii::$app->consoleRunner->run('partners/reservation/send-mail-failure-processed ' . $params);
 
                 $countSuccess++;
-
             } catch (\Exception $e) {
                 $transaction->rollBack();
                 $countError++;
@@ -316,7 +315,6 @@ class CollectorController extends \yii\console\Controller
 
         foreach ($batch as $apartments) {
             foreach ($apartments as $apartment) {
-
                 if (!$this->verifySuspicious($apartment->description)) {
                     continue;
                 }
@@ -343,18 +341,14 @@ class CollectorController extends \yii\console\Controller
 
         foreach ($batch as $apartments) {
             foreach ($apartments as $apartment) {
-
                 if ($apartment->open_contacts != 1) {
                     continue;
                 }
 
                 $apartment->open_contacts = 1;
                 $apartment->save(false);
-
-
             }
         }
-
     }
 
     /**open_contacts

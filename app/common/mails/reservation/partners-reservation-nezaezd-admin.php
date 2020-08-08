@@ -1,13 +1,12 @@
 <?php
 
-use yii\helpers\Json;
 use yii\helpers\Html;
+use yii\helpers\Json;
 
 $domain = Yii::$app->params['siteDomain'];
 ?>
 
-<table class="row" width="100%" bgcolor="#ffffff" align="center" cellpadding="0" cellspacing="0" border="0"
-       style="border-collapse:collapse; text-align:left; border-spacing:0; max-width:100%;">
+<table class="row" width="100%" bgcolor="#ffffff" align="center" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; text-align:left; border-spacing:0; max-width:100%;">
     <tr>
         <td style="padding-right:30px; padding-left:30px; border-top:1px #dddddd dotted;">
             <table cellpadding="0" cellspacing="0" style="border-collapse:collapse; border-spacing:0;">
@@ -33,24 +32,25 @@ $domain = Yii::$app->params['siteDomain'];
                 <tr>
                     <td class="icon" style="padding-top:5px; padding-right:30px;">
                         <div style="font-size:12px; line-height:100%; text-align:center;">
-                            <img alt="image" src="<?= $domain ?>/email-images/checkmark_big.png" height="100"
-                                 width="100" border="0" vspace="0" hspace="0" style="display:block;"/>
+                            <img alt="image" src="<?= $domain ?>/email-images/checkmark_big.png" height="100" width="100" border="0" vspace="0" hspace="0" style="display:block;"/>
                         </div>
                     </td>
                 </tr>
             </table>
 
             <?php
-            if ($userType == 'renter') $userText = 'Клиент';
-            if ($userType == 'landlord') $userText = 'Владелец'
+                if ($userType == 'renter') {
+                    $userText = 'Клиент';
+                }
+                if ($userType == 'landlord') {
+                    $userText = 'Владелец';
+                }
             ?>
 
             <?= $userText ?> создал заявку «незаезд» №<?= $id ?> к заявке "Забронировать" №<?= $reservationId ?>.
 
-
             <br/>
-            <p style="text-align: right">С уважением,
-                команда <?= str_replace(['http://', 'https://'], '', $domain) ?></p>
+            <p style="text-align: right">С уважением, команда <?= str_replace(['http://', 'https://'], '', $domain) ?></p>
         </td>
     </tr>
 </table>

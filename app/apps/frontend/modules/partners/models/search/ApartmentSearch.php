@@ -2,13 +2,13 @@
 
 namespace frontend\modules\partners\models\search;
 
+use Yii;
+use yii\base\Model;
+use yii\helpers\ArrayHelper;
+use yii\data\ActiveDataProvider;
+use common\modules\geo\models\Metro;
 use common\modules\realty\models\RentType;
 use frontend\modules\partners\models\Apartment;
-use common\modules\geo\models\Metro;
-use yii\data\ActiveDataProvider;
-use yii\helpers\ArrayHelper;
-use yii\base\Model;
-use Yii;
 
 /**
  * @inheritdoc
@@ -97,6 +97,7 @@ class ApartmentSearch extends Apartment
 
         if (!$this->validate()) {
             $query->where('0=1');
+
             return $dataProvider;
         }
 

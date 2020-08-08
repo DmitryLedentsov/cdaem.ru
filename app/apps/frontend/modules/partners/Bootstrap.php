@@ -15,7 +15,8 @@ class Bootstrap implements \yii\base\BootstrapInterface
     public function bootstrap($app)
     {
         // Add module URL rules.
-        $app->urlManager->addRules([
+        $app->urlManager->addRules(
+            [
                 'office/create-adverts' => '/partners/default/create',
                 'office/update-adverts/<id:\d+>' => '/partners/default/update',
                 'office/apartments/<filter>' => 'partners/default/apartments',

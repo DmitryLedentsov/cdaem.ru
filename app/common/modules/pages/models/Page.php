@@ -2,10 +2,10 @@
 
 namespace common\modules\pages\models;
 
-use common\modules\pages\traits\ModuleTrait;
-use yii\web\HttpException;
-use yii\db\ActiveRecord;
 use Yii;
+use yii\db\ActiveRecord;
+use yii\web\HttpException;
+use common\modules\pages\traits\ModuleTrait;
 
 /**
  * Page
@@ -65,7 +65,7 @@ class Page extends ActiveRecord
             [['name'], 'filter', 'filter' => 'trim'],
             [['name'], 'string', 'max' => 100],
 
-            // статус 
+            // статус
             ['status', 'in', 'range' => array_keys(self::getStatusArray())],
 
             // Текст [[text]]
@@ -86,7 +86,9 @@ class Page extends ActiveRecord
      * - Закрыта от пользователей
      */
     const STATUS_ALL = 1;
+
     const STATUS_REGISTER = 2;
+
     const STATUS_CLOSE = 0;
 
     /**
@@ -140,5 +142,4 @@ class Page extends ActiveRecord
 
         return $model;
     }
-
 }

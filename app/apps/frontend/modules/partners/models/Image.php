@@ -27,6 +27,7 @@ class Image extends \common\modules\partners\models\Image
         $labels = parent::attributeLabels();
         $labels['files'] = 'Добавить фото';
         $labels['defaultImage'] = 'Заглавное изображение';
+
         return $labels;
     }
 

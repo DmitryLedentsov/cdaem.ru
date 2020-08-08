@@ -2,8 +2,8 @@
 
 namespace common\modules\merchant;
 
-use yii\helpers\ArrayHelper;
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * Общий модуль [[Merchant]]
@@ -44,6 +44,7 @@ class Module extends \yii\base\Module
                     'color' => '',
                 ];
             }
+
             return $result;
         }, Yii::$app->service->services);
 
@@ -70,5 +71,4 @@ class Module extends \yii\base\Module
             'partners' => \common\modules\partners\models\ReservationDeal::getTypesArray()
         ]);
     }
-
 }

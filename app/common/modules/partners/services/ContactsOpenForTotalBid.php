@@ -2,16 +2,14 @@
 
 namespace common\modules\partners\services;
 
-use common\modules\partners\interfaces\ServiceInterface;
+use Yii;
+use yii\helpers\Json;
+use yii\validators\EmailValidator;
+use common\modules\users\models\User;
+use common\modules\partners\models\Service;
 use frontend\modules\partners\models\Reservation;
 use common\modules\partners\models\ReservationsPayment;
-use common\modules\partners\models\Service;
-use common\modules\users\models\User;
-use yii\validators\ExistValidator;
-use yii\validators\EmailValidator;
-use yii\base\InvalidConfigException;
-use yii\helpers\Json;
-use Yii;
+use common\modules\partners\interfaces\ServiceInterface;
 
 /**
  * Сервис [Contacts Open For Total Bid]
@@ -104,6 +102,7 @@ final class ContactsOpenForTotalBid extends \yii\base\BaseObject implements Serv
     public function setProcess(Service $process)
     {
         $this->_process = $process;
+
         return $this;
     }
 
@@ -152,7 +151,6 @@ final class ContactsOpenForTotalBid extends \yii\base\BaseObject implements Serv
 
     public function validateContact()
     {
-
         return true;
     }
 
@@ -160,7 +158,6 @@ final class ContactsOpenForTotalBid extends \yii\base\BaseObject implements Serv
     {
         return true;
     }
-
 
     /**
      * @inheritdoc
@@ -185,6 +182,7 @@ final class ContactsOpenForTotalBid extends \yii\base\BaseObject implements Serv
             $transaction->commit();
         } catch (\Exception $e) {
             $transaction->rollBack();
+
             return false;
         }
 

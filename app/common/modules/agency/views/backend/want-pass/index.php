@@ -1,8 +1,8 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
 use yii\widgets\Pjax;
+use yii\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\modules\agency\models\backend\search\WantPassSearch */
@@ -79,10 +79,13 @@ echo GridView::widget([
                     return Html::a('<span class="icon-wrench"></span>', ['/agency/want-pass/update', 'id' => $model->apartment_want_pass_id]);
                 },
                 'delete' => function ($url, $model) {
-                    return Html::a('<span class="icon-remove3"></span>', ['/agency/want-pass/delete', 'id' => $model->apartment_want_pass_id],
+                    return Html::a(
+                        '<span class="icon-remove3"></span>',
+                        ['/agency/want-pass/delete', 'id' => $model->apartment_want_pass_id],
                         ['data' => [
                             'confirm' => 'Удалить?',
-                        ]]);
+                        ]]
+                    );
                 }
             ],
         ],
@@ -123,6 +126,7 @@ echo GridView::widget([
                 if (!$model->rent_types_array) {
                     return '(не задано)';
                 }
+
                 return implode('<br/>', array_intersect_key($model->rentTypesList, array_flip($model->rent_types_array)));
             },
         ],
@@ -160,4 +164,3 @@ echo GridView::widget([
 ]);
 
 echo Html::endForm();
-

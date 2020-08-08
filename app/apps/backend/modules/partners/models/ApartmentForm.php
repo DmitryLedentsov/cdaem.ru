@@ -2,9 +2,9 @@
 
 namespace backend\modules\partners\models;
 
-use yii\web\UploadedFile;
-use yii\db\ActiveRecord;
 use Yii;
+use yii\db\ActiveRecord;
+use yii\web\UploadedFile;
 
 /**
  * @inheritdoc
@@ -107,7 +107,6 @@ class ApartmentForm extends \backend\modules\partners\models\Apartment
     {
         $adverts = Advert::find()->where(['apartment_id' => $this->apartment_id])->all();
         foreach ($adverts as $advert) {
-
             $advert->old_position = 0;
             $advert->position = 1;
             //$advert->real_position = 1;
@@ -122,7 +121,6 @@ class ApartmentForm extends \backend\modules\partners\models\Apartment
         foreach ($this->files as $key => $file) {
             $image = new Image();
             if ($fileName = $image->upload($file, true, true)) {
-
                 $image->apartment_id = $this->apartment_id;
                 $image->review = $fileName;
                 $image->preview = $fileName;
@@ -133,7 +131,9 @@ class ApartmentForm extends \backend\modules\partners\models\Apartment
                     $default_img = Image::find()
                         ->where(['apartment_id' => $this->apartment_id, 'default_img' => 1])
                         ->one();
-                    if (!$default_img) $image->default_img = 1;
+                    if (!$default_img) {
+                        $image->default_img = 1;
+                    }
                 }
                 $image->save(false);
             }

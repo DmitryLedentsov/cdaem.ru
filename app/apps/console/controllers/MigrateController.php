@@ -2,8 +2,8 @@
 
 namespace console\controllers;
 
-use yii\helpers\ArrayHelper;
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * Migrate From Multiple Path

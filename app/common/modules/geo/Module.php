@@ -2,8 +2,6 @@
 
 namespace common\modules\geo;
 
-use Yii;
-
 /**
  * Geo module
  * @package common\modules\geo

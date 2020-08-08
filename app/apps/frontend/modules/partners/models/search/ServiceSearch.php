@@ -2,10 +2,10 @@
 
 namespace frontend\modules\partners\models\search;
 
-use yii\data\ActiveDataProvider;
-use yii\helpers\ArrayHelper;
-use yii\base\Model;
 use Yii;
+use yii\base\Model;
+use yii\helpers\ArrayHelper;
+use yii\data\ActiveDataProvider;
 
 /**
  * @inheritdoc

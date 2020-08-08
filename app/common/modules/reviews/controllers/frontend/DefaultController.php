@@ -3,12 +3,6 @@
 namespace common\modules\reviews\controllers\frontend;
 
 use common\modules\reviews\models\ReviewSearch;
-use common\modules\reviews\models\ReviewForm;
-use common\modules\reviews\models\Review;
-use yii\web\NotFoundHttpException;
-use yii\widgets\ActiveForm;
-use yii\web\Response;
-use Yii;
 
 /**
  * Default Controller

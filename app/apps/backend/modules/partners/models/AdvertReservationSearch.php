@@ -59,7 +59,6 @@ class AdvertReservationSearch extends AdvertReservation
         ]);
     }
 
-
     /**
      * @inheritdoc
      */
@@ -120,7 +119,6 @@ class AdvertReservationSearch extends AdvertReservation
                             ]);
                         },
                     ]);
-
                 },
                 'failure',
             ]);

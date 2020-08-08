@@ -2,9 +2,7 @@
 
 namespace common\modules\callback\models;
 
-use common\modules\callback\models\Callback;
 use yii\base\Model;
-use yii;
 
 /**
  * Форма "Обратный звонок"

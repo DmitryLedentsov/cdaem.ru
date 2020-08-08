@@ -15,7 +15,8 @@ class Bootstrap implements \yii\base\BootstrapInterface
     public function bootstrap($app)
     {
         // Add module URL rules.
-        $app->urlManager->addRules([
+        $app->urlManager->addRules(
+            [
                 '' => 'admin/default/index',
             ]
         );

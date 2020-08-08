@@ -2,8 +2,6 @@
 
 namespace common\modules\users\models\frontend;
 
-use Yii;
-
 /**
  * Class RecoveryForm
  */
@@ -17,6 +15,7 @@ class RecoveryForm extends \nepster\users\models\frontend\RecoveryForm
         if ($user = parent::recovery()) {
             return $user;
         }
+
         return false;
     }
 }

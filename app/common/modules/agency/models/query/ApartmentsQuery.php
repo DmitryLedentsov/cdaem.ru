@@ -2,8 +2,8 @@
 
 namespace common\modules\agency\models\query;
 
-use common\modules\agency\models\Apartment;
 use yii\db\ActiveQuery;
+use common\modules\agency\models\Apartment;
 
 /**
  * Class Apartments Query
@@ -18,6 +18,7 @@ class ApartmentsQuery extends ActiveQuery
     public function visible($state = 1)
     {
         $this->andWhere([Apartment::tableName() . '.visible' => $state]);
+
         return $this;
     }
 }

@@ -3,8 +3,6 @@
 namespace common\modules\partners\models;
 
 use common\modules\partners\models\scopes\AdvertisementSliderQuery;
-use common\modules\partners\traits\ModuleTrait;
-use Yii;
 
 /**
  * Реклама в бегущей строке
@@ -12,6 +10,18 @@ use Yii;
  */
 class AdvertisementSlider extends \yii\db\ActiveRecord
 {
+    /**
+     * Типы объявлений
+     * - Cдам
+     * - Есть клиент
+     * - Сниму
+     */
+    const TYPE_RENT = 1;
+
+    const TYPE_CLIENT = 2;
+
+    const TYPE_RESERV = 3;
+
     /**
      * @inheritdoc
      */
@@ -86,16 +96,6 @@ class AdvertisementSlider extends \yii\db\ActiveRecord
 
         return $query->all();
     }
-
-    /**
-     * Типы объявлений
-     * - Cдам
-     * - Есть клиент
-     * - Сниму
-     */
-    const TYPE_RENT = 1;
-    const TYPE_CLIENT = 2;
-    const TYPE_RESERV = 3;
 
     /**
      * Типы объявлений

@@ -2,8 +2,8 @@
 
 namespace common\modules\partners\traits;
 
-use common\modules\partners\Module;
 use Yii;
+use common\modules\partners\Module;
 
 /**
  * Class ModuleTrait
@@ -30,6 +30,7 @@ trait ModuleTrait
                 $this->_module = Yii::$app->getModule('partners');
             }
         }
+
         return $this->_module;
     }
 }

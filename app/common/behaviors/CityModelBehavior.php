@@ -2,9 +2,9 @@
 
 namespace common\behaviors;
 
-use common\modules\geo\models\City;
-use yii\base\Behavior;
 use Yii;
+use yii\base\Behavior;
+use common\modules\geo\models\City;
 
 /**
  * City Model Behavior
@@ -39,6 +39,7 @@ class CityModelBehavior extends Behavior
         if (!$this->cityModel) {
             return $default;
         };
+
         return $this->cityModel->city_id;
     }
 }

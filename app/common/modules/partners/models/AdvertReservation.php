@@ -2,11 +2,11 @@
 
 namespace common\modules\partners\models;
 
-use common\modules\partners\models\scopes\AdvertReservationQuery;
-use common\modules\partners\traits\ModuleTrait;
-use common\modules\users\models\User;
-use yii\helpers\ArrayHelper;
 use Yii;
+use yii\helpers\ArrayHelper;
+use common\modules\users\models\User;
+use common\modules\partners\traits\ModuleTrait;
+use common\modules\partners\models\scopes\AdvertReservationQuery;
 
 /**
  * This is the model class for table "{{%partners_advert_reservations}}".
@@ -96,7 +96,9 @@ class AdvertReservation extends \yii\db\ActiveRecord
      * Значения полей confirm и cancel, причем BOTH для cancel не нужен
      */
     const RENTER = 1;
+
     const LANDLORD = 2;
+
     const BOTH = 3;
 
     /**

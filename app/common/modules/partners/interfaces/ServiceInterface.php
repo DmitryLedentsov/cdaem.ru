@@ -3,7 +3,7 @@
 namespace common\modules\partners\interfaces;
 
 /**
- * Интерфейс для реалицации класса сервиса
+ * Интерфейс для реализации класса сервиса
  * @package common\modules\partners\interfaces
  */
 interface ServiceInterface

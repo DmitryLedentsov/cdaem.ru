@@ -2,12 +2,10 @@
 
 namespace common\modules\callback\controllers\frontend;
 
-use common\modules\callback\models\CallbackForm;
-use common\modules\callback\models\Callback;
-use yii\widgets\ActiveForm;
-use yii\web\HttpException;
-use yii\web\Response;
 use Yii;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
+use common\modules\callback\models\CallbackForm;
 
 /**
  * Default Controller
@@ -69,12 +67,12 @@ class DefaultController extends \frontend\components\Controller
                         'status' => 1,
                         'message' => 'Ваша заявка успешно отправлена, пожалуйста ожидайте звонка.'
                     ];
-                } else {
-                    return [
-                        'status' => 0,
-                        'message' => 'Возникла критическая ошибка'
-                    ];
                 }
+
+                return [
+                    'status' => 0,
+                    'message' => 'Возникла критическая ошибка'
+                ];
             }
 
             return $errors;
@@ -85,5 +83,4 @@ class DefaultController extends \frontend\components\Controller
             'message' => 'Возникла критическая ошибка'
         ];
     }
-
 }

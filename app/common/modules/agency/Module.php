@@ -2,8 +2,6 @@
 
 namespace common\modules\agency;
 
-use Yii;
-
 /**
  * Общий модуль [[Agency]]
  * Осуществляет всю работу с агенством.

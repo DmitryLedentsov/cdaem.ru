@@ -12,8 +12,8 @@
  * @var $detailsHistory array of instances backend\modules\agency\models\DetailsHistory,
  */
 
-use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\helpers\Html;
 
 echo '<meta http-equiv="Refresh" content="1000" />';
 $this->title = 'Панель управления';
@@ -94,8 +94,7 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
                                                 </div>';
                                     } else {
                                         $aHtml = '(картинка не задана)';
-                                    }
-                                    ?>
+                                    } ?>
 
                                     <tr>
 
@@ -156,8 +155,7 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
                                             </div>';
                                     } else {
                                         $aHtml = '(картинка не задана)';
-                                    }
-                                    ?>
+                                    } ?>
 
                                     <tr>
                                         <td class="tdId"><?= Html::a($aHtml, ['/agency/reservation/update', 'id' => $reservation->reservation_id]) ?></td>

@@ -2,8 +2,8 @@
 
 namespace common\modules\agency\actions;
 
-use yii\web\NotFoundHttpException;
 use Yii;
+use yii\web\NotFoundHttpException;
 
 /**
  * @inheritdoc
