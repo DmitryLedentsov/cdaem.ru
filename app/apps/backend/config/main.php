@@ -113,6 +113,12 @@ return [
         'navigation' => [
             'class' => \backend\components\Navigation::class,
         ],
+        'request' => [
+            'enableCsrfValidation' => true,
+            'enableCookieValidation' => true,
+            'baseUrl' => '',
+            'as cityModelBehavior' => \common\behaviors\CityModelBehavior::class
+        ],
         'view' => [
             'theme' => [
                 'pathMap' => [

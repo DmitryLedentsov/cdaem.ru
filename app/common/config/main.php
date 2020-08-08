@@ -138,12 +138,6 @@ return [
         'response' => [
             'class' => 'common\components\Response',
         ],
-        'request' => [
-            'enableCsrfValidation' => true,
-            'enableCookieValidation' => true,
-            'baseUrl' => '',
-            'as cityModelBehavior' => \common\behaviors\CityModelBehavior::class
-        ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
