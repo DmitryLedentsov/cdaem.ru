@@ -132,7 +132,7 @@ class Advert extends \yii\db\ActiveRecord
      */
     public static function previewFind()
     {
-        return static::find()->joinWith([
+        return static::find()->distinct()->joinWith([
             'apartment' => function ($query) {
                 $query->visible()
                     ->with([

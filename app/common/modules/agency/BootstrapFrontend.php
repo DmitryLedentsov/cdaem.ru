@@ -17,6 +17,10 @@ class BootstrapFrontend implements \yii\base\BootstrapInterface
         $app->urlManager->addRules(
             [
                 'agency' => 'agency/default/index',
+                [
+                    'pattern' => '/agency/komnat/<rooms:\w+>/okrug/<district:\w+>',
+                    'route' => '/agency/default/index',
+                ],
                 'podberem_kvartiry' => 'agency/default/select',
                 'hochy_sdat_kvartiry' => 'agency/default/want-pass',
                 'advert/<id:\d+>' => '/agency/default/view',

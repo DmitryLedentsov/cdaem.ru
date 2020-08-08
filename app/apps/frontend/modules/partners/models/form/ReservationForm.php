@@ -206,7 +206,7 @@ class ReservationForm extends Reservation
      */
     public function rules()
     {
-        return [
+        return array_merge([
             [['beds', 'pets', 'children', 'floor', 'clients_count', 'phone', 'email', 'rent_type', 'rooms', 'city_id', 'address', 'arrived_date', 'arrived_time', 'out_date', 'out_time', 'actuality_duration'], 'required'],
             [['money_from', 'money_to'], 'required', 'message' => 'Некорректно указан диапазон значений суммы'],
             [['email', 'phone', 'password', 'agreement'], 'required', 'on' => 'unauthorized'],
@@ -244,11 +244,8 @@ class ReservationForm extends Reservation
             ['metro_walk', 'in', 'range' => array_keys($this->metroWalkList)],
             ['actuality_duration', 'in', 'range' => array_keys($this->actualityList)],
 
-            ['verifyCode', 'required', 'message' => 'Подтвердите, что Вы не робот'],
-            ['verifyCode', \common\modules\site\widgets\Captcha::getClassValidator()],
-
             ['agreement', 'compare', 'compareValue' => '1', 'message' => 'Необходимо согласиться с условиями пользовательского соглашения.'],
-        ];
+        ], \common\modules\site\widgets\Captcha::getValidationRules());
     }
 
     /**

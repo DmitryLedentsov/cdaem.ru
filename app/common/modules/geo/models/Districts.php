@@ -23,4 +23,15 @@ class Districts extends \yii\db\ActiveRecord
     {
         return $this->hasOne(City::class, ['city_id' => 'city_id']);
     }
+
+    /**
+     * @param string $alias
+     * @return array|\yii\db\ActiveRecord|null
+     */
+    public static function findByAlias(string $alias)
+    {
+        return static::find()
+            ->where(['name_eng' => $alias])
+            ->one();
+    }
 }

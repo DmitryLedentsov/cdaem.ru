@@ -55,7 +55,7 @@ class ReservationForm extends \yii\base\Model
      */
     public function rules()
     {
-        return [
+        return array_merge([
             // Обязательные атрибуты
             [['name', 'phone', 'email', 'arrived_date', 'arrived_time', 'out_date', 'out_time', 'clients_count'], 'required'],
 
@@ -81,10 +81,7 @@ class ReservationForm extends \yii\base\Model
             // Трансфер
             ['transfer', 'boolean'],
 
-            // Защитный код
-            ['verifyCode', 'required', 'message' => 'Подтвердите, что Вы не робот'],
-            ['verifyCode', \common\modules\site\widgets\Captcha::getClassValidator()],
-        ];
+        ], \common\modules\site\widgets\Captcha::getValidationRules());
     }
 
     /**

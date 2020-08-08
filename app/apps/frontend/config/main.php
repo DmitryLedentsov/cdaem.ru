@@ -95,7 +95,6 @@ return [
         'partners' => [
             'class' => frontend\modules\partners\Module::class,
         ],
-
         'office' => [
             'class' => frontend\modules\office\Module::class,
         ],
@@ -172,28 +171,6 @@ return [
                 ],
             ],
         ],
-        'request' => [
-            'enableCsrfValidation' => true,
-            'enableCookieValidation' => true,
-            'baseUrl' => '',
-            'as cityModelBehavior' => \common\behaviors\CityModelBehavior::class
-        ],
-        'log' => [
-            'traceLevel' => 3,
-            'targets' => [
-                [
-                    'class' => \yii\log\DbTarget::class,
-                    'levels' => ['error', 'warning'],
-                ],
-                [
-                    'class' => yii\log\DbTarget::class,
-                    'levels' => ['info', 'error'],
-                    'categories' => ['robokassa'],
-                    // 'logFile' => '@frontend/runtime/logs/robokassa.log',
-                    'logVars' => [],
-                ],
-            ],
-        ],
         'errorHandler' => [
             'errorAction' => 'site/default/error',
         ],
@@ -209,10 +186,6 @@ return [
                 ],
             ],
         ],
-        'currencyConverter' => [
-            'class' => \common\components\CurrencyConverter::class,
-        ],
-        'reCaptcha' => require('reCaptcha.php'),
     ],
     'params' => $params,
 ];

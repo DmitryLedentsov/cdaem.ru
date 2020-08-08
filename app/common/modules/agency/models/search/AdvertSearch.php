@@ -9,6 +9,8 @@ use common\modules\geo\models\Metro;
 use common\modules\agency\models\Advert;
 use common\modules\geo\models\Districts;
 use common\modules\realty\models\RentType;
+use common\modules\agency\models\Apartment;
+use common\modules\agency\models\query\AdvertQuery;
 use common\modules\realty\models\Apartment as TotalApartment;
 
 /**
@@ -194,6 +196,7 @@ class AdvertSearch extends Advert
      */
     public function allSearch($params)
     {
+        /** @var AdvertQuery $query */
         $query = Advert::previewFind()->mainPage();
 
         $dataProvider = new ActiveDataProvider([
@@ -209,11 +212,32 @@ class AdvertSearch extends Advert
             return $dataProvider;
         }
 
-        $query->andFilterWhere(['rent_type' => [
-            ArrayHelper::map($this->rentTypesArray, 'slug', 'rent_type_id')[$this->rentType],
-            ArrayHelper::map($this->rentTypesArray, 'slug', 'rent_type_id')['zagorodniy_dom']
-        ]
+        $district = $this->district === 'all' ? null : Districts::findByAlias($this->district);
+
+        $query->andFilterWhere([
+            'rent_type' => [
+                ArrayHelper::map($this->rentTypesArray, 'slug', 'rent_type_id')[$this->rentType],
+                ArrayHelper::map($this->rentTypesArray, 'slug', 'rent_type_id')['zagorodniy_dom']
+            ],
         ]);
+
+        if ($this->rooms !== 'all') {
+            $query->andFilterWhere([
+                Apartment::tableName() . '.total_rooms' => $this->rooms,
+            ]);
+        }
+
+        if ($district) {
+            $query->andWhere([
+                'or',
+                [
+                    Apartment::tableName() . '.district1' => $district->id,
+                ],
+                [
+                    Apartment::tableName() . '.district2' => $district->id,
+                ]
+            ]);
+        }
 
         return $dataProvider;
     }
