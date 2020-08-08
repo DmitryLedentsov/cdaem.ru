@@ -20,7 +20,7 @@ class AdvertisementAsset extends AssetBundle
      * @inheritdoc
      */
     public $depends = [
-        'yii\web\JqueryAsset',
+        \yii\web\JqueryAsset::class,
     ];
 
     /**
@@ -31,13 +31,10 @@ class AdvertisementAsset extends AssetBundle
         parent::init();
 
         if (YII_DEBUG) {
-
             $this->js = [
                 'js_dev/add-in-slider.js',
             ];
-
         } else {
-
             $this->js = [
                 'js/add-in-slider.js',
             ];

@@ -2,13 +2,13 @@
 
 namespace backend\modules\partners\controllers;
 
-use backend\modules\partners\models\AdvertReservation;
-use backend\modules\partners\models\AdvertReservationSearch;
+use Yii;
+use yii\web\Response;
 use backend\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\ForbiddenHttpException;
-use yii\web\Response;
-use Yii;
+use backend\modules\partners\models\AdvertReservation;
+use backend\modules\partners\models\AdvertReservationSearch;
 
 /**
  * Advert Reservation Controller
@@ -71,7 +71,6 @@ class AdvertReservationController extends Controller
         $model->scenario = 'update';
 
         if ($model->load(Yii::$app->request->post())) {
-
             if (!Yii::$app->user->can('partners-advert-reservation-update')) {
                 throw new ForbiddenHttpException(Yii::t('users.rbac', 'ACCESS_DENIED'));
             }
@@ -82,9 +81,11 @@ class AdvertReservationController extends Controller
                 } else {
                     Yii::$app->session->setFlash('danger', 'Возникла ошибка.');
                 }
+
                 return $this->redirect(['update', 'id' => $model->id]);
             } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validate($model);
             }
         }

@@ -6,14 +6,16 @@ $pageExistQueryParams['page'] = empty($pageExistQueryParams['page']) ? '1' : $pa
 
 // ����� ��������� �� ����������� ���� � �������, �� ����� ������� ��� �����
 $cityIdQuery = '';
-if (Yii::$app->request->cityId) $cityIdQuery = ' city_id = ' . Yii::$app->request->cityId;
+if (Yii::$app->request->cityId) {
+    $cityIdQuery = ' city_id = ' . Yii::$app->request->cityId;
+}
 
 $whereCityIdQuery = $cityIdQuery ? ' WHERE' . $cityIdQuery : '';
 
 $filters = [
 
     [
-        'class' => 'yii\filters\PageCache',
+        'class' => \yii\filters\PageCache::class,
         'only' => ['reservations'],
         'duration' => 300,
         'enabled' => \common\modules\users\models\Profile::find()->select('user_type')
@@ -52,7 +54,7 @@ $filters = [
     ],
 
     [
-        'class' => 'yii\filters\PageCache',
+        'class' => \yii\filters\PageCache::class,
         'only' => ['reservations-want-rent'],
         'duration' => 300,
         'variations' => array_merge($pageExistQueryParams, [
@@ -89,7 +91,7 @@ $filters = [
     ],
 
     [
-        'class' => 'yii\filters\PageCache',
+        'class' => \yii\filters\PageCache::class,
         'only' => ['total-bid'],
         'duration' => 300,
         'enabled' => \common\modules\users\models\Profile::find()->select('user_type')
@@ -125,7 +127,7 @@ $filters = [
     ],
 
     [
-        'class' => 'yii\filters\PageCache',
+        'class' => \yii\filters\PageCache::class,
         'only' => ['total-bid-want-rent'],
         'duration' => 300,
         'variations' => array_merge($pageExistQueryParams, [

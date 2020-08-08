@@ -8,12 +8,12 @@
     @var $processService
 */
 
-use frontend\modules\merchant\widgets\robokassa\PaymentSystemsList;
-use frontend\modules\merchant\widgets\robokassa\RenderForm;
-use yii\widgets\ActiveForm;
-use yii\helpers\Json;
-use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\helpers\Html;
+use yii\helpers\Json;
+use yii\widgets\ActiveForm;
+use frontend\modules\merchant\widgets\robokassa\RenderForm;
+use frontend\modules\merchant\widgets\robokassa\PaymentSystemsList;
 
 $price = $service->getPrice();
 
@@ -31,8 +31,8 @@ if (!empty($processService) && is_object($processService)) {
     <div class="payment-service">
 
         <?php if ($description) {
-            echo $description;
-        } ?>
+    echo $description;
+} ?>
 
         <p>Стоимость услуги: <strong><?= Yii::$app->formatter->asCurrency($price, 'RUB') ?></strong></p>
 

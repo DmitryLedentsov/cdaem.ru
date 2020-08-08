@@ -2,8 +2,8 @@
 
 namespace frontend\themes\basic\assets;
 
-use yii\web\AssetBundle;
 use Yii;
+use yii\web\AssetBundle;
 
 /**
  * Менеджер ресурсов
@@ -20,7 +20,7 @@ class BootAsset extends AssetBundle
      * @inheritdoc
      */
     public $depends = [
-        'yii\web\JqueryAsset',
+        \yii\web\JqueryAsset::class,
     ];
 
     /**

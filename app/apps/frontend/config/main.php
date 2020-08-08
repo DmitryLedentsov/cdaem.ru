@@ -33,7 +33,6 @@ return [
         common\modules\seo\BootstrapFrontend::class,
     ],
     'on beforeRequest' => function ($event) {
-
         if (Yii::$app->user) {
             $identity = Yii::$app->user->identity;
             if ($identity) {

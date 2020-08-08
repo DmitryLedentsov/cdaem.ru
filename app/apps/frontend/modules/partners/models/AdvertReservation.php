@@ -27,5 +27,4 @@ class AdvertReservation extends \common\modules\partners\models\AdvertReservatio
 
         return $reservationwidth;
     }
-
 }

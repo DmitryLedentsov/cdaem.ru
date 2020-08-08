@@ -2,10 +2,10 @@
 
 namespace console\controllers;
 
-use nepster\users\helpers\Security;
-use yii\helpers\Console;
-use yii\log\Logger;
 use Yii;
+use yii\log\Logger;
+use yii\helpers\Console;
+use nepster\users\helpers\Security;
 
 /**
  * Test Controller
@@ -23,6 +23,7 @@ class TestController extends \yii\console\Controller
     {
         $mail = Yii::$app->getMailer();
         $mail->viewPath = '@common/mails';
+
         return $mail->compose('test', [])
             ->setFrom(Yii::$app->getMailer()->messageConfig['from'])
             ->setTo($setTo)

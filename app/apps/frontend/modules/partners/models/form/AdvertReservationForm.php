@@ -2,11 +2,11 @@
 
 namespace frontend\modules\partners\models\form;
 
-use frontend\modules\partners\models\AdvertReservation;
-use frontend\modules\partners\models\Calendar;
-use frontend\modules\partners\models\Advert;
-use common\modules\users\models\User;
 use Yii;
+use common\modules\users\models\User;
+use frontend\modules\partners\models\Advert;
+use frontend\modules\partners\models\Calendar;
+use frontend\modules\partners\models\AdvertReservation;
 
 /**
  * @inheritdoc
@@ -237,7 +237,9 @@ class AdvertReservationForm extends AdvertReservation
     public function validateApartmentAvailable($attribute, $params)
     {
         // Чтоб не нагружать сервер, проверяем только когда других ошибок нету
-        if ($this->hasErrors()) return;
+        if ($this->hasErrors()) {
+            return;
+        }
 
         $apartment_id = Advert::find()->select('apartment_id')->where(['advert_id' => $this->advert_id])->scalar();
 
@@ -308,6 +310,7 @@ class AdvertReservationForm extends AdvertReservation
 
         if ($model->save(false)) {
             $this->id = $model->id;
+
             return true;
         }
 

@@ -2,8 +2,8 @@
 
 namespace chat\assets;
 
-use yii\web\AssetBundle;
 use Yii;
+use yii\web\AssetBundle;
 
 /**
  * Менеджер ресурсов
@@ -22,10 +22,9 @@ class ChatAsset extends AssetBundle
     ];
 
     public $depends = [
-        'yii\web\JqueryAsset',
+        \yii\web\JqueryAsset::class,
         'yii\widgets\ActiveFormAsset',
     ];
-
 
     /**
      * @inheritdoc

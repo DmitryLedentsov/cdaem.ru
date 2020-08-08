@@ -10,11 +10,10 @@
 
 use yii\helpers\Html;
 
-
 if ($userType == 'landlord') {
     $ownerPercentage = Yii::$app->getModule('partners')->ownerReservationPercent;
     $priceToPay = $advertPrice / 100 * $ownerPercentage;
-} else if ($userType == 'renter') {
+} elseif ($userType == 'renter') {
     $clientPercentage = Yii::$app->getModule('partners')->clientReservationPercent;
     $priceToPay = $advertPrice / 100 * $clientPercentage;
 } else {
@@ -100,6 +99,7 @@ if ($userType == 'landlord') {
                 echo Html::radioList($name, $selection, $items, [
                     'item' => function ($index, $label, $name, $checked, $value) {
                         $disabled = false;
+
                         return Html::radio($name, $checked, [
                             'value' => $value,
                             'label' => Html::encode($label),

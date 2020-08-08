@@ -2,12 +2,12 @@
 
 namespace console\controllers;
 
-use common\modules\partners\models\Apartment as ApartmentPartners;
-use common\modules\agency\models\Apartment as ApartmentAgency;
-use vitalik74\geocode\Geocode;
-use yii\helpers\ArrayHelper;
-use yii\helpers\Console;
 use Yii;
+use yii\helpers\Console;
+use yii\helpers\ArrayHelper;
+use vitalik74\geocode\Geocode;
+use common\modules\agency\models\Apartment as ApartmentAgency;
+use common\modules\partners\models\Apartment as ApartmentPartners;
 
 /**
  * php yii apartment/set-geo-code
@@ -100,5 +100,4 @@ class ApartmentController extends \yii\console\Controller
             'longitude' => $longitude,
         ];
     }
-
 }

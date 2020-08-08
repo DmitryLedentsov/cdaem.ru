@@ -2,11 +2,11 @@
 
 namespace backend\components;
 
-use yii\base\InvalidConfigException;
-use yii\base\InvalidParamException;
-use yii\helpers\Html;
-use yii\helpers\Url;
 use Yii;
+use yii\helpers\Url;
+use yii\helpers\Html;
+use yii\base\InvalidParamException;
+use yii\base\InvalidConfigException;
 
 /**
  * Navigation
@@ -57,6 +57,7 @@ class Navigation extends \yii\base\Component
         $currentAction = Yii::$app->controller->action->id;
 
         $this->setActiveSection($currentModule, $currentController, $currentAction);
+
         return $this->recursivelyGenerateHtml();
     }
 
@@ -79,7 +80,6 @@ class Navigation extends \yii\base\Component
         }
 
         foreach ($sections as &$section) {
-
             $section['options'] = isset($section['options']) ? $section['options'] : [];
 
             if ($dropdown === false) {
@@ -90,7 +90,6 @@ class Navigation extends \yii\base\Component
                     $section['options']['class'] = 'active';
                 }
             } else {
-
                 $section['controller'] = isset($section['controller']) ? $section['controller'] : '';
                 $section['action'] = isset($section['action']) ? $section['action'] : '';
 
@@ -147,7 +146,7 @@ class Navigation extends \yii\base\Component
                 }
             }
         }
+
         return $result;
     }
-
 }

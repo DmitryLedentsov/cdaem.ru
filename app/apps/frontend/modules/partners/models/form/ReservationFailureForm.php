@@ -2,10 +2,10 @@
 
 namespace frontend\modules\partners\models\form;
 
+use Yii;
+use common\modules\users\models\User;
 use common\modules\partners\models\AdvertReservation;
 use common\modules\partners\models\ReservationFailure;
-use common\modules\users\models\User;
-use Yii;
 
 /**
  * @package frontend\modules\partners\models\form
@@ -68,6 +68,7 @@ class ReservationFailureForm extends ReservationFailure
 
         if (!$this->_reservation) {
             $this->addError('reservation_id', 'Возникла критическая ошибка.');
+
             return false;
         }
 
@@ -79,16 +80,19 @@ class ReservationFailureForm extends ReservationFailure
 
         if ($now > $timeEnd) {
             $this->addError('reservation_id', 'Время подачи заявки "Не заезд" истекло.');
+
             return false;
         }
 
         if ($now < $timeStart) {
             $this->addError('reservation_id', 'Время подачи заявки "Не заезд" еще не наступило.');
+
             return false;
         }
 
         if (AdvertReservation::checkAlreadyFailed($this->reservation_id)) {
             $this->addError('reservation_id', 'Заявка "Незаезд" уже создана. Прочтите email или обратитесь в службу технической поддержки.');
+
             return false;
         }
     }
@@ -113,6 +117,7 @@ class ReservationFailureForm extends ReservationFailure
             } else {
                 $transaction->commit();
             }
+
             return $result;
         } catch (\Exception $e) {
             $transaction->rollBack();

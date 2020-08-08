@@ -2,10 +2,10 @@
 
 namespace frontend\modules\partners\widgets;
 
-use yii\helpers\Html;
-use yii\base\Widget;
 use Yii;
 use yii\bootstrap;
+use yii\base\Widget;
+use yii\helpers\Html;
 
 /**
  * Виджет отображает блок объявления на главной странице сайта
@@ -41,7 +41,6 @@ class PreviewAdvertIndex extends Widget
         }
 
         foreach ($this->advert->apartment->adverts as $advert) {
-
             $icon = '';
             if ($advert->rentType['icons']) {
                 $icons = @json_decode($advert->rentType['icons'], true);

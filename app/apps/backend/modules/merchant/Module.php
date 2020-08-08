@@ -8,5 +8,4 @@ namespace backend\modules\merchant;
  */
 class Module extends \common\modules\merchant\Module
 {
-
 }

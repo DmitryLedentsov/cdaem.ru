@@ -2,19 +2,19 @@
 
 namespace backend\modules\partners\controllers;
 
-use backend\modules\partners\models\ApartmentSearch;
-use backend\modules\partners\models\ApartmentForm;
-use backend\modules\partners\models\Apartment;
-use backend\modules\partners\models\Advert;
-use backend\modules\partners\models\Image;
+use Yii;
+use yii\helpers\Url;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
 use yii\data\ActiveDataProvider;
 use backend\components\Controller;
-use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
-use yii\widgets\ActiveForm;
-use yii\web\Response;
-use yii\helpers\Url;
-use Yii;
+use yii\web\ForbiddenHttpException;
+use backend\modules\partners\models\Image;
+use backend\modules\partners\models\Advert;
+use backend\modules\partners\models\Apartment;
+use backend\modules\partners\models\ApartmentForm;
+use backend\modules\partners\models\ApartmentSearch;
 
 /**
  * DefaultController
@@ -82,9 +82,11 @@ class DefaultController extends Controller
                 } else {
                     Yii::$app->session->setFlash('danger', 'Возникла ошибка.');
                 }
+
                 return $this->redirect(['update', 'id' => $model->apartment_id]);
             } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validate($model);
             }
         }
@@ -121,21 +123,21 @@ class DefaultController extends Controller
         ]);
 
         if ($model->load(Yii::$app->request->post())) {
-
             if (!Yii::$app->user->can('partners-apartment-update')) {
                 throw new ForbiddenHttpException(Yii::t('users.rbac', 'ACCESS_DENIED'));
             }
 
             if ($model->validate()) {
-
                 if ($model->save(false)) {
                     Yii::$app->session->setFlash('success', 'Данные успешно сохранены.');
                 } else {
                     Yii::$app->session->setFlash('danger', 'Возникла ошибка.');
                 }
+
                 return $this->redirect(['update', 'id' => $model->apartment_id]);
             } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validate($model);
             }
         }
@@ -202,6 +204,7 @@ class DefaultController extends Controller
 
         if (!$newDefaultImg) {
             $response['result'] = false;
+
             return $response;
         }
 
@@ -212,6 +215,7 @@ class DefaultController extends Controller
 
         if ($newDefaultImg == $oldDefaultImg) {
             $response['result'] = true;
+
             return $response;
         }
 
@@ -224,6 +228,7 @@ class DefaultController extends Controller
         }
 
         $response['result'] = true;
+
         return $response;
     }
 
@@ -277,6 +282,7 @@ class DefaultController extends Controller
 
         if (!$ids || !is_array($ids)) {
             Yii::$app->session->setFlash('danger', 'Не выбрано ни одной действие');
+
             return $this->redirect($redirect);
         }
 

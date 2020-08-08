@@ -7,8 +7,8 @@
  * @var backend\modules\admin\models\LogSearch $searchModel
  */
 
-use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\helpers\Html;
 use yii\grid\GridView;
 
 $this->title = 'Просмотр логов сервера';
@@ -70,6 +70,7 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
                 if (is_array($time) && isset($time[0])) {
                     $result = date('Y-m-d H:i:s', $time[0]);
                 }
+
                 return $result;
             }
         ],

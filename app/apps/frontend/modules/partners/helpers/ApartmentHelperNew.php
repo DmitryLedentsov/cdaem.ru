@@ -2,12 +2,12 @@
 
 namespace frontend\modules\partners\helpers;
 
-use common\modules\partners\models\Apartment;
-use common\modules\partners\models\Service;
-use yii\base\InvalidParamException;
-use yii\helpers\ArrayHelper;
-use yii\helpers\Html;
 use Yii;
+use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
+use yii\base\InvalidParamException;
+use common\modules\partners\models\Service;
+use common\modules\partners\models\Apartment;
 
 /**
  * Class ApartmentHelper
@@ -22,8 +22,6 @@ class ApartmentHelperNew
      */
     public static function getAddress(Apartment $model)
     {
-
-
         if ($model->city) {
             $result = [];
             $result[] = $model->address;
@@ -31,6 +29,7 @@ class ApartmentHelperNew
             if ($model->city->country) {
                 $result[] = $model->city->country->name;
             }
+
             return implode(', ', $result);
         }
 
@@ -44,11 +43,9 @@ class ApartmentHelperNew
             foreach ($model->adverts as $advert) {
                 $positions = Yii::$app->getView()->renderDynamic('if ($positions = \\common\\modules\\partners\\models\\Advert::find()->select("real_position")->where(["advert_id" => ' . $advert->advert_id . '])->scalar()) { return $positions; } else {return "pos";} ');
             }
-
         }
 
         return $positions;
-
     }
 
     /**
@@ -79,6 +76,7 @@ class ApartmentHelperNew
         if (!$model->open_contacts) {
             $result .= '<p class="color-success">Доступно бронирование</p>';
         }
+
         return $result;
     }
 
@@ -101,10 +99,10 @@ class ApartmentHelperNew
                 $result .= '<span class="color-info">' . $position . ' позиция</span>';
                 $result .= '<p>';
             }
+
             return $result;
         } else {
             return '<p>Объявления не созданы</p>';
         }
     }
-
 }

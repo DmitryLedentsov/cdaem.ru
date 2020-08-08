@@ -2,8 +2,8 @@
 
 namespace backend\modules\merchant\models;
 
-use common\modules\users\models\User;
 use Yii;
+use common\modules\users\models\User;
 
 /**
  * @inheritdoc
@@ -67,7 +67,6 @@ class PaymentForm extends Payment
                     ->setModule(Yii::$app->getModule('merchant')->id)
                     ->setUser(User::findOne($this->user_id))
                     ->costs($this->funds, $this->system);
-
             } else {
                 // Начислить средства
                 Yii::$app->balance
@@ -78,7 +77,6 @@ class PaymentForm extends Payment
             $transaction->commit();
 
             return true;
-
         } catch (\Exception $e) {
             $transaction->rollBack();
 

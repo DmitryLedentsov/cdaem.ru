@@ -3,11 +3,11 @@
 namespace backend\modules\partners\controllers;
 
 use Yii;
-use backend\modules\partners\models\ReservationFailure;
-use backend\modules\partners\models\ReservationFailureSearch;
 use backend\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\ForbiddenHttpException;
+use backend\modules\partners\models\ReservationFailure;
+use backend\modules\partners\models\ReservationFailureSearch;
 
 /**
  * ReservationFailuresController implements the CRUD actions for Reservation model.
@@ -69,7 +69,6 @@ class ReservationFailuresController extends Controller
         $model->scenario = 'update';
 
         if ($model->load(Yii::$app->request->post())) {
-
             if (!Yii::$app->user->can('partners-reservation-failure-update')) {
                 throw new ForbiddenHttpException(Yii::t('users.rbac', 'ACCESS_DENIED'));
             }
@@ -80,9 +79,11 @@ class ReservationFailuresController extends Controller
                 } else {
                     Yii::$app->session->setFlash('danger', 'Возникла ошибка.');
                 }
+
                 return $this->redirect(['update', 'id' => $model->id]);
             } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validate($model);
             }
         }

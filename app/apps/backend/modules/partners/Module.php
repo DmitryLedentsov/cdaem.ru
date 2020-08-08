@@ -7,5 +7,4 @@ namespace backend\modules\partners;
  */
 class Module extends \common\modules\partners\Module
 {
-
 }

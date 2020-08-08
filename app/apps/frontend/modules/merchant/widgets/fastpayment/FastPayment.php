@@ -2,11 +2,11 @@
 
 namespace frontend\modules\merchant\widgets\fastpayment;
 
-use frontend\modules\merchant\widgets\fastpayment\assets\FastPaymentAsset;
-use common\modules\partners\models\Service;
-use frontend\modules\merchant\models\Pay;
-use yii\base\InvalidArgumentException;
 use Yii;
+use yii\base\InvalidArgumentException;
+use frontend\modules\merchant\models\Pay;
+use common\modules\partners\models\Service;
+use frontend\modules\merchant\widgets\fastpayment\assets\FastPaymentAsset;
 
 /**
  * Виджет для быстрой оплаты

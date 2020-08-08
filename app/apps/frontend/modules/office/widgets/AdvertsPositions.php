@@ -2,9 +2,9 @@
 
 namespace frontend\modules\office\widgets;
 
-use frontend\modules\partners\models\Advert;
-use yii\base\Widget;
 use Yii;
+use yii\base\Widget;
+use frontend\modules\partners\models\Advert;
 
 /**
  * Class AdvertsPositions
@@ -41,7 +41,6 @@ class AdvertsPositions extends Widget
 
         // Если нету, то сгенерируем
         if ($cachedData === false) {
-
             $userAdverts = Advert::getAdvertsByUser(Yii::$app->user->id, 10);
 
             $cachedData = $this->render('advertsPositions', [

@@ -2,10 +2,9 @@
 
 namespace frontend\modules\partners\models;
 
-
-use frontend\modules\merchant\models\Service;
-use yii\helpers\ArrayHelper;
 use Yii;
+use yii\helpers\ArrayHelper;
+use frontend\modules\merchant\models\Service;
 
 /**
  * @inheritdoc

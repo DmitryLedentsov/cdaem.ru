@@ -2,11 +2,11 @@
 
 namespace frontend\modules\merchant\models;
 
-use common\modules\partners\traits\ModuleTrait;
-use common\modules\partners\models\Service;
-use common\modules\users\models\User;
-use yii\helpers\Json;
 use Yii;
+use yii\helpers\Json;
+use common\modules\users\models\User;
+use common\modules\partners\models\Service;
+use common\modules\partners\traits\ModuleTrait;
 
 /**
  * Оплата счета
@@ -185,10 +185,12 @@ class Pay extends \yii\base\Model
             if ($this->scenario == 'pay-account') {
                 if (Yii::$app->user->isGuest) {
                     $this->addError('user', 'Вы не авторизованы. Пожалуйста войдите на сайт под своим логином и паролем.');
+
                     return false;
                 }
                 if (!Yii::$app->user->isGuest && Yii::$app->user->identity->funds_main < $this->_price) {
                     $this->addError('user', 'На Вашем счету недостаточно средств. Пожалуйста пополните Ваш счет.');
+
                     return false;
                 }
             }
@@ -197,17 +199,19 @@ class Pay extends \yii\base\Model
             $this->_service = $this->_service->setProcess($this->_process);
             if (!$this->_service->validate()) {
                 $this->addError('', 'Возникла ошибка при проверке данных для активации сервиса, пожалуйста попробуйте еще раз или обратитесь в службу технической поддержки.');
+
                 return false;
             }
             if (!$this->_service->validateContact()) {
                 $this->addError('', 'Ваше объявление под бронью, Вы не можете оплатить!.');
+
                 return false;
             }
             if (!$this->_service->validateContactOpen()) {
                 $this->addError('', 'У Вашего объявления открыты контакты или дождитесь активации уже оплаченых. Около 10 минут');
+
                 return false;
             }
-
         }
     }
 
@@ -274,7 +278,6 @@ class Pay extends \yii\base\Model
                 'funds' => Yii::$app->formatter->asCurrency(Yii::$app->user->identity->funds_main - $this->_price, 'RUB'),
                 'redirect' => ['/office/orders']
             ];
-
         }
 
         // Оплата с помощью платежной системы

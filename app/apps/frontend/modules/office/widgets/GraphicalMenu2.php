@@ -2,12 +2,12 @@
 
 namespace frontend\modules\office\widgets;
 
-use frontend\modules\partners\models\Reservation;
+use Yii;
+use yii\base\Widget;
 use common\modules\users\models\Profile;
 use common\modules\messages\models\Mailbox;
+use frontend\modules\partners\models\Reservation;
 use frontend\modules\partners\models\AdvertReservation;
-use yii\base\Widget;
-use Yii;
 
 /**
  * Class GraphicalMenu2

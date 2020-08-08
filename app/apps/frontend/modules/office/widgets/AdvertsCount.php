@@ -2,9 +2,9 @@
 
 namespace frontend\modules\office\widgets;
 
-use frontend\modules\partners\models\Advert;
-use yii\base\Widget;
 use Yii;
+use yii\base\Widget;
+use frontend\modules\partners\models\Advert;
 
 /**
  * Class AdvertsCount
@@ -41,7 +41,6 @@ class AdvertsCount extends Widget
 
         // Если нету, то сгенерируем
         if ($cachedData === false) {
-
             $userAdverts = Advert::find()
                 ->select('rent_type')
                 ->joinWith([

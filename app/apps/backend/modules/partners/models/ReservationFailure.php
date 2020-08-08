@@ -2,8 +2,8 @@
 
 namespace backend\modules\partners\models;
 
-use yii\db\ActiveRecord;
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * @inheritdoc

@@ -2,14 +2,14 @@
 
 namespace frontend\modules\partners\widgets;
 
+use Yii;
+use yii\base\Widget;
+use yii\helpers\Url;
+use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
+use common\modules\geo\models\City;
 use frontend\modules\partners\widgets\PreviewAdvertTmp;
 use frontend\modules\partners\models\AdvertisementSlider;
-use common\modules\geo\models\City;
-use yii\helpers\ArrayHelper;
-use yii\helpers\Html;
-use yii\helpers\Url;
-use yii\base\Widget;
-use Yii;
 
 /**
  * Advertising Top Slider Adverts
@@ -104,7 +104,8 @@ class AdvertisingTopSliderAdverts extends Widget
                     </div>
                 </div>
           ';
-            } else $cachedData = '
+            } else {
+                $cachedData = '
                 <div class="ticker">
                     <div class="container clearfix">
                     <div class="options">
@@ -116,6 +117,7 @@ class AdvertisingTopSliderAdverts extends Widget
                     </div>
                 </div>
           ';
+            }
 
             Yii::$app->cache->set($cacheKey, $cachedData, 300, $cacheDependency);
         }

@@ -6,7 +6,7 @@ $pageExistQueryParams['page'] = empty($pageExistQueryParams['page']) ? '1' : $pa
 
 $filters = [
     [
-        'class' => 'yii\filters\PageCache',
+        'class' => \yii\filters\PageCache::class,
         'only' => ['index'],
         'duration' => 300,
         'variations' => array_merge($pageExistQueryParams, [

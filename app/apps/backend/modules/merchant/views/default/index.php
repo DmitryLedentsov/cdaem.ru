@@ -10,7 +10,6 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 
-
 $this->title = 'История денежного оборота';
 
 echo \backend\modules\admin\widgets\HeaderWidget::widget([
@@ -104,7 +103,3 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
 
     ],
 ]);
-        
-        
-
-        

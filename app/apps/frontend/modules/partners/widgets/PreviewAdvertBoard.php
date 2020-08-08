@@ -2,9 +2,9 @@
 
 namespace frontend\modules\partners\widgets;
 
+use Yii;
 use yii\base\Widget;
 use yii\helpers\Html;
-use Yii;
 
 /**
  * Виджет отображает блок объявления на доске объявлений
@@ -40,7 +40,6 @@ class PreviewAdvertBoard extends Widget
         }
 
         foreach ($this->advert->apartment->adverts as $advert) {
-
             $icon = '';
             if ($advert->rentType['icons']) {
                 $icons = @json_decode($advert->rentType['icons'], true);
@@ -95,6 +94,7 @@ class PreviewAdvertBoard extends Widget
         if (!$this->advert->apartment->open_contacts && $this->advert->apartment->user->checkActivityIfOlderThan('month', 1)) {
             $contacts = '<div class="contacts" title="Контакты открыты"></div>';
         }
+
         return ('
             <div class="apartment-board col-sm-6 col-xs-6 col-md-3' . $selected . '">
                 

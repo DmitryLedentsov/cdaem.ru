@@ -2,25 +2,25 @@
 
 namespace frontend\modules\partners\controllers;
 
-use frontend\modules\partners\models\Apartment;
-use common\modules\helpdesk\models\Helpdesk;
-use frontend\modules\partners\models\AdvertisementSlider;
-use common\modules\partners\models\MetroStations;
-use frontend\modules\partners\models as models;
-use common\modules\realty\models\RentType;
-use common\modules\users\models\Profile;
-use common\modules\geo\models\Country;
-use common\modules\geo\models\City;
-use frontend\modules\partners\models\Advert;
+use Yii;
+use yii\helpers\Url;
+use yii\web\Response;
 use yii\data\Pagination;
 use yii\web\HttpException;
-use yii\web\NotFoundHttpException;
 use yii\widgets\ActiveForm;
-use yii\web\Response;
 use yii\helpers\ArrayHelper;
-use yii\helpers\Url;
+use yii\web\NotFoundHttpException;
+use common\modules\geo\models\City;
+use common\modules\geo\models\Country;
+use common\modules\users\models\Profile;
+use common\modules\realty\models\RentType;
 use common\modules\articles\models\Article;
-use Yii;
+use common\modules\helpdesk\models\Helpdesk;
+use frontend\modules\partners\models\Advert;
+use frontend\modules\partners\models as models;
+use frontend\modules\partners\models\Apartment;
+use common\modules\partners\models\MetroStations;
+use frontend\modules\partners\models\AdvertisementSlider;
 
 /**
  * Главный контроллер партнеров
@@ -28,7 +28,6 @@ use Yii;
  */
 class DefaultController extends \frontend\components\Controller
 {
-
     /**
      * @inheritdoc
      */
@@ -41,14 +40,17 @@ class DefaultController extends \frontend\components\Controller
                 $userType = Yii::$app->BasisFormat->helper('Status')->getItem(Profile::getUserTypeArray(), Yii::$app->user->identity->profile->user_type);
                 Yii::$app->session->setFlash('danger', '<b>Внимание:</b> <br/> Ваш тип аккаунта: "' . $userType . '" и Вы не можете производить данное действие. ');
                 $this->redirect(['/office/default/index']);
+
                 return false;
             }
         }
 
-        if ($action->id == 'region')
+        if ($action->id == 'region') {
             Url::remember('', 'region');
-        if ($action->id == 'preview')
+        }
+        if ($action->id == 'preview') {
             Url::remember('', 'preview');
+        }
 
         if (!parent::beforeAction($action)) {
             return false;
@@ -96,6 +98,7 @@ class DefaultController extends \frontend\components\Controller
         $cities = models\Apartment::alphCities();
 
         $searchModel = new models\search\AdvertSearch();
+
         return $this->render('index.twig', [
             'cities' => $cities,
             'searchModel' => $searchModel,
@@ -161,7 +164,7 @@ class DefaultController extends \frontend\components\Controller
         }
         $articlesall3 = $articlesQuery2->limit(9)->asArray()->all();
         $i = 0;
-        $articlesall2 = array();
+        $articlesall2 = [];
         foreach ($articlesall3 as $item) {
             if ($i > 0) {
                 $articlesall2[] = $item;
@@ -173,6 +176,7 @@ class DefaultController extends \frontend\components\Controller
         $topAdverts = models\Advert::findAdvertsByCity($city->city_id, true, Yii::$app->request->get('sect'));
 
         Yii::$app->view->registerLinkTag(['rel' => 'canonical', 'href' => URL::to('https://' . $city->name_eng . '.cdaem.ru')]);
+
         return $this->render('region.twig', [
             'city' => $city,
             'searchModel' => $searchModel,
@@ -202,12 +206,17 @@ class DefaultController extends \frontend\components\Controller
             $otherAdverts = models\Advert::getOtherAdverts($model->apartment->user_id, $id);
 
             $res = ArrayHelper::map(
-                $otherAdverts, 'advert_id', function ($element) {
-                return $element;
-            }, function ($element) {
-                return $element['rentType']['slug'] . ',' . $element['rentType']['name'];
-            });
+                $otherAdverts,
+                'advert_id',
+                function ($element) {
+                    return $element;
+                },
+                function ($element) {
+                    return $element['rentType']['slug'] . ',' . $element['rentType']['name'];
+                }
+            );
         }
+
         return $this->render('view.twig', [
             'model' => $model,
             'otherAdverts' => $res,
@@ -217,6 +226,7 @@ class DefaultController extends \frontend\components\Controller
     public function actionPreview($id)
     {
         $model = models\form\ApartmentForm::findByIdThisUser($id);
+
         return $this->render('preview.twig', [
             'model' => $model,
         ]);
@@ -235,11 +245,15 @@ class DefaultController extends \frontend\components\Controller
         }
         $otherAdverts = models\Advert::getOtherAdverts($model->apartment->user_id);
         $res = ArrayHelper::map(
-            $otherAdverts, 'advert_id', function ($element) {
-            return $element;
-        }, function ($element) {
-            return $element['rentType']['slug'] . ',' . $element['rentType']['name'];
-        });
+            $otherAdverts,
+            'advert_id',
+            function ($element) {
+                return $element;
+            },
+            function ($element) {
+                return $element['rentType']['slug'] . ',' . $element['rentType']['name'];
+            }
+        );
 
 
         return $this->render('others.twig', [
@@ -291,13 +305,13 @@ class DefaultController extends \frontend\components\Controller
             $errors = array_merge(ActiveForm::validate($apartment), ActiveForm::validate($advert), ActiveForm::validate($image));
 
             if (!$errors) {
-
                 $apartment->populateRelation('adverts', $advert);
                 $apartment->populateRelation('images', $image);
 
                 if (Yii::$app->request->post('submit')) {
                     if ($apartment->save(false)) {
                         Yii::$app->session->setFlash('success', 'Ваше объявление успешно добавлено в нашу базу данных.');
+
                         return $this->redirect(['/partners/default/apartments']);
                     } else {
                         return [
@@ -312,6 +326,7 @@ class DefaultController extends \frontend\components\Controller
 
             return $errors;
         }
+
         return $this->render('apartment_create.twig', [
             'apartment' => $apartment,
             'advert' => $advert,
@@ -344,7 +359,6 @@ class DefaultController extends \frontend\components\Controller
 
 
         if (Yii::$app->request->isAjax && Yii::$app->request->isPost) {
-
             Yii::$app->response->format = Response::FORMAT_JSON;
 
             $apartment->load(Yii::$app->request->post());
@@ -360,6 +374,7 @@ class DefaultController extends \frontend\components\Controller
                 if (Yii::$app->request->post('submit')) {
                     if ($apartment->save(false)) {
                         Yii::$app->session->setFlash('success', 'Ваше объявление обновлено.');
+
                         return $this->redirect(['/partners/default/apartments']);
                     } else {
                         return [
@@ -397,10 +412,9 @@ class DefaultController extends \frontend\components\Controller
             }
         }
         $apartment->delete();
+
         return $this->redirect(['/partners/default/apartments']);
-
     }
-
 
     /**
      * Быстрое заселение (Календарь)
@@ -409,6 +423,7 @@ class DefaultController extends \frontend\components\Controller
     public function actionCalendar()
     {
         $apartments = Apartment::findApartmentsByAvailable(Yii::$app->user->id);
+
         return $this->render('calendar.twig', [
             'apartments' => $apartments
         ]);
@@ -441,7 +456,7 @@ class DefaultController extends \frontend\components\Controller
         if (!$advert) {
             throw new HttpException(404, 'Вы ищете страницу, которой не существует');
         }
+
         return $advert;
     }
-
 }

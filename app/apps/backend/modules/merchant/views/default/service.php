@@ -8,9 +8,9 @@
  * @var $paidAdverts array
  */
 
-use common\modules\partners\models\Service;
 use yii\helpers\Html;
 use yii\grid\GridView;
+use common\modules\partners\models\Service;
 
 $this->title = 'История оплаты сервисов';
 
@@ -62,7 +62,6 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
             'format' => 'html',
             'contentOptions' => ['class' => 'text-left'],
             'value' => function (Service $model) use ($paidAdverts) {
-
                 $serviceName = Yii::$app->BasisFormat->helper('Status')->getItem(
                     Yii::$app->getModule('merchant')->systems['partners'],
                     $model->service
@@ -99,7 +98,6 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
             'format' => 'html',
             'contentOptions' => ['class' => 'text-center'],
             'value' => function ($model) {
-
                 if (empty($model->payment_id)) {
                     return Html::tag('span', 'Не оплачен', ['style' => 'color: red']);
                 }
@@ -109,7 +107,8 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
                     's[payment_id]' => $model->payment_id
                 ]);
 
-                $fundsInfo = Yii::$app->formatter->asCurrency($model->payment->funds, 'rub');;
+                $fundsInfo = Yii::$app->formatter->asCurrency($model->payment->funds, 'rub');
+                ;
                 $fundsInfo = Html::tag('div', sprintf('Общая сумма: %s', $fundsInfo));
 
                 return $paymentLink . $fundsInfo;

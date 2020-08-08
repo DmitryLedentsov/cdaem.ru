@@ -2,9 +2,9 @@
 
 namespace frontend\components;
 
-use common\modules\seo\models\SeoSpecification;
-use yii\helpers\Html;
 use Yii;
+use yii\helpers\Html;
+use common\modules\seo\models\SeoSpecification;
 
 /**
  * @inheritdoc
@@ -13,6 +13,7 @@ use Yii;
 class View extends \yii\web\View
 {
     private $metaTagsRegistered = false;
+
     private $dbTags;
 
     /**
@@ -93,6 +94,7 @@ class View extends \yii\web\View
 
         if ($dbTags) {
             $this->dbTags = $dbTags;
+
             return true;
         }
 

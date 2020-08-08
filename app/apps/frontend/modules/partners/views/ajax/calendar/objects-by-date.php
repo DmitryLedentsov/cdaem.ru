@@ -6,10 +6,10 @@
     @var frontend\modules\partners\models\Calendar $calendar
 */
 
-use frontend\modules\partners\widgets\PreviewAdvertTmp;
-use frontend\modules\partners\models\Calendar;
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
+use frontend\modules\partners\models\Calendar;
+use frontend\modules\partners\widgets\PreviewAdvertTmp;
 
 ?>
 <?php if (!empty($calendar)): ?>

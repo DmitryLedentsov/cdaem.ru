@@ -16,12 +16,11 @@ class BaseAsset extends AssetBundle
     ];
 
     public $depends = [
-        'yii\web\JqueryAsset',
+        \yii\web\JqueryAsset::class,
         'yii\jui\JuiAsset',
         'backend\themes\basic\assets\FormsAsset',
         'backend\themes\basic\assets\InterfaceAssets',
         'yii\bootstrap\BootstrapPluginAsset',
         'backend\themes\basic\assets\AppAsset',
     ];
-
 }

@@ -13,14 +13,13 @@ class FontsAsset extends AssetBundle
 {
     public $sourcePath = '@frontend/themes/basic/assets';
 
-
     public $css = [
         'https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic&subset=latin,cyrillic',
         'https://fonts.googleapis.com/css?family=Roboto',
     ];
 
     public $depends = [
-        'yii\web\JqueryAsset',
+        \yii\web\JqueryAsset::class,
     ];
 
     /**
@@ -32,7 +31,6 @@ class FontsAsset extends AssetBundle
 
 
         if (YII_DEBUG) {
-
             $this->css = array_merge($this->css, [
                 'css_dev/reset.css',
                 'widgets/pnotify/pnotify.custom.min.css',
@@ -57,9 +55,7 @@ class FontsAsset extends AssetBundle
                 'js_dev/URI.js',
                 'js_dev/ui.js',
             ];
-
         } else {
-
             $this->css = array_merge($this->css, [
                 'widgets/pnotify/pnotify.custom.min.css',
                 'widgets/browsers/jquery.reject.css',
@@ -85,6 +81,7 @@ class FontsAsset extends AssetBundle
     public static function getAssetUrl()
     {
         $obj = new self();
+
         return \Yii::$app->assetManager->getPublishedUrl($obj->sourcePath);
     }
 }

@@ -2,15 +2,15 @@
 
 namespace frontend\modules\partners\models\search;
 
+use Yii;
+use yii\base\Model;
+use yii\helpers\ArrayHelper;
+use yii\data\ActiveDataProvider;
+use common\modules\geo\models\Metro;
 use common\modules\realty\models\RentType;
-use common\modules\realty\models\Apartment as TotalApartment;
 use frontend\modules\partners\models\Advert;
 use frontend\modules\partners\models\Apartment;
-use common\modules\geo\models\Metro;
-use yii\data\ActiveDataProvider;
-use yii\helpers\ArrayHelper;
-use yii\base\Model;
-use Yii;
+use common\modules\realty\models\Apartment as TotalApartment;
 
 /**
  * @inheritdoc
@@ -139,6 +139,7 @@ class AdvertSearch extends Advert
     {
         $roomsList = TotalApartment::getRoomsArray();
         array_unshift($roomsList, 'Кол-во комнат');
+
         return $roomsList;
     }
 
@@ -216,6 +217,7 @@ class AdvertSearch extends Advert
 
         if (!$this->validate()) {
             $query->where('0=1');
+
             return $dataProvider;
         }
 
@@ -251,7 +253,9 @@ class AdvertSearch extends Advert
      */
     public function siteSearch($params)
     {
-        if (!isset($params['rentType'])) $params['rentType'] = 'kvartira_na_sutki';
+        if (!isset($params['rentType'])) {
+            $params['rentType'] = 'kvartira_na_sutki';
+        }
 
         $rentType = RentType::findRentTypeBySlug($params['rentType']);
 
@@ -295,5 +299,4 @@ class AdvertSearch extends Advert
             ->limit(12)
             ->all();
     }
-
 }

@@ -5,8 +5,8 @@
     @var string $service
 */
 
-use common\modules\partners\models\Service;
 use yii\helpers\Html;
+use common\modules\partners\models\Service;
 use frontend\themes\basic\assets\DateTimeAsset;
 
 ?>
@@ -14,9 +14,8 @@ use frontend\themes\basic\assets\DateTimeAsset;
     <div class="office">
         <div class="load">
             <?php try {
-                $service = Yii::$app->service->load($service);
-                echo Html::tag('p', '<b>' . $service->getName() . '</b>', []);
-                ?>
+    $service = Yii::$app->service->load($service);
+    echo Html::tag('p', '<b>' . $service->getName() . '</b>', []); ?>
 
                 <?php if ($service->getId() != Service::SERVICE_ADVERTISING_TOP_SLIDER): ?>
                     <p>Выделено объектов: <b id="selected-advert-count">0</b></p>
@@ -39,8 +38,7 @@ use frontend\themes\basic\assets\DateTimeAsset;
                                 'class' => 'form-control',
                                 'maxlength' => 2,
                                 'style' => 'width: 100px;'
-                            ]);
-                            ?>
+                            ]); ?>
                         </div>
                         <div class="form-group" style="float: left; clear: none; ">
                             <label class="control-label">Дата старта:</label>
@@ -50,8 +48,7 @@ use frontend\themes\basic\assets\DateTimeAsset;
                                 'maxlength' => 2,
                                 'style' => 'width: 150px;',
                                 'readonly' => 'readonly',
-                            ]);
-                            ?>
+                            ]); ?>
                         </div>
                     </div>
 
@@ -63,8 +60,7 @@ use frontend\themes\basic\assets\DateTimeAsset;
                         'id' => 'realty-objects-by-service-rent-type-list',
                         'class' => 'form-control select-white',
                         'prompt' => 'Все',
-                    ]);
-                    ?>
+                    ]); ?>
                     <p><br/></p>
                 <?php endif; ?>
 
@@ -75,7 +71,8 @@ use frontend\themes\basic\assets\DateTimeAsset;
                 ])
                 ?>
 
-            <?php } catch (\Exception $e) { ?>
+            <?php
+} catch (\Exception $e) { ?>
                 <div class="alert alert-danger">Возникла критическая ошибка</div>
             <?php } ?>
         </div>

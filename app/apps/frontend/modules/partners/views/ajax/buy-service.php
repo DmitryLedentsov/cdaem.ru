@@ -9,9 +9,9 @@
  * @var datetime $date
  */
 
-use frontend\modules\merchant\widgets\fastpayment\FastPayment;
-use common\modules\partners\models\Service;
 use yii\helpers\Html;
+use common\modules\partners\models\Service;
+use frontend\modules\merchant\widgets\fastpayment\FastPayment;
 
 $timeActivationWord = $date;
 

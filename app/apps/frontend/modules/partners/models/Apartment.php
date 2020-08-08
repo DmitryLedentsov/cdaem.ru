@@ -2,8 +2,8 @@
 
 namespace frontend\modules\partners\models;
 
-use yii\helpers\Html;
 use Yii;
+use yii\helpers\Html;
 
 /**
  * @inheritdoc
@@ -96,6 +96,7 @@ class Apartment extends \common\modules\partners\models\Apartment
                 return Yii::$app->getModule('partners')->previewImagesUrl . '/' . $this->alternateTitleImage->preview;
             }
         }
+
         return Yii::$app->getModule('partners')->defaultImageSrc;
     }
 }

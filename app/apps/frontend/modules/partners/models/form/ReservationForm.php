@@ -2,11 +2,11 @@
 
 namespace frontend\modules\partners\models\form;
 
-use frontend\modules\partners\models\Reservation;
+use Yii;
 use yii\behaviors\TimestampBehavior;
 use common\modules\users\models\User;
 use common\modules\users\models\Profile;
-use Yii;
+use frontend\modules\partners\models\Reservation;
 
 /**
  * @inheritdoc
@@ -308,7 +308,7 @@ class ReservationForm extends Reservation
         if ($this->getErrors('money_from')) {
             $this->addError('budget', $this->getFirstError('money_from'));
             $this->clearErrors('money_from');
-        } else if ($this->getErrors('money_to')) {
+        } elseif ($this->getErrors('money_to')) {
             $this->addError('budget', $this->getFirstError('money_to'));
             $this->clearErrors('money_to');
         }
@@ -374,6 +374,7 @@ class ReservationForm extends Reservation
 
         if ($model->save(false)) {
             $this->id = $model->id;
+
             return true;
         }
 

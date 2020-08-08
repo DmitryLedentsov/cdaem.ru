@@ -64,10 +64,13 @@ echo $this->render('_search', ['model' => $searchModel]);
                     return Html::a('<span class="icon-wrench"></span>', ['/partners/reservation/update', 'id' => $model->id]);
                 },
                 'delete' => function ($url, $model) {
-                    return Html::a('<span class="icon-remove3"></span>', ['/partners/reservation/delete', 'id' => $model->id],
+                    return Html::a(
+                        '<span class="icon-remove3"></span>',
+                        ['/partners/reservation/delete', 'id' => $model->id],
                         ['data' => [
                             'confirm' => 'Удалить?',
-                        ]]);
+                        ]]
+                    );
                 }
             ],
         ],
@@ -95,8 +98,6 @@ echo $this->render('_search', ['model' => $searchModel]);
             'format' => 'html',
             'contentOptions' => ['class' => 'text-left'],
             'value' => function ($model) {
-
-
                 $address = 'Страна: ' . $model->city->country->name;
                 $address .= ', Город: ' . $model->city->name;
                 $address .= '<br/>';
@@ -133,8 +134,11 @@ echo $this->render('_search', ['model' => $searchModel]);
                 $value = 'Закрыта: ' . Yii::$app->BasisFormat->helper('Status')->booleanString($model->closed, true) . '<br/>';
                 $value .= 'Отменена: ' . Yii::$app->BasisFormat->helper('Status')->booleanString($model->cancel, true) . '<br/>';
                 $color = 'green';
-                if ($model->date_actuality < date('Y-m-d H:i:s')) $color = 'red';
+                if ($model->date_actuality < date('Y-m-d H:i:s')) {
+                    $color = 'red';
+                }
                 $value .= 'Актуальна до: <span style = "color:' . $color . '">' . Yii::$app->BasisFormat->helper('DateTime')->toFullDateTime($model->date_actuality) . '</span>';
+
                 return $value;
             }
         ],
@@ -146,4 +150,3 @@ echo $this->render('_search', ['model' => $searchModel]);
         ],
     ],
 ]);
-

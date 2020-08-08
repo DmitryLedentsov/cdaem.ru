@@ -17,7 +17,8 @@ class Bootstrap implements \yii\base\BootstrapInterface
         //Yii::$app->formatter->currencyCode = Yii::$app->getModule('merchant')->viewMainCurrency;
 
         // Add module URL rules.
-        $app->urlManager->addRules([
+        $app->urlManager->addRules(
+            [
                 'merchant/payment/service' => 'merchant/default/service',
                 'merchant/payments/<page:\d+>' => 'merchant/default/index',
                 'merchant/payments' => 'merchant/default/index',

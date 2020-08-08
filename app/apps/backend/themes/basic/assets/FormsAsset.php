@@ -3,8 +3,8 @@
 namespace backend\themes\basic\assets;
 
 use Yii;
-use yii\web\AssetBundle;
 use yii\web\View;
+use yii\web\AssetBundle;
 
 /**
  * Менеджер ресурсов
@@ -34,9 +34,6 @@ class FormsAsset extends AssetBundle
     ];
 
     public $depends = [
-        'yii\web\JqueryAsset',
+        \yii\web\JqueryAsset::class,
     ];
 }
-
-
-  

@@ -2,11 +2,11 @@
 
 namespace frontend\modules\partners\models\search;
 
-use frontend\modules\partners\models\AdvertisementSlider;
-use yii\data\ActiveDataProvider;
-use yii\helpers\ArrayHelper;
-use yii\base\Model;
 use Yii;
+use yii\base\Model;
+use yii\helpers\ArrayHelper;
+use yii\data\ActiveDataProvider;
+use frontend\modules\partners\models\AdvertisementSlider;
 
 /**
  * @inheritdoc
@@ -74,5 +74,4 @@ class AdvertisementSliderSearch extends AdvertisementSlider
 
         return $dataProvider;
     }
-
 }

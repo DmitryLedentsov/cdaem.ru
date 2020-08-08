@@ -2,10 +2,10 @@
 
 namespace frontend\modules\office\controllers;
 
+use Yii;
+use yii\web\Response;
 use common\modules\users\models\UsersList;
 use frontend\modules\partners\models as models;
-use yii\web\Response;
-use Yii;
 
 /**
  * Ajax контроллер офиса
@@ -163,5 +163,4 @@ class AjaxController extends \frontend\components\Controller
             'message' => 'Возникла критическая ошибка.'
         ];
     }
-
 }

@@ -23,5 +23,4 @@ class ThumbAction extends \iutbay\yii2imagecache\ThumbAction
             throw new HttpException(404, Yii::t('yii', 'Page not found.'));
         }
     }
-
 }

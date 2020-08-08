@@ -1,13 +1,12 @@
 <?php
 
-use yii\db\Migration;
 use yii\db\Schema;
+use yii\db\Migration;
 
 class m150101_232650_total_rbac extends Migration
 {
     public function safeUp()
     {
-
         $auth = Yii::$app->authManager;
 
         // РАЗРЕШЕНИЯ

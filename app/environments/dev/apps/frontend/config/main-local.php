@@ -30,7 +30,6 @@ if (YII_ENV_TEST || YII_ENV == 'dev') {
         'class' => 'yii\gii\Module',
         'allowedIPs' => ['127.0.0.1', '::1', '172.19.0.1']
     ];
-
 }
 
 return $config;
