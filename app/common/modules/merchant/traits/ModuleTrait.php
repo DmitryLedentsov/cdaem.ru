@@ -2,8 +2,8 @@
 
 namespace common\modules\merchant\traits;
 
-use common\modules\merchant\Module;
 use Yii;
+use common\modules\merchant\Module;
 
 /**
  * Class ModuleTrait
@@ -30,6 +30,7 @@ trait ModuleTrait
                 $this->_module = Yii::$app->getModule('merchant');
             }
         }
+
         return $this->_module;
     }
 }

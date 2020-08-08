@@ -2,9 +2,8 @@
 
 namespace common\modules\agency\models\backend\form;
 
-use common\modules\agency\models\WantPass;
 use yii\helpers\Json;
-use Yii;
+use common\modules\agency\models\WantPass;
 
 /**
  * Want Pass
@@ -13,16 +12,27 @@ use Yii;
 class WantPassForm extends \yii\base\Model
 {
     public $apartment_want_pass_id;
+
     public $name;
+
     public $phone;
+
     public $phone2;
+
     public $email;
+
     public $rooms;
+
     public $description;
+
     public $address;
+
     public $rent_types;
+
     public $metro;
+
     public $status;
+
     public $date_create;
 
     /**
@@ -75,6 +85,7 @@ class WantPassForm extends \yii\base\Model
     public function update(WantPass $model)
     {
         $model->setAttributes($this->getAttributes(), false);
+
         return $model->save(false);
     }
 

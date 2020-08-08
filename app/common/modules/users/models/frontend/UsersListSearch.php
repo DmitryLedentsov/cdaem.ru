@@ -2,11 +2,9 @@
 
 namespace common\modules\users\models\frontend;
 
-use common\modules\users\models\UsersList;
-use yii\data\ActiveDataProvider;
-use yii\helpers\ArrayHelper;
 use yii\base\Model;
-use Yii;
+use yii\data\ActiveDataProvider;
+use common\modules\users\models\UsersList;
 
 /**
  * Class UsersListSearch

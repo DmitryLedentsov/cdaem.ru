@@ -7,9 +7,9 @@
 
 */
 
-use common\modules\partners\models\Service;
-use yii\widgets\ActiveForm;
 use yii\helpers\Html;
+use yii\widgets\ActiveForm;
+use common\modules\partners\models\Service;
 
 ?>
 

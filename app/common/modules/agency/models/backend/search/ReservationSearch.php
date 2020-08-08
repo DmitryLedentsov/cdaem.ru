@@ -2,10 +2,9 @@
 
 namespace common\modules\agency\models\backend\search;
 
-use common\modules\agency\models\Reservation;
-use yii\data\ActiveDataProvider;
 use yii\base\Model;
-use Yii;
+use yii\data\ActiveDataProvider;
+use common\modules\agency\models\Reservation;
 
 /**
  * Reservation Search
@@ -26,7 +25,6 @@ class ReservationSearch extends Reservation
         ];
     }
 
-
     /**
      * @inheritdoc
      */
@@ -37,7 +35,6 @@ class ReservationSearch extends Reservation
             'date_reserve' => 'Дата резервации'
         ]);
     }
-
 
     /**
      * @inheritdoc

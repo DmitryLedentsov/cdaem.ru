@@ -3,10 +3,10 @@
 
 /* @var $model common\modules\agency\models\Advert */
 
-use yii\widgets\ActiveForm;
-use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\helpers\Html;
 use yii\web\JsExpression;
+use yii\widgets\ActiveForm;
 
 ?>
 

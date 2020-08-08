@@ -2,13 +2,13 @@
 
 namespace common\modules\agency\models;
 
-use common\modules\realty\models\Apartment as ApartmentConfig;
-use common\modules\realty\models\RentType;
-use common\modules\geo\models\Metro;
-use common\modules\agency\traits\ModuleTrait;
-use yii\helpers\ArrayHelper;
-use yii\helpers\Json;
 use Yii;
+use yii\helpers\Json;
+use yii\helpers\ArrayHelper;
+use common\modules\geo\models\Metro;
+use common\modules\realty\models\RentType;
+use common\modules\agency\traits\ModuleTrait;
+use common\modules\realty\models\Apartment as ApartmentConfig;
 
 /**
  * Заявки на Хочу сдать квартиру
@@ -56,6 +56,7 @@ class WantPass extends \yii\db\ActiveRecord
      * UNPROCESSED - Необработанная
      */
     const PROCESSED = 1;
+
     const UNPROCESSED = 0;
 
     /**
@@ -106,6 +107,7 @@ class WantPass extends \yii\db\ActiveRecord
     public function afterDelete()
     {
         parent::afterDelete();
+
         $images = Json::decode($this->images);
         if (is_array($images)) {
             foreach ($images as $image) {
@@ -181,6 +183,7 @@ class WantPass extends \yii\db\ActiveRecord
             ->where(['city_id' => 4400])
             ->asArray()
             ->all();
+
         return ArrayHelper::map($metro, 'metro_id', 'name');
     }
 

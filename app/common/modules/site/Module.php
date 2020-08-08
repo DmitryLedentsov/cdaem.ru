@@ -8,5 +8,4 @@ namespace common\modules\site;
  */
 class Module extends \yii\base\Module
 {
-
 }

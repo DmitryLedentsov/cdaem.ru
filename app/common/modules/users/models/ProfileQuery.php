@@ -3,7 +3,6 @@
 namespace common\modules\users\models;
 
 use yii\db\ActiveQuery;
-use Yii;
 
 /**
  * Class ProfileQuery

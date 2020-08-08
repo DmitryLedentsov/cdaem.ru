@@ -2,7 +2,6 @@
 
 namespace common\modules\users\models;
 
-use yii\db\ActiveRecord;
 use Yii;
 
 /**
@@ -88,8 +87,10 @@ class User extends \nepster\users\models\User
                     $this->ip_register = Yii::$app->request->userIP;
                 }
             }
+
             return true;
         }
+
         return false;
     }
 
@@ -181,18 +182,22 @@ class User extends \nepster\users\models\User
         $user = new User(['scenario' => 'signup']);
         $profile = new Profile(['scenario' => 'signup']);
         $user->setAttributes($data);
+
         if (isset($data['profile'])) {
             $profile->setAttributes($data['profile']);
-
         }
+
         $user->populateRelation('profile', $profile);
         $user->save(false);
+
         if ($user->save(false)) {
             if (Yii::$app->getModule('users')->requireEmailConfirmation) {
                 Yii::$app->consoleRunner->run('users/control/send-email ' . $user->email . ' signup "' . Yii::t('users', 'SUBJECT_SIGNUP') . '"');
             }
+
             return $user->id;
         }
+
         return false;
     }
 
@@ -209,16 +214,17 @@ class User extends \nepster\users\models\User
         switch ($dateInterval) {
             case 'year':
                 $timeInt *= 12;
+                break;
             case 'month':
                 $timeInt *= 30;
+                break;
             case 'day':
                 $timeInt *= 86400;
+                break;
         }
 
         $timeInt *= $iteration;
 
         return (time() - $this->time_activity) > $timeInt;
     }
-
-
 }

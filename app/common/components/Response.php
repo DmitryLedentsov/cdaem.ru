@@ -2,7 +2,6 @@
 
 namespace common\components;
 
-use yii\helpers\Url;
 use yii;
 
 /**
@@ -26,6 +25,7 @@ class Response extends \yii\web\Response
                 $statusCode = 308;
             }
         }
+        
         return parent::redirect($url, $statusCode, $checkAjax);
     }
 }

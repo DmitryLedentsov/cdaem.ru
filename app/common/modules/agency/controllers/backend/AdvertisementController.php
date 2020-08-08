@@ -2,17 +2,17 @@
 
 namespace common\modules\agency\controllers\backend;
 
+use Yii;
+use yii\helpers\Url;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
+use backend\components\Controller;
+use yii\web\NotFoundHttpException;
+use yii\web\ForbiddenHttpException;
+use common\modules\agency\models\Apartment;
+use common\modules\agency\models\Advertisement;
 use common\modules\agency\models\backend\form\AdvertisementForm;
 use common\modules\agency\models\backend\search\AdvertisementSearch;
-use common\modules\agency\models\Advertisement;
-use common\modules\agency\models\Apartment;
-use backend\components\Controller;
-use yii\web\ForbiddenHttpException;
-use yii\web\NotFoundHttpException;
-use yii\widgets\ActiveForm;
-use yii\web\Response;
-use yii\helpers\Url;
-use Yii;
 
 /**
  * Advertisement Controller
@@ -89,7 +89,6 @@ class AdvertisementController extends Controller
         $formModel = new AdvertisementForm(['scenario' => 'create']);
         $formModel->setAttributes($model->getAttributes(), false);
 
-
         if ($formModel->load(Yii::$app->request->post())) {
             if ($formModel->validate()) {
                 if ($formModel->create()) {
@@ -97,9 +96,11 @@ class AdvertisementController extends Controller
                 } else {
                     Yii::$app->session->setFlash('danger', 'Возникла ошибка.');
                 }
+
                 return $this->redirect(['update', 'id' => $formModel->advertisement_id]);
             } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validate($formModel);
             }
         }
@@ -128,7 +129,6 @@ class AdvertisementController extends Controller
         $formModel->setAttributes($model->getAttributes(), false);
 
         if ($formModel->load(Yii::$app->request->post())) {
-
             if (!Yii::$app->user->can('agency-advertisement-update')) {
                 throw new ForbiddenHttpException(Yii::t('users.rbac', 'ACCESS_DENIED'));
             }
@@ -139,9 +139,11 @@ class AdvertisementController extends Controller
                 } else {
                     Yii::$app->session->setFlash('danger', 'Возникла ошибка.');
                 }
+
                 return $this->redirect(['update', 'id' => $formModel->advertisement_id]);
             } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validate($formModel);
             }
         }
@@ -239,7 +241,6 @@ class AdvertisementController extends Controller
         $selected = [];
 
         if (Yii::$app->request->isPost) {
-
             $selected = (array)Yii::$app->request->post('selected');
             $adverts = (array)Yii::$app->request->post('AdvertisementForm');
             $countRecords = 0;

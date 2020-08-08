@@ -68,7 +68,7 @@ class m150126_133237_agency extends Migration
             'metro_id' => 'int NOT NULL COMMENT "ID города"',
         ], $tableOptions . ' COMMENT = "Ближайшие станции метро к апартаментам агенства"');
 
-        // Index        
+        // Index
         $this->createIndex('agency_apartment_metro_stations_apartment_id', '{{%agency_apartment_metro_stations}}', 'apartment_id');
 
         // Foreign Keys

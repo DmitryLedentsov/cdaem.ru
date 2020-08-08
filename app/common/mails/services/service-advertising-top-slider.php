@@ -6,19 +6,17 @@
 
 $domain = Yii::$app->params['siteDomain'];
 
-use common\modules\users\helpers\UserHelper;
 use yii\helpers\Html;
+use common\modules\users\helpers\UserHelper;
 
 ?>
 
-<table class="row" width="100%" bgcolor="#ffffff" align="center" cellpadding="0" cellspacing="0" border="0"
-       style="border-collapse:collapse; text-align:left; border-spacing:0; max-width:100%;">
+<table class="row" width="100%" bgcolor="#ffffff" align="center" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; text-align:left; border-spacing:0; max-width:100%;">
     <tr>
         <td style="padding-right:30px; padding-left:30px; border-top:1px #dddddd dotted;">
             <table cellpadding="0" cellspacing="0" style="border-collapse:collapse; border-spacing:0;">
                 <tr>
-                    <td bgcolor="#f4f4f4"
-                        style="padding-top:5px; padding-right:5px; padding-bottom:5px; padding-left:5px; font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:100%; color:#999999;">
+                    <td bgcolor="#f4f4f4" style="padding-top:5px; padding-right:5px; padding-bottom:5px; padding-left:5px; font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:100%; color:#999999;">
                         Информация
                     </td>
                 </tr>
@@ -26,8 +24,7 @@ use yii\helpers\Html;
         </td>
     </tr>
     <tr>
-        <td class="title"
-            style="padding-top:5px; padding-right:30px; padding-bottom:20px; padding-left:30px; font-family:'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:27px; line-height:36px; color:#666666; font-weight:300;">
+        <td class="title" style="padding-top:5px; padding-right:30px; padding-bottom:20px; padding-left:30px; font-family:'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:27px; line-height:36px; color:#666666; font-weight:300;">
             Услуга "<?= $service->getName() ?>"
         </td>
     </tr>
@@ -38,19 +35,17 @@ use yii\helpers\Html;
                    style="border-collapse:collapse; border-spacing:0;">
                 <tr>
                     <td class="icon" style="padding-top:5px; padding-right:30px;">
-                        <div style="font-size:12px; line-height:100%; text-align:center;"><img alt="image"
-                                                                                               src="<?= $domain ?>/email-images/checkmark_big.png"
-                                                                                               height="100" width="100"
-                                                                                               border="0" vspace="0"
-                                                                                               hspace="0"
-                                                                                               style="display:block;"/>
+                        <div style="font-size:12px; line-height:100%; text-align:center;">
+                            <img alt="image" src="<?= $domain ?>/email-images/checkmark_big.png" height="100" width="100" border="0" vspace="0" hspace="0" style="display:block;"/>
                         </div>
                     </td>
                 </tr>
             </table>
 
-            <p>Ваше объявление успешно добавлено в рекламный слайдер и будет находиться там до тех пор, пока следующие
-                добавленные объявления его не сместят.</p>
+            <p>
+                Ваше объявление успешно добавлено в рекламный слайдер и будет находиться там до тех пор, пока следующие
+                добавленные объявления его не сместят.
+            </p>
 
             <br/>
 

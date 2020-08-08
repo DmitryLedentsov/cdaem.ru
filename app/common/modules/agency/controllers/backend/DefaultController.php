@@ -2,20 +2,20 @@
 
 namespace common\modules\agency\controllers\backend;
 
-use common\modules\agency\models\backend\search\ApartmentSearch;
-use common\modules\agency\models\backend\form\ApartmentForm;
-use common\modules\agency\models\Apartment;
-use common\modules\agency\models\Advert;
-use common\modules\agency\models\Image;
-use common\modules\agency\models\backend\form\ImageForm;
+use Yii;
+use yii\helpers\Url;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
 use yii\data\ActiveDataProvider;
 use backend\components\Controller;
-use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
-use yii\widgets\ActiveForm;
-use yii\web\Response;
-use yii\helpers\Url;
-use Yii;
+use yii\web\ForbiddenHttpException;
+use common\modules\agency\models\Image;
+use common\modules\agency\models\Advert;
+use common\modules\agency\models\Apartment;
+use common\modules\agency\models\backend\form\ImageForm;
+use common\modules\agency\models\backend\form\ApartmentForm;
+use common\modules\agency\models\backend\search\ApartmentSearch;
 
 /**
  * Главный контроллер агенства
@@ -23,8 +23,6 @@ use Yii;
  */
 class DefaultController extends Controller
 {
-
-
     /**
      * @inheritdoc
      */
@@ -51,7 +49,6 @@ class DefaultController extends Controller
         if (!parent::beforeAction($action)) {
             return false;
         }
-
 
         $this->module->viewPath = '@common/modules/agency/views/backend';
 
@@ -113,11 +110,12 @@ class DefaultController extends Controller
                     Yii::$app->session->setFlash('success', 'Данные успешно сохранены.');
                 } else {
                     Yii::$app->session->setFlash('danger', 'Возникла ошибка.');
-
                 }
+
                 return $this->redirect(['update', 'id' => $formModel->apartment_id]);
             } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validate($formModel);
             }
         }
@@ -128,7 +126,6 @@ class DefaultController extends Controller
         ]);
     }
 
-
     /**
      * Редактировать
      * @param $id
@@ -137,7 +134,6 @@ class DefaultController extends Controller
      * @throws NotFoundHttpException
      */
     public function actionUpdate($id)
-
     {
         if (($model = Apartment::findOne($id)) === null) {
             throw new NotFoundHttpException('The requested page does not exist.');
@@ -167,11 +163,12 @@ class DefaultController extends Controller
                     Yii::$app->session->setFlash('success', 'Данные успешно сохранены.');
                 } else {
                     Yii::$app->session->setFlash('danger', 'Возникла ошибка.');
-
                 }
+
                 return $this->redirect(['update', 'id' => $formModel->apartment_id]);
             } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validate($formModel);
             }
         }
@@ -226,12 +223,28 @@ class DefaultController extends Controller
 
             case 'visible':
                 $updatedRows = Apartment::updateAll(['visible' => 1, 'date_update' => date('Y-m-d H:i:s')], ['in', 'apartment_id', $ids]);
-                Yii::$app->user->action(Yii::$app->user->id, $this->module->id, 'update-agency-apartment-all', [['visible' => 1], ['in', 'apartment_id', $ids]]);
+                Yii::$app->user->action(
+                    Yii::$app->user->id,
+                    $this->module->id,
+                    'update-agency-apartment-all',
+                    [
+                        ['visible' => 1],
+                        ['in', 'apartment_id', $ids]
+                    ]
+                );
                 break;
 
             case 'invisible':
                 $updatedRows = Apartment::updateAll(['visible' => 0, 'date_update' => date('Y-m-d H:i:s')], ['in', 'apartment_id', $ids]);
-                Yii::$app->user->action(Yii::$app->user->id, $this->module->id, 'update-agency-apartment-all', [['visible' => 0], ['in', 'apartment_id', $ids]]);
+                Yii::$app->user->action(
+                    Yii::$app->user->id,
+                    $this->module->id,
+                    'update-agency-apartment-all',
+                    [
+                        ['visible' => 0],
+                        ['in', 'apartment_id', $ids]
+                    ]
+                );
                 break;
 
             case 'delete':
@@ -295,7 +308,6 @@ class DefaultController extends Controller
 
         Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
 
-
         $response = [
             'action' => 'defaultImage',
             'id' => $id
@@ -305,6 +317,7 @@ class DefaultController extends Controller
 
         if (!$newDefaultImg) {
             $response['result'] = false;
+
             return $response;
         }
 
@@ -315,6 +328,7 @@ class DefaultController extends Controller
 
         if ($newDefaultImg->image_id == $oldDefaultImg->image_id) {
             $response['result'] = true;
+
             return $response;
         }
 
@@ -327,6 +341,7 @@ class DefaultController extends Controller
         }
 
         $response['result'] = true;
+
         return $response;
     }
 
@@ -427,6 +442,7 @@ class DefaultController extends Controller
         if ($formModel->load(Yii::$app->request->post())) {
             if ($formModel->validate()) {
                 $result = $formModel->update($model);
+
                 if (Yii::$app->request->isAjax) {
                     if ($result) {
                         $result = ['status' => 1];
@@ -434,22 +450,23 @@ class DefaultController extends Controller
                         $result = ['status' => 0];
                     }
                     Yii::$app->response->format = Response::FORMAT_JSON;
+
                     return $result;
-                } else {
-                    if ($result) {
-                        Yii::$app->session->setFlash('success', 'Данные успешно сохранены.');
-                    } else {
-                        Yii::$app->session->setFlash('danger', 'Возникла ошибка.');
-                    }
                 }
+
+                if ($result) {
+                    Yii::$app->session->setFlash('success', 'Данные успешно сохранены.');
+                } else {
+                    Yii::$app->session->setFlash('danger', 'Возникла ошибка.');
+                }
+
                 return $this->redirect(['update-image', 'id' => $formModel->image_id]);
             } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validate($formModel);
             }
-        }
-
-        if (Yii::$app->request->isAjax) {
+        } elseif (Yii::$app->request->isAjax) {
             return $this->renderAjax('_image_form', [
                 'formModel' => $formModel,
                 'model' => $model,

@@ -1,7 +1,7 @@
 <?php
 
-use yii\grid\GridView;
 use yii\helpers\Html;
+use yii\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $model common\modules\helpdesk\models\Helpdesk */
@@ -83,10 +83,13 @@ echo GridView::widget([
                     return Html::a('<span class="icon-wrench"></span>', ['/helpdesk/default/update', 'id' => $model->ticket_id]);
                 },
                 'delete' => function ($url, $model) {
-                    return Html::a('<span class="icon-remove3"></span>', ['/helpdesk/default/delete', 'id' => $model->ticket_id],
+                    return Html::a(
+                        '<span class="icon-remove3"></span>',
+                        ['/helpdesk/default/delete', 'id' => $model->ticket_id],
                         ['data' => [
                             'confirm' => 'Удалить?',
-                        ]]);
+                        ]]
+                    );
                 }
             ],
         ],
@@ -173,6 +176,7 @@ echo GridView::widget([
                 if ($model->source_type) {
                     return Yii::$app->BasisFormat->helper('Status')->getItem($model->sourceTypeArray, $model->source_type);
                 }
+
                 return null;
             },
         ],
@@ -180,4 +184,3 @@ echo GridView::widget([
 ]);
 
 echo Html::endForm();
-

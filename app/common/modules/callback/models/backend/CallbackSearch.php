@@ -2,10 +2,9 @@
 
 namespace common\modules\callback\models\backend;
 
-use common\modules\callback\models\Callback;
-use yii\data\ActiveDataProvider;
 use yii\base\Model;
-use Yii;
+use yii\data\ActiveDataProvider;
+use common\modules\callback\models\Callback;
 
 /**
  * Callback Search
@@ -14,9 +13,13 @@ use Yii;
 class CallbackSearch extends Model
 {
     public $callback_id;
+
     public $active;
+
     public $phone;
+
     public $number;
+
     public $date_create;
 
     /**

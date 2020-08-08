@@ -2,11 +2,8 @@
 
 namespace common\modules\agency\models\backend\form;
 
-use common\modules\agency\models\Select;
-use common\modules\geo\models\Metro;
 use yii\helpers\Json;
-use yii\helpers\ArrayHelper;
-use Yii;
+use common\modules\agency\models\Select;
 
 /**
  * Select Form
@@ -15,15 +12,25 @@ use Yii;
 class SelectForm extends \yii\base\Model
 {
     public $apartment_select_id;
+
     public $name;
+
     public $phone;
+
     public $phone2;
+
     public $email;
+
     public $rent_types;
+
     public $rooms;
+
     public $description;
+
     public $metro;
+
     public $status;
+
     public $date_create;
 
     /**
@@ -77,6 +84,7 @@ class SelectForm extends \yii\base\Model
     public function update(Select $model)
     {
         $model->setAttributes($this->getAttributes(), false);
+
         return $model->save(false);
     }
 

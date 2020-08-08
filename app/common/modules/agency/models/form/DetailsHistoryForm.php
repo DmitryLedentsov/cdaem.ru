@@ -3,8 +3,6 @@
 namespace common\modules\agency\models\form;
 
 use common\modules\agency\models\DetailsHistory;
-use yii\helpers\Html;
-use Yii;
 
 /**
  * Details History Form
@@ -13,9 +11,13 @@ use Yii;
 class DetailsHistoryForm extends \yii\base\Model
 {
     public $advert_id;
+
     public $type;
+
     public $payment;
+
     public $phone;
+
     public $email;
 
     /**
@@ -104,7 +106,7 @@ class DetailsHistoryForm extends \yii\base\Model
         $model = new DetailsHistory;
         $model->setAttributes($this->getAttributes(), false);
         $model->date_create = date('Y-m-d H:i:s');
+
         return $model->save(false);
     }
-
 }

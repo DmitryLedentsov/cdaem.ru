@@ -1,8 +1,8 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
 use yii\helpers\Json;
+use yii\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\modules\agency\models\backend\search\SelectSearch */
@@ -80,10 +80,13 @@ echo GridView::widget([
                     return Html::a('<span class="icon-wrench"></span>', ['/agency/select/update', 'id' => $model->apartment_select_id]);
                 },
                 'delete' => function ($url, $model) {
-                    return Html::a('<span class="icon-remove3"></span>', ['/agency/select/delete', 'id' => $model->apartment_select_id],
+                    return Html::a(
+                        '<span class="icon-remove3"></span>',
+                        ['/agency/select/delete', 'id' => $model->apartment_select_id],
                         ['data' => [
                             'confirm' => 'Удалить?',
-                        ]]);
+                        ]]
+                    );
                 }
             ],
         ],
@@ -122,8 +125,9 @@ echo GridView::widget([
             'enableSorting' => false,
             'contentOptions' => ['class' => 'text-left tdText'],
             'value' => function ($model) {
-                if (!$model->rent_types_array)
+                if (!$model->rent_types_array) {
                     return '(не задано)';
+                }
 
                 return implode('<br/>', array_intersect_key($model->rentTypesList, array_flip($model->rent_types_array)));
             },
@@ -134,8 +138,9 @@ echo GridView::widget([
             'format' => 'html',
             'enableSorting' => false,
             'value' => function ($model) {
-                if (!$model->metro_array)
+                if (!$model->metro_array) {
                     return '(не задано)';
+                }
 
                 return implode('<br/>', array_intersect_key($model->metroStations, array_flip($model->metro_array)));
             },
@@ -159,4 +164,3 @@ echo GridView::widget([
 
 
 echo Html::endForm();
-

@@ -6,11 +6,11 @@
 
 /* @var $advertsDataProvider yii\data\activeDataProvider */
 
-use yii\widgets\ActiveForm;
-use yii\grid\GridView;
-use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\helpers\Html;
+use yii\grid\GridView;
 use yii\bootstrap\Modal;
+use yii\widgets\ActiveForm;
 
 \common\modules\agency\assets\backend\AgencyAsset::register($this);
 ?>
@@ -69,10 +69,13 @@ use yii\bootstrap\Modal;
                             return Html::a('<span class="icon-wrench"></span>', ['/agency/adverts/update', 'id' => $model->advert_id]);
                         },
                         'delete' => function ($url, $model) {
-                            return Html::a('<span class="icon-remove3"></span>', ['/agency/adverts/delete', 'id' => $model->advert_id],
+                            return Html::a(
+                                '<span class="icon-remove3"></span>',
+                                ['/agency/adverts/delete', 'id' => $model->advert_id],
                                 ['data' => [
                                     'confirm' => 'Удалить?',
-                                ]]);
+                                ]]
+                            );
                         }
                     ],
                 ],

@@ -2,14 +2,13 @@
 
 namespace common\modules\partners\services;
 
-use common\modules\partners\interfaces\ServiceInterface;
-use common\modules\partners\models\AdvertReservation;
-use common\modules\partners\models\Service;
-use yii\validators\ExistValidator;
-use yii\validators\EmailValidator;
-use yii\base\InvalidConfigException;
-use yii\helpers\Json;
 use Yii;
+use yii\helpers\Json;
+use yii\validators\EmailValidator;
+use yii\validators\ExistValidator;
+use common\modules\partners\models\Service;
+use common\modules\partners\models\AdvertReservation;
+use common\modules\partners\interfaces\ServiceInterface;
 
 /**
  * Сервис [Apartment Contacts Open]
@@ -19,7 +18,6 @@ use Yii;
  */
 final class ApartmentContactsOpen extends \yii\base\BaseObject implements ServiceInterface
 {
-
     /**
      * @var string Идентификатор сервиса
      */
@@ -76,32 +74,31 @@ final class ApartmentContactsOpen extends \yii\base\BaseObject implements Servic
         $price = isset($data['price']) ? $data['price'] : 1;
 
         if ($amount >= 3 || $days >= 7) {
-
             $percent = 0;
 
             if ($days >= 28) {
                 $percent = 25;
-            } else if ($days >= 21) {
+            } elseif ($days >= 21) {
                 $percent = 20;
-            } else if ($days >= 14) {
+            } elseif ($days >= 14) {
                 $percent = 15;
-            } else if ($days >= 7) {
+            } elseif ($days >= 7) {
                 $percent = 10;
             }
 
             if ($amount >= 60) {
                 $percent += 50;
-            } else if ($amount >= 50) {
+            } elseif ($amount >= 50) {
                 $percent += 45;
-            } else if ($amount >= 40) {
+            } elseif ($amount >= 40) {
                 $percent += 40;
-            } else if ($amount >= 30) {
+            } elseif ($amount >= 30) {
                 $percent += 35;
-            } else if ($amount >= 20) {
+            } elseif ($amount >= 20) {
                 $percent += 25;
-            } else if ($amount >= 10) {
+            } elseif ($amount >= 10) {
                 $percent += 15;
-            } else if ($amount >= 5) {
+            } elseif ($amount >= 5) {
                 $percent += 10;
             }
 
@@ -114,32 +111,6 @@ final class ApartmentContactsOpen extends \yii\base\BaseObject implements Servic
 
         return 0;
     }
-
-    /* public function calculateDiscount($amount, array $data = [])
-      {
-      $days = isset($data['days']) ? (int)$data['days'] : 1;
-      $price = isset($data['price']) ? $data['price'] : 1;
-
-      if ($amount >= 3 || $days >= 7) {
-      $percent = 0;
-      $counter = ($amount > $days) ? $amount : $days;
-
-      for ($i = 1; $i <= $counter; $i++) {
-      $percent += $i;
-      }
-
-      $percent /= 2;
-      $percent = $percent > 50 ? 50 : $percent;
-
-      $discount = round(($price / 100) * $percent);
-
-      if ($discount > 0) {
-      return $discount;
-      }
-      }
-
-      return 0;
-      } */
 
     /**
      * @inheritdoc
@@ -163,6 +134,7 @@ final class ApartmentContactsOpen extends \yii\base\BaseObject implements Servic
     public function setProcess(Service $process)
     {
         $this->_process = $process;
+
         return $this;
     }
 
@@ -213,8 +185,9 @@ final class ApartmentContactsOpen extends \yii\base\BaseObject implements Servic
                     ->andWhere(['advert_id' => $advert->advert_id])->one();
             }
 
-            if (!empty($reservationwidth))
+            if (!empty($reservationwidth)) {
                 return false;
+            }
         }
 
         return true;
@@ -233,7 +206,6 @@ final class ApartmentContactsOpen extends \yii\base\BaseObject implements Servic
             $proceses = \common\modules\partners\models\Service::findProcessesInQueueApartament($this->_process->user->id);
             if ($apartment->open_contacts == 1) {
                 $isopen[] = $apartment;
-
             }
             if (!empty($proceses)) {
                 return false;
@@ -242,10 +214,7 @@ final class ApartmentContactsOpen extends \yii\base\BaseObject implements Servic
             if (!empty($isopen)) {
                 return false;
             }
-
-
         }
-
 
         return true;
     }
@@ -361,5 +330,4 @@ final class ApartmentContactsOpen extends \yii\base\BaseObject implements Servic
     {
         Yii::$app->consoleRunner->run('service/execute-instant-process ' . $this->_process->id);
     }
-
 }

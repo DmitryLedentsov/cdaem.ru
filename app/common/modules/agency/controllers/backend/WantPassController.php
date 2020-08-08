@@ -2,16 +2,16 @@
 
 namespace common\modules\agency\controllers\backend;
 
-use common\modules\agency\models\backend\search\WantPassSearch;
-use common\modules\agency\models\backend\form\WantPassForm;
-use common\modules\agency\models\WantPass;
-use backend\components\Controller;
-use yii\web\ForbiddenHttpException;
-use yii\web\NotFoundHttpException;
-use yii\widgets\ActiveForm;
-use yii\web\Response;
-use yii\helpers\Url;
 use Yii;
+use yii\helpers\Url;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
+use backend\components\Controller;
+use yii\web\NotFoundHttpException;
+use yii\web\ForbiddenHttpException;
+use common\modules\agency\models\WantPass;
+use common\modules\agency\models\backend\form\WantPassForm;
+use common\modules\agency\models\backend\search\WantPassSearch;
 
 /**
  * WantPass Controller
@@ -92,7 +92,6 @@ class WantPassController extends Controller
         $formModel->setAttributes($model->getAttributes(), false);
 
         if ($formModel->load(Yii::$app->request->post())) {
-
             if (!Yii::$app->user->can('agency-want-pass-update')) {
                 throw new ForbiddenHttpException(Yii::t('users.rbac', 'ACCESS_DENIED'));
             }
@@ -103,9 +102,11 @@ class WantPassController extends Controller
                 } else {
                     Yii::$app->session->setFlash('danger', 'Возникла ошибка.');
                 }
+
                 return $this->redirect(['update', 'id' => $formModel->apartment_want_pass_id]);
             } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validate($formModel);
             }
         }
@@ -156,6 +157,7 @@ class WantPassController extends Controller
 
         if (!$ids || !is_array($ids)) {
             Yii::$app->session->setFlash('danger', 'Не выбрано ни одной действие');
+
             return $this->redirect($redirect);
         }
 
@@ -182,6 +184,7 @@ class WantPassController extends Controller
         if (($model = WantPass::findOne($id)) !== null) {
             return $model;
         }
+
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 }

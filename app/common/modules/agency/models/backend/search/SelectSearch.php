@@ -2,11 +2,10 @@
 
 namespace common\modules\agency\models\backend\search;
 
-use common\modules\realty\models\Apartment as TotalApartment;
-use common\modules\agency\models\Select;
-use yii\data\ActiveDataProvider;
 use yii\base\Model;
-use Yii;
+use yii\data\ActiveDataProvider;
+use common\modules\agency\models\Select;
+use common\modules\realty\models\Apartment as TotalApartment;
 
 /**
  * Select Search

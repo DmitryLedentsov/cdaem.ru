@@ -1,8 +1,8 @@
 <?php
 
-use nepster\users\helpers\Security;
-use yii\db\Migration;
 use yii\db\Schema;
+use yii\db\Migration;
+use nepster\users\helpers\Security;
 
 /**
  * Социальный лист пользователей

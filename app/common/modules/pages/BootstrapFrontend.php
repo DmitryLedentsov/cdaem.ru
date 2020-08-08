@@ -2,8 +2,6 @@
 
 namespace common\modules\pages;
 
-use Yii;
-
 /**
  * Bootstrap Frontend
  * @package common\modules\pages
@@ -16,7 +14,8 @@ class BootstrapFrontend implements \yii\base\BootstrapInterface
     public function bootstrap($app)
     {
         // Add module URL rules.
-        $app->urlManager->addRules([
+        $app->urlManager->addRules(
+            [
                 // Импорт старых правил
                 ['pattern' => 'about', 'route' => 'pages/default/index', 'defaults' => ['url' => 'about']],
                 ['pattern' => 'contacts', 'route' => 'pages/default/index', 'defaults' => ['url' => 'contacts']],

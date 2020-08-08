@@ -2,8 +2,8 @@
 
 namespace common\modules\agency\traits;
 
-use common\modules\pages\Module;
 use Yii;
+use common\modules\pages\Module;
 
 /**
  * Class ModuleTrait
@@ -30,6 +30,7 @@ trait ModuleTrait
                 $this->_module = Yii::$app->getModule('agency');
             }
         }
+
         return $this->_module;
     }
 }

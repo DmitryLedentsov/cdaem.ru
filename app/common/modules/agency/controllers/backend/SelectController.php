@@ -2,16 +2,16 @@
 
 namespace common\modules\agency\controllers\backend;
 
-use common\modules\agency\models\backend\search\SelectSearch;
-use common\modules\agency\models\backend\form\SelectForm;
-use common\modules\agency\models\Select;
-use backend\components\Controller;
-use yii\web\ForbiddenHttpException;
-use yii\web\NotFoundHttpException;
-use yii\widgets\ActiveForm;
-use yii\web\Response;
-use yii\helpers\Url;
 use Yii;
+use yii\helpers\Url;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
+use backend\components\Controller;
+use yii\web\NotFoundHttpException;
+use yii\web\ForbiddenHttpException;
+use common\modules\agency\models\Select;
+use common\modules\agency\models\backend\form\SelectForm;
+use common\modules\agency\models\backend\search\SelectSearch;
 
 /**
  * Select Controller
@@ -92,7 +92,6 @@ class SelectController extends Controller
         $formModel->setAttributes($model->getAttributes(), false);
 
         if ($formModel->load(Yii::$app->request->post())) {
-
             if (!Yii::$app->user->can('agency-select-update')) {
                 throw new ForbiddenHttpException(Yii::t('users.rbac', 'ACCESS_DENIED'));
             }
@@ -103,9 +102,11 @@ class SelectController extends Controller
                 } else {
                     Yii::$app->session->setFlash('danger', 'Возникла ошибка.');
                 }
+
                 return $this->redirect(['update', 'id' => $formModel->apartment_select_id]);
             } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validate($formModel);
             }
         }
@@ -114,7 +115,6 @@ class SelectController extends Controller
             'formModel' => $formModel,
             'model' => $model,
         ]);
-
     }
 
     /**
@@ -155,6 +155,7 @@ class SelectController extends Controller
 
         if (!$ids || !is_array($ids)) {
             Yii::$app->session->setFlash('danger', 'Не выбрано ни одной действие');
+
             return $this->redirect($redirect);
         }
 
@@ -181,6 +182,7 @@ class SelectController extends Controller
         if (($model = Select::findOne($id)) !== null) {
             return $model;
         }
+
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 }

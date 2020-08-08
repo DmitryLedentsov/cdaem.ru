@@ -2,9 +2,8 @@
 
 namespace common\modules\helpdesk\models;
 
-use common\modules\helpdesk\traits\ModuleTrait;
 use common\modules\users\models\User;
-use Yii;
+use common\modules\helpdesk\traits\ModuleTrait;
 
 /**
  * Helpdesk Answers

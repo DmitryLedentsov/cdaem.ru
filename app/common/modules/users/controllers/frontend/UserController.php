@@ -2,11 +2,11 @@
 
 namespace common\modules\users\controllers\frontend;
 
-use common\modules\users\models as models;
-use frontend\components\Controller;
-use yii\widgets\ActiveForm;
-use yii\web\Response;
 use Yii;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
+use frontend\components\Controller;
+use common\modules\users\models as models;
 
 /**
  * Контроллер для управления пользователями
@@ -39,8 +39,10 @@ class UserController extends Controller
     {
         if (parent::beforeAction($action)) {
             $this->module->viewPath = '@common/modules/users/views/frontend';
+
             return true;
         }
+
         return false;
     }
 
@@ -71,9 +73,11 @@ class UserController extends Controller
                 } else {
                     Yii::$app->session->setFlash('danger', Yii::t('users', 'FAIL_UPDATE'));
                 }
+
                 return $this->refresh();
             } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validate($model);
             }
         }
@@ -98,9 +102,11 @@ class UserController extends Controller
                 } else {
                     Yii::$app->session->setFlash('danger', Yii::t('users', 'FAIL_PASSWORD_CHANGE'));
                 }
+
                 return $this->refresh();
-            } else if (Yii::$app->request->isAjax) {
+            } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validate($model);
             }
         }
@@ -138,9 +144,11 @@ class UserController extends Controller
                 } else {
                     Yii::$app->session->setFlash('danger', Yii::t('users', 'FAIL_LEGAL_PERSON_UPDATE'));
                 }
+
                 return $this->refresh();
-            } else if (Yii::$app->request->isAjax) {
+            } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validate($model);
             }
         }

@@ -2,13 +2,13 @@
 
 namespace common\modules\agency\widgets\frontend;
 
-use common\modules\agency\models\SpecialAdvert;
-use common\modules\agency\models\Advert;
-use yii\helpers\Html;
 use Yii;
+use yii\helpers\Html;
+use common\modules\agency\models\SpecialAdvert;
 
 /**
  * Class PreviewAdvert
+ * @package common\modules\agency\widgets\frontend
  */
 class PreviewAdvert extends \yii\base\Widget
 {
@@ -90,37 +90,31 @@ class PreviewAdvert extends \yii\base\Widget
 
         // Список типов аренды
         foreach ($this->advert->apartment->adverts as $advert) {
-
             $icon = '';
-
             if ($advert->rentType['icons']) {
                 $icons = @json_decode($advert->rentType['icons'], true);
                 if (isset($icons['small-white'])) {
                     $icon = $icons['small-white'];
                 }
-
             }
-
             if ($advert->priceText > 0) {
-                $this->_rentTypes .= Html::tag('div', $icon . '<a href="/advert/' . $advert->advert_id . '"><div class="price-d">' . $advert->priceText . '</div></a>', ['title' => $advert->rentType['name'], 'class' => 'advert-infoprice']);
-
+                $this->_rentTypes .= Html::tag(
+                    'div',
+                    $icon . '<a href="/advert/' . $advert->advert_id . '"><div class="price-d">' . $advert->priceText . '</div></a>',
+                    ['title' => $advert->rentType['name'], 'class' => 'advert-infoprice']
+                );
             }
         }
 
         foreach ($this->advert->apartment->adverts as $advert) {
-
             $icon2 = '';
             if ($advert->rentType['icons']) {
-
                 if (isset($icons['big-star'])) {
                     $icon2 = $icons['big-star'];
                 }
             }
-
             $this->_rentNew = $icon2;
         }
-
-
     }
 
     /**
@@ -191,7 +185,6 @@ class PreviewAdvert extends \yii\base\Widget
                             Метро: ' . $this->_metroAll . '
                         </div>
                     </div>
-                
             </div>
         ');
     }

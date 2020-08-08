@@ -2,15 +2,15 @@
 
 namespace common\modules\site\models;
 
-use common\modules\agency\models\Apartment as AgencyApartment;
-use common\modules\partners\models\Apartment;
-use common\modules\articles\models\Article;
-use common\modules\realty\models\RentType;
-use common\modules\pages\models\Page;
-use common\modules\geo\models\City;
-use yii\helpers\Html;
-use yii\helpers\Url;
 use Yii;
+use yii\helpers\Url;
+use yii\helpers\Html;
+use common\modules\geo\models\City;
+use common\modules\pages\models\Page;
+use common\modules\realty\models\RentType;
+use common\modules\articles\models\Article;
+use common\modules\partners\models\Apartment;
+use common\modules\agency\models\Apartment as AgencyApartment;
 
 /**
  * Sitemap
@@ -18,7 +18,6 @@ use Yii;
  */
 class Sitemap extends \yii\base\Model
 {
-
     /**
      * Генерация общей карты сайта
      *
@@ -29,7 +28,9 @@ class Sitemap extends \yii\base\Model
         $result = [];
 
         // Главная ссылка на домен
-        $result[] = Html::tag('url', Html::tag('loc', Yii::$app->params['siteDomain']) .
+        $result[] = Html::tag(
+            'url',
+            Html::tag('loc', Yii::$app->params['siteDomain']) .
             Html::tag('priority', '1.0')
         );
 
@@ -37,10 +38,14 @@ class Sitemap extends \yii\base\Model
         $apartments = $this->findAgencyApartments();
         foreach ($apartments as $apartment) {
             foreach ($apartment['adverts'] as $advert) {
-                $result[] = Html::tag('url', Html::tag('loc', Url::to(
-                        ['/agency/default/view',
+                $result[] = Html::tag(
+                    'url',
+                    Html::tag('loc', Url::to(
+                    ['/agency/default/view',
                             'id' => $advert['advert_id']
-                        ], true)) .
+                        ],
+                    true
+                )) .
                     Html::tag('priority', '0.7')
                 );
             }
@@ -48,16 +53,24 @@ class Sitemap extends \yii\base\Model
 
         // Список ссылок на статьи
         $articles = Article::find()->select(['article_id'])->status()->asArray()->all();
-        $result[] = Html::tag('url', Html::tag('loc', Url::to(
-                ['/articles/default/index'], true)) .
+        $result[] = Html::tag(
+            'url',
+            Html::tag('loc', Url::to(
+            ['/articles/default/index'],
+            true
+        )) .
             Html::tag('priority', '0.9')
         );
 
         foreach ($articles as $article) {
-            $result[] = Html::tag('url', Html::tag('loc', Url::to(
-                    ['/articles/default/view',
+            $result[] = Html::tag(
+                'url',
+                Html::tag('loc', Url::to(
+                ['/articles/default/view',
                         'id' => $article['article_id']
-                    ], true)) .
+                    ],
+                true
+            )) .
                 Html::tag('priority', '0.7')
             );
         }
@@ -65,11 +78,14 @@ class Sitemap extends \yii\base\Model
         // Список ссылок на страницы
         $pages = Page::find()->select(['page_id', 'url'])->status()->asArray()->all();
         foreach ($pages as $page) {
-
-            $result[] = Html::tag('url', Html::tag('loc', Url::to(
-                    ['/pages/default/index',
+            $result[] = Html::tag(
+                'url',
+                Html::tag('loc', Url::to(
+                ['/pages/default/index',
                         'url' => $page['url']
-                    ], true)) .
+                    ],
+                true
+            )) .
                 Html::tag('priority', '0.7')
             );
         }
@@ -77,33 +93,46 @@ class Sitemap extends \yii\base\Model
         // Список ссылок на страницы
         $types = RentType::find()->select(['rent_type_id', 'slug'])->visible()->asArray()->all();
         foreach ($types as $type) {
-
-            $result[] = Html::tag('url', Html::tag('loc', Url::to(
-                    ['/site/default/index',
+            $result[] = Html::tag(
+                'url',
+                Html::tag('loc', Url::to(
+                ['/site/default/index',
                         'rentType' => $type['slug']
-                    ], true)) .
+                    ],
+                true
+            )) .
                 Html::tag('priority', '0.9')
             );
         }
 
         // Ссылки на другие страницы
-        $result[] = Html::tag('url', Html::tag('loc', Url::to(['/agency/default/index'], true)) .
+        $result[] = Html::tag(
+            'url',
+            Html::tag('loc', Url::to(['/agency/default/index'], true)) .
             Html::tag('priority', '0.9')
         );
 
-        $result[] = Html::tag('url', Html::tag('loc', Url::to(['/agency/default/select'], true)) .
+        $result[] = Html::tag(
+            'url',
+            Html::tag('loc', Url::to(['/agency/default/select'], true)) .
             Html::tag('priority', '0.9')
         );
 
-        $result[] = Html::tag('url', Html::tag('loc', Url::to(['/agency/default/want-pass'], true)) .
+        $result[] = Html::tag(
+            'url',
+            Html::tag('loc', Url::to(['/agency/default/want-pass'], true)) .
             Html::tag('priority', '0.9')
         );
 
-        $result[] = Html::tag('url', Html::tag('loc', Url::to(['/partners/reservation/index'], true)) .
+        $result[] = Html::tag(
+            'url',
+            Html::tag('loc', Url::to(['/partners/reservation/index'], true)) .
             Html::tag('priority', '0.9')
         );
 
-        $result[] = Html::tag('url', Html::tag('loc', Url::to(['/partners/default/index'], true)) .
+        $result[] = Html::tag(
+            'url',
+            Html::tag('loc', Url::to(['/partners/default/index'], true)) .
             Html::tag('priority', '0.9')
         );
 
@@ -121,7 +150,9 @@ class Sitemap extends \yii\base\Model
         $result = [];
 
         // Главная ссылка на поддомен
-        $result[] = Html::tag('url', Html::tag('loc', str_replace('<city>', $city->name_eng, Yii::$app->params['siteSubDomain'])) .
+        $result[] = Html::tag(
+            'url',
+            Html::tag('loc', str_replace('<city>', $city->name_eng, Yii::$app->params['siteSubDomain'])) .
             Html::tag('priority', '0.7')
         );
 
@@ -134,7 +165,9 @@ class Sitemap extends \yii\base\Model
                     ['/partners/default/view',
                         'city' => $city->name_eng,
                         'id' => $advert['advert_id']
-                    ], true)));
+                    ],
+                    true
+                )));
             }
         }
 
@@ -150,6 +183,7 @@ class Sitemap extends \yii\base\Model
     public function render($content)
     {
         $xml = '<?xml version="1.0" encoding="utf-8"?>';
+
         return $xml . Html::tag('urlset', $content, [
                 'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance',
                 'xsi:schemaLocation' => 'http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd',
@@ -192,5 +226,4 @@ class Sitemap extends \yii\base\Model
             ->asArray()
             ->all();
     }
-
 }

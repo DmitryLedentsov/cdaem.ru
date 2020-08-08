@@ -2,8 +2,6 @@
 
 namespace common\modules\articles;
 
-use Yii;
-
 /**
  * Общий модуль [[Articles]]
  * Осуществляет всю работу со статьями.

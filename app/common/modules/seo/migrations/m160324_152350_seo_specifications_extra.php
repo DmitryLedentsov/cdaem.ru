@@ -1,7 +1,7 @@
 <?php
 
-use yii\db\Migration;
 use yii\db\Schema;
+use yii\db\Migration;
 
 /**
  * Class m160324_152350_seo_specifications_extra

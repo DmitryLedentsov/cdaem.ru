@@ -7,8 +7,8 @@
  * @var $dataProvider yii\data\ActiveDataProvider
  */
 
-use yii\grid\GridView;
 use yii\helpers\Html;
+use yii\grid\GridView;
 
 $this->title = 'Все страницы';
 
@@ -66,10 +66,13 @@ echo \backend\modules\admin\widgets\ExtraControlWidget::widget([
                     return Html::a('<span class="icon-wrench"></span>', ['/pages/default/update', 'id' => $model->page_id]);
                 },
                 'delete' => function ($url, $model) {
-                    return Html::a('<span class="icon-remove3"></span>', ['/pages/default/delete', 'id' => $model->page_id],
+                    return Html::a(
+                        '<span class="icon-remove3"></span>',
+                        ['/pages/default/delete', 'id' => $model->page_id],
                         ['data' => [
                             'confirm' => 'Удалить?',
-                        ]]);
+                        ]]
+                    );
                 }
             ],
         ],

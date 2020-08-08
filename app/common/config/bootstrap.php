@@ -1,4 +1,5 @@
 <?php
+
 Yii::setAlias('root', dirname(dirname(__DIR__)));
 Yii::setAlias('statics', dirname(dirname(__DIR__)) . '/statics');
 Yii::setAlias('common', dirname(__DIR__));

@@ -2,11 +2,9 @@
 
 namespace common\modules\articles\models\backend;
 
-use common\modules\articles\models\Article;
-use common\modules\geo\models\City;
-use yii\web\UploadedFile;
 use yii\base\Model;
-use Yii;
+use common\modules\geo\models\City;
+use common\modules\articles\models\Article;
 
 /**
  * Article
@@ -14,24 +12,40 @@ use Yii;
  */
 class ArticleForm extends Model
 {
-
     public $article_id;
+
     public $slug;
+
     public $name;
+
     public $short_text;
+
     public $title;
+
     public $description;
+
     public $keywords;
+
     public $full_text;
+
     public $visible;
+
     public $status;
+
     public $city;
+
     public $date_create;
+
     public $title_img;
+
     public $background;
+
     public $file;
+
     public $bgfile;
+
     public $imagesPath = '@frontend/web/images';
+
     public $imagesPath2 = '@frontend/web/images';
 
     /**
@@ -99,6 +113,7 @@ class ArticleForm extends Model
         }
 
         $this->article_id = $model->article_id;
+
         return true;
     }
 
@@ -123,5 +138,4 @@ class ArticleForm extends Model
     {
         return $model->delete();
     }
-
 }

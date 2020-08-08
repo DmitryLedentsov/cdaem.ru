@@ -2,17 +2,10 @@
 
 namespace common\modules\messages\controllers\frontend;
 
-use common\modules\messages\models\Message;
-use common\modules\messages\models\Mailbox;
-use common\modules\users\models\Profile;
-use common\modules\users\models\User;
-use yii\helpers\ArrayHelper;
-use yii\web\HttpException;
-use yii\widgets\ActiveForm;
-use yii\web\Response;
-use yii\helpers\Html;
-use yii\helpers\Url;
 use Yii;
+use yii\web\Response;
+use common\modules\messages\models\Mailbox;
+use common\modules\messages\models\Message;
 
 /**
  * Class AjaxController
@@ -45,7 +38,6 @@ class AjaxController extends \frontend\components\Controller
     public function beforeAction($action)
     {
         if (parent::beforeAction($action)) {
-
             if (!Yii::$app->request->isAjax) {
                 return $this->goBack();
             }
@@ -54,6 +46,7 @@ class AjaxController extends \frontend\components\Controller
 
             return true;
         }
+
         return false;
     }
 
@@ -73,13 +66,14 @@ class AjaxController extends \frontend\components\Controller
                 'profile' => $profile,
                 'interlocutorId' => $interlocutorId*/
             ]);
-        } else {
-            $message = new Message(['scenario' => 'create']);
-            return $this->renderAjax('message.php', [
-                'message' => $message,
-                'interlocutorId' => $interlocutorId
-            ]);
         }
+
+        $message = new Message(['scenario' => 'create']);
+
+        return $this->renderAjax('message.php', [
+            'message' => $message,
+            'interlocutorId' => $interlocutorId
+        ]);
     }
 
     /**
@@ -104,6 +98,10 @@ class AjaxController extends \frontend\components\Controller
         ];
     }
 
+    /**
+     * @param $interlocutorId
+     * @return array
+     */
     public function actionDeleteConversation($interlocutorId)
     {
         Yii::$app->response->format = Response::FORMAT_JSON;

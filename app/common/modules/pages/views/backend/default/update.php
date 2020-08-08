@@ -7,8 +7,8 @@
  * @var $model common\modules\pages\models\Page
  */
 
-use yii\widgets\DetailView;
 use yii\helpers\Html;
+use yii\widgets\DetailView;
 
 $this->title = 'Редактировать страницу';
 

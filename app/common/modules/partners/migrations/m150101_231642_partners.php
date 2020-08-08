@@ -97,7 +97,6 @@ class m150101_231642_partners extends Migration
         $this->addForeignKey('{{%partners_apartment_metro_stations_apartment_id}}', '{{%partners_apartment_metro_stations}}', 'apartment_id', '{{%partners_apartments}}', 'apartment_id', 'CASCADE', 'CASCADE');
     }
 
-
     public function safeDown()
     {
         $this->dropTable('{{%partners_apartment_metro_stations}}');

@@ -2,13 +2,8 @@
 
 namespace common\modules\geo\controllers\frontend;
 
-use common\modules\geo\models\City;
-use yii\web\HttpException;
-use yii\helpers\Html;
-use yii\helpers\Url;
 use yii\web\NotFoundHttpException;
-use yii\web\Response;
-use Yii;
+use common\modules\geo\models\City;
 
 /**
  * Главный гео контроллер

@@ -2,13 +2,9 @@
 
 namespace common\modules\partners\commands;
 
-use common\modules\partners\models as models;
-use yii\helpers\ArrayHelper;
-use yii\helpers\Console;
-use yii\helpers\Url;
-use yii\helpers\Json;
-use yii\log\Logger;
 use Yii;
+use yii\helpers\Console;
+use common\modules\partners\models as models;
 
 /**
  * Class CalendarController
@@ -42,7 +38,7 @@ class CalendarController extends \yii\console\Controller
                 $apartment = models\Apartment::findOne($record->apartment_id);
                 // если апартамента не нашли
                 if (!$apartment) {
-                    Yii::error('Ошибка: [Анапртаментов с ID' . $record->apartment_id . ' нет в базе данных]', 'partners-calendar');
+                    Yii::error('Ошибка: [Апартаментов с ID' . $record->apartment_id . ' нет в базе данных]', 'partners-calendar');
                     continue;
                 }
 
@@ -70,7 +66,7 @@ class CalendarController extends \yii\console\Controller
                 $apartment = models\Apartment::findOne($record->apartment_id);
                 // если апартамента не нашли
                 if (!$apartment) {
-                    Yii::error('Ошибка: [Анапртаментов с ID' . $record->apartment_id . ' нет в базе данных]', 'partners-calendar');
+                    Yii::error('Ошибка: [Апартаментов с ID' . $record->apartment_id . ' нет в базе данных]', 'partners-calendar');
                     continue;
                 }
 
@@ -97,7 +93,6 @@ class CalendarController extends \yii\console\Controller
         Yii::info('Процес выполнен. Обработано записей: ' . ($countSuccess + $countError) . ', возникло ошибок: ' . $countError, 'partners-calendar');
     }
 
-
     /***
      * Процесс 0, 1, 2
      * 0 - не запускали
@@ -116,8 +111,6 @@ class CalendarController extends \yii\console\Controller
      *
      * При врезке левый кусок остается каким и был, только дейт_ту меняются
      * При врезке, правый кусок зеленого всегда новый процесс = 0
-     * Чистильщик удалеяет записи where('date_to' <= date() AND process = 2 OR 0) пердыдущего месяца(подумаем)
+     * Чистильщик удаляет записи where('date_to' <= date() AND process = 2 OR 0) предыдущего месяца(подумаем)
      */
-
-
 }

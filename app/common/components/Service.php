@@ -2,13 +2,11 @@
 
 namespace common\components;
 
-use common\modules\partners\interfaces\ServiceInterface;
-use yii\base\InvalidConfigException;
-use yii\base\InvalidParamException;
+use ReflectionClass;
 use yii\base\Component;
-use yii\db\ActiveQuery;
-use yii\db\Expression;
-use yii;
+use yii\base\InvalidConfigException;
+use yii\base\InvalidArgumentException;
+use common\modules\partners\interfaces\ServiceInterface;
 
 /**
  * Компонент обеспечивает работу с платежными сервисами приложения
@@ -53,11 +51,11 @@ class Service extends Component
                     throw new InvalidConfigException('Service name "' . $service . '" must be unique');
                 }
 
-                $oReflectionClass = new \ReflectionClass($class);
+                $oReflectionClass = new ReflectionClass($class);
                 $instance = $oReflectionClass->newInstance();
 
                 if (!$instance instanceof ServiceInterface) {
-                    throw new InvalidParamException('"' . $class . '" his class must instanceof ServiceAdvertInterface');
+                    throw new InvalidArgumentException('"' . $class . '" his class must instanceof ServiceAdvertInterface');
                 }
 
                 $this->_servicesInstanceList[$service] = $instance;
@@ -73,7 +71,7 @@ class Service extends Component
     public function load($service)
     {
         if (!isset($this->_servicesInstanceList[$service])) {
-            throw new InvalidParamException('Service name "' . $service . '" not found');
+            throw new InvalidArgumentException('Service name "' . $service . '" not found');
         }
 
         return $this->_servicesInstanceList[$service];

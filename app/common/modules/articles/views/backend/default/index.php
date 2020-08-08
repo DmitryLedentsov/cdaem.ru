@@ -10,7 +10,6 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 
-
 $this->title = 'Все статьи';
 
 echo \backend\modules\admin\widgets\HeaderWidget::widget([
@@ -67,10 +66,13 @@ echo \backend\modules\admin\widgets\ExtraControlWidget::widget([
                     return Html::a('<span class="icon-wrench"></span>', ['/articles/default/update', 'id' => $model->article_id]);
                 },
                 'delete' => function ($url, $model) {
-                    return Html::a('<span class="icon-remove3"></span>', ['/articles/default/delete', 'id' => $model->article_id],
+                    return Html::a(
+                        '<span class="icon-remove3"></span>',
+                        ['/articles/default/delete', 'id' => $model->article_id],
                         ['data' => [
                             'confirm' => 'Удалить?',
-                        ]]);
+                        ]]
+                    );
                 }
             ],
         ],
@@ -82,8 +84,10 @@ echo \backend\modules\admin\widgets\ExtraControlWidget::widget([
             'value' => function ($model) {
                 if ($model->city) {
                     $url = str_replace('<city>', $model->city, Yii::$app->params['siteSubDomain']);
+
                     return Html::a($url . '/stati/' . $model->slug, $url . '/stati/' . $model->slug);
                 }
+
                 return Html::a(Yii::$app->params['siteDomain'] . '/stati/' . $model->slug, Yii::$app->params['siteDomain'] . '/stati/' . $model->slug);
             }
         ],

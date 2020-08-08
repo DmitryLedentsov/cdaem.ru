@@ -3,7 +3,6 @@
 namespace common\modules\reviews\assets\frontend;
 
 use yii\web\AssetBundle;
-use Yii;
 
 /**
  * Менеджер ресурсов
@@ -20,8 +19,8 @@ class ReviewAsset extends AssetBundle
      * @inheritdoc
      */
     public $depends = [
-        'yii\web\JqueryAsset',
-        'yii\captcha\CaptchaAsset',
+        \yii\web\JqueryAsset::class,
+        \yii\captcha\CaptchaAsset::class,
     ];
 
     /**
@@ -32,13 +31,10 @@ class ReviewAsset extends AssetBundle
         parent::init();
 
         if (YII_DEBUG) {
-
             $this->js = [
                 'js_dev/reviews.js'
             ];
-
         } else {
-
             $this->js = [
                 'js/reviews.js'
             ];

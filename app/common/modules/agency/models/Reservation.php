@@ -2,10 +2,9 @@
 
 namespace common\modules\agency\models;
 
-use common\modules\agency\models\query\ReservationQuery;
-use common\modules\agency\traits\ModuleTrait;
 use yii\db\ActiveRecord;
-use Yii;
+use common\modules\agency\traits\ModuleTrait;
+use common\modules\agency\models\query\ReservationQuery;
 
 /**
  * Заявки на резервации апартаментов
@@ -92,6 +91,7 @@ class Reservation extends ActiveRecord
      * - Не активный
      */
     const PROCESSED = 1;
+
     const UNPROCESSED = 0;
 
     /**

@@ -5,8 +5,8 @@
 
 /* @var array $selected */
 
-use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\helpers\Html;
 
 \common\modules\agency\assets\backend\AgencyAsset::register($this);
 
@@ -58,9 +58,7 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
                     <div class="col-md-8 col-md-8 col-sm-8 col-xs-12 col-lg-10">
                         <?php
                         if (isset($advertisements[$model->apartment_id]) && !empty($advertisements[$model->apartment_id])) {
-
                             foreach ($advertisements[$model->apartment_id] as $advertisement) {
-
                                 $checkbox = Html::checkbox('selected[' . $advertisement->advert_id . ']', in_array($advertisement->advert_id, array_keys($selected)), [
                                     'label' => $advertisement->advert->rentType->name,
                                 ]);

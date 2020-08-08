@@ -2,10 +2,9 @@
 
 namespace common\modules\partners\models;
 
-use common\modules\partners\models\scopes\ReservationFailureQuery;
 use common\modules\users\models\User;
 use common\modules\partners\traits\ModuleTrait;
-use Yii;
+use common\modules\partners\models\scopes\ReservationFailureQuery;
 
 /**
  * This is the model class for table "{{%partners_advert_reservations_failure}}".

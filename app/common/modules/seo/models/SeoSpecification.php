@@ -2,8 +2,6 @@
 
 namespace common\modules\seo\models;
 
-use Yii;
-
 /**
  * Таблица "{{%seo_specifications}}".
  *

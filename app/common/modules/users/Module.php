@@ -2,8 +2,6 @@
 
 namespace common\modules\users;
 
-use Yii;
-
 /**
  * Module [[Users]]
  * @package common\modules\users

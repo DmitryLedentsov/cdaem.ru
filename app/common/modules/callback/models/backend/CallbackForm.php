@@ -2,9 +2,9 @@
 
 namespace common\modules\callback\models\backend;
 
-use common\modules\callback\models\Callback;
-use yii\base\Model;
 use yii;
+use yii\base\Model;
+use common\modules\callback\models\Callback;
 
 /**
  * Форма "Обратный звонок"
@@ -13,7 +13,9 @@ use yii;
 class CallbackForm extends Model
 {
     public $callback_id;
+
     public $active;
+
     public $phone;
 
     /**
@@ -44,7 +46,7 @@ class CallbackForm extends Model
     {
         return [
             ['active', 'in', 'range' => array_keys(Yii::$app->formatter->booleanFormat)],
-            ['phone', '\common\validators\PhoneValidator', 'message' => 'Некорректный формат номера'],
+            ['phone', \common\validators\PhoneValidator::class, 'message' => 'Некорректный формат номера'],
         ];
     }
 
@@ -62,6 +64,7 @@ class CallbackForm extends Model
         }
 
         $this->callback_id = $model->callback_id;
+
         return true;
     }
 
@@ -94,5 +97,4 @@ class CallbackForm extends Model
     {
         return $model->delete();
     }
-
 }

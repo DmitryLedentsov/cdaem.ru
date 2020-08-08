@@ -2,8 +2,6 @@
 
 namespace common\modules\geo\models;
 
-use Yii;
-
 /**
  * Class Region
  * @package common\modules\geo\models

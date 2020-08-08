@@ -14,7 +14,9 @@ class m140928_181957_helpdesk extends Migration
         }
 
         // Tickets
-        $this->createTable('{{%helpdesk}}', [
+        $this->createTable(
+            '{{%helpdesk}}',
+            [
             'ticket_id' => Schema::TYPE_PK,
             'user_id' => 'int(11) DEFAULT NULL',
             'email' => 'varchar(255) DEFAULT NULL',
@@ -30,18 +32,22 @@ class m140928_181957_helpdesk extends Migration
             'ip' => 'varchar(100)',
             'user_agent' => 'varchar(255)',
         ],
-            $tableOptions . ' COMMENT = "Тикеты в тех. поддержку"');
+            $tableOptions . ' COMMENT = "Тикеты в тех. поддержку"'
+        );
 
 
         // Tickets answers
-        $this->createTable('{{%helpdesk_answers}}', [
+        $this->createTable(
+            '{{%helpdesk_answers}}',
+            [
             'answer_id' => Schema::TYPE_PK,
             'ticket_id' => 'int(11) NOT NULL',
             'user_id' => 'int(11) NOT NULL',
             'text' => 'text',
             'date' => 'datetime NOT NULL DEFAULT "0000-00-00 00:00:00"',
         ],
-            $tableOptions . ' COMMENT = "Ответы тех. поддержки"');
+            $tableOptions . ' COMMENT = "Ответы тех. поддержки"'
+        );
 
         // Index
         $this->createIndex('helpdesk_answers_ticket_id', '{{%helpdesk_answers}}', 'ticket_id');

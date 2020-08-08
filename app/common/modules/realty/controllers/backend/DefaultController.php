@@ -2,15 +2,14 @@
 
 namespace common\modules\realty\controllers\backend;
 
-use common\modules\realty\models\backend\search\RentTypeSearch;
-use common\modules\realty\models\RentType;
-use backend\components\Controller;
-use yii\web\ForbiddenHttpException;
-use yii\web\NotFoundHttpException;
-use yii\widgets\ActiveForm;
-use yii\web\Response;
-use yii\helpers\Url;
 use Yii;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
+use backend\components\Controller;
+use yii\web\NotFoundHttpException;
+use yii\web\ForbiddenHttpException;
+use common\modules\realty\models\RentType;
+use common\modules\realty\models\backend\search\RentTypeSearch;
 
 /**
  * DefaultController
@@ -44,8 +43,10 @@ class DefaultController extends Controller
     {
         if (parent::beforeAction($action)) {
             $this->module->viewPath = '@common/modules/realty/views/backend';
+
             return true;
         }
+
         return false;
     }
 
@@ -89,9 +90,11 @@ class DefaultController extends Controller
                 } else {
                     Yii::$app->session->setFlash('danger', 'Возникла ошибка.');
                 }
+
                 return $this->redirect('index');
             } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validate($model);
             }
         }
@@ -118,7 +121,6 @@ class DefaultController extends Controller
         $model->scenario = 'update';
 
         if ($model->load(Yii::$app->request->post())) {
-
             if (!Yii::$app->user->can('realty-rent-type-update')) {
                 throw new ForbiddenHttpException(Yii::t('users.rbac', 'ACCESS_DENIED'));
             }
@@ -129,9 +131,11 @@ class DefaultController extends Controller
                 } else {
                     Yii::$app->session->setFlash('danger', 'Возникла ошибка.');
                 }
+
                 return $this->refresh();
             } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validate($model);
             }
         }
@@ -153,6 +157,7 @@ class DefaultController extends Controller
         if (($model = RentType::findOne($id)) !== null) {
             return $model;
         }
+
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 }

@@ -15,7 +15,6 @@ class m150126_147901_agency_apartment_images_alt_title extends Migration
 
         $this->addColumn('{{%agency_apartment_images}}', 'alt', 'varchar(255) DEFAULT NULL');
         $this->addColumn('{{%agency_apartment_images}}', 'title', 'varchar(255) DEFAULT NULL');
-
     }
 
     public function safeDown()

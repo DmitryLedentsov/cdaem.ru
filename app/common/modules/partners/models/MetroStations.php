@@ -2,8 +2,6 @@
 
 namespace common\modules\partners\models;
 
-use Yii;
-
 /**
  * Станции метро
  * @package common\modules\partners\models

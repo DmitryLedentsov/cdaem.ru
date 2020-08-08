@@ -4,16 +4,14 @@ namespace common\modules\articles\models;
 
 use yii\helpers\ArrayHelper;
 
-use Yii;
-
 /**
  * Статьи
  * @package common\modules\articles\models
  */
 class ArticleLink extends \yii\db\ActiveRecord
 {
-
     public $file;
+
     public $imagesPath = '@frontend/web/images';
 
     /**
@@ -51,6 +49,7 @@ class ArticleLink extends \yii\db\ActiveRecord
     public function getArticlesList()
     {
         $articles = Article::find()->orderBy(['date_create' => SORT_DESC])->asArray()->all();
+
         return ArrayHelper::map($articles, 'article_id', 'name');
     }
 }

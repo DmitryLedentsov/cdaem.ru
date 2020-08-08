@@ -2,8 +2,8 @@
 
 namespace common\modules\partners\models;
 
-use common\modules\partners\traits\ModuleTrait;
 use Yii;
+use common\modules\partners\traits\ModuleTrait;
 
 /**
  * Календарь бронирования
@@ -19,6 +19,7 @@ class Calendar extends \yii\db\ActiveRecord
      * - свободно
      */
     const RESERVED = 1;
+
     const FREE = 0;
 
     /**
@@ -62,6 +63,7 @@ class Calendar extends \yii\db\ActiveRecord
         if ($scope) {
             $query->andWhere('reservation = :reservation', [':reservation' => $scope]);
         }
+
         return $query->all();
     }
 
@@ -77,6 +79,7 @@ class Calendar extends \yii\db\ActiveRecord
         if (!$userId) {
             $userId = Yii::$app->user->id;
         }
+
         return static::find()
             ->joinWith([
                 'apartment' => function ($query) use ($userId) {
@@ -99,6 +102,7 @@ class Calendar extends \yii\db\ActiveRecord
         if (!$userId) {
             $userId = Yii::$app->user->id;
         }
+
         return static::find()
             ->joinWith([
                 'apartment' => function ($query) use ($userId) {

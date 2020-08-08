@@ -2,10 +2,9 @@
 
 namespace common\modules\seo\models\backend;
 
-use common\modules\seo\models\SeoSpecification;
-use common\modules\geo\models\City;
 use yii\base\Model;
-use Yii;
+use common\modules\geo\models\City;
+use common\modules\seo\models\SeoSpecification;
 
 /**
  * Class SeoSpecificationForm
@@ -14,14 +13,23 @@ use Yii;
 class SeoSpecificationForm extends Model
 {
     public $id;
+
     public $city;
+
     public $url;
+
     public $title;
+
     public $description;
+
     public $keywords;
+
     public $service_head;
+
     public $service_footer;
+
     public $date_create;
+
     public $date_update;
 
     /**
@@ -96,6 +104,7 @@ class SeoSpecificationForm extends Model
 
         if ($model->save(false)) {
             $this->id = $model->id;
+
             return true;
         }
 

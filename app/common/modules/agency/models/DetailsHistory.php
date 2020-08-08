@@ -3,7 +3,6 @@
 namespace common\modules\agency\models;
 
 use common\modules\agency\traits\ModuleTrait;
-use Yii;
 
 /**
  * История отправки реквизитов
@@ -68,10 +67,15 @@ class DetailsHistory extends \yii\db\ActiveRecord
      * - Телефон
      */
     const TYPE_SBERBANK = 'sberbank';
+
     const TYPE_ALFABANK = 'alfabank';
+
     const TYPE_YAMONEY = 'yamoney';
+
     const TYPE_QIWI = 'qiwi';
+
     const TYPE_PHONE = 'phone';
+
     const TYPE_LEGAL = 'legal';
 
     /**

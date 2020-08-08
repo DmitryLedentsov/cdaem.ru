@@ -2,10 +2,10 @@
 
 namespace common\modules\users\models\backend\search;
 
+use Yii;
+use yii\base\Model;
 use nepster\users\models\Action;
 use yii\data\ActiveDataProvider;
-use yii\base\Model;
-use Yii;
 
 /**
  * @inheritdoc

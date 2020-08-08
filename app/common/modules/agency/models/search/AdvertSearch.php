@@ -2,15 +2,14 @@
 
 namespace common\modules\agency\models\search;
 
-use common\modules\realty\models\Apartment as TotalApartment;
-use common\modules\agency\models\Advert;
-use common\modules\realty\models\RentType;
-use common\modules\geo\models\Districts;
-use common\modules\geo\models\Metro;
-use yii\data\ActiveDataProvider;
-use yii\helpers\ArrayHelper;
 use yii\base\Model;
-use Yii;
+use yii\helpers\ArrayHelper;
+use yii\data\ActiveDataProvider;
+use common\modules\geo\models\Metro;
+use common\modules\agency\models\Advert;
+use common\modules\geo\models\Districts;
+use common\modules\realty\models\RentType;
+use common\modules\realty\models\Apartment as TotalApartment;
 
 /**
  * @inheritdoc
@@ -43,6 +42,7 @@ class AdvertSearch extends Advert
     public function getRoomsList()
     {
         $roomsList = ['all' => 'Кол-во комнат'];
+
         return ArrayHelper::merge($roomsList, TotalApartment::getRoomsArray());
     }
 
@@ -52,6 +52,7 @@ class AdvertSearch extends Advert
     public function getDistrictsList()
     {
         $districts = ArrayHelper::map($this->districtsArray, 'name_eng', 'district_name');
+
         return ArrayHelper::merge(['all' => 'Выбрать округ'], $districts);
     }
 
@@ -164,6 +165,7 @@ class AdvertSearch extends Advert
 
         if (!$this->validate()) {
             $query->where('0=1');
+
             return $dataProvider;
         }
 
@@ -186,6 +188,10 @@ class AdvertSearch extends Advert
         return $dataProvider;
     }
 
+    /**
+     * @param $params
+     * @return ActiveDataProvider
+     */
     public function allSearch($params)
     {
         $query = Advert::previewFind()->mainPage();
@@ -199,6 +205,7 @@ class AdvertSearch extends Advert
 
         if (!$this->validate()) {
             $query->where('0=1');
+
             return $dataProvider;
         }
 
@@ -210,5 +217,4 @@ class AdvertSearch extends Advert
 
         return $dataProvider;
     }
-
 }

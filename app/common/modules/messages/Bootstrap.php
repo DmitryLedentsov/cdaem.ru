@@ -2,8 +2,6 @@
 
 namespace common\modules\messages;
 
-use yii\helpers\Html;
-
 /**
  * Messages module bootstrap class.
  */
@@ -15,7 +13,8 @@ class Bootstrap implements \yii\base\BootstrapInterface
     public function bootstrap($app)
     {
         // Add module URL rules.
-        $app->urlManager->addRules([
+        $app->urlManager->addRules(
+            [
                 'office/dialogs' => '/messages/default/index',
                 'office/dialog/<interlocutorId:\d+>' => '/messages/default/view',
                 'message/<interlocutorId:\d+>' => '/messages/default/create',

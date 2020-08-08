@@ -2,16 +2,12 @@
 
 namespace common\modules\agency\models\form;
 
-use common\modules\agency\traits\ModuleTrait;
-use common\modules\realty\models\Apartment as TotalApartment;
-use common\modules\agency\models\WantPass;
-use common\modules\realty\models\RentType;
-use common\modules\geo\models\Metro;
-use yii\helpers\ArrayHelper;
-use yii\web\UploadedFile;
-use yii\helpers\Json;
-use yii\base\Model;
 use Yii;
+use yii\base\Model;
+use yii\helpers\Json;
+use yii\web\UploadedFile;
+use common\modules\agency\models\WantPass;
+use common\modules\agency\traits\ModuleTrait;
 
 /**
  * Хочу сдать квартиру
@@ -22,14 +18,23 @@ class WantPassForm extends Model
     use ModuleTrait;
 
     public $name;
+
     public $email;
+
     public $rent_types_array;
+
     public $address;
+
     public $rooms;
+
     public $phone;
+
     public $description;
+
     public $metro_array;
+
     public $files;
+
     //public $verifyCode;
     protected $images;
 
@@ -113,6 +118,7 @@ class WantPassForm extends Model
 
             $model->images = $this->images;
             $model->date_create = date('Y-m-d H:i:s');
+
             return $model->save(false);
         }
 
@@ -156,7 +162,6 @@ class WantPassForm extends Model
             $images = [];
 
             foreach ($this->files as $key => $file) {
-
                 $tmpPath = Yii::getAlias($this->module->imagesTmpPath);
                 $tmpfileName = uniqid('', true) . '.' . $file->extension;
 
@@ -194,7 +199,7 @@ class WantPassForm extends Model
 
             $this->images = Json::encode($images);
         }
+
         return true;
     }
-
 }

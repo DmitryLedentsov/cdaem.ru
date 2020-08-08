@@ -2,12 +2,12 @@
 
 namespace common\modules\partners\models;
 
-use common\modules\merchant\models\Payment;
-use common\modules\partners\models\scopes\ServiceQuery;
-use common\modules\partners\traits\ModuleTrait;
-use yii\db\ActiveRecord;
-use yii\helpers\Json;
 use Yii;
+use yii\helpers\Json;
+use yii\db\ActiveRecord;
+use common\modules\merchant\models\Payment;
+use common\modules\partners\traits\ModuleTrait;
+use common\modules\partners\models\scopes\ServiceQuery;
 
 /**
  * Управление сервисами
@@ -24,7 +24,9 @@ class Service extends ActiveRecord
      *    Процесс в ожидании
      */
     const PROCESS_IMPLEMENTATION = -1;
+
     const PROCESS_FINISHED = 1;
+
     const PROCESS_PENDING = 0;
 
     /**
@@ -40,13 +42,21 @@ class Service extends ActiveRecord
      *    Открыть контакты пользователя, который оставил общую заявку на резервацию
      */
     const SERVICE_ADVERTISING_TOP_SLIDER = 'ADVERTISING_TOP_SLIDER';
+
     const SERVICE_ADVERTISING_IN_SECTION = 'ADVERTISING_IN_SECTION';
+
     const SERVICE_CONTACTS_OPEN_TO_USER = 'CONTACTS_OPEN_TO_USER';
+
     const SERVICE_APARTMENT_CONTACTS_OPEN = 'APARTMENT_CONTACTS_OPEN';
+
     const SERVICE_ADVERT_TOP_POSITION = 'ADVERT_TOP_POSITION';
+
     const SERVICE_ADVERT_SELECTED = 'ADVERT_SELECTED';
+
     const SERVICE_ADVERT_IN_TOP = 'ADVERT_IN_TOP';
+
     const SERVICE_CONTACTS_OPEN_FOR_TOTAL_BID = 'CONTACTS_OPEN_FOR_TOTAL_BID';
+
     const SERVICE_CONTACTS_OPEN_FOR_RESERVATION = 'CONTACTS_OPEN_FOR_RESERVATION';
 
     /**
@@ -162,7 +172,7 @@ class Service extends ActiveRecord
             ->andWhere('process = 0')
             ->andWhere('payment_id IS NOT NULL')
             ->andWhere('date_create >= (now() - INTERVAL 1200 SECOND) ')
-            //->andWhere('service =  oki')  
+            //->andWhere('service =  oki')
             ->andWhere('user_id = :id', [':id' => $id])
             ->all();
     }

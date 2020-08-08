@@ -2,17 +2,17 @@
 
 namespace common\modules\agency\controllers\backend;
 
-use common\modules\agency\models\backend\form\AdvertForm;
-use common\modules\agency\models\Apartment;
-use common\modules\agency\models\Advert;
-use common\modules\realty\models\RentType;
-use backend\components\Controller;
-use yii\web\ForbiddenHttpException;
-use yii\web\NotFoundHttpException;
-use yii\widgets\ActiveForm;
+use Yii;
 use yii\helpers\Url;
 use yii\web\Response;
-use Yii;
+use yii\widgets\ActiveForm;
+use backend\components\Controller;
+use yii\web\NotFoundHttpException;
+use yii\web\ForbiddenHttpException;
+use common\modules\agency\models\Advert;
+use common\modules\realty\models\RentType;
+use common\modules\agency\models\Apartment;
+use common\modules\agency\models\backend\form\AdvertForm;
 
 /**
  * Adverts Controller
@@ -69,8 +69,9 @@ class AdvertsController extends Controller
         $formModel = new AdvertForm(['scenario' => 'create']);
         $formModel->apartment_id = $id;
         $apartment = Apartment::findOne($id);
-        if (!$apartment)
+        if (!$apartment) {
             throw new NotFoundHttpException('The requested page does not exist.');
+        }
 
         if ($formModel->load(Yii::$app->request->post())) {
             if ($formModel->validate()) {
@@ -80,9 +81,11 @@ class AdvertsController extends Controller
                     Yii::$app->session->setFlash('danger', 'Возникла ошибка.');
                 }
                 //return $this->redirect(['/agency/default/update', 'id' => $id]);
+
                 return $this->redirect(['/agency/default/index']);
             } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validate($model);
             }
         }
@@ -112,7 +115,6 @@ class AdvertsController extends Controller
         $formModel->setAttributes($model->getAttributes(), false);
 
         if ($formModel->load(Yii::$app->request->post())) {
-
             if (!Yii::$app->user->can('agency-advert-update')) {
                 throw new ForbiddenHttpException(Yii::t('users.rbac', 'ACCESS_DENIED'));
             }
@@ -123,9 +125,11 @@ class AdvertsController extends Controller
                 } else {
                     Yii::$app->session->setFlash('danger', 'Возникла ошибка.');
                 }
+
                 return $this->redirect(['update', 'id' => $formModel->advert_id]);
             } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validate($formModel);
             }
         }
@@ -198,7 +202,6 @@ class AdvertsController extends Controller
         $rentTypesList = RentType::rentTypeslist();
 
         if (Yii::$app->request->isPost) {
-
             $activeRentTypesList = (array)Yii::$app->request->post('rent-types-list');
             $adverts = (array)Yii::$app->request->post('Advert');
             $countRecords = 0;

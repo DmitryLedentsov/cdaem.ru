@@ -2,8 +2,8 @@
 
 namespace common\modules\articles\traits;
 
-use common\modules\articles\Module;
 use Yii;
+use common\modules\articles\Module;
 
 /**
  * Class ModuleTrait
@@ -30,6 +30,7 @@ trait ModuleTrait
                 $this->_module = Yii::$app->getModule('articles');
             }
         }
+
         return $this->_module;
     }
 }

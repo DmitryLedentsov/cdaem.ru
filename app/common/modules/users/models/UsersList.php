@@ -58,6 +58,7 @@ class UsersList extends \yii\db\ActiveRecord
      * В черном списке
      */
     const BOOKMARK = 1;
+
     const BLACKLIST = 0;
 
     /**

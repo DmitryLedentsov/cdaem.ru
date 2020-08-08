@@ -1,7 +1,7 @@
 <?php
 
-use kartik\date\DatePicker;
 use yii\helpers\Html;
+use kartik\date\DatePicker;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */

@@ -2,12 +2,8 @@
 
 namespace common\modules\agency\commands;
 
-use common\modules\agency\models\DetailsHistory;
-use yii\helpers\ArrayHelper;
-use yii\helpers\Console;
-use yii\helpers\Url;
-use yii\log\Logger;
 use Yii;
+use common\modules\agency\models\DetailsHistory;
 
 /**
  * Контроллер для работы с реквизитами

@@ -2,8 +2,8 @@
 
 namespace common\modules\helpdesk\traits;
 
-use common\modules\helpdesk\Module;
 use Yii;
+use common\modules\helpdesk\Module;
 
 /**
  * Class ModuleTrait
@@ -30,6 +30,7 @@ trait ModuleTrait
                 $this->_module = Yii::$app->getModule('helpdesk');
             }
         }
+
         return $this->_module;
     }
 }

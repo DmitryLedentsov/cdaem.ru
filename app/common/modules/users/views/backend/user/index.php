@@ -6,9 +6,9 @@
  * @var $dataProvider yii\data\ActiveDataProvider
  */
 
-use yii\helpers\ArrayHelper;
-use yii\grid\GridView;
 use yii\helpers\Html;
+use yii\grid\GridView;
+use yii\helpers\ArrayHelper;
 
 $this->title = Yii::t('users', 'USER_ALL');
 
@@ -114,7 +114,6 @@ echo GridView::widget([
             'label' => Yii::t('users', 'CONTACTS'),
             'contentOptions' => ['class' => 'text-left'],
             'value' => function ($model) {
-
                 $options = [];
 
                 if (!$model->email_verify) {

@@ -6,10 +6,10 @@
 
 /* @var $form yii\widgets\ActiveForm */
 
-use kartik\date\DatePicker;
 use yii\helpers\Html;
-use yii\helpers\ArrayHelper;
+use kartik\date\DatePicker;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
 
 ?>
 

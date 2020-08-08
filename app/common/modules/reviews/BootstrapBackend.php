@@ -2,8 +2,8 @@
 
 namespace common\modules\reviews;
 
-use common\modules\reviews\models\Review;
 use yii\helpers\Html;
+use common\modules\reviews\models\Review;
 
 /**
  * Bootstrap Backend
@@ -16,7 +16,6 @@ class BootstrapBackend implements \yii\base\BootstrapInterface
      */
     public function bootstrap($app)
     {
-
         $reviewsAccess = 1;
 
         if (!\Yii::$app->user->can('reviews-view')
@@ -24,7 +23,6 @@ class BootstrapBackend implements \yii\base\BootstrapInterface
         ) {
             $reviewsAccess = 0;
         }
-
 
         // Add admin section
         $app->navigation->addSection([
@@ -60,7 +58,8 @@ class BootstrapBackend implements \yii\base\BootstrapInterface
         ]);
 
         // Add module URL rules.
-        $app->urlManager->addRules([
+        $app->urlManager->addRules(
+            [
 
             ]
         );

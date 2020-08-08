@@ -4,7 +4,6 @@ use yii\db\Schema;
 
 class m140508_233504_merchant extends \yii\db\Migration
 {
-
     public function safeUp()
     {
         $tableOptions = null;

@@ -2,14 +2,14 @@
 
 namespace common\modules\agency\controllers\frontend;
 
-use common\modules\agency\models\search\AdvertSearch as AgencyAdvertSearch;
-use common\modules\agency\models as models;
-use yii\widgets\ActiveForm;
-use yii\web\HttpException;
-use yii\web\Response;
-use common\modules\articles\models\Article;
 use Yii;
+use yii\web\Response;
+use yii\web\HttpException;
+use yii\widgets\ActiveForm;
+use common\modules\agency\models as models;
+use common\modules\articles\models\Article;
 use common\modules\agency\models\SpecialAdvert;
+use common\modules\agency\models\search\AdvertSearch as AgencyAdvertSearch;
 
 /**
  * Главный контроллер агенства
@@ -70,6 +70,7 @@ class DefaultController extends \frontend\components\Controller
             ->limit(13)
             ->asArray()
             ->all();
+
         return $this->render('index.twig', [
             'agencySearch' => $agencySearch,
             'specialAdverts' => $specialAdverts,
@@ -109,16 +110,19 @@ class DefaultController extends \frontend\components\Controller
                         $status = 0;
                         $msg = 'Возникла критическая ошибка. Пожалуйста обратитесь в техническую поддержку.';
                     }
+
                     return [
                         'status' => $status,
                         'message' => $msg,
                     ];
                 }
+
                 return [];
-            } else {
-                Yii::$app->response->format = Response::FORMAT_JSON;
-                return $errors;
             }
+
+            Yii::$app->response->format = Response::FORMAT_JSON;
+
+            return $errors;
         }
 
 
@@ -129,7 +133,10 @@ class DefaultController extends \frontend\components\Controller
         ]);
     }
 
-
+    /**
+     * @param $id
+     * @return array|string
+     */
     public function actionRes($id)
     {
         $model = models\Advert::getFullData($id);
@@ -155,18 +162,20 @@ class DefaultController extends \frontend\components\Controller
                         $status = 0;
                         $msg = 'Возникла критическая ошибка. Пожалуйста обратитесь в техническую поддержку.';
                     }
+
                     return [
                         'status' => $status,
                         'message' => $msg,
                     ];
                 }
-                return [];
-            } else {
-                Yii::$app->response->format = Response::FORMAT_JSON;
-                return $errors;
-            }
-        }
 
+                return [];
+            }
+
+            Yii::$app->response->format = Response::FORMAT_JSON;
+
+            return $errors;
+        }
 
         return $this->render('res.twig', [
             'model' => $model,
@@ -198,9 +207,9 @@ class DefaultController extends \frontend\components\Controller
                     'status' => $status,
                     'message' => $msg,
                 ];
-            } else {
-                return $errors;
             }
+
+            return $errors;
         }
 
         return $this->render('select.twig', [
@@ -227,13 +236,14 @@ class DefaultController extends \frontend\components\Controller
                     $status = 1;
                     $msg = 'Возникла критическая ошибка. Пожалуйста обратитесь в техническую поддержку.';
                 }
+
                 return [
                     'status' => $status,
                     'message' => $msg,
                 ];
-            } else {
-                return $errors;
             }
+
+            return $errors;
         }
 
         return $this->render('want-pass.twig', [
@@ -264,15 +274,17 @@ class DefaultController extends \frontend\components\Controller
                         'status' => 1,
                         'message' => 'Ваша заявка принята. В течении нескольких минут мы отправим письмо с реквизитами для платежа на указанный Вами EMAIL.',
                     ];
-                } else {
-                    return [
-                        'status' => 0,
-                        'message' => 'Возникла критическая ошибка. Пожалуйста обратитесь в техническую поддержку.',
-                    ];
                 }
+
+                return [
+                    'status' => 0,
+                    'message' => 'Возникла критическая ошибка. Пожалуйста обратитесь в техническую поддержку.',
+                ];
             }
+
             return [];
         }
+
         return $errors;
     }
 
@@ -282,15 +294,8 @@ class DefaultController extends \frontend\components\Controller
      */
     public function actionSearch()
     {
-        /*
-        echo Yii::$app->request->get('rentTime');
-        echo Yii::$app->request->get('rentType');
-        echo Yii::$app->request->get('rooms');
-        */
         return $this->render('search.twig', [
             'get' => Yii::$app->request->get()
         ]);
     }
-
-
 }

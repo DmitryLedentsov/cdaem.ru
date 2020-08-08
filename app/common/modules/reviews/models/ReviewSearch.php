@@ -2,10 +2,10 @@
 
 namespace common\modules\reviews\models;
 
-use frontend\modules\partners\models\Apartment;
-use yii\data\ActiveDataProvider;
-use yii\base\Model;
 use yii;
+use yii\base\Model;
+use yii\data\ActiveDataProvider;
+use frontend\modules\partners\models\Apartment;
 
 /**
  * Review Search
@@ -84,9 +84,6 @@ class ReviewSearch extends Review
         $query->andFilterWhere([
             self::tableName() . '.apartment_id' => $this->apartment_id,
         ]);
-
-        /*$query->andFilterWhere(['like', 'slug', $this->slug])
-            ->andFilterWhere(['like', 'title_img', $this->title_img]);*/
 
         return $dataProvider;
     }

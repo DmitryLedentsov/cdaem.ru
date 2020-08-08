@@ -2,8 +2,8 @@
 
 namespace common\modules\seo\models;
 
-use yii\db\ActiveRecord;
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * Seotext
@@ -71,6 +71,7 @@ class Seotext extends ActiveRecord
     }
 
     const HEADER = 'header';
+
     const FOOTER = 'footer';
 
     /**

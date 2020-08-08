@@ -2,9 +2,9 @@
 
 namespace common\modules\partners\models\scopes;
 
-use common\modules\partners\models\Reservation;
-use yii\db\ActiveQuery;
 use Yii;
+use yii\db\ActiveQuery;
+use common\modules\partners\models\Reservation;
 
 /**
  * Class ReservationQuery
@@ -19,6 +19,7 @@ class ReservationQuery extends ActiveQuery
     public function closed($state = 1)
     {
         $this->andWhere([Reservation::tableName() . '.closed' => $state]);
+
         return $this;
     }
 
@@ -29,6 +30,7 @@ class ReservationQuery extends ActiveQuery
     public function cancel($state = [1, 2])
     {
         $this->andWhere([Reservation::tableName() . '.cancel' => $state]);
+
         return $this;
     }
 
@@ -38,16 +40,17 @@ class ReservationQuery extends ActiveQuery
     public function notClosedAndCancel()
     {
         $this->closed(0)->cancel(0);
+
         return $this;
     }
 
     /**
-     * ������ ���������� �� �������
      * @return $this
      */
     public function actual()
     {
         $this->andWhere(['>=', 'date_actuality', date('Y-m-d H:i:s')]);
+
         return $this;
     }
 
@@ -60,16 +63,17 @@ class ReservationQuery extends ActiveQuery
         $date = new \DateTime('now');
         $date->sub(new \DateInterval('P3M'));
         $this->andWhere(['>=', 'date_create', $date->format('Y-m-d H:i:s')]);
+
         return $this;
     }
 
     /**
-     * ������ ����� ����������������� ������������
      * @return $this
      */
     public function thisUser()
     {
         $this->andWhere(['user_id' => Yii::$app->user->id]);
+
         return $this;
     }
 }

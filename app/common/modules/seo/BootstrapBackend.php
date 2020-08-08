@@ -2,7 +2,6 @@
 
 namespace common\modules\seo;
 
-use yii\helpers\Html;
 use Yii;
 
 /**
@@ -56,7 +55,8 @@ class BootstrapBackend implements \yii\base\BootstrapInterface
 
 
         // Add module URL rules.
-        $app->urlManager->addRules([
+        $app->urlManager->addRules(
+            [
 
             ]
         );

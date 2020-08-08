@@ -2,9 +2,8 @@
 
 namespace common\modules\merchant\models;
 
-use common\modules\merchant\traits\ModuleTrait;
 use yii\db\ActiveRecord;
-use Yii;
+use common\modules\merchant\traits\ModuleTrait;
 
 /**
  * Class Payments
@@ -21,7 +20,9 @@ class Payment extends ActiveRecord
      * - Расходы
      */
     const DEPOSIT = 'DEPOSIT';
+
     const BILLING = 'BILLING';
+
     const COSTS = 'COSTS';
 
     /**

@@ -2,18 +2,18 @@
 
 namespace common\modules\articles\controllers\backend;
 
-use common\modules\articles\models\backend\ArticleLinkSearch;
-use common\modules\articles\models\backend\ArticleLinkForm;
-use common\modules\articles\models\ArticleLink;
-use common\modules\articles\models\Article;
-use backend\components\Controller;
-use yii\web\ForbiddenHttpException;
-use yii\web\NotFoundHttpException;
-use yii\widgets\ActiveForm;
-use yii\web\UploadedFile;
-use yii\web\Response;
-use yii\helpers\Url;
 use Yii;
+use yii\helpers\Url;
+use yii\web\Response;
+use yii\web\UploadedFile;
+use yii\widgets\ActiveForm;
+use backend\components\Controller;
+use yii\web\NotFoundHttpException;
+use yii\web\ForbiddenHttpException;
+use common\modules\articles\models\Article;
+use common\modules\articles\models\ArticleLink;
+use common\modules\articles\models\backend\ArticleLinkForm;
+use common\modules\articles\models\backend\ArticleLinkSearch;
 
 /**
  * Default Controller
@@ -21,7 +21,6 @@ use Yii;
  */
 class ArticlelinkController extends Controller
 {
-
     /**
      * @inheritdoc
      */
@@ -39,16 +38,6 @@ class ArticlelinkController extends Controller
             ],
         ];
     }
-
-    /**
-     * @inheritdoc
-     */
-
-
-    /**
-     * @inheritdoc
-     */
-
 
     /**
      * Все
@@ -95,17 +84,17 @@ class ArticlelinkController extends Controller
                 if (!empty($modelForm->file)) {
                     $modelForm->file->saveAs(Yii::getAlias($modelForm->imagesPath) . '/' . $imageName . '.' . $modelForm->file->extension);
                     $modelForm->thumb_img = $imageName . '.' . $modelForm->file->extension;
-
                 }
                 if ($modelForm->create()) {
-
                     Yii::$app->session->setFlash('success', 'Данные успешно сохранены.');
                 } else {
                     Yii::$app->session->setFlash('danger', 'Возникла ошибка.');
                 }
+
                 return $this->redirect(['update', 'id' => $modelForm->id]);
             } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validate($modelForm);
             }
         }
@@ -113,7 +102,6 @@ class ArticlelinkController extends Controller
         return $this->render('create', [
             'model' => $model,
             'formModel' => $modelForm,
-
         ]);
     }
 
@@ -145,16 +133,17 @@ class ArticlelinkController extends Controller
                 if (!empty($formModel->file)) {
                     $formModel->file->saveAs(Yii::getAlias($formModel->imagesPath) . '/' . $imageName . '.' . $formModel->file->extension);
                     $formModel->thumb_img = $imageName . '.' . $formModel->file->extension;
-
                 }
                 if ($formModel->update($model)) {
                     Yii::$app->session->setFlash('success', 'Данные успешно сохранены.');
                 } else {
                     Yii::$app->session->setFlash('danger', 'Возникла ошибка.');
                 }
+
                 return $this->refresh();
             } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validate($formModel);
             }
         }
@@ -179,29 +168,32 @@ class ArticlelinkController extends Controller
         if (!Yii::$app->user->can('articles-delete')) {
             throw new ForbiddenHttpException(Yii::t('users.rbac', 'ACCESS_DENIED'));
         }
+
         $model = $this->findModel($id);
         $formModel = new ArticleLinkForm(['scenario' => 'delete']);
+
         if ($formModel->validate() && $formModel->delete($model)) {
             Yii::$app->session->setFlash('success', 'Данные успешно удалены.');
         } else {
             Yii::$app->session->setFlash('danger', 'Возникла ошибка.');
         }
+
         return $this->redirect(Url::previous());
     }
 
     /**
      * Finds the Article model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Article the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
+     * @param $id
+     * @return ArticleLink
+     * @throws NotFoundHttpException
      */
     protected function findModel($id)
     {
         if (($model = ArticleLink::findOne($id)) !== null) {
             return $model;
         }
+
         throw new NotFoundHttpException('The requested page does not exist.');
     }
-
 }

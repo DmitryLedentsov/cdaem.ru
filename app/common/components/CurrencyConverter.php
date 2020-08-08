@@ -6,6 +6,10 @@ use Yii;
 use yii\base\Component;
 use yii\base\ErrorException;
 
+/**
+ * Class CurrencyConverter
+ * @package common\components
+ */
 class CurrencyConverter extends Component
 {
     /**
@@ -38,17 +42,28 @@ class CurrencyConverter extends Component
      */
     public $cacheComponent = 'cache';
 
-
+    /**
+     * @param $to
+     * @return mixed
+     * @throws ErrorException
+     */
     public function rubleRate($to)
     {
-        if (isset($this->list[$to])) return $this->list[$to];
+        if (isset($this->list[$to])) {
+            return $this->list[$to];
+        }
 
         throw new ErrorException('Невозможно узнать курс валют прямо сейчас.');
     }
 
+    /**
+     * @return array
+     */
     public function getList()
     {
-        if (!empty($this->_list)) return $this->_list;
+        if (!empty($this->_list)) {
+            return $this->_list;
+        }
 
         $cachedData = Yii::$app->get($this->cacheComponent)->get($this->cacheKey);
 
@@ -62,14 +77,13 @@ class CurrencyConverter extends Component
     }
 
     /**
-     * Загружает курс валют в свойтсво $_list и записывает в кэш
+     * Загружает курс валют в свойство $_list и записывает в кэш
      */
     public function loadNewList()
     {
         $xml = new \DOMDocument();
 
         if (@$xml->load($this->url)) {
-
             $root = $xml->documentElement;
             $items = $root->getElementsByTagName('Valute');
 

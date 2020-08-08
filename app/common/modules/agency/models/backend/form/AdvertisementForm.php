@@ -2,9 +2,8 @@
 
 namespace common\modules\agency\models\backend\form;
 
-use common\modules\agency\models\Advertisement;
 use common\modules\agency\models\Advert;
-use Yii;
+use common\modules\agency\models\Advertisement;
 
 /**
  * Advertisement Form
@@ -13,9 +12,13 @@ use Yii;
 class AdvertisementForm extends \yii\base\Model
 {
     public $advertisement_id;
+
     public $advert_id;
+
     public $text;
+
     public $date_start;
+
     public $date_expire;
 
     /**
@@ -76,6 +79,7 @@ class AdvertisementForm extends \yii\base\Model
         }
 
         $this->advertisement_id = $model->advertisement_id;
+
         return true;
     }
 
@@ -88,6 +92,7 @@ class AdvertisementForm extends \yii\base\Model
     public function update(Advertisement $model)
     {
         $model->setAttributes($this->getAttributes(), false);
+
         return $model->save(false);
     }
 

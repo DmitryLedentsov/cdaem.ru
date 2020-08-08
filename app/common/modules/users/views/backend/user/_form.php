@@ -7,10 +7,10 @@
  * @var $person common\modules\users\models\LegalPerson
  */
 
+use yii\helpers\Html;
 use kartik\date\DatePicker;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
-use yii\helpers\Html;
 
 ?>
 

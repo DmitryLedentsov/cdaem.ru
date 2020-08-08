@@ -47,16 +47,26 @@ class UserSeen extends \yii\db\ActiveRecord
      */
     public static function updateLastDate($tableName, $dateUpdate, $type = null)
     {
-        if (!$dateUpdate) return false;
-        if (Yii::$app->user->isGuest) return false;
+        if (!$dateUpdate) {
+            return false;
+        }
+
+        if (Yii::$app->user->isGuest) {
+            return false;
+        }
+
         $model = self::find()->where([
             'user_id' => Yii::$app->user->id,
             'table_name' => $tableName,
         ])->andFilterWhere(['type' => $type])->one();
 
-        if ($model and $model->last_update == $dateUpdate) return true;
+        if ($model and $model->last_update == $dateUpdate) {
+            return true;
+        }
 
-        if ($model and $model->last_update > $dateUpdate) return true;
+        if ($model and $model->last_update > $dateUpdate) {
+            return true;
+        }
 
         if (!$model) {
             $model = new self();

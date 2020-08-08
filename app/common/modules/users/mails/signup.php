@@ -6,8 +6,8 @@
  * @var \common\modules\users\models\User $user
  */
 
-use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\helpers\Html;
 
 $url = Url::toRoute(['/users/guest/activation', 'token' => $user['secure_key']], true);
 ?>

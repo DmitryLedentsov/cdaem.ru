@@ -2,11 +2,10 @@
 
 namespace common\modules\helpdesk\models;
 
-use common\modules\helpdesk\traits\ModuleTrait;
-use common\modules\users\models\User;
-use yii\helpers\ArrayHelper;
 use yii\db\ActiveRecord;
-use Yii;
+use yii\helpers\ArrayHelper;
+use common\modules\users\models\User;
+use common\modules\helpdesk\traits\ModuleTrait;
 
 /**
  * Helpdesk
@@ -15,22 +14,6 @@ use Yii;
 class Helpdesk extends ActiveRecord
 {
     use ModuleTrait;
-
-
-    /*public function behaviors()
-    {
-        return [
-            'ActionBehavior' => [
-                'class' => 'nepster\users\behaviors\ActionBehavior',
-                'module' => $this->module->id,
-                'actions' => [
-                    ActiveRecord::EVENT_BEFORE_INSERT => 'create-helpdesk',
-                    ActiveRecord::EVENT_BEFORE_UPDATE => 'update-helpdesk',
-                    ActiveRecord::EVENT_BEFORE_DELETE => 'delete-helpdesk',
-                ],
-            ],
-        ];
-    }*/
 
     /**
      * @inheritdoc
@@ -71,10 +54,12 @@ class Helpdesk extends ActiveRecord
      * - Финансовый
      */
     const LETTER = 'letter';
-    const LETTERWORK = 'letterwork';
-    const COMPLAINT = 'complaint';
-    const LETTERPHONE = 'letterphone';
 
+    const LETTERWORK = 'letterwork';
+
+    const COMPLAINT = 'complaint';
+
+    const LETTERPHONE = 'letterphone';
 
     /**
      * @return array
@@ -116,8 +101,11 @@ class Helpdesk extends ActiveRecord
      * - Не важно
      */
     const CRITICAL = 3;
+
     const VERY_IMPORTANT = 2;
+
     const IMPORTANT = 1;
+
     const NOT_IMPORTANT = 0;
 
     /**
@@ -151,6 +139,7 @@ class Helpdesk extends ActiveRecord
      * - Открыт
      */
     const ANSWERED = 1;
+
     const AWAITING = 0;
 
     /**
@@ -176,6 +165,7 @@ class Helpdesk extends ActiveRecord
      * - Открыт
      */
     const CLOSED = 1;
+
     const OPEN = 0;
 
     /**
@@ -200,6 +190,7 @@ class Helpdesk extends ActiveRecord
      * - Партнеры
      */
     const TYPE_AGENCY = 'agency';
+
     const TYPE_PARTNERS = 'partners';
 
     /**

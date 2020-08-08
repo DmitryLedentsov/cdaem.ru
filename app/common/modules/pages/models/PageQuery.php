@@ -2,9 +2,8 @@
 
 namespace common\modules\pages\models;
 
-use common\modules\pages\traits\ModuleTrait;
 use yii\db\ActiveQuery;
-use yii;
+use common\modules\pages\traits\ModuleTrait;
 
 /**
  * Page Query
@@ -21,7 +20,7 @@ class PageQuery extends ActiveQuery
     public function status($state = Page::STATUS_ALL)
     {
         $this->andWhere([Page::tableName() . '.status' => $state]);
+
         return $this;
     }
-
 }

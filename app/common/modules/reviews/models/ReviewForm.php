@@ -2,10 +2,8 @@
 
 namespace common\modules\reviews\models;
 
-use common\modules\users\models\User;
-use common\modules\users\models\Profile;
-use yii\base\Model;
 use yii;
+use common\modules\users\models\User;
 
 /**
  * Форма "Написать отзыв"
@@ -173,7 +171,6 @@ class ReviewForm extends Review
                 'password' => $this->password,
                 'phone' => $this->phone,
             ]);
-
         } else {
             $this->user_id = Yii::$app->user->id;
         }

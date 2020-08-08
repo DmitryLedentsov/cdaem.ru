@@ -3,7 +3,6 @@
 namespace common\modules\agency\assets\backend;
 
 use yii\web\AssetBundle;
-use Yii;
 
 /**
  * Менеджер ресурсов
@@ -21,7 +20,7 @@ class ImageFormAsset extends AssetBundle
     ];
 
     public $depends = [
-        'yii\web\JqueryAsset',
+        \yii\web\JqueryAsset::class,
         'yii\jui\JuiAsset',
     ];
 }

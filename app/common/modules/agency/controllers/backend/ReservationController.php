@@ -2,16 +2,16 @@
 
 namespace common\modules\agency\controllers\backend;
 
-use common\modules\agency\models\backend\search\ReservationSearch;
-use common\modules\agency\models\backend\form\ReservationForm;
-use common\modules\agency\models\Reservation;
-use backend\components\Controller;
-use yii\web\ForbiddenHttpException;
-use yii\web\NotFoundHttpException;
-use yii\widgets\ActiveForm;
-use yii\web\Response;
-use yii\helpers\Url;
 use Yii;
+use yii\helpers\Url;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
+use backend\components\Controller;
+use yii\web\NotFoundHttpException;
+use yii\web\ForbiddenHttpException;
+use common\modules\agency\models\Reservation;
+use common\modules\agency\models\backend\form\ReservationForm;
+use common\modules\agency\models\backend\search\ReservationSearch;
 
 /**
  * Reservation Controller
@@ -94,9 +94,11 @@ class ReservationController extends Controller
                 } else {
                     Yii::$app->session->setFlash('danger', 'Возникла ошибка.');
                 }
+
                 return $this->redirect(['update', 'id' => $modelForm->reservation_id]);
             } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validate($modelForm);
             }
         }
@@ -125,7 +127,6 @@ class ReservationController extends Controller
         $formModel->setAttributes($model->getAttributes(), false);
 
         if ($formModel->load(Yii::$app->request->post())) {
-
             if (!Yii::$app->user->can('agency-reservation-update')) {
                 throw new ForbiddenHttpException(Yii::t('users.rbac', 'ACCESS_DENIED'));
             }
@@ -136,9 +137,11 @@ class ReservationController extends Controller
                 } else {
                     Yii::$app->session->setFlash('danger', 'Возникла ошибка.');
                 }
+
                 return $this->redirect(['update', 'id' => $formModel->reservation_id]);
             } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validate($formModel);
             }
         }
@@ -192,7 +195,6 @@ class ReservationController extends Controller
             return $this->redirect($redirect);
         }
 
-
         switch ($action) {
 
             case 'delete':
@@ -221,6 +223,7 @@ class ReservationController extends Controller
         if (($model = Reservation::findOne($id)) !== null) {
             return $model;
         }
+
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 }

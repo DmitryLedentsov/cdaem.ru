@@ -84,10 +84,13 @@ echo Html::beginForm(['multi-control'], 'post'); ?>
                     return Html::a('<span class="icon-wrench"></span>', ['/agency/advertisement/update', 'id' => $model->advertisement_id]);
                 },
                 'delete' => function ($url, $model) {
-                    return Html::a('<span class="icon-remove3"></span>', ['/agency/advertisement/delete', 'id' => $model->advertisement_id],
+                    return Html::a(
+                        '<span class="icon-remove3"></span>',
+                        ['/agency/advertisement/delete', 'id' => $model->advertisement_id],
                         ['data' => [
                             'confirm' => 'Удалить?',
-                        ]]);
+                        ]]
+                    );
                 }
             ],
         ],
@@ -107,6 +110,7 @@ echo Html::beginForm(['multi-control'], 'post'); ?>
                         </div>
                     ');
                 }
+
                 return null;
             },
         ],
@@ -138,6 +142,7 @@ echo Html::beginForm(['multi-control'], 'post'); ?>
                 if (time() >= strtotime($model->date_expire)) {
                     $options['style'] = 'color:red';
                 }
+
                 return Html::tag('span', Yii::$app->BasisFormat->helper('DateTime')->toFullDateTime($model->date_expire), $options);
             },
         ]

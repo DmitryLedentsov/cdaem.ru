@@ -2,8 +2,8 @@
 
 /* @var string $content Реквизиты */
 
-use yii\helpers\Json;
 use yii\helpers\Html;
+use yii\helpers\Json;
 
 $domain = Yii::$app->params['siteDomain'];
 ?>

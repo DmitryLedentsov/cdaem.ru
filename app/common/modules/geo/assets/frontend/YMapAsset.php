@@ -3,7 +3,6 @@
 namespace common\modules\geo\assets\frontend;
 
 use yii\web\AssetBundle;
-use Yii;
 
 /**
  * Менеджер ресурсов
@@ -20,7 +19,7 @@ class YMapAsset extends AssetBundle
      * @inheritdoc
      */
     public $depends = [
-        'yii\web\JqueryAsset',
+        \yii\web\JqueryAsset::class,
     ];
 
     /**
@@ -32,14 +31,11 @@ class YMapAsset extends AssetBundle
 
 
         if (YII_DEBUG) {
-
             $this->js = [
                 'https://api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU&apikey=3dd27c27-e51a-4660-a191-5c0413af0c03',
                 'js_dev/ymap.js'
             ];
-
         } else {
-
             $this->js = [
                 'https://api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU&apikey=3dd27c27-e51a-4660-a191-5c0413af0c03',
                 'js/ymap.js'

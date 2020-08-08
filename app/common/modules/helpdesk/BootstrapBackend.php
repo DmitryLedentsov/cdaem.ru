@@ -2,8 +2,8 @@
 
 namespace common\modules\helpdesk;
 
-use common\modules\helpdesk\models\Helpdesk;
 use yii\helpers\Html;
+use common\modules\helpdesk\models\Helpdesk;
 
 /**
  * Bootstrap Backend
@@ -37,7 +37,8 @@ class BootstrapBackend implements \yii\base\BootstrapInterface
         ]);
 
         // Add module URL rules.
-        $app->urlManager->addRules([
+        $app->urlManager->addRules(
+            [
 
             ]
         );

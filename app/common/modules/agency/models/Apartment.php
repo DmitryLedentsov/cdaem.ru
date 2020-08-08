@@ -2,15 +2,14 @@
 
 namespace common\modules\agency\models;
 
-use common\modules\agency\models\query\ApartmentsQuery;
-use common\modules\realty\models\Apartment as TotalApartment;
-use common\modules\agency\traits\ModuleTrait;
-use common\modules\agency\models\Reservation;
-use common\modules\geo\models\Districts;
-use common\modules\geo\models\Metro;
+use Yii;
 use yii\base\ErrorException;
 use yii\helpers\ArrayHelper;
-use Yii;
+use common\modules\geo\models\Metro;
+use common\modules\geo\models\Districts;
+use common\modules\agency\traits\ModuleTrait;
+use common\modules\agency\models\query\ApartmentsQuery;
+use common\modules\realty\models\Apartment as TotalApartment;
 
 /**
  * Апартаменты
@@ -139,15 +138,6 @@ class Apartment extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    /*public function getAlternateTitleImage()
-    {
-        return $this->hasOne(Image::class, ['apartment_id' => 'apartment_id'])
-            ->andWhere(['default_img' => 0]);
-    }*/
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getImages()
     {
         return $this->hasMany(Image::class, ['apartment_id' => 'apartment_id'])->inverseOf('apartment');
@@ -170,6 +160,7 @@ class Apartment extends \yii\db\ActiveRecord
         // Удаляем изображения из базы и диска
         if (parent::beforeDelete()) {
             Image::deleteAllWithFiles(['apartment_id' => $this->apartment_id]);
+
             return true;
         }
 
@@ -234,6 +225,7 @@ class Apartment extends \yii\db\ActiveRecord
      * - Не видно
      */
     const VISIBLE = 1;
+
     const INVISIBLE = 0;
 
     /**
@@ -242,7 +234,7 @@ class Apartment extends \yii\db\ActiveRecord
      */
     public static function getVisibleArray()
     {
-        $statuses = [
+        return [
             self::VISIBLE => [
                 'label' => 'Видимый',
                 'style' => 'color: green',
@@ -252,8 +244,6 @@ class Apartment extends \yii\db\ActiveRecord
                 'style' => 'color: red',
             ],
         ];
-
-        return $statuses;
     }
 
     /**
@@ -281,6 +271,7 @@ class Apartment extends \yii\db\ActiveRecord
         if ($this->remont) {
             return ArrayHelper::getValue($this->remontList, $this->remont);
         }
+
         return null;
     }
 
@@ -292,6 +283,7 @@ class Apartment extends \yii\db\ActiveRecord
         if ($this->total_rooms) {
             return ArrayHelper::getValue($this->roomsList, $this->total_rooms);
         }
+
         return null;
     }
 
@@ -301,6 +293,7 @@ class Apartment extends \yii\db\ActiveRecord
     public static function getDistrictsList()
     {
         $districts = Districts::find()->asArray()->all();
+
         return ArrayHelper::map($districts, 'id', 'district_name');
     }
 
@@ -334,8 +327,6 @@ class Apartment extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-
-
     public function beforeSave($insert)
     {
         if (!parent::beforeSave($insert)) {
@@ -368,5 +359,4 @@ class Apartment extends \yii\db\ActiveRecord
 
         return true;
     }
-
 }

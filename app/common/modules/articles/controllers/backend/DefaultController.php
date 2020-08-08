@@ -2,18 +2,17 @@
 
 namespace common\modules\articles\controllers\backend;
 
-use common\modules\articles\models\backend\ArticleSearch;
-use common\modules\articles\models\backend\ArticleForm;
-use common\modules\articles\models\backend\ArticleForm2;
-use common\modules\articles\models\Article;
-use backend\components\Controller;
-use yii\web\ForbiddenHttpException;
-use yii\web\NotFoundHttpException;
-use yii\widgets\ActiveForm;
-use yii\web\UploadedFile;
-use yii\web\Response;
-use yii\helpers\Url;
 use Yii;
+use yii\helpers\Url;
+use yii\web\Response;
+use yii\web\UploadedFile;
+use yii\widgets\ActiveForm;
+use backend\components\Controller;
+use yii\web\NotFoundHttpException;
+use yii\web\ForbiddenHttpException;
+use common\modules\articles\models\Article;
+use common\modules\articles\models\backend\ArticleForm;
+use common\modules\articles\models\backend\ArticleSearch;
 
 /**
  * Default Controller
@@ -21,7 +20,6 @@ use Yii;
  */
 class DefaultController extends Controller
 {
-
     /**
      * @inheritdoc
      */
@@ -115,23 +113,22 @@ class DefaultController extends Controller
                 if (!empty($modelForm->file)) {
                     $modelForm->file->saveAs(Yii::getAlias($modelForm->imagesPath) . '/' . $imageName . '.' . $modelForm->file->extension);
                     $modelForm->title_img = $imageName . '.' . $modelForm->file->extension;
-
                 }
                 $modelForm->bgfile = UploadedFile::getInstance($modelForm, 'bgfile');
                 if (!empty($modelForm->bgfile)) {
                     $modelForm->bgfile->saveAs(Yii::getAlias($modelForm->imagesPath2) . '/' . $imageNameBg . '.' . $modelForm->bgfile->extension);
                     $modelForm->background = $imageNameBg . '.' . $modelForm->bgfile->extension;
-
                 }
                 if ($modelForm->create()) {
-
                     Yii::$app->session->setFlash('success', 'Данные успешно сохранены.');
                 } else {
                     Yii::$app->session->setFlash('danger', 'Возникла ошибка.');
                 }
+
                 return $this->redirect(['update', 'id' => $modelForm->article_id]);
             } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validate($modelForm);
             }
         }
@@ -141,7 +138,6 @@ class DefaultController extends Controller
             'formModel' => $modelForm,
         ]);
     }
-
 
     /**
      * Редактировать
@@ -172,22 +168,22 @@ class DefaultController extends Controller
                 if (!empty($formModel->file)) {
                     $formModel->file->saveAs(Yii::getAlias($formModel->imagesPath) . '/' . $imageName . '.' . $formModel->file->extension);
                     $formModel->title_img = $imageName . '.' . $formModel->file->extension;
-
                 }
                 $formModel->bgfile = UploadedFile::getInstance($formModel, 'bgfile');
                 if (!empty($formModel->bgfile)) {
                     $formModel->bgfile->saveAs(Yii::getAlias($formModel->imagesPath) . '/' . $imageNameBg . '.' . $formModel->bgfile->extension);
                     $formModel->background = $imageNameBg . '.' . $formModel->bgfile->extension;
-
                 }
                 if ($formModel->update($model)) {
                     Yii::$app->session->setFlash('success', 'Данные успешно сохранены.');
                 } else {
                     Yii::$app->session->setFlash('danger', 'Возникла ошибка.');
                 }
+
                 return $this->refresh();
             } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validate($formModel);
             }
         }
@@ -213,11 +209,13 @@ class DefaultController extends Controller
         }
         $model = $this->findModel($id);
         $formModel = new ArticleForm(['scenario' => 'delete']);
+
         if ($formModel->validate() && $formModel->delete($model)) {
             Yii::$app->session->setFlash('success', 'Данные успешно удалены.');
         } else {
             Yii::$app->session->setFlash('danger', 'Возникла ошибка.');
         }
+
         return $this->redirect(Url::previous());
     }
 
@@ -233,7 +231,7 @@ class DefaultController extends Controller
         if (($model = Article::findOne($id)) !== null) {
             return $model;
         }
+
         throw new NotFoundHttpException('The requested page does not exist.');
     }
-
 }

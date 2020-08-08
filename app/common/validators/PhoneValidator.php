@@ -2,12 +2,12 @@
 
 namespace common\validators;
 
-use yii\validators\Validator;
 use Yii;
+use yii\validators\Validator;
 
 /**
- * Phone Validator
- * @package app\validators
+ * Class PhoneValidator
+ * @package common\validators
  */
 class PhoneValidator extends Validator
 {
@@ -66,5 +66,4 @@ class PhoneValidator extends Validator
     {
         return false;
     }
-
 }

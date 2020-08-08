@@ -2,9 +2,6 @@
 
 namespace common\modules\callback\models;
 
-use Yii;
-
-
 /**
  * Callback
  * @package common\modules\callback\models
@@ -17,6 +14,7 @@ class Callback extends \yii\db\ActiveRecord
      * 0 - Необработанная
      */
     const PROCESSED = 1;
+
     const UNPROCESSED = 0;
 
     /**

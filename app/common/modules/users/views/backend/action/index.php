@@ -6,9 +6,9 @@
  * @var $dataProvider yii\data\ActiveDataProvider
  */
 
-use yii\helpers\ArrayHelper;
-use yii\grid\GridView;
 use yii\helpers\Html;
+use yii\grid\GridView;
+use yii\helpers\ArrayHelper;
 
 $this->title = Yii::t('users', 'ACTIONS');
 
@@ -75,6 +75,7 @@ echo GridView::widget([
                 if ($user = $model->user) {
                     return Html::a($user->profile->name . ' ' . $user->profile->surname, ['/users/user/update', 'id' => $user->id]);
                 }
+
                 return null;
             }
         ],

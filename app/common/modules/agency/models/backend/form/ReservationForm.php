@@ -3,7 +3,6 @@
 namespace common\modules\agency\models\backend\form;
 
 use common\modules\agency\models\Reservation;
-use Yii;
 
 /**
  * Reservation Form
@@ -12,16 +11,27 @@ use Yii;
 class ReservationForm extends \yii\base\Model
 {
     public $reservation_id;
+
     public $apartment_id;
+
     public $name;
+
     public $email;
+
     public $clients_count;
+
     public $transfer;
+
     public $date_arrived;
+
     public $date_out;
+
     public $more_info;
+
     public $whau;
+
     public $phone;
+
     public $processed;
 
     /**
@@ -84,6 +94,7 @@ class ReservationForm extends \yii\base\Model
         }
 
         $this->reservation_id = $model->reservation_id;
+
         return true;
     }
 
@@ -96,6 +107,7 @@ class ReservationForm extends \yii\base\Model
     public function update(Reservation $model)
     {
         $model->setAttributes($this->getAttributes(), false);
+
         return $model->save(false);
     }
 }

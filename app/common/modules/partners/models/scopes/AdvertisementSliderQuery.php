@@ -2,9 +2,8 @@
 
 namespace common\modules\partners\models\scopes;
 
-use common\modules\partners\models\AdvertisementSlider;
 use yii\db\ActiveQuery;
-use yii\db\Expression;
+use common\modules\partners\models\AdvertisementSlider;
 
 /**
  * Class AdvertisementSliderQuery
@@ -19,6 +18,7 @@ class AdvertisementSliderQuery extends ActiveQuery
     public function visible($state = 1)
     {
         $this->andWhere([AdvertisementSlider::tableName() . '.visible' => $state]);
+
         return $this;
     }
 
@@ -29,6 +29,7 @@ class AdvertisementSliderQuery extends ActiveQuery
     public function payment($state = 1)
     {
         $this->andWhere([AdvertisementSlider::tableName() . '.payment' => $state]);
+
         return $this;
     }
 }

@@ -2,13 +2,9 @@
 
 namespace common\modules\partners\commands;
 
-use common\modules\partners\models as models;
-use yii\helpers\ArrayHelper;
-use yii\helpers\Console;
-use yii\helpers\Url;
-use yii\helpers\Json;
-use yii\log\Logger;
 use Yii;
+use yii\helpers\Console;
+use common\modules\partners\models as models;
 
 /**
  * Services
@@ -54,7 +50,6 @@ class ServicesController extends \yii\console\Controller
 
                     // Уведомить пользователя на email об активации услуги.
                     Yii::$app->consoleRunner->run('service/send-mail ' . $process->id . ' disable');
-
                 } else {
                     $result[] = 'FAIL [DISABLE] [ID-' . $process->id . '] [' . $e . ']';
                 }
@@ -62,7 +57,7 @@ class ServicesController extends \yii\console\Controller
             // ВКЛЮЧИТЬ
             // Все сервисы, которые должны активироваться в текущее время.
             // Добавим резервные 10 минут, чтобы компенсировать запуск сценария раз в 10 минут
-            else if ($process->process != -1 && (strtotime($currentDate) + 60 * 10) >= strtotime($process->date_start)) {
+            elseif ($process->process != -1 && (strtotime($currentDate) + 60 * 10) >= strtotime($process->date_start)) {
                 if (($e = $this->enableService($service, $process, $currentDate)) === true) {
                     $result[] = 'SUCCESS [ENABLE] [ID-' . $process->id . ']';
 
@@ -70,7 +65,6 @@ class ServicesController extends \yii\console\Controller
                         // Уведомить пользователя на email о деактивации услуги.
                         Yii::$app->consoleRunner->run('service/send-mail ' . $process->id . ' enable');
                     }
-
                 } else {
                     $result[] = 'FAIL [ENABLE] [ID-' . $process->id . '] [' . $e . ']';
                 }
@@ -172,7 +166,6 @@ class ServicesController extends \yii\console\Controller
             } else {
                 $result[] = 'FAIL [ENABLE] [ID-' . $processId . '] [' . $e . ']';
             }
-
         } catch (\Exception $e) {
             $result[] = 'FAIL [ID-' . $processId . '] [' . $e->getMessage() . ']';
         }
@@ -216,7 +209,7 @@ class ServicesController extends \yii\console\Controller
             $template = 'after-disable';
             if ($action == 'payment') {
                 $template = 'after-payment';
-            } else if ($action == 'enable') {
+            } elseif ($action == 'enable') {
                 $template = 'after-enable';
             }
 
@@ -238,7 +231,6 @@ class ServicesController extends \yii\console\Controller
             }
 
             $this->stdout('SUCCESS' . PHP_EOL, Console::FG_GREEN);
-
         } catch (\Exception $e) {
             Yii::error('Процесс ID' . $processId . ' - Ошибка: [' . $e->getMessage() . ']', 'services-email');
             $this->stdout('FAIL: process ID' . $processId . $e->getMessage() . PHP_EOL, Console::FG_RED);
@@ -258,6 +250,7 @@ class ServicesController extends \yii\console\Controller
     {
         $mail = Yii::$app->getMailer();
         $mail->viewPath = '@common/mails/services';
+
         return $mail->compose($template, $data)
             ->setFrom(Yii::$app->getMailer()->messageConfig['from'])
             ->setTo($setTo)
@@ -271,12 +264,10 @@ class ServicesController extends \yii\console\Controller
      * @param $service
      * @param $process
      * @param $currentDate
-     * @return array
-     * @throws \yii\db\Exception
+     * @return bool|string
      */
     private function enableService($service, $process, $currentDate)
     {
-        $result = [];
         $transaction = Yii::$app->db->beginTransaction();
         try {
             if (($result = $service->enable()) === true) {
@@ -292,15 +283,18 @@ class ServicesController extends \yii\console\Controller
                 $process->save(false);
 
                 $transaction->commit();
+
                 return true;
-            } else {
-                if ($result) {
-                    throw new \Exception($result);
-                }
-                throw new \Exception('Failed to enable service');
             }
+
+            if ($result) {
+                throw new \Exception($result);
+            }
+
+            throw new \Exception('Failed to enable service');
         } catch (\Exception $e) {
             $transaction->rollBack();
+
             return $e->getMessage();
         }
     }
@@ -311,8 +305,7 @@ class ServicesController extends \yii\console\Controller
      * @param $service
      * @param $process
      * @param $currentDate
-     * @return array
-     * @throws \yii\db\Exception
+     * @return bool|string
      */
     private function disableService($service, $process, $currentDate)
     {
@@ -324,15 +317,18 @@ class ServicesController extends \yii\console\Controller
                 $process->save(false);
 
                 $transaction->commit();
+
                 return true;
-            } else {
-                if ($result) {
-                    throw new \Exception($result);
-                }
-                throw new \Exception('Failed to disable service "' . $service->getName() . '" - ID' . $process->id);
             }
+
+            if ($result) {
+                throw new \Exception($result);
+            }
+
+            throw new \Exception('Failed to disable service "' . $service->getName() . '" - ID' . $process->id);
         } catch (\Exception $e) {
             $transaction->rollBack();
+
             return $e->getMessage();
         }
     }
@@ -349,6 +345,7 @@ class ServicesController extends \yii\console\Controller
         if ($process->user) {
             $name = $process->user->profile->name . ' ' . $process->user->profile->surname;
         }
+
         return $name;
     }
 
@@ -368,6 +365,7 @@ class ServicesController extends \yii\console\Controller
                 $email = $process->user->email;
             }
         }
+
         return $email;
     }
 
@@ -382,11 +380,12 @@ class ServicesController extends \yii\console\Controller
     {
         if ($action == 'payment') {
             $subject = 'Оплата услуги "' . $service->getName() . '" на сайте - ' . Yii::$app->params['siteDomain'];
-        } else if ($action == 'enable') {
+        } elseif ($action == 'enable') {
             $subject = 'Активация услуги "' . $service->getName() . '" на сайте - ' . Yii::$app->params['siteDomain'];
         } else {
             $subject = 'Истек срок действия услуги "' . $service->getName() . '" на сайте - ' . Yii::$app->params['siteDomain'];
         }
+
         return $subject;
     }
 }

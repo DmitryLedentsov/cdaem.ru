@@ -2,12 +2,12 @@
 
 namespace common\modules\users\controllers\backend;
 
-use common\modules\users\models as models;
-use yii\widgets\ActiveForm;
-use yii\web\Controller;
-use yii\web\Response;
-use yii\helpers\Url;
 use Yii;
+use yii\helpers\Url;
+use yii\web\Response;
+use yii\web\Controller;
+use yii\widgets\ActiveForm;
+use common\modules\users\models as models;
 
 /**
  * Контроллер управления неавторизированными пользователями
@@ -40,8 +40,10 @@ class GuestController extends Controller
     {
         if (parent::beforeAction($action)) {
             $this->module->viewPath = '@common/modules/users/views/backend';
+
             return true;
         }
+
         return false;
     }
 
@@ -62,8 +64,9 @@ class GuestController extends Controller
                 if ($model->login()) {
                     return $this->goHome();
                 }
-            } else if (Yii::$app->request->isAjax) {
+            } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validate($model);
             }
         }

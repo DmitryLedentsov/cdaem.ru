@@ -2,7 +2,7 @@
 
 return [
     [
-        'class' => 'yii\filters\PageCache',
+        'class' => \yii\filters\PageCache::class,
         'only' => ['index'],
         'duration' => 300,
         'variations' => [

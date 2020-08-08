@@ -2,8 +2,8 @@
 
 namespace common\modules\realty\traits;
 
-use common\modules\realty\Module;
 use Yii;
+use common\modules\realty\Module;
 
 /**
  * Class ModuleTrait
@@ -30,6 +30,7 @@ trait ModuleTrait
                 $this->_module = Yii::$app->getModule('realty');
             }
         }
+
         return $this->_module;
     }
 }

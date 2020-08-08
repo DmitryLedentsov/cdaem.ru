@@ -2,13 +2,13 @@
 
 namespace common\modules\realty\models\backend\search;
 
-use common\modules\realty\models\RentType;
-use yii\data\ActiveDataProvider;
 use yii\base\Model;
-use Yii;
+use yii\data\ActiveDataProvider;
+use common\modules\realty\models\RentType;
 
 /**
- *
+ * Class RentTypeSearch
+ * @package common\modules\realty\models\backend\search
  */
 class RentTypeSearch extends RentType
 {

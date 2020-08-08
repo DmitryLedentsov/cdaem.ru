@@ -2,16 +2,16 @@
 
 namespace common\modules\callback\controllers\backend;
 
-use common\modules\callback\models\backend\CallbackSearch;
-use common\modules\callback\models\backend\CallbackForm;
-use common\modules\callback\models\Callback;
-use backend\components\Controller;
-use yii\web\ForbiddenHttpException;
-use yii\web\NotFoundHttpException;
-use yii\widgets\ActiveForm;
-use yii\web\Response;
-use yii\helpers\Url;
 use Yii;
+use yii\helpers\Url;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
+use backend\components\Controller;
+use yii\web\NotFoundHttpException;
+use yii\web\ForbiddenHttpException;
+use common\modules\callback\models\Callback;
+use common\modules\callback\models\backend\CallbackForm;
+use common\modules\callback\models\backend\CallbackSearch;
 
 /**
  * Default Controller
@@ -97,15 +97,18 @@ class DefaultController extends Controller
             if (!Yii::$app->user->can('callback-update')) {
                 throw new ForbiddenHttpException(Yii::t('users.rbac', 'ACCESS_DENIED'));
             }
+
             if ($formModel->validate()) {
                 if ($formModel->update($model)) {
                     Yii::$app->session->setFlash('success', 'Данные успешно сохранены.');
                 } else {
                     Yii::$app->session->setFlash('danger', 'Возникла ошибка.');
                 }
+
                 return $this->refresh();
             } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validate($formModel);
             }
         }
@@ -129,13 +132,16 @@ class DefaultController extends Controller
         if (!Yii::$app->user->can('callback-delete')) {
             throw new ForbiddenHttpException(Yii::t('users.rbac', 'ACCESS_DENIED'));
         }
+
         $model = $this->findModel($id);
         $formModel = new CallbackForm(['scenario' => 'delete']);
+
         if ($formModel->validate() && $formModel->delete($model)) {
             Yii::$app->session->setFlash('success', 'Данные успешно удалены.');
         } else {
             Yii::$app->session->setFlash('danger', 'Возникла ошибка.');
         }
+
         return $this->redirect(Url::previous());
     }
 
@@ -156,6 +162,7 @@ class DefaultController extends Controller
 
         if (!$ids || !is_array($ids)) {
             Yii::$app->session->setFlash('danger', 'Не выбрано ни одной действие');
+
             return $this->redirect($redirect);
         }
 
@@ -182,6 +189,7 @@ class DefaultController extends Controller
         if (($model = Callback::findOne($id)) !== null) {
             return $model;
         }
+
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 }

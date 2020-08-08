@@ -2,10 +2,10 @@
 
 namespace common\modules\partners\commands;
 
-use common\modules\partners\models as models;
-use common\modules\users\models\User;
-use yii\helpers\Console;
 use Yii;
+use yii\helpers\Console;
+use common\modules\users\models\User;
+use common\modules\partners\models as models;
 
 /**
  * Сборщик мусора
@@ -24,7 +24,6 @@ class CollectorController extends \yii\console\Controller
      *
      * TODO: НЕОБХОДИМО НАСТРОИТЬ КРОН ДЛЯ ВЫПОЛНЕНИЯ ДАННОГО СЦЕНАРИЯ
      */
-
 
     /**
      * Garbage Collector Reservation
@@ -65,11 +64,9 @@ class CollectorController extends \yii\console\Controller
         $reservation = true;
 
         while ($reservation) {
-
             $transaction = Yii::$app->db->beginTransaction();
 
             try {
-
                 $reservation = models\AdvertReservation::find()
                     ->joinWith('deal')
                     ->where([
@@ -98,7 +95,7 @@ class CollectorController extends \yii\console\Controller
 
                     $offset--;
                 } // Вернуть средства клиенту
-                else if ($reservation->confirm == models\AdvertReservation::RENTER && $this->checkExpireGone($reservation->deal->date_payment_client, $expire)) {
+                elseif ($reservation->confirm == models\AdvertReservation::RENTER && $this->checkExpireGone($reservation->deal->date_payment_client, $expire)) {
                     $paymentId = Yii::$app->balance
                         ->setModule(Yii::$app->getModule('partners')->id)
                         ->setUser(User::findOne($reservation->user_id))
@@ -120,7 +117,6 @@ class CollectorController extends \yii\console\Controller
 
                 Yii::info('Заявка ID' . $reservation->id . ' - возврат денег прошел успешно', 'reservation-verify-payment');
                 $this->stdout('SUCCESS: reservation ID ' . $reservation->id . PHP_EOL, Console::FG_GREEN);
-
             } catch (\Exception $e) {
                 $transaction->rollBack();
 
@@ -132,7 +128,6 @@ class CollectorController extends \yii\console\Controller
         }
     }
 
-
     /**
      * Возврат денег по заявкам "Незаезд"
      */
@@ -143,10 +138,8 @@ class CollectorController extends \yii\console\Controller
         $failures = models\ReservationFailure::find()->processed(0)->closed(0)->timeHasCome();
 
         foreach ($failures->each() as $failure) {
-
             $transaction = Yii::$app->db->beginTransaction();
             try {
-
                 if ($failure->reservation->user_id == $failure->user_id) {
                     // Клиент
                     $fundsToReturn = $failure->reservation->deal->funds_client;
@@ -195,7 +188,6 @@ class CollectorController extends \yii\console\Controller
                 Yii::$app->consoleRunner->run('partners/reservation/send-mail-failure-processed ' . $params);
 
                 $countSuccess++;
-
             } catch (\Exception $e) {
                 $transaction->rollBack();
                 $countError++;
@@ -246,7 +238,6 @@ class CollectorController extends \yii\console\Controller
 
         foreach ($batch as $apartments) {
             foreach ($apartments as $apartment) {
-
                 if (!$this->verifySuspicious($apartment->description)) {
                     continue;
                 }
@@ -265,7 +256,7 @@ class CollectorController extends \yii\console\Controller
 
     /**
      * Проверят прошло ли количество секунд с даты
-     * @param $date date format 'Y-m-d H:i:s'
+     * @param $date 'Y-m-d H:i:s'
      * @param $expireCondition int секунды
      * @return boolean
      */
@@ -299,13 +290,6 @@ class CollectorController extends \yii\console\Controller
         ) {
             return true;
         }
-
-        /* $_src = $str;
-         $res = preg_replace('/\D/si', '', $_src);
-
-         if (mb_strlen($res) < 7) {
-             return true;
-         }*/
 
         if (
             mb_stripos($str, 'один') === false &&

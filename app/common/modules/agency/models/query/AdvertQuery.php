@@ -2,8 +2,8 @@
 
 namespace common\modules\agency\models\query;
 
-use common\modules\agency\models\Advert;
 use yii\db\ActiveQuery;
+use common\modules\agency\models\Advert;
 
 /**
  * Advert Query

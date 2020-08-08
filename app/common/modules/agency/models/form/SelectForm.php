@@ -2,10 +2,9 @@
 
 namespace common\modules\agency\models\form;
 
-use common\modules\agency\models\Select;
-use yii\helpers\Json;
 use yii\base\Model;
-use Yii;
+use yii\helpers\Json;
+use common\modules\agency\models\Select;
 
 /**
  * Форма, Быстро подберём квартиру
@@ -14,12 +13,19 @@ use Yii;
 class SelectForm extends Model
 {
     public $name;
+
     public $email;
+
     public $rent_types_array;
+
     public $rooms;
+
     public $phone;
+
     public $description;
+
     public $metro_array;
+
     public $verifyCode;
 
     /**
@@ -83,6 +89,7 @@ class SelectForm extends Model
         $model->metro = Json::encode($this->metro_array);
         $model->rent_types = Json::encode($this->rent_types_array);
         $model->date_create = date('Y-m-d H:i:s');
+
         return $model->save(false);
     }
 

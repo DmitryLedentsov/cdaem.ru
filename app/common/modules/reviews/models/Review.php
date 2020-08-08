@@ -2,12 +2,10 @@
 
 namespace common\modules\reviews\models;
 
+use Yii;
+use yii\db\ActiveRecord;
 use common\modules\reviews\traits\ModuleTrait;
 use frontend\modules\partners\models\Apartment;
-use yii\web\HttpException;
-use yii\db\ActiveRecord;
-use yii\base\Model;
-use Yii;
 
 /**
  * Review
@@ -226,5 +224,4 @@ class Review extends ActiveRecord
             ],
         ];
     }
-
 }

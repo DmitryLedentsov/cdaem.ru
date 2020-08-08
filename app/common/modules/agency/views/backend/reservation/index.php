@@ -85,10 +85,13 @@ echo Html::beginForm(['multi-control'], 'post'); ?>
                     return Html::a('<span class="icon-wrench"></span>', ['/agency/reservation/update', 'id' => $model->reservation_id]);
                 },
                 'delete' => function ($url, $model) {
-                    return Html::a('<span class="icon-remove3"></span>', ['/agency/reservation/delete', 'id' => $model->reservation_id],
+                    return Html::a(
+                        '<span class="icon-remove3"></span>',
+                        ['/agency/reservation/delete', 'id' => $model->reservation_id],
                         ['data' => [
                             'confirm' => 'Удалить?',
-                        ]]);
+                        ]]
+                    );
                 }
             ],
         ],
@@ -116,6 +119,7 @@ echo Html::beginForm(['multi-control'], 'post'); ?>
                         </div>
                     ');
                 }
+
                 return null;
             },
         ],

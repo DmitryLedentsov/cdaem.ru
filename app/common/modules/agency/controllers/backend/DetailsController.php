@@ -2,16 +2,16 @@
 
 namespace common\modules\agency\controllers\backend;
 
-use common\modules\agency\models\backend\search\DetailsHistorySearch;
-use common\modules\agency\models\backend\form\DetailsHistoryForm;
-use common\modules\agency\models\DetailsHistory;
-use backend\components\Controller;
-use yii\web\ForbiddenHttpException;
-use yii\web\NotFoundHttpException;
-use yii\widgets\ActiveForm;
-use yii\web\Response;
-use yii\helpers\Url;
 use Yii;
+use yii\helpers\Url;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
+use backend\components\Controller;
+use yii\web\NotFoundHttpException;
+use yii\web\ForbiddenHttpException;
+use common\modules\agency\models\DetailsHistory;
+use common\modules\agency\models\backend\form\DetailsHistoryForm;
+use common\modules\agency\models\backend\search\DetailsHistorySearch;
 
 /**
  * Class DetailsController
@@ -100,9 +100,11 @@ class DetailsController extends Controller
                 } else {
                     Yii::$app->session->setFlash('danger', 'Возникла ошибка.');
                 }
+
                 return $this->redirect(['update', 'id' => $formModel->id]);
             } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validate($formModel);
             }
         }
@@ -149,6 +151,7 @@ class DetailsController extends Controller
         if (!$ids || !is_array($ids)) {
             return $this->redirect($redirect);
         }
+
         $count = 0;
         foreach ($ids as $id) {
             if ($detail = DetailsHistory::findOne($id)) {
@@ -162,6 +165,7 @@ class DetailsController extends Controller
         }
 
         Yii::$app->session->setFlash('success', 'Данные были отправлены. Кол-во  EMAIL: ' . $count);
+
         return $this->redirect($redirect);
     }
 
@@ -213,6 +217,7 @@ class DetailsController extends Controller
         if (($model = DetailsHistory::findOne($id)) !== null) {
             return $model;
         }
+
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 }

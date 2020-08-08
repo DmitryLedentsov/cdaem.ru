@@ -2,9 +2,7 @@
 
 namespace common\modules\reviews\models;
 
-use common\modules\reviews\models\Review;
 use yii\db\ActiveQuery;
-use yii;
 
 /**
  * Review Query
@@ -19,7 +17,7 @@ class ReviewQuery extends ActiveQuery
     public function moderation($state = 1)
     {
         $this->andWhere([Review::tableName() . '.moderation' => $state]);
+
         return $this;
     }
-
 }

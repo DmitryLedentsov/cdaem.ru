@@ -2,8 +2,8 @@
 
 namespace common\modules\users\helpers;
 
-use common\modules\users\models\User;
 use yii\helpers\Html;
+use common\modules\users\models\User;
 
 /**
  * Class UserHelper
@@ -74,8 +74,9 @@ class UserHelper
         } elseif ($phone[0] == '+' && $phone[1] == '3') {
             $phone = substr($phone, 1);
             $p = '+3';
-        } else
+        } else {
             $phone = substr($phone, 1);
+        }
         $p = '8';
 
 
@@ -90,7 +91,6 @@ class UserHelper
 
         return $p . $phone;
     }
-
 
     //Format phone 2
 
@@ -118,7 +118,6 @@ class UserHelper
         return $p . $phone;
     }
 
-
     /**
      * Форматирует почтовый адрес
      * @param $email
@@ -129,6 +128,7 @@ class UserHelper
         if (empty($email)) {
             return 'Не указан';
         }
+
         return Html::mailto($email, $email);
     }
 }

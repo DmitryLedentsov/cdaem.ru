@@ -2,12 +2,11 @@
 
 namespace common\modules\articles\controllers\frontend;
 
-use common\modules\articles\models\Article;
-use yii\web\HttpException;
-use yii\data\Pagination;
-use yii\helpers\Html;
 use yii\helpers\Url;
-use Yii;
+use yii\helpers\Html;
+use yii\data\Pagination;
+use yii\web\HttpException;
+use common\modules\articles\models\Article;
 
 /**
  * Статьи
@@ -83,6 +82,7 @@ class DefaultController extends \frontend\components\Controller
         if (!$model) {
             $url = Url::toRoute(['/acticles/default/view', 'url' => $id], true);
             $url = Html::a($url, $url);
+
             throw new HttpException(404, 'Статьи по адресу ' . $url . ' не существует.');
         }
 
@@ -126,7 +126,10 @@ class DefaultController extends \frontend\components\Controller
         ]);
     }
 
-
+    /**
+     * @param null $city
+     * @return string
+     */
     public function actionNews($city = null)
     {
         $model = new Article;
@@ -140,10 +143,6 @@ class DefaultController extends \frontend\components\Controller
             $query->where('city IS NULL');
         }
 
-        $countQuery = clone $query;
-        // $pages = new Pagination(['totalCount' => $countQuery->count()]);
-
-        // $pages->defaultPageSize = $this->module->recordsPerPage;
         $models = $query
             ->asArray()
             ->all();
@@ -151,9 +150,6 @@ class DefaultController extends \frontend\components\Controller
         return $this->render('news.twig', [
             'model' => $model,
             'models' => $models,
-            //  'pages' => $pages,
         ]);
     }
-
-
 }

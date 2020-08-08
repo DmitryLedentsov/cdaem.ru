@@ -3,7 +3,6 @@
 namespace common\modules\agency\models;
 
 use common\modules\agency\traits\ModuleTrait;
-use Yii;
 
 /**
  * Станции метро у апартаментов

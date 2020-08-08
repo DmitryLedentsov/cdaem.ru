@@ -2,8 +2,8 @@
 
 namespace common\modules\partners\models\scopes;
 
-use common\modules\partners\models\Apartment;
 use yii\db\ActiveQuery;
+use common\modules\partners\models\Apartment;
 
 /**
  * Class ApartmentQuery
@@ -18,6 +18,7 @@ class ApartmentQuery extends ActiveQuery
     public function visible($state = 1)
     {
         $this->andWhere([Apartment::tableName() . '.visible' => $state]);
+
         return $this;
     }
 
@@ -28,6 +29,7 @@ class ApartmentQuery extends ActiveQuery
     public function available($state = 1)
     {
         $this->andWhere([Apartment::tableName() . '.now_available' => $state]);
+
         return $this;
     }
 
@@ -38,6 +40,7 @@ class ApartmentQuery extends ActiveQuery
     public function status($state = 1)
     {
         $this->andWhere([Apartment::tableName() . '.status' => $state]);
+
         return $this;
     }
 

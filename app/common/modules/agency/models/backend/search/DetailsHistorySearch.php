@@ -2,10 +2,9 @@
 
 namespace common\modules\agency\models\backend\search;
 
-use common\modules\agency\models\DetailsHistory;
-use yii\data\ActiveDataProvider;
 use yii\base\Model;
-use Yii;
+use yii\data\ActiveDataProvider;
+use common\modules\agency\models\DetailsHistory;
 
 /**
  * Details History Search

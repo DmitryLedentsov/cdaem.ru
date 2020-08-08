@@ -2,8 +2,6 @@
 
 namespace common\modules\helpdesk;
 
-use Yii;
-
 /**
  * Общий модуль [[Helpdesk]]
  * Осуществляет всю работу с технической поддержкой
@@ -38,5 +36,4 @@ class Module extends \yii\base\Module
      * @var int
      */
     public $themeMaxCharacters = 30;
-
 }
