@@ -1,4 +1,4 @@
-FROM php:7.4.7-fpm-alpine
+FROM php:7.4.9-fpm-alpine
 
 ARG LOCAL_ENV
 ARG USER_ID

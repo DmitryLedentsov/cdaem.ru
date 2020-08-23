@@ -38,35 +38,35 @@ php yii migrate
 # Запустить cron задания
 
 ```
-*/10 * * * * php /home/cdaemru/www/dev/yii service/processes
+*/10 * * * * php /app/yii service/processes
 ```
 
 ```
-0 */1 * * * php /home/cdaemru/www/dev/yii service/calculate-position
+0 */1 * * * php /app/yii service/calculate-position
 ```
 
 ```
-0 */1 * * * php /home/cdaemru/www/dev/yii partners/collector/reservation-verify-payment
+0 */1 * * * php /app/yii partners/collector/reservation-verify-payment
 ```
 
 ```
-0 */1 * * * php /home/cdaemru/www/dev/yii partners/collector/reservation-verify-failure
+0 */1 * * * php /app/yii partners/collector/reservation-verify-failure
 ```
 
 ```
-0 0 1 * * php /home/cdaemru/www/dev/yii agency/collector/images
+0 0 1 * * php /app/yii agency/collector/images
 ```
 
 ```
-0 0 1 * * php /home/cdaemru/www/dev/yii partners/collector/images
+0 0 1 * * php /app/yii partners/collector/images
 ```
 
 ```
-0 0 * * * php /home/cdaemru/www/dev/yii partners/collector/reservation
+0 0 * * * php /app/yii partners/collector/reservation
 ```
 
 ```
-*/10 * * * * php /home/cdaemru/www/dev/yii partners/calendar
+*/10 * * * * php /app/yii partners/calendar
 ```
 
 
