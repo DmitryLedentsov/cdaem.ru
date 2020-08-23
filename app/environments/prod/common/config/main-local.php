@@ -13,4 +13,8 @@ return [
             'cookieParams' => ['domain' => '.cdaem.ru'],
         ],
     ],
+    'params' => [
+        'siteDomain' => 'https://cdaem.ru',
+        'siteSubDomain' => 'https://<city>.cdaem.ru',
+    ],
 ];
