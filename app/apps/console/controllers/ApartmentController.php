@@ -4,7 +4,6 @@ namespace console\controllers;
 
 use Yii;
 use yii\helpers\Console;
-use yii\helpers\ArrayHelper;
 use vitalik74\geocode\Geocode;
 use common\modules\agency\models\Apartment as ApartmentAgency;
 use common\modules\partners\models\Apartment as ApartmentPartners;

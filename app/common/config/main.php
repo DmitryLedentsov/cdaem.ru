@@ -9,7 +9,7 @@ return [
     'sourceLanguage' => 'ru-RU',
     'modules' => [
         'robotsTxt' => [
-            'class' => 'execut\robotsTxt\Module',
+            'class' => \execut\robotsTxt\Module::class,
             'components' => [
                 'generator' => [
                     'class' => \execut\robotsTxt\Generator::class,
@@ -130,13 +130,13 @@ return [
             'class' => 'nepster\users\components\Action',
         ],
         'user' => [
-            'class' => 'nepster\users\components\User',
-            'identityClass' => 'common\modules\users\models\User',
+            'class' => \nepster\users\components\User::class,
+            'identityClass' => \common\modules\users\models\User::class,
             'enableAutoLogin' => true,
             'loginUrl' => ['/users/guest/login'],
         ],
         'response' => [
-            'class' => 'common\components\Response',
+            'class' => \common\components\Response::class,
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -155,7 +155,7 @@ return [
             ],
         ],
         'session' => [
-            'class' => 'yii\web\DbSession',
+            'class' => \yii\web\DbSession::class,
             'writeCallback' => function ($session) {
                 return [
                     'user_id' => Yii::$app->user->id,
@@ -169,40 +169,40 @@ return [
             'timeout' => 25 * 60, // сессия живет 25 минут
         ],
         'authManager' => [
-            'class' => 'yii\rbac\DbManager',
+            'class' => \yii\rbac\DbManager::class,
             'cache' => 'file-cache',
         ],
         'image' => [
-            'class' => 'yii\image\ImageDriver',
+            'class' => \yii\image\ImageDriver::class,
             'driver' => 'GD',  //GD or Imagick
         ],
         'service' => [
-            'class' => 'common\components\Service',
+            'class' => \common\components\Service::class,
             'services' => [
                 'partners' => [
-                    'ADVERTISING_TOP_SLIDER' => '\common\modules\partners\services\AdvertisingTopSlider',
-                    'ADVERTISING_IN_SECTION' => '\common\modules\partners\services\AdvertisingInSection',
-                    'CONTACTS_OPEN_TO_USER' => '\common\modules\partners\services\ContactsOpenToUser',
-                    'APARTMENT_CONTACTS_OPEN' => '\common\modules\partners\services\ApartmentContactsOpen',
-                    'ADVERT_TOP_POSITION' => '\common\modules\partners\services\AdvertTopPosition',
-                    'ADVERT_SELECTED' => '\common\modules\partners\services\AdvertSelected',
-                    'ADVERT_IN_TOP' => '\common\modules\partners\services\AdvertInTop',
-                    'CONTACTS_OPEN_FOR_TOTAL_BID' => '\common\modules\partners\services\ContactsOpenForTotalBid',
-                    'CONTACTS_OPEN_FOR_RESERVATION' => '\common\modules\partners\services\ContactsOpenForReservation',
+                    'ADVERTISING_TOP_SLIDER' => \common\modules\partners\services\AdvertisingTopSlider::class,
+                    'ADVERTISING_IN_SECTION' => \common\modules\partners\services\AdvertisingInSection::class,
+                    'CONTACTS_OPEN_TO_USER' => \common\modules\partners\services\ContactsOpenToUser::class,
+                    'APARTMENT_CONTACTS_OPEN' => \common\modules\partners\services\ApartmentContactsOpen::class,
+                    'ADVERT_TOP_POSITION' => \common\modules\partners\services\AdvertTopPosition::class,
+                    'ADVERT_SELECTED' => \common\modules\partners\services\AdvertSelected::class,
+                    'ADVERT_IN_TOP' => \common\modules\partners\services\AdvertInTop::class,
+                    'CONTACTS_OPEN_FOR_TOTAL_BID' => \common\modules\partners\services\ContactsOpenForTotalBid::class,
+                    'CONTACTS_OPEN_FOR_RESERVATION' => \common\modules\partners\services\ContactsOpenForReservation::class,
                 ],
             ],
         ],
         'balance' => [
-            'class' => 'common\modules\merchant\components\Balance',
+            'class' => \common\modules\merchant\components\Balance::class,
         ],
         'cache' => [
-            'class' => 'yii\caching\FileCache',
+            'class' => \yii\caching\FileCache::class,
         ],
         'file-cache' => [
-            'class' => 'yii\caching\FileCache',
+            'class' => \yii\caching\FileCache::class,
         ],
         'BasisFormat' => [
-            'class' => 'nepster\basis\components\BasisFormat',
+            'class' => \nepster\basis\components\BasisFormat::class,
         ],
         'urlManager' => [
             'enablePrettyUrl' => true,
@@ -218,30 +218,26 @@ return [
         ],
         'formatter' => [
             'as BasisBehavior' => new common\behaviors\BasisBehavior,
-            'class' => 'common\components\Formatter',
+            'class' => \common\components\Formatter::class,
             'dateFormat' => 'dd.MM.y',
             'datetimeFormat' => 'dd.MM.y в HH:mm:ss'
         ],
         'consoleRunner' => [
-            'class' => 'vova07\console\ConsoleRunner',
+            'class' => \vova07\console\ConsoleRunner::class,
             'file' => '@root/yii' // or an absolute path to console file
         ],
         'db' => require(__DIR__ . '/db.php'),
         'mailer' => require(__DIR__ . '/mailer.php'),
         'sms' => require(__DIR__ . '/sms.php'),
-        'robokassa' => [
-            'class' => '\nepster\robokassa\Api',
-            'mrchLogin' => 'cdaemru',
-            'mrchPassword1' => 'mojnL7Q2bk5c5JKWv3kH',
-            'mrchPassword2' => 'F0K2maHn7VGx80UbbzKO',
-            'resultUrl' => ['/merchant/robokassa/result'],
-            'successUrl' => ['/merchant/robokassa/success'],
-            'failureUrl' => ['/merchant/robokassa/failure']
-        ],
+        'robokassa' => require(__DIR__ . '/robokassa.php'),
         'currencyConverter' => [
             'class' => \common\components\CurrencyConverter::class,
         ],
-        'reCaptcha' => require('reCaptcha.php'),
+        'reCaptcha' => require(__DIR__ . '/reCaptcha.php'),
     ],
-    'params' => require(__DIR__ . '/params.php')
+    'params' => [
+        'siteDomain' => 'http://cdaem.ru',
+        'siteSubDomain' => 'http://<city>.cdaem.ru',
+        'adminEmail' => 'cdaem@yandex.ru',
+    ]
 ];

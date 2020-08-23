@@ -13,6 +13,12 @@ class Invoice extends ActiveRecord
     use ModuleTrait;
 
     /**
+     * Типы
+     * - roobokassa
+     */
+    const ROBOKASSA = 'roobokassa';
+
+    /**
      * @inheritdoc
      */
     public static function tableName()
@@ -65,12 +71,6 @@ class Invoice extends ActiveRecord
             ->andWhere('paid = 0')
             ->one();
     }
-
-    /**
-     * Типы
-     * - roobokassa
-     */
-    const ROBOKASSA = 'roobokassa';
 
     /**
      * @return array Массив доступных данных

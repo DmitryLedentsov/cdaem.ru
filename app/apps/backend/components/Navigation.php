@@ -5,8 +5,8 @@ namespace backend\components;
 use Yii;
 use yii\helpers\Url;
 use yii\helpers\Html;
-use yii\base\InvalidParamException;
 use yii\base\InvalidConfigException;
+use yii\base\InvalidArgumentException;
 
 /**
  * Navigation
@@ -34,12 +34,12 @@ class Navigation extends \yii\base\Component
     public function addSection(array $section)
     {
         if (!isset($section['module'])) {
-            throw new InvalidParamException('Key module is not found');
+            throw new InvalidArgumentException('Key module is not found');
         }
 
         foreach ($this->_sections as &$_section) {
             if ($_section['module'] == $section['module']) {
-                throw new InvalidParamException('Module ' . $section['module'] . ' already exists');
+                throw new InvalidArgumentException('Module ' . $section['module'] . ' already exists');
             }
         }
 

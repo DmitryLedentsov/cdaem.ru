@@ -173,7 +173,7 @@ class CollectorController extends \yii\console\Controller
                     $offset--;
                 } // Вернуть средства клиенту
                 elseif ($reservation->confirm == models\AdvertReservation::RENTER && $this->checkExpireGone2($reservation->date_actuality)) {
-                    $paymentId = Yii::$app->balance
+                    Yii::$app->balance
                         ->setModule(Yii::$app->getModule('partners')->id)
                         ->setUser(User::findOne($reservation->user_id))
                         ->billing($reservation->deal->funds_client, models\ReservationDeal::RETURN_MONEY);
@@ -243,7 +243,7 @@ class CollectorController extends \yii\console\Controller
                     $fundsToReturn = $failure->reservation->deal->funds_owner + $failure->reservation->deal->funds_client;
 
                     //Возврат
-                    $paymentId = Yii::$app->balance
+                    Yii::$app->balance
                         ->setModule('partners')
                         ->setUser(User::findOne($failure->user_id))
                         ->billing($fundsToReturn, models\ReservationDeal::RETURN_MONEY_FAILURE);
@@ -272,8 +272,8 @@ class CollectorController extends \yii\console\Controller
             }
         }
 
-        $this->stdout('Процес выполнен. Обработано записей: ' . ($countSuccess + $countError) . ', возникло ошибок: ' . $countError . PHP_EOL, Console::FG_GREEN);
-        Yii::info('Процес выполнен. Обработано записей: ' . ($countSuccess + $countError) . ', возникло ошибок: ' . $countError, 'verify-failure');
+        $this->stdout('Процесс выполнен. Обработано записей: ' . ($countSuccess + $countError) . ', возникло ошибок: ' . $countError . PHP_EOL, Console::FG_GREEN);
+        Yii::info('Процесс выполнен. Обработано записей: ' . ($countSuccess + $countError) . ', возникло ошибок: ' . $countError, 'verify-failure');
     }
 
     /**
@@ -327,8 +327,8 @@ class CollectorController extends \yii\console\Controller
             }
         }
 
-        $this->stdout('Процес выполнен. Обработано объявлений: ' . ($count) . PHP_EOL, Console::FG_GREEN);
-        Yii::info('Процес выполнен. Обработано объявлений: ' . ($count), 'apartments-watcher');
+        $this->stdout('Процесс выполнен. Обработано объявлений: ' . ($count) . PHP_EOL, Console::FG_GREEN);
+        Yii::info('Процесс выполнен. Обработано объявлений: ' . ($count), 'apartments-watcher');
     }
 
     public function actionApartmentsW()

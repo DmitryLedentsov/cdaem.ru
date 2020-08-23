@@ -46,13 +46,8 @@ class Bootstrap implements \yii\base\BootstrapInterface
 }
 ```
 
-Подключить:
 
-```
-'bootstrap' => [
-    'frontend\modules\merchant\Bootstrap',
-],
-```
+
 
 **Запуск миграций:**
 

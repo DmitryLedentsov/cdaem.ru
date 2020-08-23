@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'class' => 'ladamalina\smsc\Smsc',
+    'class' => \ladamalina\smsc\Smsc::class,
     'login' => 'cdaem',
     'password' => 'gryehfWywy112',
     'post' => true,

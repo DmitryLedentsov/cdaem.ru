@@ -1,10 +1,5 @@
 <?php
 
-$params = array_merge(
-    require(__DIR__ . '/../../../common/config/params.php'),
-    require(__DIR__ . '/../../../common/config/params-local.php')
-);
-
 return [
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
@@ -25,8 +20,8 @@ return [
 
         common\modules\geo\BootstrapFrontend::class,
 
-        frontend\modules\office\Bootstrap::class,
-        frontend\modules\merchant\Bootstrap::class,
+        common\modules\office\BootstrapFrontend::class,
+        common\modules\merchant\BootstrapFrontend::class,
         frontend\modules\partners\Bootstrap::class,
 
         common\modules\agency\BootstrapFrontend::class,
@@ -96,10 +91,12 @@ return [
             'class' => frontend\modules\partners\Module::class,
         ],
         'office' => [
-            'class' => frontend\modules\office\Module::class,
+            'class' => common\modules\office\Module::class,
+            'controllerNamespace' => 'common\modules\office\controllers\frontend',
         ],
         'merchant' => [
-            'class' => frontend\modules\merchant\Module::class,
+            'class' => common\modules\merchant\Module::class,
+            'controllerNamespace' => 'common\modules\merchant\controllers\frontend',
         ],
     ],
     'components' => [
@@ -193,5 +190,4 @@ return [
             ],
         ],
     ],
-    'params' => $params,
 ];

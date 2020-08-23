@@ -14,18 +14,6 @@ use common\modules\partners\models as models;
 class CollectorController extends \yii\console\Controller
 {
     /**
-     * Garbage Collector Images
-     * Сборщик мусора
-     *
-     * Осуществляет поиск старых и/или удаленных изображений
-     * Осуществляет чистку диска и базы данных
-     *
-     * Вызов команды: php yii partners/collector/images
-     *
-     * TODO: НЕОБХОДИМО НАСТРОИТЬ КРОН ДЛЯ ВЫПОЛНЕНИЯ ДАННОГО СЦЕНАРИЯ
-     */
-
-    /**
      * Garbage Collector Reservation
      * Сборщик мусора
      *
@@ -79,7 +67,7 @@ class CollectorController extends \yii\console\Controller
 
                 // Вернуть средства владельцу
                 if ($reservation->confirm == models\AdvertReservation::LANDLORD && $this->checkExpireGone($reservation->deal->date_payment_owner, $expire)) {
-                    $paymentId = Yii::$app->balance
+                    Yii::$app->balance
                         ->setModule(Yii::$app->getModule('partners')->id)
                         ->setUser(User::findOne($reservation->landlord_id))
                         ->billing($reservation->deal->funds_owner, models\ReservationDeal::RETURN_MONEY);
@@ -145,7 +133,7 @@ class CollectorController extends \yii\console\Controller
                     $fundsToReturn = $failure->reservation->deal->funds_client;
 
                     //Возврат
-                    $paymentId = Yii::$app->balance
+                    Yii::$app->balance
                         ->setModule('partners')
                         ->setUser(User::findOne($failure->user_id))
                         ->billing($fundsToReturn, models\ReservationDeal::RETURN_MONEY_FAILURE);
@@ -166,7 +154,7 @@ class CollectorController extends \yii\console\Controller
                     $fundsToReturn = $failure->reservation->deal->funds_owner + $failure->reservation->deal->funds_client;
 
                     //Возврат
-                    $paymentId = Yii::$app->balance
+                    Yii::$app->balance
                         ->setModule('partners')
                         ->setUser(User::findOne($failure->user_id))
                         ->billing($fundsToReturn, models\ReservationDeal::RETURN_MONEY_FAILURE);
@@ -195,8 +183,8 @@ class CollectorController extends \yii\console\Controller
             }
         }
 
-        $this->stdout('Процес выполнен. Обработано записей: ' . ($countSuccess + $countError) . ', возникло ошибок: ' . $countError . PHP_EOL, Console::FG_GREEN);
-        Yii::info('Процес выполнен. Обработано записей: ' . ($countSuccess + $countError) . ', возникло ошибок: ' . $countError, 'verify-failure');
+        $this->stdout('Процесс выполнен. Обработано записей: ' . ($countSuccess + $countError) . ', возникло ошибок: ' . $countError . PHP_EOL, Console::FG_GREEN);
+        Yii::info('Процесс выполнен. Обработано записей: ' . ($countSuccess + $countError) . ', возникло ошибок: ' . $countError, 'verify-failure');
     }
 
     /**
@@ -250,8 +238,8 @@ class CollectorController extends \yii\console\Controller
             }
         }
 
-        $this->stdout('Процес выполнен. Обработано объявлений: ' . ($count) . PHP_EOL, Console::FG_GREEN);
-        Yii::info('Процес выполнен. Обработано объявлений: ' . ($count), 'apartments-watcher');
+        $this->stdout('Процесс выполнен. Обработано объявлений: ' . ($count) . PHP_EOL, Console::FG_GREEN);
+        Yii::info('Процесс выполнен. Обработано объявлений: ' . ($count), 'apartments-watcher');
     }
 
     /**
