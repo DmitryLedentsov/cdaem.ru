@@ -1,10 +1,10 @@
 {#
     Купить рекламу
     @var \yii\web\View this
-    @var \frontend\modules\partners\models\AdvertisementForm advertisementForm
+    @var \common\modules\partners\models\AdvertisementForm advertisementForm
 #}
 
-{% extends "@app/modules/office/views/layouts/main.twig" %}
+{% extends "@common/modules/office/views/frontend/layouts/main.twig" %}
 
 {% block title %}{{ this.registerTitle('Реклама | Сдаём.ру') }}{% endblock %}
 
@@ -34,7 +34,7 @@
 
 {% block sidebar %}
     {% if app.user.identity.profile.user_type != constant('\\common\\modules\\users\\models\\Profile::WANT_RENT') %}
-        {{ this.render("@app/modules/office/views/layouts/services.twig") | raw }}
+        {{ this.render("@common/modules/office/views/frontend/layouts/services.twig") | raw }}
     {% endif %}
 {% endblock %}
 
@@ -44,7 +44,7 @@
     {{ this.registerMetaTag({'name' : 'description', 'content' : ''}) }}
     {{ this.registerMetaTag({'name' : 'keywords', 'content' : ''}) }}
 
-    {{ use('frontend/modules/partners/assets/AdvertisementAsset') }}
+    {{ use('common/modules/partners/assets/frontend/AdvertisementAsset') }}
     {{ register_advertisement_asset() }}
 
     <div class="container-certain primary text" style="width: 90%;">

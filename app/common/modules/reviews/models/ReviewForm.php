@@ -7,7 +7,7 @@ use common\modules\users\models\User;
 
 /**
  * Форма "Написать отзыв"
- * @package frontend\modules\reviews\models
+ * @package common\modules\reviews\models
  */
 class ReviewForm extends Review
 {

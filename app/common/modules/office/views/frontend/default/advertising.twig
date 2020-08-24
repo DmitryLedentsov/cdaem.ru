@@ -1,11 +1,11 @@
 {#
     Моя реклама
     @var \yii\web\View this
-    @var \frontend\modules\partners\models\AdvertisementSearch searchModel
+    @var \common\modules\partners\models\AdvertisementSearch searchModel
     @var \yii\data\ActiveDataProvider dataProvider
 #}
 
-{% extends "@app/modules/office/views/layouts/main.twig" %}
+{% extends "@common/modules/office/views/frontend/layouts/main.twig" %}
 
 {% block title %}{{ this.registerTitle('Моя реклама - Личный кабинет | Сдаём.ру') }}{% endblock %}
 
@@ -37,7 +37,7 @@
 
 {% block sidebar %}
     {% if app.user.identity.profile.user_type != constant('\\common\\modules\\users\\models\\Profile::WANT_RENT') %}
-        {{ this.render("@app/modules/office/views/layouts/services.twig") | raw }}
+        {{ this.render("@common/modules/office/views/frontend/layouts/services.twig") | raw }}
     {% endif %}
 {% endblock %}
 

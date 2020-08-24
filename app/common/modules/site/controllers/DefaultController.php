@@ -16,7 +16,7 @@ use common\modules\articles\models\Article;
 use common\modules\agency\models\SpecialAdvert;
 use common\modules\agency\models\form\WantPassForm;
 use common\modules\agency\models\search\AdvertSearch as AgencyAdvertSearch;
-use frontend\modules\partners\models\search\AdvertSearch as PartnersAdvertSearch;
+use common\modules\partners\models\frontend\search\AdvertSearch as PartnersAdvertSearch;
 
 /**
  * Главный контроллер сайта

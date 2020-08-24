@@ -5,7 +5,7 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => [
         'log',
-        backend\modules\admin\Bootstrap::class,
+        common\modules\admin\Bootstrap::class,
         common\modules\users\Bootstrap::class,
         common\modules\agency\BootstrapBackend::class,
 
@@ -15,7 +15,7 @@ return [
         common\modules\callback\BootstrapBackend::class,
         common\modules\reviews\BootstrapBackend::class,
 
-        backend\modules\partners\Bootstrap::class,
+        common\modules\partners\BootstrapBackend::class,
 
         common\modules\articles\BootstrapBackend::class,
         common\modules\pages\BootstrapBackend::class,
@@ -25,9 +25,8 @@ return [
         common\modules\seo\BootstrapBackend::class,
     ],
     'on beforeRequest' => function ($event) {
-
         // Настройки по умолчанию для виджета faceviewer
-        \Yii::$container->set('nepster\faceviewer\Widget', [
+        \Yii::$container->set(\nepster\faceviewer\Widget::class, [
             'faceDefault' => 'no-avatar.png',
             'faceUrl' => Yii::$app->params['siteDomain'] . Yii::$app->getModule('users')->avatarUrl,
             'facePath' => Yii::$app->getModule('users')->avatarPath,
@@ -59,7 +58,7 @@ return [
     'defaultRoute' => 'admin/default/index',
     'modules' => [
         'admin' => [
-            'class' => \backend\modules\admin\Module::class,
+            'class' => \common\modules\admin\Module::class,
         ],
         'users' => [
             'class' => \common\modules\users\Module::class,
@@ -86,7 +85,8 @@ return [
             'controllerNamespace' => 'common\modules\reviews\controllers\backend',
         ],
         'partners' => [
-            'class' => \backend\modules\partners\Module::class,
+            'class' => \common\modules\partners\Module::class,
+            'controllerNamespace' => 'common\modules\partners\controllers\backend',
         ],
         'merchant' => [
             'class' => \common\modules\merchant\Module::class,

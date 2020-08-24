@@ -3,7 +3,7 @@
     @var \yii\web\View this
 #}
 
-{% extends "@app/modules/office/views/layouts/main.twig" %}
+{% extends "@common/modules/office/views/frontend/layouts/main.twig" %}
 
 {% block title %}{{ this.registerTitle('Пополнение счета - Личный кабинет | Сдаём.ру') }}{% endblock %}
 
@@ -69,7 +69,7 @@
 
                 <div class="extra clearfix form-group required">
                     <h4><label>Все способы оплаты:</label></h4>
-                    {{ use('frontend/modules/merchant/widgets/robokassa/PaymentSystemsList') }}
+                    {{ use('common/modules/merchant/widgets/frontend/robokassa/PaymentSystemsList') }}
                     {{ payment_systems_list_widget({
                         'selectOptions' : {
                             'class' : 'form-control',

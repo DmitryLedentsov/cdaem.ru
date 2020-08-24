@@ -4,7 +4,7 @@ namespace common\modules\office\widgets\frontend;
 
 use Yii;
 use yii\base\Widget;
-use frontend\modules\partners\models\Advert;
+use common\modules\partners\models\Advert;
 
 /**
  * Class AdvertsPositions

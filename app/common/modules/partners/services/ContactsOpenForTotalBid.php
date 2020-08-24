@@ -7,7 +7,7 @@ use yii\helpers\Json;
 use yii\validators\EmailValidator;
 use common\modules\users\models\User;
 use common\modules\partners\models\Service;
-use frontend\modules\partners\models\Reservation;
+use common\modules\partners\models\Reservation;
 use common\modules\partners\models\ReservationsPayment;
 use common\modules\partners\interfaces\ServiceInterface;
 
@@ -32,7 +32,7 @@ final class ContactsOpenForTotalBid extends \yii\base\BaseObject implements Serv
 
     /**
      * Модель заявки
-     * @var \frontend\modules\partners\models\Reservation
+     * @var \common\modules\partners\models\Reservation
      */
     private $_reservation;
 

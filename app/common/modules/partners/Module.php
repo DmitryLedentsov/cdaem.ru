@@ -2,6 +2,8 @@
 
 namespace common\modules\partners;
 
+use Yii;
+
 /**
  * Общий модуль [[Partners]]
  * Осуществляет всю работу с апартаментами доски объявлений
@@ -119,4 +121,24 @@ class Module extends \yii\base\Module
      * @var int
      */
     public $timeIntervalToProcessFailedReserves = 864000;
+
+    /**
+     * Количество записей топ адвертов на одной странице
+     * @var int
+     */
+    public $pageSizeTop = 20;
+
+    /**
+     * @inheritdoc
+     */
+    public function init()
+    {
+        parent::init();
+
+        $this->params['defaultPageSizeTopAdverts'] = 20;
+        // FIX TWIG BUG
+        // Кастомные компоненты не инициализируются в твиге
+        // для этого инициализируем компонент перед рендером шаблонов
+        Yii::$app->service;
+    }
 }

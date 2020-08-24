@@ -1,0 +1,190 @@
+{#
+    Мои объявления
+    @var \yii\web\View this
+    @var \common\modules\partners\models\ApartmentSearch searchModel
+    @var dataProvider
+#}
+
+{% extends "@common/modules/office/views/frontend/layouts/main.twig" %}
+
+{% block title %}{{ this.registerTitle('Мои объявления - Личный кабинет | Cdaem.ру') }}{% endblock %}
+
+{% block header %}
+    <meta http-equiv="Refresh" content="95"/>{% endblock %}
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        {{ use('yii/widgets/Breadcrumbs') }}
+        {{ breadcrumbs_widget({
+            'itemTemplate' : "<li>{link}</li>\n",
+            'homeLink' :
+            {
+                'label' : 'Главная',
+                'url' : '/'
+            },
+            'links':  [
+                {
+                    'label': 'Личный кабинет',
+                    'url' : ['/office/default/index']
+                },
+                {
+                    'label': 'Мои объявления',
+                },
+            ],
+        }) }}
+    </div>
+{% endblock %}
+
+{% block sidebar %}
+    {% if app.user.identity.profile.user_type != constant('\\common\\modules\\users\\models\\Profile::WANT_RENT') %}
+
+        {# Количество обьявлений #}
+        {{ use('common/modules/office/widgets/frontend/AdvertsCount') }}
+        {{ adverts_count_widget() }}
+
+        {# Позиции обьявлений #}
+        {{ use('common/modules/office/widgets/frontend/AdvertsPositions') }}
+        {{ adverts_positions_widget() }}
+    {% endif %}
+
+
+{% endblock %}
+
+{% block content %}
+    <h4 class="apartments-title">Мои обьявления</h4>
+    {{ use('common/modules/partners/helpers/ApartmentHelper') }}
+    {{ use('common/themes/basic/assets/frontend/ModalHelpAsset') }}
+    {{ register_modal_help_asset() }}
+
+    <p class="filter-title hidden-xs">Фильтр объявлений по типам:</p>
+    <ul class="extra-menu filter-style long-list hidden-xs">
+        <li{{ app.request.url=='/office/apartments' ? ' class="active"' : '' }}>
+            <a href="{{ path({0 : '/partners/default/apartments' }) }}">Все объявления</a>
+
+        </li>
+        {% for rentTypeSlug, rentTypeName in searchModel.rentTypesList %}
+            <li {{ rentTypeSlug == searchModel.slug ? 'class="active"' : null }}>
+                <a href="{{ path({0 : '/partners/default/apartments', 'filter' : 'slug=' ~ rentTypeSlug }) }}">{{ rentTypeName }}</a>
+            </li>
+        {% endfor %}
+        <li><a id="ret" class="m-dotted example5 help-em" data-body="1">Подсказки</a></li>
+    </ul>
+
+
+    {% for apartment in dataProvider.getModels() %}
+        <div class="apartment-item row clearfix hidden-xs {% if (apartment.visible == 0) %}invisible{% endif %}">
+            <div class="apartment-description col-sm-7">
+
+
+                <div class="apartment-blocks">
+                    <h3 class="apartment_titlehelper">{{ ApartmentHelper.getAddress(apartment) }}</h3>
+                    <div class="apartment-info-2">
+                        {{ ApartmentHelper.getInfoNew(apartment) | raw }}
+                        <a data-fancybox data-src="#hidden-window-1" class="backmap-btn" href="javascript:;">Удалить
+                            квартиру</a>
+                    </div>
+                    <div id="adverto-list" class="adverto-list hidden-xs">
+                        <div class="adverts-list-2">
+                            <div style="margin-top: 50px;">
+                                {{ ApartmentHelper.getAdvertsNew(apartment) | raw }}
+                                <div class="reviews">
+                                    <a href="{{ path({'0' : '/reviews/default/index', 'id' : apartment.apartment_id}) }}">Отзывов:
+                                        {{ this.renderDynamic("return \\common\\modules\\reviews\\models\\Review::find()->where(['apartment_id' => "~apartment.apartment_id~"])->moderation()->count();") | raw }}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="extra-list-2 links-2">
+                    </div>
+                </div>
+            </div>
+            <div class="present col-sm-5">
+                <div class="row clearfix">
+                    <div class="col-md-3">
+                        <div class="extra-list links">
+                            <a href="{{ path({'0' : '/partners/default/update', 'id' : apartment.apartment_id}) }}"><p
+                                        class="edit hidden-xs"></p>Редактировать</a>
+                            <a href="{{ path({'0' : '/partners/default/preview', 'id' : apartment.apartment_id}) }}"
+                               class="editapartment visible-xs">Просмотр</a>
+
+                        </div>
+
+                    </div>
+                    <div class="col-xs-9 imagethumb-apartment hidden-xs">
+                        <div class="infoimageapatment">
+                            <p>Комнат:{{ apartment.total_rooms }}</p>
+                            <p>Спальных мест:{{ apartment.beds }}</p>
+                            <p>Общая площадь:{{ apartment.total_area }}</p>
+                            <p>Ремонт:{{ apartment.total_area }}м<sup>2</sup></p>
+                        </div>
+                        {{ use('frontend/themes/basic/assets/SlickAsset') }}
+                        {{ register_slick_asset() }}
+                        {{ preview_advert_tm_widget({'apartment' : apartment}) }}
+                        <div class="images row multiple-items-3">
+                            {% for image in apartment.orderedImages %}
+                                <div class="image-box shadow-box col-xs-4 advertlist-imgs" style="margin-bottom:5px;">
+                                    <div class="image" style="height:70px;">
+                                        <a href="{{ image.reviewSrc }}" data-lightbox="example-set" data-title="">
+                                            <img src="{{ image.previewSrc }}"
+                                                 alt="Фото {{ model.apartment.city.name }}, {{ model.apartment.address }}{{ model.apartment.apartment ? ', кв.'~model.apartment.apartment }}"
+                                                 title="{{ model.apartment.city.name }}, {{ model.apartment.address }}{{ model.apartment.apartment ? ', кв.'~model.apartment.apartment }}"/>
+                                        </a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            {{ use('frontend/themes/basic/assets/LightBoxAsset') }}
+                            {{ register_light_box_asset() }}
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            <div class="hidden-xs">{{ this.render("@common/modules/office/views/frontend/layouts/services_2.twig") | raw }}</div>
+
+        </div>
+        <div class="accept-delete" id="hidden-window-1" style="display:none;">
+            <h4 style="margin:10px;">Вы действительно хотите удалить данную квартиру?</h4>
+            <a class="backmap-btn" href="{{ path({'0' : '/partners/default/delete', 'id' : apartment.apartment_id}) }}">Удалить
+                квартиру</a>
+            <a data-fancybox-close class="backmap-btn" style="background:green !important;">Нет, я передумал!</a>
+        </div>
+
+
+
+        <div class="apartment-item clearfix visible-xs {% if (apartment.visible == 0) %}invisible{% endif %}">
+            <div class="apartment-blocks clearfix row">
+                <div class="imagethumb-apartment col-xs-4" style="position:relative;">
+                    {{ preview_advert_tm_widget({'apartment' : apartment}) }}
+                    {{ use('frontend/themes/basic/assets/LightBoxAsset') }}
+                    {{ register_light_box_asset() }}
+                    <a style="position:absolute;top:0;left:0;width: 100%;height: 100%"
+                       href="{{ path({'0' : '/partners/default/preview', 'id' : apartment.apartment_id}) }}"></a>
+                </div>
+                <div class="col-xs-8">
+                    <h3 style="font-size:11px;">{{ ApartmentHelper.getAddress(apartment) }}</h3>
+                    {{ ApartmentHelper.getAdvertsMini(apartment) | raw }}
+
+                </div>
+            </div>
+        </div>
+
+    {% else %}
+        <div class="alert alert-info">
+            {% if searchModel.errors.slug %}
+                {{ searchModel.errors.slug[0] }}
+            {% else %}
+                Вы не добавили ни одного объявления. <a href="{{ path(['/partners/default/create']) }}">Добавить</a>.
+            {% endif %}
+        </div>
+    {% endfor %}
+
+    {{ use ('yii/widgets/LinkPager') }}
+    {{ link_pager_widget({'pagination' : dataProvider.pagination}) }}
+    {{ this.render("@common/modules/office/views/frontend/layouts/services_1.twig") | raw }}
+
+{% endblock content %}

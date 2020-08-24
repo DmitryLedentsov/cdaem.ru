@@ -2,11 +2,11 @@
     Все отзывы
     @var \yii\web\View this
     @var integer countReviews
-    @var frontend\modules\reviews\models\ReviewSearch searchModel
+    @var common\modules\reviews\models\ReviewSearch searchModel
     @var yii\data\ActiveDataProvider dataProvider
 #}
 
-{% extends "@app/modules/office/views/layouts/main.twig" %}
+{% extends "@common/modules/office/views/frontend/layouts/main.twig" %}
 
 {% block title %}{{ this.registerTitle('Отзывы | Сдаём.ру') }}{% endblock %}
 

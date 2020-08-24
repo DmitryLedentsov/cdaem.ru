@@ -10,7 +10,7 @@ use common\modules\articles\models\Article;
 
 /**
  * Статьи
- * @package frontend\modules\articles\controllers
+ * @package common\modules\articles\controllers
  */
 class DefaultController extends \frontend\components\Controller
 {

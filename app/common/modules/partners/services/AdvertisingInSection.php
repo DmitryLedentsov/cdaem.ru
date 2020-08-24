@@ -156,7 +156,7 @@ final class AdvertisingInSection extends \yii\base\BaseObject implements Service
         // Проверяем объявления
         foreach ($this->_selected as $advertId) {
             $ExistValidator = new ExistValidator();
-            $ExistValidator->targetClass = '\frontend\modules\partners\models\Advert';
+            $ExistValidator->targetClass = \common\modules\partners\models\Advert::class;
             $ExistValidator->targetAttribute = 'advert_id';
 
             if (!$ExistValidator->validate($advertId)) {
@@ -191,7 +191,7 @@ final class AdvertisingInSection extends \yii\base\BaseObject implements Service
 
         // Создаем рекламное объявление
         foreach ($this->_selected as $advertId) {
-            $advertisement = new \frontend\modules\partners\models\Advertisement();
+            $advertisement = new \common\modules\partners\models\Advertisement();
             $advertisement->advert_id = $advertId;
             $advertisement->save(false);
             $advertisementIds[] = $advertisement->advertisement_id;
@@ -216,7 +216,7 @@ final class AdvertisingInSection extends \yii\base\BaseObject implements Service
         $data = Json::decode($this->_process->data);
         if (isset($data['advertisements'])) {
             foreach ($data['advertisements'] as $advertisementId) {
-                $advertisement = \frontend\modules\partners\models\Advertisement::findOne($advertisementId);
+                $advertisement = \common\modules\partners\models\Advertisement::findOne($advertisementId);
                 if ($advertisement) {
                     $advertisement->delete();
                 }
@@ -224,7 +224,7 @@ final class AdvertisingInSection extends \yii\base\BaseObject implements Service
         } else {
             // Удаляем рекламное объявление
             foreach ($this->_selected as $advertId) {
-                $advertisement = \frontend\modules\partners\models\Advertisement::findOne(['advert_id' => $advertId]);
+                $advertisement = \common\modules\partners\models\Advertisement::findOne(['advert_id' => $advertId]);
                 if ($advertisement && strtotime(date('Y-m-d H:i:s')) >= strtotime($advertisement->date_expire)) {
                     $advertisement->delete();
                 }

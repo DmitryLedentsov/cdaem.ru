@@ -7,8 +7,8 @@ use common\modules\partners\models\Advert;
 use common\modules\helpdesk\models\Helpdesk;
 
 /**
- * Helpdesk Form
- * @package frontend\modules\helpdesk\models
+ * Class HelpdeskForm
+ * @package common\modules\helpdesk\models\form
  */
 class HelpdeskForm extends \yii\base\Model
 {

@@ -7,7 +7,7 @@ use yii\helpers\Json;
 use yii\validators\EmailValidator;
 use common\modules\users\models\User;
 use common\modules\partners\models\Service;
-use frontend\modules\partners\models\AdvertReservation;
+use common\modules\partners\models\AdvertReservation;
 use common\modules\partners\interfaces\ServiceInterface;
 
 /**
@@ -32,7 +32,7 @@ final class ContactsOpenForReservation extends \yii\base\BaseObject implements S
 
     /**
      * Модель заявки
-     * @var \frontend\modules\partners\models\AdvertReservation
+     * @var \common\modules\partners\models\AdvertReservation
      */
     private $_reservation;
 

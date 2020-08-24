@@ -1,0 +1,155 @@
+{#
+    Общие заявки
+    @var \yii\web\View this
+#}
+
+{% extends "@common/modules/office/views/frontend/layouts/main.twig" %}
+
+{% block title %}{{ this.registerTitle('Общие заявки - Личный кабинет | Сдаём.ру') }}{% endblock %}
+
+{% block header %}{% endblock %}
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        {{ use('yii/widgets/Breadcrumbs') }}
+        {{ breadcrumbs_widget({
+            'itemTemplate' : "<li>{link}</li>\n",
+            'homeLink' :
+            {
+                'label' : 'Главная',
+                'url' : '/'
+            },
+            'links':  [
+                {
+                    'label': 'Личный кабинет',
+                    'url' : ['/office/default/index']
+                },
+                {
+                    'label': 'Общие заявки',
+                },
+            ],
+        }) }}
+    </div>
+{% endblock %}
+
+
+{% block content %}
+
+    {{ use('common/modules/partners/assets/frontend/ApartmentAsset') }}
+    {{ register_apartment_asset() }}
+
+    {% for reservation in dataProvider.models %}
+
+        <div class="apartment-item clearfix {% if reservation.closed != 0 %}closed{% endif %}">
+            <div class="apartment-description">
+                <h3><span class="color-info">{{ reservation.rentTypeText }}, </span>{{ reservation.fullAddress }}</h3>
+                <div class="apartment-blocks">
+
+                    <div class="extra-list">
+                        <p><span class="color-info"><b>Заявка № {{ reservation.id }}</b></span></p>
+                        {% if reservation.more_info %}
+                            <span>&nbsp;</span>
+                            <p>
+                                <b>Пожелания:</b> <br/>
+                                {{ reservation.more_info }}
+                            </p>
+                        {% else %}
+                            <div class="alert alert-info">
+                                Нет пожеланий
+                            </div>
+                        {% endif %}
+                        <p>
+                            <b>Планируемый бюджет:</b> <br/>
+                            {{ reservation.budgetString | raw }}
+                        </p>
+                    </div>
+
+                    <div class="adverts-list">
+                        <p>
+                            <b>Требования:</b> <br/>
+                            Комнат: <span class="color-info">{{ reservation.roomsText }}</span>,
+                            Спальных мест: <span class="color-info">{{ reservation.bedsText }}</span>,
+                            <br/>
+                            Метро: <span class="color-info">{{ reservation.metroWalkText }}</span>,
+                            Этаж: <span class="color-info">{{ reservation.floorText }}</span>
+                        </p>
+                        {#
+                        <p>
+                            <b>Дополнительно:</b> <br/>
+                            <span class="color-info">{{ reservation.clientsCountText }}</span> человек,
+                            <span class="color-info">{{ reservation.childrenText }}</span>,
+                            <span class="color-info">{{ reservation.petsText }}</span>
+                            <br/>
+                            Актуально до <span class="color-info">{{ DateTimeHelper.toFullDateTime(reservation.date_actuality) }}</span>
+                        </p>
+                        #}
+                    </div>
+
+                    <div class="adverts-list">
+                        <span class="advert-name distinguish">
+                            {{ reservation.rentTypeText }}
+                        </span>
+                        <div class="reservation">
+                            <div class="clearfix">
+                                <div class="b">Бронь</div>
+                                <div class="d">
+                                    с {{ DateTimeHelper.toFullDateTime(reservation.date_arrived) }} <br/>
+                                    по {{ DateTimeHelper.toFullDateTime(reservation.date_out) }}
+                                </div>
+                            </div>
+                            <br/>
+
+                            <p>
+                                <b>Дополнительно:</b> <br/>
+                                <span class="color-info">{{ reservation.clientsCountText }}</span> человек,
+                                <span class="color-info">{{ reservation.childrenText }}</span>,
+                                <span class="color-info">{{ reservation.petsText }}</span>
+                                <br/>
+                                Актуально до:<br/> <span
+                                        class="color-info">{{ DateTimeHelper.toFullDateTime(reservation.date_actuality) }}</span>
+                            </p>
+
+                        </div>
+                    </div>
+
+
+                    <div class="extra-list va" style="padding: 0 15px;">
+                        <p class="text-center accent-time">{{ this.renderDynamic('return \\nepster\\basis\\helpers\\DateTimeHelper::diffAgoPeriodRound("'~reservation.date_create~'");') | raw }}</p>
+                        <br/>
+                        {% if reservation.closed %}
+                            <p>Закрыта</p>
+                            {% if reservation.payments %}
+                                <div class="alert alert-success">
+                                    <p>Причина: арендодатель открыл Ваши контакты. Ожидайте связи.</p>
+                                </div>
+                            {% endif %}
+                        {% endif %}
+
+                        {% if reservation.cancel %}
+                            <p>Отменена</p>
+                        {% else %}
+                            {% if not reservation.closed %}
+                                <p class="text-center" style="font-weight: bold">
+                                    <span class="link color-danger reservation-send" data-type="cancel"
+                                          data-department="total-bid" data-user-type="renter"
+                                          data-reservation="{{ reservation.id }}">Отменить</span>
+                                </p>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    {% else %}
+        <div class="alert alert-info">
+            <h1>RESSE</h1>
+            Нет заявок
+        </div>
+    {% endfor %}
+
+    {{ use ('yii/widgets/LinkPager') }}
+    {{ link_pager_widget({'pagination' : dataProvider.pagination}) }}
+
+{% endblock content %}

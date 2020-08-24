@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use frontend\modules\partners\widgets\PreviewAdvertTmp;
+use common\modules\partners\widgets\frontend\PreviewAdvertTmp;
 
 ?>
 

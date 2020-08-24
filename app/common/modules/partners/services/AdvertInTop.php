@@ -6,8 +6,8 @@ use Yii;
 use yii\helpers\Json;
 use yii\validators\EmailValidator;
 use common\modules\partners\models\Service;
-use frontend\modules\partners\models\Advert;
-use frontend\modules\partners\models\Apartment;
+use common\modules\partners\models\Advert;
+use common\modules\partners\models\Apartment;
 use common\modules\partners\interfaces\ServiceInterface;
 
 /**
@@ -159,7 +159,7 @@ final class AdvertInTop extends \yii\base\BaseObject implements ServiceInterface
         // Проверяем объявления
         /*foreach ($this->_selected as $advertId) {
             $ExistValidator = new ExistValidator();
-            $ExistValidator->targetClass = '\frontend\modules\partners\models\Advert';
+            $ExistValidator->targetClass = '\common\modules\partners\models\Advert';
             $ExistValidator->targetAttribute = 'advert_id';
 
             if (!$ExistValidator->validate($advertId)) {

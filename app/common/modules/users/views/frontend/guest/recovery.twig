@@ -1,7 +1,7 @@
 {#
     Восстановить пароль
     @var \yii\web\View this
-    @var \frontend\users\models\RecoveryForm model
+    @var \common\users\models\RecoveryForm model
 #}
 
 {% extends "@app/themes/basic/layouts/main.twig" %}
@@ -16,7 +16,7 @@
 {% block navbar_bottom %}{% endblock %}
 
 {% block navbar %}
-    {{ this.renderDynamic('return $this->render("@frontend/modules/office/views/layouts/navbar.twig");') | raw }}
+    {{ this.renderDynamic('return $this->render("@common/modules/office/views/frontend/layouts/navbar.twig");') | raw }}
 {% endblock %}
 
 {% block breadcrumbs %}

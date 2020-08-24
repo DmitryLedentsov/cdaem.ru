@@ -24,7 +24,7 @@
 и создать bootstrap файл для нужного приложения:
 
 ```
-namespace frontend\modules\merchant;
+namespace common\modules\merchant;
 
 use Yii;
 

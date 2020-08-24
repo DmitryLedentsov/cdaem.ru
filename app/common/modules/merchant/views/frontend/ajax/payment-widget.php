@@ -48,7 +48,7 @@ try {
         $description .= Html::tag('p', 'Услуга платная, после оплаты, Вам на указанный Email будет отправлено письмо со всеми контактными данными, указанными владельцем объявления.');
     }
 
-    $result = \frontend\modules\merchant\widgets\fastpayment\FastPayment::widget([
+    $result = \common\modules\merchant\widgets\frontend\fastpayment\FastPayment::widget([
         'description' => $description,
         'service' => $service::NAME,
         'data' => $data,

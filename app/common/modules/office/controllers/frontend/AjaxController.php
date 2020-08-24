@@ -5,7 +5,7 @@ namespace common\modules\office\controllers\frontend;
 use Yii;
 use yii\web\Response;
 use common\modules\users\models\UsersList;
-use frontend\modules\partners\models as models;
+use common\modules\partners\models\frontend as models;
 
 /**
  * Ajax контроллер офиса

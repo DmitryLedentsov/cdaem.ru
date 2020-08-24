@@ -6,8 +6,8 @@ use Yii;
 use yii\base\Widget;
 use common\modules\users\models\Profile;
 use common\modules\messages\models\Mailbox;
-use frontend\modules\partners\models\Reservation;
-use frontend\modules\partners\models\AdvertReservation;
+use common\modules\partners\models\Reservation;
+use common\modules\partners\models\AdvertReservation;
 
 /**
  * Class GraphicalMenu

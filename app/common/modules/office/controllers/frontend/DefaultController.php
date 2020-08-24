@@ -8,7 +8,7 @@ use yii\web\HttpException;
 use yii\widgets\ActiveForm;
 use common\modules\pages\models\Page;
 use common\modules\users\models\Profile;
-use frontend\modules\partners\models as models;
+use common\modules\partners\models\frontend as models;
 use common\modules\users\models\frontend\UsersListSearch;
 
 /**

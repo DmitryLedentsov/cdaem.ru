@@ -2,11 +2,10 @@
 
 /* @var Yii::$app->service $service */
 /* @var \common\modules\users\models\User $user */
-/* @var \frontend\modules\partners\models\AdvertReservation or \frontend\modules\partners\models\Reservation $reservation */
+/* @var \common\modules\partners\models\AdvertReservation or \common\modules\partners\models\Reservation $reservation */
 
 $domain = Yii::$app->params['siteDomain'];
 
-use yii\helpers\Html;
 use common\modules\users\helpers\UserHelper;
 
 ?>

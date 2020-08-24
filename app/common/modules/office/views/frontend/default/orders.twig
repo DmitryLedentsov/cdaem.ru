@@ -4,7 +4,7 @@
     @var \yii\data\ActiveDataProvider dataProvider
 #}
 
-{% extends "@app/modules/office/views/layouts/main.twig" %}
+{% extends "@common/modules/office/views/frontend/layouts/main.twig" %}
 
 {% block title %}{{ this.registerTitle('Мои покупки - Личный кабинет | Сдаём.ру') }}{% endblock %}
 
@@ -35,7 +35,7 @@
 
 
 {% block sidebar %}
-    {{ this.render("@app/modules/office/views/layouts/services.twig") | raw }}
+    {{ this.render("@common/modules/office/views/frontend/layouts/services.twig") | raw }}
 {% endblock %}
 
 

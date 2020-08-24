@@ -7,7 +7,7 @@ use yii\helpers\Json;
 use yii\validators\EmailValidator;
 use common\modules\partners\models\Service;
 use common\modules\partners\interfaces\ServiceInterface;
-use frontend\modules\partners\models\AdvertisementSlider;
+use common\modules\partners\models\frontend\AdvertisementSlider;
 
 /**
  * Сервис [Advertising Top Slider]
@@ -24,7 +24,7 @@ final class AdvertisingTopSlider extends \yii\base\BaseObject implements Service
 
     /**
      * Рекламное объявление
-     * @var \frontend\modules\partners\models\AdvertisementSlider
+     * @var \common\modules\partners\models\frontend\AdvertisementSlider
      */
     private $_advertisement;
 

@@ -3,8 +3,8 @@
 namespace common\modules\partners\services\auxiliaries;
 
 use common\modules\users\models\User;
-use frontend\modules\partners\models\Advert;
-use frontend\modules\partners\models\Apartment;
+use common\modules\partners\models\Advert;
+use common\modules\partners\models\Apartment;
 
 /**
  * Дополнительная библиотека для пересчета позиций

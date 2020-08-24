@@ -10,7 +10,7 @@
 {% block header %}{% endblock %}
 
 {% block navbar %}
-    {{ this.renderDynamic('return $this->render("@app/modules/office/views/layouts/navbar.twig");') | raw }}
+    {{ this.renderDynamic('return $this->render("@common/modules/office/views/frontend/layouts/navbar.twig");') | raw }}
 {% endblock %}
 
 {% block navbar_bottom %}{% endblock %}

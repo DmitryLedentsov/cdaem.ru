@@ -4,7 +4,7 @@ namespace common\modules\merchant;
 
 /**
  * Class BootstrapFrontend
- * @package frontend\modules\merchant
+ * @package common\modules\merchant
  */
 class BootstrapFrontend implements \yii\base\BootstrapInterface
 {

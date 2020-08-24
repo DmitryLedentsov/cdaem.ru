@@ -7,7 +7,7 @@ return [
         'log',
         'gii',
         \common\modules\users\Bootstrap::class,
-        \frontend\modules\partners\Bootstrap::class,
+        \common\modules\partners\BootstrapFrontend::class,
     ],
     'controllerNamespace' => 'console\controllers',
     'modules' => [

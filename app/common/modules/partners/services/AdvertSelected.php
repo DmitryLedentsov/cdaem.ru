@@ -156,7 +156,7 @@ final class AdvertSelected extends \yii\base\BaseObject implements ServiceInterf
         // Проверяем объявления
         foreach ($this->_selected as $advertId) {
             $ExistValidator = new ExistValidator();
-            $ExistValidator->targetClass = '\frontend\modules\partners\models\Advert';
+            $ExistValidator->targetClass = \common\modules\partners\models\Advert::class;
             $ExistValidator->targetAttribute = 'advert_id';
 
             if (!$ExistValidator->validate($advertId)) {
@@ -188,7 +188,7 @@ final class AdvertSelected extends \yii\base\BaseObject implements ServiceInterf
 
         // Выделяем объявления цветом
         foreach ($this->_selected as $advertId) {
-            $advert = \frontend\modules\partners\models\Advert::findOne($advertId);
+            $advert = \common\modules\partners\models\Advert::findOne($advertId);
             $advert->selected = 1;
             $advert->save(false);
         }
@@ -207,7 +207,7 @@ final class AdvertSelected extends \yii\base\BaseObject implements ServiceInterf
 
         // Снимаем выделение с объявлений
         foreach ($this->_selected as $advertId) {
-            $advert = \frontend\modules\partners\models\Advert::findOne($advertId);
+            $advert = \common\modules\partners\models\Advert::findOne($advertId);
             $advert->selected = 0;
             $advert->save(false);
         }
