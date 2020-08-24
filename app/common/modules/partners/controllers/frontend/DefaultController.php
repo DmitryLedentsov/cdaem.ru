@@ -309,13 +309,16 @@ class DefaultController extends \frontend\components\Controller
                 if (Yii::$app->request->post('submit')) {
                     if ($apartment->save(false)) {
                         Yii::$app->session->setFlash('success', 'Ваше объявление успешно добавлено в нашу базу данных.');
+
                         return $this->redirect(['/partners/default/apartments']);
                     }
+
                     return [
                         'status' => 0,
                         'message' => 'При добавлении объявления возникла ошибка, пожалуйста попробуйте еще раз или обратитесь в техническую поддержку.',
                     ];
                 }
+
                 return [];
             }
 
@@ -371,13 +374,16 @@ class DefaultController extends \frontend\components\Controller
 
                         return $this->redirect(['/partners/default/apartments']);
                     }
+
                     return [
                         'status' => 0,
                         'message' => 'При добавлении объявления возникла ошибка, пожалуйста попробуйте еще раз или обратитесь в техническую поддержку.',
                     ];
                 }
+
                 return [];
             }
+
             return $errors;
         }
 

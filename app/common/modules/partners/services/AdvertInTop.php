@@ -5,8 +5,8 @@ namespace common\modules\partners\services;
 use Yii;
 use yii\helpers\Json;
 use yii\validators\EmailValidator;
-use common\modules\partners\models\Service;
 use common\modules\partners\models\Advert;
+use common\modules\partners\models\Service;
 use common\modules\partners\models\Apartment;
 use common\modules\partners\interfaces\ServiceInterface;
 

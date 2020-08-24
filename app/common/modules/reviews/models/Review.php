@@ -4,8 +4,8 @@ namespace common\modules\reviews\models;
 
 use Yii;
 use yii\db\ActiveRecord;
-use common\modules\reviews\traits\ModuleTrait;
 use common\modules\partners\models\Apartment;
+use common\modules\reviews\traits\ModuleTrait;
 
 /**
  * Review

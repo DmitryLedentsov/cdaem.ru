@@ -2,12 +2,12 @@
 
 namespace common\modules\partners\models\frontend\search;
 
-use common\modules\partners\models\frontend\Apartment;
 use Yii;
 use yii\base\Model;
 use yii\helpers\ArrayHelper;
 use yii\data\ActiveDataProvider;
 use common\modules\realty\models\RentType;
+use common\modules\partners\models\frontend\Apartment;
 
 /**
  * @inheritdoc

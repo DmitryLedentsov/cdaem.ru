@@ -2,8 +2,8 @@
 
 namespace common\modules\partners\models\frontend\form;
 
-use common\modules\partners\models\frontend\Image;
 use yii\web\UploadedFile;
+use common\modules\partners\models\frontend\Image;
 
 /**
  * @inheritdoc

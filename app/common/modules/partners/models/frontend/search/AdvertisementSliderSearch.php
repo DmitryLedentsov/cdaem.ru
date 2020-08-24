@@ -2,10 +2,10 @@
 
 namespace common\modules\partners\models\frontend\search;
 
-use common\modules\partners\models\frontend\AdvertisementSlider;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
+use common\modules\partners\models\frontend\AdvertisementSlider;
 
 /**
  * @inheritdoc

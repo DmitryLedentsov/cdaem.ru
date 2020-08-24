@@ -6,8 +6,8 @@ use Yii;
 use yii\helpers\Json;
 use yii\validators\EmailValidator;
 use common\modules\users\models\User;
-use common\modules\partners\models\Service;
 use common\modules\partners\models\Advert;
+use common\modules\partners\models\Service;
 use common\modules\partners\interfaces\ServiceInterface;
 
 /**

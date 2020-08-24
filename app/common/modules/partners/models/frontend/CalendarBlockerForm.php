@@ -169,11 +169,11 @@ class CalendarBlockerForm extends Model
 
         if (!$startDiff->invert and !$endDiff->invert) {
             $freeCalendar->date_to = $this->date_from;
+
             return $freeCalendar->save(false);
         }
 
         if (!$startDiff->invert and $endDiff->invert) {
-
             $calendar = new Calendar();
             $calendar->date_from = $this->date_to;
             $calendar->date_to = $freeCalendar->date_to;
@@ -186,6 +186,7 @@ class CalendarBlockerForm extends Model
             if ($calendar->save(false) && $freeCalendar->save(false)) {
                 return true;
             }
+
             return false;
         }
 
@@ -198,6 +199,7 @@ class CalendarBlockerForm extends Model
             if ($freeCalendar->process == 1) {
                 $freeCalendar->process = 0;
             }
+
             return $freeCalendar->save(false);
         }
 

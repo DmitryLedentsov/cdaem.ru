@@ -3,10 +3,10 @@
 namespace common\modules\partners\widgets\frontend;
 
 use Yii;
-use yii\base\InvalidArgumentException;
 use yii\base\Widget;
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
+use yii\base\InvalidArgumentException;
 use common\modules\partners\models\frontend\Advert;
 use common\modules\partners\models\frontend\Apartment;
 use common\modules\partners\models\frontend\AdvertisementSlider;

@@ -2,9 +2,9 @@
 
 namespace common\modules\partners\controllers\backend;
 
-use common\components\Response;
 use Yii;
 use yii\widgets\ActiveForm;
+use common\components\Response;
 use backend\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\ForbiddenHttpException;

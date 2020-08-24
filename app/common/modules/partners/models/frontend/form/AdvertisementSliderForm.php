@@ -2,8 +2,8 @@
 
 namespace common\modules\partners\models\frontend\form;
 
-use common\modules\partners\models\frontend\AdvertisementSlider;
 use Yii;
+use common\modules\partners\models\frontend\AdvertisementSlider;
 
 /**
  * @inheritdoc

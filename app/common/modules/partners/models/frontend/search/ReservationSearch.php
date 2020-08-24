@@ -2,11 +2,11 @@
 
 namespace common\modules\partners\models\frontend\search;
 
-use common\modules\partners\models\frontend\Reservation;
 use Yii;
+use yii\db\ActiveQuery;
 use yii\data\ActiveDataProvider;
 use common\modules\partners\models\ReservationsPayment;
-use yii\db\ActiveQuery;
+use common\modules\partners\models\frontend\Reservation;
 
 /**
  * @inheritdoc

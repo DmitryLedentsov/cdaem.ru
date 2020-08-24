@@ -6,8 +6,8 @@ use Yii;
 use yii\behaviors\TimestampBehavior;
 use common\modules\users\models\User;
 use common\modules\partners\models\frontend\Advert;
-use common\modules\partners\models\frontend\Reservation;
 use common\modules\partners\models\ReservationDeal;
+use common\modules\partners\models\frontend\Reservation;
 use common\modules\partners\models\frontend\CalendarBlockerForm;
 
 /**

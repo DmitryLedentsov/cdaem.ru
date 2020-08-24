@@ -2,9 +2,9 @@
 
 namespace common\modules\partners\models\frontend\search;
 
-use common\modules\partners\models\frontend\AdvertReservation;
 use Yii;
 use yii\data\ActiveDataProvider;
+use common\modules\partners\models\frontend\AdvertReservation;
 
 /**
  * @inheritdoc

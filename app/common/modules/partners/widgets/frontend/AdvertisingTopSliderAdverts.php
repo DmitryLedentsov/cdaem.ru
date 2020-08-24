@@ -2,11 +2,11 @@
 
 namespace common\modules\partners\widgets\frontend;
 
-use common\modules\partners\models\frontend\AdvertisementSlider;
-use common\modules\users\models\Profile;
 use Yii;
 use yii\base\Widget;
 use yii\helpers\Html;
+use common\modules\users\models\Profile;
+use common\modules\partners\models\frontend\AdvertisementSlider;
 
 /**
  * Class AdvertisingTopSliderAdverts

@@ -3,8 +3,8 @@
 namespace common\modules\partners\models\frontend\form;
 
 use Yii;
-use common\modules\partners\models\frontend\AdvertReservation;
 use common\modules\partners\models\ReservationFailure;
+use common\modules\partners\models\frontend\AdvertReservation;
 
 /**
  * Class ReservationFailureForm

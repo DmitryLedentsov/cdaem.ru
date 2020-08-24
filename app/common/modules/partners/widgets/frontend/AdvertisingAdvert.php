@@ -2,10 +2,10 @@
 
 namespace common\modules\partners\widgets\frontend;
 
-use common\modules\partners\models\frontend\Advertisement;
 use Yii;
 use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
+use common\modules\partners\models\frontend\Advertisement;
 
 /**
  * Class AdvertisingAdvert

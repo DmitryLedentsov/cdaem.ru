@@ -2,12 +2,12 @@
 
 namespace common\modules\partners\models\frontend\form;
 
-use common\modules\partners\models\frontend\CalendarBlockerForm;
 use Yii;
 use common\modules\users\models\User;
 use common\modules\partners\models\frontend\Advert;
 use common\modules\partners\models\ReservationDeal;
 use common\modules\partners\models\frontend\AdvertReservation;
+use common\modules\partners\models\frontend\CalendarBlockerForm;
 
 /**
  * Class AdvertReservationConfirmForm

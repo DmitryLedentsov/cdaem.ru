@@ -2,9 +2,9 @@
 
 namespace common\modules\partners\models\frontend\form;
 
-use common\modules\partners\models\frontend\Advert;
 use Yii;
 use yii\validators\ExistValidator;
+use common\modules\partners\models\frontend\Advert;
 
 /**
  * @inheritdoc
@@ -78,7 +78,6 @@ class AdvertForm extends Advert
                 }
 
                 $this->newAdverts = $result;
-
             } else {
                 $this->addError('rent_type', 'Укажите объявления для недвижимости');
             }

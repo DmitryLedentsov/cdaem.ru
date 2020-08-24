@@ -3,8 +3,8 @@
 namespace common\modules\partners\widgets\frontend\RealtyObjectsByService;
 
 use Yii;
-use yii\base\InvalidArgumentException;
 use yii\base\Widget;
+use yii\base\InvalidArgumentException;
 use common\modules\realty\models\RentType;
 use common\modules\partners\models\Service;
 use common\modules\partners\models as models;
