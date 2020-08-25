@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
 
 $this->title = 'Управление счетом';
 
-echo \backend\modules\admin\widgets\HeaderWidget::widget([
+echo \common\modules\admin\widgets\HeaderWidget::widget([
     'title' => 'Мерчант',
     'description' => $this->title,
     'breadcrumb' => [

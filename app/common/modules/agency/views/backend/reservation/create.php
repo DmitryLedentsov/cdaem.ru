@@ -8,7 +8,7 @@ use yii\helpers\Html;
 
 $this->title = 'Создать бронь';
 
-echo \backend\modules\admin\widgets\HeaderWidget::widget([
+echo \common\modules\admin\widgets\HeaderWidget::widget([
     'title' => 'Управление бронями',
     'description' => $this->title,
     'breadcrumb' => [

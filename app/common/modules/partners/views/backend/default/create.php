@@ -7,7 +7,7 @@ use yii\helpers\Html;
 
 $this->title = 'Создать апартаменты';
 
-echo \backend\modules\admin\widgets\HeaderWidget::widget([
+echo \common\modules\admin\widgets\HeaderWidget::widget([
     'title' => 'Управление апартаментами',
     'description' => $this->title,
     'breadcrumb' => [

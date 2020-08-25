@@ -9,7 +9,7 @@ use yii\helpers\Html;
 
 $this->title = 'Редактировать заявку на "Хочу сдать"';
 
-echo \backend\modules\admin\widgets\HeaderWidget::widget([
+echo \common\modules\admin\widgets\HeaderWidget::widget([
     'title' => 'Управление заявками',
     'description' => $this->title,
     'breadcrumb' => [
@@ -24,7 +24,7 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
     ]
 ]);
 
-echo \backend\modules\admin\widgets\ExtraControlWidget::widget([
+echo \common\modules\admin\widgets\ExtraControlWidget::widget([
     'control' => [
         [
             'url' => ['/agency/want-pass/delete', 'id' => $model->apartment_want_pass_id],

@@ -8,7 +8,7 @@ use yii\helpers\Html;
 
 $this->title = 'Редактировать тикет';
 
-echo \backend\modules\admin\widgets\HeaderWidget::widget([
+echo \common\modules\admin\widgets\HeaderWidget::widget([
     'title' => 'Техническая поддержка',
     'description' => $this->title,
     'breadcrumb' => [

@@ -12,7 +12,7 @@ use yii\widgets\DetailView;
 
 $this->title = 'Редактировать страницу';
 
-echo \backend\modules\admin\widgets\HeaderWidget::widget([
+echo \common\modules\admin\widgets\HeaderWidget::widget([
     'title' => 'Управление статическими страницами',
     'description' => $this->title,
     'breadcrumb' => [
@@ -27,7 +27,7 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
     ]
 ]);
 
-echo \backend\modules\admin\widgets\ExtraControlWidget::widget([
+echo \common\modules\admin\widgets\ExtraControlWidget::widget([
     'control' => [
         [
             'url' => ['/pages/default/create'],

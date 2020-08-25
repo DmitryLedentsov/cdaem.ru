@@ -11,7 +11,7 @@ use yii\widgets\DetailView;
 
 $this->title = 'Редактировать заявку на обратный звонок';
 
-echo \backend\modules\admin\widgets\HeaderWidget::widget([
+echo \common\modules\admin\widgets\HeaderWidget::widget([
     'title' => 'Редактировать заявку на обратный звонок',
     'description' => $this->title,
     'breadcrumb' => [

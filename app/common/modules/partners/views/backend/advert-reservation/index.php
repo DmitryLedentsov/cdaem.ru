@@ -10,7 +10,7 @@ use yii\helpers\ArrayHelper;
 
 $this->title = 'Все брони к объявлениям';
 
-echo \backend\modules\admin\widgets\HeaderWidget::widget([
+echo \common\modules\admin\widgets\HeaderWidget::widget([
     'title' => 'Управление бронями',
     'description' => $this->title,
     'breadcrumb' => [
@@ -21,7 +21,7 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
     ]
 ]);
 
-/*echo \backend\modules\admin\widgets\ExtraControlWidget::widget([
+/*echo \common\modules\admin\widgets\ExtraControlWidget::widget([
     'control' => [
         [
             'url' => ['/partners/reservation/create'],

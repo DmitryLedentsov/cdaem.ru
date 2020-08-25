@@ -12,7 +12,7 @@ use yii\grid\GridView;
 
 $this->title = 'Все записи';
 
-echo \backend\modules\admin\widgets\HeaderWidget::widget([
+echo \common\modules\admin\widgets\HeaderWidget::widget([
     'title' => 'Управление записями',
     'description' => $this->title,
     'breadcrumb' => [
@@ -23,7 +23,7 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
     ]
 ]);
 
-echo \backend\modules\admin\widgets\ExtraControlWidget::widget([
+echo \common\modules\admin\widgets\ExtraControlWidget::widget([
     'control' => [
         [
             'url' => ['/articles/articlelink/create'],

@@ -11,7 +11,7 @@ use yii\grid\GridView;
 
 $this->title = 'Все заявки на "Хочу сдать"';
 
-echo \backend\modules\admin\widgets\HeaderWidget::widget([
+echo \common\modules\admin\widgets\HeaderWidget::widget([
     'title' => $this->title,
     'description' => 'Все заявки',
     'breadcrumb' => [

@@ -7,7 +7,7 @@ use yii\helpers\Html;
 
 $this->title = 'Редактировать апартаменты';
 
-echo \backend\modules\admin\widgets\HeaderWidget::widget([
+echo \common\modules\admin\widgets\HeaderWidget::widget([
     'title' => 'Управление бронями',
     'description' => $this->title,
     'breadcrumb' => [
@@ -22,7 +22,7 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
     ]
 ]);
 
-echo \backend\modules\admin\widgets\ExtraControlWidget::widget([
+echo \common\modules\admin\widgets\ExtraControlWidget::widget([
     'control' => [
         [
             'url' => ['/partners/advert-reservation/delete', 'id' => $model->id],

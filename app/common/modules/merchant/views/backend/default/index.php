@@ -12,7 +12,7 @@ use yii\grid\GridView;
 
 $this->title = 'История денежного оборота';
 
-echo \backend\modules\admin\widgets\HeaderWidget::widget([
+echo \common\modules\admin\widgets\HeaderWidget::widget([
     'title' => 'Мерчант',
     'description' => $this->title,
     'breadcrumb' => [

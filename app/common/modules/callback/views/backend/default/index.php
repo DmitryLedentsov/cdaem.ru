@@ -12,7 +12,7 @@ use yii\grid\GridView;
 
 $this->title = 'Все заявки на обратный звонок';
 
-echo \backend\modules\admin\widgets\HeaderWidget::widget([
+echo \common\modules\admin\widgets\HeaderWidget::widget([
     'title' => 'Управление обратными звонками',
     'description' => $this->title,
     'breadcrumb' => [

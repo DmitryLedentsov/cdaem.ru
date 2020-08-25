@@ -14,7 +14,7 @@ use common\modules\partners\models\Service;
 
 $this->title = 'История оплаты сервисов';
 
-echo \backend\modules\admin\widgets\HeaderWidget::widget([
+echo \common\modules\admin\widgets\HeaderWidget::widget([
     'title' => 'Мерчант',
     'description' => $this->title,
     'breadcrumb' => [

@@ -10,7 +10,7 @@ use yii\widgets\DetailView;
 
 $this->title = 'Редактировать сео-текст';
 
-echo \backend\modules\admin\widgets\HeaderWidget::widget([
+echo \common\modules\admin\widgets\HeaderWidget::widget([
     'title' => 'Управление сео-текстами',
     'description' => $this->title,
     'breadcrumb' => [
@@ -26,7 +26,7 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
 ]);
 
 
-echo \backend\modules\admin\widgets\ExtraControlWidget::widget([
+echo \common\modules\admin\widgets\ExtraControlWidget::widget([
     'control' => [
         [
             'url' => ['/seo/text/create'],

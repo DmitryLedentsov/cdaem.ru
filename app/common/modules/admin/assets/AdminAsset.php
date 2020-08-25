@@ -10,7 +10,7 @@ use yii\web\AssetBundle;
  */
 class AdminAsset extends AssetBundle
 {
-    public $sourcePath = '@backend/modules/admin/assets';
+    public $sourcePath = '@common/modules/admin/assets';
 
     public $css = [
     ];
