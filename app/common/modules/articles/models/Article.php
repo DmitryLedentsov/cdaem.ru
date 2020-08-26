@@ -103,6 +103,6 @@ class Article extends \yii\db\ActiveRecord
             return sprintf('/images/%s', $this->title_img);
         }
 
-        return '/pics/no-photo.png';
+        return '/basic-images/no-photo.png';
     }
 }
