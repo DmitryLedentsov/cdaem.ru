@@ -54,6 +54,8 @@ class DefaultController extends \frontend\components\Controller
     {
         $actions = ['apartments', 'services', 'send-offer', 'services', 'services'];
 
+        $this->module->viewPath = '@common/modules/office/views/frontend';
+
         if (in_array($action->id, $actions)) {
             if (!Yii::$app->user->isGuest && Yii::$app->user->identity->profile->user_type == Profile::WANT_RENT) {
                 $userType = Yii::$app->BasisFormat->helper('Status')->getItem(Profile::getUserTypeArray(), Yii::$app->user->identity->profile->user_type);

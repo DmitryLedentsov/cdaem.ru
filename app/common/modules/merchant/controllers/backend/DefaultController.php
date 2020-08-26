@@ -9,11 +9,11 @@ use backend\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\ForbiddenHttpException;
 use common\modules\users\models\User;
-use common\modules\partners\models\Advert;
 use common\modules\partners\models\Service;
-use backend\modules\merchant\models\PaymentForm;
-use backend\modules\merchant\models\PaymentSearch;
-use backend\modules\merchant\models\ServiceSearch;
+use common\modules\partners\models\backend\Advert;
+use common\modules\merchant\models\backend\PaymentForm;
+use common\modules\merchant\models\backend\PaymentSearch;
+use common\modules\merchant\models\backend\ServiceSearch;
 
 /**
  * Class DefaultController
@@ -21,6 +21,20 @@ use backend\modules\merchant\models\ServiceSearch;
  */
 class DefaultController extends Controller
 {
+    /**
+     * @inheritdoc
+     */
+    public function beforeAction($action)
+    {
+        if (!parent::beforeAction($action)) {
+            return false;
+        }
+
+        $this->module->viewPath = '@common/modules/merchant/views/backend';
+
+        return true;
+    }
+
     /**
      * @inheritdoc
      */

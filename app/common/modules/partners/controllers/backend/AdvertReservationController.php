@@ -8,8 +8,8 @@ use yii\widgets\ActiveForm;
 use backend\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\ForbiddenHttpException;
-use backend\modules\partners\models\AdvertReservation;
-use backend\modules\partners\models\AdvertReservationSearch;
+use common\modules\partners\models\backend\AdvertReservation;
+use common\modules\partners\models\backend\AdvertReservationSearch;
 
 /**
  * Class AdvertReservationController
@@ -17,6 +17,20 @@ use backend\modules\partners\models\AdvertReservationSearch;
  */
 class AdvertReservationController extends Controller
 {
+    /**
+     * @inheritdoc
+     */
+    public function beforeAction($action)
+    {
+        if (!parent::beforeAction($action)) {
+            return false;
+        }
+
+        $this->module->viewPath = '@common/modules/partners/views/backend';
+
+        return true;
+    }
+
     /**
      * @inheritdoc
      */

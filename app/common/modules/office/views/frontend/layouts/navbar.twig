@@ -105,7 +105,7 @@
             {% block graphical_menu %}
                 <!-- Графическое меню -->
 
-                {{ this.renderDynamic('return \\frontend\\modules\\office\\widgets\\GraphicalMenu2::widget();') | raw }}
+                {{ this.renderDynamic('return \\common\\modules\\office\\widgets\\frontend\\GraphicalMenu2::widget();') | raw }}
             {% endblock %}
             <a href="{{ path(['/users/user/logout']) }}"
                style="color:#ef920f;display: block;cursor:pointer;font-size: 20px;padding-left: 20px;">Выход</a>

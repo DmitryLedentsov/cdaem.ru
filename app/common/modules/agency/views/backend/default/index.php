@@ -155,7 +155,7 @@ echo GridView::widget([
                     $adverts[] = Html::a('ID ' . $advert->advert_id . ' ' . $advert->rentType->name . ' - ' . $advert->priceText, Yii::$app->params['siteDomain'] . '/advert/' . $advert->advert_id);
                 }
 
-                return implode($adverts, '<br/>');
+                return implode('<br/>', $adverts);
             },
         ],
 

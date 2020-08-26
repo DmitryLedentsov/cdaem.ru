@@ -10,11 +10,11 @@ use yii\data\ActiveDataProvider;
 use backend\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\ForbiddenHttpException;
-use backend\modules\partners\models\Image;
-use backend\modules\partners\models\Advert;
-use backend\modules\partners\models\Apartment;
-use backend\modules\partners\models\ApartmentForm;
-use backend\modules\partners\models\ApartmentSearch;
+use common\modules\partners\models\backend\Image;
+use common\modules\partners\models\backend\Advert;
+use common\modules\partners\models\backend\Apartment;
+use common\modules\partners\models\backend\ApartmentForm;
+use common\modules\partners\models\backend\ApartmentSearch;
 
 /**
  * Class DefaultController
@@ -22,6 +22,20 @@ use backend\modules\partners\models\ApartmentSearch;
  */
 class DefaultController extends Controller
 {
+    /**
+     * @inheritdoc
+     */
+    public function beforeAction($action)
+    {
+        if (!parent::beforeAction($action)) {
+            return false;
+        }
+
+        $this->module->viewPath = '@common/modules/partners/views/backend';
+
+        return true;
+    }
+
     /**
      * @inheritdoc
      */

@@ -71,7 +71,7 @@
         <div class='hidden-xs'>
             {% block graphical_menu %}
                 <!-- Графическое меню -->
-                {{ this.renderDynamic('return \\frontend\\modules\\office\\widgets\\GraphicalMenu::widget();') | raw }}
+                {{ this.renderDynamic('return \\common\\modules\\office\\widgets\\frontend\\GraphicalMenu::widget();') | raw }}
             {% endblock %}
         </div>
         <hr class="hr-new">

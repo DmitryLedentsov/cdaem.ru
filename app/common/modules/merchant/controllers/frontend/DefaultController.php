@@ -19,6 +19,20 @@ class DefaultController extends \frontend\components\Controller
     /**
      * @inheritdoc
      */
+    public function beforeAction($action)
+    {
+        if (!parent::beforeAction($action)) {
+            return false;
+        }
+
+        $this->module->viewPath = '@common/modules/merchant/views/frontend';
+
+        return true;
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function behaviors()
     {
         $behaviors = [

@@ -8,8 +8,8 @@ use yii\widgets\ActiveForm;
 use backend\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\ForbiddenHttpException;
-use backend\modules\partners\models\Reservation;
-use backend\modules\partners\models\ReservationSearch;
+use common\modules\partners\models\backend\Reservation;
+use common\modules\partners\models\backend\ReservationSearch;
 
 /**
  * Class ReservationController
@@ -17,6 +17,20 @@ use backend\modules\partners\models\ReservationSearch;
  */
 class ReservationController extends Controller
 {
+    /**
+     * @inheritdoc
+     */
+    public function beforeAction($action)
+    {
+        if (!parent::beforeAction($action)) {
+            return false;
+        }
+
+        $this->module->viewPath = '@common/modules/partners/views/backend';
+
+        return true;
+    }
+
     /**
      * @inheritdoc
      */

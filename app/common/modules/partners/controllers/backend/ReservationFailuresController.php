@@ -8,8 +8,8 @@ use common\components\Response;
 use backend\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\ForbiddenHttpException;
-use backend\modules\partners\models\ReservationFailure;
-use backend\modules\partners\models\ReservationFailureSearch;
+use common\modules\partners\models\backend\ReservationFailure;
+use common\modules\partners\models\backend\ReservationFailureSearch;
 
 /**
  * ReservationFailuresController implements the CRUD actions for Reservation model.
@@ -17,6 +17,20 @@ use backend\modules\partners\models\ReservationFailureSearch;
  */
 class ReservationFailuresController extends Controller
 {
+    /**
+     * @inheritdoc
+     */
+    public function beforeAction($action)
+    {
+        if (!parent::beforeAction($action)) {
+            return false;
+        }
+
+        $this->module->viewPath = '@common/modules/partners/views/backend';
+
+        return true;
+    }
+
     /**
      * @inheritdoc
      */

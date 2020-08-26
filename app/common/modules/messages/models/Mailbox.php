@@ -13,10 +13,6 @@ use yii\db\ActiveRecord;
  * @property integer $inbox
  * @property integer $bin
  * @property integer $deleted
- *
- * @property Users $interlocutor
- * @property UserMessages $message
- * @property Users $user
  */
 class Mailbox extends ActiveRecord
 {

@@ -1,8 +1,8 @@
 {#
     Все статьи
     @var \yii\web\View this
-    @var \frontend\acticles\models\Acticle model
-    @var \frontend\acticles\models\Acticle models
+    @var \common\modules\articles\models\Acticle model
+    @var \common\modules\articles\models\Acticle models
     @var \yii\data\Pagination pages
 #}
 
@@ -50,15 +50,17 @@
         <div class="article-block row">
             {% for article in models %}
                 <div class="item-article col-md-3">
-                    <div class="item-img" style="background: url(/images/{{ article.title_img | raw }})center center;">
+                    <div class="item-img" style="background: url({{ article.getTitleImg() }})center center;">
                         <a class='link-on-image-2'
                            href="{{ path('/articles/default/view', {'id' : article.slug}) }}"></a>
-                        <div class="title-article"><h4><a
-                                        href="{{ path('/articles/default/view', {'id' : article.slug}) }}">{{ article.name }}</a>
-                            </h4></div>
+                        <div class="title-article">
+                            <h4>
+                                <a href="{{ path('/articles/default/view', {'id' : article.slug}) }}">
+                                    {{ article.name }}
+                                </a>
+                            </h4>
+                        </div>
                     </div>
-
-
                 </div>
             {% else %}
                 <div class="alert alert-danger" role="alert">
@@ -67,8 +69,6 @@
             {% endfor %}
             <div class="clearfix"></div>
         </div>
-
-
     </div>
 
 {% endblock %}

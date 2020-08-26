@@ -2,6 +2,8 @@
 
 namespace common\modules\articles\models;
 
+use Yii;
+
 /**
  * Статьи
  * @package common\modules\articles\models
@@ -91,5 +93,16 @@ class Article extends \yii\db\ActiveRecord
     public function getArticlelink()
     {
         return $this->hasMany(ArticleLink::class, ['article_id' => 'article_id']);
+    }
+
+    public function getTitleImg()
+    {
+        $pathToImg = sprintf('%s/%s', Yii::getAlias($this->imagesPath), $this->title_img);
+
+        if (file_exists($pathToImg) && is_file($pathToImg)) {
+            return sprintf('/images/%s', $this->title_img);
+        }
+
+        return '/pics/no-photo.png';
     }
 }

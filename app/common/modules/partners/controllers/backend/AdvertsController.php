@@ -9,7 +9,7 @@ use yii\widgets\ActiveForm;
 use backend\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\ForbiddenHttpException;
-use backend\modules\partners\models\Advert;
+use common\modules\partners\models\backend\Advert;
 
 /**
  * AdvertsController implements the CRUD actions for ApartmentAdverts model.
@@ -17,6 +17,20 @@ use backend\modules\partners\models\Advert;
  */
 class AdvertsController extends Controller
 {
+    /**
+     * @inheritdoc
+     */
+    public function beforeAction($action)
+    {
+        if (!parent::beforeAction($action)) {
+            return false;
+        }
+
+        $this->module->viewPath = '@common/modules/partners/views/backend';
+
+        return true;
+    }
+
     /**
      * @inheritdoc
      */
