@@ -8,7 +8,7 @@
 
 $this->title = 'Редактировать сео спецификации';
 
-echo \backend\modules\admin\widgets\HeaderWidget::widget([
+echo \common\modules\admin\widgets\HeaderWidget::widget([
     'title' => 'Управление сео спецификациями',
     'description' => $this->title,
     'breadcrumb' => [
@@ -23,7 +23,7 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
     ]
 ]);
 
-echo \backend\modules\admin\widgets\ExtraControlWidget::widget([
+echo \common\modules\admin\widgets\ExtraControlWidget::widget([
     'control' => [
         [
             'url' => ['/seo/specification/create'],

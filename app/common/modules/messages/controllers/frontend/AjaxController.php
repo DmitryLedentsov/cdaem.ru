@@ -9,7 +9,7 @@ use common\modules\messages\models\Message;
 
 /**
  * Class AjaxController
- * @package frontend\modules\messages\controllers\frontend
+ * @package common\modules\messages\controllers\frontend
  */
 class AjaxController extends \frontend\components\Controller
 {

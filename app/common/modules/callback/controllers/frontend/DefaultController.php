@@ -8,8 +8,8 @@ use yii\widgets\ActiveForm;
 use common\modules\callback\models\CallbackForm;
 
 /**
- * Default Controller
- * @package frontend\modules\callback\controllers
+ * Class DefaultController
+ * @package common\modules\callback\controllers\frontend
  */
 class DefaultController extends \frontend\components\Controller
 {

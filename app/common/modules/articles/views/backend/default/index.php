@@ -12,7 +12,7 @@ use yii\grid\GridView;
 
 $this->title = 'Все статьи';
 
-echo \backend\modules\admin\widgets\HeaderWidget::widget([
+echo \common\modules\admin\widgets\HeaderWidget::widget([
     'title' => 'Управление статьями',
     'description' => $this->title,
     'breadcrumb' => [
@@ -23,7 +23,7 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
     ]
 ]);
 
-echo \backend\modules\admin\widgets\ExtraControlWidget::widget([
+echo \common\modules\admin\widgets\ExtraControlWidget::widget([
     'control' => [
         [
             'url' => ['/articles/default/create'],
@@ -78,26 +78,16 @@ echo \backend\modules\admin\widgets\ExtraControlWidget::widget([
         ],
 
         [
-            'attribute' => 'slug',
+            'attribute' => 'name',
             'format' => 'html',
             'contentOptions' => ['class' => 'text-left'],
             'value' => function ($model) {
                 if ($model->city) {
                     $url = str_replace('<city>', $model->city, Yii::$app->params['siteSubDomain']);
 
-                    return Html::a($url . '/stati/' . $model->slug, $url . '/stati/' . $model->slug);
+                    return Html::a($model->name, $url . '/stati/' . $model->slug);
                 }
 
-                return Html::a(Yii::$app->params['siteDomain'] . '/stati/' . $model->slug, Yii::$app->params['siteDomain'] . '/stati/' . $model->slug);
-            }
-        ],
-
-
-        [
-            'attribute' => 'name',
-            'format' => 'html',
-            'contentOptions' => ['class' => 'text-left'],
-            'value' => function ($model) {
                 return Html::a($model->name, Yii::$app->params['siteDomain'] . '/stati/' . $model->slug);
             }
         ],

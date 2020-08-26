@@ -6,8 +6,8 @@ use Yii;
 use yii\helpers\Json;
 use yii\validators\EmailValidator;
 use common\modules\users\models\User;
+use common\modules\partners\models\Advert;
 use common\modules\partners\models\Service;
-use frontend\modules\partners\models\Advert;
 use common\modules\partners\interfaces\ServiceInterface;
 
 /**
@@ -37,7 +37,7 @@ final class ContactsOpenToUser extends \yii\base\BaseObject implements ServiceIn
 
     /**
      * Объявление
-     * @var \frontend\modules\partners\models\Advert
+     * @var \common\modules\partners\models\Advert
      */
     private $_advert;
 

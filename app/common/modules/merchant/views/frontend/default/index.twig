@@ -1,0 +1,81 @@
+{#
+    История денежного оборота
+    @var \yii\web\View this
+    @var \common\modules\merchant\models\Payment model
+    @var \common\modules\merchant\models\Payment[] dataProvider
+    @var \yii\data\ActiveDataProvider
+#}
+
+{% extends "@common/modules/office/views/frontend/layouts/main.twig" %}
+
+{% block title %}{{ this.registerTitle('История денежного оборота - Личный кабинет | Сдаём.ру') }}{% endblock %}
+
+{% block header %}{% endblock %}
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        {{ use('yii/widgets/Breadcrumbs') }}
+        {{ breadcrumbs_widget({
+            'itemTemplate' : "<li>{link}</li>\n",
+            'homeLink' :
+            {
+                'label' : 'Главная',
+                'url' : '/'
+            },
+            'links':  [
+                {
+                    'label': 'Личный кабинет',
+                    'url' : ['/office/default/index']
+                },
+                {
+                    'label': 'История денежного оборота',
+                },
+            ],
+        }) }}
+    </div>
+{% endblock %}
+
+
+{% block content %}
+
+    <ul class="extra-menu">
+        <li><a href="{{ path(['/merchant/default/pay']) }}">Пополнить счет</a></li>
+    </ul>
+
+    <div class="container-certain primary text">
+
+        <h3>История денежного оборота:</h3>
+
+        <table class="table-history">
+            <thead>
+            <tr>
+                <th> {{ model.getAttributeLabel('date') | raw }}</th>
+                <th> {{ model.getAttributeLabel('funds') | raw }}</th>
+                <th> {{ model.getAttributeLabel('type') | raw }}</th>
+                <th> {{ model.getAttributeLabel('system') | raw }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for record in dataProvider.getModels() %}
+                <tr>
+                    <td class="date text-center">{{ DateTimeHelper.toFullDateTime(record.date) | raw }}</td>
+                    <td class="status text-center">{{ app.formatter.asCurrency(record.funds, 'RUB') | raw }}</td>
+                    <td class="text-center">{{ StatusHelper.getItem(model.typeArray, record.type) |raw }}</td>
+                    <td class="text-center">{{ StatusHelper.getItem(systemArray[record.module], record.system) |raw }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">Нет истории</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        {{ use('yii/widgets/LinkPager') }}
+        {{ link_pager_widget({
+            'pagination' : dataProvider.pagination
+        }) }}
+
+    </div>
+
+{% endblock content %}

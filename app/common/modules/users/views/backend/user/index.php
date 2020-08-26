@@ -12,7 +12,7 @@ use yii\helpers\ArrayHelper;
 
 $this->title = Yii::t('users', 'USER_ALL');
 
-echo \backend\modules\admin\widgets\HeaderWidget::widget([
+echo \common\modules\admin\widgets\HeaderWidget::widget([
     'title' => 'Управление пользователями',
     'description' => $this->title,
     'breadcrumb' => [

@@ -8,7 +8,6 @@ use yii\helpers\ArrayHelper;
 use common\modules\geo\models\City;
 use common\modules\geo\models\Country;
 use common\modules\partners\traits\ModuleTrait;
-use frontend\modules\partners\models\MetroStations;
 use common\modules\partners\models\scopes\ApartmentQuery;
 use common\modules\realty\models\Apartment as TotalApartment;
 

@@ -156,7 +156,7 @@ final class AdvertTopPosition extends \yii\base\BaseObject implements ServiceInt
         // Проверяем объявления
         foreach ($this->_selected as $advertId) {
             $ExistValidator = new ExistValidator();
-            $ExistValidator->targetClass = '\frontend\modules\partners\models\Advert';
+            $ExistValidator->targetClass = \common\modules\partners\models\Advert::class;
             $ExistValidator->targetAttribute = 'advert_id';
 
             if (!$ExistValidator->validate($advertId)) {

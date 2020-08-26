@@ -1,10 +1,5 @@
 <?php
 
-$params = array_merge(
-    require(__DIR__ . '/../../../common/config/params.php'),
-    require(__DIR__ . '/../../../common/config/params-local.php')
-);
-
 return [
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
@@ -25,9 +20,9 @@ return [
 
         common\modules\geo\BootstrapFrontend::class,
 
-        frontend\modules\office\Bootstrap::class,
-        frontend\modules\merchant\Bootstrap::class,
-        frontend\modules\partners\Bootstrap::class,
+        common\modules\office\BootstrapFrontend::class,
+        common\modules\merchant\BootstrapFrontend::class,
+        common\modules\partners\BootstrapFrontend::class,
 
         common\modules\agency\BootstrapFrontend::class,
         common\modules\seo\BootstrapFrontend::class,
@@ -93,13 +88,16 @@ return [
             'controllerNamespace' => 'common\modules\geo\controllers\frontend',
         ],
         'partners' => [
-            'class' => frontend\modules\partners\Module::class,
+            'class' => common\modules\partners\Module::class,
+            'controllerNamespace' => 'common\modules\partners\controllers\frontend',
         ],
         'office' => [
-            'class' => frontend\modules\office\Module::class,
+            'class' => common\modules\office\Module::class,
+            'controllerNamespace' => 'common\modules\office\controllers\frontend',
         ],
         'merchant' => [
-            'class' => frontend\modules\merchant\Module::class,
+            'class' => common\modules\merchant\Module::class,
+            'controllerNamespace' => 'common\modules\merchant\controllers\frontend',
         ],
     ],
     'components' => [
@@ -159,7 +157,7 @@ return [
                         'StatusHelper' => ['class' => \nepster\basis\helpers\StatusHelper::class],
                         'UserHelper' => ['class' => \common\modules\users\helpers\UserHelper::class],
                         'ArrayHelper' => ['class' => \yii\helpers\ArrayHelper::class],
-                        'ApartmentHelper' => ['class' => \frontend\modules\partners\helpers\ApartmentHelper::class],
+                        'ApartmentHelper' => ['class' => \common\modules\partners\helpers\ApartmentHelper::class],
                         'html' => ['class' => \yii\helpers\Html::class],
                         'url' => ['class' => \yii\helpers\Url::class],
                         'pos_begin' => \yii\web\View::POS_BEGIN,
@@ -184,7 +182,7 @@ return [
             'basePath' => '@webroot/assets',
             'baseUrl' => '@web/assets',
             'bundles' => [
-                'yii\web\JqueryAsset' => [
+                \yii\web\JqueryAsset::class => [
                     'sourcePath' => null,
                     'js' => [
                         'https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js',
@@ -193,5 +191,4 @@ return [
             ],
         ],
     ],
-    'params' => $params,
 ];

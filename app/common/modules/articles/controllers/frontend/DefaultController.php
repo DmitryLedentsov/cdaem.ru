@@ -10,7 +10,7 @@ use common\modules\articles\models\Article;
 
 /**
  * Статьи
- * @package frontend\modules\articles\controllers
+ * @package common\modules\articles\controllers
  */
 class DefaultController extends \frontend\components\Controller
 {
@@ -68,7 +68,7 @@ class DefaultController extends \frontend\components\Controller
         if (is_string($id)) {
             $query->where('slug = :slug', [':slug' => $id]);
         } else {
-            $query->where('acticle_id = :id', [':slug' => $id]);
+            $query->where('article_id = :id', [':slug' => $id]);
         }
 
         if (!is_null($city)) {
@@ -80,7 +80,7 @@ class DefaultController extends \frontend\components\Controller
         $model = $query->one();
 
         if (!$model) {
-            $url = Url::toRoute(['/acticles/default/view', 'url' => $id], true);
+            $url = Url::toRoute(['/articles/default/view', 'url' => $id], true);
             $url = Html::a($url, $url);
 
             throw new HttpException(404, 'Статьи по адресу ' . $url . ' не существует.');
@@ -116,7 +116,6 @@ class DefaultController extends \frontend\components\Controller
         $pages->defaultPageSize = $this->module->recordsPerPage;
         $models = $query->offset($pages->offset)
             ->limit($pages->limit)
-            ->asArray()
             ->all();
 
         return $this->render('index.twig', [
@@ -143,9 +142,7 @@ class DefaultController extends \frontend\components\Controller
             $query->where('city IS NULL');
         }
 
-        $models = $query
-            ->asArray()
-            ->all();
+        $models = $query->all();
 
         return $this->render('news.twig', [
             'model' => $model,

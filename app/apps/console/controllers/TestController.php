@@ -3,12 +3,9 @@
 namespace console\controllers;
 
 use Yii;
-use yii\log\Logger;
-use yii\helpers\Console;
-use nepster\users\helpers\Security;
 
 /**
- * Test Controller
+ * Class TestController
  * @package console\controllers
  */
 class TestController extends \yii\console\Controller

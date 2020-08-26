@@ -1,7 +1,7 @@
 {#
     Просмотр статьи
     @var \yii\web\View this
-    @var \frontend\acticles\models\Acticle model
+    @var \common\modules\articles\models\Acticle model
 #}
 
 {% extends "@app/themes/basic/layouts/main.twig" %}
@@ -14,7 +14,7 @@
 {% endblock %}
 
 {% block navbar %}
-    {% include("@frontend/modules/office/views/layouts/navbar.twig") %}
+    {% include("@common/modules/office/views/frontend/layouts/navbar.twig") %}
 {% endblock %}
 
 

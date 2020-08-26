@@ -13,7 +13,7 @@ use yii\grid\GridView;
 
 $this->title = 'Все отзывы';
 
-echo \backend\modules\admin\widgets\HeaderWidget::widget([
+echo \common\modules\admin\widgets\HeaderWidget::widget([
     'title' => 'Управление отзывами',
     'description' => $this->title,
     'breadcrumb' => [
@@ -24,7 +24,7 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
     ]
 ]);
 
-echo \backend\modules\admin\widgets\ExtraControlWidget::widget([
+echo \common\modules\admin\widgets\ExtraControlWidget::widget([
     'control' => [
         [
             'url' => ['/reviews/default/create'],

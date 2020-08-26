@@ -11,7 +11,7 @@ use common\modules\agency\traits\ModuleTrait;
 
 /**
  * Хочу сдать квартиру
- * @package frontend\modules\agency\models\form
+ * @package common\modules\agency\models\form
  */
 class WantPassForm extends Model
 {

@@ -1,0 +1,38 @@
+{% if otherAdverts %}
+
+    {{ use('common/modules/partners/widgets/frontend/PreviewAdvertTmp') }}
+
+    {{ use('frontend/themes/basic/assets/SliderAsset') }}
+    {{ register_slider_asset() }}
+
+
+    <div class="other-offers clearfix">
+        <div class="other-offers-title">Другие предложения владельца:</div>
+        <div role="tabpanel">
+            <div class="options-group clearfix">
+                <div class="options">
+                    <ul class="nav-tabs clearfix" role="tablist">
+                        {% for rentTypeSlug, adverts in otherAdverts %}
+                            <li {% if loop.first %}class="active"{% endif %}><a href="#{{ rentTypeSlug|split(',')[0] }}"
+                                                                                data-toggle="tab">{{ rentTypeSlug|split(',')[1] }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <br/>
+            <div class="tab-content">
+                {% for rentTypeSlug, adverts in otherAdverts %}
+                    <div id="{{ rentTypeSlug|split(',')[0] }}" class="tab-pane {% if loop.first %}active{% endif %}">
+                        {% for advert in adverts %}
+                            <div style="padding: 5px; display: inline-block">
+                                {{ preview_advert_tmp_widget({'advert' : advert}) }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <p><br/></p>
+{% endif %}

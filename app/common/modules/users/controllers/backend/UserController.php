@@ -221,7 +221,7 @@ class UserController extends Controller
 
         $user = $this->findModel($id);
         $user->status = $user::STATUS_DELETED;
-        $apartmentsByUser = \frontend\modules\partners\models\Apartment::findApartmentsByUser($user->id);
+        $apartmentsByUser = \common\modules\partners\models\Apartment::findApartmentsByUser($user->id);
         if (empty($apartmentsByUser) and $user->status == $user::STATUS_DELETED) {
             $user->delete();
         }

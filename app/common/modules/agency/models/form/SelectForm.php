@@ -8,7 +8,7 @@ use common\modules\agency\models\Select;
 
 /**
  * Форма, Быстро подберём квартиру
- * @package frontend\modules\agency\models\form
+ * @package common\modules\agency\models\form
  */
 class SelectForm extends Model
 {

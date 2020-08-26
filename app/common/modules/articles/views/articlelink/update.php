@@ -11,7 +11,7 @@ use yii\widgets\DetailView;
 
 $this->title = 'Редактировать рекламу';
 
-echo \backend\modules\admin\widgets\HeaderWidget::widget([
+echo \common\modules\admin\widgets\HeaderWidget::widget([
     'title' => 'Управление ссылками к статьям',
     'description' => $this->title,
     'breadcrumb' => [
@@ -27,7 +27,7 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
 ]);
 
 
-echo \backend\modules\admin\widgets\ExtraControlWidget::widget([
+echo \common\modules\admin\widgets\ExtraControlWidget::widget([
     'control' => [
         [
             'url' => ['/articles/articlelink/create'],

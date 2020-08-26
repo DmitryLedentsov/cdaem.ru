@@ -1,0 +1,279 @@
+{#
+    Форма объявления
+    @var \yii\web\View this
+    @var common\modules\partners\models\frontend\form\ApartmentForm apartment
+    @var common\modules\partners\models\frontend\form\AdvertForm advert
+    @var common\modules\partners\models\frontend\form\ImageForm image
+    @var array rentTypes
+#}
+
+{{ use('common/modules/partners/assets/frontend/ApartmentAsset') }}
+{{ register_apartment_asset() }}
+
+{{ use('common/modules/geo/assets/frontend/YMapAsset') }}
+{{ register_y_map_asset() }}
+
+{{ use('common/modules/geo/assets/frontend/MetroMskAsset') }}
+{{ register_metro_msk_asset() }}
+
+
+{% set form = active_form_begin({
+    'id' : 'form-apartment',
+    'enableAjaxValidation' : true,
+    'enableClientValidation': false,
+    'validateOnBlur': false,
+    'validateOnChange': false,
+    'enableClientScript' : false,
+    'options' : {'enctype' : 'multipart/form-data', 'class' : 'horizontal'},
+}) %}
+<div class="apartment-form-section">
+    <div class="title"><span>1</span> Объявления</div>
+
+    <div class="clearfix margin">
+        <div class="item">
+            <div class="rent-type-list" id="rent-type-list">
+                {{ form.field(advert, 'rent_type', {'options' : {'class' : 'white form-group required'},
+                    'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'
+                }).checkBoxList(advert.rentTypesList) | raw }}
+            </div>
+        </div>
+
+        {% for rentTypeId, rentType in rentTypes %}
+            <div class="price-type-list {{ rentType.advert is not empty ? 'show' : '' }}"
+                 id="rent-type-{{ rentTypeId }}">
+                <div class="title">{{ rentType.name }}</div>
+                <div class="form-group field-advertform-type-{{ rentTypeId }}">
+                    <div class="col-l">
+                        <label class="control-label"
+                               for="apartment-metro_walk">{{ advert.getAttributeLabel('price') }}</label>
+                    </div>
+                    <div class="col-i">
+                        {{ html.hiddenInput(advert.formName() ~ '[type][' ~ rentTypeId ~ ']', '', {'id' : 'advertform-type-' ~ rentTypeId}) | raw }}
+                        {% if rentType.advert is not empty %}
+                            {% set field = form.field(advert, 'price[' ~ rentTypeId ~ ']') %}
+                            <div style="float: left">
+                                {{ html.activeTextInput(advert, 'price[' ~ rentTypeId ~ ']', {
+                                    'value': rentType.advert.price,
+                                    'class' : 'form-control select-white', 'style' : 'display:inline-block; width: 150px; height: 45px;'
+                                }) | raw }}
+                            </div>
+                            <div style="width: 100px; float: left; margin-left: 10px;">
+                                {% set field = form.field(advert, 'currency[' ~ rentTypeId ~ ']') %}
+                                {{ html.activeDropDownList(advert, 'currency[' ~ rentTypeId ~ ']', advert.currencyList, {
+                                    'class' : 'form-control select-white', 'style' : 'display:inline-block; width: auto',
+                                    'options' : { (rentType.advert.currency) : {' selected' : true} }
+                                }) | raw }}
+                            </div>
+                        {% else %}
+                            <div style="float: left">
+                                {% set field = form.field(advert, 'price[' ~ rentTypeId ~ ']') %}
+                                {{ html.activeTextInput(advert, 'price[' ~ rentTypeId ~ ']', {
+                                    'class' : 'form-control select-white', 'style' : 'display:inline-block; width: 150px; height: 45px;'
+                                }) | raw }}
+                            </div>
+                            <div style="width: 100px; float: left; margin-left: 10px;">
+                                {% set field = form.field(advert, 'currency[' ~ rentTypeId ~ ']') %}
+                                {{ html.activeDropDownList(advert, 'currency[' ~ rentTypeId ~ ']', advert.currencyList, {
+                                    'class' : 'form-control select-white', 'style' : 'display:inline-block; width: auto'
+                                }) | raw }}
+                            </div>
+                        {% endif %}
+                        <div class="help-block"></div>
+                    </div>
+                </div>
+
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="apartment-form-section">
+    <div class="title"><span>2</span> Дополнительная информация</div>
+    <div class="clearfix margin">
+        <div class="item r3">
+            {{ form.field(apartment, 'total_area', {
+                'template' : '<div class="col-l">{label}</div> <div class="col-i"><div class="small">{input}</div>{error}</div>',
+                'inputOptions' : {
+                    'class' : 'form-control',
+                    'placeholder' : 'Например: 77',
+                }
+            }) | raw }}
+        </div>
+        <div class="item r3">
+            {{ form.field(apartment, 'apartment', {
+                'template' : '<div class="col-l">{label}</div> <div class="col-i"><div class="small">{input}</div>{error}</div>',
+                'inputOptions' : {
+                    'class' : 'form-control',
+                    'placeholder' : 'Например: 27',
+                }
+            }) | raw }}
+        </div>
+        <div class="item r3">
+            {{ form.field(apartment, 'floor', {
+                'template' : '<div class="col-l">{label}</div> <div class="col-i"><div class="small">{input}</div>{error}</div>',
+                'inputOptions' : {
+                    'class' : 'form-control',
+                    'placeholder' : 'Например: 7',
+                }
+            }) | raw }}
+        </div>
+    </div>
+
+    <div class="clearfix margin">
+        <div class="item r3">
+            {{ form.field(apartment, 'remont', {
+                'template' : '<div class="col-l">{label}</div> <div class="col-i"><div class="medium">{input}</div>{error}</div>'
+            }).dropDownList(apartment.remontList, {'class' : 'form-control select-white', 'prompt' : apartment.scenario == 'user-create' ? 'Выбрать' : null}) | raw }}
+        </div>
+        <div class="item r3">
+            {{ form.field(apartment, 'total_rooms', {
+                'template' : '<div class="col-l">{label}</div> <div class="col-i"><div class="medium">{input}</div>{error}</div>'
+            }).dropDownList(apartment.roomsList, {'class' : 'form-control select-white', 'prompt' : apartment.scenario == 'user-create' ? 'Выбрать' : null}) | raw }}
+        </div>
+        <div class="item r3">
+            {{ form.field(apartment, 'beds', {
+                'template' : '<div class="col-l">{label}</div> <div class="col-i"><div class="medium">{input}</div>{error}</div>'
+            }).dropDownList(apartment.bedsList, {'class' : 'form-control select-white', 'prompt' : apartment.scenario == 'user-create' ? 'Выбрать' : null}) | raw }}
+        </div>
+    </div>
+
+    <div class="clearfix margin">
+        <div class="item r3">
+            {{ form.field(apartment, 'metro_walk', {
+                'template' : '<div class="col-l">{label}</div> <div class="col-i"><div class="small">{input}</div>{error}</div>',
+            }).dropDownList(apartment.metroWalkList, {'class' : 'form-control select-white', 'prompt' : apartment.scenario == 'user-create' ? 'Выбрать' : null}) | raw }}
+        </div>
+        <div class="item r2 no-label">
+            {{ form.field(apartment, 'visible', {
+                'template' : '<div class="col-l"></div> <div class="col-i"><div class="small">{input}</div> (Будет ли отображаться Ваш объект на сайте).{error}</div>',
+            }).checkbox() | raw }}
+        </div>
+    </div>
+
+    <div class="clearfix margin">
+        <div class="item">
+            {{ form.field(apartment, 'description', {
+                'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>',
+                'inputOptions' : {
+                    'class' : 'form-control',
+                    'placeholder' : 'По желанию Вы можете указать дополнительную информацию о недвижимости.',
+                }
+            }).textArea({'style' : 'min-height: 250px; max-height: 500px;'}) | raw }}
+        </div>
+    </div>
+</div>
+
+
+<div class="apartment-form-section">
+    <div class="title"><span>3</span> Местонахождение</div>
+    <div class="margin">
+        <div class="form-group required">
+            <div class="col-l"><label class="control-label">{{ apartment.getAttributeLabel('city') }}</label></div>
+            <div class="col-i">
+                <span data-toggle="modal" data-target="#modal-select-city" class="link"
+                      id="select-city-name">{{ apartment.scenario == 'user-create' ? 'Выбрать' : apartment.city.country.name ~ ', ' ~ apartment.city.name }}</span>
+                {{ html.activeHiddenInput(apartment, 'city_id') | raw }}
+                <div class="help-block"></div>
+            </div>
+        </div>
+
+
+        <div id="metro-selection" {{ apartment.city.hasMetro() ? '' : 'class="hidden"' }}>
+            {{ form.field(apartment, 'metro_array').begin({'enableClientValidation' : false}) | raw }}
+            <div class="col-l">{{ html.activeLabel(apartment, 'metro_array', {'class' : 'control-label'}) | raw }}</div>
+            <div class="col-i">
+                <strong class="text-fix"><a href="#" id="open-subway-map">Выбрать на карте</a></strong>
+                {{ html.activeHiddenInput(apartment, 'metro_array') | raw }}
+                {{ html.error(apartment,'metro_array', {'class': 'help-block'}) | raw }}
+                <div id="metro-selected-list" data-input-name="ApartmentForm[metro_array][]">
+                    {% for metroStation in apartment.metroStations %}
+                        <p id="{{ metroStation.metro.getClientMetroIdByDbMetroIdFromCity(metroStation.metro_id, apartment.city.city_id) }}">
+                            <span class="remove">X</span> {{ metroStation.metro.name }} <input
+                                    name="ApartmentForm[metro_array][]" value="{{ metroStation.metro_id }}"
+                                    type="hidden"></p>
+                    {% endfor %}
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            {{ form.field(apartment, 'metro_array').end() | raw }}
+            {# -------------------------------------------------------- #}
+            <div class="modal fade" id="modal-subway-map" data-title="Выбрать на карте Москвы">
+                <div class="form-group text-center">
+                    <input type="button" class="close-modal btn btn-primary" value="Выбрать"/>
+                </div>
+                <div class="map"></div>
+                <br/>
+                <div class="form-group text-center">
+                    <input type="button" class="close-modal btn btn-primary" value="Выбрать"/>
+                </div>
+            </div>
+            {# -------------------------------------------------------- #}
+        </div>
+
+
+        {{ form.field(apartment, 'address', {
+            'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>',
+            'inputOptions' : {
+                'class' : 'form-control',
+                'placeholder' : 'Например: Ул. Ленина 17/1',
+            }
+        }) | raw }}
+        <div id="liveYmap" style="width: 100%; height: 300px" data-address-tag="apartmentform-address"
+             data-city-tag="select-city-name"></div>
+    </div>
+</div>
+
+<div class="apartment-form-section">
+    <div class="title"><span>4</span> Фотографии <sup>(Максимум 10)</sup></div>
+    <br/>
+    <div class="margin">
+        <div class="form-group images-preview">
+            <div class="alert alert-info">
+                <b>Внимание:</b> Вы можете выбрать несколько фотографий. Кликните на фото и удерживайте клавишу CTRL.
+            </div>
+            {% for image in apartment.images %}
+                <div class="advert-preview loaded shadow-box{{ image.default_img ? ' default' : '' }}"
+                     data-image="{{ image.image_id }}">
+                    <div class="control">
+                        {{ image.default_img ? '' : '<div class="index" title="Сделать главным"></div>' }}
+                        <div class="delete" title="Удалить"></div>
+                    </div>
+                    <div class="apartment-wrap">
+                        <div class="image">
+                            <img src="{{ image.previewSrc }}" alt="">
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            <div id="images-preview"></div>
+        </div>
+        {{ form.field(image, 'files[]', {
+            'template' : '<span class="btn btn-primary btn-file">'~image.getAttributeLabel('files')~'{input}</span>{error}'
+        }).label(false).fileInput({'multiple' : 'multiple'}) | raw }}
+    </div>
+</div>
+
+<div class="form-group text-right">
+    <input type="submit" value="Сохранить данные" class="btn btn-orange"/>
+</div>
+
+{{ active_form_end() }}
+
+{#
+    Модальное окно выбора города
+#}
+<div id="modal-select-city" class="modal fade" data-title="Выбрать город">
+    <div class="form-group">
+        {{ html.textInput('city', null, {
+            'class' : 'form-control city-drop-down-list',
+            'data-url' : path(['/geo/ajax/select-city']),
+            'placeholder' : 'Введите название города',
+            'id': 'input-select-city'
+        }) | raw }}
+    </div>
+    <br/>
+    <div class="form-group text-center" style="display: none">
+        <input type="submit" value="Указать" class="btn btn-primary" id="button-select-city"
+               data-target-city-id="apartmentform-city_id" data-target-select-city="#select-city-name"/>
+    </div>
+</div>

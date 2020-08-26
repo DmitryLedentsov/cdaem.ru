@@ -1,8 +1,8 @@
 {#
     Все статьи
     @var \yii\web\View this
-    @var \frontend\acticles\models\Acticle model
-    @var \frontend\acticles\models\Acticle models
+    @var \common\modules\articles\models\Acticle model
+    @var \common\modules\articles\models\Acticle models
     @var \yii\data\Pagination pages
 #}
 
@@ -16,7 +16,7 @@
 {% endblock %}
 
 {% block navbar %}
-    {{ this.renderDynamic('return $this->render("@frontend/modules/office/views/layouts/navbar.twig");') | raw }}
+    {{ this.renderDynamic('return $this->render("@common/modules/office/views/frontend/layouts/navbar.twig");') | raw }}
 {% endblock %}
 
 {% block breadcrumbs %}
@@ -49,10 +49,14 @@
         <div class="article-block row">
             {% for article in models %}
                 <div class="item-article col-md-3">
-                    <div class="item-img" style="background: url(/images/{{ article.title_img | raw }})center center;">
-                        <div class="title-article"><h4><a
-                                        href="{{ path('/articles/default/view', {'id' : article.slug}) }}">{{ article.name }}</a>
-                            </h4></div>
+                    <div class="item-img" style="background: url({{ article.getTitleImg() }})center center;">
+                        <div class="title-article">
+                            <h4>
+                                <a href="{{ path('/articles/default/view', {'id' : article.slug}) }}">
+                                    {{ article.name }}
+                                </a>
+                            </h4>
+                        </div>
                     </div>
                 </div>
             {% else %}

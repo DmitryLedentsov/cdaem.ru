@@ -1,0 +1,120 @@
+{#
+    Купить рекламу
+    @var \yii\web\View this
+    @var \common\modules\partners\models\AdvertisementForm advertisementForm
+#}
+
+{% extends "@common/modules/office/views/frontend/layouts/main.twig" %}
+
+{% block title %}{{ this.registerTitle('Реклама | Сдаём.ру') }}{% endblock %}
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        {{ use('yii/widgets/Breadcrumbs') }}
+        {{ breadcrumbs_widget({
+            'itemTemplate' : "<li>{link}</li>\n",
+            'homeLink' :
+            {
+                'label' : 'Главная',
+                'url' : '/'
+            },
+            'links':  [
+                {
+                    'label': 'Доска объявлений',
+                    'url': ['/partners/default/index'],
+                },
+                {
+                    'label': 'Реклама',
+                },
+            ],
+        }) }}
+    </div>
+{% endblock %}
+
+
+{% block sidebar %}
+    {% if app.user.identity.profile.user_type != constant('\\common\\modules\\users\\models\\Profile::WANT_RENT') %}
+        {{ this.render("@common/modules/office/views/frontend/layouts/services.twig") | raw }}
+    {% endif %}
+{% endblock %}
+
+
+{% block content %}
+
+    {{ this.registerMetaTag({'name' : 'description', 'content' : ''}) }}
+    {{ this.registerMetaTag({'name' : 'keywords', 'content' : ''}) }}
+
+    {{ use('common/modules/partners/assets/frontend/AdvertisementAsset') }}
+    {{ register_advertisement_asset() }}
+
+    <div class="container-certain primary text" style="width: 90%;">
+
+        <h3>Разместить рекламное объявление</h3>
+
+        <div class="desc">
+            Для того, чтобы разместить рекламное объявление, Вам необходимо заполнить данную форму и оплатить
+            <b>{{ app.getModule('partners').priceAdvertisement }} рублей</b>. <br/>
+            Всего в рекламном блоке доступно <b>{{ app.getModule('partners').amountAdvertisements }} объявлений</b>, Вы
+            становитесь на первое место и каждый следеющий блок будет смещать Ваше объявление на одну позицию,
+            пока оно полностью не исчезнет. Вы можете приобретать неограниченное кол-во рекламных объявлений.
+        </div>
+
+        {% set form = active_form_begin({
+            'id' : 'form-buy-ads',
+            'options' : {'class' : 'horizontal'},
+            'enableClientScript': false,
+        }) %}
+
+        <div class="general-form buy-ads clearfix">
+
+            <div class="section">
+
+                {{ form.field(advertisementForm, 'type', {
+                    'options' : {'class' : 'form-group'},
+                    'inputOptions' : {'class' : 'select-white'},
+                    'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'
+                }).dropDownList(advertisementForm.typeArray) | raw }}
+
+                {{ form.field(advertisementForm, 'label', {
+                    'options' : {'class' : 'form-group'},
+                    'inputOptions' : {'class' : 'select-white'},
+                    'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'
+                }).dropDownList(advertisementForm.labelArray) | raw }}
+
+                {{ form.field(advertisementForm, 'advert_id', {
+                    'options' : {'class' : 'form-group', 'id' : 'group-add-in-top'},
+                    'template' : '<div class="col-l">{label}</div> <div class="col-i"><span class="link" id="add-in-slider" data-service="'~constant('SERVICE_ADVERTISING_TOP_SLIDER', Service)~'">Выбрать</span>{input}{error}</div>',
+                }).hiddenInput() | raw }}
+
+                {{ form.field(advertisementForm, 'more_info', {
+                    'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>',
+                    'options' : {'class' : 'form-group'}
+                }).textarea() | raw }}
+
+            </div>
+
+
+            <div class="section">
+                <div class="desc right">
+                    <h4>Информация</h4>
+                    <p>
+                        После заполнения формы Вам необходимо оплатить необходимую сумму, это можно сделать мгновенно
+                        списав средства со своего внутреннего счета или оплатить через платежную систему.
+                        После оплаты рекламное объявление будет добавленно в течении нескольких секунд.
+                    </p>
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="form-group text-right">
+                <input type="submit" value="Отправить" class="btn btn-primary"/>
+            </div>
+
+        </div>
+
+        {{ active_form_end() }}
+
+    </div>
+
+{% endblock content %}

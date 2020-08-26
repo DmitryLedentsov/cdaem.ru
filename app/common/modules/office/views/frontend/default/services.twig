@@ -1,0 +1,110 @@
+{#
+    Услуги
+    @var \yii\web\View this
+#}
+
+{% extends "@common/modules/office/views/frontend/layouts/main.twig" %}
+
+{% block title %}{{ this.registerTitle('Услуги - Личный кабинет | Сдаём.ру') }}{% endblock %}
+
+{% block header %}{% endblock %}
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        {{ use('yii/widgets/Breadcrumbs') }}
+        {{ breadcrumbs_widget({
+            'itemTemplate' : "<li>{link}</li>\n",
+            'homeLink' :
+            {
+                'label' : 'Главная',
+                'url' : '/'
+            },
+            'links':  [
+                {
+                    'label': 'Личный кабинет',
+                    'url' : ['/office/default/index']
+                },
+                {
+                    'label': 'Услуги',
+                },
+            ],
+        }) }}
+    </div>
+{% endblock %}
+
+
+{% block content %}
+
+    {{ use('frontend/themes/basic/assets/DateTimeAsset') }}
+    {{ register_date_time_asset() }}
+    <h4 style="text-align:center;border-bottom:2px solid orange;font-size:30px;">Услуги</h4>
+    <div class="services-wrap">
+        <ul id="services">
+
+            <li class="service" data-type="{{ constant('SERVICE_ADVERT_IN_TOP', Service) }}">
+                <div class="service-logo">
+                    <span class="service-icon-big top"></span>
+                </div>
+                <div class="service-name">{{ app.service.load(constant('SERVICE_ADVERT_IN_TOP', Service)).getName() }}</div>
+                <div class="service-desc">
+                    Увеличение просмотра вашего объявления в верхней части, специально отведенном месте для «ТОП»!
+                    Большое преимущество и экономия финансов.
+                </div>
+            </li>
+
+            <li class="service" data-type="{{ constant('SERVICE_ADVERT_TOP_POSITION', Service) }}">
+                <div class="service-logo">
+                    <span class="service-icon-big top-position"></span>
+                </div>
+                <div class="service-name">{{ app.service.load(constant('SERVICE_ADVERT_TOP_POSITION', Service)).getName() }}</div>
+                <div class="service-desc">
+                    Увеличение посещаемости объявления при поднятии на первое место.
+                </div>
+            </li>
+
+            <li class="service" data-type="{{ constant('SERVICE_APARTMENT_CONTACTS_OPEN', Service) }}">
+                <div class="service-logo">
+                    <span class="service-icon-big contacts-open"></span>
+                </div>
+                <div class="service-name">{{ app.service.load(constant('SERVICE_APARTMENT_CONTACTS_OPEN', Service)).getName() }}</div>
+                <div class="service-desc">
+                    Пользователь изъявил желание не открывать контакты, а получать результативные брони с помощью заявок
+                    или дождаться звонка!
+                </div>
+            </li>
+
+            <li class="service" data-type="{{ constant('SERVICE_ADVERT_SELECTED', Service) }}">
+                <div class="service-logo">
+                    <span class="service-icon-big selected"></span>
+                </div>
+                <div class="service-name">{{ app.service.load(constant('SERVICE_ADVERT_SELECTED', Service)).getName() }}</div>
+                <div class="service-desc">
+                    Дает возможность сильно выделяться и завлекать пользователей!
+                </div>
+            </li>
+
+            <li class="service" data-type="{{ constant('SERVICE_ADVERTISING_IN_SECTION', Service) }}">
+                <div class="service-logo">
+                    <span class="service-icon-big a-one-section"></span>
+                </div>
+                <div class="service-name">{{ app.service.load(constant('SERVICE_ADVERTISING_IN_SECTION', Service)).getName() }}</div>
+                <div class="service-desc">
+                    Возможность рекламировать свои объекты по разделам, огромное преимущество и экономия финансов.
+                </div>
+            </li>
+            <li class="service">
+                <a href="{{ path({0 : '/office/default/buy-ads'}) }}">
+                    <div class="service-logo">
+                        <span class="service-icon-big top-slider"></span>
+                    </div>
+                    <div class="service-name">{{ app.service.load(constant('SERVICE_ADVERTISING_TOP_SLIDER', Service)).getName() }}</div>
+                    <div class="service-desc">
+                        Быстрый результат размещения своего объекта, попасть верхнюю бегущею строку.
+                    </div>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+
+{% endblock content %}

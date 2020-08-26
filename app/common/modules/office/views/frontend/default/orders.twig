@@ -1,0 +1,89 @@
+{#
+    Мои покупки
+    @var \yii\web\View this
+    @var \yii\data\ActiveDataProvider dataProvider
+#}
+
+{% extends "@common/modules/office/views/frontend/layouts/main.twig" %}
+
+{% block title %}{{ this.registerTitle('Мои покупки - Личный кабинет | Сдаём.ру') }}{% endblock %}
+
+{% block header %}{% endblock %}
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        {{ use('yii/widgets/Breadcrumbs') }}
+        {{ breadcrumbs_widget({
+            'itemTemplate' : "<li>{link}</li>\n",
+            'homeLink' :
+            {
+                'label' : 'Главная',
+                'url' : '/'
+            },
+            'links':  [
+                {
+                    'label': 'Личный кабинет',
+                    'url' : ['/office/default/index']
+                },
+                {
+                    'label': 'Мои покупки',
+                },
+            ],
+        }) }}
+    </div>
+{% endblock %}
+
+
+{% block sidebar %}
+    {{ this.render("@common/modules/office/views/frontend/layouts/services.twig") | raw }}
+{% endblock %}
+
+
+{% block content %}
+    <h4 style="text-align:center;border-bottom:2px solid orange;font-size:30px;">Мои покупки</h4>
+    {% if app.session.hasFlash('info') %}
+        <div class="alert alert-info" role="alert">
+            {{ app.session.getFlash('info') | raw }}
+        </div> <br/>
+    {% endif %}
+
+    {% for process in dataProvider.getModels() %}
+
+        <div class="apartment-item clearfix {% if process.process == 1 %}closed{% endif %}">
+            <div class="apartment-description">
+                <h3> {{ app.service.load(process.service).getName() }}</h3>
+                <div class="apartment-blocks">
+                    <div class="extra-list">
+                        <p>
+                            Дата включения: <br> {{ DateTimeHelper.toFullDateTime(process.date_start) | raw }} <br/>
+                            Дата выключения: <br>
+                            {% if process.date_expire is not empty %}
+                                {{ DateTimeHelper.toFullDateTime(process.date_expire) | raw }}
+                            {% else %}
+                                Нет
+                            {% endif %}
+                        </p>
+                    </div>
+                    <div class="extra-list">
+                        <br/>
+                        <b>Статус услуги</b>
+                        <p> {{ StatusHelper.getItem(process.getProcessArray(), process.process) |raw }}</p>
+                    </div>
+                    <div class="extra-list">
+                        <br>
+                        <p class="color-success" style="font-size: 140%">Оплачено</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% else %}
+        <div class="alert alert-info">
+            У Вас нет ни одного заказа. <a href="{{ path(['/office/default/services']) }}">Услуги</a>.
+        </div>
+    {% endfor %}
+
+    {{ use ('yii/widgets/LinkPager') }}
+    {{ link_pager_widget({'pagination' : dataProvider.pagination}) }}
+
+{% endblock content %}

@@ -49,7 +49,7 @@ class Module extends \yii\base\Module
         }, Yii::$app->service->services);
 
         $this->systems = [
-            'merchant' => array_merge(\frontend\modules\merchant\models\Invoice::getTypesArray(), [
+            'merchant' => array_merge(\common\modules\merchant\models\Invoice::getTypesArray(), [
                 'system' => [
                     'label' => 'Система',
                     'style' => '',

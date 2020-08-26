@@ -46,10 +46,10 @@ class MailboxSearch extends Mailbox
         $query = Mailbox::find()
             ->deleted(0)
             ->thisUser()
-            ->groupBy('`interlocutor_id` DESC')
+         //   ->groupBy('`interlocutor_id` DESC') TODO: устарело в MYSQL 8
             ->with('message');
 
-        $dataProvider = new ActiveDataProvider([
+        return new ActiveDataProvider([
             'query' => $query,
             'sort' => [
                 'defaultOrder' => [
@@ -60,8 +60,6 @@ class MailboxSearch extends Mailbox
                 'defaultPageSize' => 10,
             ],
         ]);
-
-        return $dataProvider;
     }
 
     /**
@@ -76,7 +74,7 @@ class MailboxSearch extends Mailbox
             ->andWhere(['interlocutor_id' => $params['interlocutor_id']])
             ->with('message');
 
-        $dataProvider = new ActiveDataProvider([
+        return new ActiveDataProvider([
             'query' => $query,
             'sort' => [
                 'defaultOrder' => [
@@ -87,7 +85,5 @@ class MailboxSearch extends Mailbox
                 'defaultPageSize' => 50,
             ],
         ]);
-
-        return $dataProvider;
     }
 }

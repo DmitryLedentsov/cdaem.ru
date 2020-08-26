@@ -44,7 +44,7 @@ class m140928_181957_helpdesk extends Migration
             'ticket_id' => 'int(11) NOT NULL',
             'user_id' => 'int(11) NOT NULL',
             'text' => 'text',
-            'date' => 'datetime NOT NULL DEFAULT "0000-00-00 00:00:00"',
+            'date' => 'datetime NOT NULL DEFAULT CURRENT_TIMESTAMP',
         ],
             $tableOptions . ' COMMENT = "Ответы тех. поддержки"'
         );

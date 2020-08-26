@@ -13,7 +13,7 @@ use common\modules\agency\models\search\AdvertSearch as AgencyAdvertSearch;
 
 /**
  * Главный контроллер агенства
- * @package frontend\modules\agency\controllers
+ * @package common\modules\agency\controllers\frontend
  */
 class DefaultController extends \frontend\components\Controller
 {

@@ -41,11 +41,11 @@ class Sitemap extends \yii\base\Model
                 $result[] = Html::tag(
                     'url',
                     Html::tag('loc', Url::to(
-                    ['/agency/default/view',
+                        ['/agency/default/view',
                             'id' => $advert['advert_id']
                         ],
-                    true
-                )) .
+                        true
+                    )) .
                     Html::tag('priority', '0.7')
                 );
             }
@@ -56,9 +56,9 @@ class Sitemap extends \yii\base\Model
         $result[] = Html::tag(
             'url',
             Html::tag('loc', Url::to(
-            ['/articles/default/index'],
-            true
-        )) .
+                ['/articles/default/index'],
+                true
+            )) .
             Html::tag('priority', '0.9')
         );
 
@@ -66,11 +66,11 @@ class Sitemap extends \yii\base\Model
             $result[] = Html::tag(
                 'url',
                 Html::tag('loc', Url::to(
-                ['/articles/default/view',
+                    ['/articles/default/view',
                         'id' => $article['article_id']
                     ],
-                true
-            )) .
+                    true
+                )) .
                 Html::tag('priority', '0.7')
             );
         }
@@ -81,11 +81,11 @@ class Sitemap extends \yii\base\Model
             $result[] = Html::tag(
                 'url',
                 Html::tag('loc', Url::to(
-                ['/pages/default/index',
+                    ['/pages/default/index',
                         'url' => $page['url']
                     ],
-                true
-            )) .
+                    true
+                )) .
                 Html::tag('priority', '0.7')
             );
         }
@@ -96,11 +96,11 @@ class Sitemap extends \yii\base\Model
             $result[] = Html::tag(
                 'url',
                 Html::tag('loc', Url::to(
-                ['/site/default/index',
+                    ['/site/default/index',
                         'rentType' => $type['slug']
                     ],
-                true
-            )) .
+                    true
+                )) .
                 Html::tag('priority', '0.9')
             );
         }

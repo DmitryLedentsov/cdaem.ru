@@ -7,8 +7,8 @@ use common\modules\partners\models\Advert;
 use common\modules\helpdesk\models\Helpdesk;
 
 /**
- * Helpdesk Form
- * @package frontend\modules\helpdesk\models
+ * Class HelpdeskForm
+ * @package common\modules\helpdesk\models\form
  */
 class HelpdeskForm extends \yii\base\Model
 {
@@ -148,13 +148,14 @@ class HelpdeskForm extends \yii\base\Model
     private function createModel()
     {
         $model = new Helpdesk();
-        if (!Yii::$app->user->isGuest) {
-            $model->user_id = Yii::$app->user->id;
-            $model->email = Yii::$app->user->identity->email;
-        } else {
+        if (Yii::$app->user->isGuest) {
             $model->email = $this->email;
             $model->user_name = $this->user_name;
+        } else {
+            $model->user_id = Yii::$app->user->id;
+            $model->email = Yii::$app->user->identity->email;
         }
+
         $model->theme = $this->theme;
         $model->text = $this->text;
         $model->date_create = date('Y-m-d H:i:s');

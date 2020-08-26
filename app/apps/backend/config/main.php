@@ -1,38 +1,32 @@
 <?php
 
-$params = array_merge(
-    require(__DIR__ . '/../../../common/config/params.php'),
-    require(__DIR__ . '/../../../common/config/params-local.php')
-);
-
 return [
     'id' => 'app-backend',
     'basePath' => dirname(__DIR__),
     'bootstrap' => [
         'log',
-        'backend\modules\admin\Bootstrap',
-        'common\modules\users\Bootstrap',
-        'common\modules\agency\BootstrapBackend',
+        common\modules\admin\Bootstrap::class,
+        common\modules\users\Bootstrap::class,
+        common\modules\agency\BootstrapBackend::class,
 
-        'common\modules\realty\Bootstrap',
-        'common\modules\helpdesk\BootstrapBackend',
+        common\modules\realty\BootstrapBackend::class,
+        common\modules\helpdesk\BootstrapBackend::class,
 
-        'common\modules\callback\BootstrapBackend',
-        'common\modules\reviews\BootstrapBackend',
+        common\modules\callback\BootstrapBackend::class,
+        common\modules\reviews\BootstrapBackend::class,
 
-        'backend\modules\partners\Bootstrap',
+        common\modules\partners\BootstrapBackend::class,
 
-        'common\modules\articles\BootstrapBackend',
-        'common\modules\pages\BootstrapBackend',
+        common\modules\articles\BootstrapBackend::class,
+        common\modules\pages\BootstrapBackend::class,
 
-        'backend\modules\merchant\Bootstrap',
+        common\modules\merchant\BootstrapBackend::class,
 
-        'common\modules\seo\BootstrapBackend',
+        common\modules\seo\BootstrapBackend::class,
     ],
     'on beforeRequest' => function ($event) {
-
         // Настройки по умолчанию для виджета faceviewer
-        \Yii::$container->set('nepster\faceviewer\Widget', [
+        \Yii::$container->set(\nepster\faceviewer\Widget::class, [
             'faceDefault' => 'no-avatar.png',
             'faceUrl' => Yii::$app->params['siteDomain'] . Yii::$app->getModule('users')->avatarUrl,
             'facePath' => Yii::$app->getModule('users')->avatarPath,
@@ -64,7 +58,7 @@ return [
     'defaultRoute' => 'admin/default/index',
     'modules' => [
         'admin' => [
-            'class' => \backend\modules\admin\Module::class,
+            'class' => \common\modules\admin\Module::class,
         ],
         'users' => [
             'class' => \common\modules\users\Module::class,
@@ -91,10 +85,12 @@ return [
             'controllerNamespace' => 'common\modules\reviews\controllers\backend',
         ],
         'partners' => [
-            'class' => \backend\modules\partners\Module::class,
+            'class' => \common\modules\partners\Module::class,
+            'controllerNamespace' => 'common\modules\partners\controllers\backend',
         ],
         'merchant' => [
-            'class' => \backend\modules\merchant\Module::class,
+            'class' => \common\modules\merchant\Module::class,
+            'controllerNamespace' => 'common\modules\merchant\controllers\backend',
         ],
         'articles' => [
             'class' => \common\modules\articles\Module::class,
@@ -136,5 +132,4 @@ return [
             'baseUrl' => '@web/assets'
         ],
     ],
-    'params' => $params,
 ];

@@ -10,7 +10,7 @@ use yii\helpers\Html;
 
 $this->title = 'Создать отзыв';
 
-echo \backend\modules\admin\widgets\HeaderWidget::widget([
+echo \common\modules\admin\widgets\HeaderWidget::widget([
     'title' => 'Управление отзывами',
     'description' => $this->title,
     'breadcrumb' => [

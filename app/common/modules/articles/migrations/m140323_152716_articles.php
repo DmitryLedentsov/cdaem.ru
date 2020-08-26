@@ -25,7 +25,7 @@ class m140323_152716_articles extends \yii\db\Migration
             'full_text' => 'text  NOT NULL COMMENT "Текст"',
             'visible' => 'tinyint(4) DEFAULT 1 COMMENT "Видимость"',
             'status' => 'tinyint(4) DEFAULT 0 COMMENT "Статус"',
-            'date_create' => 'datetime NOT NULL DEFAULT "0000-00-00 00:00:00" COMMENT "Дата создания"',
+            'date_create' => 'datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT "Дата создания"',
         ], $tableOptions . ' COMMENT = "Статические страницы"');
 
         // Index

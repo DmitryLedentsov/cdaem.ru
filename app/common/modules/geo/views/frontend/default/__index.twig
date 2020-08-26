@@ -11,7 +11,7 @@
 {% block header %}{% endblock %}
 
 {% block navbar %}
-    {{ this.renderDynamic('return $this->render("@app/modules/office/views/layouts/navbar.twig");') | raw }}
+    {{ this.renderDynamic('return $this->render("@common/modules/office/views/frontend/layouts/navbar.twig");') | raw }}
 {% endblock %}
 
 {% block navbar_bottom %}{% endblock %}
@@ -43,7 +43,7 @@
     {{ this.registerMetaTag({'name' : 'keywords', 'content' : ''}) }}
 
     {# Слайдер с рекламой #}
-    {{ use('frontend/modules/partners/widgets/AdvertisingTopSliderAdverts') }}
+    {{ use('common/modules/partners/widgets/frontend/AdvertisingTopSliderAdverts') }}
     {{ advertising_top_slider_adverts_widget() }}
 
     <div class="container">

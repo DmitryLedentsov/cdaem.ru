@@ -24,7 +24,7 @@
 и создать bootstrap файл для нужного приложения:
 
 ```
-namespace frontend\modules\callback;
+namespace common\modules\callback;
 
 use Yii;
 
@@ -50,7 +50,7 @@ class Bootstrap implements \yii\base\BootstrapInterface
 
 ```
 'bootstrap' => [
-    'frontend\modules\callback\Bootstrap',
+    'common\modules\callback\Bootstrap',
 ],
 ```
 

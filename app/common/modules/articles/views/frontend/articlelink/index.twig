@@ -1,8 +1,8 @@
 {#
     Все статьи
     @var \yii\web\View this
-    @var \frontend\acticles\models\Acticle model
-    @var \frontend\acticles\models\Acticle models
+    @var \common\modules\articles\models\Acticle model
+    @var \common\modules\articles\models\Acticle models
     @var \yii\data\Pagination pages
 #}
 
@@ -16,7 +16,7 @@
 {% endblock %}
 
 {% block navbar %}
-    {{ this.renderDynamic('return $this->render("@frontend/modules/office/views/layouts/navbar.twig");') | raw }}
+    {{ this.renderDynamic('return $this->render("@common/modules/office/views/frontend/layouts/navbar.twig");') | raw }}
 {% endblock %}
 
 

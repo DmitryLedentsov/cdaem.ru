@@ -11,7 +11,7 @@ use yii\helpers\Html;
 
 $this->title = Yii::t('users', 'USER_UPDATE');
 
-echo \backend\modules\admin\widgets\HeaderWidget::widget([
+echo \common\modules\admin\widgets\HeaderWidget::widget([
     'title' => 'Управление пользователями',
     'description' => $this->title,
     'breadcrumb' => [

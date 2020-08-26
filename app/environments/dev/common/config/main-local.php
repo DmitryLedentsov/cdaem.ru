@@ -13,7 +13,7 @@ return [
             'cookieParams' => ['domain' => '.cdaem.loc'],
         ],
         'db' => [
-            'class' => 'yii\db\Connection',
+            'class' => \yii\db\Connection::class,
             'dsn' => 'mysql:host=db;dbname=cdaem.ru',
             'username' => 'root',
             'password' => 'cdaemru',
@@ -22,7 +22,11 @@ return [
             'enableSchemaCache' => false,
         ],
         'cache' => [
-            'class' => 'yii\caching\DummyCache',
+            'class' => \yii\caching\DummyCache::class,
         ],
     ],
+    'params' => [
+        'siteDomain' => 'http://cdaem.loc',
+        'siteSubDomain' => 'http://<city>.cdaem.loc',
+    ]
 ];

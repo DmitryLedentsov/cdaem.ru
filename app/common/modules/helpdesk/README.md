@@ -25,7 +25,7 @@
 и создать bootstrap файл для нужного приложения:
 
 ```
-namespace frontend\modules\helpdesk;
+namespace common\modules\helpdesk;
 
 use Yii;
 
@@ -54,7 +54,7 @@ class Bootstrap implements \yii\base\BootstrapInterface
 
 ```
 'bootstrap' => [
-    'frontend\modules\helpdesk\Bootstrap',
+    'common\modules\helpdesk\Bootstrap',
 ],
 ```
 

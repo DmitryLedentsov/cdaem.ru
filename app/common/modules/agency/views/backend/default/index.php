@@ -11,7 +11,7 @@ use yii\grid\GridView;
 
 $this->title = 'Все апартаменты';
 
-echo \backend\modules\admin\widgets\HeaderWidget::widget([
+echo \common\modules\admin\widgets\HeaderWidget::widget([
     'title' => 'Управление апартаментами',
     'description' => $this->title,
     'breadcrumb' => [
@@ -22,7 +22,7 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
     ]
 ]);
 
-echo \backend\modules\admin\widgets\ExtraControlWidget::widget([
+echo \common\modules\admin\widgets\ExtraControlWidget::widget([
     'control' => [
         [
             'url' => ['/agency/default/create'],
@@ -155,7 +155,7 @@ echo GridView::widget([
                     $adverts[] = Html::a('ID ' . $advert->advert_id . ' ' . $advert->rentType->name . ' - ' . $advert->priceText, Yii::$app->params['siteDomain'] . '/advert/' . $advert->advert_id);
                 }
 
-                return implode($adverts, '<br/>');
+                return implode('<br/>', $adverts);
             },
         ],
 

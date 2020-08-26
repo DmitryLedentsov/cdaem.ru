@@ -5,7 +5,7 @@ namespace common\modules\reviews\models;
 use yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use frontend\modules\partners\models\Apartment;
+use common\modules\partners\models\Apartment;
 
 /**
  * Review Search

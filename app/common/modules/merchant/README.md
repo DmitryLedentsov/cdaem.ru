@@ -24,7 +24,7 @@
 и создать bootstrap файл для нужного приложения:
 
 ```
-namespace frontend\modules\merchant;
+namespace common\modules\merchant;
 
 use Yii;
 
@@ -46,13 +46,8 @@ class Bootstrap implements \yii\base\BootstrapInterface
 }
 ```
 
-Подключить:
 
-```
-'bootstrap' => [
-    'frontend\modules\merchant\Bootstrap',
-],
-```
+
 
 **Запуск миграций:**
 

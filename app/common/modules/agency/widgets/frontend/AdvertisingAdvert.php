@@ -19,8 +19,8 @@ class AdvertisingAdvert extends \yii\base\Widget
      */
     public function run()
     {
-        if (Yii::$app->request->get('city') != 'msk') {
-            return \frontend\modules\partners\widgets\AdvertisingAdvert::widget();
+        if (Yii::$app->request->get('city') !== 'msk') {
+            return \common\modules\partners\widgets\frontend\AdvertisingAdvert::widget();
         }
 
         $advertisement = Advertisement::getRelevantAds();
@@ -64,6 +64,6 @@ class AdvertisingAdvert extends \yii\base\Widget
             ');
         }
 
-        return \frontend\modules\partners\widgets\AdvertisingAdvert::widget();
+        return \common\modules\partners\widgets\frontend\AdvertisingAdvert::widget();
     }
 }

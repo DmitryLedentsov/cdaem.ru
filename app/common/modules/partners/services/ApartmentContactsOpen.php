@@ -156,7 +156,7 @@ final class ApartmentContactsOpen extends \yii\base\BaseObject implements Servic
         // Проверяем объявления
         foreach ($this->_selected as $apartmentId) {
             $ExistValidator = new ExistValidator();
-            $ExistValidator->targetClass = '\frontend\modules\partners\models\Apartment';
+            $ExistValidator->targetClass = \common\modules\partners\models\Apartment::class;
             $ExistValidator->targetAttribute = 'apartment_id';
 
             if (!$ExistValidator->validate($apartmentId)) {
@@ -176,7 +176,7 @@ final class ApartmentContactsOpen extends \yii\base\BaseObject implements Servic
         $this->_email = $this->_process->user ? $this->_process->user->email : null;
 
         foreach ($this->_selected as $apartmentId) {
-            $apartment = \frontend\modules\partners\models\Apartment::findOne($apartmentId);
+            $apartment = \common\modules\partners\models\Apartment::findOne($apartmentId);
             foreach ($apartment->adverts as $advert) {
                 $reservationwidth = AdvertReservation::find()
                     ->Where(['=', 'landlord_id', Yii::$app->user->id])
@@ -202,7 +202,7 @@ final class ApartmentContactsOpen extends \yii\base\BaseObject implements Servic
         $this->_email = $this->_process->user ? $this->_process->user->email : null;
         //$this->_process;
         foreach ($this->_selected as $apartmentId) {
-            $apartment = \frontend\modules\partners\models\Apartment::findOne($apartmentId);
+            $apartment = \common\modules\partners\models\Apartment::findOne($apartmentId);
             $proceses = \common\modules\partners\models\Service::findProcessesInQueueApartament($this->_process->user->id);
             if ($apartment->open_contacts == 1) {
                 $isopen[] = $apartment;
@@ -232,13 +232,13 @@ final class ApartmentContactsOpen extends \yii\base\BaseObject implements Servic
 
         // Открываем контакты
         foreach ($this->_selected as $apartmentId) {
-            $apartment = \frontend\modules\partners\models\Apartment::findOne($apartmentId);
+            $apartment = \common\modules\partners\models\Apartment::findOne($apartmentId);
             $apartment->open_contacts = 1;
             $apartment->save(false);
         }
 
         // Проверяем, открыл ли пользователь все контакты
-        $apartmentsByUser = \frontend\modules\partners\models\Apartment::findApartmentsByUser($this->_process->user_id);
+        $apartmentsByUser = \common\modules\partners\models\Apartment::findApartmentsByUser($this->_process->user_id);
         $vip = true;
         foreach ($apartmentsByUser as $apartment) {
             if (!$apartment->open_contacts) {

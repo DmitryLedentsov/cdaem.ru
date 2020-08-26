@@ -8,7 +8,7 @@ use yii\helpers\Url;
 use yii\web\Response;
 use common\modules\geo\models\City;
 use common\modules\agency\models\Apartment as ApartmentAgency;
-use frontend\modules\partners\models\Apartment as ApartmentPartners;
+use common\modules\partners\models\frontend\Apartment as ApartmentPartners;
 
 /**
  * Ajax гео контроллер

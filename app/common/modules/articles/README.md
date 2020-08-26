@@ -23,7 +23,7 @@
 и создать bootstrap файл для нужного приложения:
 
 ```
-namespace frontend\modules\articles;
+namespace common\modules\articles;
 
 use Yii;
 
@@ -49,7 +49,7 @@ class Bootstrap implements \yii\base\BootstrapInterface
 
 ```
 'bootstrap' => [
-    'frontend\modules\articles\Bootstrap',
+    'common\modules\articles\Bootstrap',
 ],
 ```
 

@@ -15,7 +15,7 @@ use yii\widgets\ActiveForm;
     <?php
     $this->title = 'Редактировать метатеги картинки';
 
-    echo \backend\modules\admin\widgets\HeaderWidget::widget([
+    echo \common\modules\admin\widgets\HeaderWidget::widget([
         'title' => 'Метатеги картинки',
         'description' => $this->title,
         'breadcrumb' => [

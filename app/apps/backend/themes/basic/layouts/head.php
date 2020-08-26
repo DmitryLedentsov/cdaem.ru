@@ -54,4 +54,4 @@ echo Html::csrfMetaTags();
 $this->head();
 
 
-\backend\modules\admin\assets\AdminAsset::register($this);
+\common\modules\admin\assets\AdminAsset::register($this);

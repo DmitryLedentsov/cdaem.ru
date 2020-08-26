@@ -9,7 +9,7 @@ use yii\grid\GridView;
 
 $this->title = 'Все брони';
 
-echo \backend\modules\admin\widgets\HeaderWidget::widget([
+echo \common\modules\admin\widgets\HeaderWidget::widget([
     'title' => 'Управление бронями',
     'description' => $this->title,
     'breadcrumb' => [
@@ -20,7 +20,7 @@ echo \backend\modules\admin\widgets\HeaderWidget::widget([
     ]
 ]);
 
-echo \backend\modules\admin\widgets\ExtraControlWidget::widget([
+echo \common\modules\admin\widgets\ExtraControlWidget::widget([
     'control' => [
         [
             'url' => ['/agency/reservation/create'],

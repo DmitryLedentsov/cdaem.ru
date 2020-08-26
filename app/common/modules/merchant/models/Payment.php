@@ -6,7 +6,7 @@ use yii\db\ActiveRecord;
 use common\modules\merchant\traits\ModuleTrait;
 
 /**
- * Class Payments
+ * Class Payment
  * @package common\modules\merchant\models
  */
 class Payment extends ActiveRecord
@@ -15,7 +15,7 @@ class Payment extends ActiveRecord
 
     /**
      * Тип Денежного Оборота
-     * - Пополение
+     * - Пополнение
      * - Начисление
      * - Расходы
      */
@@ -58,6 +58,7 @@ class Payment extends ActiveRecord
     {
         return [
             'user_id' => 'Пользователь',
+            'user' => 'Пользователь',
             'date' => 'Дата',
             'funds' => 'Средства',
             'funds_was' => 'Было на счету',
