@@ -16,9 +16,17 @@ echo \common\modules\admin\widgets\HeaderWidget::widget([
     'description' => 'Все заявки',
     'breadcrumb' => [
         [
+            'label' => 'Агенство',
+            'url' => ['/agency/default/index'],
+        ],
+        [
+            'label' => 'Подберём квартиру',
+            'url' => null,
+        ],
+        [
             'label' => 'Все заявками',
             'url' => ['/agency/select/index'],
-        ]
+        ],
     ]
 ]);
 

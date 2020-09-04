@@ -14,7 +14,11 @@ echo \common\modules\admin\widgets\HeaderWidget::widget([
     'description' => $this->title,
     'breadcrumb' => [
         [
-            'label' => 'Все заявки',
+            'label' => 'Агенство',
+            'url' => ['/agency/default/index'],
+        ],
+        [
+            'label' => 'Все заявки на реквизиты',
             'url' => ['/agency/details/index'],
         ],
         [

@@ -13,10 +13,9 @@ echo \common\modules\admin\widgets\HeaderWidget::widget([
     'description' => $this->title,
     'breadcrumb' => [
         [
-            'label' => 'Все апартаменты',
+            'label' => 'Агенство',
             'url' => ['/agency/default/index'],
         ],
-
         [
             'label' => $model->apartment->address,
             'url' => ['/agency/default/update', 'id' => $model->apartment_id],

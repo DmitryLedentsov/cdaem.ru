@@ -17,6 +17,10 @@ echo \common\modules\admin\widgets\HeaderWidget::widget([
             'url' => ['/agency/select/index'],
         ],
         [
+            'label' => 'Подберём квартиру',
+            'url' => null,
+        ],
+        [
             'label' => 'Редактировать',
             'url' => ['/agency/select/update', 'id' => $model->apartment_select_id],
         ],
