@@ -3,6 +3,7 @@
 namespace common\modules\partners\models;
 
 use Yii;
+use common\modules\agency\models\Apartment;
 use common\modules\partners\traits\ModuleTrait;
 
 /**
@@ -33,6 +34,14 @@ class Image extends \yii\db\ActiveRecord
             'preview' => 'Файл меленькой фотографии',
             'review' => 'Файл большой фотографии',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getApartment()
+    {
+        return $this->hasOne(Apartment::class, ['apartment_id' => 'apartment_id']);
     }
 
     /**

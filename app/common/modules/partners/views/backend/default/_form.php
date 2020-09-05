@@ -5,18 +5,16 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
-use backend\modules\partners\assets\PartnersAsset;
+use common\modules\partners\assets\backend\PartnersAsset;
 
 /* @var $this yii\web\View */
-/* @var $model backend\modules\partners\models\Apartment */
+/* @var $model common\modules\partners\models\backend\Apartment */
 /* @var $form yii\widgets\ActiveForm */
 
 PartnersAsset::register($this);
 ?>
 
-
 <?php if (!$model->isNewRecord) : ?>
-
 
     <h6 class="heading-hr"><span class="icon-share"></span> Объявления</h6>
 
@@ -99,22 +97,21 @@ PartnersAsset::register($this);
     <div class="row">
         <div id="controlImages" data-sort-url="<?php echo Url::toRoute(['/partners/default/sort-images']) ?>">
             <?php foreach ($model->orderedImages as $image) : ?>
-
                 <div id="<?= $image->image_id ?>"
                      class="thumbnail <?= $image->default_img ? 'active' : '' ?> thumbnail-boxed"
                      data-sort="<?= $image->sort ?>">
                     <div class="thumb">
                         <img src="<?= $image->previewSrc ?>" alt="">
                         <div class="thumb-options">
-                                <span>
-                                    <?= Html::a('<i class="icon-image"></i>', $image->reviewSrc, ['class' => 'lightbox btn btn-icon btn-success']) ?>
-                                    <?php
-                                    if ($image->default_img == 0) {
-                                        echo Html::a('<i class="icon-lamp2"></i>', ['/partners/default/default-image', 'id' => $image->image_id], ['class' => 'btn btn-icon btn-success']);
-                                    }
-                                    ?>
-                                    <?= Html::a('<i class="icon-remove"></i>', ['/partners/default/delete-image', 'id' => $image->image_id], ['class' => 'btn btn-icon btn-success']) ?>
-                                </span>
+                            <span>
+                                <?= Html::a('<i class="icon-image"></i>', $image->reviewSrc, ['class' => 'lightbox btn btn-icon btn-success']) ?>
+                                <?php
+                                if ($image->default_img == 0) {
+                                    echo Html::a('<i class="icon-lamp2"></i>', ['/partners/default/default-image', 'id' => $image->image_id], ['class' => 'btn btn-icon btn-success']);
+                                }
+                                ?>
+                                <?= Html::a('<i class="icon-remove"></i>', ['/partners/default/delete-image', 'id' => $image->image_id], ['class' => 'btn btn-icon btn-success']) ?>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -127,30 +124,26 @@ PartnersAsset::register($this);
 
 <?php endif; ?>
 
-
 <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
-
 
     <h6 class="heading-hr"><span class="icon-bubble-notification2"></span> Основное</h6>
 
-
-<?php
-if (!$model->isNewRecord) :
-    echo \nepster\faceviewer\Widget::widget([
-        'template' => '<div class="user-face"><div class="avatar">{face}</div>{name} {surname} <p>ID {id}</p></div>',
-        'templateUrl' => ['/users/user/update', 'id' => $model->user->id],
-        'data' => [
-            'id' => $model->user->id,
-            'name' => Html::encode($model->user->profile->name),
-            'surname' => $model->user->profile->surname,
-            'avatar_url' => $model->user->profile->avatar_url,
-        ]
-    ]);
-endif;
-?>
+    <?php
+    if (!$model->isNewRecord) :
+        echo \nepster\faceviewer\Widget::widget([
+            'template' => '<div class="user-face"><div class="avatar">{face}</div>{name} {surname} <p>ID {id}</p></div>',
+            'templateUrl' => ['/users/user/update', 'id' => $model->user->id],
+            'data' => [
+                'id' => $model->user->id,
+                'name' => Html::encode($model->user->profile->name),
+                'surname' => $model->user->profile->surname,
+                'avatar_url' => $model->user->profile->avatar_url,
+            ]
+        ]);
+    endif;
+    ?>
 
     <p><br/></p>
-
 
     <div class="row">
         <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-2"><?= $form->field($model, 'user_id')->textInput(['maxlength' => true]) ?></div>

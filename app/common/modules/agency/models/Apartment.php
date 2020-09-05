@@ -144,7 +144,7 @@ class Apartment extends \yii\db\ActiveRecord
     }
 
     /**
-     * WARNING! не соеденять с другими таблицами с помощью Join
+     * WARNING! не соединять с другими таблицами с помощью Join
      * @return \yii\db\ActiveQuery
      */
     public function getOrderedImages()

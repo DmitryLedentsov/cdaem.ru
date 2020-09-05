@@ -3,7 +3,6 @@
 namespace common\modules\partners\models;
 
 use Yii;
-use yii\base\ErrorException;
 use yii\helpers\ArrayHelper;
 use common\modules\geo\models\City;
 use common\modules\geo\models\Country;
@@ -398,6 +397,15 @@ class Apartment extends \yii\db\ActiveRecord
     }
 
     /**
+     * WARNING! не соединять с другими таблицами с помощью Join
+     * @return \yii\db\ActiveQuery
+     */
+    public function getOrderedImages()
+    {
+        return $this->hasMany(Image::class, ['apartment_id' => 'apartment_id'])->orderBy('sort ASC')->inverseOf('apartment');
+    }
+
+    /**
      * @inheritdoc
      */
     public function hasReserved($date_from, $date_to)
@@ -414,6 +422,9 @@ class Apartment extends \yii\db\ActiveRecord
             return false;
         }
 
+        //Определяем координаты по адресу
+        /* TODO: попытка определить координаты по адресу, пакет устарел и не работает с новым Yii2
+        ---------------------------------------------------------------------------------------------
         // Определяем координаты по адресу
         $geo = new \vitalik74\geocode\Geocode();
         $fullAddress = $this->city->country->name . ' ' . $this->city->name . ' ' . $this->address;
@@ -437,6 +448,8 @@ class Apartment extends \yii\db\ActiveRecord
 
         $this->latitude = $latitude;
         $this->longitude = $longitude;
+        ---------------------------------------------------------------------------------------------
+        */
 
         return true;
     }
