@@ -32,8 +32,8 @@ class RentType extends \yii\db\ActiveRecord
     public function scenarios()
     {
         return [
-            'create' => ['name', 'slug', 'meta_title', 'meta_description', 'meta_keywords', 'icons', 'short_description', 'agency_rules', 'sort', 'agency_seo_short_desc'],
-            'update' => ['name', 'slug', 'meta_title', 'meta_description', 'meta_keywords', 'icons', 'short_description', 'agency_rules', 'sort', 'agency_seo_short_desc'],
+            'create' => ['name', 'short_name', 'slug', 'meta_title', 'meta_description', 'meta_keywords', 'icons', 'short_description', 'agency_rules', 'sort', 'agency_seo_short_desc'],
+            'update' => ['name', 'short_name', 'slug', 'meta_title', 'meta_description', 'meta_keywords', 'icons', 'short_description', 'agency_rules', 'sort', 'agency_seo_short_desc'],
         ];
     }
 
@@ -45,6 +45,7 @@ class RentType extends \yii\db\ActiveRecord
         return [
             'rent_type_id' => '№',
             'name' => 'Название',
+            'short_name' => 'Короткое название',
             'slug' => 'Транслитерация',
             'icons' => 'иконки в JSON формате',
             'short_description' => 'Краткое описание',
