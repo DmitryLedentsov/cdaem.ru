@@ -6,7 +6,6 @@
 
 use yii\helpers\Url;
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
 
 \common\modules\agency\assets\backend\AgencyAsset::register($this);
 
@@ -16,6 +15,10 @@ echo \common\modules\admin\widgets\HeaderWidget::widget([
     'title' => 'Управление апартаментами',
     'description' => $this->title,
     'breadcrumb' => [
+        [
+            'label' => 'Агенство',
+            'url' => ['/agency/default/index'],
+        ],
         [
             'label' => 'Все апартаменты',
             'url' => ['/agency/default/index'],

@@ -13,11 +13,11 @@ echo \common\modules\admin\widgets\HeaderWidget::widget([
     'breadcrumb' => [
         [
             'label' => 'Все типы аренды',
-            'url' => ['/apartments/default/index'],
+            'url' => ['/realty/default/index'],
         ],
         [
             'label' => 'Редактировать',
-            'url' => ['/apartments/default/update', 'id' => $model->rent_type_id],
+            'url' => ['/realty/default/update', 'id' => $model->rent_type_id],
         ]
     ]
 ]);
@@ -25,7 +25,7 @@ echo \common\modules\admin\widgets\HeaderWidget::widget([
 echo \common\modules\admin\widgets\ExtraControlWidget::widget([
     'control' => [
         [
-            'url' => ['/apartments/default/create'],
+            'url' => ['/realty/default/create'],
             'label' => 'Создать',
         ],
         /*

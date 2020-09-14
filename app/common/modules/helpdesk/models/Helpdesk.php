@@ -2,6 +2,8 @@
 
 namespace common\modules\helpdesk\models;
 
+use PDO;
+use Yii;
 use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
 use common\modules\users\models\User;
@@ -224,5 +226,31 @@ class Helpdesk extends ActiveRecord
     public function getHelpdeskAnswers()
     {
         return $this->hasMany(HelpdeskAnswers::class, ['ticket_id' => 'ticket_id']);
+    }
+
+    /**
+     * Считает кол-во последних записей за пройденный промежуток времени
+     * Учитывает ip и userAgent
+     *
+     * @param string $ip
+     * @param string $userAgent
+     * @return int
+     * @throws \yii\db\Exception
+     */
+    public static function countRecentTicketsByUserIdentity(string $ip, string $userAgent): int
+    {
+        $range = 1; // minutes
+        $hash = md5(sprintf('%s-%s', $ip, $userAgent));
+
+        return (int)Yii::$app->db->createCommand("
+            SELECT COUNT(ticket_id)
+                FROM " . Helpdesk::tableName() . "
+                WHERE MD5(CONCAT(ip, \"-\",  user_agent)) = :hash
+                AND date_create > date_sub(now(), interval :range minute)
+            LIMIT 1;
+        ")
+            ->bindValue(':hash', $hash)
+            ->bindValue(':range', $range)
+            ->queryScalar();
     }
 }

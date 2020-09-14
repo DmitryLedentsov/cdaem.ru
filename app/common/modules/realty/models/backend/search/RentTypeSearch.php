@@ -19,7 +19,7 @@ class RentTypeSearch extends RentType
     {
         return [
             [['rent_type_id', 'visible', 'sort'], 'integer'],
-            [['name', 'slug', 'icons', 'short_description', 'meta_title', 'meta_description', 'meta_keywords', 'agency_rules'], 'safe'],
+            [['name', 'short_name', 'slug', 'icons', 'short_description', 'meta_title', 'meta_description', 'meta_keywords', 'agency_rules'], 'safe'],
         ];
     }
 
@@ -70,6 +70,7 @@ class RentTypeSearch extends RentType
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'short_name', $this->short_name])
             ->andFilterWhere(['like', 'slug', $this->slug])
             ->andFilterWhere(['like', 'icons', $this->icons])
             ->andFilterWhere(['like', 'short_description', $this->short_description])

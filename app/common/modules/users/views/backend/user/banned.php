@@ -62,7 +62,7 @@ echo \common\modules\admin\widgets\HeaderWidget::widget([
                 'options' => [
                     'readonly' => 'readonly',
                 ],
-                'plugigit nOptions' => [
+                'pluginOptions' => [
                     'autoclose' => true,
                     'format' => 'yyyy-mm-dd',
                     'todayHighlight' => true

@@ -16,6 +16,14 @@ echo \common\modules\admin\widgets\HeaderWidget::widget([
     'description' => 'Все заявки',
     'breadcrumb' => [
         [
+            'label' => 'Агенство',
+            'url' => ['/agency/default/index'],
+        ],
+        [
+            'label' => 'Хочу сдать квартиру',
+            'url' => null,
+        ],
+        [
             'label' => 'Все заявки',
             'url' => ['/agency/want-pass/index'],
         ]

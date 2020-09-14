@@ -7,8 +7,8 @@ echo \common\modules\admin\widgets\HeaderWidget::widget([
     'description' => $this->title,
     'breadcrumb' => [
         [
-            'label' => 'Все заявки',
-            'url' => ['/agency/details/index'],
+            'label' => 'Агенство',
+            'url' => ['/agency/default/index'],
         ],
         [
             'label' => 'Управление реквизитами',

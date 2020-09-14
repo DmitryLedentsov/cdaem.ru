@@ -144,7 +144,7 @@ class Apartment extends \yii\db\ActiveRecord
     }
 
     /**
-     * WARNING! не соеденять с другими таблицами с помощью Join
+     * WARNING! не соединять с другими таблицами с помощью Join
      * @return \yii\db\ActiveQuery
      */
     public function getOrderedImages()
@@ -334,6 +334,8 @@ class Apartment extends \yii\db\ActiveRecord
         }
 
         //Определяем координаты по адресу
+        /* TODO: попытка определить координаты по адресу, пакет устарел и не работает с новым Yii2
+        ---------------------------------------------------------------------------------------------
         $geo = new \vitalik74\geocode\Geocode();
         $fullAddress = $this->city->country->name . ' ' . $this->city->name . ' ' . $this->address;
 
@@ -356,6 +358,8 @@ class Apartment extends \yii\db\ActiveRecord
 
         $this->latitude = $latitude;
         $this->longitude = $longitude;
+        ---------------------------------------------------------------------------------------------
+        */
 
         return true;
     }

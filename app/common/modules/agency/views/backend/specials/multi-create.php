@@ -17,6 +17,10 @@ echo \common\modules\admin\widgets\HeaderWidget::widget([
     'description' => $this->title,
     'breadcrumb' => [
         [
+            'label' => 'Агенство',
+            'url' => ['/agency/default/index'],
+        ],
+        [
             'label' => 'Все спецпредложения',
             'url' => ['/agency/specials/index'],
         ],

@@ -27,8 +27,8 @@ use yii\widgets\ActiveForm;
 
 <h6 class="heading-hr"><span class="icon-info"></span> Основное</h6>
 <div class="row">
-
     <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-3"><?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?></div>
+    <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-3"><?= $form->field($model, 'short_name')->textInput(['maxlength' => true]) ?></div>
     <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-3"><?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?></div>
     <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-3"><?= $form->field($model, 'sort')->textInput() ?></div>
 </div>

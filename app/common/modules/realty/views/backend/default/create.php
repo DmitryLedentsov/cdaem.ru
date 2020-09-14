@@ -13,11 +13,11 @@ echo \common\modules\admin\widgets\HeaderWidget::widget([
     'breadcrumb' => [
         [
             'label' => 'Все типы аренды',
-            'url' => ['/apartments/default/index'],
+            'url' => ['/realty/default/index'],
         ],
         [
             'label' => 'Создать',
-            'url' => ['/apartments/default/create'],
+            'url' => ['/realty/default/create'],
         ]
     ]
 ]);

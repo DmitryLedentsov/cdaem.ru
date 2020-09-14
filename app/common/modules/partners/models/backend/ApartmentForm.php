@@ -3,6 +3,7 @@
 namespace common\modules\partners\models\backend;
 
 use yii\db\ActiveRecord;
+use yii\web\UploadedFile;
 
 /**
  * @inheritdoc
@@ -39,6 +40,20 @@ class ApartmentForm extends \common\modules\partners\models\Apartment
                 ],
             ],
         ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function beforeValidate()
+    {
+        if (parent::beforeValidate()) {
+            $this->files = UploadedFile::getInstances($this, 'files');
+
+            return true;
+        }
+
+        return false;
     }
 
     /**
