@@ -82,6 +82,24 @@ class HelpdeskForm extends \yii\base\Model
     }
 
     /**
+     * @inheritDoc
+     */
+    public function afterValidate()
+    {
+        parent::afterValidate();
+
+        if ($this->hasErrors() === false && ($this->scenario === 'guest-ask' || $this->scenario === 'user-ask')) {
+            $checkIfPossibleCreateNewTicket = (bool)Helpdesk::countRecentTicketsByUserIdentity(
+                Yii::$app->request->userIP,
+                Yii::$app->request->userAgent
+            );
+            if ($checkIfPossibleCreateNewTicket) {
+                $this->addError('text', 'Слишком частое обращение к серверу, попробуйте через минуту.');
+            }
+        }
+    }
+
+    /**
      * Техническая поддержка агенства
      * @return bool
      */

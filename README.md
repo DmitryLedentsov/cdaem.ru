@@ -6,69 +6,58 @@ Yii2 CDAEM.RU
 так же подобрать коттедж на сутки и на выходные.
 
 
-Требования
-=========
-Минимальные системные требования для работы приложения PHP 5.6
-
-
-Структура
-=========
-```
-apps/           Приложения
-    backend/         Панель управления
-    console/         Консольные команды
-    frontend/        Основное приложение
-    chat/            Приложение для чата. Использует node.js
-common/          Общее приложение
-environments/    Окружения
-grunt/           Сборщик клиента
-tests/           Тесты (не используются)
-vendor/          Некоторые сторонние библиотеки
-```
-
-
 Установка проекта
 =================
 
-Установка YII2
-composer install
-php yii init 
-php yii migrate
+Приложение работает с помощью [Docker](https://docker.com) и [Docker Compose](https://docs.docker.com/compose), 
+поэтому необходимо установить данные утилиты.
 
-# Запустить cron задания
+При первом запуске приложения необходимо ввести команду:
 
 ```
-*/10 * * * * php /app/yii service/processes
+make bootstrap
 ```
 
-```
-0 */1 * * * php /app/yii service/calculate-position
-```
+> Внимание, данная команда запускается только один раз.
+
+Далее используются команды:
 
 ```
-0 */1 * * * php /app/yii partners/collector/reservation-verify-payment
+make start
+make stop
+make restart
 ```
 
-```
-0 */1 * * * php /app/yii partners/collector/reservation-verify-failure
-```
+Список всех команд можно посмотреть в Makefile.
 
-```
-0 0 1 * * php /app/yii agency/collector/images
-```
+>>> Для решения конфликта с портами (например 80) используется файл docker-compose.override.yml
 
-```
-0 0 1 * * php /app/yii partners/collector/images
-```
+Тестовый домен: **http://cdaem.loc** и **http://control.cdaem.loc**.
 
-```
-0 0 * * * php /app/yii partners/collector/reservation
-```
 
-```
-*/10 * * * * php /app/yii partners/calendar
-```
+Composer
+========
 
+Доступ к пакетному менеджеру предоставляется через команду:
+
+```make composer```
+
+```make composer cmd=install```
+
+
+Yii
+===
+
+Доступ к консольным утилитам предоставляется через команду:
+
+```make php-yii```
+
+```make php-yii cmd=migrate```
+
+
+# Сron-задания
+Стартую автоматически и прописываются в файле `docker/cron`.
+После добавления новых команд необходимо выполнить рестарт.
 
 **service/processes**
 
@@ -112,18 +101,9 @@ php yii migrate
     Осуществляет поиск необходимых записей в календаре и устанавливает или снимает флаг "Сейчас свободно"
 
 
-
-# Symlink
-ln -s /home/cdaemru/www/dev/apps/frontend/web/ion.sound ion.sound
-
-
-
 # Резервное копирование базы данных
 # Production - бэкап базы данных (каждые 6 часов)
 0 */6 * * * root mysqldump -uroot -hlocalhost cdaem.ru  | gzip -c > /home/cdaemru/mysql_backup/b-$(date -u +\%Y-\%m-\%d_\%H-\%M).gz > /dev/null 2>&1
-
-
-
 
 
 Настройка чата
@@ -142,7 +122,6 @@ ln -s /home/cdaemru/www/dev/apps/frontend/web/ion.sound ion.sound
 ```
 /opt/nodejs/lib/node_modules/forever/bin/forever start server.js
 ```
-
 
 
 Schema
@@ -201,39 +180,3 @@ DELETE FROM log WHERE category = 'yii\\web\\User::login';
 DELETE FROM log WHERE category = 'yii\\web\\User::loginByCookie';
 DELETE FROM log WHERE category = 'yii\\web\\User::logout';
 ```
-
-
-SSL
-============
-
-server {
-    listen 80;
-    server_name cdaem.ru;
-    return 301 https://$server_name$request_uri;  # enforce https
-}
-
-server {
-    listen 80;
-    server_name *.cdaem.ru;
-    return 301 https://$host$request_uri;
-}
-
-server{
-
-    server_name *.cdaem.ru cdaem.ru;
-
-    listen 443;
-
-    ssl on;
-    ssl_certificate /var/ssl/ssl-bundle.crt;
-    ssl_certificate_key /var/ssl/hit-start.key;
-
-    #enables all versions of TLS, but not SSLv2 or 3 which are weak and now deprecated.
-    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
-
-    #Disables all weak ciphers
-    ssl_ciphers "-------"
-    ssl_prefer_server_ciphers on;
-
-    ...
-}
