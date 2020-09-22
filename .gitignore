@@ -1,5 +1,6 @@
 .idea
 app/vendor
+app/yii
 docker/docker-compose.override.yml
 docker/.env
 docker/nginx/default.conf
