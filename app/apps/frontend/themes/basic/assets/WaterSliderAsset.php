@@ -2,7 +2,6 @@
 
 namespace frontend\themes\basic\assets;
 
-use Yii;
 use yii\web\AssetBundle;
 
 /**
