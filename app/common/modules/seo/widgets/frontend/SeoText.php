@@ -31,7 +31,7 @@ class SeoText extends Widget
     /**
      * @var array|null
      */
-    private ?array $seoText;
+    private ?array $seoText = null;
 
     /**
      * @inheritdoc
