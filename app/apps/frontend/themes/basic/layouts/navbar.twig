@@ -5,37 +5,49 @@
                 <ul class="nav hidden-xs">
                     <li><a href="/" class="home"></a></li>
                     <li><a href="{{ path(['/agency/default/select']) }}">Подобрать квартиру</a></li>
-                    <li {{ app.request.pathInfo == 'booking' ? 'class="active"' : '' }}><a
-                                href="{{ path('/pages/default/index', {'url' : 'booking'}) }}">Правила бронирования</a>
+                    <li {{ app.request.pathInfo == 'booking' ? 'class="active"' : '' }}>
+                        <a href="{{ path('/pages/default/index', {'url' : 'booking'}) }}">Правила бронирования</a>
                     </li>
-                    <li {{ app.request.pathInfo == 'rules' ? 'class="active"' : '' }}><a
-                                href="{{ path('/pages/default/index', {'url' : 'rules'}) }}">Правила заселения</a></li>
-                    <li><a href="{{ path(['/agency/default/want-pass']) }}">Сдать квартиру</a></li>
-
-                    <li {{ app.request.pathInfo == 'contacts' ? 'class="active"' : '' }}><a
-                                href="{{ path('/pages/default/index', {'url' : 'contacts'}) }}">Контакты</a></li>
-
+                    <li {{ app.request.pathInfo == 'rules' ? 'class="active"' : '' }}>
+                        <a href="{{ path('/pages/default/index', {'url' : 'rules'}) }}">Правила заселения</a>
+                    </li>
+                    <li>
+                        <a href="{{ path(['/agency/default/want-pass']) }}">Сдать квартиру</a>
+                    </li>
+                    <li {{ app.request.pathInfo == 'contacts' ? 'class="active"' : '' }}>
+                        <a href="{{ path('/pages/default/index', {'url' : 'contacts'}) }}">Контакты</a>
+                    </li>
                     <li>
                         <ul class="nav dropdown">
                             <li>
                                 <a href="{{ path('/pages/default/index', {'url' : 'booking'}) }}"
-                                   class="dropdown-toggle" style="background:none" data-toggle="dropdown">Бронь <span
-                                            class="caret"></span></a>
+                                   class="dropdown-toggle" style="background:none" data-toggle="dropdown">
+                                    Бронь <span class="caret"></span>
+                                </a>
                                 <ul class="dropdown-menu">
-                                    <li {{ app.request.pathInfo == 'rules' ? 'class="active"' : '' }}><a
-                                                href="{{ path(['/helpdesk/default/workvac']) }}">Вакансии</a></li>
-                                    <li {{ app.request.pathInfo == 'kvartira_na_chas' ? 'class="active"' : '' }}><a
-                                                href="{{ path('/site/default/index', {'rentType' : 'kvartira_na_chas'}) }}">Квартира
-                                            на час</a></li>
-                                    <li {{ app.request.pathInfo == 'kvartira_na_sutki' ? 'class="active"' : '' }}><a
-                                                href="{{ path('/site/default/index', {'rentType' : 'kvartira_na_sutki'}) }}">Квартира
-                                            на сутки</a></li>
-                                    <li {{ app.request.pathInfo == 'na_noch' ? 'class="active"' : '' }}><a
-                                                href="{{ path('/site/default/index', {'rentType' : 'na_noch'}) }}">Квартира
-                                            на ночь</a></li>
-                                    <li {{ app.request.pathInfo == 'zagorodniy_dom' ? 'class="active"' : '' }}><a
-                                                href="{{ path('/site/default/index', {'rentType' : 'zagorodniy_dom'}) }}">Коттеджи
-                                            на сутки</a></li>
+                                    <li {{ app.request.pathInfo == 'rules' ? 'class="active"' : '' }}>
+                                        <a href="{{ path(['/helpdesk/default/workvac']) }}">Вакансии</a>
+                                    </li>
+                                    <li {{ app.request.pathInfo == 'kvartira_na_chas' ? 'class="active"' : '' }}>
+                                        <a href="{{ path('/site/default/index', {'rentType' : 'kvartira_na_chas'}) }}">
+                                            Квартира на час
+                                        </a>
+                                    </li>
+                                    <li {{ app.request.pathInfo == 'kvartira_na_sutki' ? 'class="active"' : '' }}>
+                                        <a href="{{ path('/site/default/index', {'rentType' : 'kvartira_na_sutki'}) }}">
+                                            Квартира на сутки
+                                        </a>
+                                    </li>
+                                    <li {{ app.request.pathInfo == 'na_noch' ? 'class="active"' : '' }}>
+                                        <a href="{{ path('/site/default/index', {'rentType' : 'na_noch'}) }}">
+                                            Квартира на ночь
+                                        </a>
+                                    </li>
+                                    <li {{ app.request.pathInfo == 'zagorodniy_dom' ? 'class="active"' : '' }}>
+                                        <a href="{{ path('/site/default/index', {'rentType' : 'zagorodniy_dom'}) }}">
+                                            Коттеджи на сутки
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                         </ul>
@@ -52,26 +64,40 @@
                             <ul class="dropdown-menu nav-2">
                                 <li><a href="{{ path(['/agency/default/want-pass']) }}">Сдать квартиру</a></li>
                                 <li><a href="{{ path(['/agency/default/select']) }}">Подобрать квартиру</a></li>
-                                <li {{ app.request.pathInfo == 'kvartira_na_chas' ? 'class="active"' : '' }}><a
-                                            href="{{ path('/site/default/index', {'rentType' : 'kvartira_na_chas'}) }}">Квартира
-                                        на час</a></li>
-                                <li {{ app.request.pathInfo == 'kvartira_na_sutki' ? 'class="active"' : '' }}><a
-                                            href="{{ path('/site/default/index', {'rentType' : 'kvartira_na_sutki'}) }}">Квартира
-                                        на сутки</a></li>
-                                <li {{ app.request.pathInfo == 'na_noch' ? 'class="active"' : '' }}><a
-                                            href="{{ path('/site/default/index', {'rentType' : 'na_noch'}) }}">Квартира
-                                        на ночь</a></li>
-                                <li {{ app.request.pathInfo == 'zagorodniy_dom' ? 'class="active"' : '' }}><a
-                                            href="{{ path('/site/default/index', {'rentType' : 'zagorodniy_dom'}) }}">Коттеджи
-                                        на сутки</a></li>
-                                <li {{ app.request.pathInfo == 'booking' ? 'class="active"' : '' }}><a
-                                            href="{{ path('/pages/default/index', {'url' : 'booking'}) }}">Правила
-                                        бронирования</a></li>
-                                <li {{ app.request.pathInfo == 'rules' ? 'class="active"' : '' }}><a
-                                            href="{{ path('/pages/default/index', {'url' : 'rules'}) }}">Правила
-                                        заселения</a></li>
-                                <li {{ app.request.pathInfo == 'contacts' ? 'class="active"' : '' }}><a
-                                            href="{{ path('/pages/default/index', {'url' : 'contacts'}) }}">Контакты</a>
+                                <li {{ app.request.pathInfo == 'kvartira_na_chas' ? 'class="active"' : '' }}>
+                                    <a href="{{ path('/site/default/index', {'rentType' : 'kvartira_na_chas'}) }}">
+                                        Квартира на час
+                                    </a>
+                                </li>
+                                <li {{ app.request.pathInfo == 'kvartira_na_sutki' ? 'class="active"' : '' }}>
+                                    <a href="{{ path('/site/default/index', {'rentType' : 'kvartira_na_sutki'}) }}">
+                                        Квартира на сутки
+                                    </a>
+                                </li>
+                                <li {{ app.request.pathInfo == 'na_noch' ? 'class="active"' : '' }}>
+                                    <a href="{{ path('/site/default/index', {'rentType' : 'na_noch'}) }}">
+                                        Квартира на ночь
+                                    </a>
+                                </li>
+                                <li {{ app.request.pathInfo == 'zagorodniy_dom' ? 'class="active"' : '' }}>
+                                    <a href="{{ path('/site/default/index', {'rentType' : 'zagorodniy_dom'}) }}">
+                                        Коттеджи на сутки
+                                    </a>
+                                </li>
+                                <li {{ app.request.pathInfo == 'booking' ? 'class="active"' : '' }}>
+                                    <a href="{{ path('/pages/default/index', {'url' : 'booking'}) }}">
+                                        Правила бронирования
+                                    </a>
+                                </li>
+                                <li {{ app.request.pathInfo == 'rules' ? 'class="active"' : '' }}>
+                                    <a href="{{ path('/pages/default/index', {'url' : 'rules'}) }}">
+                                        Правила заселения
+                                    </a>
+                                </li>
+                                <li {{ app.request.pathInfo == 'contacts' ? 'class="active"' : '' }}>
+                                    <a href="{{ path('/pages/default/index', {'url' : 'contacts'}) }}">
+                                        Контакты
+                                    </a>
                                 </li>
                             </ul>
                         </li>

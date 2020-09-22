@@ -16,54 +16,68 @@ class SeoText extends Widget
     /**
      * @var string
      */
-    public $type;
+    public string $type;
 
     /**
      * @var string
      */
-    public $tag = 'div';
+    public string $tag = 'div';
 
     /**
      * @var array
      */
-    public $options = ['class' => 'big-info'];
+    public array $options = ['class' => 'big-info'];
 
     /**
-     * @var \yii\db\Query
+     * @var array|null
      */
-    private $_seoText;
+    private ?array $seoText;
 
     /**
      * @inheritdoc
      */
-    public function init()
+    public function init(): void
     {
         parent::init();
 
-        $hostInfo = str_replace('www.', '', Yii::$app->request->hostInfo);
+        $hostInfo = $this->clearHost(Yii::$app->request->hostInfo);
+        $paramSiteDomain = $this->clearHost(Yii::$app->params['siteDomain']);
 
-        if (Yii::$app->params['siteDomain'] == $hostInfo) {
+        if ($paramSiteDomain === $hostInfo) {
             $currentUrl = Yii::$app->request->url;
 
-            $this->_seoText = (new \yii\db\Query())
+            $seoText = (new \yii\db\Query())
                 ->select('*')
                 ->from(SeotextModel::tableName())
                 ->where('url = :url', [':url' => $currentUrl])
                 ->andWhere('type = :type', [':type' => $this->type])
                 ->andWhere('visible = 1')
                 ->one();
+
+            if ($seoText) {
+                $this->seoText = $seoText;
+            }
         }
     }
 
     /**
      * @inheritdoc
      */
-    public function run()
+    public function run(): string
     {
-        if ($this->_seoText && !empty($this->_seoText['text'])) {
-            return Html::tag($this->tag, $this->_seoText['text'], $this->options);
+        if ($this->seoText && !empty($this->seoText['text'])) {
+            return Html::tag($this->tag, $this->seoText['text'], $this->options);
         }
 
         return '';
+    }
+
+    /**
+     * @param string $host
+     * @return string
+     */
+    private function clearHost(string $host): string
+    {
+        return mb_strtolower(str_replace(['http://', 'https://', 'http://www.', 'https://www.'], '', $host));
     }
 }
