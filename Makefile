@@ -88,7 +88,8 @@ php-init:
 pull:
 	git status
 	git pull
-	make restart
+	#make restart
+	make start
 
 cron-start:
 	$(docker_compose) exec -T --user=root app sh -c "crond"
