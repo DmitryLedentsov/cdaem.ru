@@ -10,7 +10,7 @@ stages:
 #  - tests
   - deploy
 
-deploy_to prod:
+deploy_to dev:
   stage: deploy
   before_script:
     - 'which ssh-agent || ( apk add openssh )'
@@ -22,7 +22,24 @@ deploy_to prod:
   only:
     - dev
   script:
-    - ssh -p${SSH_PORT} ${SSH_USER}@${PROD_SERVER} "cd ${PROJECT_PATH} &&
+    - ssh -p${SSH_PORT} ${SSH_USER}@${PROD_SERVER} "cd ${PROJECT_PATH_DEV} &&
       make pull &&
+      exit"
+  allow_failure: false
+
+deploy_to prod:
+  stage: deploy
+  before_script:
+    - 'which ssh-agent || ( apk add openssh )'
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PROD_KEY" | tr -d '\r' | ssh-add - > /dev/null
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  only:
+    - master
+  script:
+    - ssh -p${SSH_PORT} ${SSH_USER}@${PROD_SERVER} "cd ${PROJECT_PATH_PROD} &&
+      make prod-pull &&
       exit"
   allow_failure: false
