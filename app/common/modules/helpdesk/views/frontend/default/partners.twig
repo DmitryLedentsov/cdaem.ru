@@ -53,7 +53,7 @@
     {{ register_helpdesk_asset() }}
 
     <div class="container help clearfix">
-        {{ this.render("@app/modules/office/views/default/_nav-help.twig") | raw }}
+        {{ this.render("@common/modules/office/views/frontend/default/_nav-help.twig") | raw }}
         <div class="help-text">
             <div class="container-certain orange">
                 {% if app.session.hasFlash('danger') %}
