@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   nginx:
-    container_name: cdaem_nginx
+    container_name: dev_cdaem_nginx
     build:
       context: ..
       dockerfile: ./docker/nginx/Dockerfile
@@ -16,7 +16,7 @@ services:
     restart: always
 
   app:
-    container_name: cdaem_php
+    container_name: dev_cdaem_php
     build:
       context: ..
       dockerfile: ./docker/php/Dockerfile
@@ -29,7 +29,7 @@ services:
     working_dir: /app
 
   db:
-    container_name: cdaem_mysql
+    container_name: dev_cdaem_mysql
     build:
       context: ..
       dockerfile: ./docker/mysql/Dockerfile
@@ -42,7 +42,7 @@ services:
       - ../app/common/schema:/dumps
 
   node:
-    container_name: cdaem_node
+    container_name: dev_cdaem_node
     working_dir: /app
     build:
       context: ..

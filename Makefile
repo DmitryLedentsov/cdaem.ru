@@ -1,9 +1,9 @@
-PROJECT_NAME = cdaem_ru
+#PROJECT_NAME = cdaem_ru
 
 USER_ID = $(shell id -u)
 GROUP_ID = $(shell id -g)
 
-docker_compose_dev = docker-compose -p ${PROJECT_NAME} -f ./docker/docker-compose-dev.yml -f ./docker/docker-compose.override.yml
+docker_compose_dev = docker-compose -p dev_cdaem_ru -f ./docker/docker-compose-dev.yml -f ./docker/docker-compose.override.yml
 
 app_run := $(docker_compose_dev) exec -T --user="${USER_ID}" app
 node_run := $(docker_compose_dev) run --user="${USER_ID}" --rm node
@@ -14,7 +14,7 @@ bootstrap:
 	cp ./docker/docker-compose.override.yml.example ./docker/docker-compose.override.yml
 	cp ./docker/.env.example ./docker/.docker.env
 	cat ./docker/hosts.sh | sudo /bin/sh
-	make build
+	#make build
 	$(docker_compose_dev) up -d
 	make composer cmd="global require "fxp/composer-asset-plugin:^1.3.1""
 	make composer cmd=install
@@ -88,8 +88,7 @@ php-init:
 pull:
 	git status
 	git pull
-	#make restart
-	make start
+	make restart
 
 cron-start:
 	$(docker_compose_dev) exec -T --user=root app sh -c "crond"
@@ -100,7 +99,7 @@ cron-load:
 
 #--- PROD ---#
 
-docker_compose_prod = docker-compose -p ${PROJECT_NAME} -f ./docker/docker-compose-prod.yml -f ./docker/docker-compose.override.yml
+docker_compose_prod = docker-compose -p cdaem_ru -f ./docker/docker-compose-prod.yml -f ./docker/docker-compose.override.yml
 
 app_run_prod := $(docker_compose_prod) exec -T --user="${USER_ID}" app
 node_run_prod := $(docker_compose_prod) run --user="${USER_ID}" --rm node
