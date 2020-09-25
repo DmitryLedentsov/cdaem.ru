@@ -20,23 +20,44 @@
                     <nav class="footer-nav">
                         <ul class="nav">
                             <li>Сдаем.ру</li>
-                            <li><a href="{{ path('/pages/default/index', {'url' : 'about'}) }}">О Компании</a></li>
-                            <li><a href="{{ path('/pages/default/index', {'url' : 'contacts'}) }}">Контактная
-                                    информация</a></li>
-                            <li><a href="{{ path('/pages/default/index', {'url' : 'privacy'}) }}">Права,
-                                    правообладатели</a></li>
-                            <li><a href="{{ path('/pages/default/index', {'url' : 'booking'}) }}">Бронь</a></li>
-                            <li {{ app.request.pathInfo == 'kvartira_na_chas' ? 'class="active"' : '' }}><a
-                                        href="{{ path('/site/default/index', {'rentType' : 'kvartira_na_chas'}) }}">Квартира
-                                    на час</a></li>
-                            <li {{ app.request.pathInfo == 'kvartira_na_sutki' ? 'class="active"' : '' }}><a
-                                        href="{{ path('/site/default/index', {'rentType' : 'kvartira_na_sutki'}) }}">Квартира
-                                    на сутки</a></li>
+                            <li>
+                                <a href="{{ path('/pages/default/index', {'url' : 'about'}) }}">
+                                    О Компании
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('/pages/default/index', {'url' : 'contacts'}) }}">
+                                    Контактная информация
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('/pages/default/index', {'url' : 'privacy'}) }}">
+                                    Права, правообладатели
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('/pages/default/index', {'url' : 'booking'}) }}">
+                                    Бронь
+                                </a>
+                            </li>
+                            <li {{ app.request.pathInfo == 'kvartira_na_chas' ? 'class="active"' : '' }}>
+                                <a href="{{ path('/site/default/index', {'rentType' : 'kvartira_na_chas'}) }}">
+                                    Квартира на час
+                                </a>
+                            </li>
+                            <li {{ app.request.pathInfo == 'kvartira_na_sutki' ? 'class="active"' : '' }}>
+                                <a href="{{ path('/site/default/index', {'rentType' : 'kvartira_na_sutki'}) }}">
+                                    Квартира на сутки
+                                </a>
+                            </li>
                             <!-- <li {{ app.request.pathInfo == 'kvartira_na_sutki' ? 'class="active"' : '' }}><a href="{{ path('/site/default/dayindex', {'rentType' : 'kvartira_na_sutki'}) }}">Квартира на сутки -->
-                            <li {{ app.request.pathInfo == 'na_noch' ? 'class="active"' : '' }}><a
-                                        href="{{ path('/site/default/index', {'rentType' : 'na_noch'}) }}">Квартира на
-                                    ночь</a></li>
-                            <li><a href="{{ path('/pages/default/index', {'url' : 'rules'}) }}">Правила заселения</a>
+                            <li {{ app.request.pathInfo == 'na_noch' ? 'class="active"' : '' }}>
+                                <a href="{{ path('/site/default/index', {'rentType' : 'na_noch'}) }}">
+                                    Квартира на ночь
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('/pages/default/index', {'url' : 'rules'}) }}">Правила заселения</a>
                             </li>
                             <li><a href="{{ path(['/helpdesk/default/index']) }}">Связь с администрацией</a></li>
                             <li><a href="{{ path(['/articles/default/index']) }}">Статьи</a></li>
@@ -49,7 +70,6 @@
                         </ul>
                     </nav>
                     <p><br></p>
-
                 </div>
                 <div class="footer_contacts-block col-md-4">
                     <h4 class="blue">Контактная информация</h4>
@@ -97,37 +117,40 @@
     </div>
 </footer>
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129089549-1"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
 
-    function gtag() {
-        dataLayer.push(arguments);
-    }
+{% if constant('YII_ENV') == 'prod' %}
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-129089549-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-    gtag('js', new Date());
+        function gtag() {
+            dataLayer.push(arguments);
+        }
 
-    gtag('config', 'UA-129089549-1');
-</script>
+        gtag('js', new Date());
 
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript">
-    (function (m, e, t, r, i, k, a) {
-        m[i] = m[i] || function () {
-            (m[i].a = m[i].a || []).push(arguments)
-        };
-        m[i].l = 1 * new Date();
-        k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
-    })
-    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+        gtag('config', 'UA-129089549-1');
+    </script>
 
-    ym(35780585, "init", {
-        clickmap: true,
-        trackLinks: true,
-        accurateTrackBounce: true,
-        webvisor: true,
-        trackHash: true,
-        ecommerce: "dataLayer"
-    });
-</script>
-<!-- /Yandex.Metrika counter -->
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function (m, e, t, r, i, k, a) {
+            m[i] = m[i] || function () {
+                (m[i].a = m[i].a || []).push(arguments)
+            };
+            m[i].l = 1 * new Date();
+            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+        })
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym(35780585, "init", {
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true,
+            webvisor: true,
+            trackHash: true,
+            ecommerce: "dataLayer"
+        });
+    </script>
+    <!-- /Yandex.Metrika counter -->
+{% endif %}
