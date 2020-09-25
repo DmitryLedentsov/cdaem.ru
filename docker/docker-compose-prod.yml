@@ -8,9 +8,10 @@ services:
     volumes:
       - ../app:/app
       - ./nginx:/etc/nginx/conf.d
+      - ./nginx/ssl:/ssl
     env_file:
       - .docker.env
-    command: /bin/sh -c "envsubst '$$SERVER_NAME $$SERVER_NAME_CONTROL' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
+    command: /bin/sh -c "envsubst '$$SERVER_NAME $$SERVER_NAME_WILD $$SERVER_NAME_CONTROL' < /etc/nginx/conf.d/default.prod.conf.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
     restart: always
 
   app:
