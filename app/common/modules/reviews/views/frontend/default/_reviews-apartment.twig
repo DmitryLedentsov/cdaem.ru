@@ -1,0 +1,49 @@
+{#
+    Все отзывы
+    @var \yii\web\View this
+    @var integer countReviews
+    @var common\modules\reviews\models\formModel formModel
+    @var common\modules\reviews\models\ReviewSearch searchModel
+    @var yii\data\ActiveDataProvider dataProvider
+#}
+
+{{ use('common/modules/reviews/assets/frontend/ReviewAsset') }}
+{{ register_review_asset() }}
+
+<div class="reviews" id="come-to-reviews">
+    <div class="list">
+        <div class="clearfix">
+            {% if countReviews %}
+                <div class="title">Отзывы (<span>{{ countReviews }}</span>):</div>
+            {% else %}
+                <div class="title">Нет отзывов</div>
+            {% endif %}
+            <div class="add"><a href="#come-to-create-review" id="create-review-button" data-id="{{ apartment_id }}">Добавить
+                    отзыв</a></div>
+        </div>
+
+        {% for review in dataProvider.getModels() %}
+            {{ this.render('_view.twig', {
+                'model' : review,
+                'user' : true
+            }) | raw }}
+        {% endfor %}
+
+        {{ use('yii/widgets/LinkPager') }}
+        {{ link_pager_widget({
+            'pagination' : dataProvider.pagination
+        }) }}
+
+    </div>
+
+    <div id="come-to-create-review"></div>
+
+    <p><br/></p>
+
+    <div class="hidden" id="reviews">
+        {# this.render('_form.twig', {
+            'model' : formModel
+        }) | raw #}
+    </div>
+
+</div>

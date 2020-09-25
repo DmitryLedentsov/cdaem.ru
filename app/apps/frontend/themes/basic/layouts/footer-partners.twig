@@ -1,0 +1,106 @@
+<footer>
+    <div class="footer">
+        <div class="container">
+            <div class="extra">
+                <div class="footer_text-block col-md-4">
+                    <div class="footer-logo">
+                        <img src="/basic-images/logocopy.png" alt="logo"/>
+                    </div>
+                    <div class="footer-text">
+                        <p>
+                            Сдаём.ру - это сайт, посвященный краткосрочной аренде недвижимости всей России и СНГ. Здесь
+                            Вы можете забронировать квартиру на час, квартиру на ночь и квартиру на сутки, так же
+                            подобрать коттедж на сутки и на выходные.
+                            Мы работаем только с проверенными объектами недвижимости или своими.
+                        </p>
+                    </div>
+                </div>
+                <div class="footer_nav-block col-md-4">
+                    <h4 style="font-size: 22px;color: #00afff;margin-top: 15px;">Полезные ссылки</h4>
+                    <nav class="footer-nav">
+                        <ul class="nav">
+                            <li>Сдаем.ру</li>
+                            <li>
+                                <a href="{{ path('/pages/default/index', {'url' : 'about'}) }}">О Компании</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('/pages/default/index', {'url' : 'contacts'}) }}">Контактная информация</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('/pages/default/index', {'url' : 'privacy'}) }}">Права, правообладатели</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('/pages/default/index', {'url' : 'booking'}) }}">Бронь</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('/pages/default/index', {'url' : 'rules'}) }}">Правила заселения</a>
+                            </li>
+                            <li>
+                                <a href="{{ path(['/helpdesk/default/index']) }}">Связь с администрацией</a>
+                            </li>
+                            <li>
+                                <a href="{{ path(['/articles/default/index']) }}">Статьи</a>
+                            </li>
+                            <li>
+                                <a href="{{ path(['/helpdesk/default/workvac']) }}">Работа на Сдаём.ру</a>
+                            </li>
+                            {#
+                                <li><a href="{{ path({'0':'/pages/default/index', 'url' : 'exhibitions'}) }}">Выставочные центры Москвы</a></li>
+                                <li><a href="{{ path({'0':'/pages/default/index', 'url' : 'airports'}) }}">Аэропорты Москвы</a></li>
+                                <li><a href="{{ path({'0':'/pages/default/index', 'url' : 'railway'}) }}">Вокзалы Москвы</a></li>
+                            #}
+                        </ul>
+                    </nav>
+                    <p><br></p>
+                </div>
+                <div class="footer_contacts-block col-md-4">
+                    <h4 style="font-size: 22px;
+                        color: #00afff; margin-top: 15px;">Контактная информация</h4>
+                    <div class="footer-contacts">
+                        <h4>Бронирование в Москве. Агентство</h4>
+                        <span>Часы работы: 9 - 24, без выходных</span><br>
+                        <span>Тел. для аренды квартир в Москве:</span><br>
+                        <span class="contactphone">+7 (903) 799-17-99</span>
+                        <span class="contactphone">+7 (915) 455-94-94</span>
+                        <p>Для бронирования на доске объявлений: связь с администрацией</p>
+                    </div>
+                    <div class="social-links">
+                        <ul>
+                            <li>
+                                <img src="/basic-images/Message-Filled-5222.png" alt="messege"/>
+                            </li>
+                            <li>
+                                <a href="https://www.facebook.com/cdaem.ru" rel="nofollow">
+                                    <img src="/basic-images/facebook.png" alt="facebook"/>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://new.vk.com/cdaemru" rel="nofollow">
+                                    <img src="/basic-images/vkontakte_vk_socia.png" alt="vk"/>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://plus.google.com/communities/104623882749857804458" rel="nofollow">
+                                    <img src="/basic-images/google-pluscopy.png" alt="google-plus"/>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="skype:cdaemru" rel="nofollow">
+                                    <img src="/basic-images/1482159095_07-skype.png" alt="skype"/>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="copyright">
+                <p>
+                    EMAIL: <a href="mailto:info@cdaem.ru">info@cdaem.ru</a>,
+                    <span>Copiright &copy;  cdaem.ru {{ 'now'|date('Y') }} | Все права защищены</span>
+                </p>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</footer>

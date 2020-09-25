@@ -1,0 +1,88 @@
+{#
+    Недвижимость (Просмотр апартаментов)
+    @var common\modules\agency\models\Apartment searchModel
+    @var yii\data\ActiveDataProvider dataProvider
+    @var bool onlyAgency
+#}
+
+<div class="agency">
+
+    <div class="container">
+        <div class="agency-filter">
+            <div class="description">
+                {% if onlyAgency == true %}
+                    <div class="d-title"><h2>Проверенные квартиры от Сдаём.ру</h2></div>
+                    <p>Специалисты Сдаём.ру подберут вам проверенную квартиру в Москве по выгодным для Вас
+                        условиям! </p>
+                {% else %}
+                    <div class='d-title'>{{ metaData.agency_seo_short_desc | raw }}</div>
+                {% endif %}
+            </div>
+            <div class="filters">
+                {% if onlyAgency == false %}
+                    <div class="all-articles-link">
+                        <a class="newpink-btn" href="{{ path(['/agency/default/index']) }}"><span>Все квартиры от CDAEM.RU</span></a>
+                    </div>
+                {% endif %}
+                <!-- <div class="select-filter pink round_dr_filter" style="width: 250px">
+                    <select name="district" class="select-darkgray">
+                {% for name_eng, district_name in searchModel.districtsList %}
+                    <option value="/{{ searchModel.rentType }}/komnat/{{ searchModel.rooms }}/okrug/{{ name_eng }}"{% if searchModel.district == name_eng %} selected="selected"{% endif %}>{{ district_name }}</option>
+                {% endfor %}
+            </select>
+        </div>-->
+
+                <!--<div class="select-filter round_dr_filter" style="width: 250px">
+                    <select name="rooms" class="select-pinkround">
+                {% for key, room in searchModel.roomsList %}
+                    <option  value="/{{ searchModel.rentType }}/komnat/{{ key }}/okrug/{{ searchModel.district }}"{% if searchModel.rooms == key %} selected="selected"{% endif %}>{{ room }}</option>
+                {% endfor %}
+            </select>
+        </div>-->
+
+
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="container">
+        <div class="row apartments multiple-items2">
+            {% for advert in dataProvider.getModels() %}
+                {{ preview_advert_widget({'advert': advert}) }}
+            {% endfor %}
+
+            <div class="clearfix"></div>
+        </div>
+
+        {% if dataProvider.getModels() is empty %}
+            <div class="alert alert-danger" role="alert">
+                Апартаменты не найдены.
+            </div>
+            <style>
+
+                @media (max-width: 380px) {
+                    .agency {
+                        display: none;
+                    }
+                }
+
+                @media (max-width: 480px) {
+                    .agency {
+                        display: none;
+                    }
+                }
+
+            </style>
+        {% endif %}
+
+
+    </div>
+</div>
+
+
+{% if onlyAgency == true %}
+    <p><br/></p>
+{% endif %}

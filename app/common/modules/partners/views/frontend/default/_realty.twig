@@ -1,0 +1,30 @@
+{#
+    Недвижимость (Просмотр апартаментов)
+    @var common\modules\partners\models\ApartmentAdverts adverts
+    @var common\modules\partners\models\SearchAdverts searchModel
+    @var \yii\web\View this
+#}
+
+{{ use('common/modules/partners/widgets/frontend/PreviewAdvertIndex') }}
+
+{# Поиск #}
+{{ this.render('@common/modules/partners/frontend/views/default/_search_on_the_board.twig', {
+    'searchTitle': 'Доска объявлений - посредников и собственников',
+    'searchModel': searchModel,
+    'index': true,
+}) | raw }}
+
+
+<div class="container">
+    <div class="row">
+        {% for advert in adverts %}
+            {{ preview_advert_index_widget({'advert': advert}) }}
+        {% endfor %}
+    </div>
+    {% if adverts is empty %}
+        <div class="alert alert-danger" role="alert">
+            Апартаменты не найдены.
+        </div>
+    {% endif %}
+    <div class="clearfix"></div>
+</div>

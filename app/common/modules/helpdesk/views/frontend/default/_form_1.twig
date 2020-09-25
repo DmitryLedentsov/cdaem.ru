@@ -1,0 +1,32 @@
+{#
+    @var \yii\web\View this
+    @var \common\helpdesk\models\Helpdesk model
+    @var \common\helpdesk\models\form\HelpdeskForm formModel
+#}
+{{ use('common/modules/site/widgets/Captcha') }}
+
+{% set form = active_form_begin({
+    'options' : {'class' : 'horizontal'},
+    'id' : 'form-helpdesk-ask',
+    'enableClientScript' : false
+}) %}
+
+
+
+        {{ form.field(formModel, 'user_name', {'template' : '<div class="col-l"><label class="control-label">Ф.И.О.</label></div> <div class="col-i">{input}{error}</div>'}).textInput().label('Ваше имя') | raw }}
+
+        {{ form.field(formModel, 'email', {'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'}).textInput() | raw }}
+
+        {{ form.field(formModel, 'priority', {'options' : {'class' : 'form-group white' , 'style':'display:none' }, 'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'}).dropDownList(ArrayHelper.getColumn(model.priorityArray, 'label'), {'class' : 'form-control select-white'}) | raw }}
+
+        {{ form.field(formModel, 'theme', {'template' : '<div class="col-l"><label class="control-label">Номер телефона</label></div> <div class="col-i">{input}{error}</div>'}).textInput() | raw }}
+
+        {{ form.field(formModel, 'text', {'template' : '<div class="col-l"><label class="control-label">Текст сообщения</label></div> <div class="col-i">{input}{error}</div>'}).textarea() | raw }}
+
+        {{ captcha_widget({'form': form, 'model': model, 'name': 'verifyCode'}) }}
+
+<div class="form-group text-right">
+    <input type="submit" value="Отправить" class="btn btn-primary"/>
+</div>
+
+{{ active_form_end() }}

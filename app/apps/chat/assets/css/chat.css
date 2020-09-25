@@ -1,0 +1,173 @@
+/**
+ * Вид самого чата
+ */
+.chat {
+    border: solid 2px #0098BD;
+    position: relative;
+}
+
+.chat .title {
+    background: #0098BD;
+    color: #ffffff;
+    padding: 10px;
+    font-weight: 600;
+    height: 40px;
+}
+
+.chat .title .settings-nav {
+    float: none;
+}
+
+.chat .title .settings-nav:hover {
+    height: 100px;
+    position: absolute;
+}
+
+.chat .title .settings-nav ul {
+    width: 35px;
+}
+
+.chat .messages {
+    min-height: 550px;
+}
+
+.chat .control {
+    float: right;
+}
+
+.chat .control span {
+    color: #DEF8FF;
+    cursor: pointer;
+}
+
+.chat .control span:hover {
+    color: #ffffff;
+}
+
+.chat .form {
+    padding: 3px;
+    margin: -3px 0;
+    position: relative;
+}
+
+#message-text {
+    border: 0;
+    padding: 10px;
+    width: 90%;
+}
+
+#message-send {
+    background: #F4AD49;
+    color: white;
+    font-weight: 600;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    float: right;
+    margin: 5px;
+}
+
+/**
+ * Диалоги
+ */
+#dialogs {
+    border: solid 2px #0098BD;
+    margin: 0;
+    min-height: 500px;
+    max-height: 750px;
+    overflow: auto;
+}
+
+#dialogs.no-border {
+    border: none;
+}
+
+
+#dialogs .message.tpl {
+    display: none;
+}
+
+#dialogs .message {
+    width: 100%;
+    height: 70px;
+    table-layout: fixed;
+    border-bottom: 1px solid #E4E8ED;
+    cursor: pointer;
+}
+
+#dialogs .message.unread {
+    background: #E7F2FC;
+}
+
+#dialogs .message:hover {
+    background: #F2F9FF;
+}
+
+#dialogs .message .user {
+    width: 250px;
+    padding: 10px;
+}
+
+#dialogs .message .user .avatar {
+    width: 50px;
+    height: 50px;
+    float: left;
+    overflow: hidden;
+    border: solid 1px #F3F3F3;
+}
+
+#dialogs .message .user .avatar img {
+    max-width: 50px;
+}
+
+#dialogs .message .user .name {
+    overflow: hidden;
+    padding-left: 5px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+#dialogs .message .user .date {
+    overflow: hidden;
+    padding-left: 5px;
+    font-size: 80%;
+}
+
+#dialogs .message .answer {
+    padding: 10px;
+    height: 100%;
+}
+
+#dialogs .message .answer .user {
+    width: 100%;
+    height: 100%;
+}
+
+#dialogs .message .answer .avatar {
+    width: 35px;
+    height: 35px;
+    overflow: hidden;
+    margin-top: 3px;
+}
+
+#dialogs .message .answer .avatar img {
+    max-width: 35px;
+}
+
+#dialogs .message .answer .text {
+    overflow: hidden;
+    padding: 0 5px;
+    min-height: 35px;
+}
+
+#dialogs .message .answer .delete {
+    text-align: right;
+    font-size: 80%;
+    cursor: pointer;
+    margin-top: 5px;
+    color: silver;
+    display: block;
+    float: right;
+}
+
+

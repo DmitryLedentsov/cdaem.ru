@@ -1,0 +1,104 @@
+{#
+    Форма добавить жалобу
+    @var \yii\web\View this
+    @var \common\helpdesk\models\Helpdesk model
+    @var \common\helpdesk\models\form\HelpdeskForm formModel
+#}
+{{ use('yii/widgets/ActiveForm') }}
+
+<div class="modal fade" id="modal-helpdesk-complaint" data-title="Оставить жалобу на владельца">
+    <div id="helpdesk-complaint-result">
+        {% set form = active_form_begin({
+            'options' : {'class' : 'horizontal'},
+            'id' : 'form-helpdesk-complaint',
+            'action' : path({'0' : '/helpdesk/ajax/complaint', 'advert_id' : formModel.partners_advert_id}),
+            'enableClientScript': false,
+        }) %}
+
+        {% if formModel.scenario == 'guest-complaint' %}
+
+            {{ form.field(formModel, 'user_name', {
+                'template' : '{label}<div style="width: 250px;">{input}</div>{error}',
+                'labelOptions' : {'class' : 'control-label', 'style' : 'width: auto; float: none'}
+            }).textInput().label('Ваше имя') | raw }}
+
+            {{ form.field(formModel, 'email', {
+                'template' : '{label}<div style="width: 250px;">{input}</div>{error}',
+                'labelOptions' : {'class' : 'control-label', 'style' : 'width: auto; float: none'}
+            }).textInput() | raw }}
+
+        {% endif %}
+
+        {{ form.field(formModel, 'priority', {
+            'options' : {'class' : 'form-group white'},
+            'template' : '{label}<div style="width: 250px;">{input}</div>{error}',
+            'labelOptions' : {'class' : 'control-label', 'style' : 'width: auto; float: none'}
+        }).dropDownList(ArrayHelper.getColumn(model.priorityArray, 'label'), {'class' : 'form-control select-white'}) | raw }}
+
+        {{ form.field(formModel, 'theme', {
+            'labelOptions' : {'class' : 'control-label', 'style' : 'width: auto'}
+        }).textInput() | raw }}
+
+        {{ form.field(formModel, 'text', {
+            'labelOptions' : {'class' : 'control-label', 'style' : 'width: auto'}
+        }).textarea() | raw }}
+
+        <div class="form-group text-right">
+            <input type="submit" value="Отправить" class="btn btn-primary"/>
+        </div>
+
+        {{ active_form_end() }}
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    $(function () {
+
+        initSelectPicker();
+
+        /**
+         * Отправка формы "Жалоба на владельца"
+         */
+        $('#form-helpdesk-complaint').formApi({
+
+            // Все поля
+            fields: [
+                "_csrf",
+                "Helpdesk[user_name]",
+                "Helpdesk[email]",
+                "Helpdesk[priority]",
+                "Helpdesk[theme]",
+                "Helpdesk[text]"
+            ],
+
+            // Дополнительные поля, будут отправлены по кнопке submit
+            extraSubmitFields: {
+                submit: "submit"
+            },
+
+            // Валидация полей
+            validateFields: [
+                "helpdesk-user_name",
+                "helpdesk-email",
+                "helpdesk-priority",
+                "helpdesk-theme",
+                "helpdesk-text"
+            ],
+
+            // Событие срабатывает при успешном запросе
+            success: function (formApi, response) {
+                if ($.isPlainObject(response) && 'status' in response) {
+                    if (response.status == 1) {
+                        formApi.targetForm.parent().html('<div class="alert alert-success">' + response.message + '</div>');
+                    } else {
+                        formApi.targetForm.parent().html('<div class="alert alert-danger">' + response.message + '</div>');
+                    }
+                }
+            }
+        });
+
+    });
+
+</script>

@@ -1,0 +1,54 @@
+<div id="services" class="min row services_2 clearfix">
+    <div class="service s2 col-sm-2 col-xs-6" data-type="{{ constant('SERVICE_ADVERT_IN_TOP', Service) }}">
+        <div class="service-logo"><span class="service-icon-small top"></span></div>
+        <div class="service-name">{{ app.service.load(constant('SERVICE_ADVERT_IN_TOP', Service)).getName() }}</div>
+        <div class="service-desc">
+
+            <span>{{ app.formatter.asCurrency(app.service.load(constant('SERVICE_ADVERT_IN_TOP', Service)).getPrice(), 'RUB') | raw }}</span>
+        </div>
+    </div>
+    <div class="service s2 col-sm-2 col-xs-6" data-type="{{ constant('SERVICE_ADVERT_TOP_POSITION', Service) }}">
+        <div class="service-logo"><span class="service-icon-small top-position"></span></div>
+        <div class="service-name">{{ app.service.load(constant('SERVICE_ADVERT_TOP_POSITION', Service)).getName() }}</div>
+        <div class="service-desc">
+
+            <span>{{ app.formatter.asCurrency(app.service.load(constant('SERVICE_ADVERT_TOP_POSITION', Service)).getPrice(), 'RUB') | raw }}</span>
+        </div>
+    </div>
+    <div class="service s2 col-sm-2 col-xs-6" data-type="{{ constant('SERVICE_APARTMENT_CONTACTS_OPEN', Service) }}">
+        <div class="service-logo"><span class="service-icon-small contacts-open"></span></div>
+        <div class="service-name">{{ app.service.load(constant('SERVICE_APARTMENT_CONTACTS_OPEN', Service)).getName() }}</div>
+        <div class="service-desc">
+
+            <span>{{ app.formatter.asCurrency(app.service.load(constant('SERVICE_APARTMENT_CONTACTS_OPEN', Service)).getPrice(), 'RUB') | raw }}</span>
+        </div>
+    </div>
+    <div class="service s2 col-sm-2 col-xs-6" data-type="{{ constant('SERVICE_ADVERT_SELECTED', Service) }}">
+        <div class="service-logo"><span class="service-icon-small selected"></span></div>
+        <div class="service-name">{{ app.service.load(constant('SERVICE_ADVERT_SELECTED', Service)).getName() }}</div>
+        <div class="service-desc">
+
+            <span>{{ app.formatter.asCurrency(app.service.load(constant('SERVICE_ADVERT_SELECTED', Service)).getPrice(), 'RUB') | raw }}</span>
+        </div>
+    </div>
+    <div class="service s2 col-sm-2 col-xs-6" data-type="{{ constant('SERVICE_ADVERTISING_IN_SECTION', Service) }}">
+        <div class="service-logo"><span class="service-icon-small a-one-section"></span></div>
+        <div class="service-name">{{ app.service.load(constant('SERVICE_ADVERTISING_IN_SECTION', Service)).getName() }}</div>
+        <div class="service-desc">
+
+            <span>{{ app.formatter.asCurrency(app.service.load(constant('SERVICE_ADVERTISING_IN_SECTION', Service)).getPrice(), 'RUB') | raw }}</span>
+        </div>
+    </div>
+    <div class="service s2 col-sm-2 col-xs-6">
+        <a href="{{ path({0 : '/office/default/buy-ads'}) }}">
+            <div class="service-logo"><span class="service-icon-small top-slider"></span></div>
+            <div class="service-name">{{ app.service.load(constant('SERVICE_ADVERTISING_TOP_SLIDER', Service)).getName() }}</div>
+            <div class="service-desc">
+
+                <span>{{ app.formatter.asCurrency(app.service.load(constant('SERVICE_ADVERTISING_TOP_SLIDER', Service)).getPrice(), 'RUB') | raw }}</span>
+            </div>
+        </a>
+    </div>
+</div>
+
+         

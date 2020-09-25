@@ -1,0 +1,14 @@
+{
+  "name": "chat",
+  "version": "0.0.1",
+  "description": "Chat in project cdaem.ru",
+  "dependencies": {
+    "express": "^4.16.4",
+    "fs": "*",
+    "mysql": "*",
+    "node-uuid": "*",
+    "request": "*",
+    "socket.io": "*",
+    "util": "*"
+  }
+}

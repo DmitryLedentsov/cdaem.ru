@@ -1,0 +1,49 @@
+{
+  "minimum-stability": "dev",
+  "require": {
+    "php": ">=5.4.0",
+    "yiisoft/yii2": "2.0.37",
+    "yiisoft/yii2-bootstrap": "*",
+    "yiisoft/yii2-jui": "*",
+    "yiisoft/yii2-swiftmailer": "*",
+    "yiisoft/yii2-twig": "2.4.0",
+    "nepster-web/yii2-faceviewer-widget": "*",
+    "nepster-web/yii2-module-users": "dev-master",
+    "nepster-web/yii2-basis-components": "*",
+    "nepster-web/yii2-module-robokassa": "dev-master",
+    "yurkinx/yii2-image": "dev-master",
+    "iutbay/yii2-imagecache": "*",
+    "kartik-v/yii2-widget-datepicker": "*",
+    "kartik-v/yii2-widget-datetimepicker": "*",
+    "vova07/yii2-imperavi-widget": "*",
+    "himiklab/yii2-recaptcha-widget": "*",
+    "ladamalina/yii2-smsc": "*",
+    "giggsey/libphonenumber-for-php": "~6.0",
+    "vitalik74/yii2-geocode-yandex": "*",
+    "execut/yii2-robots-txt": "dev-master"
+  },
+  "require-dev": {
+    "yiisoft/yii2-codeception": "2.0.6",
+    "yiisoft/yii2-debug": "2.1.13",
+    "yiisoft/yii2-gii": "2.2.1",
+    "yiisoft/yii2-faker": "2.0.4",
+    "yiisoft/yii2-apidoc": "2.1.5",
+    "codeception/specify": "1.2.0",
+    "codeception/verify": "1.2.0",
+    "symfony/var-dumper": "5.0.8",
+    "friendsofphp/php-cs-fixer": "2.16.4"
+  },
+  "config": {
+    "process-timeout": 1800
+  },
+  "extra": {
+    "asset-installer-paths": {
+      "npm-asset-library": "vendor/npm",
+      "bower-asset-library": "vendor/bower"
+    }
+  },
+  "scripts": {
+    "code-style-check": "php vendor/bin/php-cs-fixer fix --verbose --show-progress=dots --dry-run --config=.php_cs.php",
+    "code-style-fix": "php vendor/bin/php-cs-fixer fix --diff --config=.php_cs.php"
+  }
+}

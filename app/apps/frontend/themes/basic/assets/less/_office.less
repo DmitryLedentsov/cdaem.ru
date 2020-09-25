@@ -1,0 +1,1213 @@
+/* ========================================================
+*
+* Target Cdaem.ru
+*
+* ======================================================== */
+
+// Стили принадлежащие только офису
+/*-------------------------------------*/
+.office {
+
+  small {
+    font-size: 10px;
+  }
+
+  &.container {
+    margin-top: 75px;
+  }
+
+  .color-success {
+    color: #00AE5D;
+  }
+
+  .color-danger {
+    color: #F24941;
+  }
+
+  .color-info {
+    color: @color-style-primary-active;
+  }
+
+  .color-closed {
+    color: #A5A5A5;
+  }
+
+
+  // Просмотр апартаментов
+  /*-------------------------------------*/
+
+  .view-apartments {
+    width: 27%;
+    float: left;
+
+    h3 {
+      font-size: 145%;
+      margin-bottom: 15px;
+    }
+
+    .rent-type-list {
+      width: 80%;
+      font-size: 150%;
+
+      li {
+        clear: both;
+        height: 30px;
+        margin-bottom: 5px;
+      }
+
+      .name {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        float: left;
+      }
+
+      .count {
+        float: right;
+        color: @color-style-primary-active;
+        font-weight: 400;
+      }
+    }
+  }
+
+
+  // Графическое меню
+  /*-------------------------------------*/
+
+  .graphical-menu {
+    margin: 0;
+    padding: 5px;
+
+    li {
+      float: left;
+      font-size: 155%;
+      margin-right: 15px;
+      position: relative;
+
+      &.active {
+        font-weight: bold;
+      }
+
+      .label {
+        width: 30px;
+        height: 30px;
+        font-size: 14px;
+        padding: 5px 0;
+        position: absolute;
+        top: -5px;
+        left: 25px;
+        background: @color-style-primary-active;
+        font-weight: 600;
+        color: #ffffff;
+        text-align: center;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        .border-radius(50%);
+      }
+
+      .gm-icon {
+        width: 45px;
+        height: 48px;
+        display: inline-block;
+        background: url("/basic-images/office-sprite.png") no-repeat;
+
+        &.message {
+          height: 40px;
+          background-position: 0 -282px;
+          margin-bottom: -12px;
+          margin-top: 10px;
+        }
+
+        &.favorites {
+          background-position: 0 -180px;
+          margin-bottom: -10px
+        }
+
+        &.ban {
+          background-position: 8px -232px;
+          margin-bottom: -10px
+        }
+
+        &.bid {
+          background-position: 0 -130px;
+          margin-bottom: -10px
+        }
+
+        &.reservations {
+          background-position: 0 -322px;
+          margin-bottom: -10px;
+        }
+
+      }
+
+      a {
+        display: inline-block;
+        color: @color-style-primary-active
+      }
+    }
+  }
+
+
+  // Дополнительное меню
+  /*-------------------------------------*/
+
+  .extra-menu {
+    margin-bottom: 25px;
+    width: 85%;
+
+
+    &.filter-style {
+
+      a {
+        padding: 3px 7px;
+        display: block;
+        background: #0086AB;
+        color: #ffffff;
+        text-decoration: none;
+        font-weight: 600;
+        margin-right: 5px;
+        margin-bottom: 8px;
+        .border-radius(5px);
+
+        &:hover {
+          background: #FFAF3E;
+        }
+      }
+
+      li {
+        margin-right: 0;
+
+        &.active {
+          a {
+            background: #FFAF3E;
+          }
+        }
+      }
+    }
+
+
+    &.long-list {
+      li {
+        font-size: 100%;
+
+        a {
+          text-decoration: none;
+          font-weight: 600;
+          margin-right: 5px;
+          margin-bottom: 8px;
+        }
+      }
+    }
+
+    li {
+      display: inline-block;
+      font-size: 150%;
+      margin-right: 15px;
+
+      &.active {
+        font-weight: bold;
+      }
+    }
+  }
+
+
+  // Список апартаментов
+  /*-------------------------------------*/
+
+  .apartment-list {
+    margin-top: 55px;
+    min-height: 200px;
+    padding-right: 6%;
+
+    .aadvert-preview {
+
+      .description {
+        height: 25px;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto 3px;
+        font-size: 13px;
+        overflow: hidden;
+        padding: 2px 5px;
+        background: rgba(255, 255, 255, 0.8);
+      }
+
+      .name {
+        color: @color-style-primary-active;
+      }
+    }
+
+    .item {
+      width: 50%;
+      float: left;
+      text-align: left;
+      margin-bottom: 30px;
+
+      &:nth-child(2n) {
+        text-align: right;
+      }
+    }
+  }
+
+
+  // Загрузка контента в модальном окне
+  /*-------------------------------------*/
+
+  .load {
+    .apartment-list {
+      margin-top: 15px;
+      min-height: 200px;
+      padding-right: 0;
+
+      .item {
+        text-align: center;
+
+        .advert-preview {
+          cursor: pointer;
+        }
+      }
+
+      .name {
+        font-size: 100%;
+      }
+    }
+  }
+
+
+  // Список пользователей
+  /*-------------------------------------*/
+
+  .user-list {
+    margin-top: 55px;
+    margin-left: -25px;
+
+    li {
+      width: 33.3333%;
+      float: left;
+      padding-left: 25px;
+      margin-bottom: 25px;
+    }
+
+    .user {
+      height: 130px;
+      border: dashed 1px #D9D9D9;
+      padding-top: 5px;
+      padding-bottom: 5px;
+
+      .face {
+        width: 35%;
+        float: left;
+        padding-left: 15px;
+
+        .avatar {
+          height: 80px;
+
+          img {
+            min-height: 80px;
+          }
+        }
+
+        .online {
+          text-align: center;
+          margin-top: 15px;
+          color: #008000;
+        }
+      }
+
+      .extra {
+        width: 65%;
+        float: right;
+        padding-right: 15px;
+
+        .name {
+          padding: 5px;
+          font-size: 120%;
+          overflow: hidden;
+          height: 50px;
+        }
+
+        .settings {
+          float: left;
+          margin: 5px;
+        }
+
+        .btn {
+          font-size: 120%;
+          font-weight: 400;
+          float: right;
+        }
+      }
+
+    }
+
+  }
+
+
+  // Настройки
+  /*-------------------------------------*/
+
+  .settings-nav {
+    position: relative;
+    float: left;
+
+    &.text {
+      display: inline-block;
+      cursor: pointer;
+
+      ul {
+        top: 20px;
+      }
+    }
+
+    &.right {
+      ul {
+        right: 0;
+      }
+    }
+
+    &:hover {
+      ul {
+        display: block;
+        border: solid 1px #D9D9D9;
+        padding-bottom: 5px;
+        .box-shadow(3px 7px 10px -3px rgba(0, 0, 0, 0.35));
+        .border-radius(5px);
+      }
+    }
+
+    ul {
+      display: none;
+      width: 42px;
+      top: 40px;
+      position: absolute;
+      z-index: 999;
+      background: #ffffff;
+
+      li {
+        width: 100%;
+        height: 35px;
+        display: block;
+        margin: 0 0 5px 0;
+        padding: 0;
+
+        &:last-child {
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  .settings {
+    width: 32px;
+    height: 35px;
+    display: block;
+    background: url("/basic-images/office-sprite.png") no-repeat;
+    cursor: pointer;
+
+    &.control {
+      background-position: 0 -385px;
+    }
+
+    &.bookmark {
+      background-position: 0 -420px;
+    }
+
+    &.blacklist {
+      background-position: -1px -458px;
+    }
+
+    &.remove {
+      background-position: -1px -502px;
+    }
+
+    &:hover.control {
+      background-position: -34px -385px;
+    }
+
+    &:hover.bookmark {
+      background-position: -34px -420px;
+    }
+
+    &:hover.blacklist {
+      background-position: -35px -458px;
+    }
+
+    &:hover.remove {
+      background-position: -35px -502px;
+    }
+  }
+
+  .info {
+    overflow: hidden;
+    padding-bottom: 95px;
+
+    .container-certain {
+      width: 90%;
+      margin: 0 auto 55px auto;
+    }
+  }
+
+  .separator-e {
+    margin-bottom: 55px;
+
+    .title {
+      a {
+        font-size: 90%;
+      }
+    }
+  }
+
+
+  .apartment-item {
+    margin-bottom: 45px;
+
+    &.closed, &.invisible {
+      color: #c0c0c0;
+
+      a {
+        color: #c0c0c0;
+      }
+
+      .color-info, .color-success, span {
+        color: #c0c0c0 !important;
+      }
+    }
+
+    .accent-time {
+      font-size: 150%;
+    }
+
+    .contacts {
+      p {
+        margin: 0;
+      }
+    }
+
+    > .apartment-description {
+      float: left;
+      width: 82%;
+    }
+
+    h3 {
+      font-size: 125%;
+      border-bottom: solid 1px #EEEEEE;
+      padding-bottom: 5px;
+      overflow: hidden;
+      text-overflow: clip;
+      white-space: nowrap;
+    }
+
+    .apartment-blocks {
+      width: 100%;
+      display: table;
+      table-layout: fixed;
+      margin-top: 10px;
+
+      > div {
+        padding: 0 10px;
+      }
+
+      .color-info {
+        color: #1F1F1F;
+        font-weight: bold;
+      }
+
+      .apartment-info {
+        p {
+          margin-bottom: 5px;
+          font-size: 100%;
+        }
+      }
+
+      .no-payment {
+        a {
+          font-size: 10px;
+          color: #F24941;
+        }
+      }
+    }
+
+    .adverts-list {
+      display: table-cell;
+      vertical-align: middle;
+
+      .advert-name {
+        display: inline-block;
+        width: 180px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        margin-bottom: -3px;
+        position: relative;
+        padding-top: 5px;
+
+        &.distinguish {
+          width: 100%;
+          font-size: 150%;
+        }
+
+        .top {
+          font-size: 11px;
+          position: absolute;
+          top: -2px;
+          right: -20px;
+          width: 75px;
+          height: 15px;
+          overflow: hidden;
+        }
+      }
+    }
+
+    .apartment-info {
+      width: 32%;
+      display: table-cell;
+    }
+
+    .extra-list {
+      display: table-cell;
+
+      &.va {
+        vertical-align: middle;
+      }
+
+      &.accent {
+        .color-danger, .color-success {
+          font-size: 150%;
+        }
+      }
+
+      &.payment-status {
+        width: 25%;
+        vertical-align: middle;
+      }
+
+      &.links {
+        width: 25%;
+        padding-left: 15px;
+
+        a {
+          font-size: 120%;
+        }
+
+        p {
+          margin: 0;
+        }
+
+        .edit {
+          background: url('/basic-images/btn_edit_ads.png') no-repeat left center;
+          height: 40px;
+          padding: 5px 0 0 40px;
+        }
+
+        .reviews {
+          background: url('/basic-images/btn_comments.png') no-repeat left center;
+          height: 40px;
+          padding: 5px 0 0 40px;
+          margin-top: 5px;
+        }
+      }
+    }
+
+
+    > .present {
+      width: 18%;
+      float: right;
+      text-align: right;
+    }
+  }
+
+
+  .general-form {
+
+    &.buy-ads {
+
+      label {
+      }
+
+      .section {
+        width: 35%;
+
+        .desc {
+          text-align: left;
+        }
+
+        &:first-child {
+          width: 65%;
+        }
+      }
+    }
+
+  }
+
+
+  // Калькулятор цен при покупке сервисов
+  /*-------------------------------------*/
+
+  .calculate {
+    margin-bottom: 15px;
+
+    .service-logo {
+      width: 180px;
+      height: 180px;
+      float: left;
+      text-align: center;
+      padding: 0 15px;
+      margin-right: 15px;
+    }
+
+    .service-info {
+      overflow: hidden;
+    }
+
+
+    .name {
+      font-weight: bold;
+      margin: 0;
+      padding: 0;
+    }
+
+    .selected {
+
+    }
+
+    .price {
+      font-size: 125%;
+      text-decoration: line-through;
+    }
+
+    .discount {
+      font-size: 125%;
+      .color-success();
+    }
+
+    .total-price {
+      font-size: 170%;
+      font-weight: bold;
+    }
+  }
+
+
+  .reservation-filter {
+    margin-bottom: 55px;
+
+    .form-group {
+      width: 170px;
+      float: left;
+      clear: none;
+      margin-right: 15px;
+
+      &:first-child {
+        width: 270px;
+      }
+
+      &:last-child {
+        width: 80px;
+        margin-top: 15px;
+        margin-right: 0;
+      }
+    }
+
+  }
+
+
+}
+
+
+// Модальное окно выбора объявлений
+/*-------------------------------------*/
+#modal-realty-objects-by-service {
+  .modal-dialog {
+    width: 550px;
+
+    .apartment-list {
+      .shadow-box {
+        &:hover {
+          border: solid 1px @color-style-orange-hover;
+        }
+      }
+
+      .item {
+        width: 33.3333%;
+        float: left;
+        text-align: center;
+        margin-bottom: 30px;
+
+        &:nth-child(2n) {
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+
+// Форма добавления и редактирования апартаментов
+/*-------------------------------------*/
+
+.container-apartment-form {
+
+  .apartment-form-section {
+    border: solid 1px #DBDBDB;
+    padding: 25px;
+    border-radius: 5px;
+    margin-bottom: 35px;
+
+    .margin {
+      margin-left: 40px;
+      margin-right: 40px;
+      margin-bottom: 15px;
+    }
+
+    .title {
+      font-size: 150%;
+      font-weight: 400;
+      margin-bottom: 25px;
+
+      span {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        background: #D0EEF6;
+        color: #76A4AE;
+        text-align: center;
+        padding-top: 2px;
+        font-size: 80%;
+        border-bottom: solid 2px #ACD1E0;
+        margin-right: 5px;
+        .border-radius(50%);
+      }
+    }
+
+    .item {
+      width: 100%;
+      float: left;
+
+      .form-control {
+        width: 220px;
+      }
+
+      &.r3 {
+        width: 33%;
+      }
+
+      &.r2 {
+        width: 50%;
+      }
+
+      &.no-label {
+        padding-top: 25px;
+      }
+
+      label.control-label {
+        width: auto;
+        float: none;
+        font-size: 120%;
+      }
+
+      .form-group {
+        display: block;
+      }
+
+      .col-l {
+        width: auto;
+        display: block;
+      }
+
+      .col-i {
+        display: block;
+      }
+    }
+
+    .rent-type-list {
+      .col-i {
+        label {
+          width: 25%;
+          clear: none !important;
+        }
+      }
+    }
+  }
+}
+
+
+.text-help-section {
+  padding-right: 15px;
+
+  &.s1 {
+    margin-top: 245px;
+    height: 950px;
+  }
+
+  &.s2 {
+    margin-top: 55px;
+    height: 500px;
+  }
+
+  &.s3 {
+    margin-top: 60px;
+  }
+
+}
+
+
+#form-apartment {
+
+  h2 {
+    font-size: 150%;
+    margin-top: 45px;
+    margin-bottom: 25px;
+  }
+
+  .col-i {
+    .small {
+      width: 150px;
+    }
+
+    .medium {
+      width: 250px;
+    }
+  }
+
+  .rent-type-list {
+    .col-i {
+      label {
+        display: block;
+        float: left;
+        clear: both;
+        font-size: 120%;
+        padding: 5px 0;
+      }
+    }
+  }
+
+  .adv-list {
+    display: none;
+
+    &.show {
+      display: block;
+    }
+
+    .title {
+      font-size: 150%;
+      margin-bottom: 15px;
+      color: @color-style-primary-link
+    }
+  }
+}
+
+
+// Список превью изображений
+/*-------------------------------------*/
+.images-preview {
+  margin-bottom: 15px;
+
+  .advert-preview {
+    margin-right: 15px;
+    margin-bottom: 15px;
+    position: relative;
+
+    &:hover .control {
+      display: block;
+
+    }
+
+    .control {
+      width: 100%;
+      height: 38px;
+      position: absolute;
+      z-index: 2;
+      display: none;
+      margin: auto;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      text-align: center;
+
+      .index, .delete {
+        width: 35px;
+        height: 35px;
+        display: inline-block;
+        cursor: pointer;
+      }
+
+      .index {
+        margin-right: 5px;
+        background: url('/basic-images/success.png') no-repeat center;
+      }
+
+      .delete {
+        background: url('/basic-images/fail.png') no-repeat center;
+      }
+    }
+
+    &.default {
+      border: solid 2px @color-style-primary-border;
+    }
+  }
+}
+
+
+// Сервисы
+/*-------------------------------------*/
+#services {
+
+  .service {
+    width: 33%;
+    float: left;
+    padding: 15px;
+    margin-bottom: 55px;
+    border: solid 2px transparent;
+    cursor: pointer;
+    .border-radius(5px);
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    &:hover, &.active {
+      border: solid 2px @color-style-orange-border;
+    }
+
+    .service-logo {
+      width: 220px;
+      height: 150px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .service-name {
+      font-weight: bold;
+      font-size: 100%;
+      text-align: center;
+      text-transform: uppercase;
+      margin: 15px 0;
+    }
+
+    .service-desc {
+      height: 100px;
+      overflow: hidden;
+    }
+  }
+
+
+  &.min {
+    padding: 5px;
+    margin-right: 15px;
+
+    .service {
+      width: 50%;
+      float: left;
+      margin-bottom: 15px;
+      padding: 5px;
+
+      .service-logo {
+        width: 100%;
+        height: 105px;
+        margin: auto;
+        text-align: center;
+      }
+
+      .service-name {
+        font-size: 85%;
+        margin: 0;
+        height: 35px;
+      }
+
+      .service-desc {
+        font-size: 100%;
+        height: 45px;
+        text-align: center;
+
+        p {
+          margin: 0;
+        }
+
+        span {
+          color: @color-style-primary-active;
+          display: inline-block;
+          font-size: 125%;
+          font-weight: bold;
+
+          span {
+            font-size: 100%;
+          }
+        }
+      }
+    }
+  }
+
+}
+
+
+.service-icon-small {
+  background: url('/basic-images/service-sprite-small.png') no-repeat top left;
+  display: inline-block;
+}
+
+.service-icon-small.top {
+  background-position: 0 0;
+  width: 111px;
+  height: 100px;
+}
+
+.service-icon-small.contacts-open {
+  background-position: 0 -107px;
+  width: 111px;
+  height: 100px;
+}
+
+.service-icon-small.top-position {
+  background-position: 0 -209px;
+  width: 107px;
+  height: 100px;
+}
+
+.service-icon-small.selected {
+  background-position: 0 -316px;
+  width: 114px;
+  height: 100px;
+}
+
+.service-icon-small.a-one-section {
+  background-position: 0 -528px;
+  width: 95px;
+  height: 100px;
+}
+
+.service-icon-small.a-all-sections {
+  background-position: 0 -633px;
+  width: 145px;
+  height: 100px;
+}
+
+.service-icon-small.top-slider {
+  background-position: 0 -733px;
+  width: 100px;
+  height: 100px;
+}
+
+.service-icon-big {
+  background: url('/basic-images/service-sprite-big.png') no-repeat top left;
+  display: inline-block;
+}
+
+.service-icon-big.top {
+  background-position: 0 0;
+  width: 165px;
+  height: 148px;
+}
+
+.service-icon-big.contacts-open {
+  background-position: 0 -163px;
+  width: 160px;
+  height: 142px;
+}
+
+.service-icon-big.top-position {
+  background-position: 0 -320px;
+  width: 161px;
+  height: 141px;
+}
+
+.service-icon-big.selected {
+  background-position: 0 -476px;
+  width: 178px;
+  height: 149px;
+}
+
+.service-icon-big.a-one-section {
+  background-position: 0 -800px;
+  width: 150px;
+  height: 146px;
+}
+
+.service-icon-big.a-all-sections {
+  background-position: 0 -961px;
+  width: 219px;
+  height: 130px;
+}
+
+.service-icon-big.top-slider {
+  background-position: 0 -1106px;
+  width: 154px;
+  height: 133px;
+}
+
+
+#calendar {
+  .fc-toolbar {
+    h2 {
+      text-transform: capitalize;
+    }
+  }
+
+  .fc-month-button {
+    display: none;
+  }
+
+  .fc-state-disabled {
+    display: none;
+  }
+
+  .fc-day:hover {
+    background: #F1FAFF;
+    cursor: pointer;
+  }
+
+  /*Allow pointer-events through*/
+
+  .fc-slats, /*horizontals*/
+  .fc-content-skeleton, /*day numbers*/
+  .fc-bgevent /*events*/ {
+    pointer-events: none
+  }
+}
+
+
+.control-date {
+  width: 100%;
+  display: table;
+
+  &.item {
+    margin-bottom: 15px;
+  }
+
+  .object {
+    width: 175px;
+    display: table-cell;
+    vertical-align: top;
+    padding-top: 15px;
+  }
+
+  .options {
+    display: table-cell;
+    vertical-align: top;
+
+    .form-control {
+      &.date {
+        width: 40%;
+        float: left;
+        margin-right: 15px;
+      }
+
+      &.time {
+        width: 30%;
+        float: left;
+      }
+
+    }
+  }
+
+}
+
+
+#image-preview {
+  img {
+    max-width: 210px;
+  }
+}

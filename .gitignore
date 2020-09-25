@@ -1,0 +1,8 @@
+.idea
+app/vendor
+app/yii
+docker/docker-compose.override.yml
+docker/.docker.env
+docker/nginx/default.conf
+docker/nginx/ssl
+fias_dbf.rar

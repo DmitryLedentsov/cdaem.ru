@@ -1,0 +1,102 @@
+{#
+    Сообщения
+    @var \yii\web\View this
+#}
+
+{% extends "@common/modules/office/views/frontend/layouts/main.twig" %}
+
+{% block title %} Сообщения - Личный кабинет | Сдаём.ру {% endblock %}
+
+{% block header %}{% endblock %}
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        {{ use('yii/widgets/Breadcrumbs') }}
+        {{ breadcrumbs_widget({
+            'itemTemplate' : "<li>{link}</li>\n",
+            'homeLink' :
+            {
+                'label' : 'Главная',
+                'url' : '/'
+            },
+            'links':  [
+                {
+                    'label': 'Личный кабинет',
+                    'url' : ['/office/default/index']
+                },
+                {
+                    'label': 'Сообщения',
+                },
+            ],
+        }) }}
+    </div>
+{% endblock %}
+
+
+{% block content %}
+    {{ use('nepster/faceviewer/Widget') }}
+
+    {{ use ('chat/assets/ChatAsset') }}
+    {{ register_chat_asset() }}
+
+    {% if dataProvider.models %}
+        <div class="chat">
+
+            <div class="title">
+                <div class="clearfix text right">
+                    <div>Диалоги с пользователями</div>
+                </div>
+            </div>
+
+            <div id="dialogs" class="no-border">
+                {% for model in dataProvider.models %}
+                    <table class="message {{ this.renderDynamic('return \\common\\modules\\messages\\models\\Mailbox::find()->select("read")->where(["id" => '~model.id~'])->scalar() == 0 ? "unread" : "";') | raw }}"
+                           onclick="location.href='{{ path({0 : '/messages/default/view', 'interlocutorId' : model.interlocutor_id}) }}'">
+                        <tr>
+                            <td class="user">
+                                {% if model.interlocutor.isBanned() %}
+                                    {% set banned %}
+                                        <small class="color-danger">Заблокирован</small>
+                                    {% endset %}
+                                {% endif %}
+                                {{ widget_widget({
+                                    'template' : '<div class="avatar">{face}</div><div class="name">{name} {surname}</br>'~banned~'</div>',
+                                    'data' : {
+                                        name: model.interlocutor.profile.name,
+                                        surname: model.interlocutor.profile.surname,
+                                        avatar_url: model.interlocutor.profile.avatar_url,
+                                    }
+                                }) }}
+                                <div class="date">{{ this.renderDynamic('return \\nepster\\basis\\helpers\\DateTimeHelper::diffAgoPeriodRound("'~model.message.date_create~'");') | raw }}</div>
+                            </td>
+                            <td class="answer">
+                                {% if (model.inbox == 0) %} {# Если исходящее : Открыть DIV с юзером(собеседником) #}
+                                <div class="user">
+                                    {{ widget_widget({
+                                        'template' : '<div class="avatar">{face}</div>',
+                                        'data' : {
+                                            avatar_url: app.user.identity.profile.avatar_url,
+                                        }
+                                    }) }}
+                                    {% endif %}
+
+                                    <div class="text">
+                                        {{ model.message.text }}
+                                    </div>
+
+                                    {% if (model.inbox) %} {# Если входящее : закрыть DIV#}
+                                </div>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    </table>
+                {% endfor %}
+            </div>
+        </div>
+    {% else %}
+        <div class="alert alert-info">
+            У вас нет диалогов ни с одним пользователем.
+        </div>
+    {% endif %}
+
+{% endblock content %}

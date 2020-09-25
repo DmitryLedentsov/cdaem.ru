@@ -1,0 +1,1 @@
+$(function(){$("#create-review-button").on("click",function(e){var t=$(this),i=$("#reviews");$.trim(i.html())||$.get("/create-review/"+t.data("id"),function(e){i.append(e)}),i.show("slow")})});

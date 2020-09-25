@@ -1,0 +1,153 @@
+
+.user-face {
+    width: auto;
+    height: 40px;
+    padding-top: 5px;
+    float: none;
+    display: inline-block;
+}
+
+.user-face .avatar {
+    border: 1px solid #999;
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    margin-right: 5px;
+    float: left;
+    position: relative;
+    top: -5px;
+}
+
+.user-face .avatar img {
+    display: block;
+    height: 100%;
+    border: 0;
+    margin: 0;
+}
+
+.user-face p {
+    margin: 0;
+    padding: 0;
+}
+
+
+textarea {
+    min-width: 100%;
+    max-width: 100%;
+    max-height: 600px;
+    min-height: 200px;
+}
+
+
+/* Fix Bootstrap */
+.has-feedback label ~ .form-control-feedback {
+    top: 30px;
+}
+
+.radio label, .checkbox label {
+    padding-left: 0;
+}
+
+/* Fix Tables */
+.panel {
+    margin-top: 10px;
+}
+
+.table-responsive {
+    width: 100%;
+    margin-bottom: 15px;
+    overflow-x: auto;
+    /*overflow-y: hidden;*/
+    border: 1px solid #DDD;
+}
+
+.table-bordered > thead > tr > th, .table-bordered > thead > tr > td {
+    border-bottom-width: 0px !important;
+}
+
+.tdCheckbox {
+    width: 40px !important;
+    min-width: 40px !important;
+}
+
+.tdId {
+    width: 75px !important;
+    min-width: 75px !important;
+}
+
+.tdDate {
+    width: 180px !important;
+    min-width: 180px !important;
+}
+
+.tdFunds {
+    width: 100px !important;
+    min-width: 100px !important;
+}
+
+.tdUser {
+    width: 150px !important;
+    min-width: 150px !important;
+}
+
+.tdUserFull {
+    width: 230px !important;
+    min-width: 230px !important;
+}
+
+.tdText {
+    min-width: 250px !important;
+}
+
+.tdStatus {
+    width: 150px !important;
+    min-width: 150px !important;
+}
+
+.tdControl {
+    width: 100px !important;
+    min-width: 100px !important;
+}
+
+.tdImage {
+    width: 100px !important;
+    min-width: 100px !important;
+}
+
+/* Fix Imperavi FullScrean */
+.redactor-box.redactor-box-fullscreen {
+    margin-top: 53px;
+}
+
+/* Fix photo gallery */
+.thumb {
+    width: 100%;
+}
+
+.image-crop {
+    width: inherit;
+    height: 200px;
+    overflow: hidden;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.thumbnail {
+    width: 150px;
+    height: 150px;
+    float: left;
+    margin: 0 15px 15px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.thumbnail.active {
+    border: solid 2px green;
+}
+
+
+#adverts-multi-update-rent-types-list label {
+    margin-right: 15px;
+}

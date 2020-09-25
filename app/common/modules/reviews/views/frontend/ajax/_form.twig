@@ -1,0 +1,163 @@
+{#
+    Форма отзыва
+    @var \yii\web\View this
+    @var integer countReviews
+    @var common\modules\reviews\models\formModel model
+#}
+{{ use('yii/widgets/ActiveForm') }}
+{{ use('common/modules/site/widgets/Captcha') }}
+{{ use('common/modules/reviews/assets/frontend/ReviewAsset') }}
+{{ register_review_asset() }}
+
+{{ use('common/modules/site/widgets/Captcha') }}
+
+
+<div class="container-certain orange text">
+    <h3>Добавить отзыв</h3>
+
+    {% set form = active_form_begin({
+        'id' : 'form-review',
+        'enableClientScript': false,
+        'action' : { 0: '/reviews/ajax/create', 'apartment_id' : model.apartment_id},
+        'options' : {'class' : 'horizontal'}
+    }) %}
+
+
+    {{ form.field(model, 'match_description', {'options' : {'class' : 'form-group'},
+        'template' : '<div class="col-l">{label}</div> <div class="col-i"><div style="width:50%">{input}</div>{error}</div>'
+    }).dropDownList(ArrayHelper.getColumn(model.ratingMatchDescriptionArray, 'label'), {'class' : 'select-white', 'prompt' : 'Поставьте оценку'}) | raw }}
+
+
+    {{ form.field(model, 'price_quality', {'options' : {'class' : 'form-group'},
+        'template' : '<div class="col-l">{label}</div> <div class="col-i"><div style="width:50%">{input}</div>{error}</div>'
+    }).dropDownList(ArrayHelper.getColumn(model.ratingPriceAndQualityArray, 'label'), {'class' : 'select-white', 'prompt' : 'Поставьте оценку'}) | raw }}
+
+
+    {{ form.field(model, 'cleanliness', {'options' : {'class' : 'form-group'},
+        'template' : '<div class="col-l">{label}</div> <div class="col-i"><div style="width:50%">{input}</div>{error}</div>'
+    }).dropDownList(ArrayHelper.getColumn(model.ratingCleanlinessArray, 'label'), {'class' : 'select-white', 'prompt' : 'Поставьте оценку'}) | raw }}
+
+
+    {{ form.field(model, 'entry', {'options' : {'class' : 'form-group'},
+        'template' : '<div class="col-l">{label}</div> <div class="col-i"><div style="width:50%">{input}</div>{error}</div>'
+    }).dropDownList(ArrayHelper.getColumn(model.ratingEntryArray, 'label'), {'class' : 'select-white', 'prompt' : 'Поставьте оценку'}) | raw }}
+
+
+    {{ form.field(model, 'text', {'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'}).textArea() | raw }}
+
+
+    {% if model.scenario == 'guest-create' %}
+
+        <h4>Быстрая регистрация</h4> <br/>
+
+        {{ form.field(model, 'email', {'options' : {'class' : 'white form-group'},
+            'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'
+        }) | raw }}
+
+        {{ form.field(model, 'phone', {'options' : {'class' : 'white form-group'},
+            'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'
+        }) | raw }}
+
+        {{ form.field(model, 'password', {'options' : {'class' : 'white form-group'},
+            'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'
+        }).passwordInput() | raw }}
+
+        <p class="text-right">
+            {{ form.field(model, 'agreement').checkbox({'label' : '
+                Регистрируясь на сайте, Вы соглашаетесь с '
+                ~html.a('пользовательским соглашением', {0 : '/pages/default/index', 'url' : 'agreement'}, {'target': '_blank'})
+            }) | raw }}
+        </p>
+
+    {% endif %}
+
+    <br/>
+
+    {% if model.scenario == 'guest-create' %}
+        <h3>Подтвердите что вы не робот!</h3>
+        {{ captcha_widget({'form': form, 'model': model, 'name': 'verifyCode'}) }}
+
+        <p><br></p>
+
+    {% endif %}
+
+
+    <div class="clearfix"></div>
+
+    <div class="form-group text-right">
+        <input type="submit" value="Отправить" class="btn btn-primary"/>
+    </div>
+
+    {{ active_form_end() }}
+
+</div>
+
+
+<script>
+    $(function () {
+
+        /**
+         * Отправка формы "Добавить отзыв"
+         */
+        $('#form-review').formApi({
+
+            // Все поля
+            fields: [
+                "_csrf",
+                "ReviewForm[match_description]",
+                "ReviewForm[price_quality]",
+                "ReviewForm[cleanliness]",
+                "ReviewForm[entry]",
+                "ReviewForm[text]",
+                "ReviewForm[verifyCode]",
+                "ReviewForm[email]",
+                "ReviewForm[phone]",
+                "ReviewForm[password]",
+                "ReviewForm[agreement]"
+            ],
+
+            // Дополнительные поля, будут отправлены по кнопке submit
+            extraSubmitFields: {
+                submit: "submit"
+            },
+
+            // Валидация полей
+            validateFields: [
+                "reviewform-match_description",
+                "reviewform-price_quality",
+                "reviewform-cleanliness",
+                "reviewform-entry",
+                "reviewform-text",
+                //"reviewform-verifyCode",
+                "reviewform-email",
+                "reviewform-phone",
+                "reviewform-password",
+                "reviewform-verifycode",
+                "reviewform-agreement"
+            ],
+
+            // Событие срабатывает при успешном запросе
+            success: function (formApi, response) {
+                if ($.isPlainObject(response) && 'status' in response) {
+                    if (response.status == 1) {
+                        formApi.targetForm.parent().before('<div class="alert alert-success">' + response.message + '</div>');
+                        formApi.targetForm.parent().slideToggle("slow");
+
+                    } else {
+                        formApi.targetForm.parent().before('<div class="alert alert-danger">' + response.message + '</div>');
+                    }
+                }
+            },
+
+            // Событие срабатывает после завершения ajax запроса
+            complete: function (formApi, jqXHR, textStatus) {
+                // Обновить защитный код
+                if ($('#reviewform-verifycode-image').length) {
+                    $('#reviewform-verifycode-image').yiiCaptcha('refresh');
+                }
+            }
+        });
+
+        initSelectPicker();
+    });
+</script>

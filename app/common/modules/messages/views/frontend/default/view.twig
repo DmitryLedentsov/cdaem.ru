@@ -1,0 +1,113 @@
+{#
+    Сообщения
+    @var \yii\web\View this
+#}
+
+{% extends "@common/modules/office/views/frontend/layouts/main.twig" %}
+
+{% block title %} Сообщения - Личный кабинет | Сдаём.ру {% endblock %}
+
+{% block header %}{% endblock %}
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        {{ use('yii/widgets/Breadcrumbs') }}
+        {{ breadcrumbs_widget({
+            'itemTemplate' : "<li>{link}</li>\n",
+            'homeLink' :
+            {
+                'label' : 'Главная',
+                'url' : '/'
+            },
+            'links':  [
+                {
+                    'label': 'Личный кабинет',
+                    'url' : ['/office/default/index']
+                },
+                {
+                    'label': 'Сообщения',
+                },
+            ],
+        }) }}
+    </div>
+{% endblock %}
+
+
+{% block content %}
+
+    {{ use('nepster/faceviewer/Widget') }}
+
+    {{ use ('chat/assets/ChatAsset') }}
+    {{ register_chat_asset() }}
+
+
+    {{ use('yii/widgets/LinkPager') }}
+
+    {{ link_pager_widget({'pagination' : dataProvider.pagination}) }}
+
+    <div class="chat">
+
+        <div class="title">
+            <div class="settings-nav clearfix text right">
+                <div id="dialog">Диалог с пользователем
+                    <b>{{ interlocutor.profile.name ~' '~  interlocutor.profile.surname }}</b></div>
+                <ul>
+                    {% if (usersList and usersList.type == 0) or not usersList %}
+                        <li><span class="settings bookmark" data-interlocutor="{{ interlocutor.id }}"
+                                  data-type="bookmark" title="Добавить в избранное"></span></li>
+                    {% endif %}
+                    {% if (usersList and usersList.type == 1) or not usersList %}
+                        <li><span class="settings blacklist" data-interlocutor="{{ interlocutor.id }}"
+                                  data-type="blacklist" title="Заблокировать"></span></li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="control">
+                <span id="delete-all" data-interlocutor_id="{{ interlocutor.id }}">Удалить все сообщения</span>
+            </div>
+        </div>
+
+        <div id="dialogs" data-interlocutor_id="{{ interlocutor.id }}" style="margin: 0 -2px;">
+            {# Рендер #}
+            {% for model in dataProvider.models|reverse %}
+                <table class="message">
+                    <tr>
+                        <td class="user">
+                            {% if model.inbox %}
+                                {{ widget_widget({
+                                    'template' : '<div class="avatar">{face}</div><div class="name">{name} {surname}</div>',
+                                    'data' : {
+                                        name: interlocutor.profile.name,
+                                        surname: interlocutor.profile.surname,
+                                        avatar_url: interlocutor.profile.avatar_url,
+                                    }
+                                }) }}
+                            {% else %}
+                                {{ widget_widget({
+                                    'template' : '<div class="avatar">{face}</div><div class="name">{name} {surname}</div>',
+                                    'data' : {
+                                        name: app.user.identity.profile.name,
+                                        surname: app.user.identity.profile.surname,
+                                        avatar_url: app.user.identity.profile.avatar_url,
+                                    }
+                                }) }}
+                            {% endif %}
+                            <div class="date">{{ DateTimeHelper.diffAgoPeriodRound(model.message.date_create) }}</div>
+                        </td>
+                        <td class="answer">
+                            <div class="text">
+                                {{ model.message.text }}
+                            </div>
+                            <span class="delete" data-message_id="{{ model.message.id }}">Удалить</span>
+                        </td>
+                    </tr>
+                </table>
+            {% endfor %}
+        </div>
+        <div class="form clearfix">
+            <textarea id="message-text" placeholder="Введите Ваше сообщение..."></textarea>
+            <button id="message-send">Отправить</button>
+        </div>
+    </div>
+
+{% endblock content %}

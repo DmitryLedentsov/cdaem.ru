@@ -1,0 +1,54 @@
+{{ this.beginPage() }}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="{{ app.charset }}"/>
+    <noscript>
+        <meta http-equiv="refresh" content="0; URL={{ path(['/site/default/badbrowser']) }}">
+    </noscript>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="yandex-verification" content="bbbd434de303f656"/>
+    {{ html.csrfMetaTags() | raw }}
+    <title>{% block title %}{% endblock %}</title>
+    {{ this.serviceHead() | raw }}
+    {{ this.head() }}
+</head>
+<body>
+{{ this.beginBody() }}
+{{ use('common/modules/seo/widgets/frontend/SeoText') }}
+{{ use('frontend/themes/basic/assets/AppAsset') }}
+{{ use('common/modules/callback/assets/frontend/CallbackAsset') }}
+{{ use('yii/widgets/ActiveForm') }}
+{{ register_app_asset() }}
+{{ register_callback_asset() }}
+{{ use('frontend/themes/basic/assets/BootAsset') }}
+{{ register_boot_asset() }}
+{% block header %}{% endblock %}
+{% block navbar %}
+    {{ this.render("@app/themes/basic/layouts/navbar.twig") | raw }}
+{% endblock %}
+{% block breadcrumbs %}{% endblock %}
+{% block content %}{% endblock %}
+<div class="container">
+    <div class="">{{ seo_text_widget({'type' : 'footer', 'options' : {'class' : 'seo-text act-item-article'} })| raw }}</div>
+</div>
+{% block footer %}
+    {{ this.render("@app/themes/basic/layouts/footer.twig") | raw }}
+{% endblock %}
+{% if this.context.action.id != 'error' %}
+    {{ this.registerJs("$(document).ready(function(){
+        $('meta[name=csrf-token]').attr('content', '"~this.renderDynamic('return Yii::$app->request->csrfToken;')~"');
+        $('input[name=_csrf]').val('"~this.renderDynamic('return Yii::$app->request->csrfToken;')~"');
+    });", constant('\\yii\\web\\View::POS_END')) }}
+{% endif %}
+{% if constant('YII_ENV') == 'prod' %}
+    {{ this.render("@app/themes/basic/layouts/_stats.twig") | raw }}
+{% endif %}
+{{ this.serviceFooter() | raw }}
+{{ this.endBody() }}
+</body>
+</html>
+{{ this.endPage() }}

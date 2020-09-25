@@ -1,0 +1,1522 @@
+/* Large desktops and laptops */
+/* Landscape tablets and medium desktops */
+@media (min-width: 992px) and (max-width: 1199px) {
+
+    .ticker .slides {
+        height: auto;
+    }
+
+    .call {
+        margin-left: 0px;
+        width: 30px;
+        height: 30px;
+    }
+
+    .callback-title-link-block .fa-3x {
+        font-size: 2em;
+    }
+
+    .ticker {
+        height: auto;
+    }
+
+    .callback-phone-block {
+        height: 70px;
+        margin-top: 20px;
+    }
+
+    .callback-phone-block .c-phone {
+        font-size: 18px;
+    }
+
+    .callback-phone-block .m-phone {
+        font-size: 14px;
+    }
+
+    .callback-title-link-block h2 {
+        font-size: 21px;
+        margin-top: 28px;
+    }
+
+    .callback-btn {
+        width: 190px;
+    }
+
+    .social-links ul li {
+        margin: 0 10px;
+    }
+
+    .siggnup-btn {
+        padding-right: 10px;
+    }
+
+    header.header .cdaem .cls a {
+        font-size: 100%;
+    }
+
+    .navbar .top .nav a {
+        font-size: 105%;
+        padding: 22px 10px 22px;
+    }
+
+    .apartments {
+        margin-top: 75px;
+    }
+
+    .office-main-nav-balanceblock {
+        font-size: 12px;
+    }
+}
+
+/* Portrait tablets and small desktops */
+@media (min-width: 768px) and (max-width: 991px) {
+
+    .navbar .top {
+        height: 170px;
+    }
+
+    .logo {
+        text-align: center;
+    }
+
+    .advert-preview {
+        width: 120px;
+        height: 90px;
+    }
+
+    .ticker .slides {
+        height: 210px;
+    }
+
+    .ticker {
+        height: 210px;
+    }
+
+    .apartment-board-info .images .image-box {
+        height: 190px;
+    }
+
+    .extra {
+        background: #f4ad49;
+    }
+
+    .callback-title-link-block {
+        height: auto;
+        text-align: center;
+    }
+
+    .callback-phone-block {
+        height: auto;
+        text-align: center;
+        margin-top: 14px;
+    }
+
+    .navbar .top .nav a {
+        padding: 23px 5px 25px;
+        font-size: 125%;
+    }
+
+    .agency .agency-filter {
+        height: auto;
+        margin: 0px;
+        text-align: center;
+    }
+
+    .agency .agency-filter .description {
+        width: 100%;
+    }
+
+    .agency .agency-filter .filters {
+        width: 100%;
+        float: none;
+    }
+
+    .agency .agency-filter .filters .select-filter {
+        width: 100% !important;
+    }
+
+    .board-search .filters .select-filter.new_search_style {
+        width: 100% !important;
+    }
+
+    .new_search_style-filter {
+        float: none !important;
+    }
+
+    .board-search .filters .select-filter {
+        float: none !important;
+    }
+
+    .board-search .filters .btn.new_btn-lighblue {
+        width: 100%;
+    }
+
+    .board-search .filters .btn.new_btn-fulllighblue {
+        width: 100%;
+    }
+
+    .new-adver-bord {
+
+    }
+
+    footer .footer {
+        height: auto;
+        text-align: center;
+    }
+
+    .agency .agency-filter .description.agency-all {
+        width: 100%;
+    }
+
+    .agency .agency-filter .filters.agency-all {
+        width: 100%;
+    }
+
+    .item-article h3 {
+        font-size: 10px;
+    }
+
+    .item-article .item-img {
+        height: 150px;
+    }
+}
+
+/* Landscape phones and portrait tablets */
+@media (max-width: 767px) {
+
+
+    #dialogs {
+        width: 100% !important;
+    }
+
+    #dialogs .message .user {
+        width: 70% !important;
+        padding: 10px;
+    }
+
+    .reg-link {
+        font-size: 15px;
+    }
+
+    .advert-preview {
+        width: 120px;
+        height: 90px;
+    }
+
+    .ticker .slides {
+        height: 300px;
+    }
+
+    .ticker {
+        height: 300px;
+    }
+
+    .apartment-board-info .images .image-box {
+        height: 150px;
+    }
+
+    .navbar.ogange {
+        background: #f4ad49;
+    }
+
+    header.header .cdaem .logo {
+        text-align: center;
+    }
+
+    header.header .cdaem .seo-text {
+        text-align: center;
+    }
+
+    .social-links {
+        text-align: center;
+    }
+
+    .login-links {
+        text-align: center;
+    }
+
+    .header.header .notion {
+        margin-top: 0px;
+    }
+
+    .logo {
+        text-align: center;
+    }
+
+    .callback-title-link-block {
+        height: auto;
+        text-align: center;
+    }
+
+    .callback-phone-block {
+        height: auto;
+        text-align: center;
+        margin-top: 14px;
+    }
+
+    header.header .notion .board .input-search {
+        width: 90%;
+    }
+
+    header.header .notion .board .input-search .form-control {
+        width: 90%;
+    }
+
+    .callbackbar-block {
+        margin-top: 20px;
+    }
+
+    header.header .notion .board .input-submit {
+        margin-top: 10px;
+    }
+
+    .search-map-link {
+        display: none;
+    }
+
+    .navbar .top {
+        height: auto;
+    }
+
+    .navbar .top .nav > li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .navbar .top .nav a {
+        background-image: none;
+    }
+
+    .navbar .top .nav .dropdown {
+        width: 100%;
+        text-align: center;
+    }
+
+    .navbar .container ul {
+
+    }
+
+    .office-main-nav-balanceblock {
+        text-align: center;
+    }
+
+    .agency .agency-filter {
+        height: auto;
+        margin: 0px;
+        text-align: center;
+    }
+
+    .agency .agency-filter .description {
+        width: 100%;
+    }
+
+    .agency .agency-filter .filters {
+        width: 100%;
+        float: none;
+    }
+
+    .agency .agency-filter .filters .select-filter {
+        width: 100% !important;
+    }
+
+    .newblue-btn {
+        padding: 5px 48px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .agency .agency-filter .filters .select-filter .btn {
+        margin-top: 10px;
+    }
+
+    .agency .agency-filter {
+        height: auto;
+        margin: 0px;
+        text-align: center;
+    }
+
+    .agency .agency-filter .description {
+        width: 100%;
+    }
+
+    .agency .agency-filter .filters {
+        width: 100%;
+        float: none;
+    }
+
+    .agency .agency-filter .filters .select-filter {
+        width: 100% !important;
+    }
+
+    .board-search .filters .select-filter.new_search_style {
+        width: 100% !important;
+    }
+
+    .new_search_style-filter {
+        float: none !important;
+        text-align: center;
+    }
+
+    .board-search .filters .select-filter {
+        float: none !important;
+        width: 100% !important;
+    }
+
+    .board-search .filters .btn.new_btn-lighblue {
+        width: 100%;
+    }
+
+    .board-search .filters .btn.new_btn-fulllighblue {
+        width: 100%;
+    }
+
+    .new-adver-bord {
+
+    }
+
+    footer .footer {
+        height: auto;
+        text-align: center;
+    }
+
+    header.header .cdaem .cls {
+        text-align: center;
+    }
+
+    #bg-header-title {
+        font-size: 38px;
+        margin-top: 270px;
+    }
+
+    .agency .agency-filter .description.agency-all {
+        width: 100%;
+    }
+
+    .agency .agency-filter .filters.agency-all {
+        width: 100%;
+    }
+
+    .item-article h3 {
+        font-size: 8px;
+    }
+
+    .item-article .item-img {
+        height: 130px;
+    }
+
+    footer {
+        padding-top: 10px;
+    }
+
+    .social-links ul li {
+        margin: 0 5px;
+    }
+
+    .options-group .options a, .options-group .options span {
+        border-right: none;
+        width: 100%;
+    }
+
+    .opencontact {
+        width: 100%;
+        display: inline-block;
+        text-align: center;
+    }
+
+    .bronopen_title {
+        width: 100%;
+        display: inline-block;
+        margin-left: 0px;
+    }
+
+    .bronopen {
+        text-align: center;
+    }
+
+    .bronopen_status {
+        margin-left: 0px;
+    }
+
+    .office .apartment-item .extra-list.links {
+        text-align: center;
+    }
+
+    .graphical-menu li a {
+        color: white;
+        font-size: 20px;
+    }
+
+    .user a {
+        color: white;
+        font-size: 21px;
+    }
+
+    .profile-menu a {
+        display: block;
+        font-size: 20px;
+        color: white;
+        padding-left: 20px;
+    }
+
+    .advert-preview-2 {
+        width: 100%;
+        margin-top: 0px;
+    }
+
+    .multiple-items-6 img {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    .multiple-items-6 .slick-prev:before, .slick-next:before {
+        font-family: 'slick';
+        font-size: 20px;
+        line-height: 1;
+        opacity: .75;
+        color: #83d0d9 !important;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    .statushelper_title {
+        width: 100%;
+        display: block;
+    }
+
+    .rentypelink {
+        margin-top: 10px;
+        width: 300px;
+    }
+
+    .advertinfo-row {
+        text-align: center;
+    }
+}
+
+/* Portrait phones and smaller */
+@media (max-width: 480px) {
+
+    #map {
+        width: 282px;
+        height: 250px;
+        margin-left: 10px;
+        margin-right: 20px;
+    }
+
+
+    #dialogs {
+        width: 100% !important;
+    }
+
+    #dialogs .message .user {
+        width: 100% !important;
+        padding: 10px;
+    }
+
+
+    .d-title h4 {
+        font-size: 24px !important;
+        text-align: center;
+    }
+
+    .apartment-board {
+        width: 100% !important;
+    }
+
+    .bottom-nav-board {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .ticker .slides {
+        height: 370px;
+    }
+
+    .ticker {
+        height: 370px;
+    }
+
+    .office .apartment-item .extra-list.links {
+        text-align: center;
+    }
+
+    .bronopen_status {
+        width: 40%;
+        display: inline-block;
+        padding: 0px;
+        font-size: 12px;
+    }
+
+    .bronopen_status {
+        margin-left: 0px;
+    }
+
+    .bronopen {
+        text-align: center;
+    }
+
+    .bronopen_title {
+        width: 40%;
+        display: inline-block;
+        margin-left: 0px;
+        padding: 0px;
+        font-size: 12px;
+    }
+
+    .opencontact {
+        width: 30%;
+        display: inline-block;
+        text-align: center;
+        font-size: 11px;
+        padding: 0px;
+    }
+
+    .opencontactstatus {
+        font-size: 11px;
+        padding: 5px 15px;
+    }
+
+    .advert-preview {
+        width: 66px;
+        height: 57px;
+    }
+
+    .ticker .slides {
+        height: 270px;
+    }
+
+    .ticker {
+        height: 270px;
+    }
+
+    .page-title-block {
+        font-size: 68%;
+    }
+
+    .apartment-board-info .images .image-box {
+        height: 110px;
+    }
+
+    .navbar .top .extra .login-form {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    #form-apartment .rent-type-list .col-i label {
+        display: block;
+        float: none;
+        font-size: 100%;
+        padding: 0px;
+        width: 100%;
+    }
+
+    .bootstrap-select > .dropdown-toggle {
+        width: 100%;
+        padding-right: 15px;
+        text-align: left;
+    }
+
+    .search-map-2 {
+        background-image: none;
+    }
+
+    .search-map-2 .searchmap-img {
+        display: none !important;
+    }
+
+    .search-map-2 {
+        width: 100%;
+        text-align: center;
+    }
+
+    header.header .header-img {
+        width: 100%;
+    }
+
+    header.header .header-img {
+        color: white;
+    }
+
+    header.header .header-img {
+        margin-left: 0px;
+    }
+
+    .navbar .top {
+        height: auto;
+        text-align: center;
+    }
+
+    .navbar .top .nav a {
+        background-image: none;
+        display: inline-block;
+    }
+
+    .newblue-btn {
+        padding: 5px 48px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .apartment-board {
+        margin-top: 20px;
+    }
+
+    .item-article h3 {
+        font-size: 6px;
+    }
+
+    .item-article .item-img {
+        height: 110px;
+    }
+
+    .agency .apartment-agency,
+    .deals .apartment-agency {
+        width: 290px;
+        height: 225px;
+    }
+
+    .apartments .slick-prev {
+        left: 11px;
+        z-index: 1;
+    }
+
+    .apartments .slick-next {
+        right: 0px;
+    }
+
+    .social-links ul li {
+        margin: 0 5px;
+    }
+
+    header.header .notion .board .title {
+        font-size: 100%;
+    }
+
+    .special-advert-block {
+        background-image: none;
+        background: #4983a8;
+    }
+
+    .board-search .filters .select-filter.radiobox {
+        width: 250px !important;
+    }
+
+    .options-group .options a, .options-group .options span {
+        border-right: none;
+    }
+
+    .office .graphical-menu li {
+        margin-right: 0px;
+        width: 100%;
+    }
+
+    .office .color-closed-2 {
+        margin-left: 0px !important;
+    }
+
+    .office .apartment-item h3 {
+        text-align: center;
+    }
+
+    .office .apartment-item .apartment-blocks > div {
+        text-align: center;
+    }
+
+    .bg-header {
+        height: 100px;
+    }
+
+    #bg-header-title {
+        margin-top: 0px;
+    }
+
+    .fixed {
+        position: relative !important;
+
+    }
+
+    .call {
+        margin-left: 0px;
+    }
+
+    .office .apartment-item .apartment-blocks {
+        width: 100%;
+        margin-top: 0px !important;
+    }
+
+    .apartments-title {
+        font-size: 16px;
+    }
+
+    .advert-preview-2 {
+        max-height: 67px;
+        overflow: hidden;
+    }
+
+    .title.d-title {
+        width: 100%;
+        float: none;
+    }
+
+    .board-search .filters .btn.new_btn-lighblue {
+        font-size: 10px;
+    }
+
+    .board-search .filters .btn.new_btn-fulllighblue {
+        font-size: 10px;
+    }
+
+
+    .graphical-menu li a {
+        color: white;
+        font-size: 20px;
+    }
+
+    .user a {
+        color: white;
+        font-size: 21px;
+    }
+
+    .profile-menu a {
+        display: block;
+        font-size: 20px;
+        color: white;
+        padding-left: 20px;
+    }
+
+    .advert-preview-2 {
+        width: 100%;
+        margin-top: 0px;
+    }
+
+    .multiple-items-6 img {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    .multiple-items-6 .slick-prev:before, .slick-next:before {
+        font-family: 'slick';
+        font-size: 20px;
+        line-height: 1;
+        opacity: .75;
+        color: #83d0d9 !important;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    .statushelper_title {
+        width: 100%;
+        display: block;
+    }
+
+    .rentypelink {
+        margin-top: 10px;
+        width: 300px;
+    }
+
+    .advertinfo-row {
+        text-align: center;
+    }
+
+    .board-search-nav a {
+        display: inline-block;
+        margin-left: 0 !important;
+        color: #ffffff;
+        background: #00c0f3;
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    .bg-header {
+        height: 100px;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+
+    header.header .cdaem .logo {
+        padding-top: 165px !important;
+    }
+}
+
+@media (max-width: 380px) {
+
+    .board-search .filters .btn {
+        font-size: 11px;
+    }
+
+    .board-search .msk-map {
+        float: none;
+        margin-left: 0px;
+    }
+
+    .title.d-title {
+        width: 100%;
+        float: none !important;
+    }
+
+
+    .board-search .filters .btn.new_btn-lighblue {
+        font-size: 9px;
+    }
+
+
+    .board-search .filters .btn.new_btn-fulllighblue {
+        font-size: 9px;
+    }
+
+    .new_search_style-filter .select-filter {
+        width: 100% !important;
+    }
+
+    .office .apartment-item {
+        padding: 0 !important;
+    }
+
+    .apartment-item p {
+        margin-bottom: 2px !important;
+    }
+
+    .block-dropmenu {
+        margin-top: -50px;
+        display: block;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .navbar .top .extra .login-form .submit {
+        width: 100%;
+        float: left;
+        display: block;
+        position: relative;
+    }
+
+    .office .apartment-item h3 {
+        text-align: center;
+    }
+
+    .bg-header {
+        height: 100px;
+    }
+
+
+    #bg-header-title {
+        margin-top: 0px;
+    }
+
+
+    .office .color-closed-2 {
+        margin-left: 0px !important;
+    }
+
+    .office .apartment-item .apartment-blocks > div {
+        text-align: center;
+    }
+
+    .office .graphical-menu li {
+        margin-right: 0px;
+        width: 100%;
+    }
+
+    .office .apartment-item .extra-list.links {
+        text-align: center;
+    }
+
+
+    .options-group .options a, .options-group .options span {
+        border-right: none;
+    }
+
+    .board-search .filters .select-filter.radiobox {
+        width: 250px !important;
+    }
+
+    .ticker .slides {
+        height: auto;
+    }
+
+    .ticker .options > a {
+        width: 100%;
+        height: 80px;
+    }
+
+    .ticker {
+        height: auto;
+    }
+
+    .navbar .top .extra .login-form .login {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .navbar .top .extra .login-form .password {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .deals .apartment-agency {
+        width: 240px !important;
+    }
+
+    .advert-preview {
+        width: 45%;
+        height: 80px;
+    }
+
+    .ticker .options {
+        width: 100%;
+        text-align: center;
+        float: none;
+    }
+
+    .bootstrap-select > .dropdown-toggle {
+        width: 91%;
+    }
+
+    .fixed {
+        position: relative !important;
+
+    }
+
+    .call {
+        margin-left: 0px;
+    }
+
+    .phones-block {
+        width: 100%;
+        text-align: center;
+    }
+
+    .modal-dialog {
+        width: 100%;
+    }
+
+    #bg-head-title {
+        font-size: 40px;
+    }
+
+    .social-links {
+        margin-top: 25px;
+        font-size: 35px;
+    }
+
+    header.header .cdaem .logo {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    .callbackbar-block .col-md-3, .callbackbar-block .col-md-7, .callbackbar-block .col-md-2 {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+
+    .callback-title-link-block .title-span {
+        font-size: 22px;
+        line-height: 23px;
+        display: inline-block;
+    }
+
+    .newpink-btn {
+        line-height: 50px;
+        padding: 5px 10px;
+    }
+
+    header.header .notion .board {
+        height: 200px;
+        position: relative;
+        padding: 0px;
+    }
+
+    .d-title h2 {
+        font-size: 20px !important;
+        border-bottom: 3px solid #00afff;
+        border-left: 0px;
+        padding-left: 10px;
+        margin-bottom: 10px;
+    }
+
+    .bootstrap-select > .dropdown-toggle {
+        width: 100%;
+        padding-right: 30px;
+    }
+
+    .office .graphical-menu {
+        margin: 0;
+        padding: 0px;
+        text-align: left;
+        margin-bottom: 5px;
+    }
+
+    .office .graphical-menu li .gm-icon {
+        display: none !important;
+    }
+
+    .office.container {
+        margin-top: 0px !important;
+    }
+
+    .statushelper_title {
+        width: 100%;
+        display: block;
+    }
+
+    .horizontal .col-l {
+        vertical-align: top;
+        display: block !important;
+    }
+
+    .horizontal .col-i {
+        display: block !important;
+        vertical-align: top;
+        width: 100% !important;
+    }
+
+    .general-form .date .form-group .col-l {
+        width: 100% !important;
+        display: block;
+        float: none !important;
+    }
+
+    .btn.btn-primary {
+        width: 100%;
+    }
+
+    .money .form-control {
+        display: block;
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .horizontal .col-l {
+        width: 100% !important;
+    }
+
+    .office .general-form.buy-ads .section:first-child {
+        width: 100% !important;
+    }
+
+    .office .general-form.buy-ads .section {
+        width: 100% !important;
+    }
+
+    .services-wrap #services .service {
+        width: 100% !important;
+    }
+
+    #modal-realty-objects-by-service .modal-dialog {
+        width: 100% !important;
+    }
+
+
+    .office .calculate .service-logo {
+        width: 100% !important;
+        height: 180px;
+        float: none;
+    }
+
+    .office .calculate .service-info {
+        overflow: hidden;
+        width: 100% !important;
+    }
+
+    .payment-service .pay {
+        height: 100%;
+        margin-bottom: 15px;
+    }
+
+    .payment-service .pay-account {
+        float: none;
+        display: block;
+    }
+
+    .payment-service .pay-system {
+        float: none;
+        display: block;
+    }
+
+    .item-article-3 {
+        height: 200px;
+    }
+
+    .item-img {
+        width: 100%;
+        height: 140px;
+        border: 2px solid gray;
+    }
+
+    .board-search .filters .select-filter .btn-orange-style {
+        position: relative;
+        display: block;
+        margin-top: 10px;
+    }
+
+    .board-search .filters .select-filter {
+        width: 100% !important;
+    }
+
+    .board-search .filters .btn.btn-orange {
+        width: 100%;
+    }
+
+
+    .millioners ul {
+        width: 100% !important;
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+        float: none !important;
+    }
+
+
+    .apartment-board {
+        height: 198px;
+    }
+
+    .image-menu {
+        height: 100px;
+    }
+
+    .options-group .options a, .options-group .options span {
+
+        padding: 0px;
+        color: white;
+        font-size: 98%;
+
+    }
+
+    .options-group .options {
+        text-align: left;
+        padding: 0px;
+    }
+
+    .all-articles-link {
+        margin-top: 10px;
+        text-align: center;
+        padding: 0px;
+        width: 100%;
+        display: inline-block;
+    }
+
+    .container-apartment-form .apartment-form-section .item.r3 {
+        width: 100% !important;
+    }
+
+    #form-apartment .col-i .medium {
+        width: 100% !important;
+    }
+
+    .advertinfo-row {
+        margin-top: 12px;
+        padding-left: 0px;
+        border-bottom: 1px solid black;
+        padding-bottom: 10px;
+    }
+
+    .rentypelink {
+        margin-top: 10px;
+        width: 300px;
+    }
+
+    .reviews {
+        padding: 0px !important;
+    }
+
+    .office .reservation-filter .form-group {
+        width: 100% !important;
+    }
+
+    .office .apartment-item .extra-list.va {
+        width: 100% !important;
+    }
+
+    .home-item {
+        height: 190px;
+    }
+
+    .graphical-menu li .label {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: orange;
+        padding: 2px;
+        padding: 4px;
+        border-radius: 10px;
+    }
+
+    .graphical-menu li {
+        position: relative;
+    }
+
+    .office .apartment-item .adverts-list {
+        display: block !important;
+        background: wheat;
+    }
+
+    .advert-preview {
+        width: 100%;
+        height: 120px;
+    }
+
+
+    .office .apartment-item {
+        border-bottom: 1px solid black;
+    }
+
+    .office .info .container-certain {
+        width: 100% !important;
+        margin: 0 auto 55px auto;
+    }
+
+    .office .apartment-item {
+        border-bottom: 3px solid;
+    }
+
+    .slides a .advert-preview {
+        width: 46%;
+        height: 79px;
+    }
+
+    .office .apartment-item .apartment-info-2 {
+        margin-top: 5px;
+    }
+
+
+    .horizontal .form-group {
+        text-align: center !important;
+    }
+
+
+    .avatar {
+        display: inline-block;
+        width: 75px;
+        height: 75px;
+        border-radius: 38px;
+        border: 2px solid orange;
+        margin: 5px;
+    }
+
+    .profile-menu a {
+        display: block;
+        font-size: 20px;
+        color: white;
+        padding-left: 20px;
+    }
+
+    .button-adverts {
+        width: 100%;
+        padding: 5px;
+        font-size: 20px;
+        color: black;
+        border: 1px solid grey;
+        cursor: pointer;
+    }
+
+
+    .button-adverts:hover {
+        color: orange;
+        border: 1px solid orange;
+        cursor: pointer;
+    }
+
+    .adverto-list {
+        display: none;
+        position: relative;
+    }
+
+
+    .servico-list {
+        display: none;
+        position: relative;
+    }
+
+    .graphical-menu li a {
+        color: white;
+        font-size: 20px;
+    }
+
+    .user a {
+        color: white;
+        font-size: 21px;
+    }
+
+    .office.container {
+
+        padding: 5px;
+    }
+
+    .advert-preview-2 {
+        width: 100%;
+        margin-top: 0px;
+    }
+
+    .service.s2 {
+        height: 150px !important;
+        text-align: center;
+
+    }
+
+    .multiple-items-4 .slick-prev {
+        left: 5%;
+        z-index: 998;
+    }
+
+    .multiple-items-4 .slick-next {
+        right: 5%;
+        z-index: 998;
+    }
+
+    .multiple-items-5 .slick-prev {
+        left: 5%;
+        z-index: 998;
+    }
+
+    .multiple-items-5 .slick-next {
+        right: 5%;
+        z-index: 998;
+    }
+
+    .multiple-items-6 .slick-prev {
+        left: 5%;
+        z-index: 998;
+    }
+
+    .multiple-items-6 .slick-next {
+        right: 5%;
+        z-index: 998;
+    }
+
+    .multiple-items-7 .slick-prev {
+        left: 5%;
+        top: 28%;
+        z-index: 998;
+    }
+
+    .multiple-items-7 .slick-next {
+        right: 5%;
+        top: 28%;
+        z-index: 998;
+    }
+
+
+    .multiple-items-6 .slick-prev:before, .slick-next:before {
+        font-family: 'slick';
+        font-size: 20px;
+        line-height: 1;
+        opacity: .75;
+        color: #83d0d9 !important;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    .s2 .service-icon-small.top-slider {
+        height: 76px !important;
+    }
+
+    .advertinfo-row {
+        text-align: center;
+    }
+
+    .multiple-items-6 img {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    .office .apartment-item {
+        margin-bottom: 0px !important;
+    }
+
+    .adverts-list {
+        width: 100% !important;
+    }
+
+    .office .apartment-item .apartment-blocks {
+        width: 100%;
+        margin-top: 0px !important;
+    }
+
+    .office .apartment-item {
+        padding: 0 !important;
+    }
+
+    .apartments-title {
+        font-size: 16px;
+    }
+
+    .advert-preview-2 {
+        max-height: 67px;
+        overflow: hidden;
+    }
+
+    .office .info {
+        overflow: hidden;
+        padding-bottom: 0px !important;
+    }
+
+    .footer-logo {
+        margin: 0px !important;
+    }
+
+    footer {
+        padding-top: 0px !important;
+    }
+
+    .board-search-nav a {
+        display: inline-block;
+        margin-left: 0 !important;
+        color: #ffffff;
+        background: #00c0f3;
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    footer .footer {
+        margin-top: 0px !important;
+    }
+
+    .board-search {
+        margin-bottom: 0px !important;
+
+    }
+
+    .board-search .filters .input-search {
+
+        background-color: white;
+    }
+
+    .indexboard .board-search .filters .select-filter {
+        width: 100% !important;
+    }
+
+    .apartment-item.mini {
+        height: 600px !important;
+        overflow: hidden;
+    }
+
+    #dialogs .message .user {
+        width: 100%;
+        padding: 10px;
+    }
+
+    #dialogs .message .answer {
+        padding: 10px;
+        height: 100%;
+        width: 100%;
+    }
+
+    .bg-header {
+        height: 100px;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+
+    header.header .cdaem .logo {
+        padding-top: 165px;
+    }
+}
+
+
+/*# sourceMappingURL=media.css.map */

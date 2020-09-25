@@ -1,0 +1,32 @@
+{#
+    Все статьи
+    @var \yii\web\View this
+    @var \common\modules\articles\models\Acticle model
+    @var \common\modules\articles\models\Acticle models
+    @var \yii\data\Pagination pages
+#}
+
+{% extends "@app/themes/basic/layouts/main.twig" %}
+
+{% block title %}{{ this.registerTitle('Статьи, которые помогут Снять Квартиру в Москве и области | Сдаём.ру') }}{% endblock %}
+
+{% block header %}
+    {{ use('common/modules/site/widgets/BgHeader') }}
+    {{ bg_header_widget({'title': 'Статьи'}) }}
+{% endblock %}
+
+{% block navbar %}
+    {{ this.renderDynamic('return $this->render("@common/modules/office/views/frontend/layouts/navbar.twig");') | raw }}
+{% endblock %}
+
+
+
+
+{% block content %}
+
+
+
+    <div class="container articles">
+    </div>
+
+{% endblock %}

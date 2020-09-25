@@ -1,0 +1,65 @@
+{#
+    Помощь
+    @var \yii\web\View this
+    @var common\modules\pages\models\Page page
+#}
+
+{% extends "@app/themes/basic/layouts/main.twig" %}
+
+{% block title %}{{ this.registerTitle(page.title) }}{% endblock %}
+
+{% block header %}
+    {{ use('common/modules/site/widgets/BgHeader') }}
+    {{ bg_header_widget({'title': 'Помощь'}) }}
+{% endblock %}
+
+{% block navbar %}
+    {{ this.renderDynamic('return $this->render("@common/modules/office/views/frontend/layouts/navbar.twig");') | raw }}
+{% endblock %}
+
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        {{ use('yii/widgets/Breadcrumbs') }}
+        {{ breadcrumbs_widget({
+            'itemTemplate' : "<li>{link}</li>\n",
+            'homeLink' :
+            {
+                'label' : 'Главная',
+                'url' : '/'
+            },
+            'links':  [
+                {
+                    'label': 'Помощь',
+                },
+            ],
+        }) }}
+    </div>
+{% endblock %}
+
+
+{% block content %}
+
+    {{ this.registerMetaTag({'name' : 'description', 'content' : page.description }) }}
+    {{ this.registerMetaTag({'name' : 'keywords', 'content' : page.keywords }) }}
+
+    <div class="container help container-certain orange text clearfix">
+
+        {{ this.render("_nav-help.twig") | raw }}
+
+        <div class="help-text">
+            {% if page.text %}
+                {{ page.text | raw }}
+            {% else %}
+                <p>Информация в стадии наполнения.</p>
+            {% endif %}
+        </div>
+    </div>
+
+
+{% endblock content %}
+
+
+{% block footer %}
+    {{ this.render("@app/themes/basic/layouts/footer-partners.twig") | raw }}
+{% endblock %}

@@ -1,0 +1,8 @@
+version: '3.7'
+services:
+  nginx:
+    ports:
+      - 84:80
+#  db:
+#    ports:
+#      - 3307:3306
