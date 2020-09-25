@@ -13,9 +13,8 @@ server {
 }
 
 server {
-    listen 443;
+    listen 443 ssl;
 
-    ssl on;
     ssl_certificate /ssl/cdaem.ru.crt;
     ssl_certificate_key /ssl/cdaem.ru.key;
 
@@ -57,13 +56,11 @@ server {
 
 server
 {
-    listen 443;
+    listen 443 ssl;
     server_name ${SERVER_NAME_CONTROL};
 
-    ssl on;
     ssl_certificate /ssl/cdaem.ru.crt;
     ssl_certificate_key /ssl/cdaem.ru.key;
-
 
     root /app/apps/backend/web;
     index index.php index.html;
