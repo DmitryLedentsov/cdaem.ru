@@ -4,8 +4,8 @@
 
 return [
     'class' => \himiklab\yii2\recaptcha\ReCaptchaConfig::class,
-    'siteKeyV2' => 'your siteKey v2',
-    'secretV2' => 'your secret key v2',
+    'siteKeyV2' => '6LccidAZAAAAADSHYhlZq8mswTk1yTNs3rFSc01p',
+    'secretV2' => '6LccidAZAAAAAJGVAmAi84f3sM8QgsgStX9BgbCl',
 
     'siteKeyV3' => 'your siteKey v3',
     'secretV3' => 'your secret key v3',
