@@ -1,7 +1,5 @@
 <?php
 
-echo 1;
-
 return [
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
