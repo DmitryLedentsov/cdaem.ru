@@ -33,6 +33,8 @@ start:
 	make php-yii cmd="migrate --interactive=0"
 	make cron-load
 	make cron-start
+	make npm-grunt cmd='run dev'
+	make npm-grunt cmd='run prod'
 
 stop:
 	$(docker_compose_dev) down

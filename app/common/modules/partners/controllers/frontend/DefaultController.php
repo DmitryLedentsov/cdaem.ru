@@ -149,7 +149,7 @@ class DefaultController extends \frontend\components\Controller
         } else {
             $articlesQuery->where('city IS NULL');
         }
-        $articles = $articlesQuery->limit(1)->asArray()->all();
+        $articles = $articlesQuery->limit(1)->all();
 
         $articlesQuery2 = Article::find()
             ->orderBy(['date_create' => SORT_DESC]);
@@ -159,7 +159,7 @@ class DefaultController extends \frontend\components\Controller
         } else {
             $articlesQuery2->where('city IS NULL');
         }
-        $articlesall3 = $articlesQuery2->limit(9)->asArray()->all();
+        $articlesall3 = $articlesQuery2->limit(9)->all();
         $i = 0;
         $articlesall2 = [];
         foreach ($articlesall3 as $item) {

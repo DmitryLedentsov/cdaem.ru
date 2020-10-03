@@ -8,6 +8,7 @@ use yii\helpers\Html;
 
 /**
  * Виджет отображает блок объявления на главной странице сайта
+ * @package common\modules\partners\widgets\frontend
  */
 class PreviewAdvertIndex extends Widget
 {
@@ -97,21 +98,17 @@ class PreviewAdvertIndex extends Widget
 
         return ('
             <div class="apartment-board col-sm-6 col-xs-6 col-md-3' . $selected . '">
-                
                 <span class="res-info">' . $now_available . '</span>
-                    <div class="image">
-                    <a href="' . $href . '" class="board-inside-fullink"></a>
+                    <a href="'. $href .'" class="image">
                         ' . $this->previewTitleImage . '
                         ' . $online . '
-                        
                         <div class="city"><span>' . $this->advert->apartment->city->name . '</span></div>
                         ' . $contacts . '
                         <div class="address"><span>' . $this->_address . '</span></div>
-                    </div>
+                    </a>
                     <div class="info">
                         ' . $this->_rentTypes . '
                     </div>
-                
             </div>
         ');
     }
@@ -120,11 +117,10 @@ class PreviewAdvertIndex extends Widget
      * Возвращает превью изображение заглавной картинки с необходимыми атрибутами alt и title
      * @return string
      */
-    protected function getPreviewTitleImage()
+    protected function getPreviewTitleImage(): string
     {
-        $rentTypeName = $this->advert->rentType->name;
-
         $title = $this->advert->apartment->city->name . ', ';
+
         if ($this->advert->apartment->metroStation) {
             $title .= 'м.' . $this->advert->apartment->metroStation->metro->name;
         } else {
