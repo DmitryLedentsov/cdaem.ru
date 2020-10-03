@@ -4328,9 +4328,8 @@ h1.title {
   overflow: hidden;
 }
 .ticker .options {
-  width: 150px;
   height: 100%;
-  float: left;
+  padding: 7px 0;
 }
 .ticker .options > a {
   width: 100%;
@@ -4351,7 +4350,6 @@ h1.title {
 .ticker .slides {
   height: 150px;
   overflow: hidden;
-  padding: 10px 0;
   text-align: left;
 }
 .ticker .advert-preview {

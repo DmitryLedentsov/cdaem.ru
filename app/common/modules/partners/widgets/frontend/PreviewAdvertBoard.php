@@ -97,19 +97,16 @@ class PreviewAdvertBoard extends Widget
 
         return ('
             <div class="apartment-board col-sm-6 col-xs-6 col-md-3' . $selected . '">
-                
-                    <div class="image board-img">
-                    <a href="' . $href . '" class="board-inside-fullink"></a>
-                        ' . $this->previewTitleImage . '
-                        ' . $online . '
-                         ' . $now_available . '
-                        ' . $contacts . '
-                        <div class="address"><span>' . $this->_address . '</span></div>
-                    </div>
-                    <div class="info topper">
-                        ' . $this->_rentTypes . '
-                    </div>
-                
+                <a href="'.$href.'" class="image board-img">
+                    ' . $this->previewTitleImage . '
+                    ' . $online . '
+                     ' . $now_available . '
+                    ' . $contacts . '
+                    <div class="address"><span>' . $this->_address . '</span></div>
+                </a>
+                <div class="info topper">
+                    ' . $this->_rentTypes . '
+                </div>
             </div>
         ');
     }
