@@ -178,4 +178,4 @@ prod-app-bash:
 prod-pull:
 	git status
 	git pull
-	make prod-start
+	make prod-restart
