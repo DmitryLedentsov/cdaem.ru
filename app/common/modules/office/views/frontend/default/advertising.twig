@@ -109,7 +109,7 @@
 
                     <div class="apartment-info">
                         <div class="address border-right">
-                            {% if advertisement.type == constant('frontend\\modules\\partners\\models\\AdvertisementSlider::TYPE_RENT') %}
+                            {% if advertisement.type == constant('common\\modules\\partners\\models\\AdvertisementSlider::TYPE_RENT') %}
                                 {{ ApartmentHelper.getInfo(advertisement.advert.apartment) | raw }}
                             {% else %}
                                 <div class="alert alert-info">Нет дополнительной информации</div>

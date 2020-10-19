@@ -172,15 +172,11 @@ class PreviewAdvert extends \yii\base\Widget
                         <div class="clearfix"></div>
                     </div>
                     <div class="image">
-                    <a href="' . $href . '" class="inside-fullink"></a>
-                        ' . $this->getPreviewTitleImage() . '
-                        <div class="group clearfix">
-                            
-                            ' . $type . '
-                        </div>
-                        <div class="special-text">
-                        ' . $this->_specialText . '
-                        </div>
+                        <a href="' . $href . '">
+                            ' . $this->getPreviewTitleImage() . '
+                        </a>
+                        <div class="group clearfix">' . $type . '</div>
+                        <div class="special-text">' . $this->_specialText . '</div>
                         <div class="metro">
                             Метро: ' . $this->_metroAll . '
                         </div>
