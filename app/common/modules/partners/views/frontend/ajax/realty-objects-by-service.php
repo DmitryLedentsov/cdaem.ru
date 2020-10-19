@@ -13,8 +13,8 @@ use common\modules\partners\models\Service;
     <div class="office">
         <div class="load">
             <?php try {
-    $service = Yii::$app->service->load($service);
-    echo Html::tag('p', '<b>' . $service->getName() . '</b>', []); ?>
+                $service = Yii::$app->service->load($service);
+                echo Html::tag('p', '<b>' . $service->getName() . '</b>', []); ?>
 
                 <?php if ($service->getId() != Service::SERVICE_ADVERTISING_TOP_SLIDER): ?>
                     <p>Выделено объектов: <b id="selected-advert-count">0</b></p>
@@ -63,15 +63,13 @@ use common\modules\partners\models\Service;
                     <p><br/></p>
                 <?php endif; ?>
 
-
                 <?php echo \common\modules\partners\widgets\frontend\RealtyObjectsByService\RealtyObjectsByService::widget([
                     'service' => $service->getId(),
                     'userId' => Yii::$app->user->id,
                 ])
                 ?>
 
-            <?php
-} catch (\Exception $e) { ?>
+            <?php } catch (\Exception $e) { ?>
                 <div class="alert alert-danger">Возникла критическая ошибка</div>
             <?php } ?>
         </div>
