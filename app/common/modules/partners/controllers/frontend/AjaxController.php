@@ -42,17 +42,17 @@ class AjaxController extends \frontend\components\Controller
      */
     public function beforeAction($action)
     {
-        if (parent::beforeAction($action)) {
-            if (!Yii::$app->request->isAjax) {
-                return $this->goBack();
-            }
-
-            $this->module->viewPath = '@common/modules/partners/views/frontend';
-
-            return true;
+        if (!parent::beforeAction($action)) {
+            return false;
         }
 
-        return false;
+        $this->module->viewPath = '@common/modules/partners/views/frontend';
+
+        if (!Yii::$app->request->isAjax) {
+            return $this->goHome();
+        }
+
+        return true;
     }
 
     /**
