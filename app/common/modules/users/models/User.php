@@ -62,11 +62,11 @@ class User extends \nepster\users\models\User
             [['phone', 'email', 'password', 'repassword'], 'trim'],
 
             [['phone', 'email'], 'unique'],
-            ['phone', '\common\validators\PhoneValidator', 'message' => 'Некорректный формат номера'],
+            ['phone', \common\validators\PhoneValidator::class, 'message' => 'Некорректный формат номера'],
             ['phone', 'filter', 'filter' => 'intval'],
             ['email', 'email'],
 
-            ['password', '\nepster\users\validators\PasswordValidator'],
+            ['password', \nepster\users\validators\PasswordValidator::class],
             ['repassword', 'compare', 'compareAttribute' => 'password'],
 
             ['agreement', 'compare', 'compareValue' => '1', 'message' => 'Необходимо согласиться с условиями пользовательского соглашения.']
@@ -129,11 +129,6 @@ class User extends \nepster\users\models\User
     public function getProfile()
     {
         return $this->hasOne(Profile::class, ['user_id' => 'id']);
-    }
-
-    public function getApartment()
-    {
-        return $this->hasOne(Apartment::class, ['apartment_id' => 'id']);
     }
 
     /**
@@ -199,32 +194,5 @@ class User extends \nepster\users\models\User
         }
 
         return false;
-    }
-
-    /**
-     * Проверка старше ли последняя активность пользователя чем установленный в вызове промежуток
-     * @param string $dateInterval
-     * @param int $iteration
-     * @return boolean
-     */
-    public function checkActivityIfOlderThan($dateInterval, $iteration = 1)
-    {
-        $timeInt = 1;
-
-        switch ($dateInterval) {
-            case 'year':
-                $timeInt *= 12;
-                break;
-            case 'month':
-                $timeInt *= 30;
-                break;
-            case 'day':
-                $timeInt *= 86400;
-                break;
-        }
-
-        $timeInt *= $iteration;
-
-        return (time() - $this->time_activity) > $timeInt;
     }
 }

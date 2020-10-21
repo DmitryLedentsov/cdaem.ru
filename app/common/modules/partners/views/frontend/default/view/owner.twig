@@ -12,32 +12,20 @@
     {% endif %}
 </div>
 
-
 {# Тип аккаунта #}
 <div class="user-properties">
-    <div class="text-center">{{ StatusHelper.getItem(model.apartment.user.profile.userTypeArray, model.apartment.user.profile.user_type) | raw }}</div>
+    <div class="text-center">
+        {{ StatusHelper.getItem(model.apartment.user.profile.userTypeArray, model.apartment.user.profile.user_type) | raw }}
+    </div>
 </div>
 
 <div class="user-time">
     {% if model.apartment.user.isOnline() %}
         <span style="color: green; font-weight: bold">Сейчас на сайте</span>
     {% else %}
-        {% if model.apartment.user.checkActivityIfOlderThan('month', 1) %}
-            <div class="user-contacts">
-                Телефон: {{ UserHelper.formatPhone(model.apartment.user.phone) }}
-                <style>
-                    .contactopenphone-btn {
-                        display: none !important;
-                    }
-
-                    .bronirovanie-btn {
-                        display: none !important;
-                    }
-                </style>
-            </div>
-        {% else %}
-            <span style="color: silver">Последний визит {{ DateTimeHelper.diffAgoPeriodRound(model.apartment.user.time_activity) }}</span>
-        {% endif %}
+        <span style="color: silver">
+            Последний визит {{ DateTimeHelper.diffAgoPeriodRound(model.apartment.user.time_activity) }}
+        </span>
     {% endif %}
 </div>
 
@@ -48,7 +36,9 @@
     </div>
 
     <div class="text-center">
-        <span class="btn btn-primary btn-special" onclick="writeMessage({{ model.apartment.user.id }})">Сообщение</span>
+        <span class="btn btn-primary btn-special" onclick="writeMessage({{ model.apartment.user.id }})">
+            Сообщение
+        </span>
         {% if model.apartment.user.phone is empty %}
             &nbsp; &nbsp;
             <a href="{{ path({0: '/partners/reservation/advert-reservation', 'advert_id' : model.advert_id}) }}"
@@ -62,28 +52,24 @@
 
     <div class="text-center">
         <span class="btn btn-primary btn-special contactopenphone-btn"
-              onclick="fast_payment_widget('{{ constant('SERVICE_CONTACTS_OPEN_TO_USER', Service) }}', {'advert_id' : {{ model.advert_id }} })">Контакты</span>
+              onclick="fast_payment_widget('{{ constant('SERVICE_CONTACTS_OPEN_TO_USER', Service) }}', {'advert_id' : {{ model.advert_id }} })">
+            Контакты
+        </span>
         &nbsp; &nbsp;
         <a href="{{ path({0: '/partners/reservation/advert-reservation', 'advert_id' : model.advert_id}) }}"
-           class="btn btn-orange btn-special bronirovanie-btn">Забронировать</a>
+           class="btn btn-orange btn-special bronirovanie-btn">Забронировать
+        </a>
     </div>
 
 {% endif %}
 
-
-
 {% if model.apartment.user.profile.vip %}
     <div class="modal fade" id="modal-user-info" data-title="Информация владельца">
-
         <h3>Владелец {{ UserHelper.getUserName(model.apartment.user) }}</h3>
-
         <br/>
-
         <h3>О себе:</h3>
         <p>{{ model.apartment.user.profile.about_me ?: 'Нет данных' }}</p>
-
         <br/>
-
         <h3>Дополнительная контактная информация:</h3>
         <p>
             <b>Дополнительный телефон:</b>
