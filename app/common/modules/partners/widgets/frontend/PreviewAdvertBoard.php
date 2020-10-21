@@ -91,9 +91,6 @@ class PreviewAdvertBoard extends Widget
 
         $selected = $this->advert->selected ? ' selected' : '';
         $contacts = $this->advert->apartment->open_contacts ? '<div class="contacts topper" title="Контакты открыты"></div>' : '';
-        if (!$this->advert->apartment->open_contacts && $this->advert->apartment->user->checkActivityIfOlderThan('month', 1)) {
-            $contacts = '<div class="contacts" title="Контакты открыты"></div>';
-        }
 
         return ('
             <div class="apartment-board col-sm-6 col-xs-6 col-md-3' . $selected . '">
