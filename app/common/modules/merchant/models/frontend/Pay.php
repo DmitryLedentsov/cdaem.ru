@@ -2,6 +2,8 @@
 
 namespace common\modules\merchant\models\frontend;
 
+
+use common\modules\partners\interfaces\ServiceInterface;
 use Yii;
 use yii\helpers\Json;
 use common\modules\users\models\User;
@@ -55,7 +57,7 @@ class Pay extends \yii\base\Model
 
     /**
      * Инициализация сервиса
-     * @var Yii::$app->service
+     * @var ServiceInterface
      */
     private $_service;
 
@@ -124,7 +126,6 @@ class Pay extends \yii\base\Model
             if (!Yii::$app->user->id) {
                 $this->scenario = 'pay-system';
             }
-
 
             if ($this->scenario != 'payment') {
 

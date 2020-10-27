@@ -30,7 +30,6 @@ class CallbackAsset extends AssetBundle
     {
         parent::init();
 
-
         if (YII_DEBUG) {
             $this->js = [
                 'js_dev/callback.js'

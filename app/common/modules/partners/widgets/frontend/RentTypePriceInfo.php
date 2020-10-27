@@ -38,7 +38,6 @@ class RentTypePriceInfo extends Widget
     {
         parent::init();
 
-
         $rentTypeTime = null;
         $rentTypeText = null;
 

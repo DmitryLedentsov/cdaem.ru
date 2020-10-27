@@ -127,8 +127,7 @@ final class ContactsOpenToUser extends \yii\base\BaseObject implements ServiceIn
         }
 
         // Проверяем почтовый адрес
-        $EmailValidator = new EmailValidator();
-        if (!$EmailValidator->validate($this->_email)) {
+        if ((new EmailValidator())->validate($this->_email) === false) {
             return false;
         }
 
@@ -176,7 +175,11 @@ final class ContactsOpenToUser extends \yii\base\BaseObject implements ServiceIn
             'subject' => null,
             'view' => 'service-open-contacts-apartments',
             'data' => [
-                'advertUrl' => \yii\helpers\Url::to(['/partners/default/view', 'id' => $this->_advert->advert_id, 'city' => $this->_advert->apartment->city->name_eng]),
+                'advertUrl' => \yii\helpers\Url::to([
+                    '/partners/default/view',
+                    'id' => $this->_advert->advert_id,
+                    'city' => $this->_advert->apartment->city->name_eng,
+                ]),
                 'user' => $this->_advert->apartment->user,
             ],
             'email' => $this->_email,

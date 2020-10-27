@@ -21,6 +21,8 @@ class AjaxController extends \frontend\components\Controller
      */
     public function init()
     {
+        parent::init();
+
         $this->enableCsrfValidation = false;
     }
 

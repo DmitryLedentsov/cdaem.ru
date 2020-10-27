@@ -29,7 +29,6 @@ class YMapAsset extends AssetBundle
     {
         parent::init();
 
-
         if (YII_DEBUG) {
             $this->js = [
                 'https://api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU&apikey=3dd27c27-e51a-4660-a191-5c0413af0c03',
