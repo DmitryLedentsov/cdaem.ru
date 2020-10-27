@@ -159,6 +159,14 @@ class Apartment extends \yii\db\ActiveRecord
     }
 
     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTitleImage()
+    {
+        return $this->hasOne(Image::class, ['apartment_id' => 'apartment_id'])->andWhere(['default_img' => 1]);
+    }
+
+    /**
      * Возвращает все апартаменты пользователя
      * @param $limit
      * @param $user_id

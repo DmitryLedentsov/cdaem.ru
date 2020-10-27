@@ -126,9 +126,6 @@ return [
         ],
     ],
     'components' => [
-        'userAction' => [
-            'class' => 'nepster\users\components\Action',
-        ],
         'user' => [
             'class' => \nepster\users\components\User::class,
             'identityClass' => \common\modules\users\models\User::class,
@@ -236,8 +233,8 @@ return [
         'reCaptcha' => require(__DIR__ . '/reCaptcha.php'),
     ],
     'params' => [
-        'siteDomain' => 'http://cdaem.ru',
-        'siteSubDomain' => 'http://<city>.cdaem.ru',
+        'siteDomain' => 'http://cdaem.loc',
+        'siteSubDomain' => 'http://<city>.cdaem.loc',
         'adminEmail' => 'cdaem@yandex.ru',
     ]
 ];

@@ -35,6 +35,7 @@ class HeaderWidget extends Widget
      */
     public function init()
     {
+        parent::init();
         // $this is the view object currently being used
         $this->_breadcrumb = Breadcrumbs::widget([
             'itemTemplate' => "<li>{link}</li>", // template for all links

@@ -2,6 +2,7 @@
 
 namespace common\modules\partners\commands;
 
+use common\modules\partners\interfaces\ServiceInterface;
 use Yii;
 use yii\helpers\Console;
 use common\modules\partners\models as models;
@@ -77,9 +78,7 @@ class ServicesController extends \yii\console\Controller
         $time = "Runtime: " . (microtime(true) - $start);
         $resultString = implode(PHP_EOL, $result);
 
-        if (!empty($resultString)) {
-            Yii::info('Сценарий успешно запущен' . PHP_EOL . $resultString . $time . PHP_EOL, 'services.processes');
-        }
+        Yii::info('Сценарий успешно запущен' . PHP_EOL . $resultString . $time . PHP_EOL, 'services.processes');
 
         $this->stdout($resultString . PHP_EOL . $time . PHP_EOL);
     }
@@ -108,11 +107,13 @@ class ServicesController extends \yii\console\Controller
             $error = $e->getMessage();
         }
         $time = "Runtime: " . (microtime(true) - $start);
+
         if (empty($error)) {
             Yii::info('SUCCESS - ' . $time, 'services.calculate-position');
         } else {
             Yii::error('FAIL - ' . $error . ' - ' . $time, 'services.calculate-position');
         }
+
         $this->stdout($time . PHP_EOL);
     }
 
@@ -123,7 +124,7 @@ class ServicesController extends \yii\console\Controller
      * Вызов команды: php yii service/execute-instant-process
      *
      * @param $processId
-     * @return bool|int
+     * @return void
      * @throws \yii\db\Exception
      */
     public function actionExecuteInstantProcess($processId)
@@ -173,7 +174,9 @@ class ServicesController extends \yii\console\Controller
         // Формирование результата
         $resultString = implode(PHP_EOL, $result);
         $time = "Runtime: " . (microtime(true) - $start);
+
         Yii::info('Сценарий успешно запущен' . PHP_EOL . $resultString . ' ' . $time . PHP_EOL, 'services.processes');
+
         $this->stdout($resultString . PHP_EOL . $time . PHP_EOL);
     }
 
@@ -183,12 +186,13 @@ class ServicesController extends \yii\console\Controller
      *
      * @param $processId
      * @param $action
-     * @return bool|int
+     * @return void
      */
     public function actionSendMail($processId, $action)
     {
         if ($action != 'enable' && $action != 'disable' && $action != 'payment') {
-            return $this->stdout('FAIL: $action incorrect' . PHP_EOL, Console::FG_RED);
+            $this->stdout('FAIL: $action incorrect' . PHP_EOL, Console::FG_RED);
+            return;
         }
 
         try {
@@ -227,12 +231,15 @@ class ServicesController extends \yii\console\Controller
                 Yii::info('Процесс ID' . $processId . ' - Успешно', 'services-email');
             } else {
                 Yii::error('Процесс ID' . $processId . ' - Не удалось отправить EMAIL', 'services-email');
+
                 $this->stdout('EMAIL NOT SEND' . PHP_EOL, Console::FG_YELLOW);
             }
 
             $this->stdout('SUCCESS' . PHP_EOL, Console::FG_GREEN);
+
         } catch (\Exception $e) {
             Yii::error('Процесс ID' . $processId . ' - Ошибка: [' . $e->getMessage() . ']', 'services-email');
+
             $this->stdout('FAIL: process ID' . $processId . $e->getMessage() . PHP_EOL, Console::FG_RED);
         }
     }
@@ -302,15 +309,16 @@ class ServicesController extends \yii\console\Controller
     /**
      * Выключить сервис
      *
-     * @param $service
-     * @param $process
-     * @param $currentDate
+     * @param ServiceInterface $service
+     * @param models\Service $process
+     * @param string $currentDate
      * @return bool|string
      */
-    private function disableService($service, $process, $currentDate)
+    private function disableService(ServiceInterface $service, models\Service $process, string $currentDate)
     {
         $transaction = Yii::$app->db->beginTransaction();
         try {
+
             if (($result = $service->disable()) === true) {
                 $process->date_expire = $currentDate;
                 $process->process = models\Service::PROCESS_FINISHED;
