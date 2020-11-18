@@ -31,8 +31,12 @@
                     <div class='d-title'>{{ metaData.agency_seo_short_desc | raw }}</div>
                 {% endif %}
             </div>
+
             <div class="filters agency-all">
-                <div class="select-filter pink round_dr_filter" style="width: 250px">
+                <div class="select-filter pink round_dr_filter" style="width: 150px">
+                    <input type="button" class="btn dropdown-toggle btn-orange" value="Забронировать" onclick="clW_a7ebc5baf05b8a40a57c3c11df2c028e.openform();">
+                </div>
+                <div class="select-filter pink round_dr_filter" style="width: 200px">
                     <select name="district" class="select-darkgray">
                         {% for name_eng, district_name in searchModel.districtsList %}
                             <option value="/agency/komnat/{{ searchModel.rooms }}/okrug/{{ name_eng }}"{% if searchModel.district == name_eng %} selected="selected"{% endif %}>
@@ -41,7 +45,7 @@
                         {% endfor %}
                     </select>
                 </div>
-                <div class="select-filter round_dr_filter" style="width: 250px">
+                <div class="select-filter round_dr_filter" style="width: 200px">
                     <select name="rooms" class="select-pinkround">
                         {% for key, room in searchModel.roomsList %}
                             <option value="/agency/komnat/{{ key }}/okrug/{{ searchModel.district }}"{% if searchModel.rooms == key %} selected="selected"{% endif %}>
@@ -57,7 +61,7 @@
             <h3>Информация:</h3>
             <p><strong>Расчётный час. Заезд "на Сутки"</strong>- с 18чдо18ч (следующего дня)-3000р, выезд до 21ч-3500р.
             </p>
-            <p><strong>Заезд "на Ночь"</strong>после 18:00 до 10:00 утра по цене от1700р до 2000р., до 12ч следующего
+            <p><strong>Заезд "на Ночь"</strong>после 18:00 до 10:00 утра по цене от 1700р до 2000р., до 12ч следующего
                 дня 2500р</p>
             <p><strong>Заселение "на Час"</strong> C 10ч. до 21ч. Цены на часовые квартиры от 300р. до 400р. за час!
                 Квартира за 300р., минимальная оплата 1000р./ три часа, далее по 300р. за каждый час! Квартира за 400р.,
