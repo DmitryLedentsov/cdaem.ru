@@ -1545,7 +1545,7 @@ input[disabled].btn:hover {
 .round_dr_filter .dropdown-toggle .caret {
   position: absolute;
   top: 50%;
-  right: 40px;
+  right: 20px;
   margin-top: -5px;
   vertical-align: middle;
 }
