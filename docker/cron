@@ -1,4 +1,4 @@
-0 0 1 * * php /app/yii agency/collector/images
+# 0 0 1 * * php /app/yii agency/collector/images
 
 
 0 */1 * * * php /app/yii partners/collector/reservation-verify-payment
