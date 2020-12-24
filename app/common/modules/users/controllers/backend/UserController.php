@@ -155,6 +155,8 @@ class UserController extends Controller
         if ($user->profile) {
             $profile = $user->profile;
             $profile->scenario = 'update';
+        } else {
+            $profile->user_id = $user->id;
         }
 
         if ($user->person) {

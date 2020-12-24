@@ -86,6 +86,10 @@ echo GridView::widget([
             'contentOptions' => ['class' => 'text-left'],
             'label' => Yii::t('users', 'USER'),
             'value' => function ($model) {
+                if ($model->profile === null) {
+                    return Html::a('ID' . $model->id, ['/users/user/update', 'id' => $model->id]);
+                }
+
                 return Html::a('ID' . $model->id . ' ' . $model->profile->name . ' ' . $model->profile->surname, ['/users/user/update', 'id' => $model->id]);
             }
         ],
