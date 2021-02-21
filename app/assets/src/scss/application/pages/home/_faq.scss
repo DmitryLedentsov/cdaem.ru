@@ -1,0 +1,108 @@
+.faq {
+    padding: 5rem 0.5rem 2rem 0.5rem;
+    margin-bottom: -1.5rem;
+
+    @include phone() {
+        padding: 8rem 1rem 3rem 1rem;
+    }
+
+    @include tablet() {
+        padding: 8rem 5rem 3rem 5rem;
+    }
+
+    @include tablet-land() {
+        margin-bottom: -2.5rem;
+        padding: 8rem 2rem 5rem 2rem;
+    }
+
+    @include desktop() {
+        margin-bottom: -2.5rem;
+        padding: 8rem 0 6rem 0;
+    }
+
+    &-card {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 1.5rem;
+        width: 100%;
+
+        @media (min-width: 650px) {
+            width: 50%;
+            padding-right: 1rem;
+
+            &:nth-child(2n+2) {
+                padding-right: 0;
+            }
+        }
+
+        @include tablet-land() {
+            margin-bottom: 2.5rem;
+            width: 33%;
+            flex-shrink: 0;
+            padding-right: 1rem;
+
+            &:nth-child(2n+2) {
+                padding-right: 1rem;
+            }
+
+            &:nth-child(3n+3) {
+                padding-right: 0;
+            }
+        }
+
+        &-title {
+            margin-bottom: 0.3rem;
+            font-weight: 500;
+
+            @include tablet-land() {
+                margin-bottom: 1rem;
+                font-weight: bold;
+            }
+        }
+
+        & span.text-large {
+            margin-bottom: 0.3rem;
+            line-height: 1.4rem;
+
+            @media (min-width: 650px) {
+                margin-bottom: 0.5rem;
+            }
+
+            @include tablet-land() {
+                margin-bottom: 1rem;
+            }
+        }
+
+        a {
+            display: inline-flex;
+            align-items: center;
+            font-weight: 500;
+
+            &::after {
+                content: url("../../images/icons/arrow-right.svg");
+                margin-left: 0.5rem;
+            }
+        }
+
+    }
+
+    &-icon {
+        width: 40px;
+        flex-shrink: 0;
+        margin-right: 1rem;
+        position: relative;
+        top: 0.3rem;
+
+        @include phone() {
+            width: 60px;
+        }
+
+        @media (min-width: 650px) {
+            width: 45px;
+        }
+
+        @include desktop() {
+            width: 68px;
+        }
+    }
+}

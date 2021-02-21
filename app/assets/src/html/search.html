@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>Поиск</title>
+    <!-- @include _section/_head.html -->
+    <link rel="stylesheet" media="screen" href="./css/pages/search.min.css"/>
+</head>
+<body class="l-base p-search">
+
+<div class="wrapper">
+    <!-- @include _section/_header-collapse.html -->
+    <main>
+        <section class="intro">
+            <h1 class="section-title">Доска объявлений</h1>
+            <div class="search">
+                <div class="container-fluid">
+                    <div class="form">
+                        <div class="search-container">
+                            <h2 class="search-title">Фильтр</h2>
+                            <div class="search-navs-container">
+                                <a href="./board.html">Доска объявлений</a>
+                                <a href="./signIn.html">Личный кабинет</a>
+                            </div>
+                        </div>
+                        <div class="search-filters">
+                            <div class="search-filters-container">
+                                <div class="search-filter search-filter-type">
+                                    <span class="search-filter-text">Выберите тип аренды</span>
+                                    <label>
+                                        <label>
+                                            <select class="custom-select">
+                                                <option selected>Квартира на сутки</option>
+                                                <option>Квартира на час</option>
+                                                <option>Квартира на ночь</option>
+                                                <option>Квартира на месяц</option>
+                                                <option>Комната на сутки</option>
+                                                <option>Кой-ко место</option>
+                                                <option>Загородный дом</option>
+                                                <option>Квартира на Новый Год</option>
+                                                <option>Квартира от cdaem.ru</option>
+                                            </select>
+                                        </label>
+                                    </label>
+                                </div>
+                                <div class="search-filter search-filter-rooms">
+                                    <span class="search-filter-text search-filter-text-rooms">Комнаты:</span>
+                                    <label>
+                                        <label>
+                                            <select class="custom-select">
+                                                <option selected>Кол-во комнат</option>
+                                                <option>1 комната</option>
+                                                <option>2 комнаты</option>
+                                                <option>3 комнаты</option>
+                                                <option>4 комнаты</option>
+                                                <option>5 комнат</option>
+                                                <option>6+ комнат</option>
+                                            </select>
+                                        </label>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="search-filter search-filter-city">
+                                <span class="search-filter-text">Укажите ваш город</span>
+                                <label>
+                                    <input class="form-control" id="search-form-autocomplete" type="text" autocomplete="off" placeholder="Укажите ваш город">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="search-btn-container">
+                            <button class="btn btn-warning btn-special btn-add">Добавить объявление</button>
+                            <button class="btn btn-warning btn-special btn-rent">Быстро снять</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="about-advert">
+            <div class="container-fluid">
+                <div class="about-advert-container">
+                    <div class="about-advert-item about-advert-item-image">
+                        <img src="./images/gallery/about-advert-image.png" alt="about advert image"/>
+                    </div>    
+                    <div class="about-advert-item about-advert-item-content">
+                        <h2 class="section-title">Доска объявлений по всей России и СНГ</h2>
+                        <p class="about-advert-text">
+                            Вы можете бесплатно разместить своё предложение по «аренде посуточно» и выбрать нужный раздел: Квартира на сутки, квартира на час, квартира на ночь, квартира на месяц, комната на сутки, койко-место, загородный дом или дом на выходные, коттедж на сутки. Также если Вы собрались в поездку: Санкт-Петербург, Ростов на дону, Новосибирск, Екатеринбург, Казань, Челябинск, Уфа, Самара, Нижний Новгород, Волгоград, Омск или любой другой город России, то можно заранее забронировать через Наш сайт www.cdaem.ru.
+                        </p>
+                        <p class="about-advert-text">
+                            Если Вы едите в Москву или уже в Москве, то можно забронировать и подобрать квартиру посуточно через нашу фирму. Наши менеджеры профессионально подберут Вам нужный вариант, и Вы останетесь довольны. Мы работаем без посредников!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="directions">
+            <div class="container-fluid">
+                <h2 class="section-title">Популярные направления</h2>
+                <div class="directions-list">
+                    <div class="directions-column">
+                        <div class="city">
+                            <a class="city-link priority" href="#">
+                                <b>Москва —</b> 10 563 038 чел.
+                            </a>
+                        </div>
+                        <div class="city">
+                            <a class="city-link" href="#">
+                                <b>Новосибирск —</b> 1 409 137 чел.
+                            </a>
+                        </div>
+                        <div class="city">
+                            <a class="city-link" href="#">
+                                <b>Нижний Новгород —</b> 1 271 045 чел.
+                            </a>
+                        </div>
+                        <div class="city">
+                            <a class="city-link" href="#">
+                                <b>Челябинск —</b> 1 125 723 чел.
+                            </a>
+                        </div>
+                    </div>
+                    <div class="directions-column">
+                        <div class="city">
+                            <a class="city-link" href="#">
+                                <b>Санкт-Петербург —</b> 617 000 чел.
+                            </a>
+                        </div>
+                        <div class="city">
+                            <a class="city-link" href="#">
+                                <b>Екатеринбург —</b> 1 365 567 чел.
+                            </a>
+                        </div>
+                        <div class="city">
+                            <a class="city-link" href="#">
+                                <b>Казань —</b> 1 136 566 чел.
+                            </a>
+                        </div>
+                        <div class="city">
+                            <a class="city-link" href="#">
+                                <b>Самара —</b> 1 133 754 чел.
+                            </a>
+                        </div>
+                    </div>
+                    <div class="directions-column">
+                        <div class="city">
+                            <a class="city-link" href="#">
+                               <b>Ростов-на-Дону —</b> 1 048 124 чел.
+                            </a>
+                        </div>
+                        <div class="city">
+                            <a class="city-link" href="#">
+                                <b>Кемерово —</b> 1 048 124 чел.
+                            </a>
+                        </div>
+                        <div class="city">
+                            <a class="city-link" href="#">
+                                <b>Уфа —</b> 1 064 843 чел.
+                            </a>
+                        </div>
+                        <div class="city">
+                            <a class="city-link" href="#">
+                                <b>Волгоград —</b> 1 015 813 чел.
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="cities">
+            <div class="container-fluid">
+                <h2 class="section-title">Выберите город</h2>
+                <div class="cities-list">
+                    <div class="cities-column"> 
+                        <div class="letter">
+                            а
+                        </div>
+                        <div class="city-list">
+                            <div class="city">
+                                <a class="city-link" href="#">
+                                    <b>Санкт-Петербург —</b> 617 000 чел.
+                                </a>
+                            </div>
+                            <div class="city">
+                                <a class="city-link" href="#">
+                                    <b>Екатеринбург —</b> 1 365 567 чел.
+                                </a>
+                            </div>
+                            <div class="city">
+                                <a class="city-link" href="#">
+                                    <b>Казань —</b> 1 136 566 чел.
+                                </a>
+                            </div>
+                            <div class="city">
+                                <a class="city-link" href="#">
+                                    <b>Самара —</b> 1 133 754 чел.
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cities-column"> 
+                        <div class="letter">
+                            б
+                        </div>
+                        <div class="city-list">
+                            <div class="city">
+                                <a class="city-link" href="#">
+                                    <b>Санкт-Петербург —</b> 617 000 чел.
+                                </a>
+                            </div>
+                            <div class="city">
+                                <a class="city-link" href="#">
+                                    <b>Екатеринбург —</b> 1 365 567 чел.
+                                </a>
+                            </div>
+                            <div class="city">
+                                <a class="city-link" href="#">
+                                    <b>Казань —</b> 1 136 566 чел.
+                                </a>
+                            </div>
+                            <div class="city">
+                                <a class="city-link" href="#">
+                                    <b>Самара —</b> 1 133 754 чел.
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cities-column"> 
+                        <div class="letter">
+                            в
+                        </div>
+                        <div class="city-list">
+                            <div class="city">
+                                <a class="city-link" href="#">
+                                    <b>Санкт-Петербург —</b> 617 000 чел.
+                                </a>
+                            </div>
+                            <div class="city">
+                                <a class="city-link" href="#">
+                                    <b>Екатеринбург —</b> 1 365 567 чел.
+                                </a>
+                            </div>
+                            <div class="city">
+                                <a class="city-link" href="#">
+                                    <b>Казань —</b> 1 136 566 чел.
+                                </a>
+                            </div>
+                            <div class="city">
+                                <a class="city-link" href="#">
+                                    <b>Самара —</b> 1 133 754 чел.
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cities-column"> 
+                        <div class="letter">
+                            г
+                        </div>
+                        <div class="city-list">
+                            <div class="city">
+                                <a class="city-link" href="#">
+                                    <b>Санкт-Петербург —</b> 617 000 чел.
+                                </a>
+                            </div>
+                            <div class="city">
+                                <a class="city-link" href="#">
+                                    <b>Екатеринбург —</b> 1 365 567 чел.
+                                </a>
+                            </div>
+                            <div class="city">
+                                <a class="city-link" href="#">
+                                    <b>Казань —</b> 1 136 566 чел.
+                                </a>
+                            </div>
+                            <div class="city">
+                                <a class="city-link" href="#">
+                                    <b>Самара —</b> 1 133 754 чел.
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cities-column"> 
+                        <div class="letter">
+                            д
+                        </div>
+                        <div class="city-list">
+                            <div class="city">
+                                <a class="city-link" href="#">
+                                    <b>Санкт-Петербург —</b> 617 000 чел.
+                                </a>
+                            </div>
+                            <div class="city">
+                                <a class="city-link" href="#">
+                                    <b>Екатеринбург —</b> 1 365 567 чел.
+                                </a>
+                            </div>
+                            <div class="city">
+                                <a class="city-link" href="#">
+                                    <b>Казань —</b> 1 136 566 чел.
+                                </a>
+                            </div>
+                            <div class="city">
+                                <a class="city-link" href="#">
+                                    <b>Самара —</b> 1 133 754 чел.
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cities-column"> 
+                        <div class="letter">
+                            е
+                        </div>
+                        <div class="city-list">
+                            <div class="city">
+                                <a class="city-link" href="#">
+                                    <b>Санкт-Петербург —</b> 617 000 чел.
+                                </a>
+                            </div>
+                            <div class="city">
+                                <a class="city-link" href="#">
+                                    <b>Екатеринбург —</b> 1 365 567 чел.
+                                </a>
+                            </div>
+                            <div class="city">
+                                <a class="city-link" href="#">
+                                    <b>Казань —</b> 1 136 566 чел.
+                                </a>
+                            </div>
+                            <div class="city">
+                                <a class="city-link" href="#">
+                                    <b>Самара —</b> 1 133 754 чел.
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cities-column"> 
+                        <div class="letter">
+                            ё
+                        </div>
+                        <div class="city-list">
+                            <div class="city">
+                                <a class="city-link" href="#">
+                                    <b>Санкт-Петербург —</b> 617 000 чел.
+                                </a>
+                            </div>
+                            <div class="city">
+                                <a class="city-link" href="#">
+                                    <b>Екатеринбург —</b> 1 365 567 чел.
+                                </a>
+                            </div>
+                            <div class="city">
+                                <a class="city-link" href="#">
+                                    <b>Казань —</b> 1 136 566 чел.
+                                </a>
+                            </div>
+                            <div class="city">
+                                <a class="city-link" href="#">
+                                    <b>Самара —</b> 1 133 754 чел.
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cities-column"> 
+                        <div class="letter">
+                            ж
+                        </div>
+                        <div class="city-list">
+                            <div class="city">
+                                <a class="city-link" href="#">
+                                    <b>Санкт-Петербург —</b> 617 000 чел.
+                                </a>
+                            </div>
+                            <div class="city">
+                                <a class="city-link" href="#">
+                                    <b>Екатеринбург —</b> 1 365 567 чел.
+                                </a>
+                            </div>
+                            <div class="city">
+                                <a class="city-link" href="#">
+                                    <b>Казань —</b> 1 136 566 чел.
+                                </a>
+                            </div>
+                            <div class="city">
+                                <a class="city-link" href="#">
+                                    <b>Самара —</b> 1 133 754 чел.
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cities-column"> 
+                        <div class="letter">
+                            з
+                        </div>
+                        <div class="city-list">
+                            <div class="city">
+                                <a class="city-link" href="#">
+                                    <b>Санкт-Петербург —</b> 617 000 чел.
+                                </a>
+                            </div>
+                            <div class="city">
+                                <a class="city-link" href="#">
+                                    <b>Екатеринбург —</b> 1 365 567 чел.
+                                </a>
+                            </div>
+                            <div class="city">
+                                <a class="city-link" href="#">
+                                    <b>Казань —</b> 1 136 566 чел.
+                                </a>
+                            </div>
+                            <div class="city">
+                                <a class="city-link" href="#">
+                                    <b>Самара —</b> 1 133 754 чел.
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cities-column"> 
+                        <div class="letter">
+                            и
+                        </div>
+                        <div class="city-list">
+                            <div class="city">
+                                <a class="city-link" href="#">
+                                    <b>Санкт-Петербург —</b> 617 000 чел.
+                                </a>
+                            </div>
+                            <div class="city">
+                                <a class="city-link" href="#">
+                                    <b>Екатеринбург —</b> 1 365 567 чел.
+                                </a>
+                            </div>
+                            <div class="city">
+                                <a class="city-link" href="#">
+                                    <b>Казань —</b> 1 136 566 чел.
+                                </a>
+                            </div>
+                            <div class="city">
+                                <a class="city-link" href="#">
+                                    <b>Самара —</b> 1 133 754 чел.
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cities-column"> 
+                        <div class="letter">
+                            й
+                        </div>
+                        <div class="city-list">
+                            <div class="city">
+                                <a class="city-link" href="#">
+                                    <b>Санкт-Петербург —</b> 617 000 чел.
+                                </a>
+                            </div>
+                            <div class="city">
+                                <a class="city-link" href="#">
+                                    <b>Екатеринбург —</b> 1 365 567 чел.
+                                </a>
+                            </div>
+                            <div class="city">
+                                <a class="city-link" href="#">
+                                    <b>Казань —</b> 1 136 566 чел.
+                                </a>
+                            </div>
+                            <div class="city">
+                                <a class="city-link" href="#">
+                                    <b>Самара —</b> 1 133 754 чел.
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cities-column"> 
+                        <div class="letter">к</div>
+                        <div class="city-list">
+                            <div class="city">
+                                <a class="city-link" href="#">
+                                    <b>Санкт-Петербург —</b> 617 000 чел.
+                                </a>
+                            </div>
+                            <div class="city">
+                                <a class="city-link" href="#">
+                                    <b>Екатеринбург —</b> 1 365 567 чел.
+                                </a>
+                            </div>
+                            <div class="city">
+                                <a class="city-link" href="#">
+                                    <b>Казань —</b> 1 136 566 чел.
+                                </a>
+                            </div>
+                            <div class="city">
+                                <a class="city-link" href="#">
+                                    <b>Самара —</b> 1 133 754 чел.
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- @include _section/_footer.html -->
+</div>
+
+<!-- @include _section/_end_body.html -->
+<script src="./js/pages/home.min.js"></script>
+</body>
+</html>

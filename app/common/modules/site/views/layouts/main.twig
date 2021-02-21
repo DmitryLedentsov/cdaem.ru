@@ -1,0 +1,69 @@
+{{ this.beginPage() }}<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="{{ app.charset }}"/>
+    <noscript>
+        <meta http-equiv="refresh" content="0; URL={{ path(['/site/default/badbrowser']) }}">
+    </noscript>
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="yandex-verification" content="bbbd434de303f656"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language" content="ru"/>
+    <meta name="description" content="---">
+    <meta name="keywords" content="--">
+    <meta name="domain" content="--">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="currency" content="rub"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:site_name" content="---"/>
+    <meta property="og:url" content="---">
+    <meta property="og:title" content="---">
+    <meta property="og:description" content="---">
+    <meta property="og:image" content="og-home.png">
+    <meta property="og:image:type" content="image/png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon-32x32.png">
+    {{ html.csrfMetaTags() | raw }}
+    {{ this.serviceHead() | raw }}
+    {{ this.head() }}
+</head>
+<body class="{% block bodyClass %}{% endblock %}">
+{{ this.beginBody() }}
+{{ use('common/modules/seo/widgets/frontend/SeoText') }}
+{{ use('common/modules/site/assets/AppAsset') }}
+{{ register_app_asset() }}
+{% block breadcrumbs %}{% endblock %}
+
+{% if this.context.action.id == 'index' %}
+    <div class="header-background"></div>
+{% endif %}
+
+<div class="wrapper">
+    {% block header %}
+        {{ this.render("@common/modules/site/views/_sections/header.twig") | raw }}
+    {% endblock %}
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    {% block footer %}
+        {{ this.render("@common/modules/site/views/_sections/footer.twig") | raw }}
+    {% endblock %}
+</div>
+
+{% if this.context.action.id != 'error' %}
+    {{ this.registerJs("$(document).ready(function(){
+        $('meta[name=csrf-token]').attr('content', '"~this.renderDynamic('return Yii::$app->request->csrfToken;')~"');
+        $('input[name=_csrf]').val('"~this.renderDynamic('return Yii::$app->request->csrfToken;')~"');
+    });", constant('\\yii\\web\\View::POS_END')) }}
+{% endif %}
+{{ this.serviceFooter() | raw }}
+{{ this.endBody() }}
+</body>
+</html>
+{{ this.endPage() }}

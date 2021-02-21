@@ -1,0 +1,270 @@
+.advert {
+  margin: 3.1rem 0;
+
+  @include tablet-land() {
+    margin-bottom: 6.4rem;
+  }
+
+  .container-fluid {
+    display: flex;
+    flex-direction: column;
+
+    @include tablet-land() {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+
+  &-title {
+    margin-bottom: 0.8rem;
+    color: #151515;
+    text-align: center;
+    font-size: 1.6rem;
+
+    @include tablet-land() {
+      text-align: left;
+      font-size: 1.8rem;
+    }
+  }
+
+  &-info {
+    width: 100%;
+
+    &:nth-of-type(1) {
+      margin: 0;
+      order: 1;
+
+      @include tablet-land() {
+        width: 47%;
+        margin: 0 auto 0 0;
+        order: 0;
+      }  
+    }
+
+    &:nth-of-type(2) {
+      max-width: 533px;
+      margin: 0 auto;
+      order: 0;
+
+      @include tablet-land() {
+        width: 45.5%;
+        margin: 0.95rem 0 0;
+        order: 1;
+      }
+    }
+
+    &-price {
+      color: $color-base-link;
+    }
+
+    &-online {
+      color: #5BB035;
+    }
+  }
+
+  &-cost {
+    display: flex;
+    justify-content: space-between;
+    border: 0.06rem solid #E1E1E1;
+    border-right: none;
+    border-left: none;
+    padding: 1rem 0 0.6rem;
+    margin-bottom: 1.5rem;
+
+    @include tablet-land() {
+      padding: 1rem 0 0.6rem;
+    }
+
+    &-info {
+      display: flex;
+      align-items: center;
+      font-weight: 600;
+      font-size: 0.9rem;
+
+      @include tablet-land() {
+        margin-right: 3rem;
+      }
+
+      @include desktop() {
+        align-items: inherit;
+        margin-right: 1rem;
+      }
+
+      &:last-of-type {
+        margin-right: 0;
+      }
+
+      span {
+        font-weight: 400;
+        color: $color-base-link;
+        display: table;
+  
+        @include phone() {
+          display: inline-block;
+        }
+      }
+    }
+  }
+
+  &-icon {
+    width: 20px;
+    margin-right: 0.6rem;
+  }
+
+  &-list {
+    li {
+      margin-bottom: 1.25rem;
+
+      p {
+        padding-top: 1.2rem;
+      }
+    }
+  }
+
+  &-author {
+    display: flex;
+    border: 0.06rem solid #E1E1E1;
+    padding: 1.2rem 0.8rem;
+    margin-bottom: 0.8rem;
+    align-items: center;
+
+    @include phone() {
+      padding: 1.2rem 1.4rem;
+    }
+
+
+    &-logo {
+      background: url("../../images/apartment/author-logo.png") center no-repeat;
+      width: 70px;
+      height: 70px;
+      border: 0.125rem solid #FFA900;
+      border-radius: 50%;
+
+      @include phone() {
+        width: 87px;
+        height: 87px;
+      }
+    }
+
+    &-info {
+      margin-left: 1.5rem;
+
+      &-item {
+        margin: 0.35rem 0;
+      }
+    }
+  }
+
+  &-button {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    
+    @include phone() {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    .btn {
+      padding: 1rem 1.3rem;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: #151515;
+      font-weight: 600;
+      font-size: 0.94rem;
+      border: 0.06rem solid $color-base-border;
+      background: #ffffff;
+      border-radius: 0.3rem;
+      margin-bottom: 1rem;
+      text-align: center;
+
+      @include tablet-land() {
+        margin-bottom: 0;
+        padding: 1rem 0.5rem;
+      }
+  
+      @include desktop() {
+        padding: 1rem 1.3rem;
+      }
+
+      &:hover,
+      &:focus {
+        background: $color-warning;
+        color: #151515;
+      }
+    }
+  }
+
+  &-slider {
+
+    &-for {
+      overflow: hidden;
+      margin-bottom: 0.8rem;
+
+      &-item {
+        overflow: hidden;
+
+        img {
+          width: 100%;
+          height: 297px;  
+
+          @include tablet() {
+            width: 532px;
+          }
+        }
+      }
+    }
+
+    &-nav {
+      margin: 0 -0.5rem 0 0;
+
+      @include phone() {
+        margin: 0 -0.85rem 0 0;
+      }
+
+      @include desktop() {
+        margin: 0 -0.4rem 0 0;
+      }
+  
+      &-item {
+        width: auto;
+        margin: 0 0.6rem 0 0;
+        cursor: pointer;
+
+        &.slick-current {
+          img {
+            border: solid 3px $color-base-border;
+          }
+        }
+
+        @include phone() {
+          margin-right: 0.9rem;
+        }
+
+        @include desktop() {
+          width: 124px;
+          margin-right: 0;
+        }
+  
+        img {
+          width: auto;
+          height: 75px;
+
+          @include desktop() {
+            width: 124px;
+          }
+        }
+      }
+    }
+  }
+
+  .slick {
+    &-track {
+     display: flex; 
+    }
+    
+    &-list {
+      overflow: hidden;
+    }
+  }
+}

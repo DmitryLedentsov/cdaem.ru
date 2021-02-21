@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>Вход</title>
+    <!-- @include _section/_head.html -->
+    <link rel="stylesheet" media="screen" href="./css/pages/signIn.min.css"/>
+</head>
+<body class="l-base p-signIn">
+
+<div class="wrapper">
+    <!-- @include _section/_header-collapse.html -->
+    <main>
+        <div class="sign-in">
+            <div class="container-fluid">
+                <div class="sign-in-content">
+                    <h3 class="sign-in-title">Вход</h3>
+                    <form class="sign-in-form" method="post">
+                        <div class="form-group sign-in-email">
+                            <label for="signIn-email" class="d-none"></label>
+                            <input type="email" class="form-control" placeholder="Email" name="email" id="signIn-email">
+                            <div class="invalid-feedback"></div>
+                        </div>
+                        <div class="form-group mb-0 sign-in-password">
+                            <label for="signIn-password" class="d-none"></label>
+                            <input type="password" class="form-control" placeholder="Введите ваш пароль" name="password" id="signIn-password" maxlength="32">
+                            <div class="invalid-feedback"></div>
+                            <a href="./forgotPassword.html" class="forgot-pass">Забыли пароль?</a>
+                        </div>
+                        <div class="sign-in-buttons">
+                            <div class="sign-in-items">
+                                <label class="sign-in-save-pass">
+                                    <input type="checkbox" name="forgotPassword">
+                                    <span class="input-text">Запомнить</span>
+                                </label>
+                            </div>
+                            <button type="submit" class="btn btn-warning btn-special">Войти</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- @include _section/_footer.html -->
+</div>
+
+<!-- @include _section/_end_body.html -->
+
+</body>
+</html>

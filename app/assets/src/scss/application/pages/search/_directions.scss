@@ -1,0 +1,52 @@
+.directions {
+    margin-bottom: 3rem;
+
+    @include tablet-land() {
+        margin-bottom: 6.25rem;
+    }
+
+    .section-title {
+        margin-bottom: 2.5rem;
+    }
+
+    &-list {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin: 0 -20px;
+    }
+
+    &-column {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        width: auto;
+        margin: 0 20px 0;
+    }
+
+    .city {
+        font-weight: 400;
+        font-size: 1.1rem;
+        color: #333333;
+        background: #FFFFFF;
+        width: max-content;
+        height: 53px;
+        line-height: 52px;
+        padding: 0 16px;
+        margin-bottom: 20px;
+        transition: 0.2s;
+
+        &:hover {
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
+            border-radius: 0.85rem;
+        }
+
+        &:hover .city-link {
+            color: $color-base-link;
+        }
+
+        &-link {
+            color: #333333;
+        }
+    }
+}

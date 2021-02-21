@@ -1,0 +1,27 @@
+{#
+    Главная страница
+    @var common\modules\agency\models\Apartment agencyDataProvider
+    @var common\modules\agency\models\SearchAdvert agencySearch
+    @var common\modules\partners\models\ApartmentAdvert partnersAdverts
+    @var common\modules\partners\models\SearchAdvert searchModel
+    @var \yii\web\View this
+#}
+{% extends "@common/modules/site/views/layouts/main.twig" %}
+
+{% block bodyClass %}l-base p-home{% endblock %}
+
+{% block title %}{{ metaData['meta_title'] }}{% endblock %}
+
+{% block content %}
+    {{ this.registerMetaTag({'name' : 'description', 'content' : metaData['meta_description']}) }}
+    {{ this.registerMetaTag({'name' : 'keywords', 'content' : metaData['meta_keywords']}) }}
+    {{ use('common/modules/site/assets/HomeAsset') }}
+    {{ register_home_asset() }}
+
+    {{ this.render("@common/modules/site/views/_sections/search-form.twig") | raw }}
+    {{ this.render("@common/modules/site/views/_sections/faq.twig") | raw }}
+    {{ this.render("@common/modules/site/views/_sections/cities.twig") | raw }}
+    {{ this.render("@common/modules/site/views/_sections/news.twig") | raw }}
+    {{ this.render("@common/modules/site/views/_sections/seo_text.twig") | raw }}
+
+{% endblock content %}

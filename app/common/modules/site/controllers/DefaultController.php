@@ -102,7 +102,7 @@ class DefaultController extends \frontend\components\Controller
         } else {
             Yii::$app->view->registerLinkTag(['rel' => 'canonical', 'href' => URL::to('https://cdaem.ru')]);
         }
-
+        
         return $this->render('index.twig', [
             'agencySearch' => $agencySearch,
             'agencyDataProvider' => $agencyDataProvider,

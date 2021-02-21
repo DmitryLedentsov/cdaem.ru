@@ -1,0 +1,46 @@
+.p-agency {
+
+    @import '../../../application/pages/agency/intro';
+    @import '../../../application/pages/agency/proposal';
+    @import '../../../application/pages/agency/lookup-agency-form';
+
+    .apartment {
+
+        &-list {
+            .section-title {
+                text-align: center;
+                margin: 0.3rem 0 1.5rem;
+            
+                @include tablet-land() {
+                    text-align: left;
+                    margin-bottom: 2.5rem;
+                }
+            }
+        }
+
+        &-card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 0 -0.5rem;
+
+            @include tablet-land() {
+                justify-content: flex-start;
+            }
+        }
+    
+        &-card {
+            width: 100%;
+            margin: 0 0 2.5rem;
+    
+            @include phone() {
+                padding: 0 0.5rem 0;
+            }
+
+            @include tablet-land() {
+                margin: 0 0 0.9rem 0;
+                width: 33.33%;
+            }
+        }
+    }
+}

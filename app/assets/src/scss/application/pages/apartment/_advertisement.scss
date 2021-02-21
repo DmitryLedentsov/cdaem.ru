@@ -1,0 +1,41 @@
+.advertisement {
+    margin-bottom: 2rem;
+
+    @include phone() {
+        margin-bottom: 4rem;
+    }
+
+    @include tablet() {
+        margin-bottom: 6rem;
+    }
+    
+    &-list {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin: 0 -0.4rem;
+    }
+
+    &-card {
+        vertical-align: middle;
+        border: 3px solid transparent;
+        border-top-left-radius: 0.3rem;
+        border-top-right-radius: 0.3rem;
+        width: auto;
+        max-width: 275px;
+        margin: 0.4rem;
+        transition: 0.2s;
+
+        &:hover {
+            border: 3px solid $color-base-border;
+        }
+
+        img {
+            vertical-align: middle;
+            width: auto;
+            height: 215px;
+            border-top-left-radius: 0.3rem;
+            border-top-right-radius: 0.3rem;
+        }
+    }
+}

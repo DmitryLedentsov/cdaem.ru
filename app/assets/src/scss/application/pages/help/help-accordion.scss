@@ -1,0 +1,94 @@
+.help-accordion {
+
+    &-title {
+        color: #151515;
+        margin-bottom: 1.5rem;
+        width: 100%;
+        text-align: center;
+        font-size: 2.2rem;
+        
+        @include tablet-land() {
+            margin-bottom: 3.2rem;
+            text-align: left;
+            font-size: 2.65rem;
+        }
+    }
+
+    &-button {
+        padding: 0;
+        border: none;
+
+        &-collapse {
+            position: relative;
+            border: 0.065rem solid $color-base-border;
+            background-color: #ffffff;
+            border-radius: 0.3rem 0.3rem 0 0;
+            font-weight: 600;
+            font-size: 1rem;
+            color: #000000;
+            cursor: pointer;
+            height: 73px;
+            width: 100%;
+            padding: 1.7rem 1.5rem;
+            text-align: left;
+            outline: none;
+            transition: border 0.4s;
+    
+            @include tablet-land() {
+                font-size: 1.1rem;
+            }
+
+            &::after {
+                content: '';
+                position: absolute;
+                display: block;
+                width: 29px;
+                height: 29px;
+                background: url("data:image/svg+xml,%3Csvg width='9' height='16' viewBox='0 0 10 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9.23192 8.79208L2.35216 15.6716C1.91452 16.1095 1.20497 16.1095 0.767547 15.6716C0.330088 15.2342 0.330088 14.5246 0.767547 14.0872L6.85507 7.99989L0.767724 1.91276C0.330265 1.47513 0.330265 0.765684 0.767724 0.328226C1.20518 -0.109409 1.9147 -0.109409 2.35233 0.328226L9.23209 7.20786C9.45082 7.4267 9.56006 7.7132 9.56006 7.99985C9.56006 8.28664 9.45061 8.57335 9.23192 8.79208Z' fill='%23FFA801'/%3E%3C/svg%3E") top 50% left 9px/cover no-repeat;
+                border: 2px solid #FFA801;
+                border-radius: 50%;
+                top: 28%;
+                right: 27px;
+                background-size: 9px 16px;
+                transform: rotate(90deg);
+                transition: transform 0.4s;
+    
+                @include tablet-land() {
+                    width: 39px;
+                    height: 39px;
+                    top: 22%;
+                    background-position: top 50% left 14px;
+                }
+            }
+
+            &:hover {
+                outline: none;
+            }
+    
+            &:focus {
+                outline: none;
+            }
+
+            &.collapsed {
+                border: 0.065rem solid #D7D7D7;
+                border-radius: 0.3rem;
+
+                &::after {
+                    transform: rotate(0);
+                }
+            }
+        }
+    }
+
+    
+    .card-body {
+        font-weight: 400;
+        font-size: 1rem;
+        line-height: 1.6;
+        padding: 1.5rem 1.6rem 1.7rem;
+    }
+
+    .card {
+        margin-bottom: 0.9rem;
+    }
+}

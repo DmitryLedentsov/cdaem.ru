@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>Главная страница</title>
+    <!-- @include _section/_head.html -->
+    <link rel="stylesheet" media="screen" href="./css/pages/home.min.css"/>
+</head>
+<body class="l-base p-home">
+
+<div class="header-background"></div>
+
+<div class="wrapper">
+    <header class="header">
+        <div class="header-nav">
+            <div class="header-container">
+                <a class="logo" href="./index.html">
+                    <img src="./images/logo-light.svg" alt="logo">
+                </a>
+                <button class="location">Москва</button>
+            </div>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a class="nav-link link-with-border active" href="#">
+                            Добавить объявление
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link-with-border" href="./help.html">
+                            Помощь
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link-with-border" href="./signOut.html" data-toggle="modal" data-target="#signUp">
+                            Регистрация
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <a href="./signIn.html" class="btn btn-warning btn-special btn-sign-in" data-toggle="modal" data-target="#signIn">
+                Вход
+            </a>
+        </div>
+    </header>
+    <main>
+
+        <!-- @include _section/_search-form.html -->
+
+        <section class="faq">
+            <div class="container-fluid">
+                <h3 class="section-title">Ваши возможности</h3>
+                <div class="faq__list d-flex flex-wrap">
+                    <article class="faq-card">
+                        <object class="faq-icon">
+                            <img src="./images/icons/phone.svg" alt="phone">
+                        </object>
+                        <div class="d-flex flex-column">
+                            <h6 class="faq-card-title">Больше звонков</h6>
+                            <span class="text-large">Увеличение звонков, броней, посещение вашей страницы.</span>
+                            <a href="#">Посмотреть</a>
+                        </div>
+                    </article>
+                    <article class="faq-card">
+                        <object class="faq-icon">
+                            <img src="./images/icons/pointer.svg" alt="phone icon">
+                        </object>
+                        <div class="d-flex flex-column">
+                            <h6 class="faq-card-title">Создать объявление</h6>
+                            <span class="text-large">Быстрая регистрация и подача объявления.</span>
+                            <a href="#">Добавить</a>
+                        </div>
+                    </article>
+                    <article class="faq-card">
+                        <object class="faq-icon">
+                            <img src="./images/icons/map.svg" alt="phone icon">
+                        </object>
+                        <div class="d-flex flex-column">
+                            <h6 class="faq-card-title">Все объекты на карте</h6>
+                            <span class="text-large">Поиск объявлений рядом с вами и не только.</span>
+                            <a href="./map.html">Найти</a>
+                        </div>
+                    </article>
+                    <article class="faq-card">
+                        <object class="faq-icon">
+                            <img src="./images/icons/question.svg" alt="phone icon">
+                        </object>
+                        <div class="d-flex flex-column">
+                            <h6 class="faq-card-title">Как работает сайт</h6>
+                            <span class="text-large">Возникли вопросы по работе сайта обратитесь в разделе помощь.</span>
+                            <a href="./help.html">Открыть</a>
+                        </div>
+                    </article>
+                    <article class="faq-card">
+                        <object class="faq-icon">
+                            <img src="./images/icons/arms.svg" alt="phone icon">
+                        </object>
+                        <div class="d-flex flex-column">
+                            <h6 class="faq-card-title">Сотрудничество</h6>
+                            <span class="text-large">Предложите свой объект и получите прибыль.</span>
+                            <a href="#">Перейти</a>
+                        </div>
+                    </article>
+                    <article class="faq-card">
+                        <object class="faq-icon">
+                            <img src="./images/icons/armchair.svg" alt="phone icon">
+                        </object>
+                        <div class="d-flex flex-column">
+                            <h6 class="faq-card-title">Вакансии</h6>
+                            <span class="text-large">Выгодные предложения и удобный поиск.</span>
+                            <a href="./vacancy.html">Открыть</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <section class="gallery">
+            <div class="container-fluid">
+                <h3 class="section-title">Наши любимые города</h3>
+                <div class="gallery-list">
+                    <article class="gallery-item gallery-item-lg">
+                        <div class="gallery-item-wrapper">
+                            <object class="gallery-img">
+                                <img src="./images/gallery/city-moscow.png" alt="Moscow"/>
+                            </object>
+                            <div class="gallery-info">
+                                <h5 class="text-white">Москва</h5>
+                                <span class="gallery-sub-title text-white">Красная площадь</span>
+                            </div>
+                            <a class="link text-white link-to" href="./board.html">Перейти</a>
+                        </div>
+                    </article>
+                    <article class="gallery-item gallery-item-sm">
+                        <div class="gallery-item-wrapper">
+                            <object class="gallery-img">
+                                <img src="./images/gallery/city-st.png" alt="St. Petersburg"/>
+                            </object>
+                            <div class="gallery-info">
+                                <h5 class="text-white">Санкт-Петербург</h5>
+                                <span class="gallery-sub-title text-white">Улица</span>
+                            </div>
+                            <a class="link text-white link-to" href="./board.html">Перейти</a>
+                        </div>
+                    </article>
+                    <article class="gallery-item gallery-item-sm">
+                        <div class="gallery-item-wrapper">
+                            <object class="gallery-img">
+                                <img src="./images/gallery/city-st.png" alt="St. Petersburg"/>
+                            </object>
+                            <div class="gallery-info">
+                                <h5 class="text-white">Санкт-Петербург</h5>
+                                <span class="gallery-sub-title text-white">Улица</span>
+                            </div>
+                            <a class="link text-white link-to" href="./board.html">Перейти</a>
+                        </div>
+                    </article>
+                    <article class="gallery-item gallery-item-sm">
+                        <div class="gallery-item-wrapper">
+                            <object class="gallery-img">
+                                <img src="./images/gallery/city-tyumen.png" alt="Tyumen"/>
+                            </object>
+                            <div class="gallery-info">
+                                <h5 class="text-white">Тюмень</h5>
+                                <span class="gallery-sub-title text-white">Улица</span>
+                            </div>
+                            <a class="link text-white link-to" href="./board.html">Перейти</a>
+                        </div>
+                    </article>
+                    <article class="gallery-item gallery-item-sm">
+                        <div class="gallery-item-wrapper">
+                            <object class="gallery-img">
+                                <img src="./images/gallery/city-rostov-on-don.png" alt="Rostov On Don"/>
+                            </object>
+                            <div class="gallery-info">
+                                <h5 class="text-white">Ростов на Дону</h5>
+                                <span class="gallery-sub-title text-white">Улица</span>
+                            </div>
+                            <a class="link text-white link-to" href="./board.html">Перейти</a>
+                        </div>
+                    </article>
+                    <article class="gallery-item gallery-item-md">
+                        <div class="gallery-item-wrapper">
+                            <object class="gallery-img">
+                                <img src="./images/gallery/city-kazan.png" alt="Kazan"/>
+                            </object>
+                            <div class="gallery-info">
+                                <h5 class="text-white">Казань</h5>
+                                <span class="gallery-sub-title text-white">Улица</span>
+                            </div>
+                            <a class="link text-white link-to" href="./board.html">Перейти</a>
+                        </div>
+                    </article>
+                </div>
+                <div class="text-center">
+                    <a href="./search.html" class="btn btn-outline-warning">Все города</a>
+                </div>
+            </div>
+            <div class="gallery-moscow"></div>
+        </section>
+        <!-- <section class="news">
+            <div class="container-fluid">
+                <h3 class="section-title">Наши новости</h3>
+                <div class="news-container">
+                    <article class="news-card news-card-big">
+                        <div class="news-info">
+                            <span class="news-sub-title text-warning text-uppercase text-smaller">Статьи</span>
+                            <h4 class="text-white"><a href="./article.html">Рубль продолжает падать</a></h4>
+                            <span class="news-views text-white">1630</span>
+                        </div>
+                        <a href="./article.html" class="news-img">
+                            <img src="./images/news/news-img1.png" alt=""/>
+                        </a>
+                    </article>
+                    <div class="news-list">
+                        <article class="news-card">
+                            <div class="news-info">
+                                <h6><a href="./article.html">Не дай мне повод: как обезопасить квартиру и дачу от грабежа</a></h6>
+                                <span class="news-preview">Циан. Журнал собрал истории ограблений квартир и дач и выяснил...</span>
+                                <span class="news-views">1630</span>
+                            </div>
+                            <a href="./article.html" class="news-img">
+                                <img src="./images/news/news-img2.png" alt=""/>
+                            </a>
+                        </article>
+                        <article class="news-card">
+                            <div class="news-info">
+                                <h6><a href="./article.html">Не дай мне повод: как обезопасить квартиру и дачу от грабежа</a></h6>
+                                <span class="news-preview">Циан. Журнал собрал истории ограблений квартир и дач и выяснил...</span>
+                                <span class="news-views">1630</span>
+                            </div>
+                            <a href="./article.html" class="news-img">
+                                <img src="./images/news/news-img2.png" alt=""/>
+                            </a>
+                        </article>
+                        <article class="news-card">
+                            <div class="news-info">
+                                <h6><a href="./article.html">Не дай мне повод: как обезопасить квартиру и дачу от грабежа</a></h6>
+                                <span class="news-preview">Циан. Журнал собрал истории ограблений квартир и дач и выяснил...</span>
+                                <span class="news-views">1630</span>
+                            </div>
+                            <a href="./article.html" class="news-img">
+                                <img src="./images/news/news-img2.png" alt=""/>
+                            </a>
+                        </article>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <a href="./news.html" class="btn btn-outline-warning">Все новости</a>
+                </div>
+            </div>
+        </section> -->
+        <section class="news">
+            <div class="container-fluid">
+                <div class="news-container">
+                    <h2 class="section-title">Наши новости</h2>
+                    <a href="./news.html" class="btn btn-outline-warning">Все новости</a>
+                </div>
+                <div class="news-wrapper">
+                    <div class="news-card-wrapper">
+                        <div class="news-card">
+                            <img class="news-image" src="./images/news/home-news.png" alt="news-image">
+                            <div class="news-item">
+                                <div class="news-publication-date">20.11.2020</div>
+                                <div class="news-subtitle">В РФ отменят штрафы за несвоевременную регистрацию прав на недвижимость</div>
+                                <div class="news-text">В Российско Федерации исключа администра ответственность за нарушение сроков регистрации недвижимости и перерегистрации юрлиц,</div>
+                                <a class="btn btn-warning" href="./article.html">Читать полностью</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news-card-wrapper">
+                        <div class="news-card">
+                            <img class="news-image" src="./images/news/home-news.png" alt="news-image">
+                            <div class="news-item">
+                                <div class="news-publication-date">20.11.2020</div>
+                                <div class="news-subtitle">В РФ отменят штрафы за несвоевременную регистрацию прав на недвижимость</div>
+                                <div class="news-text">В Российско Федерации исключа администра ответственность за нарушение сроков регистрации недвижимости и перерегистрации юрлиц,</div>
+                                <a class="btn btn-warning" href="./article.html">Читать полностью</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news-card-wrapper">
+                        <div class="news-card">
+                            <img class="news-image" src="./images/news/home-news.png" alt="news-image">
+                            <div class="news-item">
+                                <div class="news-publication-date">20.11.2020</div>
+                                <div class="news-subtitle">В РФ отменят штрафы за несвоевременную регистрацию прав на недвижимость</div>
+                                <div class="news-text">В Российско Федерации исключа администра ответственность за нарушение сроков регистрации недвижимости и перерегистрации юрлиц,</div>
+                                <a class="btn btn-warning" href="./article.html">Читать полностью</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="txt">
+            <div class="container-fluid">
+                <div class="txt-container">
+                    <h3>Сео текст</h3>
+                    <p>
+                        Идейные соображения высшего порядка, а также укрепление и развитие структуры позволяет выполнять
+                        важные задания по разработке позиций, занимаемых участниками в отношении поставленных задач.
+                        Таким образом сложившаяся структура организации обеспечивает широкому кругу (специалистов)
+                        участие в формировании направлений прогрессивного развития.
+                        Повседневная практика показывает, что реализация намеченных плановых заданий позволяет оценить
+                        значение модели развития. Повседневная практика показывает, что постоянный количественный рост и
+                        сфера нашей активности позволяет оценить значение дальнейших направлений развития. С другой
+                        стороны начало повседневной работы по формированию позиции в значительной степени обуславливает
+                        создание соответствующий условий активизации. Не следует, однако забывать, что сложившаяся
+                        структура организации позволяет выполнять важные задания по разработке дальнейших направлений
+                        развития.
+                        Повседневная практика показывает, что реализация намеченных плановых заданий позволяет оценить
+                        значение модели развития. Повседневная практика показывает, что постоянный количественный рост и
+                        сфера нашей активности позволяет оценить значение дальнейших направлений развития. С другой
+                        стороны начало повседневной работы по формированию позиции в значительной степени обуславливает
+                        создание соответствующий условий активизации. Не следует, однако забывать, что сложившаяся
+                        структура организации позволяет выполнять важные задания по разработке дальнейших направлений
+                        развития.
+                        Повседневная практика показывает, что реализация намеченных плановых заданий позволяет оценить
+                        значение модели развития. Повседневная практика показывает, что постоянный количественный рост и
+                        сфера нашей активности позволяет оценить значение дальнейших направлений развития. С другой
+                        стороны начало повседневной работы по формированию позиции в значительной степени обуславливает
+                        создание соответствующий условий активизации. Не следует, однако забывать, что сложившаяся
+                        структура организации позволяет выполнять важные задания по разработке дальнейших направлений
+                        развития.
+                        Повседневная практика показывает, что реализация намеченных плановых заданий позволяет оценить
+                        значение модели развития. Повседневная практика показывает, что постоянный количественный рост и
+                        сфера нашей активности позволяет оценить значение дальнейших направлений развития. С другой
+                        стороны начало повседневной работы по формированию позиции в значительной степени обуславливает
+                        создание соответствующий условий активизации. Не следует, однако забывать, что сложившаяся
+                        структура организации позволяет выполнять важные задания по разработке дальнейших направлений
+                        развития.
+                        Повседневная практика показывает, что реализация намеченных плановых заданий позволяет оценить
+                        значение модели развития. Повседневная практика показывает, что постоянный количественный рост и
+                        сфера нашей активности позволяет оценить значение дальнейших направлений развития. С другой
+                        стороны начало повседневной работы по формированию позиции в значительной степени обуславливает
+                        создание соответствующий условий активизации. Не следует, однако забывать, что сложившаяся
+                        структура организации позволяет выполнять важные задания по разработке дальнейших направлений
+                        развития.
+                        Повседневная практика показывает, что реализация намеченных плановых заданий позволяет оценить
+                        значение модели развития. Повседневная практика показывает, что постоянный количественный рост и
+                        сфера нашей активности позволяет оценить значение дальнейших направлений развития. С другой
+                        стороны начало повседневной работы по формированию позиции в значительной степени обуславливает
+                        создание соответствующий условий активизации. Не следует, однако забывать, что сложившаяся
+                        структура организации позволяет выполнять важные задания по разработке дальнейших направлений
+                        развития.
+                    </p>
+                </div>
+                <div class="txt-active" data-seo-text></div>
+            </div>
+        </section>
+    </main>
+    <!-- @include _section/_footer.html -->
+</div>
+
+<!-- @include _section/_end_body.html -->
+
+<script src="./js/pages/home.min.js"></script>
+
+</body>
+</html>

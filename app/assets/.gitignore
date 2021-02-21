@@ -1,0 +1,9 @@
+/node_modules
+npm-debug.log
+.idea
+.vscode
+.DS_Store
+/public/mix-manifest.json
+/public/*.html
+/public/css/*
+/public/js/*

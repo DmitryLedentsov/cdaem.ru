@@ -1,0 +1,66 @@
+.appeal {
+
+    &-title {
+        width: 100%;
+        text-align: center;
+        font-size: 1.8rem;
+        line-height: 1.8rem;
+
+        @include tablet() {
+            text-align: left;
+            font-size: 2.2rem;
+            line-height: 2.2rem;
+        }
+
+        @include tablet-land() {
+            font-size: 2.65rem;
+            line-height: 2.65rem;
+        }
+    }
+
+    &-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        @include tablet() {
+            margin-top: 0.5rem;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+    }
+
+    &-subtitle {
+        font-weight: 600;
+        font-size: 1rem;
+    }
+    
+    .submit-text {
+        font-weight: 400;
+        font-size: 0.8rem;
+        color: #4C4C4C;
+        margin-bottom: 1.5rem;
+        text-align: center;
+
+        @include tablet() {
+            text-align: left;
+            margin-bottom: 0;
+        }
+    }
+
+    
+    .btn {
+        font-weight: 600;
+        font-size: 1rem;
+        text-transform: uppercase;
+        color: #151515;
+        width: 208px;
+        height: 55px;
+        margin: 0 auto;
+
+        @include tablet() {
+            margin: 0 0 0 3.2rem;
+        }
+    }
+}

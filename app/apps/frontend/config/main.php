@@ -138,6 +138,12 @@ return [
         'view' => [
             'class' => \frontend\components\View::class,
             'defaultExtension' => 'twig',
+            /*'theme' => [
+                'pathMap' => [
+                    '@app/views' => '@common/modules/site/',
+                ],
+                'baseUrl' => '@common/modules/site/',
+            ],*/
             'theme' => [
                 'pathMap' => [
                     '@app/views' => '@app/themes/basic',
@@ -185,7 +191,7 @@ return [
                 \yii\web\JqueryAsset::class => [
                     'sourcePath' => null,
                     'js' => [
-                        'https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js',
+                        'https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js',
                     ]
                 ],
             ],

@@ -1,0 +1,168 @@
+.reviews {
+  margin-bottom: 3.5rem;
+
+  @include tablet-land() {
+    margin-bottom: 4.5rem;
+  }
+
+  &-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+}
+
+.review {
+
+  &-card {
+    display: flex;
+    border: 1px solid #E1E1E1;
+    padding: 1.7rem 1.4rem;
+    margin-bottom: 1rem;
+    border-radius: 0.3rem;
+
+    @include tablet() {
+      width: 49%;
+    }
+
+    @include tablet-land() {
+      padding-right: 1rem;
+    }
+  }
+
+  &-logo {
+    background: url("../../images/apartment/author-logo.png") center no-repeat;
+    width: 75px;
+    height: 75px;
+    flex-shrink: 0;
+    border: 0.13rem solid #FFA900;
+    border-radius: 50%;
+
+    @include phone() {
+      width: 87px;
+      height: 87px;
+    }
+  }
+
+  &-info-container {
+    margin-left: 1.4rem;
+    align-items: center;
+  }
+
+  &-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+
+    @include phone() {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.7rem;
+    }
+
+    .review-rating-container {
+      margin: 0;
+    }
+  }
+
+  &-date {
+    margin-bottom: 0.7rem;
+
+    @include phone() {
+      margin: 0 0.5rem 0 0;
+    }
+  }
+
+  &-author {
+    margin-bottom: 0.6rem;
+    font-weight: 700;
+  }
+
+  &-rating {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-bottom: 1.8rem;
+  }
+
+  &-rating-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-weight: 400;
+    font-size: 1rem;
+    color: #000000;
+    margin: 0 auto 1rem 0;
+    width: 100%;
+
+    @include phone() {
+      width: 50%;
+    }
+
+    @include tablet() {
+      width: auto;
+      margin: 0 1.8rem 0 0;
+    }
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+  }
+
+  &-evaluation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 27px;
+    height: 27px;
+    border-radius: 50%;
+    color: #FFFFFF;
+    margin-right: 0.4rem;
+  }
+
+  &-evaluation-5 {
+    background: #29C868;
+  }
+
+  &-evaluation-4 {
+    background: #a6c829;
+  }
+
+  &-evaluation-3 {
+    background: #FFA801;
+  }
+
+  &-evaluation-2 {
+    background: #f56e15;
+  }
+
+  &-evaluation-1 {
+    background: #E23A3A;
+  }
+
+  &-text {
+    @include tablet-land() {
+      padding-right: 1rem;
+    }
+  }
+}
+
+.give-feedback {
+  display: block;
+  color: $color-base-link;
+  background: transparent;
+  border: none;
+  margin: 1.2rem 0 0 auto;
+  font-size: 1rem;
+  outline: none;
+  cursor: pointer;
+  border-bottom: solid 2px transparent;
+  transition: 300ms;
+
+  &:hover {
+    border-bottom: solid 2px $color-base-border;
+  }
+}

@@ -1,0 +1,78 @@
+<div class="modal fade" id="signUp" tabindex="-1" role="dialog" aria-labelledby="signUp" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <h3 class="modal-title text-center">Регистрация</h3>
+            <button class="modal-close" data-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-body">
+                <form class="form" action="" method="post" id="form-signUp">
+                    <div class="form-group">
+                        <label for="signUp-email" class="d-none"></label>
+                        <input type="email" class="form-control" placeholder="Введите ваш Email" name="email" id="signUp-email">
+                        <div class="invalid-feedback"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="signUp-phone" class="d-none"></label>
+                        <input type="tel" class="form-control" placeholder="+38(0__)-___-__-__" name="phone" id="signUp-phone">
+                        <div class="invalid-feedback"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="signUp-password" class="d-none"></label>
+                        <input type="password" class="form-control" placeholder="Введите ваш пароль" name="password" id="signUp-password">
+                        <div class="invalid-feedback"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="signUp-name" class="d-none"></label>
+                        <input type="text" class="form-control" placeholder="Введите ваше имя" name="name" id="signUp-name">
+                        <div class="invalid-feedback"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="d-none" for="signUp-user_type"></label>
+                        <select class="custom-select" name="user_type" id="signUp-user_type">
+                            <option value="" selected>Тип аккаунта</option>
+                            <option value="4">Агенство</option>
+                            <option value="3">Собственник</option>
+                            <option value="2">Посредник</option>
+                            <option value="1">Хочу снять</option>
+                        </select>
+                        <div class="invalid-feedback"></div>
+                    </div>
+                    <div class="modal-extra mt-4">
+                        <strong>Регистрируясь на сайте я соглашаюсь:</strong>
+                        <p>
+                            <label class="form-check-label d-flex align-items-start">
+                                <input type="checkbox" name="advertising" value="1">
+                                <span>
+                                    Получать рекламные и информационные EMAIL рассылки от "cdaem.ru" и партнеров и не возражаю
+                                    о передачи моих персональных данных третьим лицам.
+                                </span>
+                            </label>
+                        </p>
+                        <p>
+                            <label class="form-check-label d-flex align-items-start">
+                                <input type="checkbox" name="agreement" value="1">
+                                <span>
+                                    С <a href="https://cdaem.ru/page/agreement" target="_blank">пользовательским соглашением</a>, с расценками на
+                                    размещение платных объявлений, а также получать СМС-оповещения при использовании определенных
+                                    сервисов на этом сайте.
+                                </span>
+                            </label>
+                        </p>
+                        <strong>Внимание:</strong>
+                        <p>
+                            После регистрации Вам будет отправлено письмо с инструкциями по активации аккаунта.
+                            Если письмо не пришло в течении 15 минут, Вы можете запросить
+                            <a href="https://cdaem.ru/users/guest/resend" target="_blank">код активации</a> повторно.
+                        </p>
+                    </div>
+                    <div class="form-group d-flex flex-column justify-content-center align-items-center mt-4 mb-0">
+                        <button type="submit" class="btn btn-warning btn-special">Продолжить</button>
+                        <p class="mt-4">
+                            <span>Есть аккаунт?</span>
+                            <span data-toggle="modal" data-target="#signIn" class="link-modal">Войти</span>
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

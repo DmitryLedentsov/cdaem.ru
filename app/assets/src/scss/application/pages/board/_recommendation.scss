@@ -1,0 +1,226 @@
+.recommendation {
+    position: relative;
+    padding: 1.9rem 0;
+    background: url("../../images/board/recommendation-bg.png") center/cover no-repeat;
+
+    @include tablet-land() {
+        padding: 3.8rem 0;
+    }
+
+    &::before,
+    &::after {
+        @include desktop() {
+            content: '';
+            position: absolute;
+            width: 263px;
+            height: 133px;
+            z-index: -1;
+        }
+    }
+
+    &::before {
+        @include desktop() {
+            top: 160px;
+            left: 40px;
+            background: url("../../images/sdaem.svg") center/contain no-repeat;
+        }
+    }
+
+    &::after {
+        @include desktop() {
+            top: 195px;
+            right: 50px;
+            background: url("../../images/russa.svg") center/contain no-repeat;
+        }
+    }
+    
+    &-list {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin: 0 -0.2rem;
+        width: 157px;
+    }
+
+    .section-title {
+        padding: 0 0 6.5rem;
+        margin: 0;
+
+        @include tablet() {
+            padding-bottom: 1.8rem;
+        }
+    }
+
+    &-card {
+        border: none;
+        border-radius: 0.3rem;
+        width: 157px;
+        height: 150px;
+        margin: 0.4rem 0;
+        position: relative;
+
+        &:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #000000;
+            border-radius: 0.3rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        &:hover {
+            .recommendation-phone {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .recommendation-text {
+                opacity: 0;
+            }
+
+            &:before {
+                opacity: 0.6;
+            }
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            border-radius: 0.3rem;
+        }
+    }
+
+    &-phone {
+        opacity: 0;
+        width: 39px;
+        height: 39px;
+        border: none;
+        background: url("../../images/phone.svg") center/cover no-repeat;
+        outline: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: opacity 0.3s;
+        visibility: hidden;
+        cursor: pointer;
+    }
+
+    &-text {
+        font-weight: 600;
+        font-size: 0.75rem;
+        text-align: center;
+        color: #FFFFFF;
+        width: 100%;
+        position: absolute;
+        bottom: 0.6rem;
+        left: 50%;
+        transform: translate(-50%);
+        transition: opacity 0.3s;
+    }
+
+    &-slider {
+        .slick-slide {
+            width: 157px;
+            margin: 0 0.2rem;
+        }
+
+        .slick-arrow {
+            position: absolute;
+            top: -20%;
+            z-index: 1;
+            width: 77px;
+            height: 47px;
+            margin: 0;
+            padding: 0;
+            font-size: 0;
+            background: 0 0;
+            border: 0.065rem solid #bdbdbd;
+            border-radius: 0.3rem;
+            outline: 0;
+            cursor: pointer;
+            transition: border-color 0.2s;
+
+            @include tablet() {
+                top: -21%;
+            }
+
+            @include tablet-land() {
+                top: -22%;
+            }
+      
+            &::before,
+            &::after {
+                content: "";
+                position: absolute;
+            }
+      
+            &::before {
+                top: 22px;
+                left: 23px;
+                width: 27px;
+                height: 2px;
+                background: #bdbdbd;
+                transition: background-color 0.2s;
+            }
+      
+            &::after {
+                top: 19px;
+                left: 22px;
+                width: 8px;
+                height: 8px;
+                border: 0.13rem solid #bdbdbd;
+                border-right: transparent;
+                border-bottom: transparent;
+                transform: rotate(-45deg);
+                transition: border-color 0.2s;
+            }
+      
+            &:hover,
+            &:focus {
+                border-color: $color-warning;
+
+                &::before {
+                    background-color: $color-warning;
+                }
+        
+                &::after {
+                    border-color: $color-warning;
+                }
+            }
+        }
+      
+        .slick-prev {
+            right: 55%;
+
+            @include tablet() {
+                right: 90px;
+            }
+        }
+    
+        .slick-next {
+            right: 20%;
+            transform: rotate(180deg);
+
+            @include phone() {
+                right: 30%;
+            }
+
+            @include tablet() {
+                right: 0;
+            }
+
+            &::before{
+                top: 21px;
+            }
+
+            &::after {
+                top: 18px;
+            }
+        }
+    }
+}
