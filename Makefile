@@ -12,7 +12,6 @@ db_run := $(docker_compose_dev) exec --user=root db
 
 #--- ASSETS ---#
 
-
 npm:
     ifneq ($(cmd),)
 	    $(node_run) sh -c "cd /app/assets && npm $(cmd)"
@@ -21,19 +20,11 @@ npm:
     endif
 
 
-
-
-
-
-
-
-
-
 #--- DEV ---#
 
 bootstrap:
 	cp ./docker/docker-compose.override.yml.example ./docker/docker-compose.override.yml
-	cp ./docker/.env.example ./docker/.docker.env
+	cp ./docker/.docker.env.example ./docker/.docker.env
 	cat ./docker/hosts.sh | sudo /bin/sh
 	make build
 	$(docker_compose_dev) up -d

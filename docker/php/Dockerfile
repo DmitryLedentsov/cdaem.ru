@@ -48,7 +48,7 @@ RUN if [ "${LOCAL_ENV}" = "dev" ] ; then apk add --no-cache $PHPIZE_DEPS \
 RUN apk add --no-cache icu-dev \
     && docker-php-ext-install intl
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --version=1.10.20 --filename=composer
 
 RUN mkdir /var/log/php
 
