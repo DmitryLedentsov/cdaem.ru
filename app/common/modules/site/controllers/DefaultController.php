@@ -65,14 +65,18 @@ class DefaultController extends \frontend\components\Controller
 
         $partnersSearch = new PartnersAdvertSearch();
         $partnersAdverts = $partnersSearch->siteSearch(Yii::$app->request->queryParams);
+
         $articlesQuery = Article::find()->orderBy(['date_create' => SORT_DESC]);
-        if (!is_null($city)) {
+
+        if (is_null($city) === false) {
             $articlesQuery->where(['city' => $city]);
         } else {
             $articlesQuery->where('city IS NULL');
         }
         $articles = $articlesQuery->limit(1)->all();
+
         $specialAdverts = SpecialAdvert::findActive();
+
         $articlesQuery2 = Article::find()
             ->orderBy(['date_create' => SORT_DESC]);
 
@@ -91,6 +95,7 @@ class DefaultController extends \frontend\components\Controller
             }
             $i++;
         }
+
         $metaData = RentType::findRentTypeBySlug(Yii::$app->request->get('rentType', '/'));
 
         if (!$metaData) {
@@ -103,7 +108,7 @@ class DefaultController extends \frontend\components\Controller
             Yii::$app->view->registerLinkTag(['rel' => 'canonical', 'href' => URL::to('https://cdaem.ru')]);
         }
         
-        return $this->render('index.twig', [
+        return $this->render('home/index.twig', [
             'agencySearch' => $agencySearch,
             'agencyDataProvider' => $agencyDataProvider,
             'searchModel' => $partnersSearch,

@@ -9,9 +9,13 @@
                     </object>
                     <div class="gallery-info">
                         <h5 class="text-white">Москва</h5>
-                        <span class="gallery-sub-title text-white">Красная площадь</span>
+                        <span class="gallery-sub-title text-white">
+                            Население: 12 636 312
+                        </span>
                     </div>
-                    <a class="link text-white link-to" href="./board.html">Перейти</a>
+                    <a class="link text-white link-to" href="{{ path('/partners/default/region', {'city': 'msk'}) }}">
+                        Перейти
+                    </a>
                 </div>
             </article>
             <article class="gallery-item gallery-item-sm">
@@ -21,9 +25,13 @@
                     </object>
                     <div class="gallery-info">
                         <h5 class="text-white">Санкт-Петербург</h5>
-                        <span class="gallery-sub-title text-white">Улица</span>
+                        <span class="gallery-sub-title text-white">
+                            Население: 5 388 759
+                        </span>
                     </div>
-                    <a class="link text-white link-to" href="./board.html">Перейти</a>
+                    <a class="link text-white link-to" href="{{ path('/partners/default/region', {'city': 'spb'}) }}">
+                        Перейти
+                    </a>
                 </div>
             </article>
             <article class="gallery-item gallery-item-sm">
@@ -76,7 +84,7 @@
             </article>
         </div>
         <div class="text-center">
-            <a href="./search.html" class="btn btn-outline-warning">Все города</a>
+            <a href="{{ path(['/partners/default/index']) }}" class="btn btn-outline-warning">Все города</a>
         </div>
     </div>
     <div class="gallery-moscow"></div>

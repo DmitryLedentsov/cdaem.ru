@@ -15,13 +15,13 @@
                 <ul>
                     <li class="nav-item footer-sub-title text-uppercase">Агенство в москве</li>
                     <li class="nav-item">
-                        <a class="nav-link contacts-email" href="#">
+                        <a class="nav-link contacts-email" href="mailto:support@cdaem.ru">
                             support@cdaem.ru
                         </a>
                     </li>
                     <li class="nav-item footer-sub-title text-uppercase">Возник вопрос?</li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">
+                        <a class="nav-link" href="{{ path(['/helpdesk/default/index']) }}">
                             <img src="/_new/images/icons/phone.svg" alt="phone">
                             Свяжитесь с нами
                         </a>
@@ -57,31 +57,54 @@
                 <h6 class="footer-title">навигация</h6>
                 <ul>
                     <li class="nav-item">
-                        <a class="nav-link" href="./help.html">Помощь</a>
+                        <a class="nav-link" href="{{ path('/pages/default/index', {'url' : 'about'}) }}">
+                            О нас
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./rules.html">Права</a>
+                        <a class="nav-link" href="{{ path(['/office/default/help']) }}">
+                            Помощь
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Правообладатели</a>
+                        <a class="nav-link" href="{{ path('/pages/default/index', {'url' : 'privacy'}) }}">
+                            Права, Правообладатели
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Квартира на час</a>
+                        <a class="nav-link" href="{{ path('/pages/default/index', {'url' : 'contacts'}) }}">
+                            Контактная информация
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Квартира на сутки</a>
+                        <a class="nav-link" href="{{ path('/site/default/index', {'rentType' : 'kvartira_na_chas'}) }}">
+                            Квартира на час
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Квартира на ночь</a>
+                        <a class="nav-link" href="{{ path('/site/default/index', {'rentType' : 'kvartira_na_sutki'}) }}">
+                            Квартира на сутки
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./agency.html">Сдаем.ру</a>
+                        <a class="nav-link" href="{{ path('/site/default/index', {'rentType' : 'na_noch'}) }}">
+                            Квартира на ночь
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./vacancy.html">Работа</a>
+                        <a class="nav-link" href="{{ path(['/agency/default/index']) }}">
+                            Сдаем.ру
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./news.html">Новости</a>
+                        <a class="nav-link" href="{{ path(['/helpdesk/default/workvac']) }}">
+                            Работа
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path(['/articles/default/index']) }}">
+                            Статьи
+                        </a>
                     </li>
                 </ul>
             </nav>
@@ -94,7 +117,7 @@
                 <img src="/_new/images/logo-dark.svg" alt="logo">
             </a>
             <p class="footer-copyright">
-                <span class="font-weight-bold">© 2012-2020 cdaem.ru</span>
+                <span class="font-weight-bold">© 2012-{{ 'now'|date('Y') }} cdaem.ru</span>
                 <span>Все права защищены</span>
             </p>
         </div>

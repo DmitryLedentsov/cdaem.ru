@@ -12,8 +12,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Language" content="ru"/>
-    <meta name="description" content="---">
-    <meta name="keywords" content="--">
     <meta name="domain" content="--">
     <meta name="theme-color" content="#ffffff">
     <meta name="currency" content="rub"/>
@@ -46,13 +44,14 @@
 
 <div class="wrapper">
     {% block header %}
-        {{ this.render("@common/modules/site/views/_sections/header.twig") | raw }}
+        {{ this.render("@common/modules/site/views/_sections/_header.twig") | raw }}
     {% endblock %}
     <main>
         {% block content %}{% endblock %}
+        {{ seo_text_widget({'type' : 'footer' })| raw }}
     </main>
     {% block footer %}
-        {{ this.render("@common/modules/site/views/_sections/footer.twig") | raw }}
+        {{ this.render("@common/modules/site/views/_sections/_footer.twig") | raw }}
     {% endblock %}
 </div>
 
@@ -64,6 +63,7 @@
 {% endif %}
 {{ this.serviceFooter() | raw }}
 {{ this.endBody() }}
+
 </body>
 </html>
 {{ this.endPage() }}

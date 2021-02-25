@@ -1,0 +1,31 @@
+{% if articles is not empty %}
+    <section class="news">
+        <div class="container-fluid">
+            <div class="news-container">
+                <h2 class="section-title">Наши новости</h2>
+                <a href="{{ path(['/articles/default/index']) }}" class="btn btn-outline-warning">Все новости</a>
+            </div>
+            <div class="news-wrapper">
+                <div class="news-card-wrapper">
+                    {% for article in articles %}
+                        <div class="news-card">
+                            <img class="news-image" src="/_new/images/news/home-news.png" alt="news-image">
+                            <div class="news-item">
+                                <div class="news-publication-date">20.11.2020</div>
+                                <div class="news-subtitle">В РФ отменят штрафы за несвоевременную регистрацию прав на недвижимость</div>
+                                <div class="news-text">В Российско Федерации исключа администра ответственность за нарушение сроков регистрации недвижимости и перерегистрации юрлиц,</div>
+                                <a class="btn btn-warning" href="./article.html">Читать полностью</a>
+                            </div>
+                        </div>
+
+                        {% for article in articlesall2 %}
+                    {{ dump(article) }}
+                        {% endfor %}
+
+
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endif %}
