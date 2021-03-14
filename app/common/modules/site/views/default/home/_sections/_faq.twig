@@ -9,7 +9,7 @@
                 <div class="d-flex flex-column">
                     <h6 class="faq-card-title">Больше звонков</h6>
                     <span class="text-large">Увеличение звонков, броней, посещение вашей страницы.</span>
-                    <a href="#">Посмотреть</a>
+                    <a href="{{ path(['/office/default/services']) }}">Посмотреть</a>
                 </div>
             </article>
             <article class="faq-card">
@@ -19,7 +19,7 @@
                 <div class="d-flex flex-column">
                     <h6 class="faq-card-title">Создать объявление</h6>
                     <span class="text-large">Быстрая регистрация и подача объявления.</span>
-                    <a href="#">Добавить</a>
+                    <a href="{{ path(['/partners/default/create']) }}">Добавить</a>
                 </div>
             </article>
             <article class="faq-card">
@@ -29,7 +29,7 @@
                 <div class="d-flex flex-column">
                     <h6 class="faq-card-title">Все объекты на карте</h6>
                     <span class="text-large">Поиск объявлений рядом с вами и не только.</span>
-                    <a href="./map.html">Найти</a>
+                    <a href="{{ path('/geo/default/index', {'city': 'msk'}) }}">Найти</a>
                 </div>
             </article>
             <article class="faq-card">
@@ -39,7 +39,7 @@
                 <div class="d-flex flex-column">
                     <h6 class="faq-card-title">Как работает сайт</h6>
                     <span class="text-large">Возникли вопросы по работе сайта обратитесь в разделе помощь.</span>
-                    <a href="./help.html">Открыть</a>
+                    <a href="{{ path(['/office/default/help']) }}">Открыть</a>
                 </div>
             </article>
             <article class="faq-card">
@@ -59,7 +59,7 @@
                 <div class="d-flex flex-column">
                     <h6 class="faq-card-title">Вакансии</h6>
                     <span class="text-large">Выгодные предложения и удобный поиск.</span>
-                    <a href="./vacancy.html">Открыть</a>
+                    <a href="{{ path(['/helpdesk/default/workvac']) }}">Открыть</a>
                 </div>
             </article>
         </div>

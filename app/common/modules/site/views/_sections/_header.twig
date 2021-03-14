@@ -1,7 +1,7 @@
 <header class="header">
     <div class="header-nav">
         <div class="header-container">
-            <a class="logo" href="./index.html">
+            <a class="logo" href="/">
                 <img src="/_new/images/logo-light.svg" alt="logo">
             </a>
             <button class="location">Москва</button>
@@ -9,23 +9,23 @@
         <nav class="nav">
             <ul class="nav-list">
                 <li class="nav-item">
-                    <a class="nav-link link-with-border active" href="#">
+                    <a class="nav-link link-with-border active" href="{{ path(['/partners/default/create']) }}">
                         Добавить объявление
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link link-with-border" href="./help.html">
+                    <a class="nav-link link-with-border" href="{{ path(['/office/default/help']) }}">
                         Помощь
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link link-with-border" href="./signOut.html" data-toggle="modal" data-target="#signUp">
+                    <a class="nav-link link-with-border" href="{{ path(['/users/guest/signup']) }}" data-toggle="modal" data-target="#signUp">
                         Регистрация
                     </a>
                 </li>
             </ul>
         </nav>
-        <a href="./signIn.html" class="btn btn-warning btn-special btn-sign-in" data-toggle="modal" data-target="#signIn">
+        <a href="{{ path(['/users/guest/login']) }}" class="btn btn-warning btn-special btn-sign-in" data-toggle="modal" data-target="#signIn">
             Вход
         </a>
     </div>
