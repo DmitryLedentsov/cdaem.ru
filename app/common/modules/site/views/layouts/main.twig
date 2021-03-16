@@ -1,4 +1,5 @@
-{{ this.beginPage() }}<!DOCTYPE html>
+{{ this.beginPage() }}
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="{{ app.charset }}"/>
@@ -36,7 +37,6 @@
 {{ use('common/modules/seo/widgets/frontend/SeoText') }}
 {{ use('common/modules/site/assets/AppAsset') }}
 {{ register_app_asset() }}
-{% block breadcrumbs %}{% endblock %}
 
 {% if this.context.action.id == 'index' %}
     <div class="header-background"></div>
@@ -47,7 +47,10 @@
         {{ this.render("@common/modules/site/views/_sections/_header.twig") | raw }}
     {% endblock %}
     <main>
-        {% block content %}{% endblock %}
+        <div class="{% block divMainClass %}{% endblock %}">
+            {% block breadcrumbs %}{% endblock %}
+            {% block content %}{% endblock %}
+        </div>
         {{ seo_text_widget({'type' : 'footer' })| raw }}
     </main>
     {% block footer %}

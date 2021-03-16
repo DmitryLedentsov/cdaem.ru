@@ -27,9 +27,6 @@ class BootstrapFrontend implements \yii\base\BootstrapInterface
                 'office/blacklist' => 'office/default/blacklist',
                 'office/ajax/<a:\w+>' => '/office/ajax/<a>',
                 'office/ajax/delete-top-slider/<advertisement_id:\d+>' => '/office/ajax/delete-top-slider',
-
-                'help/<url>' => '/office/default/help',
-                'help' => '/office/default/help',
             ]
         );
     }

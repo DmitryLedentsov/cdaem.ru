@@ -1,3 +1,4 @@
+{% if this.context.action.id == 'index' %}
 <header class="header">
     <div class="header-nav">
         <div class="header-container">
@@ -8,25 +9,45 @@
         </div>
         <nav class="nav">
             <ul class="nav-list">
+{% else %}
+<header class="header-collapse">
+    <div class="container-fluid">
+        <a class="header-logo" href="/">
+            <img src="/_new/images/logo-dark.svg" alt="logo">
+        </a>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-menu" aria-label="navbar-toggle">
+            <span></span>
+            <span></span>
+        </button>
+        <nav class="main-menu collapse" id="main-menu">
+            <ul class="nav navbar-nav">
+{% endif %}
                 <li class="nav-item">
-                    <a class="nav-link link-with-border active" href="#">
+                    <a class="{{ this.context.action.id == 'index' ? 'nav-link link-with-border' : '' }} active" href="#">
                         Добавить объявление
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link link-with-border" href="./help.html">
+                    <a class="{{ this.context.action.id == 'index' ? 'nav-link link-with-border' : '' }}"
+                       href="/help">
                         Помощь
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link link-with-border" href="./signOut.html" data-toggle="modal" data-target="#signUp">
+                    <a class="{{ this.context.action.id == 'index' ? 'nav-link link-with-border' : '' }}" href="./board.html">
+                        Расширенный поиск
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="{{ this.context.action.id == 'index' ? 'nav-link link-with-border' : '' }}" href="./signOut.html" data-toggle="modal" data-target="#signUp">
                         Регистрация
                     </a>
                 </li>
             </ul>
-        </nav>
-        <a href="./signIn.html" class="btn btn-warning btn-special btn-sign-in" data-toggle="modal" data-target="#signIn">
-            Вход
-        </a>
+        {{ this.context.action.id == 'index' ? '</nav>' : '' }}
+            <a href="./signIn.html" class="btn btn-warning btn-special btn-sign-in" data-toggle="modal" data-target="#signIn">
+                Вход
+            </a>
+        {{ this.context.action.id == 'index' ? '' : '</nav>' }}
     </div>
 </header>

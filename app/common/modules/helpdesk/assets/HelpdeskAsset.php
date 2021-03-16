@@ -14,13 +14,20 @@ class HelpdeskAsset extends AssetBundle
     /**
      * @inheritdoc
      */
-    public $sourcePath = '@frontend/themes/basic/assets';
+//    public $sourcePath = '@frontend/themes/basic/assets';
+    public $basePath = '@webroot';
+    public $baseUrl = '@web';
+
+    public $css = [
+        '/_new/css/pages/help.min.css',
+    ];
 
     /**
      * @inheritdoc
      */
     public $depends = [
         \yii\web\JqueryAsset::class,
+        \common\modules\site\assets\AppAsset::class,
     ];
 
     /**

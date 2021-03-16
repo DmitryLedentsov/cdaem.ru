@@ -19,6 +19,8 @@ class BootstrapFrontend implements \yii\base\BootstrapInterface
                 'call' => '/helpdesk/default/index',
                 'workvac' => '/helpdesk/default/workvac',
                 'complaint/<advert_id:\d+>' => '/helpdesk/ajax/complaint',
+                'help/<url>' => '/helpdesk/default/help',
+                'help' => '/helpdesk/default/help',
             ]
         );
     }

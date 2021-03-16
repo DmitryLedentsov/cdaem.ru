@@ -5,6 +5,7 @@ namespace common\modules\helpdesk\controllers\frontend;
 use Yii;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
+use common\modules\pages\models\Page;
 use common\modules\helpdesk\models\Helpdesk;
 use common\modules\helpdesk\models\form\HelpdeskForm;
 
@@ -143,10 +144,24 @@ class DefaultController extends \frontend\components\Controller
     /**
      * Задать вопрос
      *
+     * @param null $url
      * @return $this|array|string|Response
+     * @throws \yii\web\HttpException
      */
-    public function actionHelp()
+    public function actionHelp($url = null)
     {
+        $page = null;
+
+        if ($url) {
+            $page = Page::getPageByUrl($url);
+        }
+
+        if ($page) {
+            return $this->render('help_page.twig', [
+                'page' => $page
+            ]);
+        }
+
         $model = new Helpdesk();
         $formModel = new HelpdeskForm(['scenario' => Yii::$app->user->isGuest ? 'guest-ask' : 'user-ask']);
         if ($formModel->load(Yii::$app->request->post())) {
@@ -167,7 +182,7 @@ class DefaultController extends \frontend\components\Controller
             }
         }
 
-        return $this->render('partners.twig', [
+        return $this->render('help.twig', [
             'model' => $model,
             'formModel' => $formModel,
         ]);

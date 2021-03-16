@@ -5,30 +5,27 @@
     @var \common\helpdesk\models\form\HelpdeskForm formModel
 #}
 
-{% extends "@app/themes/basic/layouts/main.twig" %}
+{% extends "@common/modules/site/views/layouts/main.twig" %}
 
 {% block title %} Помощь в аренде квартир и загородных домов | Сдаём.ру {% endblock %}
 
-{% block header %}
-    {{ use('common/modules/site/widgets/BgHeader') }}
-    {{ bg_header_widget({'title': 'Помощь'}) }}
-{% endblock %}
+{% block divMainClass %}help{% endblock %}
 
-{% block navbar %}
-    {{ this.renderDynamic('return $this->render("@common/modules/office/views/frontend/layouts/navbar.twig");') | raw }}
-{% endblock %}
+{#{% block header %}#}
+{#    {{ use('common/modules/site/widgets/BgHeader') }}#}
+{#    {{ bg_header_widget({'title': 'Помощь'}) }}#}
+{#{% endblock %}#}
 
-{% block footer %}
-    {{ this.render("@app/themes/basic/layouts/footer-partners.twig") | raw }}
-{% endblock %}
-
-{% block navbar_bottom %}{% endblock %}
 
 {% block breadcrumbs %}
-    <div class="breadcrumbs">
+    <div class="container-fluid">
         {{ use('yii/widgets/Breadcrumbs') }}
         {{ breadcrumbs_widget({
-            'itemTemplate' : "<li>{link}</li>\n",
+            'tag':  'div',
+            'options': {
+                'class': 'breadcrumbs'
+            },
+            'itemTemplate' : "{link}\n",
             'homeLink' :
             {
                 'label' : 'Главная',
@@ -37,6 +34,7 @@
             'links':  [
                 {
                     'label': 'Помощь',
+                    'template': '<span>{link}</span>\n'
                 },
             ],
         }) }}
@@ -49,11 +47,14 @@
     {{ this.registerMetaTag({'name' : 'description', 'content' : 'Сдаём.ру связь с администрацией. Помощь в Аренде Квартир и загородных домов. Поиск жилья. Снять или сдать жилье. Keywords: Квартира на сутки, сдать квартиру, сдача жилья в аренду, снять квартиру на сутки, квартира на сутки недорого, квартиры на сутки без посредников, снять квартиру на сутки не дорого, снять квартиру на сутки без посредников'}) }}
     {{ this.registerMetaTag({'name' : 'keywords', 'content' : 'Сдаём.ру связь с администрацией. Помощь в Аренде Квартир и загородных домов. Поиск жилья. Снять или сдать жилье. Keywords: Квартира на сутки, сдать квартиру, сдача жилья в аренду, снять квартиру на сутки, квартира на сутки недорого, квартиры на сутки без посредников, снять квартиру на сутки не дорого, снять квартиру на сутки без посредников'}) }}
 
+    {{ use('common/modules/site/assets/AppAsset') }}
+    {{ register_app_asset() }}
+
     {{ use('common/modules/helpdesk/assets/HelpdeskAsset') }}
     {{ register_helpdesk_asset() }}
 
     <div class="container help clearfix">
-        {{ this.render("@common/modules/office/views/frontend/default/_nav-help.twig") | raw }}
+        {{ this.render("@common/modules/helpdesk/views/frontend/default/_nav-help.twig") | raw }}
         <div class="help-text">
             <div class="container-certain orange">
                 {% if app.session.hasFlash('danger') %}
@@ -66,7 +67,7 @@
                         {{ app.session.getFlash('success') | raw }}
                     </div> <br/>
                 {% endif %}
-                {{ this.render('_form.twig', {'model' : model, 'formModel' : formModel}) | raw }}
+{#                {{ this.render('_form.twig', {'model' : model, 'formModel' : formModel}) | raw }}#}
             </div>
         </div>
     </div>

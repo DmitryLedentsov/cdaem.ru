@@ -204,27 +204,4 @@ class DefaultController extends \frontend\components\Controller
     {
         return $this->render('services.twig');
     }
-
-    /**
-     * Помощь
-     * @param null $url
-     * @return string
-     * @throws HttpException
-     */
-    public function actionHelp($url = null)
-    {
-        $page = null;
-
-        if ($url) {
-            $page = Page::getPageByUrl($url);
-        }
-
-        if (!$page) {
-            return $this->run('/helpdesk/default/help');
-        }
-
-        return $this->render('help.twig', [
-            'page' => $page
-        ]);
-    }
 }
