@@ -19,129 +19,132 @@
             </a>
         </div>
         <div class="search-form-border"></div>
-        <div class="search-form-options">
-            <div class="search-form-filters">
-                <div class="search-form-filter search-form-filter-city">
-                    <label>
-                        <input class="form-control" id="search-form-autocomplete" type="text" autocomplete="off" placeholder="Москва">
-                    </label>
-                </div>
-                <div class="search-form-filter search-form-filter-type">
-                    <label>
+        <form action="" method="get">
+            <div class="search-form-options">
+                <div class="search-form-filters">
+                    <div class="search-form-filter search-form-filter-city">
                         <label>
-                            <select class="custom-select">
-                                <option selected>Тип аренды</option>
-                                <option>Квартира на час</option>
-                                <option>Квартира на сутки</option>
-                                <option>Квартира на ночь</option>
-                                <option>Квартира на месяц</option>
-                                <option>Комната на сутки</option>
-                                <option>Кой-ко место</option>
-                                <option>Загородный дом</option>
-                                <option>Квартира на Новый Год</option>
-                                <option>Квартира от cdaem.ru</option>
-                            </select>
+                            <input class="form-control" id="search-form-autocomplete" name="city" type="text" autocomplete="off" placeholder="Москва">
+                            <input type="hidden" value="">
                         </label>
-                    </label>
-                </div>
-                <div class="search-form-group" data-daterangepicker>
-                    <div class="search-form-filter search-form-filter-calendar daterangepicker-from">
-                        <span class="daterangepicker-month">25 декабря</span>
-                        <span class="daterangepicker-day">пятница</span>
-                        <input type="hidden" value="">
                     </div>
-                    <div class="search-form-filter search-form-filter-calendar daterangepicker-to">
-                        <span class="daterangepicker-month">2 января</span>
-                        <span class="daterangepicker-day">суббота</span>
-                        <input type="hidden" value="">
+                    <div class="search-form-filter search-form-filter-type">
+                        <label>
+                            <label>
+                                <select class="custom-select" name="type">
+                                    <option selected>Тип аренды</option>
+                                    <option>Квартира на час</option>
+                                    <option>Квартира на сутки</option>
+                                    <option>Квартира на ночь</option>
+                                    <option>Квартира на месяц</option>
+                                    <option>Комната на сутки</option>
+                                    <option>Кой-ко место</option>
+                                    <option>Загородный дом</option>
+                                    <option>Квартира на Новый Год</option>
+                                    <option>Квартира от cdaem.ru</option>
+                                </select>
+                            </label>
+                        </label>
                     </div>
-                </div>
-                <div class="search-form-filter search-form-filter-extra dropdown">
-                    <span>
-                        <span>&nbsp;</span>
-                        <span>&nbsp;</span>
-                        <span>&nbsp;</span>
-                    </span>
-                    <span>
-                        Фильтры
+                    <div class="search-form-group" data-daterangepicker>
+                        <div class="search-form-filter search-form-filter-calendar daterangepicker-from">
+                            <span class="daterangepicker-month">25 декабря</span>
+                            <span class="daterangepicker-day">пятница</span>
+                            <input type="hidden" name="date_from" value="{{ 'now'|date('Y-m-d') }}">
+                        </div>
+                        <div class="search-form-filter search-form-filter-calendar daterangepicker-to">
+                            <span class="daterangepicker-month">2 января</span>
+                            <span class="daterangepicker-day">суббота</span>
+                            <input type="hidden" name="date_to" value="{{ 'now'|date('Y-m-d') }}">
+                        </div>
+                    </div>
+                    <div class="search-form-filter search-form-filter-extra dropdown">
                         <span>
-                            Дополнительные параметры
+                            <span>&nbsp;</span>
+                            <span>&nbsp;</span>
+                            <span>&nbsp;</span>
                         </span>
-                    </span>
-                    <div class="search-form-filter-options">
-                        <p class="options-text">Количество комнат</p>
-                        <div class="rooms">
-                            <div class="rooms-container">
-                                <label class="rooms-item">
-                                    <input name="room" type="radio" value="1 комната">
-                                    <span class="input-text">1 комната</span>
-                                </label>
-                                <label class="rooms-item">
-                                    <input name="room" type="radio" value="2 комнаты">
-                                    <span class="input-text">2 комнаты</span>
-                                </label>
-                                <label class="rooms-item">
-                                    <input name="room" type="radio" value="3 комнаты">
-                                    <span class="input-text">3 комнаты</span>
-                                </label>
+                        <span>
+                            Фильтры
+                            <span>
+                                Дополнительные параметры
+                            </span>
+                        </span>
+                        <div class="search-form-filter-options">
+                            <p class="options-text">Количество комнат</p>
+                            <div class="rooms">
+                                <div class="rooms-container">
+                                    <label class="rooms-item">
+                                        <input name="rooms" type="radio" value="1">
+                                        <span class="input-text">1 комната</span>
+                                    </label>
+                                    <label class="rooms-item">
+                                        <input name="rooms" type="radio" value="2">
+                                        <span class="input-text">2 комнаты</span>
+                                    </label>
+                                    <label class="rooms-item">
+                                        <input name="rooms" type="radio" value="3">
+                                        <span class="input-text">3 комнаты</span>
+                                    </label>
+                                </div>
+                                <div class="rooms-container">
+                                    <label class="rooms-item">
+                                        <input name="rooms" type="radio" value="4">
+                                        <span class="input-text">4 комнаты</span>
+                                    </label>
+                                    <label class="rooms-item">
+                                        <input name="rooms" type="radio" value="5">
+                                        <span class="input-text">5 комнат</span>
+                                    </label>
+                                    <label class="rooms-item">
+                                        <input name="rooms" type="radio" value="6">
+                                        <span class="input-text">6+ комнат</span>
+                                    </label>
+                                </div>
                             </div>
-                            <div class="rooms-container">
-                                <label class="rooms-item">
-                                    <input name="room" type="radio" value="4 комнаты">
-                                    <span class="input-text">4 комнаты</span>
-                                </label>
-                                <label class="rooms-item">
-                                    <input name="room" type="radio" value="5 комнат">
-                                    <span class="input-text">5 комнат</span>
-                                </label>
-                                <label class="rooms-item">
-                                    <input name="room" type="radio" value="6+ комнат">
-                                    <span class="input-text">6+ комнат</span>
-                                </label>
+                            <div class="price">
+                                <p class="options-text">Цена (₽)</p>
+                                <input name="price_from" type="number" value="" placeholder="от">
+                                <span class="input-text">-</span>
+                                <input name="price_to" type="number" value="" placeholder="до">
                             </div>
+                            <p class="options-text">Количество гостей</p>
+                            <div class="guests">
+                                <div class="guests-container">
+                                    <label class="guests-item">
+                                        <input name="guests" type="radio" value="1">
+                                        <span class="input-text">1 гость</span>
+                                    </label>
+                                    <label class="guests-item">
+                                        <input name="guests" type="radio" value="2">
+                                        <span class="input-text">2 гостя</span>
+                                    </label>
+                                    <label class="guests-item">
+                                        <input name="guests" type="radio" value="3">
+                                        <span class="input-text">3 гостя</span>
+                                    </label>
+                                </div>
+                                <div class="guests-container">
+                                    <label class="guests-item">
+                                        <input name="guests" type="radio" value="4">
+                                        <span class="input-text">4 гостя</span>
+                                    </label>
+                                    <label class="guests-item">
+                                        <input name="guests" type="radio" value="5">
+                                        <span class="input-text">5 гостей</span>
+                                    </label>
+                                    <label class="guests-item">
+                                        <input name="guests" type="radio" value="6">
+                                        <span class="input-text">6+ гостей</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <button class="btn btn-warning btn-close">Применить</button>
                         </div>
-                        <div class="price">
-                            <p class="options-text">Цена (₽)</p>
-                            <input name="price" type="number" value="от" placeholder="от">
-                            <span class="input-text">-</span>
-                            <input name="price" type="number" value="до" placeholder="до">
-                        </div>
-                        <p class="options-text">Количество гостей</p>
-                        <div class="guests">
-                            <div class="guests-container">
-                                <label class="guests-item">
-                                    <input name="guests" type="radio" value="1 гость">
-                                    <span class="input-text">1 гость</span>
-                                </label>
-                                <label class="guests-item">
-                                    <input name="guests" type="radio" value="2 гостя">
-                                    <span class="input-text">2 гостя</span>
-                                </label>
-                                <label class="guests-item">
-                                    <input name="guests" type="radio" value="3 гостя">
-                                    <span class="input-text">3 гостя</span>
-                                </label>
-                            </div>
-                            <div class="guests-container">
-                                <label class="guests-item">
-                                    <input name="guests" type="radio" value="4 гостя">
-                                    <span class="input-text">4 гостя</span>
-                                </label>
-                                <label class="guests-item">
-                                    <input name="guests" type="radio" value="5 гостей">
-                                    <span class="input-text">5 гостей</span>
-                                </label>
-                                <label class="guests-item">
-                                    <input name="guests" type="radio" value="6+ гостей">
-                                    <span class="input-text">6+ гостей</span>
-                                </label>
-                            </div>
-                        </div>
-                        <button class="btn btn-warning btn-close">Применить</button>
                     </div>
                 </div>
+                <button class="btn btn-warning btn-special btn-search">Найти</button>
             </div>
-            <button class="btn btn-warning btn-special btn-search">Найти</button>
-        </div>
+        </form>
     </div>
 </section>
