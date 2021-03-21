@@ -14,7 +14,13 @@ class UserAsset extends AssetBundle
     /**
      * @inheritdoc
      */
-    public $sourcePath = '@frontend/themes/basic/assets';
+//    public $sourcePath = '@frontend/themes/basic/assets';
+    public $basePath = '@webroot';
+    public $baseUrl = '@web';
+
+    public $css = [
+        '/_new/css/pages/signIn.min.css',
+    ];
 
     /**
      * @inheritdoc
@@ -32,11 +38,11 @@ class UserAsset extends AssetBundle
 
         if (YII_DEBUG) {
             $this->js = [
-                'js_dev/users.js',
+                '/_new/js_dev/users.js',
             ];
         } else {
             $this->js = [
-                'js/users.js',
+                '/_new/js/users.js',
             ];
         }
     }
