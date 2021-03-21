@@ -51,6 +51,7 @@
             {% block breadcrumbs %}{% endblock %}
             {% block content %}{% endblock %}
         </div>
+        {% block additional_content %}{% endblock %}
         {{ seo_text_widget({'type' : 'footer' })| raw }}
     </main>
     {% block footer %}

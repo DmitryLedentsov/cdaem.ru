@@ -30,11 +30,6 @@ class DefaultController extends \frontend\components\Controller
                         'actions' => [],
                         'allow' => true,
                         'roles' => ['@'],
-                    ],
-                    [
-                        'actions' => ['help'],
-                        'allow' => true,
-                        'roles' => ['?'],
                     ]
                 ],
             ],

@@ -9,6 +9,8 @@
 
 {% block title %} Помощь в аренде квартир и загородных домов | Сдаём.ру {% endblock %}
 
+{% block bodyClass %}l-base p-help{% endblock %}
+
 {% block divMainClass %}help{% endblock %}
 
 {#{% block header %}#}
@@ -53,23 +55,20 @@
     {{ use('common/modules/helpdesk/assets/HelpdeskAsset') }}
     {{ register_helpdesk_asset() }}
 
-    <div class="container help clearfix">
-        {{ this.render("@common/modules/helpdesk/views/frontend/default/_nav-help.twig") | raw }}
-        <div class="help-text">
-            <div class="container-certain orange">
-                {% if app.session.hasFlash('danger') %}
-                    <div class="alert alert-danger" role="alert">
-                        {{ app.session.getFlash('danger') | raw }}
-                    </div> <br/>
-                {% endif %}
-                {% if app.session.hasFlash('success') %}
-                    <div class="alert alert-success" role="alert">
-                        {{ app.session.getFlash('success') | raw }}
-                    </div> <br/>
-                {% endif %}
-{#                {{ this.render('_form.twig', {'model' : model, 'formModel' : formModel}) | raw }}#}
-            </div>
-        </div>
-    </div>
+
+    {{ this.render("@common/modules/helpdesk/views/frontend/default/_nav-help.twig") | raw }}
+
+{% endblock %}
+
+{% block additional_content %}
+
+    {{ this.render('_form.twig', {'model' : model, 'formModel' : formModel}) | raw }}
+
+    {% if app.session.hasFlash('danger') %}
+        {{ app.session.getFlash('danger') | raw }}
+    {% endif %}
+    {% if app.session.hasFlash('success') %}
+        {{ app.session.getFlash('success') | raw }}
+    {% endif %}
 
 {% endblock %}

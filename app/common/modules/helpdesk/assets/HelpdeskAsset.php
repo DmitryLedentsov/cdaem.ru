@@ -39,11 +39,11 @@ class HelpdeskAsset extends AssetBundle
 
         if (YII_DEBUG) {
             $this->js = [
-                'js_dev/helpdesk.js',
+                '/_new/js_dev/helpdesk.js',
             ];
         } else {
             $this->js = [
-                'js/helpdesk.js',
+                '/_new/js/helpdesk.js',
             ];
         }
     }

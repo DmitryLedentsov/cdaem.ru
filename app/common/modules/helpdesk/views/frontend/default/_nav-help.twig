@@ -1,35 +1,153 @@
-<div class="nav">
-    <h3>Центр помощи:</h3>
-    <ul>
-        <li {{ app.request.pathInfo == 'help/apartment-info' ? ' class="active"' : '' }}><a
-                    href="{{ path({0 : '/helpdesk/default/help', 'url'  : 'apartment-info'}) }}">Снять или сдать жилье</a>
-        </li>
-        <li {{ app.request.pathInfo == 'help/signup-info' ? ' class="active"' : '' }}><a
-                    href="{{ path({0 : '/helpdesk/default/help', 'url'  : 'signup-info'}) }}">Регистрация</a></li>
-        <li {{ app.request.pathInfo == 'help/office-info' ? ' class="active"' : '' }}><a
-                    href="{{ path({0 : '/helpdesk/default/help', 'url'  : 'office-info'}) }}">Управление кабинетом</a>
-        </li>
-        <li {{ app.request.pathInfo == 'help/security-info' ? ' class="active"' : '' }}><a
-                    href="{{ path({0 : '/helpdesk/default/help', 'url'  : 'security-info'}) }}">Безопасность</a></li>
-        <li {{ app.request.pathInfo == 'help/notifications-info' ? ' class="active"' : '' }}><a
-                    href="{{ path({0 : '/helpdesk/default/help', 'url'  : 'notifications-info'}) }}">Оповещения</a></li>
-        <li {{ app.request.pathInfo == 'help/apartment-search-info' ? ' class="active"' : '' }}><a
-                    href="{{ path({0 : '/helpdesk/default/help', 'url'  : 'apartment-search-info'}) }}">Поиск жилья</a>
-        </li>
-        <li {{ app.request.pathInfo == 'help/reviews-info' ? ' class="active"' : '' }}><a
-                    href="{{ path({0 : '/helpdesk/default/help', 'url'  : 'reviews-info'}) }}">Отзывы</a></li>
-        <li {{ app.request.pathInfo == 'help/services-info' ? ' class="active"' : '' }}><a
-                    href="{{ path({0 : '/helpdesk/default/help', 'url'  : 'services-info'}) }}">Платные услуги</a></li>
-        <li {{ app.request.pathInfo == 'help/agreement' ? ' class="active"' : '' }} ><a
-                    href="{{ path({0 : '/helpdesk/default/help', 'url'  : 'agreement'}) }}">Пользовательское
-                соглашение</a></li>
-        <li {{ app.request.pathInfo == 'help/contacts-info' ? ' class="active"' : '' }}><a
-                    href="{{ path({0 : '/helpdesk/default/help', 'url'  : 'contacts-info'}) }}">Контактная информация</a>
-        </li>
-        <li {{ app.request.pathInfo == 'help/msk' ? ' class="active"' : '' }}><a
-                    href="{{ path({0 : '/helpdesk/default/help', 'url'  : 'msk'}) }}">Квартиры от Сдаём.ру для тех, кто
-                приехал или планирует посетить Москву.</a></li>
-    </ul>
-    <p><br/></p>
-    <p><br/></p>
-</div>
+<section class="help-accordion">
+    <div class="container-fluid">
+        <h2 class="help-accordion-title">Центр помощи:</h2>
+        <div id="accordion">
+            <div class="card">
+                <div class="card-header help-accordion-button" id="headingOne">
+                    <div data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="collapsed help-accordion-button-collapse">
+                        Снять или сдать жилье
+                    </div>
+                </div>
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        <a
+                                href="{{ path({0 : '/helpdesk/default/help', 'url'  : 'apartment-info'}) }}">Снять или сдать жилье</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header help-accordion-button" id="headingOne">
+                    <div data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" class="collapsed help-accordion-button-collapse">
+                        Регистрация
+                    </div>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        <a
+                                href="{{ path({0 : '/helpdesk/default/help', 'url'  : 'signup-info'}) }}">Регистрация</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header help-accordion-button" id="headingOne">
+                    <div data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree" class="collapsed help-accordion-button-collapse">
+                        Управление кабинетом
+                    </div>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        <a
+                                href="{{ path({0 : '/helpdesk/default/help', 'url'  : 'office-info'}) }}">Управление кабинетом</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header help-accordion-button" id="headingOne">
+                    <div data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour" class="collapsed help-accordion-button-collapse">
+                        Безопасность
+                    </div>
+                </div>
+                <div id="collapseFour" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        <a
+                                href="{{ path({0 : '/helpdesk/default/help', 'url'  : 'security-info'}) }}">Безопасность</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header help-accordion-button" id="headingOne">
+                    <div data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive" class="collapsed help-accordion-button-collapse">
+                        Оповещения
+                    </div>
+                </div>
+                <div id="collapseFive" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        <a
+                                href="{{ path({0 : '/helpdesk/default/help', 'url'  : 'notifications-info'}) }}">Оповещения</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header help-accordion-button" id="headingOne">
+                    <div data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix" class="collapsed help-accordion-button-collapse">
+                        Поиск жилья
+                    </div>
+                </div>
+                <div id="collapseSix" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        <a
+                                href="{{ path({0 : '/helpdesk/default/help', 'url'  : 'apartment-search-info'}) }}">Поиск жилья</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header help-accordion-button" id="headingOne">
+                    <div data-toggle="collapse" data-target="#collapse7" aria-expanded="true" aria-controls="collapseSix" class="collapsed help-accordion-button-collapse">
+                        Отзывы
+                    </div>
+                </div>
+                <div id="collapse7" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        <a
+                                href="{{ path({0 : '/helpdesk/default/help', 'url'  : 'reviews-info'}) }}">Отзывы</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header help-accordion-button" id="headingOne">
+                    <div data-toggle="collapse" data-target="#collapse8" aria-expanded="true" aria-controls="collapseSix" class="collapsed help-accordion-button-collapse">
+                        Платные услуги
+                    </div>
+                </div>
+                <div id="collapse8" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        <a
+                                href="{{ path({0 : '/helpdesk/default/help', 'url'  : 'services-info'}) }}">Платные услуги</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header help-accordion-button" id="headingOne">
+                    <div data-toggle="collapse" data-target="#collapse9" aria-expanded="true" aria-controls="collapseSix" class="collapsed help-accordion-button-collapse">
+                        Пользовательское  соглашение
+                    </div>
+                </div>
+                <div id="collapse9" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        <a
+                                href="{{ path({0 : '/helpdesk/default/help', 'url'  : 'agreement'}) }}">Пользовательское
+                            соглашение</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header help-accordion-button" id="headingOne">
+                    <div data-toggle="collapse" data-target="#collapse10" aria-expanded="true" aria-controls="collapseSix" class="collapsed help-accordion-button-collapse">
+                        Контактная информация
+                    </div>
+                </div>
+                <div id="collapse10" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        <a
+                                href="{{ path({0 : '/helpdesk/default/help', 'url'  : 'contacts-info'}) }}">Контактная информация</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header help-accordion-button" id="headingOne">
+                    <div data-toggle="collapse" data-target="#collapse11" aria-expanded="true" aria-controls="collapseSix" class="collapsed help-accordion-button-collapse">
+                        Квартиры от Сдаём.ру для тех, кто
+                        приехал или планирует посетить Москву.
+                    </div>
+                </div>
+                <div id="collapse11" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        <a
+                                href="{{ path({0 : '/helpdesk/default/help', 'url'  : 'msk'}) }}">Квартиры от Сдаём.ру для тех, кто
+                            приехал или планирует посетить Москву.</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
