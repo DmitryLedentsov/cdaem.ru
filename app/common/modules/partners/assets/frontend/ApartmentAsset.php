@@ -13,13 +13,24 @@ class ApartmentAsset extends AssetBundle
     /**
      * @inheritdoc
      */
-    public $sourcePath = '@frontend/themes/basic/assets';
+//    public $sourcePath = '@frontend/themes/basic/assets';
+    public $basePath = '@webroot';
+    public $baseUrl = '@web';
+
+    public $css = [
+        '/_new/css/pages/fastrent.min.css',
+    ];
+
+    public $js = [
+        '/_new/js/pages/fastrent.min.js'
+    ];
 
     /**
      * @inheritdoc
      */
     public $depends = [
         \yii\web\JqueryAsset::class,
+        \common\modules\site\assets\AppAsset::class,
     ];
 
     /**
@@ -29,14 +40,14 @@ class ApartmentAsset extends AssetBundle
     {
         parent::init();
 
-        if (YII_DEBUG) {
-            $this->js = [
-                'js_dev/partners.js'
-            ];
-        } else {
-            $this->js = [
-                'js_dev/partners.js'
-            ];
-        }
+//        if (YII_DEBUG) {
+//            $this->js = [
+//                '/_new/js_dev/partners.js'
+//            ];
+//        } else {
+//            $this->js = [
+//                '/_new/js_dev/partners.js'
+//            ];
+//        }
     }
 }

@@ -4,19 +4,22 @@
     @var \common\modules\partners\models\models\ReservationForm reservationsForm
 #}
 
-{% extends "@app/themes/basic/layouts/main.twig" %}
+{% extends "@common/modules/site/views/layouts/main.twig" %}
 
 {% block title %} {{ this.registerTitle(' Быстрая аренда | Сдаём.ру') }} {% endblock %}
 
-{% block navbar %}
-    {{ this.renderDynamic('return $this->render("@common/modules/office/views/frontend/layouts/navbar.twig");') | raw }}
-{% endblock %}
+{% block bodyClass %}l-base p-fastrent{% endblock %}
+
 
 {% block breadcrumbs %}
-    <div class="breadcrumbs">
+    <div class="container-fluid">
         {{ use('yii/widgets/Breadcrumbs') }}
         {{ breadcrumbs_widget({
-            'itemTemplate' : "<li>{link}</li>\n",
+            'tag':  'div',
+            'options': {
+                'class': 'breadcrumbs'
+            },
+            'itemTemplate' : "{link}\n",
             'homeLink' :
             {
                 'label' : 'Главная',
@@ -26,17 +29,15 @@
                 {
                     'label': 'Доска объявлений',
                     'url': ['/partners/default/index'],
+                    'template': '<span>{link}</span>\n'
                 },
                 {
                     'label': 'Быстро снять',
+                    'template': '<span>{link}</span>\n'
                 },
             ],
         }) }}
     </div>
-{% endblock %}
-
-{% block footer %}
-    {% include "@app/themes/basic/layouts/footer-partners.twig" %}
 {% endblock %}
 
 {% block content %}
@@ -52,296 +53,441 @@
 
     {{ use('common/modules/site/widgets/Captcha') }}
 
-    <div class="container">
 
-        <div class="container-certain primary text" style="width: 100%;">
+    {% if app.session.hasFlash('danger') %}
+        <div class="alert alert-danger" role="alert">
+            {{ app.session.getFlash('danger') | raw }}
+        </div> <br/>
+    {% endif %}
 
+    {% if app.session.hasFlash('success') %}
+    <div class="alert alert-success" role="alert">
+        {{ app.session.getFlash('success') | raw }}
+    </div> <br/>
+    Ваша заявка будет доступна всем владельцам апартаментов на сайте {{ app.params.siteDomain }}. После того, как кто-нибудь откроет ваши контакты,
+    в <a href="{{ path(['/partners/reservation/total-bid']) }}" target="_blank">личном
+    кабинете</a> вы увидите, что заявка закрыта.
+    <br/>
 
-            <h3>Быстро снять</h3>
-            <div class="desc">
-                Заполнение заявки "Быстро снять" <b>совершенно бесплатно</b>. После того, как Вы заполните все данные
-                формы, Ваша заявка будет доступна всем агентам и
-                собственникам на сайте. После чего, когда кто-нибудь откроет Ваши контакты, в личном кабинете вы сможете
-                увидеть
-                это. Детальная инструкция будет отправлена на Ваш почтовый адрес.
-            </div>
+    {% else %}
 
-            <p><br/></p>
-
-
-            {% if app.session.hasFlash('danger') %}
-                <div class="alert alert-danger" role="alert">
-                    {{ app.session.getFlash('danger') | raw }}
-                </div> <br/>
-            {% endif %}
-
-            {% if app.session.hasFlash('success') %}
-                <div class="alert alert-success" role="alert">
-                    {{ app.session.getFlash('success') | raw }}
-                </div> <br/>
-                Ваша заявка будет доступна всем владельцам апартаментов на сайте {{ app.params.siteDomain }}. После того, как кто-нибудь откроет ваши контакты,
-                в <a href="{{ path(['/partners/reservation/total-bid']) }}" target="_blank">личном
-                кабинете</a> вы увидите, что заявка закрыта.
-                <br/>
-
-            {% else %}
-
-                {% set form = active_form_begin({
-                    'id' : 'form-reservation',
-                    'options' : {'class' : 'horizontal'},
-                    'enableClientScript' : false
-                }) %}
-
-
-                <div class="general-form reservation row">
-
-                    <div class="section col-md-6">
-
-                        <h3 class="text-left">Место аренды:</h3>
-
-                        <div class="form-group required">
-                            <div class="col-l"><label
-                                        class="control-label">{{ reservationsForm.getAttributeLabel('city') }}</label>
-                            </div>
-                            <div class="col-i">
-                                <span data-toggle="modal" data-target="#modal-select-city" class="link"
-                                      id="select-city-name">Выбрать</span>
-                                {{ html.activeHiddenInput(reservationsForm, 'city_id') | raw }}
-                                <div class="help-block"></div>
-                            </div>
-                        </div>
-
-                        {{ form.field(reservationsForm, 'address', {
-                            'options' : {'class' : 'form-group white'},
-                            'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}Укажите адрес в выбранном городе, где планируете остановиться. Это может быть район, улица или ветка метро (если есть). Предоставленную информацию будут видеть собственники апартаментов.{error}</div>'
-                        }) | raw }}
-
-
-                        <h3 class="text-left">Со мной:</h3>
-
-                        {{ form.field(reservationsForm, 'pets', {
-                            'options' : {'class' : 'form-group'},
-                            'inputOptions' : {'class' : 'select-white'},
-                            'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'
-                        }).dropDownList(reservationsForm.petsArray, {'prompt' : ' '}) | raw }}
-
-
-                        {{ form.field(reservationsForm, 'children', {
-                            'options' : {'class' : 'form-group'},
-                            'inputOptions' : {'class' : 'select-white'},
-                            'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'
-                        }).dropDownList(reservationsForm.childrenArray, {'prompt' : ' '}) | raw }}
-
-                        {{ form.field(reservationsForm, 'clients_count', {
-                            'options' : {'class' : 'form-group'},
-                            'inputOptions' : {'class' : 'select-white'},
-                            'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'
-                        }).dropDownList(reservationsForm.clientsCountArray, {'prompt' : ' '}) | raw }}
-
-
-                        {% if reservationsForm.scenario == 'unauthorized' %}
-
-                            <h3 class="text-left">Быстрая регистрация:</h3>
-
-                            <div class="alert alert-info">
-                                <b>Внимание:</b> <br/>
-                                Вам необходим аккаунт на сайте {{ app.params.siteDomain }} для бронирования
-                                апартаментов.
-                                Если у Вас уже есть аккаунт, авторизируйтесь на сайте, если у Вас нет аккаунта,
-                                пожалуйста заполните ниже представленные поля для быстрой регистрации:
-                            </div>
-
-                            {{ form.field(reservationsForm, 'email', {
-                                'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>',
-                                'options' : {'class' : 'form-group'}
-                            }) | raw }}
-
-                            <div class="form-group">
-                                <div class="col-l">
-                                    <label class="control-label">Выберите страну мобильного оператора</label>
-                                </div>
-                                <div class="col-i">
-                                    <select class="form-control" name="country" id="country">
-                                        <option selected value="non">Выберите страну</option>
-                                        <option value="Russia">Russia</option>
-                                        <option value="Ukraine">Ukraine</option>
-                                        <option value="Belarus">Belarus</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            {{ form.field(reservationsForm, 'phone', {'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'}).textInput({'class' : 'phone form-control', 'prompt': ' ', 'id':'phone',}) | raw }}
-
-                            {{ form.field(reservationsForm, 'password', {
-                                'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>',
-                                'options' : {'class' : 'form-group'}
-                            }).passwordInput() | raw }}
-
-                            {{ form.field(reservationsForm, 'agreement').checkbox({'label' : '
-                                Регистрируясь на сайте, Вы соглашаетесь с '
-                                ~html.a('пользовательским соглашением', {0 : '/pages/default/index', 'url' : 'agreement'}, {'target': '_blank'})
-                            }) | raw }}
-
-                        {% endif %}
-
+    <section class="rent">
+        <div class="container-fluid">
+            <h2 class="section-title">Быстро снять</h2>
+            <p class="rent-text">Заполнение заявки "Быстро снять" совершенно бесплатно. После того, как Вы заполните все данные формы, Ваша заявка будет доступна всем агентам  и собственникам на сайте. После чего, когда кто-нибудь откроет Ваши контакты, в личном кабинете вы сможете увидеть это. Детальная инструкция будет отправлена на Ваш почтовый адрес.</p>
+            <div class="steps step-1 active">
+                <div class="rent-form-container">
+                    <div class="rent-content">
+                        <h3 class="rent-subtitle">Место аренды</h3>
+                        <label class="rent-city">
+                            <select class="custom-select">
+                                <option value="" selected>Москва</option>
+                                <option value="1">Санкт-Петербург</option>
+                                <option value="2">Воронеж</option>
+                                <option value="3">Москва</option>
+                                <option value="4">Санкт-Петербург</option>
+                                <option value="5">Воронеж</option>
+                                <option value="6">Москва</option>
+                            </select>
+                        </label>
+                        <div class="help-block"></div>
                     </div>
-
-                    <div class="section col-md-6">
-
-                        <h3 class="text-right">Укажите дату брони:</h3>
-
-                        <div class="date">
-                            <div class="date_arrived clearfix">
-                                {% set field = form.field(reservationsForm, 'arrived_date', {'options' : {'class' : 'form-group date'}}) | raw %}
-                                {{ field.begin() | raw }}
-                                <div class="col-l"><label
-                                            class="control-label">{{ reservationsForm.getAttributeLabel('arrived_date') }}</label>
-                                </div>
-                                <div class="col-i">{{ html.activeTextInput(reservationsForm, 'arrived_date', {'class' : 'form-control datepicker', 'readonly' : 'readonly'}) | raw }}</div>
-                                {{ html.error(reservationsForm, 'arrived_date', {'class' : 'help-block'}) | raw }}
-                                {{ field.end() | raw }}
-
-                                {% set field = form.field(reservationsForm, 'arrived_time', {'options' : {'class' : 'form-group time'}}) | raw %}
-                                {{ field.begin() | raw }}
-                                <div class="col-l"><label
-                                            class="control-label">{{ reservationsForm.getAttributeLabel('out_time') }}</label>
-                                </div>
-                                <div class="col-i">{{ html.activeTextInput(reservationsForm, 'arrived_time', {'class' : 'form-control timepicker', 'readonly' : 'readonly'}) | raw }}</div>
-                                {{ html.error(reservationsForm, 'arrived_time', {'class' : 'help-block'}) | raw }}
-                                {{ field.end() | raw }}
-                            </div>
-                            <div class="date_out clearfix">
-                                {% set field = form.field(reservationsForm, 'out_date', {'options' : {'class' : 'form-group date'}}) | raw %}
-                                {{ field.begin() | raw }}
-                                <div class="col-l"><label
-                                            class="control-label">{{ reservationsForm.getAttributeLabel('out_date') }}</label>
-                                </div>
-                                <div class="col-i">{{ html.activeTextInput(reservationsForm, 'out_date', {'class' : 'form-control datepicker', 'readonly' : 'readonly'}) | raw }}</div>
-                                {{ html.error(reservationsForm, 'out_date', {'class' : 'help-block'}) | raw }}
-                                {{ field.end() | raw }}
-
-                                {% set field = form.field(reservationsForm, 'out_time', {'options' : {'class' : 'form-group time'}}) | raw %}
-                                {{ field.begin() | raw }}
-                                <div class="col-l"><label
-                                            class="control-label">{{ reservationsForm.getAttributeLabel('out_time') }}</label>
-                                </div>
-                                <div class="col-i">{{ html.activeTextInput(reservationsForm, 'out_time', {'class' : 'form-control timepicker', 'readonly' : 'readonly'}) | raw }}</div>
-                                {{ html.error(reservationsForm, 'out_time', {'class' : 'help-block'}) | raw }}
-                                {{ field.end() | raw }}
-                            </div>
-                        </div>
-
-                        {{ form.field(reservationsForm, 'actuality_duration', {
-                            'options' : {'class' : 'form-group'},
-                            'inputOptions' : {'class' : 'select-white'},
-                            'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'
-                        }).dropDownList(reservationsForm.actualityList, {'prompt' : ' '}) | raw }}
-
-
-                        <h3 class="text-right">Ваши предпочтения:</h3>
-
-
-                        {{ form.field(reservationsForm, 'rent_type', {
-                            'options' : {'class' : 'form-group'},
-                            'inputOptions' : {'class' : 'select-white'},
-                            'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'
-                        }).dropDownList(reservationsForm.rentTypesList, {'prompt' : ' '}) | raw }}
-
-
-                        <div class="form-group required money text-right">
-                            <div class="col-l text-right" style="width: 48%"><label class="control-label"
-                                                                                    style="float: none">Планируемый
-                                    бюджет</label></div>
-                            <div class="col-i" style="width: 52%">
-                                {{ html.activeHiddenInput(reservationsForm, 'budget') | raw }}
-                                {{ html.activeTextInput(reservationsForm, 'money_from', {'class' : 'form-control', 'placeholder' : 'от 3000'}) | raw }}
-                                -
-                                {{ html.activeTextInput(reservationsForm, 'money_to', {'class' : 'form-control', 'placeholder' : 'до 5000'}) | raw }}
-                                {{ html.activeDropDownList(reservationsForm, 'currency', reservationsForm.getCurrencyArray(), {'class' : 'form-control'}) | raw }}
-                                <div class="help-block"></div>
-                            </div>
-
-                        </div>
-
-                        <p><br/></p>
-
-                        {{ form.field(reservationsForm, 'floor', {
-                            'options' : {'class' : 'form-group'},
-                            'inputOptions' : {'class' : 'select-white'},
-                            'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'
-                        }).dropDownList(reservationsForm.floorArray, {'prompt' : ' '}) | raw }}
-
-                        {{ form.field(reservationsForm, 'rooms', {
-                            'options' : {'class' : 'form-group'},
-                            'inputOptions' : {'class' : 'select-white'},
-                            'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'
-                        }).dropDownList(reservationsForm.roomsList, {'prompt' : ' '}) | raw }}
-
-                        {{ form.field(reservationsForm, 'beds', {
-                            'options' : {'class' : 'form-group'},
-                            'inputOptions' : {'class' : 'select-white'},
-                            'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'
-                        }).dropDownList(reservationsForm.bedsList, {'prompt' : ' '}) | raw }}
-
-                        {{ form.field(reservationsForm, 'metro_walk', {
-                            'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>',
-                            'inputOptions' : {'class' : 'select-white'},
-                            'options' : {'class' : 'form-group'}
-                        }).dropDownList(reservationsForm.metroWalkList, {'prompt' : ' '}) | raw }}
-
-                        {{ form.field(reservationsForm, 'more_info', {
-                            'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>',
-                            'options' : {'class' : 'form-group'}
-                        }).textarea() | raw }}
-
-
-                        <p><br/></p>
-
-                        {% if reservationsForm.scenario == 'unauthorized' %}
-                            <h3>Подтвердите что вы не робот!</h3>
-                            {{ captcha_widget({'form': form, 'model': reservationsForm, 'name': 'verifyCode'}) }}
-
-                            <p><br></p>
-
-                        {% endif %}
-
+                    <div class="rent-content">
+                        <h3 class="rent-subtitle">Метро</h3>
+                        <label class="rent-metro">
+                            <select class="custom-select">
+                                <option value="" selected>Юго-западная</option>
+                                <option value="1">Метро</option>
+                                <option value="2">Юго-западная</option>
+                                <option value="3">Метро</option>
+                                <option value="4">Юго-западная</option>
+                                <option value="5">Метро</option>
+                                <option value="6">Юго-западная</option>
+                            </select>
+                        </label>
+                        <div class="help-block"></div>
                     </div>
-
-                    <div class="clearfix"></div>
-
-                    <div class="form-group text-right">
-                        <input type="submit" value="Отправить" class="btn btn-primary"/>
+                    <div class="rent-content rent-content-big">
+                        <h3 class="rent-subtitle">Адрес</h3>
+                        <label class="rent-adress">
+                            <input type="text" class="input-field" placeholder="Адрес">
+                        </label>
+                        <div class="help-block"></div>
                     </div>
-
                 </div>
-
-
-                {{ active_form_end() }}
-
-            {% endif %}
-
-
+            </div>
+            <div class="steps step-2">
+                <div class="rent-form-container">
+                    <div class="rent-content rent-content-big">
+                        <h3 class="rent-subtitle">Тип аренды</h3>
+                        <label class="rent-type">
+                            <select class="custom-select">
+                                <option value="" selected>Тип аренды</option>
+                                <option value="1">Тип аренды</option>
+                                <option value="2">Тип аренды</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="rent-content">
+                        <h3 class="rent-subtitle">Дата заезда</h3>
+                        <div class="search-form-group" data-daterangepicker>
+                            <div class="search-form-filter search-form-filter-calendar daterangepicker-from">
+                                <span class="daterangepicker-text">Заезд</span>
+                                <input type="hidden" value="">
+                            </div>
+                            <div class="search-form-filter search-form-filter-calendar daterangepicker-to">
+                                <span class="daterangepicker-text">Выезд</span>
+                                <input type="hidden" value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rent-content">
+                        <h3 class="rent-subtitle">Время заезда</h3>
+                        <div class="rent-two-container">
+                            <label>
+                                <input type="number" class="rent-time input-field" placeholder="Время">
+                            </label>
+                            <label>
+                                <input type="number" class="rent-time input-field" placeholder="Время">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="steps step-3">
+                <div class="rent-form-container">
+                    <div class="rent-content rent-content-big">
+                        <h3 class="rent-subtitle">Цена</h3>
+                        <div class="rent-two-container">
+                            <label>
+                                <input type="number" class="rent-price input-field" placeholder="От">
+                            </label>
+                            <label>
+                                <input type="number" class="rent-price input-field" placeholder="До">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="rent-content">
+                        <h3 class="rent-subtitle">Этаж</h3>
+                        <label>
+                            <select class="custom-select">
+                                <option value="" selected>8-9</option>
+                                <option value="1">2</option>
+                                <option value="2">3</option>
+                                <option value="3">4</option>
+                                <option value="4">5</option>
+                                <option value="5">6</option>
+                                <option value="6">7</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="rent-content">
+                        <h3 class="rent-subtitle">Количество комнат</h3>
+                        <label>
+                            <select class="custom-select">
+                                <option value="" selected>1-4ком</option>
+                                <option value="1">2</option>
+                                <option value="2">3</option>
+                                <option value="3">4</option>
+                                <option value="4">5</option>
+                                <option value="5">6+</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="steps step-4">
+                <div class="rent-form-container">
+                    <div class="rent-content rent-content-big">
+                        <h3 class="rent-subtitle">Спальных мест</h3>
+                        <label>
+                            <select class="custom-select">
+                                <option value="" selected>1-15 спальных мест</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6+</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="rent-content">
+                        <h3 class="rent-subtitle">Расстояния от метро</h3>
+                        <label>
+                            <select class="custom-select">
+                                <option value="" selected>300 метров</option>
+                                <option value="1">Неважно</option>
+                                <option value="2">Пешком</option>
+                                <option value="3">Транспортом</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="rent-content">
+                        <h3 class="rent-subtitle">Со мной:</h3>
+                        <label>
+                            <select class="custom-select">
+                                <option value="" selected>Кол-во человек</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6+</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="rent-buttons">
+                <button class="btn btn-special button-back btn-fast-back d-none">назад</button>
+                <button type="button" class="btn btn-warning btn-special btn-fast-next">Далее</button>
+                <button type="button" class="btn btn-warning btn-special btn-fast-submit d-none">отправить</button>
+            </div>
         </div>
-    </div>
+    </section>
+
+    <div class="modal fade" id="fastRent" tabindex="-1" role="dialog" aria-labelledby="fastRent" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <h3 class="modal-title text-center">Быстро снять</h3>
+                    <button class="modal-close" data-dismiss="modal" aria-label="Close"></button>
+                    <div class="modal-body">
+                        <form class="form">
+                            <ul class="nav nav-tabs">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="tab" href="#test1">Адрес</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#test2">Время</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#test3">Предпочтения</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#test4">Регистрация</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="test1" class="tab-pane fade show active">
+                                    <h6>Место аренды:</h6>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label>
+                                                <select class="custom-select">
+                                                    <option selected>Город</option>
+                                                    <option>test1111</option>
+                                                    <option>test2222</option>
+                                                    <option>test3333</option>
+                                                </select>
+                                            </label>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label>
+                                                <select class="custom-select">
+                                                    <option selected>Метро</option>
+                                                    <option>test1111</option>
+                                                    <option>test2222</option>
+                                                    <option>test3333</option>
+                                                </select>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>
+                                            <input type="text" class="form-control" placeholder="Адрес">
+                                        </label>
+                                    </div>
+
+                                    <div class="form-group row col-md-6">
+                                        <label>
+                                            <select class="custom-select">
+                                                <option selected>Тип аренды</option>
+                                                <option>test1111</option>
+                                                <option>test2222</option>
+                                                <option>test3333</option>
+                                            </select>
+                                        </label>
+                                    </div>
 
 
-    {#
-        Модальное окно выбора города
-    #}
-    <div id="modal-select-city" class="modal fade" data-title="Выбрать город">
-        <div class="form-group">
-            {{ html.textInput('city', null, {
-                'class' : 'form-control city-drop-down-list',
-                'data-url' : path(['/geo/ajax/select-city']),
-                'placeholder' : 'Введите название города',
-                'id': 'input-select-city'
-            }) | raw }}
+                                    <h6>Со мной:</h6>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label>
+                                                <select class="custom-select">
+                                                    <option selected>Кол-во человек</option>
+                                                    <option>test1111</option>
+                                                    <option>test2222</option>
+                                                    <option>test3333</option>
+                                                </select>
+                                            </label>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label>
+                                                <select class="custom-select">
+                                                    <option selected>Дети</option>
+                                                    <option>test1111</option>
+                                                    <option>test2222</option>
+                                                    <option>test3333</option>
+                                                </select>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>
+                                            <input type="text" class="form-control" placeholder="Животные">
+                                        </label>
+                                    </div>
+
+                                </div>
+                                <div id="test2" class="tab-pane fade">
+                                    <h6>Укажите дату брони</h6>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label>
+                                                <input type="text" class="form-control " placeholder="Заезд" data-datepicker>
+                                            </label>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label>
+                                                <input type="text" class="form-control" placeholder="Выезд" data-timepicker>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label>
+                                                <input type="text" class="form-control" placeholder="Время">
+                                            </label>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label>
+                                                <input type="text" class="form-control" placeholder="Время">
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="test3" class="tab-pane fade">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label>Заявка актуальна</label>
+                                            <select class="custom-select">
+                                                <option>15 минут</option>
+                                                <option>30 минут</option>
+                                                <option>60 минут</option>
+                                                <option selected>24 часа</option>
+                                                <option>До даты заезда</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label>Бюджет</label>
+                                            <select class="custom-select">
+                                                <option selected>Не важно</option>
+                                                <option>до 3 000р за сутки</option>
+                                                <option>до 5 000р за сутки</option>
+                                                <option>до 10 000р за сутки</option>
+                                                <option>10 000р и более за сутки</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label>Этаж</label>
+                                            <select class="custom-select">
+                                                <option selected>Не важно</option>
+                                                <option>Только первый</option>
+                                                <option>Не первый</option>
+                                                <option>Не последний</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label>Кол-во комнат</label>
+                                            <select class="custom-select">
+                                                <option selected>Не важно</option>
+                                                <option>1 комната</option>
+                                                <option>2 комнаты</option>
+                                                <option>3 комнаты</option>
+                                                <option>4 комнаты</option>
+                                                <option>5 комнат</option>
+                                                <option>6 комнат и более</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label>Кол-во спальных мест</label>
+                                            <select class="custom-select">
+                                                <option selected>Не важно</option>
+                                                <option>1 место</option>
+                                                <option>2 места</option>
+                                                <option>3 места</option>
+                                                <option>4 места</option>
+                                                <option>5 мест</option>
+                                                <option>6 мест и более</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label>Пожелания</label>
+                                            <textarea class="form-control" name=""></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="test4" class="tab-pane fade">
+                                    <div class="modal-extra mt-4">
+                                        <h6 class="txt-width-notice">Быстрая регистрация</h6>
+                                        <div class="form-group">
+                                            <label>
+                                                <input type="email" class="form-control" placeholder="Email">
+                                            </label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>
+                                                <input type="tel" class="form-control" placeholder="Телефон">
+                                            </label>
+                                        </div>
+                                        <strong>Регистрируясь на сайте я соглашаюсь:</strong>
+                                        <p>
+                                            <label class="form-check-label d-flex align-items-start">
+                                                <input type="checkbox" name="advertising" value="1">
+                                                <span>
+                                    Получать рекламные и информационные EMAIL рассылки от "cdaem.ru" и партнеров и не возражаю
+                                    о передачи моих персональных данных третьим лицам.
+                                </span>
+                                            </label>
+                                        </p>
+                                        <p>
+                                            <label class="form-check-label d-flex align-items-start">
+                                                <input type="checkbox" name="agreement" value="1">
+                                                <span>
+                                    С <a href="https://cdaem.ru/page/agreement" target="_blank">пользовательским соглашением</a>, с расценками на
+                                    размещение платных объявлений, а также получать СМС-оповещения при использовании определенных
+                                    сервисов на этом сайте.
+                                </span>
+                                            </label>
+                                        </p>
+                                        <strong>Внимание:</strong>
+                                        <p>
+                                            После регистрации Вам будет отправлено письмо с инструкциями по активации аккаунта.
+                                            Если письмо не пришло в течении 15 минут, Вы можете запросить
+                                            <a href="https://cdaem.ru/users/guest/resend" target="_blank">код активации</a> повторно.
+                                        </p>
+                                        <div class="mt-4 text-center">
+                                            <button type="submit" class="btn btn-warning btn-special">Отправить</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-        <br/>
-        <div class="form-group text-center" style="display: none">
-            <input type="submit" value="Указать" class="btn btn-primary" id="button-select-city"
-                   data-target-city-id="reservationform-city_id" data-target-select-city="#select-city-name"/>
-        </div>
-    </div>
+
+    {% endif %}
 
 {% endblock content %}

@@ -38,7 +38,7 @@
 {{ use('common/modules/site/assets/AppAsset') }}
 {{ register_app_asset() }}
 
-{% if this.context.action.id == 'index' %}
+{% if this.context.action.id == 'index' and this.context.action.controller.id == 'default' %}
     <div class="header-background"></div>
 {% endif %}
 
