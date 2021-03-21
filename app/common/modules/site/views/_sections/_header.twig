@@ -1,4 +1,4 @@
-{% if this.context.action.id == 'index' and this.context.action.controller.id == 'default' %}
+{% if this.context.action.id == 'index' and this.context.module.id == 'site' %}
 <header class="header">
     <div class="header-nav">
         <div class="header-container">
@@ -44,11 +44,11 @@
                     </a>
                 </li>
             </ul>
-        {{ this.context.action.id == 'index'  and this.context.action.controller.id == 'default' ? '</nav>' : '' }}
+        {{ this.context.action.id == 'index'  and this.context.module.id == 'site' ? '</nav>' : '' }}
             <a href="./signIn.html" class="btn btn-warning btn-special btn-sign-in" data-toggle="modal" data-target="#signIn">
                 Вход
             </a>
-        {{ this.context.action.id == 'index' and this.context.action.controller.id == 'default' ? '' : '</nav>' }}
+        {{ this.context.action.id == 'index' and this.context.module.id == 'site' ? '' : '</nav>' }}
     </div>
 </header>
 

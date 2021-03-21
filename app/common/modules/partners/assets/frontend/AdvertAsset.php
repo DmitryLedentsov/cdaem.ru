@@ -13,23 +13,19 @@ class AdvertAsset extends AssetBundle
     /**
      * @inheritdoc
      */
-    public $sourcePath = '@frontend/themes/basic/assets';
+//    public $sourcePath = '@frontend/themes/basic/assets';
+    public $basePath = '@webroot';
+    public $baseUrl = '@web';
 
-    /**
-     * @inheritdoc
-     */
-    public function init()
-    {
-        parent::init();
+    public $css = [
+        '/_new/css/pages/search.min.css',
+    ];
 
-        if (YII_DEBUG) {
-            $this->css = [
-                'css_dev/search.css',
-            ];
-        } else {
-            $this->css = [
-                'css/search.css',
-            ];
-        }
-    }
+    public $js = [
+        '/_new/js/pages/search.min.js',
+    ];
+
+    public $depends = [
+        \common\modules\site\assets\AppAsset::class,
+    ];
 }

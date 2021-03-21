@@ -4,82 +4,70 @@
     @var string searchTitle
     @var bool index
 #}
-<div id="filter" class="board-search" style="margin-top: 24px;padding-bottom: 10px;">
-    <div class="container">
-        <div class="description">
-            <div class="title">
-                {% if searchTitle is not empty %}
-                    {{ searchTitle }}
-                {% endif %}
-            </div>
 
-            {% if index is not null %}
-
-                <div class="msk-map clearfix">
-                    <div class="title"><span id="open-subway-map"
-                                             data-url="{{ path({'0' : '/partners/default/region', 'city' : 'msk'}) }}">Поиск по метро</span>
-                    </div>
-                    <div class="modal fade" id="modal-subway-map" data-title="Выбрать на карте Москвы">
-                        <div class="form-group text-center">
-                            <input type="button" class="close-modal btn btn-primary" value="Выбрать"/>
-                        </div>
-                        <div class="map"></div>
-                        <br/>
-                        <div class="form-group text-center">
-                            <input type="button" class="close-modal btn btn-primary" value="Выбрать"/>
-                        </div>
+<section class="intro">
+    <h1 class="section-title">Доска объявлений</h1>
+    <div class="search">
+        <div class="container-fluid">
+            <div class="form">
+                <div class="search-container">
+                    <h2 class="search-title">
+                        {% if searchTitle is not empty %}
+                            {{ searchTitle }}
+                        {% endif %}
+                    </h2>
+                    <div class="search-navs-container">
+                        <a href="{{ path(['/partners/default/index']) }}">Доска объявлений</a>
+                        <a href="{{ path(['/office/default/index']) }}">Личный кабинет</a>
                     </div>
                 </div>
-            {% endif %}
 
-            <div class="board-search-nav hidden-xs">
-                <div class="text-right">
-                    <a href="{{ path(['/office/default/index']) }}">Личный кабинет</a>
-                    <a href="{{ path(['/partners/default/index']) }}">Доска объявлений</a>
+                {{ html.beginForm('/partners/pre-region', 'GET')| raw }}
+
+                <div class="search-filters">
+                    <div class="search-filters-container">
+                        <div class="search-filter search-filter-type">
+                            <span class="search-filter-text">Выберите тип аренды</span>
+                            <label>
+                                <label>
+                                    <select class="custom-select" name="sect">
+                                        {% for key, rentType in searchModel.rentTypesList %}
+                                            <option value="{{ key }}" {{ key == 2 ? 'selected="selected"' : '' }}>{{ rentType }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </label>
+                            </label>
+                        </div>
+                        <div class="search-filter search-filter-rooms">
+                            <span class="search-filter-text search-filter-text-rooms">Комнаты:</span>
+                            <label>
+                                <label>
+                                    <select class="custom-select" name="rooms">
+                                        {% for key, room in searchModel.roomsList %}
+                                            <option value="{{ key }}">{{ room }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </label>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="search-filter search-filter-city">
+                        <span class="search-filter-text">Укажите ваш город</span>
+                        <label>
+                            <input class="form-control input-search city-drop-down-list" id="search-form-autocomplete" type="text"
+                                   data-url="{{ path(['/geo/ajax/select-city']) }}" name="city"
+                                   autocomplete="off" placeholder="Укажите ваш город">
+                        </label>
+                    </div>
                 </div>
-            </div>
+{#                <input type="submit" class="btn btn-primary" value="Поиск"/>#}
+                <div class="search-btn-container">
+                    <a href="{{ path(['/partners/default/create']) }}"><button class="btn btn-warning btn-special btn-add">Добавить объявление</button></a>
+                    <a href="{{ path(['/partners/reservation/index']) }}"><button class="btn btn-warning btn-special btn-add">Быстро снять</button></a>
+                </div>
 
-            <div class="board-search-nav visible-xs">
-                <a href="{{ path(['/office/default/index']) }}">Личный кабинет</a>
-                <a href="{{ path(['/partners/default/index']) }}">Доска объявлений</a>
+                {{ html.endForm() | raw }}
             </div>
         </div>
-
-        <div class="filters">
-            {{ html.beginForm('/partners/pre-region', 'GET')| raw }}
-            <div class="select-filter white" style="width: 200px">
-                <select name="sect" class="select-white">
-                    {% for key, rentType in searchModel.rentTypesList %}
-                        <option value="{{ key }}" {{ key == 2 ? 'selected="selected"' : '' }}>{{ rentType }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <div class="select-filter white" style="width: 130px">
-                <select name="rooms" class="select-white">
-                    {% for key, room in searchModel.roomsList %}
-                        <option value="{{ key }}">{{ room }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <div class="select-filter white" style="width: 415px">
-                <input name="city" type="text" class="form-control input-search city-drop-down-list"
-                       data-url="{{ path(['/geo/ajax/select-city']) }}" value="" placeholder="Укажите Ваш город"/>
-            </div>
-            <div class="select-filter white custom">
-                <input type="submit" class="btn btn-primary" value="Поиск"/>
-            </div>
-
-            <div style="float: right">
-                <div class="select-filter orange">
-                    <a href="{{ path(['/partners/default/create']) }}" class="btn btn-orange">Добавить обЪявление</a>
-                </div>
-                <div class="select-filter orange">
-                    <a href="{{ path(['/partners/reservation/index']) }}" class="btn btn-orange">Быстро снять</a>
-                </div>
-            </div>
-
-            {{ html.endForm() | raw }}
-        </div>
-        <div class="clearfix"></div>
     </div>
-</div>
+</section>
