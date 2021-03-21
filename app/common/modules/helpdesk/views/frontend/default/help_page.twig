@@ -4,25 +4,32 @@
     @var common\modules\pages\models\Page page
 #}
 
-{% extends "@app/themes/basic/layouts/main.twig" %}
+{% extends "@common/modules/site/views/layouts/main.twig" %}
 
 {% block title %}{{ this.registerTitle(page.title) }}{% endblock %}
 
-{% block header %}
-    {{ use('common/modules/site/widgets/BgHeader') }}
-    {{ bg_header_widget({'title': 'Помощь'}) }}
-{% endblock %}
+{#{% block header %}#}
+{#    {{ use('common/modules/site/widgets/BgHeader') }}#}
+{#    {{ bg_header_widget({'title': 'Помощь'}) }}#}
+{#{% endblock %}#}
 
-{% block navbar %}
-    {{ this.renderDynamic('return $this->render("@common/modules/office/views/frontend/layouts/navbar.twig");') | raw }}
-{% endblock %}
+{#{% block navbar %}#}
+{#    {{ this.renderDynamic('return $this->render("@common/modules/office/views/frontend/layouts/navbar.twig");') | raw }}#}
+{#{% endblock %}#}
 
+{% block bodyClass %}l-base p-help{% endblock %}
+
+{% block divMainClass %}help{% endblock %}
 
 {% block breadcrumbs %}
-    <div class="breadcrumbs">
+    <div class="container-fluid">
         {{ use('yii/widgets/Breadcrumbs') }}
         {{ breadcrumbs_widget({
-            'itemTemplate' : "<li>{link}</li>\n",
+            'tag':  'div',
+            'options': {
+                'class': 'breadcrumbs'
+            },
+            'itemTemplate' : "{link}\n",
             'homeLink' :
             {
                 'label' : 'Главная',
@@ -31,6 +38,7 @@
             'links':  [
                 {
                     'label': 'Помощь',
+                    'template': '<span>{link}</span>\n'
                 },
             ],
         }) }}
@@ -43,10 +51,16 @@
     {{ this.registerMetaTag({'name' : 'description', 'content' : page.description }) }}
     {{ this.registerMetaTag({'name' : 'keywords', 'content' : page.keywords }) }}
 
+    {{ use('common/modules/site/assets/AppAsset') }}
+    {{ register_app_asset() }}
+
+    {{ use('common/modules/helpdesk/assets/HelpdeskAsset') }}
+    {{ register_helpdesk_asset() }}
+
+
+    {{ this.render("_nav-help.twig") | raw }}
+
     <div class="container help container-certain orange text clearfix">
-
-        {{ this.render("_nav-help.twig") | raw }}
-
         <div class="help-text">
             {% if page.text %}
                 {{ page.text | raw }}
@@ -58,8 +72,3 @@
 
 
 {% endblock content %}
-
-
-{% block footer %}
-    {{ this.render("@app/themes/basic/layouts/footer-partners.twig") | raw }}
-{% endblock %}
