@@ -86,6 +86,7 @@ class DefaultController extends \frontend\components\Controller
             $articlesQuery2->where('city IS NULL');
         }
 
+        $articlesall2 = [];
         $articlesall3 = $articlesQuery2->limit(12)->all();
 
         $i = 0;

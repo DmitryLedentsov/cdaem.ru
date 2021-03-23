@@ -13,9 +13,13 @@
         {% for article in articles %}
             <div class="item-article col-md-3">
                 <div class="item-img" style="background: url(/images/{{ article.title_img | raw }})center center;">
-                    <div class="title-article"><h4><a
-                                    href="{{ path('/articles/default/view', {'id' : article.slug}) }}">{{ article.name }}</a>
-                        </h4></div>
+                    <div class="title-article">
+                        <h4>
+                            <a href="{{ path('/articles/default/view', {'id' : article.slug}) }}">
+                                {{ article.name }}
+                            </a>
+                        </h4>
+                    </div>
                 </div>
             </div>
         {% endfor %}

@@ -400,6 +400,7 @@
             font-weight: 400;
             font-size: 1rem;
             color: #4C4C4C;
+            cursor: default;
 
             &::before, 
             &::after {
@@ -432,6 +433,11 @@
                 font-size: 1rem;
             }
 
+            .btn {
+                margin: 0 auto;
+                display: block;
+            }
+
             .options-text {
                 font-weight: 500;
                 font-size: 1.1rem;
@@ -461,10 +467,15 @@
                     display: flex;
                     align-items: center;
                     margin-top: 0.6rem;
+                    cursor: pointer;
 
                     .input-text {
                         padding-left: 0.3rem;
                         white-space: nowrap;
+                    }
+
+                    input {
+                        cursor: pointer;
                     }
                 }
             }
@@ -552,10 +563,15 @@
                     display: flex;
                     align-items: center;
                     margin-top: 0.6rem;
+                    cursor: pointer;
 
                     .input-text {
                         padding-left: 0.3rem;
                         white-space: nowrap;
+                    }
+
+                    input {
+                        cursor: pointer;
                     }
                 }
             }

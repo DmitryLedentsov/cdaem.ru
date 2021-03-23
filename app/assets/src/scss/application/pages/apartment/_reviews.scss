@@ -1,168 +1,196 @@
 .reviews {
-  margin-bottom: 3.5rem;
+    margin-bottom: 3.5rem;
 
-  @include tablet-land() {
-    margin-bottom: 4.5rem;
-  }
+    @include tablet-land() {
+        margin-bottom: 4.5rem;
+    }
 
-  &-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
+    &-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    &-top {
+        margin-bottom: 1.5rem;
+        display: flex;
+        justify-content: space-between;
+
+        @include tablet() {
+            margin-bottom: 2rem;
+        }
+
+        @include tablet-land() {
+            margin-bottom: 2.6rem;
+        }
+    }
+
+    .section-title {
+        margin-bottom: 0;
+    }
 }
 
 .review {
+    &-card {
+        display: flex;
+        border: 1px solid #E1E1E1;
+        padding: 1.7rem 1.4rem;
+        margin-bottom: 1rem;
+        border-radius: 0.3rem;
 
-  &-card {
-    display: flex;
-    border: 1px solid #E1E1E1;
-    padding: 1.7rem 1.4rem;
-    margin-bottom: 1rem;
-    border-radius: 0.3rem;
+        @include tablet() {
+            width: 49%;
+        }
 
-    @include tablet() {
-      width: 49%;
+        @include tablet-land() {
+            padding: 1.7rem 2rem 1.7rem 1.4rem;
+        }
     }
 
-    @include tablet-land() {
-      padding-right: 1rem;
-    }
-  }
-
-  &-logo {
-    background: url("../../images/apartment/author-logo.png") center no-repeat;
-    width: 75px;
-    height: 75px;
-    flex-shrink: 0;
-    border: 0.13rem solid #FFA900;
-    border-radius: 50%;
-
-    @include phone() {
-      width: 87px;
-      height: 87px;
-    }
-  }
-
-  &-info-container {
-    margin-left: 1.4rem;
-    align-items: center;
-  }
-
-  &-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    margin-bottom: 1rem;
-
-    @include phone() {
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 0.7rem;
+    &-logo {
+        background: url("../../images/apartment/author-logo.png") center no-repeat;
+        width: 71px;
+        height: 71px;
+        flex-shrink: 0;
+        border-radius: 50%;
     }
 
-    .review-rating-container {
-      margin: 0;
-    }
-  }
-
-  &-date {
-    margin-bottom: 0.7rem;
-
-    @include phone() {
-      margin: 0 0.5rem 0 0;
-    }
-  }
-
-  &-author {
-    margin-bottom: 0.6rem;
-    font-weight: 700;
-  }
-
-  &-rating {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    margin-bottom: 1.8rem;
-  }
-
-  &-rating-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    font-weight: 400;
-    font-size: 1rem;
-    color: #000000;
-    margin: 0 auto 1rem 0;
-    width: 100%;
-
-    @include phone() {
-      width: 50%;
+    &-info-container {
+        margin-left: 1.1rem;
+        align-items: center;
     }
 
-    @include tablet() {
-      width: auto;
-      margin: 0 1.8rem 0 0;
+    &-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        margin-bottom: 1rem;
+
+        @include phone() {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.7rem;
+        }
+
+        .review-rating-container {
+            margin: 0;
+        }
+  }
+
+    &-date {
+        color: #333333;
+        margin-bottom: 0.7rem;
+
+        @include phone() {
+            margin: 0 0.5rem 0 0;
+        }
     }
 
-    &:last-of-type {
-      margin-right: 0;
+    &-author {
+        margin-bottom: 0.6rem;
+        font-weight: 600;
+        font-size: 1.1rem;
+        color: #333333;
     }
-  }
 
-  &-evaluation {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 27px;
-    height: 27px;
-    border-radius: 50%;
-    color: #FFFFFF;
-    margin-right: 0.4rem;
-  }
-
-  &-evaluation-5 {
-    background: #29C868;
-  }
-
-  &-evaluation-4 {
-    background: #a6c829;
-  }
-
-  &-evaluation-3 {
-    background: #FFA801;
-  }
-
-  &-evaluation-2 {
-    background: #f56e15;
-  }
-
-  &-evaluation-1 {
-    background: #E23A3A;
-  }
-
-  &-text {
-    @include tablet-land() {
-      padding-right: 1rem;
+    &-rating {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        margin: 2.2rem 0 0;
     }
+
+    &-rating-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        font-weight: 500;
+        font-size: 0.75rem;
+        color: #000000;
+        margin: 0 auto 0.7rem 0;
+        width: 100%;
+
+        @include phone() {
+            width: 50%;
+        }
+
+        @include tablet() {
+            width: auto;
+            margin: 0 0.7rem 0 0;
+        }
+
+        &:last-of-type {
+            margin-right: 0;
+        }
   }
+
+    &-evaluation {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 27px;
+        height: 27px;
+        border-radius: 50%;
+        color: #FFFFFF;
+        margin-right: 0.4rem;
+        font-weight: 600;
+    }
+
+    &-evaluation-5 {
+        background: #29C868;
+    }
+
+    &-evaluation-4 {
+        background: #a6c829;
+    }
+
+    &-evaluation-3 {
+        background: #FFA801;
+    }
+
+    &-evaluation-2 {
+        background: #f56e15;
+    }
+
+    &-evaluation-1 {
+        background: #E23A3A;
+    }
+
+    &-text {
+        color: #333333;
+        line-height: 1.5;
+        margin-bottom: 0.6rem;
+        font-size: 1rem;
+
+        &-card {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 98%;
+            -webkit-line-clamp: 4;
+            margin-bottom: 0;
+        }
+    }
 }
 
 .give-feedback {
-  display: block;
-  color: $color-base-link;
-  background: transparent;
-  border: none;
-  margin: 1.2rem 0 0 auto;
-  font-size: 1rem;
-  outline: none;
-  cursor: pointer;
-  border-bottom: solid 2px transparent;
-  transition: 300ms;
+    display: block;
+    color: $color-base-link;
+    background: transparent;
+    border: none;
+    margin: 0;
+    font-weight: 600;
+    font-size: 1.1rem;
+    font-size: 1rem;
+    outline: none;
+    cursor: pointer;
+    border-bottom: solid 2px transparent;
+    transition: 300ms;
 
-  &:hover {
-    border-bottom: solid 2px $color-base-border;
-  }
+    &:hover {
+        border-bottom: solid 2px $color-base-border;
+    }
 }

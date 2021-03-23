@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>Быстро снять</title>
+    <!-- @include _section/_head.html -->
+    <link rel="stylesheet" media="screen" href="./css/pages/fastrent.min.css"/>
+</head>
+<body class="l-base p-fastrent">
+
+<div class="wrapper">
+    <!-- @include _section/_header-collapse.html -->
+    <main>
+        <div class="container-fluid">
+            <div class="breadcrumbs">
+                <a href="./index.html">Главная</a><span>Быстро снять</span>
+            </div> 
+        </div>
+        <section class="rent">
+            <div class="container-fluid">
+                <h2 class="section-title">Быстро снять</h2>
+                <p class="rent-text">Заполнение заявки "Быстро снять" совершенно бесплатно. После того, как Вы заполните все данные формы, Ваша заявка будет доступна всем агентам  и собственникам на сайте. После чего, когда кто-нибудь откроет Ваши контакты, в личном кабинете вы сможете увидеть это. Детальная инструкция будет отправлена на Ваш почтовый адрес.</p>
+                <div class="steps step-1 active">
+                    <div class="rent-form-container">
+                        <div class="rent-content">
+                            <h3 class="rent-subtitle">Место аренды</h3>
+                            <label class="rent-city">
+                                <select class="custom-select">
+                                    <option value="" selected>Москва</option>
+                                    <option value="1">Санкт-Петербург</option>
+                                    <option value="2">Воронеж</option>
+                                    <option value="3">Москва</option>
+                                    <option value="4">Санкт-Петербург</option>
+                                    <option value="5">Воронеж</option>
+                                    <option value="6">Москва</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="rent-content">
+                            <h3 class="rent-subtitle">Метро</h3>
+                            <label class="rent-metro">
+                                <select class="custom-select">
+                                    <option value="" selected>Юго-западная</option>
+                                    <option value="1">Метро</option>
+                                    <option value="2">Юго-западная</option>
+                                    <option value="3">Метро</option>
+                                    <option value="4">Юго-западная</option>
+                                    <option value="5">Метро</option>
+                                    <option value="6">Юго-западная</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="rent-content rent-content-big">
+                            <h3 class="rent-subtitle">Адрес</h3>
+                            <label class="rent-adress">
+                                <input type="text" class="input-field" placeholder="Адрес">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="steps step-2">
+                    <div class="rent-form-container">
+                        <div class="rent-content rent-content-big">
+                            <h3 class="rent-subtitle">Тип аренды</h3>
+                            <label class="rent-type">
+                                <select class="custom-select">
+                                    <option value="" selected>Тип аренды</option>
+                                    <option value="1">Тип аренды</option>
+                                    <option value="2">Тип аренды</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="rent-content">
+                            <h3 class="rent-subtitle">Дата заезда</h3>
+                            <div class="search-form-group" data-daterangepicker>
+                                <div class="search-form-filter search-form-filter-calendar daterangepicker-from">
+                                    <span class="daterangepicker-text">
+                                        <span class="daterangepicker-month">2 января</span>,
+                                        <span class="daterangepicker-day">суббота</span>
+                                    </span>
+                                    <input type="hidden" value="">
+                                </div>
+                                <div class="search-form-filter search-form-filter-calendar daterangepicker-to">
+                                    <span class="daterangepicker-text">
+                                        <span class="daterangepicker-month">25 января</span>,
+                                        <span class="daterangepicker-day">суббота</span>
+                                    </span>
+                                    <input type="hidden" value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rent-content">
+                            <h3 class="rent-subtitle">Время заезда</h3>
+                            <div class="rent-two-container">
+                                <label>
+                                    <input type="text" class="rent-time input-field" placeholder="Время" readonly data-timepicker>
+                                </label>
+                                <label>
+                                    <input type="text" class="rent-time input-field" placeholder="Время" readonly data-timepicker>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="steps step-3">
+                    <div class="rent-form-container">
+                        <div class="rent-content rent-content-big">
+                            <h3 class="rent-subtitle">Цена</h3>
+                            <div class="rent-two-container">
+                                <label>
+                                    <input type="number" class="rent-price input-field" placeholder="От">
+                                </label>
+                                <label>
+                                    <input type="number" class="rent-price input-field" placeholder="До">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="rent-content">
+                            <h3 class="rent-subtitle">Этаж</h3>
+                            <label>
+                                <select class="custom-select">
+                                    <option value="" selected>8-9</option>
+                                    <option value="1">2</option>
+                                    <option value="2">3</option>
+                                    <option value="3">4</option>
+                                    <option value="4">5</option>
+                                    <option value="5">6</option>
+                                    <option value="6">7</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="rent-content">
+                            <h3 class="rent-subtitle">Количество комнат</h3>
+                            <label>
+                                <select class="custom-select">
+                                    <option value="" selected>1-4ком</option>
+                                    <option value="1">2</option>
+                                    <option value="2">3</option>
+                                    <option value="3">4</option>
+                                    <option value="4">5</option>
+                                    <option value="5">6+</option>
+                                </select>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="steps step-4">
+                    <div class="rent-form-container">
+                        <div class="rent-content rent-content-big">
+                            <h3 class="rent-subtitle">Спальных мест</h3>
+                            <label>
+                                <select class="custom-select">
+                                    <option value="" selected>1-15 спальных мест</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6+</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="rent-content">
+                            <h3 class="rent-subtitle">Расстояния от метро</h3>
+                            <label>
+                                <select class="custom-select">
+                                    <option value="" selected>300 метров</option>
+                                    <option value="1">Неважно</option>
+                                    <option value="2">Пешком</option>
+                                    <option value="3">Транспортом</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="rent-content">
+                            <h3 class="rent-subtitle">Со мной:</h3>
+                            <label>
+                                <select class="custom-select">
+                                    <option value="" selected>Кол-во человек</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6+</option>
+                                </select>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="rent-buttons">
+                    <button class="btn btn-special button-back btn-fast-back d-none">назад</button>
+                    <button type="button" class="btn btn-warning btn-special btn-fast-next">Далее</button>
+                    <button type="button" class="btn btn-warning btn-special btn-fast-submit d-none">отправить</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- @include _section/_footer.html -->
+</div>
+<script src="./js/pages/fastrent.min.js"></script>
+<!-- @include _section/_end_body.html -->
+</body>
+</html>

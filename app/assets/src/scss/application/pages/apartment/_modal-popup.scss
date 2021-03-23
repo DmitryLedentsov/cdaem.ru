@@ -6,6 +6,11 @@
 
     &-dialog-window {
         max-width: 730px;
+        padding: 0 1rem;
+
+        @include tablet() {
+            padding: 0 1.25rem;
+        }
     }
 
     &-item {
@@ -18,7 +23,7 @@
 
         @include tablet() {
             margin: 7.8rem 0 0;
-            padding: 2.6rem 2.9rem 3.9rem;
+            padding: 2.6rem 2.9rem;
         }
 
         @include tablet-land() {
@@ -31,6 +36,31 @@
         font-size: 1.1rem;
         color: #000000;
         padding: 0;
+        margin-bottom: 1.4rem;
+    }
+
+    &-subtitle {
+        font-weight: 700;
+        font-size: 1.1rem;
+        color: #000000;
+        margin: 1.2rem 0 1.3rem;
+    }
+
+    &-textarea {
+        width: 100%;
+        height: 156px;
+        padding: 0.8rem 2rem 0.375rem 1.1rem;
+        font-weight: 400;
+        font-size: 1rem;
+        color: #4C4C4C;
+        border: 1px solid #D7D7D7;
+        border-radius: 5px;
+        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+
+        &:focus {
+            border-color: $color-form-focus;
+            box-shadow: 0 0 0 0.2rem rgba($color-form-focus, .25);
+        }
     }
 
     .btn-close {
@@ -155,6 +185,11 @@
 
     .custom-select {
         font-size: 1rem;
+        color: #4C4C4C;
+    }
+
+    ::placeholder {
+        color: #4C4C4C;
     }
 }
 
@@ -168,14 +203,14 @@
             margin-bottom: 1.8rem;
         }
 
-        &-subtitle {
+        &-pay-subtitle {
             font-weight: 600;
             font-size: 1rem;
             color: #000000;
-            margin-bottom: 1.1rem;
+            margin-bottom: 1.2rem;
 
-            &:first-of-type {
-                margin-bottom: 0.5rem;
+            .modal-subtitle-contact {
+                margin-bottom: 0.4rem;
             }
         }
 
@@ -183,11 +218,18 @@
             font-weight: 400;
             font-size: 0.8rem;
             color: #4C4C4C;
-            margin-bottom: 1.1rem;
+            margin-bottom: 1.2rem;
 
-            .modal-span-text {
+            &-bold {
                 font-weight: 600;
-                color: $color-warning;
+                font-size: 1.2rem;
+                color: #222222;
+                text-align: center;
+                margin-bottom: 2.2rem;
+
+                @include phone() {
+                    font-size: 1.5rem; 
+                }
             }
         }
 
@@ -200,7 +242,7 @@
             justify-content: center;
             flex-direction: column;
             flex-wrap: wrap;
-            margin-bottom: 2.5rem;
+            margin-bottom: 1.5rem;
 
             @include phone() {
                 flex-direction: row;
@@ -216,7 +258,7 @@
         }
 
         &-pay-select {
-            margin-bottom: 2.2rem;
+            margin-bottom: 1.25rem;
 
             label {
                 width: 100%;
@@ -228,10 +270,12 @@
         position: absolute;
         top: 0;
         right: 0;
+        cursor: pointer;
     }
 
     .qiwi {
         margin: 0 auto 1rem;
+        cursor: pointer;
 
         @include phone() {
             margin: 0 3rem 1rem 0;       
@@ -254,6 +298,7 @@
 
     .yandex {
         margin: 0 auto 1rem;
+        cursor: pointer;
 
         @include phone() {
             margin: 0 0 1rem 3rem;
@@ -276,6 +321,7 @@
 
     .visa {
         margin: 0 auto;
+        cursor: pointer;
 
         @include phone() {
             margin: 0 1.2rem 1rem; 
@@ -297,27 +343,14 @@
     }
 }
 
-.modal-feedback {
-    .modal {
-        &-dialog-window {
-            padding-bottom: 0;
-        }
-        
+.modal-feedback,
+.modal-appeal,
+.modal-book {
+    .modal {        
         &-item {
-            margin: 5.8rem 0 5.8rem;
-
             @include tablet() {
                 padding-bottom: 2.9rem;
-                margin: 7.8rem 0 5.8rem;
             }
-    
-            @include tablet-land() {
-                margin: 10.8rem 0 5.8rem;
-            }
-        }
-
-        &-header-title {
-            margin-bottom: 1.4rem;
         }
 
         &-select-container {
@@ -336,14 +369,11 @@
                 }
             }
         }
+    }
+}
 
-        &-feedback-subtitle {
-            font-weight: 700;
-            font-size: 1.1rem;
-            color: #000000;
-            margin: 1.2rem 0 1.3rem;
-        }
-
+.modal-feedback {
+    .modal {
         &-feedback-container {
             display: flex;
             flex-direction: column;
@@ -356,22 +386,104 @@
                 }
             }
         }
+    }
+}
 
-        &-feedback-text {
+.modal-appeal {
+    .modal {
+        &-appeal-label {
             width: 100%;
-            height: 156px;
-            padding: 0.8rem 2rem 0.375rem 1.1rem;
-            font-weight: 400;
-            font-size: 1rem;
-            color: #4C4C4C;
-            border: 1px solid #D7D7D7;
-            border-radius: 5px;
-            transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+            margin-bottom: 1.5rem;
+        }
+    }
+}
 
-            &:focus {
-                border-color: $color-form-focus;
-                box-shadow: 0 0 0 0.2rem rgba($color-form-focus, .25);
+.modal-book {
+    .modal {
+        &-book-label {
+            width: 100%;
+            margin-bottom: 1.5rem;
+        }
+
+        &-book-author-label {
+            width: 100%;
+            margin-bottom: 0.6rem;
+        }
+
+        &-book-container {
+            @include tablet() {
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
             }
+        }
+
+        &-select-container {
+            @include tablet() {
+                display: flex;
+                flex-direction: column;
+                flex-wrap: wrap;
+                width: 49%;
+            }
+
+            label {
+                width: 100%;
+                margin-bottom: 0.6rem;
+
+                @include tablet() {
+                    width: 100%;
+                }
+            }
+
+            .search-form-group {
+                @include phone() {
+                    flex-direction: column;
+                }
+
+                .search-form-filter-calendar {
+                    height: 42px;
+                    border: 1px solid #D7D7D7;
+
+                    @include tablet-land() {
+                        max-width: 100%;
+                    }
+                }
+
+                .search-form-filter {
+                    margin: 0 0 0.6rem;
+                }
+
+                .daterangepicker-text {
+                    font-weight: 400;
+                    font-size: 1rem;
+                    color: #4C4C4C;
+                }
+            }
+        }
+
+        .btn {
+            width: 214px;
+        }
+    }
+}
+
+.modal-review-text {
+    .modal {
+        &-dialog-window {
+            max-width: 750px;
+        }
+    
+        &-item {
+            max-width: 710px;
+            padding: 1.5rem 1rem;
+
+            @include tablet() {
+                padding: 2rem 1.5rem;
+            }
+        }
+
+        &-body-review {
+            display: flex;
         }
     }
 }

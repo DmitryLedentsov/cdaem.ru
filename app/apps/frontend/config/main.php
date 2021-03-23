@@ -159,7 +159,7 @@ return [
                         'auto_reload' => true,
                     ],
                     'globals' => [
-                        'DateTimeHelper' => ['class' => \nepster\basis\helpers\DateTimeHelper::class],
+                        'DateTimeHelper' => ['class' => \common\components\DateTimeHelper::class],
                         'StatusHelper' => ['class' => \nepster\basis\helpers\StatusHelper::class],
                         'UserHelper' => ['class' => \common\modules\users\helpers\UserHelper::class],
                         'ArrayHelper' => ['class' => \yii\helpers\ArrayHelper::class],

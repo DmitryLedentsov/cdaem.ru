@@ -7,7 +7,7 @@
     if ($targetDatepicker.length) {
 
         $targetDatepicker.datetimepicker({
-            inline: true,
+           // inline: true, // TODO: будет открыт по умолчанию, удобнее стили накладывать
             format: 'DD.MM.YYYY',
             locale: 'ru',
             minDate: moment(),
@@ -41,7 +41,7 @@
 
     if ($targetTimepicker.length) {
         $targetTimepicker.datetimepicker({
-            inline: true,
+            // inline: true, // TODO: будет открыт по умолчанию, удобнее стили накладывать
             format: 'HH:mm',
             showClear: true,
             ignoreReadonly: true,

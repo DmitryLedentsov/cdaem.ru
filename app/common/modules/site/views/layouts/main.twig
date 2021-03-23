@@ -44,7 +44,11 @@
 
 <div class="wrapper">
     {% block header %}
-        {{ this.render("@common/modules/site/views/_sections/_header.twig") | raw }}
+        {% if this.context.action.id == 'index' and this.context.module.id == 'site' %}
+            {{ this.render("@common/modules/site/views/_sections/_header.twig") | raw }}
+        {% else %}
+            {{ this.render("@common/modules/site/views/_sections/_header-collapse.twig") | raw }}
+        {% endif %}
     {% endblock %}
     <main>
         <div class="{% block divMainClass %}{% endblock %}">

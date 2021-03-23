@@ -115,6 +115,15 @@
             justify-content: space-between;
             align-items: center;
         }
+
+        .footer-logo {
+            width: 45%;
+            max-width: 1;
+
+            @include phone() {
+                width: auto;
+            }
+        }
     }
 
     &-container {

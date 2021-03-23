@@ -1,0 +1,237 @@
+.book {
+    padding-bottom: 7.8rem;
+
+    .section-title {
+        margin-bottom: 1.8rem;
+    }
+
+    &-text {
+        font-weight: 400;
+        font-size: 1rem;
+        color: #4C4C4C;
+        line-height: 1.5;
+        margin-bottom: 0.3rem;
+    }
+    
+    .input-field {
+        width: 100%;
+        height: 42px;
+        padding: 0.375rem 2rem 0.375rem 1.1rem;
+        font-weight: 400;
+        font-size: 1rem;
+        color: #4C4C4C;
+        border: 1px solid #D7D7D7;
+        border-radius: 5px;
+        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+
+        &:focus {
+            border-color: $color-form-focus;
+            box-shadow: 0 0 0 0.2rem rgba($color-form-focus, .25);
+        }
+    }
+
+    .custom-select {
+        font-size: 1rem;
+        color: #4C4C4C;
+    }
+
+    ::placeholder {
+        color: #4C4C4C;
+    }
+
+    .time-container {
+        margin-bottom: 0;
+        width: 100%;
+
+        @include phone() {
+            width: 49%;
+        }
+
+        label {
+            width: 100%;
+        }
+    }
+
+    .search-form-group {
+        justify-content: space-between;
+        width: 100%;
+
+        .search-form-filter-calendar {
+            height: 42px;
+            border: 1px solid #D7D7D7;
+            max-width: 100%;
+
+            @include phone() {
+                max-width: 49%;
+            }
+
+            &::after {
+                display: none;
+            }
+        }
+
+        .search-form-filter {
+            margin: 0 0 0.6rem;
+        }
+
+        .daterangepicker-text {
+            font-weight: 400;
+            font-size: 1rem;
+            color: #4C4C4C;
+        }
+    }
+
+    &-content {
+        display: flex;
+        flex-direction: column;
+
+        @include tablet-land() {
+            flex-direction: row;
+            justify-content: space-between;
+        }
+    }
+
+    &-big-container,
+    &-small-container,
+    &-container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        label {
+            width: 100%;
+            margin-bottom: 0.6rem;
+
+            @include phone() {
+                width: 49%;
+            }
+        }
+    }
+
+    &-big-container {
+        width: 100%;
+
+        @include tablet-land() {
+            width: 53%;
+        }
+    }
+
+    &-small-container {
+        width: 100%;
+        position: relative;
+
+        @include tablet-land() {
+            width: 46%;
+        }
+    }
+
+    &-two-container {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        width: 100%;
+
+        @include tablet-land() {
+            width: 46%;
+        }
+    }
+
+    .label-big {
+        width: 100%;
+    }
+
+    &-subtitle {
+        font-weight: 600;
+        font-size: 1.2rem;
+        color: #000000;
+        margin: 1rem 0;
+        width: 100%;
+
+        @include tablet-land() {
+            margin: 1.5rem 0;
+        }
+
+        &-small {
+            margin: 0 0 0.5rem;
+
+            @include phone() {
+                margin: 0 0.5rem 0 0;  
+                width: max-content;
+            }
+
+            @include tablet-land() {
+                margin: 0;
+                width: 67%;
+            }
+
+            @include desktop() {
+                width: max-content;
+                margin: 0 0.75rem 0 0;
+            }
+        }
+
+        &-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            margin: 1rem 0;
+
+            @include phone() {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            @include tablet-land() {
+                margin: -0.1rem 0 0.95rem;
+            }
+           
+            @include desktop() {
+                margin: 0.8rem 0 1.25rem;
+            }
+        }
+    
+        &-text {
+            font-weight: 400;
+            font-size: 0.7rem;
+            color: #A1A1A1;
+
+            @include phone() {
+                text-align: right;
+            }
+        }
+
+        &-span {
+            color: #FF0000;
+        }
+    }
+
+    &-footer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 1.2rem;
+
+        @include phone() {
+            flex-direction: row;
+            justify-content: space-between; 
+        }
+    }
+
+    &-submit-text {
+        text-align: center;
+
+        @include phone() {
+            text-align: left;
+        }
+    }
+
+    .btn {
+        width: 208px;
+        margin: 1rem 0 0;
+
+        @include phone() {
+            margin: 0 0 0 2rem;
+        }
+    }
+}

@@ -2,16 +2,16 @@
     <div class="container-fluid">
         <div class="search-form-promo">
             <h1 class="search-form-title">Снять квартиру посуточно</h1>
-            <p>- Это огромный поиск по всем городам России, краткосрочной аренды.</p>
+            <p>Это огромный поиск по всем городам России, краткосрочной аренды.</p>
         </div>
         <div class="search-form-navs">
-            <div class="search-form-nav" data-toggle="modal" data-target="#fastRent">
+            <a href="{{ path(['/partners/reservation/index']) }}" class="search-form-nav">
                 <object class="search-form-icon flex-shrink-0">
                     <img src="/_new/images/icons/house.svg" alt="house icon">
                 </object>
                 <span class="text-large text-white">Быстро снять</span>
-            </div>
-            <a href="./map.html" class="search-form-nav">
+            </a>
+            <a href="{{ path('/geo/default/index', {'city': 'msk'}) }}" class="search-form-nav">
                 <object class="search-form-icon flex-shrink-0">
                     <img src="/_new/images/icons/search.svg" alt="search icon">
                 </object>
@@ -48,14 +48,22 @@
                     </div>
                     <div class="search-form-group" data-daterangepicker>
                         <div class="search-form-filter search-form-filter-calendar daterangepicker-from">
-                            <span class="daterangepicker-month">25 декабря</span>
-                            <span class="daterangepicker-day">пятница</span>
-                            <input type="hidden" name="date_from" value="{{ 'now'|date('Y-m-d') }}">
+                            <span class="daterangepicker-month">
+                                {{ DateTimeHelper.toDayAndMonth('now' | date('Y-m-d')) }}
+                            </span>
+                            <span class="daterangepicker-day">
+                                {{ DateTimeHelper.toWeek('now' | date('Y-m-d')) }}
+                            </span>
+                            <input type="hidden" name="date_from" value="{{ 'now' | date('Y-m-d') }}">
                         </div>
                         <div class="search-form-filter search-form-filter-calendar daterangepicker-to">
-                            <span class="daterangepicker-month">2 января</span>
-                            <span class="daterangepicker-day">суббота</span>
-                            <input type="hidden" name="date_to" value="{{ 'now'|date('Y-m-d') }}">
+                            <span class="daterangepicker-month">
+                                {{ DateTimeHelper.toDayAndMonth('now' | date_modify('+1 day') | date('Y-m-d')) }}
+                            </span>
+                            <span class="daterangepicker-day">
+                                {{ DateTimeHelper.toWeek('now' | date_modify('+1 day') | date('Y-m-d')) }}
+                            </span>
+                            <input type="hidden" name="date_to" value="{{ 'now' | date_modify('+1 day') | date('Y-m-d') }}">
                         </div>
                     </div>
                     <div class="search-form-filter search-form-filter-extra dropdown">
@@ -139,11 +147,11 @@
                                     </label>
                                 </div>
                             </div>
-                            <button class="btn btn-warning btn-close">Применить</button>
+                            <button type="button" class="btn btn-warning btn-close">Применить</button>
                         </div>
                     </div>
                 </div>
-                <button class="btn btn-warning btn-special btn-search">Найти</button>
+                <button type="submit" class="btn btn-warning btn-special btn-search">Найти</button>
             </div>
         </form>
     </div>
