@@ -121,6 +121,25 @@
     }
   }
 
+  .repairs-icons {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 0 0 1.25rem -0.25rem;
+
+    img {
+      margin: 0 0.25rem;
+
+      &:last-of-type {
+        margin-right: 0;
+      }
+    }
+
+    .bath {
+      margin-bottom: 0.3rem;
+    }
+  }
+
   &-author {
     display: flex;
     border: 0.06rem solid #E1E1E1;
