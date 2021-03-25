@@ -6,7 +6,7 @@ server
     disable_symlinks off;
 
     listen 80;
-    server_name ${SERVER_NAME};
+    server_name ${SERVER_NAME} ${SERVER_NAME_WILD};
 
     root /app/apps/frontend/web;
     index index.php index.html;
