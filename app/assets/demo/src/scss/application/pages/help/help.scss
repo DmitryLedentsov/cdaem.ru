@@ -1,0 +1,44 @@
+.p-help {
+
+    @import '../../../application/pages/help/help-accordion';
+
+    .help {
+        background: url("../../images/background/help-accordion_bg.png") center/cover no-repeat;
+        padding: 2rem 0 2.3rem;
+
+        @include tablet-land() {
+            padding: 3rem 0 5.2rem;
+        }
+    }
+
+    .breadcrumbs {
+        margin: 0 0 2rem;
+    }
+
+    .appeal {
+        background: url("../../images/background/help-appeal_bg.png") center/cover no-repeat;
+        padding: 2.5rem 0 2rem;
+        
+        @include tablet-land() {
+            padding: 5rem 0 4rem;
+        }
+
+        &-title {
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            
+            @include tablet-land() {
+                margin-bottom: 2.1rem;
+            }
+        }
+
+        &-subtitle,
+        .submit-text {
+            color: #ffffff;
+        }
+
+        textarea {
+            height: 143px;
+        }
+    }
+}

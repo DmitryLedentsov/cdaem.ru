@@ -1,1 +1,17 @@
-{}
+{
+    "/frontend/web/_new/css/base.min.css": "/frontend/web/_new/css/base.min.css?id=bde41a513af490625e8e",
+    "/frontend/web/_new/css/interfaces.min.css": "/frontend/web/_new/css/interfaces.min.css?id=ebb97c5f5ea40065491c",
+    "/frontend/web/_new/css/pages/agency.min.css": "/frontend/web/_new/css/pages/agency.min.css?id=9ef493839a2176912234",
+    "/frontend/web/_new/css/pages/apartment.min.css": "/frontend/web/_new/css/pages/apartment.min.css?id=9f2bef63009b2da2ce96",
+    "/frontend/web/_new/css/pages/auth.min.css": "/frontend/web/_new/css/pages/auth.min.css?id=5fd59b0d1be5b04f0150",
+    "/frontend/web/_new/css/pages/board.min.css": "/frontend/web/_new/css/pages/board.min.css?id=0a4adbafcdc8b69ddbcc",
+    "/frontend/web/_new/css/pages/booking.min.css": "/frontend/web/_new/css/pages/booking.min.css?id=9b2e6bcddc8e63563995",
+    "/frontend/web/_new/css/pages/fastrent.min.css": "/frontend/web/_new/css/pages/fastrent.min.css?id=313d8ca05377be55214a",
+    "/frontend/web/_new/css/pages/help.min.css": "/frontend/web/_new/css/pages/help.min.css?id=deb49e05ee1fb137daa8",
+    "/frontend/web/_new/css/pages/home.min.css": "/frontend/web/_new/css/pages/home.min.css?id=1a55f91de02d54059adf",
+    "/frontend/web/_new/css/pages/news.min.css": "/frontend/web/_new/css/pages/news.min.css?id=6c9d13485fd16f777b70",
+    "/frontend/web/_new/css/pages/search.min.css": "/frontend/web/_new/css/pages/search.min.css?id=1e51c0c6d5f1d38e7361",
+    "/frontend/web/_new/css/pages/signIn.min.css": "/frontend/web/_new/css/pages/signIn.min.css?id=a128e3d78796d27271f7",
+    "/frontend/web/_new/css/pages/static.min.css": "/frontend/web/_new/css/pages/static.min.css?id=25abbe82ca3847c3d2d7",
+    "/frontend/web/_new/css/pages/vacancy.min.css": "/frontend/web/_new/css/pages/vacancy.min.css?id=3f91218033d42209c32c"
+}

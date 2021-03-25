@@ -34,8 +34,6 @@ class AppAsset extends AssetBundle
         '/_new/vendor/datetimepicker/bootstrap-datetimepicker.min.js',
         '/_new/vendor/bootstrap-autocomplete.min.js',
         '/_new/js/interface.min.js',
-
-        '/_new/js_dev/formApi.js'
     ];
 
     public $depends = [

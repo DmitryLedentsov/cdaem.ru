@@ -1,0 +1,156 @@
+.proposal {
+    background: url("../../images/background/agency_proposal-bg.png") center/cover no-repeat;
+    padding: 2.5rem 0 3.4rem;
+
+    @include tablet-land() {
+        padding: 4.5rem 0 6.9rem;
+    }
+    
+    .section-title {
+        position: relative;
+        margin: 0;
+        padding: 0 0 7.5rem 3.75rem;
+
+        @include tablet() {
+            padding-bottom: 2.5rem;
+        }
+
+        @include tablet-land() {
+            padding-bottom: 3rem;
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: -0.6rem;
+            width: 48px;
+            height: 48px;
+            background: url("../../images/icons/title-icon.svg") center no-repeat;
+
+            @include desktop() {
+                top: -0.3rem;
+            }
+        }
+    }
+
+    .apartment {
+        &-card {
+            padding: 0;
+        }
+
+        &-item {
+            border: 0.2rem solid $color-base-border;
+            border-bottom: 0;
+        }
+    }
+
+    &-slider {
+        .slick-slide {
+            width: 350px;
+            margin: 0 0.45rem;
+
+            @include phone() {
+                width: 385px;
+            }
+        }
+
+        .slick-arrow {
+            position: absolute;
+            top: -15%;
+            z-index: 1;
+            width: 77px;
+            height: 47px;
+            margin: 0;
+            padding: 0;
+            font-size: 0;
+            background: 0 0;
+            border: 0.065rem solid #bdbdbd;
+            border-radius: 0.3rem;
+            outline: 0;
+            cursor: pointer;
+            transition: border-color 0.2s;
+
+            @include tablet-land() {
+                top: -16.5%;
+            }
+
+            @include desktop() {
+                top: -17%;
+            }
+      
+            &::before,
+            &::after {
+                content: "";
+                position: absolute;
+            }
+      
+            &::before {
+                top: 22px;
+                left: 23px;
+                width: 27px;
+                height: 2px;
+                background: #bdbdbd;
+                transition: background-color 0.2s;
+            }
+      
+            &::after {
+                top: 19px;
+                left: 22px;
+                width: 8px;
+                height: 8px;
+                border: 0.13rem solid #bdbdbd;
+                border-right: transparent;
+                border-bottom: transparent;
+                transform: rotate(-45deg);
+                transition: border-color 0.2s;
+            }
+      
+            &:hover,
+            &:focus {
+                border-color: $color-warning;
+
+                &::before {
+                    background-color: $color-warning;
+                }
+        
+                &::after {
+                    border-color: $color-warning;
+                }
+            }
+        }
+      
+        .slick-prev {
+            right: 56%;
+
+            @include phone() {
+                right: 55%;
+            }
+
+            @include tablet() {
+                right: 120px;
+            }
+        }
+    
+        .slick-next {
+            right: 26%;
+            transform: rotate(180deg);
+
+            @include phone() {
+                right: 32%;
+            }
+
+            @include tablet() {
+                right: 30px;
+            }
+
+            &::before{
+                top: 21px;
+            }
+
+            &::after {
+                top: 18px;
+            }
+        }
+    }
+}

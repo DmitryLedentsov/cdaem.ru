@@ -1,0 +1,32 @@
+.breadcrumbs {
+    margin: 2rem 0;
+
+    @include tablet-land() {
+        margin: 3rem 0;
+    }
+
+    a {
+        display: inline-block;
+        color: #575757;
+    }
+
+    span {
+        display: inline-block;
+        color: $color-base-link;
+    }
+
+    > *:not(:last-child) {
+        position: relative;
+        padding: 0 1.57rem 0 0;
+
+        &::before {
+            content: "";
+            position: absolute;
+            background: url("../images/icons/breadcrumbs.svg") center no-repeat;
+            height: 0.6rem;
+            width: 0.6rem;
+            right: 0.6rem;
+            top: 0.33rem;
+        }
+    }
+}

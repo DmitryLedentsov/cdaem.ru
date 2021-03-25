@@ -1,0 +1,281 @@
+.footer {
+    border-top: 12px solid $color-base-border;
+    color: white;
+    font-size: 0.82rem;
+    position: relative;
+
+    &-title {
+        color: white;
+        text-transform: uppercase;
+        position: relative;
+        padding-bottom: 0.5rem;
+        margin-bottom: 1rem;
+        text-align: left;
+
+        @include phone() {
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        @include tablet-land() {
+            padding-bottom: 2.38rem;
+            margin-bottom: 2.38rem;
+        }
+
+        &::before, &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 1px;
+            display: block;
+        }
+
+        &::before {
+            width: 50px;
+            background-color: $color-base-border;
+            z-index: 17;
+        }
+
+        &::after {
+            width: 200px;
+            background-color: #2E2E2E;
+            z-index: 15;
+        }
+    }
+
+    .container-fluid {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        text-align: center;
+        padding: 0 1.5rem;
+
+        @include phone() {
+            padding: 0 5rem;
+        }
+
+        @include tablet() {
+            flex-direction: row;
+            flex-wrap: wrap;
+            padding: 0 5rem;
+        }
+
+        @include tablet-land() {
+            text-align: left;
+            padding: 0 2rem;
+        }
+
+        @include desktop() {
+            padding: 0 15px;
+        }
+
+        .footer-container {
+            margin-bottom: 2.5rem;
+
+            @include tablet-land() {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    &-info {
+        background: url("../images/interface/footer-bg.png");
+        background-size: cover;
+        padding: 2rem 0;
+        position: relative;
+
+        @include phone() {
+            padding: 2.5rem 0;
+        }
+
+        @include tablet-land() {
+            padding: 3.5rem 0;
+        }
+
+        @include desktop() {
+            padding: 5.5rem 0;
+        }
+
+        .container-fluid {
+            margin-bottom: -1.5rem;
+
+            @include tablet-land() {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    &-inner {
+        padding: 1.25rem 0 1.25rem;
+        color: #000000;
+
+        .container-fluid {
+            flex-direction: row;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo {
+            width: 45%;
+            max-width: 1;
+
+            @include phone() {
+                width: auto;
+            }
+        }
+    }
+
+    &-container {
+        @include tablet-land() {
+            flex-basis: 20%;
+        }
+
+        &.about-us {
+            order: 2;
+
+            @include tablet() {
+                width: 100%;
+                text-align: left;
+            }
+            @include tablet-land() {
+                flex-basis: 40%;
+                order: 0;
+            }
+
+            @include desktop() {
+                flex-basis: 27%;
+            }
+        }
+    }
+
+    &-nav {
+        order: 0;
+
+        @include tablet() {
+            width: 50%;
+        }
+
+        @include tablet-land() {
+            order: 2;
+        }
+
+        @include desktop() {
+            padding-left: 33px;
+        }
+
+        & .nav-link {
+            padding: 0;
+            line-height: 1.92rem;
+        }
+    }
+
+    &-contacts {
+        order: 1;
+
+        @include tablet() {
+            width: 50%;
+        }
+        @include tablet-land() {
+            flex-basis: 22%;
+        }
+        @include desktop() {
+            padding-left: 65px;
+        }
+
+        &-email {
+            letter-spacing: -0.6px;
+        }
+
+        &-phone {
+            letter-spacing: -0.5px;
+
+            &.nav-link {
+                padding: 8px 0 0 0;
+            }
+        }
+    }
+
+    & .nav-item {
+        margin: 0;
+    }
+
+    & .nav-link {
+        padding-left: 0;
+        padding-right: 0;
+        color: #CCCCCC;
+
+        &:hover {
+            color: $color-base-link;
+        }
+
+        img {
+            display: inline-block;
+            width: 20px;
+            vertical-align: middle;
+            margin-right: 0.12rem;
+        }
+    }
+
+    &-sub-title {
+        line-height: 1.7rem;
+        color: #666666;
+
+        &:not(:first-of-type) {
+            padding-top: 11px;
+        }
+    }
+
+    &-copyright {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+
+        & span {
+            font-size: 0.81rem;
+            line-height: 1.25rem;
+        }
+    }
+
+    .about-us-info {
+        color: #CCCCCC;
+        padding-right: 20px;
+        line-height: 1.38rem;
+    }
+
+    .social-links {
+        display: inline-block;
+        margin: 0.5rem 0;
+        font-size: 1.5rem;
+
+        li {
+            margin-right: 0.7rem;
+            display: inline-block;
+
+            &:last-of-type {
+                margin-right: 0;
+            }
+        }
+    }
+
+    .btn-to-up {
+        background: url("../images/interface/btn-to-up.png") no-repeat center;
+        background-size: cover;
+        bottom: 0;
+        left: 50%;
+        margin-left: -18px;
+        margin-bottom: -18px;
+        border: none;
+        position: absolute;
+        min-width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        padding: 0;
+        background-color: $color-base-link;
+        transition: 300ms;
+        &:hover {
+            transform: scale(0.9);
+            box-shadow: 0 0 0 0.2rem rgba($color-form-focus, .25);
+        }
+    }
+}

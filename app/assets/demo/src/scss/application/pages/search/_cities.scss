@@ -1,0 +1,51 @@
+.cities{
+    margin-bottom: 4rem;
+
+    .section-title {
+        margin-bottom: 2rem;
+    }
+
+    &-list {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin: 0 -1.5rem;
+    }
+
+    &-column {
+        display: flex;
+        flex-wrap: wrap;
+        width: auto;
+        line-height: 78px;
+        margin: 0 1.5rem 0;
+    }
+
+    .city {
+
+        &-list {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            font-weight: 400;
+            font-size: 1.1rem;
+        }
+
+        &-link {
+            color: #333333;
+            transition: color 0.2s;
+    
+            &:hover {
+                color: $color-base-link;
+            }
+        }
+    }
+
+    .letter {
+        justify-content: flex-start;
+        color: $color-warning;
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 2.2rem;
+        margin: 0.3rem 1.25rem 0 -1.25rem;
+    }
+}

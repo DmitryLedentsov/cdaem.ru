@@ -1,0 +1,8 @@
+.intro {
+    padding: 2.5rem 0 2rem;
+    background: url("../../images/background/intro-form_bg.png") center/cover no-repeat;
+  
+    @include tablet-land() {
+      padding: 3.7rem 0 4rem;
+    }
+}

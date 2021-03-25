@@ -1,0 +1,52 @@
+.location {
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    position: relative;
+    background: transparent;
+    border: none;
+    padding: 1.25rem 0 0;
+    margin: 0 auto;
+    width: 80px;
+    cursor: pointer !important;
+
+    @include tablet-land() {
+        width: 80px;
+        margin: 0;
+    }
+
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        background-color: #ffffff;
+        bottom: 25%;
+        width: 6px;
+        height: 1px;
+        border-radius: 10px;
+        transition: 0.35s background-color;
+    }
+
+    &::before {
+        right: -10px;
+        transform: translate(-40%, 0) rotate(45deg);
+    }
+
+    &::after {
+        right: -14px;
+        transform: translate(-44%, 0) rotate(-45deg);
+    }
+
+    &:hover {
+        &::before,
+        &::after {
+            background-color: #FFA801;
+        }
+    }
+    
+    &:active,
+    &:focus {
+        outline: none;
+    }
+}

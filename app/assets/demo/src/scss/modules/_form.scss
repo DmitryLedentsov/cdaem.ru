@@ -1,0 +1,82 @@
+.form {
+    &-links {
+        padding-top: 1rem;
+    }
+}
+
+.form-check, .form-check-label {
+    padding-left: 0;
+
+    &, label {
+        cursor: pointer;
+    }
+
+    input[type="checkbox"], input[type="radio"] {
+        vertical-align: middle;
+        margin-right: 0.3rem;
+    }
+}
+
+
+.form-group {
+    position: relative;
+
+    label {
+        width: 100%;
+    }
+}
+
+.custom-select, .form-control {
+    border: 1px solid #D7D7D7;
+    height: calc(2.5rem + 2px);
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &:focus {
+        border-color: $color-form-focus;
+        box-shadow: 0 0 0 0.2rem rgba($color-form-focus, .25);
+    }
+}
+
+.custom-select {
+    background: #fff url("../images/icons/select-arrow.svg") no-repeat right .75rem center;
+}
+
+
+.is-invalid + .invalid-feedback {
+    opacity: 0.9 !important;
+}
+
+.invalid-feedback {
+    width: auto;
+    opacity: 0;
+    transition: color .3s cubic-bezier(.36,.52,.23,.93),opacity .3s cubic-bezier(.36,.52,.23,.93);
+    background-color: #e25950;
+    padding: 4px 7px;
+    border-radius: 4px;
+    position: absolute;
+    cursor: default;
+    color: #fff;
+    z-index: 1;
+    top: 90%;
+    margin: 0 5px;
+    font-size: .78rem;
+    line-height: 1.2rem;
+    box-shadow: 0 5px 25px rgba(50,50,93,.2);
+
+    &::before {
+        position: absolute;
+        top: -4px;
+        left: 15px;
+        width: 8px;
+        height: 8px;
+        content: "";
+        transform: rotate(45deg);
+        border-radius: 4px 0 0 0;
+        background-color: #e25950;
+        z-index: -1;
+        box-shadow: -3px -3px 5px rgba(50,50,93,.04);
+    }
+}

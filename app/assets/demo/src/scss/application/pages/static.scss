@@ -1,0 +1,70 @@
+.p-static {
+
+  .static-container {
+    padding-bottom: 2rem;
+
+    @include desktop() {
+      padding-bottom: 3rem;
+    }
+
+    h1 {
+      font-weight: 800;
+      font-size: 3rem;
+      line-height: 3rem;
+    }
+
+    h2 {
+      font-weight: 700;
+      font-size: 2.4rem;
+      line-height: 2.4rem;
+    }
+
+    h3 {
+      font-weight: 700;
+      font-size: 2rem;
+      line-height: 2rem;
+    }
+
+    h4 {
+      font-weight: 700;
+      font-size: 1.6rem;
+      line-height: 1.6rem;
+    }
+
+    h5 {
+      font-weight: 700;
+      font-size: 1.4rem;
+      line-height: 1.4rem;
+    }
+
+    h6 {
+      font-weight: 600;
+      font-size: 1.2rem;
+      line-height: 1.2rem;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 700;
+      color: #4C4C4C;
+      margin-bottom: 1.3rem;
+    }
+
+
+    p {
+      color: #4C4C4C;
+      font-size: 100%;
+      line-height: 1.35rem;
+    }
+
+    .btn {
+      font-weight: 600;
+      font-size: 1rem;
+      text-transform: uppercase;
+      width: 208px;
+      height: 55px;
+      margin-top: 0.6rem;
+    }
+
+  }
+
+}

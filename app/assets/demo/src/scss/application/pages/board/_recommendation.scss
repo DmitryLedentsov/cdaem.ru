@@ -1,0 +1,125 @@
+.recommendation {
+    position: relative;
+    padding: 1.9rem 0;
+    background: url("../../images/board/recommendation-bg.png") center/cover no-repeat;
+
+    @include tablet-land() {
+        padding: 3.8rem 0;
+    }
+
+    &::before,
+    &::after {
+        @include desktop() {
+            content: '';
+            position: absolute;
+            width: 263px;
+            height: 133px;
+            z-index: -1;
+        }
+    }
+
+    &::before {
+        @include desktop() {
+            top: 160px;
+            left: 40px;
+            background: url("../../images/sdaem.svg") center/contain no-repeat;
+        }
+    }
+
+    &::after {
+        @include desktop() {
+            top: 195px;
+            right: 50px;
+            background: url("../../images/russa.svg") center/contain no-repeat;
+        }
+    }
+
+    &-list {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        margin: 0 -0.2rem;
+    }
+
+    .section-title {
+        padding: 0;
+        margin: 0 0 2rem;
+
+        @include tablet() {
+            margin-bottom: 1.8rem;
+        }
+    }
+
+    &-card {
+        border: none;
+        border-radius: 0.3rem;
+        width: 157px;
+        height: 150px;
+        margin: 0.4rem 0.2rem;
+        position: relative;
+
+        &:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #000000;
+            border-radius: 0.3rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        &:hover {
+            .recommendation-phone {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .recommendation-text {
+                opacity: 0;
+            }
+
+            &:before {
+                opacity: 0.6;
+            }
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            border-radius: 0.3rem;
+        }
+    }
+
+    &-phone {
+        opacity: 0;
+        width: 39px;
+        height: 39px;
+        border: none;
+        background: url("../../images/phone.svg") center/cover no-repeat;
+        outline: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: opacity 0.3s;
+        visibility: hidden;
+        cursor: pointer;
+    }
+
+    &-text {
+        font-weight: 600;
+        font-size: 0.75rem;
+        text-align: center;
+        color: #FFFFFF;
+        width: 100%;
+        position: absolute;
+        bottom: 0.6rem;
+        left: 50%;
+        transform: translate(-50%);
+        transition: opacity 0.3s;
+    }
+}

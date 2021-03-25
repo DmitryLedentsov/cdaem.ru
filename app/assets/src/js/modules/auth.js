@@ -1,6 +1,32 @@
 (function ($) {
     "use strict";
 
+
+
+
+    $(document).on('submit', '#form-signIn', function (e) {
+        e.preventDefault();
+        let $form = $(this);
+
+        window.ajaxRequest($form, function () {
+
+
+           /* return {
+                beforeSend: function () {},
+                complete: function () {},
+                success: function (response) {
+
+
+                }
+            };*/
+        });
+
+
+    });
+
+
+
+/*
     $('#form-signIn').displayValidation({
         'email': [],
         'password': ['Неверный пароль'],
@@ -30,7 +56,7 @@
             'name': ['Введите ваше имя'],
             'user_type': ['Указан некорректный тип аренды'],
         });
-    });
+    });*/
 
 
 })(jQuery);

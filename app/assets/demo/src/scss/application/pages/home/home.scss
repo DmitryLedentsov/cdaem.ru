@@ -1,0 +1,29 @@
+.p-home {
+
+    @import '../../../application/pages/home/faq';
+    @import '../../../application/pages/home/news';
+    @import '../../../application/pages/home/gallery';
+    @import '../../../application/pages/home/txt';
+    @import '../../../application/pages/home/modal-popup';
+
+    .search-form {
+        margin-top: 3rem;
+    
+        @include tablet-land() {
+            margin-top: 6rem;
+        }
+    
+        &-promo {
+            margin-bottom: 1.8rem;
+    
+            @include tablet-land() {
+                margin-bottom: 5.2rem;
+            }
+        }
+    }
+
+    .header-container {
+        display: flex;
+        flex-direction: column;
+    }
+}

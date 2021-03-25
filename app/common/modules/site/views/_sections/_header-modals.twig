@@ -36,21 +36,21 @@
             <h3 class="modal-title text-center">Вход</h3>
             <button class="modal-close" data-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body">
-                <form class="form" method="post" action="" id="form-signIn">
+                <form class="form" method="post" action="{{ path(['/users/guest/login']) }}" id="form-signIn">
                     <div class="form-group">
                         <label for="signIn-email" class="d-none"></label>
-                        <input type="email" class="form-control" placeholder="Email" name="email" id="signIn-email">
+                        <input type="email" class="form-control" placeholder="Email" name="LoginForm[username]" id="signIn-email">
                         <div class="invalid-feedback"></div>
                     </div>
                     <div class="form-group mb-0">
                         <label for="signIn-password" class="d-none"></label>
-                        <input type="password" class="form-control" placeholder="Введите ваш пароль" name="password" id="signIn-password">
+                        <input type="password" class="form-control" placeholder="Введите ваш пароль" name="LoginForm[password]" id="signIn-password">
                         <div class="invalid-feedback"></div>
                     </div>
                     <div class="form-group d-flex justify-content-between align-items-center mt-4 mb-4">
                         <div class="form-check">
                             <label class="form-check-label">
-                                <input class="" type="checkbox" name="passCheck">
+                                <input class="" type="checkbox" name="LoginForm[rememberMe]">
                                 <span class="text-smaller">Запомнить пароль</span>
                             </label>
                         </div>

@@ -1,0 +1,590 @@
+.search-form {
+    position: relative;
+
+    &-promo {
+        color: #ffffff;
+
+        .search-form-title {
+            color: #ffffff;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+            line-height: 3rem;
+
+            @media (min-width: 620px) {
+                font-size: 3rem;
+                line-height: 4rem;
+            }
+
+            @include tablet-land() {
+                font-size: 4rem;
+                line-height: 5rem;
+            }
+        }
+    }
+
+    input, select {
+        width: 100%;
+        height: 69px;
+        padding: 0.375rem 1rem 0.375rem 1rem;
+        font-weight: 500;
+        font-size: 1rem;
+    }
+
+    &-border {
+        width: 100%;
+        border-radius: 5px 5px 0 0;
+        height: 12px;
+        background: $color-base-border;
+    }
+
+    &-navs {
+        width: max-content;
+        border: 1px solid $color-base-border;
+        border-radius: 5px 5px 0 0;
+        position: relative;
+        display: flex;
+        align-items: flex-start;
+        overflow: hidden;
+        margin-bottom: -1px;
+        margin-left: 4px;
+    }
+
+    &-links {
+        padding-bottom: 2.5rem;
+        align-self: flex-end;
+
+        & a {
+            margin-left: 1.5rem;
+        }
+    }
+
+    &-nav {
+        height: 66px;
+        display: flex;
+        align-items: center;
+        padding: 1rem 0.85rem;
+        background-color: rgba(0, 0, 0, .7);
+        transition: 500ms;
+
+        @include phone() {
+            padding: 1rem;
+        }
+
+        &:hover {
+            cursor: pointer;
+            background-color: rgba(0, 0, 0, .9);
+        }
+    }
+
+    &-icon {
+        margin-right: 10px;
+    }
+
+    &-options {
+        padding: 1.5rem 1.5rem 3rem 1.5rem;
+        background: #FFFFFF;
+        box-shadow: 0 3px 31px rgba(0, 0, 0, 0.11);
+        border-radius: 5px;
+        position: relative;
+        top: -4px;
+        z-index: 22;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        @include tablet() {
+            padding: 3rem;
+        }
+
+        @include tablet-land() {
+            padding: 3rem 1.5rem 3rem 1.5rem;
+        }
+
+        @include desktop() {
+            padding: 3rem;
+        }
+    }
+
+    & .search-link {
+        position: relative;
+
+        &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -7px;
+            width: 100%;
+            height: 3px;
+            background-color: $color-base-link;
+            opacity: 0;
+            transition: opacity 0.2s ease-out;
+        }
+
+        &:hover {
+            &::before {
+                opacity: 1;
+            }
+        }
+    }
+
+    & .search-link-active {
+        &::before {
+            opacity: 1;
+        }
+    }
+
+    & .btn-search {
+        position: absolute;
+        bottom: -28px;
+        left: 0;
+        right: 0;
+        height: 55px;
+        min-width: 180px;
+        margin: auto;
+
+        @include tablet-land() {
+            left: auto;
+            right: 2rem;
+        }
+
+        @include desktop() {
+            right: 4rem;
+        }
+    }
+
+    &-group {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        width: 100%;
+
+        @include phone() {
+            flex-direction: row;
+        }
+
+        @include tablet-land() {
+            width: auto;
+        }
+
+
+        .search-form-filter {
+            @media (max-width: 1023px) {
+                margin-right: 1.4rem;
+                &:last-of-type {
+                    margin-right: 0;
+                }
+            }
+        }
+
+        &.is-active {
+            .search-form-filter {
+                border-color: $color-form-focus;
+                box-shadow: 0 0 0 0.2rem rgba($color-form-focus, .25);
+            }
+        }
+    }
+
+    .search-form-filters {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        margin: 0 0 -1.4rem 0;
+
+        @include phone() {
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        @include tablet-land() {
+            flex-direction: row;
+            flex-wrap: nowrap;
+            margin: 0;
+        }
+    }
+
+    &-filter {
+        width: 100%;
+        height: 69px;
+        border-radius: 5px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 0 0 1.4rem 0;
+
+        @include tablet-land() {
+            margin: 0 0.7rem;
+        }
+
+        &:after {
+            content: '';
+            width: 32px;
+            height: 32px;
+            position: absolute;
+            right: 1rem;
+            top: 0;
+            bottom: 0;
+            margin: auto 0;
+        }
+
+        label {
+            width: 100%;
+        }
+
+        &-city {
+            width: 100%;
+
+            @include phone() {
+                width: 50%;
+                padding-right: 0.7rem;
+            }
+
+            @include tablet() {
+                width: 60%;
+            }
+
+            @include tablet-land() {
+                padding-right: 0;
+            }
+
+            &:after {
+                background: url("../images/icons/search.svg") no-repeat center center;
+            }
+
+            input {
+                cursor: text !important;
+                &::placeholder {
+                    color: #495057;
+                }
+            }
+        }
+
+        &-type {
+            width: 100%;
+
+            @include phone() {
+                width: 50%;
+                padding-left: 0.7rem;
+            }
+
+            @include tablet() {
+                width: 40%;
+            }
+
+            @include tablet-land() {
+                padding-left: 0;
+                min-width: 210px;
+            }
+
+            @include desktop() {
+                padding-left: 0;
+                min-width: 250px;
+            }
+        }
+
+        &-calendar {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5rem 1rem;
+            width: 100%;
+            cursor: pointer;
+            border: 1px solid #E3E3E3;
+            font-size: 1rem;
+
+            @include tablet-land() {
+                min-width: 170px;
+                max-width: 170px;
+            }
+
+            @include desktop() {
+                min-width: 185px;
+                max-width: 185px;
+            }
+
+            span {
+                &:first-of-type {
+                    font-weight: 500;
+                }
+                &:last-of-type {
+                    font-size: .8rem;
+                }
+            }
+
+            &:after {
+                background: url("../images/icons/calendar.svg") no-repeat center center;
+            }
+        }
+
+        &-extra {
+            border: 1px solid #E3E3E3;
+            padding: 1rem;
+            cursor: pointer;
+            display: flex;
+            flex-wrap: nowrap;
+            flex-direction: row;
+
+            @include tablet-land() {
+                width: auto;
+            }
+
+            > span {
+                width: 100%;
+                pointer-events: none;
+                
+                &:first-of-type {
+                    order: 1;
+                    width: 32px;
+                    min-width: 32px;
+                    max-width: 32px;
+                    span {
+                        display: block;
+                        background: $color-base-border;
+                        padding: 0;
+                        height: 3px;
+                        margin: 6px 0;
+                        border-radius: 4px;
+                    }
+                }
+                &:last-of-type {
+                    order: 0;
+                    font-weight: 500;
+                    font-size: 1rem;
+
+                    @include tablet-land() {
+                        display: none;
+                    }
+
+                    > span {
+                        font-size: 0.8rem;
+                        font-weight: 400;
+                        display: block;
+                    }
+                }
+            }
+
+            &.is-open {
+                border-color: $color-form-focus;
+                box-shadow: 0 0 0 0.2rem rgba($color-form-focus, .25);  
+
+                .search-form-filter-options {
+                    display: block;
+                }
+            }
+        }
+
+        .bootstrap-autocomplete,
+        .dropdown-menu {
+            overflow-y: scroll; 
+            height: 320px;
+            width: auto;
+
+            .dropdown-item {
+                padding: 0.8rem 1rem;
+
+                &.active {
+                    background: #ececec;
+                }
+            }    
+        }
+
+        &-options {
+            display: none;
+            position: absolute;
+            top: 5.2rem;
+            right: 0;
+            z-index: 1;
+            background: #FFFFFF;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 290px;
+            padding: 1.25rem 0.6rem 1rem 1.25rem;
+            font-weight: 400;
+            font-size: 1rem;
+            color: #4C4C4C;
+            cursor: default;
+
+            &::before, 
+            &::after {
+                content: '';
+                position: absolute;
+                border-bottom-color: rgba(0, 0, 0, 0.2);
+            }
+              
+            &::before {
+                top: -7px;
+                right: 24px;
+                border-right: 7px solid transparent;
+                border-left: 7px solid transparent;
+                border-bottom: 7px solid #ccc;
+            }
+              
+            &::after {
+                top: -6px;
+                right: 25px;
+                border-right: 6px solid transparent;
+                border-bottom: 6px solid #fff;
+                border-left: 6px solid transparent;
+            }
+            
+            input {
+                width: auto;
+                height: 17px;
+                padding: 0.375rem 1rem 0.375rem 1rem;
+                font-weight: 500;
+                font-size: 1rem;
+            }
+
+            .btn {
+                margin: 0 auto;
+                display: block;
+            }
+
+            .options-text {
+                font-weight: 500;
+                font-size: 1.1rem;
+                color: #1E1E1E;
+                padding: 0;
+                margin: 0;
+
+                &:last-of-type {
+                    padding-top: 1rem;
+                }
+            }
+
+            .rooms {
+                display: flex;
+                justify-content: flex-start;
+                padding-bottom: 1rem;
+
+                &-container {
+                    width: 42%;
+
+                    &:first-of-type {
+                        margin-right: 1.4rem;
+                    }
+                }
+
+                &-item {
+                    display: flex;
+                    align-items: center;
+                    margin-top: 0.6rem;
+                    cursor: pointer;
+
+                    .input-text {
+                        padding-left: 0.3rem;
+                        white-space: nowrap;
+                    }
+
+                    input {
+                        cursor: pointer;
+                    }
+                }
+            }
+
+            .price {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                padding: 1rem 0;
+                position: relative;
+
+                &::before,
+                &::after {
+                    content: '';
+                    position: absolute;
+                    left: -1.25rem;
+                    width: 290px;
+                    height: 1px;
+                    background: #F1F1F1;
+                }
+
+                &::before {
+                    top: 0;
+                }
+
+                &::after {
+                    bottom: 0;
+                }
+
+                input {
+                    border: 1px solid #E3E3E3;
+                    border-radius: 0.3rem;
+                    width: 82px;
+                    height: 29px;
+                    text-align: center;
+                    font-size: 0.9rem;
+                    color: #4C4C4C;
+                    font-weight: 500;
+                    padding: 0 0.3rem;
+
+                    &::placeholder {
+                        font-weight: 500;
+                        font-size: 0.9rem;
+                        color: #4C4C4C;
+                    }
+                }
+
+                .options-text {
+                    margin-bottom: 0;
+                    padding: 0 0.4rem 0 0;
+                }
+
+                .input-text {
+                    padding: 0 0.2rem;
+                }
+            }
+
+            .guests {
+                display: flex;
+                justify-content: flex-start;
+                position: relative;
+                padding-bottom: 1rem;
+                margin-bottom: 1rem;
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    left: -1.25rem;
+                    width: 290px;
+                    height: 1px;
+                    background: #F1F1F1;
+                }
+
+                &-container {
+                    width: 40%;
+
+                    &:first-of-type {
+                        margin-right: 3rem;
+                        width: 32%;
+                    }
+                }
+
+                &-item {
+                    display: flex;
+                    align-items: center;
+                    margin-top: 0.6rem;
+                    cursor: pointer;
+
+                    .input-text {
+                        padding-left: 0.3rem;
+                        white-space: nowrap;
+                    }
+
+                    input {
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+
+    & .heading-top {
+        letter-spacing: 0.4px;
+        line-height: 1.5rem;
+    }
+
+    & .heading-bottom {
+        letter-spacing: 1.4px;
+        margin-bottom: 2px;
+    }
+}

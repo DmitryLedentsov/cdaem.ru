@@ -1,0 +1,14 @@
+.p-news {
+
+    @import '../../../application/pages/news/_news-card';
+
+    .section-title {
+        width: 100%;
+        text-align: center;
+
+        @include tablet-land() {
+            text-align: left;
+            margin-bottom: 3rem;
+        }
+    }
+}

@@ -1,0 +1,188 @@
+.p-board {
+    @import '../../../application/pages/board/intro';
+    @import '../../../application/pages/board/recommendation';
+    @import '../../../application/pages/board/top-advert';
+    @import '../../../application/pages/board/lookup-board-form';
+    @import '../../../application/pages/board/modal-popup';
+
+    .search-form {
+
+        &-promo {
+            margin-bottom: 1.8rem;
+
+            @include tablet-land() {
+                margin-bottom: 4.7rem;
+            }
+
+            .search-form-title {
+                text-align: center;
+                margin-bottom: 0;
+            }
+
+            p {
+                display: none;
+            }
+        }
+    }
+
+    .apartment {
+
+        &-list {
+            .section-title {
+                text-align: center;
+                margin-bottom: 1.5rem;
+
+                @include tablet-land() {
+                    text-align: left;
+                    margin-bottom: 0.6rem;
+                }
+            }
+        }
+
+        &-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 auto 1.5rem;
+
+            @include tablet-land() {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            .btn {
+                font-weight: 600;
+                width: 236px;
+                height: 56px;
+                padding: 1rem .75rem;
+
+                @include tablet-land() {
+                    margin-left: 1.25rem;
+                    height: 66px;
+                    padding: 1.3rem .75rem;
+                }
+            }
+        }
+
+        &-card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 0 -0.5rem;
+
+            @include tablet-land() {
+                justify-content: flex-start;
+            }
+
+            .apartment-card {
+                width: 100%;
+                margin: 0 0 2.5rem;
+
+                @include phone() {
+                    padding: 0 0.5rem 0;
+                }
+
+                @include tablet-land() {
+                    margin: 0 0 0.9rem 0;
+                    width: 33.33%;
+                }
+            }
+        }
+    }
+
+    .checkselect {
+        position: relative;
+        display: inline-block;
+        min-width: 200px;
+        width: 100%;
+        text-align: left;
+
+        &-control {
+            position: relative;
+            padding: 0 !important;
+            pointer-events: none;
+
+            select {
+                position: relative;
+            }
+        }
+
+        &-over {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            cursor: pointer;
+        }
+
+        &-popup {
+            display: none;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: auto;
+            max-height: 200px;
+            position: absolute;
+            top: calc(100% + 5px);
+            left: 0;
+            border: 1px solid #dadada;
+            background: #fff;
+            z-index: 9999;
+            overflow: auto;
+            user-select: none;
+
+            input {
+                position: absolute;
+                top: 8px;
+                left: 8px;
+                margin: 0 !important;
+                padding: 0;
+            }
+
+            label {
+                &:hover {
+                    background: #03a2ff;
+                    color: #fff;
+                }
+            }
+
+            fieldset {
+                display: block;
+                margin:  0;
+                padding: 0;
+                border: none;
+
+                input {
+                    left: 15px;
+                }
+
+                label {
+                    padding-left: 32px;
+                }
+            }
+
+            legend {
+                display: block;
+                margin: 0;
+                padding: 5px 8px;
+                font-weight: 700;
+                font-size: 1em;
+                line-height: 1.1;
+            }
+        }
+
+        label {
+            position: relative;
+            display: block;
+            width: 100%;
+            margin: 0;
+            padding: 8px 16px 8px 29px;
+            font-weight: normal;
+            font-size: 1em;
+            line-height: 1.1;
+            cursor: pointer;
+        }
+    }
+}

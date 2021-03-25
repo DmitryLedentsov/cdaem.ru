@@ -1,0 +1,47 @@
+.intro {
+    position: relative;
+    padding: 3rem 0 1.5rem;
+    margin-bottom: 4rem;
+
+    @include phone() {
+        padding-bottom: 1.8rem;
+    }
+
+    @include tablet-land() {
+        padding: 5.7rem 0 2.3rem;
+        margin-bottom: 7.4rem;
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 404px;
+        background: url("../../images/background/search-banner.png") center/cover no-repeat;
+        z-index: -1;
+    }
+
+    .section-title {
+        text-align: center;
+        color: #ffffff;
+        margin-bottom: 2.5rem;
+        font-size: 1.8rem;
+
+        @include tablet() {
+            font-size: 2.5rem;
+        }
+
+        @include tablet-land() {
+            margin-bottom: 5.5rem;
+        }
+
+        @include desktop() {
+            font-size: 3.5rem;
+        }
+    }
+
+}
+
+

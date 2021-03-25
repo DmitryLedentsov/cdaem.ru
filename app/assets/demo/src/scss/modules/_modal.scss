@@ -1,0 +1,122 @@
+.modal {
+    &-dialog {
+        min-width: 375px;
+        margin: 0 auto;
+        padding: 0 1rem;
+
+        @include phone() {
+            padding-right: 2.5rem;
+        }
+    }
+
+    &-title {
+        padding-bottom: 2rem;
+        font-size: 1.5rem;
+        line-height: 1.25rem;
+    }
+
+    &-content {
+        padding: 2rem;
+        background: #FFFFFF;
+        box-shadow: 0 3px 31px rgba(0, 0, 0, 0.11);
+        border-radius: 5px;
+        display: flex;
+        position: relative;
+        margin: 2.5rem 0 1rem;
+
+        @include phone() {
+            padding: 3rem;
+        }
+    }
+
+    &-body {
+        position: relative;
+        padding: 0;
+    }
+
+    &-close {
+        background: transparent;
+        background-size: cover;
+        width: 20px;
+        height: 20px;
+        right: 0;
+        top: -30px;
+        color: transparent;
+        position: absolute;
+        z-index: 1000;
+        padding: 0;
+        cursor: pointer;
+        border: none;
+        transition: 0.35s transform;
+
+        @include phone() {
+            right: -30px;
+        }
+
+        &::before,
+        &::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            background-color: #ffffff;
+            width: 26px;
+            height: 2px;
+            border-radius: 10px;
+            transition: 0.35s background-color;
+        }
+
+        &::before {
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        &::after {
+            transform: translate(-50%, -50%) rotate(-45deg);
+        }
+
+        &:hover {
+            &::before,
+            &::after {
+                background-color: $color-warning;
+            }
+        }
+
+        &:active {
+            transform: rotate(180deg);
+        }
+
+        &:active,
+        &:focus {
+            outline: none;
+        }
+    }
+
+    &-extra {
+        font-size: 0.75rem;
+        color: #717171;
+        line-height: 1rem;
+
+        a {
+            display: inline-block;
+            border-bottom: dashed 1px $color-base-border;
+        }
+
+        strong {
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 0.35rem;
+        }
+    }
+
+    .link-modal {
+        color: #414141;
+        border-bottom: dashed 1px #414141;
+        font-weight: 500;
+        cursor: pointer;
+
+        &:hover {
+            color: darken(#414141, 10%);
+        }
+    }
+
+}
