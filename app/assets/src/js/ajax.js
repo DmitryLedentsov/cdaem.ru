@@ -35,7 +35,8 @@ $(function () {
             return;
         }
         if (response.status === 422) {
-            $form.displayValidation(response.responseJSON.errors);
+            //$form.displayValidation(response.responseJSON.errors);
+            $form.displayValidation(response.responseJSON);
         } else {
             if (typeof response.responseJSON == 'undefined') {
                 window.openWindow(translations.error_title, translations.error_description);

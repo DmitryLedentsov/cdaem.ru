@@ -144,9 +144,10 @@ class GuestController extends Controller
                     return $this->redirect(['/office/default/index']);
                 }
             } elseif (Yii::$app->request->isAjax) {
+                Yii::$app->response->statusCode = 422;
                 Yii::$app->response->format = Response::FORMAT_JSON;
 
-                return ActiveForm::validate($model);
+                return $this->validate($model);
             }
         }
 

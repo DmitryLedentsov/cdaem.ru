@@ -1,35 +1,3 @@
-<div class="modal fade" id="forgotPassword" tabindex="-1" role="dialog" aria-labelledby="forgotPassword"
-     aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <h3 class="modal-title text-center">Восстановить пароль</h3>
-            <button class="modal-close" data-dismiss="modal" aria-label="Close"></button>
-            <div class="modal-body">
-                <form class="form" method="post" action="" id="form-forgotPassword">
-                    <div class="form-group">
-                        <label for="forgotPassword-email" class="d-none"></label>
-                        <input type="email" class="form-control" placeholder="Email" name="email" id="forgotPassword-email">
-                        <div class="invalid-feedback"></div>
-                    </div>
-                    <div class="form-group d-flex flex-column justify-content-center align-items-center mb-0">
-                        <button type="submit" class="btn btn-warning btn-special">Продолжить</button>
-                    </div>
-                    <div class="modal-extra mt-4">
-                        <strong>Внимание:</strong>
-                        <p>
-                            На ваш почтовый адрес будет отправлено письмо с инструкциями по восстановлению пароля.
-                        </p>
-                        <p>
-                            Если Вы вспомнили свой пароль, вы можете
-                            <span data-toggle="modal" data-target="#signIn" class="link-modal">войти</span> в аккаунт.
-                        </p>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
 <div class="modal fade" id="signIn" tabindex="-1" role="dialog" aria-labelledby="signIn" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -67,6 +35,7 @@
         </div>
     </div>
 </div>
+
 
 <div class="modal fade" id="signUp" tabindex="-1" role="dialog" aria-labelledby="signUp" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -146,6 +115,40 @@
         </div>
     </div>
 </div>
+
+
+<div class="modal fade" id="forgotPassword" tabindex="-1" role="dialog" aria-labelledby="forgotPassword"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <h3 class="modal-title text-center">Восстановить пароль</h3>
+            <button class="modal-close" data-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-body">
+                <form class="form" method="post" action="" id="form-forgotPassword">
+                    <div class="form-group">
+                        <label for="forgotPassword-email" class="d-none"></label>
+                        <input type="email" class="form-control" placeholder="Email" name="email" id="forgotPassword-email">
+                        <div class="invalid-feedback"></div>
+                    </div>
+                    <div class="form-group d-flex flex-column justify-content-center align-items-center mb-0">
+                        <button type="submit" class="btn btn-warning btn-special">Продолжить</button>
+                    </div>
+                    <div class="modal-extra mt-4">
+                        <strong>Внимание:</strong>
+                        <p>
+                            На ваш почтовый адрес будет отправлено письмо с инструкциями по восстановлению пароля.
+                        </p>
+                        <p>
+                            Если Вы вспомнили свой пароль, вы можете
+                            <span data-toggle="modal" data-target="#signIn" class="link-modal">войти</span> в аккаунт.
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <div class="modal modal-location fade" id="modalLocation" tabindex="-1" role="dialog" aria-labelledby="modalLocationLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-window" role="document">

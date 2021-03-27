@@ -1,29 +1,47 @@
 (function ($) {
     "use strict";
 
-
-
-
+    // Login
     $(document).on('submit', '#form-signIn', function (e) {
         e.preventDefault();
         let $form = $(this);
-
         window.ajaxRequest($form, function () {
-
-
-           /* return {
-                beforeSend: function () {},
-                complete: function () {},
-                success: function (response) {
-
-
-                }
-            };*/
+            /* return {
+                 beforeSend: function () {},
+                 complete: function () {},
+                 success: function (response) {
+                 }
+             };*/
         });
-
-
     });
 
+    // SignUp
+    $(document).on('submit', '#form-signup', function (e) {
+        e.preventDefault();
+        let $form = $(this);
+        window.ajaxRequest($form, function () {
+            /* return {
+                 beforeSend: function () {},
+                 complete: function () {},
+                 success: function (response) {
+                 }
+             };*/
+        });
+    });
+
+    // Password recovery
+    $(document).on('submit', '#form-recovery', function (e) {
+        e.preventDefault();
+        let $form = $(this);
+        window.ajaxRequest($form, function () {
+            /* return {
+                 beforeSend: function () {},
+                 complete: function () {},
+                 success: function (response) {
+                 }
+             };*/
+        });
+    });
 
 
 /*
