@@ -43,30 +43,30 @@
             <h3 class="modal-title text-center">Регистрация</h3>
             <button class="modal-close" data-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body">
-                <form class="form" action="" method="post" id="form-signUp">
+                <form class="form" action="{{ path(['/users/guest/signup']) }}" method="post" id="form-signup">
                     <div class="form-group">
                         <label for="signUp-email" class="d-none"></label>
-                        <input type="email" class="form-control" placeholder="Введите ваш Email" name="email" id="signUp-email">
+                        <input type="email" class="form-control" placeholder="Введите ваш Email" name="User[email]" id="signUp-email">
                         <div class="invalid-feedback"></div>
                     </div>
                     <div class="form-group">
                         <label for="signUp-phone" class="d-none"></label>
-                        <input type="tel" class="form-control" placeholder="+38(0__)-___-__-__" name="phone" id="signUp-phone">
+                        <input type="tel" class="form-control" placeholder="+38(0__)-___-__-__" name="User[phone]" id="signUp-phone">
                         <div class="invalid-feedback"></div>
                     </div>
                     <div class="form-group">
                         <label for="signUp-password" class="d-none"></label>
-                        <input type="password" class="form-control" placeholder="Введите ваш пароль" name="password" id="signUp-password">
+                        <input type="password" class="form-control" placeholder="Введите ваш пароль" name="User[password]" id="signUp-password">
                         <div class="invalid-feedback"></div>
                     </div>
                     <div class="form-group">
                         <label for="signUp-name" class="d-none"></label>
-                        <input type="text" class="form-control" placeholder="Введите ваше имя" name="name" id="signUp-name">
+                        <input type="text" class="form-control" placeholder="Введите ваше имя" name="Profile[name]" id="signUp-name">
                         <div class="invalid-feedback"></div>
                     </div>
                     <div class="form-group">
                         <label class="d-none" for="signUp-user_type"></label>
-                        <select class="custom-select" name="user_type" id="signUp-user_type">
+                        <select class="custom-select" name="Profile[user_type]" id="signUp-user_type">
                             <option value="" selected>Тип аккаунта</option>
                             <option value="4">Агенство</option>
                             <option value="3">Собственник</option>
@@ -79,7 +79,7 @@
                         <strong>Регистрируясь на сайте я соглашаюсь:</strong>
                         <p>
                             <label class="form-check-label d-flex align-items-start">
-                                <input type="checkbox" name="advertising" value="1">
+                                <input type="checkbox" name="advertising" value="0">
                                 <span>
                                     Получать рекламные и информационные EMAIL рассылки от "cdaem.ru" и партнеров и не возражаю
                                     о передачи моих персональных данных третьим лицам.
@@ -88,7 +88,7 @@
                         </p>
                         <p>
                             <label class="form-check-label d-flex align-items-start">
-                                <input type="checkbox" name="agreement" value="1">
+                                <input type="checkbox" name="agreement" value="0">
                                 <span>
                                     С <a href="https://cdaem.ru/page/agreement" target="_blank">пользовательским соглашением</a>, с расценками на
                                     размещение платных объявлений, а также получать СМС-оповещения при использовании определенных
@@ -117,17 +117,16 @@
 </div>
 
 
-<div class="modal fade" id="forgotPassword" tabindex="-1" role="dialog" aria-labelledby="forgotPassword"
-     aria-hidden="true">
+<div class="modal fade" id="forgotPassword" tabindex="-1" role="dialog" aria-labelledby="forgotPassword" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <h3 class="modal-title text-center">Восстановить пароль</h3>
             <button class="modal-close" data-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body">
-                <form class="form" method="post" action="" id="form-forgotPassword">
+                <form class="form" method="post" action="{{ path(['/users/guest/recovery']) }}" id="form-recovery">
                     <div class="form-group">
                         <label for="forgotPassword-email" class="d-none"></label>
-                        <input type="email" class="form-control" placeholder="Email" name="email" id="forgotPassword-email">
+                        <input type="email" class="form-control" placeholder="Email" name="RecoveryForm[email]" id="forgotPassword-email">
                         <div class="invalid-feedback"></div>
                     </div>
                     <div class="form-group d-flex flex-column justify-content-center align-items-center mb-0">

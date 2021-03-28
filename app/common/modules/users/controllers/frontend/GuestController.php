@@ -5,7 +5,6 @@ namespace common\modules\users\controllers\frontend;
 use Yii;
 use yii\helpers\Url;
 use yii\web\Response;
-use yii\widgets\ActiveForm;
 use frontend\components\Controller;
 use common\modules\users\models as models;
 
@@ -58,12 +57,15 @@ class GuestController extends Controller
         $user = new models\User(['scenario' => 'signup']);
         $profile = new models\Profile(['scenario' => 'create']);
 
+        dd(Yii::$app->request->post());
+
         if ($user->load(Yii::$app->request->post()) && $profile->load(Yii::$app->request->post())) {
             if ($user->validate() && $profile->validate()) {
                 $user->populateRelation('profile', $profile);
                 if ($user->save(false)) {
                     if ($this->module->requireEmailConfirmation === true) {
                         Yii::$app->consoleRunner->run('users/control/send-email ' . $user->email . ' signup "' . Yii::t('users', 'SUBJECT_SIGNUP') . '"');
+
                         Yii::$app->session->setFlash('success', Yii::t('users', 'SUCCESS_SIGNUP_WITHOUT_LOGIN', [
                             'url' => Url::toRoute('resend')
                         ]));
@@ -79,9 +81,10 @@ class GuestController extends Controller
                     return $this->refresh();
                 }
             } elseif (Yii::$app->request->isAjax) {
+                Yii::$app->response->statusCode = 422;
                 Yii::$app->response->format = Response::FORMAT_JSON;
 
-                return ActiveForm::validateMultiple([$user, $profile]);
+                return $this->validate($user, $profile);
             }
         }
 
@@ -118,9 +121,10 @@ class GuestController extends Controller
                     return $this->refresh();
                 }
             } elseif (Yii::$app->request->isAjax) {
+                Yii::$app->response->statusCode = 422;
                 Yii::$app->response->format = Response::FORMAT_JSON;
 
-                return ActiveForm::validate($model);
+                return $this->validate($model);
             }
         }
 
@@ -139,8 +143,6 @@ class GuestController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             if ($model->validate()) {
                 if ($model->login()) {
-                    $url = Yii::$app->request->referrer ? Yii::$app->request->referrer : ['/office/default/index'];
-
                     return $this->redirect(['/office/default/index']);
                 }
             } elseif (Yii::$app->request->isAjax) {
@@ -182,6 +184,7 @@ class GuestController extends Controller
             if ($model->validate()) {
                 if ($user = $model->recovery()) {
                     Yii::$app->consoleRunner->run('users/control/send-email ' . $user->email . ' recovery "' . Yii::t('users', 'SUBJECT_RECOVERY') . '"');
+
                     Yii::$app->session->setFlash('success', Yii::t('users', 'SUCCESS_RECOVERY'));
                 } else {
                     Yii::$app->session->setFlash('danger', Yii::t('users', 'FAIL_RECOVERY'));
@@ -189,9 +192,10 @@ class GuestController extends Controller
 
                 return $this->refresh();
             } elseif (Yii::$app->request->isAjax) {
+                Yii::$app->response->statusCode = 422;
                 Yii::$app->response->format = Response::FORMAT_JSON;
 
-                return ActiveForm::validate($model);
+                return $this->validate($model);
             }
         }
 
@@ -225,9 +229,10 @@ class GuestController extends Controller
                     return $this->refresh();
                 }
             } elseif (Yii::$app->request->isAjax) {
+                Yii::$app->response->statusCode = 422;
                 Yii::$app->response->format = Response::FORMAT_JSON;
 
-                return ActiveForm::validate($model);
+                return $this->validate($model);
             }
         }
 

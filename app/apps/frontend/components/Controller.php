@@ -82,4 +82,25 @@ class Controller extends \yii\web\Controller
 
         return $result;
     }
+
+    /**
+     * @param $models
+     * @param null $attributes
+     * @return array
+     */
+    public static function validateMultiple($models, $attributes = null)
+    {
+        $result = [];
+        /* @var $model Model */
+        foreach ($models as $i => $model) {
+            $model->validate($attributes);
+            foreach ($model->getErrors() as $attribute => $errors) {
+                $name = Html::getInputName($model, $attribute);
+                $name = str_replace(['[]', '][', '[', ']', ' ', '.'], ['', '-', '-', '', '-', '-'], $name);
+                $result[$name] = $errors;
+            }
+        }
+
+        return $result;
+    }
 }
