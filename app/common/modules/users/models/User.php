@@ -25,7 +25,7 @@ class User extends \nepster\users\models\User
     public function scenarios()
     {
         return [
-            'signup' => ['phone', 'email', 'password', 'repassword', 'agreement'],
+            'signup' => ['phone', 'email', 'password', 'agreement'],
         ];
     }
 
@@ -67,7 +67,7 @@ class User extends \nepster\users\models\User
             ['email', 'email'],
 
             ['password', \nepster\users\validators\PasswordValidator::class],
-            ['repassword', 'compare', 'compareAttribute' => 'password'],
+            //['repassword', 'compare', 'compareAttribute' => 'password'],
 
             ['agreement', 'compare', 'compareValue' => '1', 'message' => 'Необходимо согласиться с условиями пользовательского соглашения.']
         ];

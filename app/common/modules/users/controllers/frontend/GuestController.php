@@ -57,8 +57,6 @@ class GuestController extends Controller
         $user = new models\User(['scenario' => 'signup']);
         $profile = new models\Profile(['scenario' => 'create']);
 
-        dd(Yii::$app->request->post());
-
         if ($user->load(Yii::$app->request->post()) && $profile->load(Yii::$app->request->post())) {
             if ($user->validate() && $profile->validate()) {
                 $user->populateRelation('profile', $profile);
@@ -154,7 +152,7 @@ class GuestController extends Controller
         }
 
         return $this->render('login', [
-            'model' => $model
+            'model' => $model,
         ]);
     }
 
@@ -164,6 +162,7 @@ class GuestController extends Controller
     public function actionActivation($token)
     {
         $model = new models\frontend\ActivationForm(['secure_key' => $token]);
+
         if ($model->validate() && $model->activation()) {
             Yii::$app->session->setFlash('success', Yii::t('users', 'SUCCESS_ACTIVATION'));
         } else {

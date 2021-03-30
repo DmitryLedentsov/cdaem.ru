@@ -37,6 +37,11 @@
 </div>
 
 
+{{ use('/common/modules/users/models/Profile') }}
+{{ dump(Profile.getUserTypeArray()) }}
+
+_header-modals.twig
+
 <div class="modal fade" id="signUp" tabindex="-1" role="dialog" aria-labelledby="signUp" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -77,30 +82,30 @@
                     </div>
                     <div class="modal-extra mt-4">
                         <strong>Регистрируясь на сайте я соглашаюсь:</strong>
-                        <p>
+                        <div class="form-group">
                             <label class="form-check-label d-flex align-items-start">
-                                <input type="checkbox" name="advertising" value="0">
+                                <input type="checkbox" name="Profile[advertising]" value="1">
                                 <span>
                                     Получать рекламные и информационные EMAIL рассылки от "cdaem.ru" и партнеров и не возражаю
                                     о передачи моих персональных данных третьим лицам.
                                 </span>
                             </label>
-                        </p>
-                        <p>
-                            <label class="form-check-label d-flex align-items-start">
-                                <input type="checkbox" name="agreement" value="0">
-                                <span>
-                                    С <a href="https://cdaem.ru/page/agreement" target="_blank">пользовательским соглашением</a>, с расценками на
-                                    размещение платных объявлений, а также получать СМС-оповещения при использовании определенных
-                                    сервисов на этом сайте.
-                                </span>
+                            <div class="invalid-feedback"></div>
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" class="form-check-input" name="User[agreement]" value="1" id="signUp-agreement">
+                            <label class="form-check-label" for="signUp-agreement">
+                                С <a href="https://cdaem.ru/page/agreement" target="_blank">пользовательским соглашением</a>, с расценками на
+                                размещение платных объявлений, а также получать СМС-оповещения при использовании определенных
+                                сервисов на этом сайте.
                             </label>
-                        </p>
+                            <div class="invalid-feedback"></div>
+                        </div>
                         <strong>Внимание:</strong>
                         <p>
                             После регистрации Вам будет отправлено письмо с инструкциями по активации аккаунта.
                             Если письмо не пришло в течении 15 минут, Вы можете запросить
-                            <a href="https://cdaem.ru/users/guest/resend" target="_blank">код активации</a> повторно.
+                            <a href="{{ path(['/users/guest/resend']) }}" target="_blank">код активации</a> повторно.
                         </p>
                     </div>
                     <div class="form-group d-flex flex-column justify-content-center align-items-center mt-4 mb-0">

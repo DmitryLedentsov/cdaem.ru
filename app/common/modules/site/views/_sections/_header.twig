@@ -18,17 +18,28 @@
                         Помощь
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="{{ this.context.action.id == 'index' ? 'nav-link link-with-border' : '' }}" href="{{ path(['/users/guest/signup']) }}" data-toggle="modal" data-target="#signUp">
-                        Регистрация
-                    </a>
-                </li>
+                {% if app.user.getIsGuest() %}
+                    <li class="nav-item">
+                        <a class="{{ this.context.action.id == 'index' ? 'nav-link link-with-border' : '' }}" href="{{ path(['/users/guest/signup']) }}" data-toggle="modal" data-target="#signUp">
+                            Регистрация
+                        </a>
+                    </li>
+                {% endif %}
             </ul>
         </nav>
-        <a href="{{ path(['/users/guest/login']) }}" class="btn btn-warning btn-special btn-sign-in" data-toggle="modal" data-target="#signIn">
-            Вход
-        </a>
+        {% if app.user.getIsGuest() %}
+            <a href="{{ path(['/users/guest/login']) }}" class="btn btn-warning btn-special btn-sign-in" data-toggle="modal" data-target="#signIn">
+                Вход
+            </a>
+        {% endif %}
+        {% if app.user.getIsGuest() == false %}
+            <a href="{{ path(['/office/default/index']) }}">Кабинет</a>
+            &nbsp; | &nbsp;
+            <a href="{{ path(['/users/user/logout']) }}">Выход</a>
+        {% endif %}
     </div>
 </header>
 
-{{ this.render("@common/modules/site/views/_sections/_header-modals.twig") | raw }}
+{% if app.user.getIsGuest() %}
+    {{ this.render("@common/modules/site/views/_sections/_header-modals.twig") | raw }}
+{% endif %}
