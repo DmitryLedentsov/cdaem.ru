@@ -38,7 +38,7 @@
                     </div>
                     <div class="modal-extra mt-4">
                         <strong>Регистрируясь на сайте я соглашаюсь:</strong>
-                        <p>
+                        <div class="form-group">
                             <label class="form-check-label d-flex align-items-start">
                                 <input type="checkbox" name="advertising" value="1">
                                 <span>
@@ -46,17 +46,18 @@
                                     о передачи моих персональных данных третьим лицам.
                                 </span>
                             </label>
-                        </p>
-                        <p>
-                            <label class="form-check-label d-flex align-items-start">
-                                <input type="checkbox" name="agreement" value="1">
-                                <span>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" name="User[agreement]" value="1" id="signUp-agreement">
+                                <label class="form-check-label" for="signUp-agreement">
                                     С <a href="https://cdaem.ru/page/agreement" target="_blank">пользовательским соглашением</a>, с расценками на
                                     размещение платных объявлений, а также получать СМС-оповещения при использовании определенных
                                     сервисов на этом сайте.
-                                </span>
-                            </label>
-                        </p>
+                                </label>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
                         <strong>Внимание:</strong>
                         <p>
                             После регистрации Вам будет отправлено письмо с инструкциями по активации аккаунта.

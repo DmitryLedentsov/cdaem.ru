@@ -106,6 +106,12 @@
             display: inline-block;
             margin-bottom: 0.35rem;
         }
+
+        .form-group {
+            .form-check {
+                margin-left: 1.25rem;
+            }
+        }
     }
 
     .link-modal {

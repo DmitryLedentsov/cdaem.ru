@@ -13,11 +13,10 @@ $(function () {
     });
 
     // AJAX redirect handler
-    $(document).ajaxComplete(function (event, xhr, settings) {
-        let url = null;
+    $(document).ajaxComplete(function (event, xhr) {
+        let url = xhr.getResponseHeader('X-Redirect');
         try {
             let response = $.parseJSON(xhr.responseText);
-            url = xhr.getResponseHeader('X-Redirect');
             if (response.hasOwnProperty('data') && response.data.hasOwnProperty('redirect')) {
                 url = response.data.redirect;
             }
@@ -31,11 +30,12 @@ $(function () {
 
     // processing errors from server
     window.ajaxProcessingError = function (response, $form) {
-        if (response.getResponseHeader('Redirected-To')) {
+        if (response.getResponseHeader('Redirected-To') || response.getResponseHeader('X-Redirect')) {
             return;
         }
         if (response.status === 422) {
-            $form.displayValidation(response.responseJSON.errors);
+            //$form.displayValidation(response.responseJSON.errors);
+            $form.displayValidation(response.responseJSON);
         } else {
             if (typeof response.responseJSON == 'undefined') {
                 window.openWindow(translations.error_title, translations.error_description);
