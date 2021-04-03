@@ -19,29 +19,22 @@
             </a>
         </div>
         <div class="search-form-border"></div>
-        <form action="" method="get">
+        <form action="{{ path(['/partners/pre-region']) }}" method="get">
             <div class="search-form-options">
                 <div class="search-form-filters">
                     <div class="search-form-filter search-form-filter-city">
                         <label>
-                            <input class="form-control" id="search-form-autocomplete" name="city" type="text" autocomplete="off" placeholder="Москва">
-                            <input type="hidden" value="">
+                            <input class="form-control" id="search-form-autocomplete" data-url="{{ path(['/geo/ajax/select-city']) }}" name="city_name" type="text" autocomplete="off" placeholder="Поиск в городе" value="Москва">
+                            <input type="hidden" name="city_code" id="search-form-autocomplete-selected" value="msk">
                         </label>
                     </div>
                     <div class="search-form-filter search-form-filter-type">
                         <label>
                             <label>
-                                <select class="custom-select" name="type">
-                                    <option selected>Тип аренды</option>
-                                    <option>Квартира на час</option>
-                                    <option>Квартира на сутки</option>
-                                    <option>Квартира на ночь</option>
-                                    <option>Квартира на месяц</option>
-                                    <option>Комната на сутки</option>
-                                    <option>Кой-ко место</option>
-                                    <option>Загородный дом</option>
-                                    <option>Квартира на Новый Год</option>
-                                    <option>Квартира от cdaem.ru</option>
+                                <select class="custom-select" name="sect">
+                                    {% for key, rentType in searchModel.rentTypesList %}
+                                        <option value="{{ key }}" {{ key == 2 ? 'selected="selected"' : '' }}>{{ rentType }}</option>
+                                    {% endfor %}
                                 </select>
                             </label>
                         </label>
@@ -80,6 +73,10 @@
                         </span>
                         <div class="search-form-filter-options">
                             <p class="options-text">Количество комнат</p>
+                            <label class="rooms-item">
+                                <input name="rooms" type="radio" value="all" checked>
+                                <span class="input-text">Любой вариант</span>
+                            </label>
                             <div class="rooms">
                                 <div class="rooms-container">
                                     <label class="rooms-item">
@@ -117,6 +114,10 @@
                                 <input name="price_to" type="number" value="" placeholder="до">
                             </div>
                             <p class="options-text">Количество гостей</p>
+                            <label class="guests-item">
+                                <input name="guests" type="radio" value="all" checked>
+                                <span class="input-text">Любой вариант</span>
+                            </label>
                             <div class="guests">
                                 <div class="guests-container">
                                     <label class="guests-item">

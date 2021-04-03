@@ -90,7 +90,7 @@ class AjaxController extends \frontend\components\Controller
 
         $name = trim(Yii::$app->request->get('name'));
 
-        if (mb_strlen($name) < 3) {
+        if (mb_strlen($name) < 2) {
             return [];
         }
 

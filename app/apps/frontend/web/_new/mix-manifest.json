@@ -1,7 +1,7 @@
 {
-    "/js/interface.min.js": "/js/interface.min.js?id=82a0f356668da5563e2c",
+    "/js/interface.min.js": "/js/interface.min.js?id=d80116e8288d60f56d0e",
     "/css/base.min.css": "/css/base.min.css?id=29a7dd71ae9b7c953d1f",
-    "/css/interfaces.min.css": "/css/interfaces.min.css?id=597a4b11330377f19699",
+    "/css/interfaces.min.css": "/css/interfaces.min.css?id=1dc8a2b3b2e62a1047fa",
     "/css/pages/agency.min.css": "/css/pages/agency.min.css?id=09e2a9de3040da17482a",
     "/css/pages/apartment.min.css": "/css/pages/apartment.min.css?id=a5b7eae78b3561cdfe38",
     "/css/pages/auth.min.css": "/css/pages/auth.min.css?id=35e545d0f496074f7df1",
@@ -19,6 +19,6 @@
     "/js/pages/apartment.min.js": "/js/pages/apartment.min.js?id=c6aa8bf980dc1fbe141c",
     "/js/pages/board.min.js": "/js/pages/board.min.js?id=4922ad1de6dabba76af9",
     "/js/pages/fastrent.min.js": "/js/pages/fastrent.min.js?id=5b2fe8abad2a1c0f497e",
-    "/js/pages/home.min.js": "/js/pages/home.min.js?id=a4573d1c79baf62a34ff",
+    "/js/pages/home.min.js": "/js/pages/home.min.js?id=614b0db6e8c116015883",
     "/js/pages/search.min.js": "/js/pages/search.min.js?id=d8de887f54a7ac5fd0c2"
 }

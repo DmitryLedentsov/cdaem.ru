@@ -107,11 +107,7 @@ class DefaultController extends \frontend\components\Controller
      */
     public function actionPreRegion()
     {
-        $city = Yii::$app->request->get('city');
-
-        if ($city) {
-            $city = City::findByName($city);
-        }
+        $city = City::findByNameEng(Yii::$app->request->get('city_code'));
 
         if (!$city) {
             $city = City::findById(Yii::$app->getModule('geo')->mskCityId);
@@ -124,6 +120,8 @@ class DefaultController extends \frontend\components\Controller
 
         $queryParams = Yii::$app->request->queryParams;
         $queryParams['city'] = $city->name_eng;
+
+        unset($queryParams['city_name'], $queryParams['city_code']);
 
         $this->redirect(array_merge($redirect, $queryParams), 302);
     }

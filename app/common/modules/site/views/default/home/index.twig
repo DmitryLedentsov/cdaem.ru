@@ -20,7 +20,7 @@
     {{ use('common/modules/site/assets/HomeAsset') }}
     {{ register_home_asset() }}
 
-    {{ this.render("@common/modules/site/views/default/home/_sections/_search-form.twig") | raw }}
+    {{ this.render("@common/modules/site/views/default/home/_sections/_search-form.twig", {'searchModel': searchModel}) | raw }}
     {{ this.render("@common/modules/site/views/default/home/_sections/_faq.twig") | raw }}
     {{ this.render("@common/modules/site/views/default/home/_sections/_cities.twig") | raw }}
     {{ this.render("@common/modules/site/views/default/home/_sections/_articles.twig", {'articles': articles}) | raw }}

@@ -56,8 +56,8 @@
         $this.find('.daterangepicker-to .daterangepicker-month').text(picker.endDate.format('D MMMM'));
         $this.find('.daterangepicker-to .daterangepicker-day').text(picker.endDate.format('dddd'));
 
-        $this.find('.daterangepicker-from input[type=hidden]').val(1);
-        $this.find('.daterangepicker-to input[type=hidden]').val(2);
+        $this.find('.daterangepicker-from input[type=hidden]').val(picker.startDate.format('YYYY-MM-DD'));
+        $this.find('.daterangepicker-to input[type=hidden]').val(picker.endDate.format('YYYY-MM-DD'));
     });
 
     $daterangepicker.on('show.daterangepicker', function(ev, picker) {
