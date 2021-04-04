@@ -40,6 +40,10 @@
 {{ use('/common/modules/users/models/Profile') }}
 {{ dump(Profile.getUserTypeArray()) }}
 
+{{ use ('app/models/MyClass') }}
+{{ MyClass.helloWorld() }}
+
+
 _header-modals.twig
 
 <div class="modal fade" id="signUp" tabindex="-1" role="dialog" aria-labelledby="signUp" aria-hidden="true">
@@ -150,79 +154,6 @@ _header-modals.twig
                         </p>
                     </div>
                 </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<div class="modal modal-location fade" id="modalLocation" tabindex="-1" role="dialog" aria-labelledby="modalLocationLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-window" role="document">
-        <div class="modal-content modal-item">
-            <div class="modal-header modal-top">
-                <h4 class="modal-title modal-header-title" id="modalLocationLabel">Я нахожусь в городе:</h4>
-                <button type="button" class="close btn-close" data-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <label class="modal-location-label">
-                    <input type="text" class="modal-location-city input-field" placeholder="Введите ваш город*">
-                </label>
-                <h5 class="modal-subtitle">Популярные города:</h5>
-                <div class="modal-location-container">
-                    <div class="modal-location-content">
-                        <div class="modal-city">
-                            <ul class="modal-city-list">
-                                <li class="modal-city-item">
-                                    <a class="modal-city-link" href="#">Москва</a>
-                                </li>
-                                <li class="modal-city-item">
-                                    <a class="modal-city-link" href="#">Екатеринбург</a>
-                                </li>
-                                <li class="modal-city-item">
-                                    <a class="modal-city-link" href="#">Самара</a>
-                                </li>
-                                <li class="modal-city-item">
-                                    <a class="modal-city-link" href="#">Омск</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="modal-city">
-                            <ul class="modal-city-list">
-                                <li class="modal-city-item">
-                                    <a class="modal-city-link" href="#">Нижний Новгород</a>
-                                </li>
-                                <li class="modal-city-item">
-                                    <a class="modal-city-link" href="#">Екатеринбург</a>
-                                </li>
-                                <li class="modal-city-item">
-                                    <a class="modal-city-link" href="#">Санкт-Петербург</a>
-                                </li>
-                                <li class="modal-city-item">
-                                    <a class="modal-city-link" href="#">Омск</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="modal-city">
-                            <ul class="modal-city-list">
-                                <li class="modal-city-item">
-                                    <a class="modal-city-link" href="#">Москва</a>
-                                </li>
-                                <li class="modal-city-item">
-                                    <a class="modal-city-link" href="#">Екатеринбург</a>
-                                </li>
-                                <li class="modal-city-item">
-                                    <a class="modal-city-link" href="#">Самара</a>
-                                </li>
-                                <li class="modal-city-item">
-                                    <a class="modal-city-link" href="#">Омск</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer justify-content-center pb-0">
-                <button type="button" class="btn btn-warning btn-special mt-3">Сохранить</button>
             </div>
         </div>
     </div>

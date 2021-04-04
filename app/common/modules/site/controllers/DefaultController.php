@@ -8,7 +8,6 @@ use yii\web\Response;
 use yii\widgets\ActiveForm;
 use yii\web\NotFoundHttpException;
 use common\modules\geo\models\City;
-use common\modules\site\models\Taxi;
 use common\modules\pages\models\Page;
 use common\modules\site\models\Sitemap;
 use common\modules\realty\models\RentType;
@@ -103,7 +102,7 @@ class DefaultController extends \frontend\components\Controller
             throw new NotFoundHttpException();
         }
 
-        if ($metaData['slug'] != '/') {
+        if ($metaData['slug'] !== '/') {
             Yii::$app->view->registerLinkTag(['rel' => 'canonical', 'href' => URL::to('https://cdaem.ru/' . $metaData['slug'])]);
         } else {
             Yii::$app->view->registerLinkTag(['rel' => 'canonical', 'href' => URL::to('https://cdaem.ru')]);
@@ -153,8 +152,7 @@ class DefaultController extends \frontend\components\Controller
      */
     public function actionBadbrowser()
     {
-        return $this->render('badbrowser.twig', [
-        ]);
+        return $this->render('badbrowser.twig');
     }
 
     /**
@@ -196,47 +194,6 @@ class DefaultController extends \frontend\components\Controller
         return $this->render('partnership.twig', [
             'model' => $model,
             'formModel' => $formModel,
-        ]);
-    }
-
-    /**
-     * Форма заказа такси
-     * @return array|string|Response
-     */
-    public function actionTaxi()
-    {
-        if (!Yii::$app->request->isAjax) {
-            return $this->goBack();
-        }
-
-        $model = new Taxi();
-        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
-            Yii::$app->response->format = Response::FORMAT_JSON;
-            $errors = ActiveForm::validate($model);
-
-            if (!$errors) {
-                if (Yii::$app->request->post('submit')) {
-                    if ($model->process()) {
-                        return [
-                            'status' => 1,
-                            'message' => 'Заказ принят службой  TAXIREVERSi! 8(495)-979-9977'
-                        ];
-                    }
-
-                    return [
-                        'status' => 0,
-                        'message' => 'Возникла критическая ошибка.'
-                    ];
-                }
-
-                return [];
-            }
-
-            return $errors;
-        }
-
-        return $this->renderAjax('../ajax/taxi.php', [
-            'model' => $model
         ]);
     }
 

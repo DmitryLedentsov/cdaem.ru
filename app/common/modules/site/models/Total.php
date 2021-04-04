@@ -9,10 +9,9 @@ namespace common\modules\site\models;
 class Total extends \yii\base\Model
 {
     /**
-     * Получить именование части суток
      * @return string
      */
-    public static function getNamePartOfTheDay()
+    public static function getNamePartOfTheDay(): string
     {
         $h = date('H');
 

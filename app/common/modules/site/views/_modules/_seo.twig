@@ -1,0 +1,28 @@
+<meta charset="{{ app.charset }}"/>
+<noscript>
+    <meta http-equiv="refresh" content="0; URL={{ path(['/site/default/badbrowser']) }}">
+</noscript>
+<title>{{ title is defined ? title : 'Cdaem.ru' }}</title>
+<meta name="description" content="{{ description is defined ? description : '' }}">
+<meta name="keywords" content="{{ keywords is defined ? keywords : '' }}">
+<meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="yandex-verification" content="bbbd434de303f656"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Content-Language" content="ru"/>
+<meta name="theme-color" content="#ffffff">
+<meta name="currency" content="rub"/>
+<meta name="domain" content="{{  dump(url.base(true)) }}">
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="Cdaem.ru"/>
+<meta property="og:url" content="{{ url.to('@web', true) }}">
+<meta property="og:title" content="{{ og.title is defined ? og.title : title is defined ? title : 'Cdaem.ru' }}">
+<meta property="og:description" content="{{ og.description is defined ? og.description : description is defined ? description : '' }}">
+<meta property="og:image" content="{{ url.to('@web/_new/images/500x500.png', true) }}">
+<meta property="og:image:type" content="image/png">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ url.to('@web/_new/images/apple-touch-icon-180x180.png', true) }}">
+<link rel="icon" type="image/png" href="{{ url.to('@web/_new/images/favicon-32x32.png', true) }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ url.to('@web/_new/images/favicon-16x16.png', true) }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ url.to('@web/_new/images/favicon-32x32.png', true) }}">
+<link rel="shortcut icon" type="image/x-icon" href="{{ url.to('@web/_new/images/favicon-32x32.png', true) }}">

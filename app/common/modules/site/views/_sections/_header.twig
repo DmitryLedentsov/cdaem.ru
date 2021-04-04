@@ -2,9 +2,9 @@
     <div class="header-nav">
         <div class="header-container">
             <a class="logo" href="/">
-                <img src="/_new/images/logo-light.svg" alt="logo">
+                <img src="/_new/images/logo-light.svg" alt="logo" />
             </a>
-            <button class="location" data-toggle="modal" data-target="#modalLocation">Москва</button>
+            {{ this.render("@common/modules/site/views/_sections/_location.twig") | raw }}
         </div>
         <nav class="nav">
             <ul class="nav-list">

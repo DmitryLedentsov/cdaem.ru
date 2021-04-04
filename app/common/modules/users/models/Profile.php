@@ -210,7 +210,7 @@ class Profile extends \nepster\users\models\Profile
     /**
      * @return array
      */
-    public static function getUserTypeArray()
+    public static function getUserTypeArray(): array
     {
         return [
             self::AGENCY => [

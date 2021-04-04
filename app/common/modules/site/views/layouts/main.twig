@@ -1,33 +1,7 @@
-{{ this.beginPage() }}
-<!DOCTYPE html>
+{{ this.beginPage() }}<!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="{{ app.charset }}"/>
-    <noscript>
-        <meta http-equiv="refresh" content="0; URL={{ path(['/site/default/badbrowser']) }}">
-    </noscript>
-    <title>{% block title %}{% endblock %}</title>
-    <meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE"/>
-    <meta name="apple-mobile-web-app-capable" content="yes"/>
-    <meta name="yandex-verification" content="bbbd434de303f656"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="Content-Language" content="ru"/>
-    <meta name="domain" content="--">
-    <meta name="theme-color" content="#ffffff">
-    <meta name="currency" content="rub"/>
-    <meta property="og:type" content="website"/>
-    <meta property="og:site_name" content="---"/>
-    <meta property="og:url" content="---">
-    <meta property="og:title" content="---">
-    <meta property="og:description" content="---">
-    <meta property="og:image" content="og-home.png">
-    <meta property="og:image:type" content="image/png">
-    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon-180x180.png">
-    <link rel="icon" type="image/png" href="images/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
-    <link rel="shortcut icon" type="image/x-icon" href="images/favicon-32x32.png">
+    {% block seo %}{% endblock %}
     {{ html.csrfMetaTags() | raw }}
     {{ this.serviceHead() | raw }}
     {{ this.head() }}
@@ -73,5 +47,4 @@
 {{ this.endBody() }}
 
 </body>
-</html>
-{{ this.endPage() }}
+</html>{{ this.endPage() }}

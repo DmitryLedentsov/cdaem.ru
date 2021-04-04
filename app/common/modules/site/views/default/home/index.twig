@@ -12,10 +12,15 @@
 
 {% block title %}{{ metaData['meta_title'] }}{% endblock %}
 
-{% block content %}
+{% block seo %}
+    {% include '@common/modules/site/views/_modules/_seo.twig' with {
+        'title': metaData['meta_title'],
+        'description': metaData['meta_description'],
+        'keywords': metaData['meta_keywords'],
+    } %}
+{% endblock %}
 
-    {{ this.registerMetaTag({'name' : 'description', 'content' : metaData['meta_description']}) }}
-    {{ this.registerMetaTag({'name' : 'keywords', 'content' : metaData['meta_keywords']}) }}
+{% block content %}
 
     {{ use('common/modules/site/assets/HomeAsset') }}
     {{ register_home_asset() }}
