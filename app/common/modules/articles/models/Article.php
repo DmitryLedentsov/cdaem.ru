@@ -3,6 +3,7 @@
 namespace common\modules\articles\models;
 
 use Yii;
+use yii\db\ActiveQuery;
 
 /**
  * Статьи
@@ -14,12 +15,13 @@ class Article extends \yii\db\ActiveRecord
 
     public $bgfile;
 
-    public $imagesPath = '@frontend/web/images';
+    public string $imagesPath = '@frontend/web/images';
 
     /**
      * @inheritdoc
+     * @return ArticleQuery
      */
-    public static function find()
+    public static function find(): ArticleQuery
     {
         return new ArticleQuery(get_called_class());
     }
@@ -27,7 +29,7 @@ class Article extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public static function tableName()
+    public static function tableName(): string
     {
         return '{{%articles}}';
     }
@@ -35,7 +37,7 @@ class Article extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'article_id' => 'ID',
@@ -70,9 +72,10 @@ class Article extends \yii\db\ActiveRecord
     const STATUS_CLOSE = 0;
 
     /**
-     * @return array Массив доступных данных статуса статических страниц
+     * Массив доступных данных статуса статических страниц
+     * @return array
      */
-    public static function getStatusArray()
+    public static function getStatusArray(): array
     {
         return [
             self::STATUS_ALL => [
@@ -90,12 +93,18 @@ class Article extends \yii\db\ActiveRecord
         ];
     }
 
-    public function getArticlelink()
+    /**
+     * @return ActiveQuery
+     */
+    public function getArticlelink(): ActiveQuery
     {
         return $this->hasMany(ArticleLink::class, ['article_id' => 'article_id']);
     }
 
-    public function getTitleImg()
+    /**
+     * @return string
+     */
+    public function getTitleImg(): string
     {
         $pathToImg = sprintf('%s/%s', Yii::getAlias($this->imagesPath), $this->title_img);
 

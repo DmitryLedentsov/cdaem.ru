@@ -14,9 +14,24 @@ class ArticleQuery extends ActiveQuery
      * @param int $state
      * @return $this
      */
-    public function status($state = Article::STATUS_ALL)
+    public function status(int $state = Article::STATUS_ALL): self
     {
-        $this->andWhere([Article::tableName() . '.status' => $state]);
+        if ($state !== null) {
+            $this->andWhere([Article::tableName() . '.status' => $state]);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param bool|null $state
+     * @return $this
+     */
+    public function visible(?bool $state = true): self
+    {
+        if ($state !== null) {
+            $this->andWhere([Article::tableName() . '.visible' => $state]);
+        }
 
         return $this;
     }

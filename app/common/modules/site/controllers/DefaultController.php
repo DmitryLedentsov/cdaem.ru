@@ -59,64 +59,32 @@ class DefaultController extends \frontend\components\Controller
      */
     public function actionIndex($city = null)
     {
-        $agencySearch = new AgencyAdvertSearch();
-        $agencyDataProvider = $agencySearch->search(Yii::$app->request->queryParams);
-
-        $partnersSearch = new PartnersAdvertSearch();
-        $partnersAdverts = $partnersSearch->siteSearch(Yii::$app->request->queryParams);
-
-        $articlesQuery = Article::find()->orderBy(['date_create' => SORT_DESC]);
-
-        if (is_null($city) === false) {
-            $articlesQuery->where(['city' => $city]);
-        } else {
-            $articlesQuery->where('city IS NULL');
-        }
-        $articles = $articlesQuery->limit(1)->all();
-
-        $specialAdverts = SpecialAdvert::findActive();
-
-        $articlesQuery2 = Article::find()
-            ->orderBy(['date_create' => SORT_DESC]);
-
-        if (!is_null($city)) {
-            $articlesQuery2->where(['city' => $city]);
-        } else {
-            $articlesQuery2->where('city IS NULL');
-        }
-
-        $articlesall2 = [];
-        $articlesall3 = $articlesQuery2->limit(12)->all();
-
-        $i = 0;
-        foreach ($articlesall3 as $item) {
-            if ($i > 0) {
-                $articlesall2[] = $item;
-            }
-            $i++;
-        }
-
         $metaData = RentType::findRentTypeBySlug(Yii::$app->request->get('rentType', '/'));
 
-        if (!$metaData) {
+        if (empty($metaData)) {
             throw new NotFoundHttpException();
         }
+
+        $partnersSearch = new PartnersAdvertSearch();
+
+        $articles = Article::find()
+            ->where(is_null($city) ? 'city IS NULL' : ['city' => $city])
+            ->orderBy(['date_create' => SORT_DESC])
+            ->visible()
+            ->status(Article::STATUS_ALL)
+            ->limit(6)
+            ->all();
 
         if ($metaData['slug'] !== '/') {
             Yii::$app->view->registerLinkTag(['rel' => 'canonical', 'href' => URL::to('https://cdaem.ru/' . $metaData['slug'])]);
         } else {
             Yii::$app->view->registerLinkTag(['rel' => 'canonical', 'href' => URL::to('https://cdaem.ru')]);
         }
-        
+
         return $this->render('home/index.twig', [
-            'agencySearch' => $agencySearch,
-            'agencyDataProvider' => $agencyDataProvider,
-            'searchModel' => $partnersSearch,
-            'partnersAdverts' => $partnersAdverts,
-            'specialAdverts' => $specialAdverts,
             'metaData' => $metaData,
             'articles' => $articles,
-            'articlesall2' => $articlesall2,
+            'searchModel' => $partnersSearch,
         ]);
     }
 
@@ -130,7 +98,9 @@ class DefaultController extends \frontend\components\Controller
         $agencyDataProvider = $agencySearch->search(Yii::$app->request->queryParams);
         $partnersSearch = new PartnersAdvertSearch();
         $partnersAdverts = $partnersSearch->siteSearch(Yii::$app->request->queryParams);
+
         $specialAdverts = SpecialAdvert::findActive();
+
         $metaData = RentType::findRentTypeBySlug(Yii::$app->request->get('rentType', '/'));
 
         if (!$metaData) {
@@ -152,7 +122,8 @@ class DefaultController extends \frontend\components\Controller
      */
     public function actionBadbrowser()
     {
-        return $this->render('badbrowser.twig');
+        return $this->render('badbrowser.twig', [
+        ]);
     }
 
     /**
