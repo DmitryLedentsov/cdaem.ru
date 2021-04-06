@@ -32,6 +32,7 @@ bootstrap:
 	make composer cmd=install
 	make npm-grunt cmd=install
 	make npm-grunt cmd='run dev'
+	make npm cmd='run dev'
 	make php-init
 	make dump-geo-load
 	make php-yii cmd="migrate --interactive=0"
@@ -45,6 +46,7 @@ start:
 	make php-yii cmd="migrate --interactive=0"
 	make cron-load
 	make cron-start
+	make npm cmd='run dev'
 	make npm-grunt cmd='run dev'
 	make npm-grunt cmd='run prod'
 
@@ -126,6 +128,7 @@ prod-bootstrap:
 	make prod-composer cmd="global require "fxp/composer-asset-plugin:^1.3.1""
 	make prod-composer cmd=install
 	make prod-npm-grunt cmd=install
+	make npm cmd='run prod'
 	make prod-npm-grunt cmd='run prod'
 	make prod-php-init
 #	make prod-dump-geo-load
@@ -171,6 +174,8 @@ prod-start:
 	$(docker_compose_prod) up -d
 	make prod-composer cmd=install
 	make prod-php-yii cmd="migrate --interactive=0"
+	make npm cmd='run prod'
+	make prod-npm-grunt cmd='run prod'
 	make prod-cron-load
 	make prod-cron-start
 
