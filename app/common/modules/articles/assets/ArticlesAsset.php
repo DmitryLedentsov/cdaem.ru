@@ -20,6 +20,7 @@ class ArticlesAsset extends AssetBundle
 
     public $css = [
         '/_new/css/pages/static.min.css',
+        '/_new/css/pages/news.min.css',
     ];
 
 }
