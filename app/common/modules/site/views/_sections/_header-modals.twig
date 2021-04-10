@@ -37,13 +37,6 @@
 </div>
 
 
-{{ use('/common/modules/users/models/Profile') }}
-
-{{ dump(Profile.getUserTypeArray()) }}
-
-
-
-_header-modals.twig
 
 <div class="modal fade" id="signUp" tabindex="-1" role="dialog" aria-labelledby="signUp" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -76,10 +69,9 @@ _header-modals.twig
                         <label class="d-none" for="signUp-user_type"></label>
                         <select class="custom-select" name="Profile[user_type]" id="signUp-user_type">
                             <option value="" selected>Тип аккаунта</option>
-                            <option value="4">Агенство</option>
-                            <option value="3">Собственник</option>
-                            <option value="2">Посредник</option>
-                            <option value="1">Хочу снять</option>
+                            {% for type, userType in UserHelper.getUserTypeArray() %}
+                                <option value="{{ type }}"> - {{ userType.label }}</option>
+                            {% endfor %}
                         </select>
                         <div class="invalid-feedback"></div>
                     </div>

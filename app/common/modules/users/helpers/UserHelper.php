@@ -2,6 +2,7 @@
 
 namespace common\modules\users\helpers;
 
+use common\modules\users\models\backend\Profile;
 use yii\helpers\Html;
 use common\modules\users\models\User;
 
@@ -11,6 +12,14 @@ use common\modules\users\models\User;
  */
 class UserHelper
 {
+    /**
+     * @return array
+     */
+    public static function getUserTypeArray(): array
+    {
+        return Profile::getUserTypeArray();
+    }
+
     /**
      * Возвращает html блок открытых контактов у пользователя
      * @param User $user
