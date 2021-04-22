@@ -90,11 +90,12 @@ class CustomLinkPager extends LinkPager
 
         // first page
         $firstPageLabel = $this->firstPageLabel === true ? '1' : $this->firstPageLabel;
-        if ($firstPageLabel !== false && $beginPage > 1) {
+        if ($firstPageLabel !== false && $beginPage >= 1) {
             $buttons[] = $this->renderPageButton($firstPageLabel, 0, $this->firstPageCssClass, $currentPage <= 0, false);
+        }
 
+        if ($beginPage > 1) {
             $buttons[] = $this->renderPageButton('...', false, 'pagination-more', $this->disableCurrentPageButton, false);
-
         }
 
         // internal pages
