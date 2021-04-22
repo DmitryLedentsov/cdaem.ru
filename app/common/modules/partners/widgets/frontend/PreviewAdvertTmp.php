@@ -201,13 +201,9 @@ class PreviewAdvertTmp extends Widget
 
         if ($this->advertisement->type != AdvertisementSlider::TYPE_CLIENT && $this->advertisement->type != AdvertisementSlider::TYPE_RESERV) {
             //$present .= '<div class="image"><img src="/partner_thumb/{{ advertisement.advert.apartment.titleImage.preview }}" alt=""></div>';
-            $present .= '<div class="image">
-                            <img src="' . $this->advertisement->advert->apartment->titleImageSrc . '" alt=""/>
-                            <div class="desc' . $this->getInfoByAdvert($this->advertisement->advert->apartment, 'no-bg') . '">
-                                ' . $this->getInfoByAdvert($this->advertisement->advert->apartment, 'now_available') . '
-                                ' . $this->getInfoByAdvert($this->advertisement->advert->apartment, 'online') . '
-                            </div>
-                        </div>';
+            $present .= '<div class="recommendation-card">
+                            <img src="' . $this->advertisement->advert->apartment->titleImageSrc . '" alt="recommendation-image">
+                            <button class="recommendation-phone"></button>';
         } else {
             $present .= '<div class="image"><img src="' . Yii::$app->getModule('partners')->imageUrlUserReserve . '" alt=""></div>';
         }
@@ -221,10 +217,10 @@ class PreviewAdvertTmp extends Widget
         }
 
         $present .= '
-            <div class="description">
-                <strong>' . $label . '</strong>
-                ' . $more_info .
-            '</div>';
+            <div class="recommendation-text">
+                ' . $label . '
+            </div>
+        </div>';
 
         return $present;
     }

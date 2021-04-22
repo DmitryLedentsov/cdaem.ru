@@ -81,31 +81,30 @@ class AdvertisingTopSliderAdverts extends Widget
 
             if ($user_type === Profile::OWNER) {
                 $cachedData = '
-                <div class="ticker">
-                    <div class="container clearfix">
-                        <div class="options">
+                <section class="recommendation">
+                    <div class="container-fluid">
+                        <h2 class="section-title">
                             ' . Html::a('Попасть сюда', ['/office/default/buy-ads']) . '
-                        </div>
-
-                        <div class="slides">
+                        </h2>
+                        <div class="recommendation-list">
                             ' . $advertisements . '
                         </div>
                     </div>
-                </div>
-          ';
+                </section>
+                ';
             } else {
                 $cachedData = '
-                <div class="ticker">
-                    <div class="container clearfix">
-                    <div class="options">
-                           Рекомендуемые объявления:
-                        </div>
-                        <div class="slides">
+                <section class="recommendation">
+                    <div class="container-fluid">
+                        <h2 class="section-title">
+                            Рекомендуемые объявления
+                        </h2>
+                        <div class="recommendation-list">
                             ' . $advertisements . '
                         </div>
                     </div>
-                </div>
-          ';
+                </section>
+                ';
             }
 
             Yii::$app->cache->set($cacheKey, $cachedData, 300, $cacheDependency);
