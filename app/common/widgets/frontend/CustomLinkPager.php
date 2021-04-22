@@ -20,7 +20,7 @@ class CustomLinkPager extends LinkPager
         'class' => 'pagination-panel-pages'
     ];
     /**
-     * @var array HTML attributes which will be applied to all prev and next link container
+     * @inheritDoc
      */
     public $prevNextOtions = [
         'class' => 'pagination-panel-arrows'
@@ -32,16 +32,6 @@ class CustomLinkPager extends LinkPager
         'class' => 'pagination-page'
     ];
     /**
-     * @var array HTML attributes for the link in a pager container tag.
-     * @see \yii\helpers\Html::renderTagAttributes() for details on how attributes are being rendered.
-     */
-    public $linkOptions = [];
-    /**
-     * @var string the CSS class for the each page button.
-     * @since 2.0.7
-     */
-    public $pageCssClass;
-    /**
      * @inheritDoc
      */
     public $firstPageCssClass = '';
@@ -50,29 +40,19 @@ class CustomLinkPager extends LinkPager
      */
     public $lastPageCssClass = '';
     /**
-     * @var string the CSS class for the "previous" page button.
+     * @inheritDoc
      */
     public $prevPageCssClass = 'pagination-arrows pagination-previous';
     /**
-     * @var string the CSS class for the "next" page button.
+     * @inheritDoc
      */
     public $nextPageCssClass = 'pagination-arrows pagination-next';
     /**
-     * @var string the CSS class for the active (currently selected) page button.
+     * @inheritDoc
      */
     public $activePageCssClass = 'is-active';
     /**
-     * @var array the options for the disabled tag to be generated inside the disabled list element.
-     * In order to customize the html tag, please use the tag key.
-     *
-     * ```php
-     * $disabledListItemSubTagOptions = ['tag' => 'div', 'class' => 'disabled-div'];
-     * ```
-     * @since 2.0.11
-     */
-    public $disabledListItemSubTagOptions = [];
-    /**
-     * @var int maximum number of page buttons that can be displayed. Defaults to 10.
+     * @inheritDoc
      */
     public $maxButtonCount = 3;
     /**
