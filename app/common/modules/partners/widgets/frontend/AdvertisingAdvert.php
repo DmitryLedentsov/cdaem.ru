@@ -31,30 +31,26 @@ class AdvertisingAdvert extends \yii\base\Widget
             $result = '';
 
             foreach ($advertisement as $advert) {
-                $result .= '<a href="' . Url::toRoute(['/partners/default/view', 'id' => $advert->advert_id, 'city' => $advert->advert->apartment->city->name_eng]) . '">
-                        <div class="advert-preview cover" title="Карамзана, дом 1, корпус 3">
-                        <div class="apartment-wrap">
-                            <div class="image">
-                                    <img src="' . $advert->advert->apartment->titleImageSrc . '" alt="">
-                                </div>
-                                <div class="description">
-                                    <strong>' . Yii::$app->formatter->asCurrency($advert->advert->price, ArrayHelper::getValue($advert->advert->getCurrencyList(), $advert->advert->currency)) . '</strong>
-                                    <p>' . $advert->advert->rentType->name . '</p>
-                                    ' . $advert->text . '
-                                </div>
-                            </div>
-                        </div>
-                    </a>';
+                $result .= '
+                <div class="advertisement-card">
+                    <a href="' . Url::toRoute(['/partners/default/view', 'id' => $advert->advert_id, 'city' => $advert->advert->apartment->city->name_eng]) . '">
+                        <img src="' . $advert->advert->apartment->titleImageSrc . '" alt="advertisement-image">
+                    </a>
+                </div>
+                ';
             }
 
             return ('
-                <div class="verified-apartments">
-                    <div class="row">
-                    <h3><span>Реклама от владельцев</span></h3>
+            <section class="advertisement">
+                <div class="container-fluid">
+                    <h2 class="section-title">Реклама от владельца</h2>
+                    <div class="advertisement-list">
+            
                     ' . $result . '
+                     
                     </div>
-                    <div class="clearfix"></div>
                 </div>
+            </section>
             ');
         }
     }

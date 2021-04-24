@@ -1,119 +1,143 @@
-<div class="container apartment-board-info clearfix">
+<div class="container-fluid">
+    <div id="map" style="width: 100%; height: 429px"></div>
+</div>
 
-    <div class="user col-md-3">
-        {% include('@common/modules/partners/views/frontend/default/view/owner.twig') %}
-        {{ use('common/modules/partners/widgets/frontend/RentTypePriceInfo') }}
-        {{ rent_type_price_info_widget({
-            'adverts' : model.apartment.adverts,
-            'advert' : model,
-        }) }}
-    </div>
+<section class="advert">
+    <div class="container-fluid">
+        <div class="advert-info">
+            <h2 class="advert-title">
+                {{ model.apartment.address }}{{ model.apartment.apartment ? ', кв.'~model.apartment.apartment }}
+            </h2>
+            <div class="advert-cost">
+                {# ???????? #}
+                <div class="advert-cost-info">
+                    <object class="advert-icon">
+                        <img src="./images/icons/apartment/hour.svg" alt="hour">
+                    </object>
+                    <p>Час: <span>?? ₽</span></p>
+                </div>
+                <div class="advert-cost-info">
+                    <object class="advert-icon">
+                        <img src="./images/icons/apartment/night.svg" alt="night">
+                    </object>
+                    <p>Ночь: <span>?? ₽</span></p>
+                </div>
+                <div class="advert-cost-info">
+                    <object class="advert-icon">
+                        <img src="./images/icons/apartment/day.svg" alt="day">
+                    </object>
+                    <p>Сутки: <span>?? ₽</span></p>
+                </div>
+                <div class="advert-cost-info">
+                    <object class="advert-icon">
+                        <img src="./images/icons/apartment/months.svg" alt="months">
+                    </object>
+                    <p>Месяц: <span>?? ₽</span></p>
+                </div>
 
-    <div class="info col-md-9">
-        <div class="options-group clearfix">
-            <div class="options">
-                {% if model.apartment.user.profile.vip %}
-                    <span data-toggle="modal" data-target="#modal-user-info">Информация владельца</span>
-                    <a href="{{ path({0 : '/partners/default/others', 'id' : model.advert_id, 'city' : model.apartment.city.name_eng}) }}">
-                        Еще предложения
-                    </a>
-                {% endif %}
-                <span data-href="#come-to-reviews" data-extra="100">Отзывы</span>
-                <span id="helpdesk-complaint" data-id="{{ model.advert_id }}">Жалоба</span>
-                {# <span>Рейтинг 0</span> #}
+                {# ???????? #}
+
             </div>
-        </div>
-        <div class="row">
-
-            <div class="description col-md-7">
-                <h1>{{ model.rentType.name }} <span>№{{ model.advert_id }}</span></h1>
-                <div class="properties">
-                    <div class="group">
-                        <p>Адрес:
-                            <span>{{ model.apartment.city.country.name }}, {{ model.apartment.city.name }}, {{ model.apartment.address }}{{ model.apartment.apartment ? ', кв.'~model.apartment.apartment }}</span>
-                        </p>
-                    </div>
+            <div class="advert-list">
+                <ul>
+                    <li><b>Адрес:</b>
+                        {{ model.apartment.city.name }}, {{ model.apartment.address }}{{ model.apartment.apartment ? ', кв.'~model.apartment.apartment }}
+                    </li>
 
                     {% if (model.apartment.metroStations) %}
-                        <div class="group">
-                            <p>Метро:
-                                <span>{% for metroStation in model.apartment.metroStations %}
-                                    {{ metroStation.metro.name }}{% if loop.last == false %},{% endif %}
-                                {% endfor %}</span>
-                            </p>
-                            <p>Удаленность от метро: <span>{{ model.apartment.metroWalkText }}</span></p>
-                        </div>
+
+                        <li><b>Метро:</b>
+                            {% for metroStation in model.apartment.metroStations %}
+                                {{ metroStation.metro.name }}{% if loop.last == false %},{% endif %}
+                            {% endfor %}
+                        </li>
+                        <li><b>Удаленность от метро:</b> {{ model.apartment.metroWalkText }}</li>
+
                     {% endif %}
 
-                    <div class="group">
-                        <p>Комнат: <span>{{ model.apartment.total_rooms }}</span></p>
-                        <p>Спальных мест: <span>{{ model.apartment.beds }}</span></p>
-                        <p>Общая площадь: <span>{{ model.apartment.total_area }} м<sup>2</sup></span></p>
-                        <p>Ремонт в квартире: <span>{{ model.apartment.remontName }}</span></p>
-                    </div>
+                    <li><b>Этаж:</b> {{ model.apartment.floor }}</li>
+                    <li><b>Общая площадь:</b> {{ model.apartment.total_area }} м2</li>
+                    <li><b>Комнат:</b> {{ model.apartment.total_rooms }}</li>
+                    <li><b>Спальных мест:</b> {{ model.apartment.beds }}</li>
+                    <li><b>Ремонт:</b> {{ model.apartment.remontName }}</li>
 
-                    <div class="group hidden-xs">
-                        <p><span>Информация от владельца:</span></p>
-                        {% if model.apartment.description %}
-                            {{ model.apartment.description }}
-                        {% else %}
-                            Дополнительная информация не указана.
-                        {% endif %}
-                    </div>
-
-                    <div class="group" id="information-advert" style="display: none">
-                        <p><span>Информация от владельца:</span></p>
-                        {% if model.apartment.description %}
-                            {{ model.apartment.description }}
-                        {% else %}
-                            Дополнительная информация не указана.
-                        {% endif %}
-
-                    </div>
-                    <div style="text-align: center"><a class="btn-danger visible-xs" id="opendescription">Открыть
-                            описание</a></div>
-                </div>
-            </div>
-
-            <div class="images col-md-5">
-                {% for image in model.apartment.orderedImages %}
-                    <div class="image-box shadow-box">
-                        <div class="image">
-                            <a href="{{ image.reviewSrc }}" data-lightbox="example-set" data-title="">
-                                <img src="{{ image.previewSrc }}"
-                                     alt="Фото {{ model.apartment.city.name }}, {{ model.apartment.address }}{{ model.apartment.apartment ? ', кв.'~model.apartment.apartment }}"
-                                     title="{{ model.apartment.city.name }}, {{ model.apartment.address }}{{ model.apartment.apartment ? ', кв.'~model.apartment.apartment }}"/>
-                            </a>
+                    <li class="repairs-icons">
+                        <img src="./images/apartment/repairs/freezer.svg" alt="freezer">
+                        <img src="./images/apartment/repairs/cooker.svg" alt="cooker">
+                        <img src="./images/apartment/repairs/iron.svg" alt="iron">
+                        <img src="./images/apartment/repairs/hair-dryer.svg" alt="hair-dryer">
+                        <img src="./images/apartment/repairs/wifi.svg" alt="wifi">
+                        <img src="./images/apartment/repairs/microwave.svg" alt="microwave">
+                        <img src="./images/apartment/repairs/smart-tv.svg" alt="smart-tv">
+                        <img src="./images/apartment/repairs/air-conditioner.svg" alt="air-conditioner">
+                        <img src="./images/apartment/repairs/washing-machine.svg" alt="washing-machine">
+                        <img src="./images/apartment/repairs/couch.svg" alt="couch">
+                        <img src="./images/apartment/repairs/bed.svg" alt="bed">
+                        <img src="./images/apartment/repairs/shower.svg" alt="shower">
+                        <img class="bath" src="./images/apartment/repairs/bath.svg" alt="bath">
+                        <img src="./images/apartment/repairs/jacuzzi.svg" alt="jacuzzi">
+                    </li>
+                    <li>
+                        <b>Информация от владельца:</b>
+                        <div>
+                            {% if model.apartment.description %}
+                                {{ model.apartment.description }}
+                            {% else %}
+                                Дополнительная информация не указана.
+                            {% endif %}
                         </div>
-                    </div>
-                {% endfor %}
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="advert-info">
+            <div class="advert-author">
+
+                {% include('@common/modules/partners/views/frontend/default/view/owner.twig') %}
+
             </div>
 
+            {% if model.apartment.orderedImages|length > 0 %}
+            <div class="advert-slider-for">
 
+                {% for image in model.apartment.orderedImages %}
+
+                    <div class="advert-slider-for-item">
+                        <img src="{{ image.reviewSrc }}" alt="slider-image">
+                    </div>
+
+                {% endfor %}
+
+            </div>
+            <div class="advert-slider-nav">
+
+                {% for image in model.apartment.orderedImages %}
+
+                    <div class="advert-slider-for-item">
+                        <img src="{{ image.previewSrc }}" alt="slider-image">
+                    </div>
+
+                {% endfor %}
+
+            </div>
+            {% endif %}
+
+            <div class="advert-button">
+                <button class="btn btn-warning" data-toggle="modal" data-target="#modalBook">Забронировать</button>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModalLong">Написать</button>
+                <button class="btn btn-warning" data-toggle="modal" data-target="#modalAppeal">Пожаловаться</button>
+            </div>
         </div>
-
-
     </div>
+</section>
 
-</div>
+{% include('@common/modules/partners/views/frontend/default/view/offers.twig') %}
 
+{{ use('common/modules/reviews/widgets/frontend/ShowReviews') }}
+{{ show_reviews_widget({
+    'apartmentId' :  model.apartment.apartment_id,
+}) }}
 
-<div class="container">
-
-    <div style="padding: 50px 0">
-        <!-- КАРТА -->
-        <div id="map" class="shadow-box" style="width: 100%; height: 370px;"
-             data-address="{{ model.apartment.city.name }}, {{ model.apartment.address }}"></div>
-    </div>
-
-    <div class="additional-unit clearfix">
-        {{ use('common/modules/agency/widgets/frontend/AdvertisingAdvert') }}
-        {{ advertising_advert_widget() }}
-
-        {{ use('common/modules/reviews/widgets/frontend/ShowReviews') }}
-        {{ show_reviews_widget({
-            'apartmentId' :  model.apartment.apartment_id,
-        }) }}
-    </div>
-</div>
-
+{{ use('common/modules/agency/widgets/frontend/AdvertisingAdvert') }}
+{{ advertising_advert_widget() }}

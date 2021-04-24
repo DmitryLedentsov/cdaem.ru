@@ -159,17 +159,51 @@ class PreviewAdvertTmp extends Widget
     protected function getAdvertByAdvert()
     {
         return '
-        <div class="image">
-            <img src="' . $this->advert->apartment->titleImageSrc . '" alt="" />
-            <div class="desc' . $this->getInfoByAdvert($this->advert->apartment, 'no-bg') . '">
-                ' . $this->getInfoByAdvert($this->advert->apartment, 'now_available') . '
-                ' . $this->getInfoByAdvert($this->advert->apartment, 'online') . '
-            </div>
-        </div>
-        <div class="description">
-            <strong>' . Yii::$app->formatter->asCurrency($this->advert->price, ArrayHelper::getValue($this->advert->getCurrencyList(), $this->advert->currency)) . '</strong>
-            ' . $this->advert->rentType->name . '
-        </div>';
+                <div class="apartment-card">
+                    <div class="apartment-item">
+                        <div class="apartment-image-block">
+                            <div class="apartment-price apartment-prices">'.$this->advert->priceText.' / 24ч</div>
+                            <img class="apartment-image" src="'.$this->advert->apartment->titleImageSrc.'" alt="advert-image">
+                            <button class="apartment-phone"></button>
+                        </div>
+                        <div class="apartment-period">Квартира '.$this->advert->rentType->name.'</div>
+                        <div class="apartment-location">
+                            '.$this->advert->apartment->city->name.', '. $this->advert->apartment->address  .'
+                        </div>
+                        <div class="apartment-position">Удаленность от метро: ' . $this->advert->apartment->metroWalkText . '</div>
+                        <div class="apartment-info">
+                            <div class="apartment-info-item  apartment-rooms">
+                                <object class="apartment-icon">
+                                    <img src="./images/icons/apartment/rooms.svg" alt="rooms">
+                                </object>
+                                <span>' . $this->advert->apartment->rooms . ' комната</span>
+                            </div>
+                            <div class="apartment-info-item apartment-area">
+                                <object class="apartment-icon">
+                                    <img src="./images/icons/apartment/area.svg" alt="area">
+                                </object>
+                                <span>' . $this->advert->apartment->total_area . ' м2</span>
+                            </div>
+                            <div class="apartment-info-item  apartment-beds">
+                                <object class="apartment-icon">
+                                    <img src="./images/icons/apartment/beds.svg" alt="beds">
+                                </object>
+                                <span>' . $this->advert->apartment->beds . ' спальных <br>места</span>
+                            </div>
+                            <div class="apartment-info-item  apartment-repairs">
+                                <object class="apartment-icon">
+                                    <img src="./images/icons/apartment/repairs.svg" alt="repairs">
+                                </object>
+                                <span>' . $this->advert->apartment->remontName . '</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="apartment-buttons">
+                        <button class="apartment-button apartment-button--book"><span class="apartment-button-text">Забронировать</span></button>
+                        <button class="apartment-button apartment-button--contact"><span class="apartment-button-text">Связаться</span></button>
+                    </div>
+                </div>
+            ';
     }
 
     /**

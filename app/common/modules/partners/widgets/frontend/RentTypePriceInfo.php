@@ -12,6 +12,12 @@ use yii\helpers\Url;
 class RentTypePriceInfo extends Widget
 {
     /**
+     * Whether or not to return text
+     * @var bool
+     */
+    public $isText = false;
+
+    /**
      * @var \common\modules\partners\models\frontend\Advert
      */
     public $adverts;
@@ -75,11 +81,16 @@ class RentTypePriceInfo extends Widget
             }
         }
 
-        $this->_rentTypeHtmlB .= '
+        if($this->isText) {
+            $this->_rentTypeHtmlB .= mb_strtolower($this->advert->priceText . ' '. $rentTypeText);
+        } else {
+            $this->_rentTypeHtmlB .= '
                 <div class="r-item">
                     <h4>' . $this->advert->priceText . '</h4>
                      <span>' . $rentTypeText . '</span>
                 </div>';
+        }
+
     }
 
     /**
@@ -87,6 +98,10 @@ class RentTypePriceInfo extends Widget
      */
     public function run()
     {
+        if ($this->isText) {
+            return $this->_rentTypeHtmlB;
+        }
+
         return '
         <div class="rent-type board">
             <div class="rent-type-w">

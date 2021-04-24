@@ -18,11 +18,12 @@ class ApartmentAsset extends AssetBundle
     public $baseUrl = '@web';
 
     public $css = [
-        '/_new/css/pages/fastrent.min.css',
+        '/_new/css/pages/apartment.min.css',
     ];
 
     public $js = [
-        '/_new/js/pages/fastrent.min.js'
+        'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js',
+        '/_new/js/pages/apartment.min.js'
     ];
 
     /**
@@ -39,15 +40,5 @@ class ApartmentAsset extends AssetBundle
     public function init()
     {
         parent::init();
-
-//        if (YII_DEBUG) {
-//            $this->js = [
-//                '/_new/js_dev/partners.js'
-//            ];
-//        } else {
-//            $this->js = [
-//                '/_new/js_dev/partners.js'
-//            ];
-//        }
     }
 }

@@ -1,90 +1,90 @@
-{{ use('nepster/faceviewer/Widget') }}
-{{ widget_widget({
-    'template' : '<div class="user-avatar">{face}</div>',
-    'data' : {
-        'avatar_url' : model.apartment.user.profile.vip ? model.apartment.user.profile.avatar_url : null
-    }
-}) }}
+{{ use('common/modules/partners/widgets/frontend/RentTypePriceInfo') }}
 
-<div class="user-name">
-    {% if model.apartment.user.profile.vip %}
-        {{ UserHelper.getUserName(model.apartment.user) }}
-    {% endif %}
-</div>
-
-{# Тип аккаунта #}
-<div class="user-properties">
-    <div class="text-center">
-        {{ StatusHelper.getItem(model.apartment.user.profile.userTypeArray, model.apartment.user.profile.user_type) | raw }}
-    </div>
-</div>
-
-<div class="user-time">
-    {% if model.apartment.user.isOnline() %}
-        <span style="color: green; font-weight: bold">Сейчас на сайте</span>
-    {% else %}
-        <span style="color: silver">
-            Последний визит {{ DateTimeHelper.diffAgoPeriodRound(model.apartment.user.time_activity) }}
+<div class="advert-author-logo" style="background: url('{{ model.apartment.user.profile.vip ? model.apartment.user.profile.avatar_url : null }}' center no-repeat;"></div>
+<div class="advert-author-info">
+    <div class="advert-author-info-item"><b>Владелец:</b>
+        <span class="advert-info-price">
+            {{ rent_type_price_info_widget({
+                'adverts' : model.apartment.adverts,
+                'advert' : model,
+                'isText': true
+            }) }}
         </span>
-    {% endif %}
-</div>
-
-{# if model.apartment.open_contacts #}
-{% if true %}
-
-    <div class="user-contacts">
-        Телефон: {{ UserHelper.formatPhone(model.apartment.user.phone) }}
     </div>
-
-    <div class="text-center">
-        <span class="btn btn-primary btn-special" onclick="writeMessage({{ model.apartment.user.id }})">
-            Сообщение
-        </span>
-        {% if model.apartment.user.phone is empty %}
-            &nbsp; &nbsp;
-            <a href="{{ path({0: '/partners/reservation/advert-reservation', 'advert_id' : model.advert_id}) }}"
-               class="btn btn-orange btn-special">Забронировать</a>
-        {% endif %}
+    <div class="advert-author-info-item">
+{#        {% if model.apartment.user.profile.vip %}#}
+            {{ UserHelper.getUserName(model.apartment.user) }}
+{#        {% endif %}#}
     </div>
+    <div class="advert-author-info-item">
+        <span class="advert-info-online">
 
-    <br/>
-
-{% else %}
-
-    <div class="text-center">
-        <span class="btn btn-primary btn-special contactopenphone-btn"
-              onclick="fast_payment_widget('{{ constant('SERVICE_CONTACTS_OPEN_TO_USER', Service) }}', {'advert_id' : {{ model.advert_id }} })">
-            Контакты
-        </span>
-        &nbsp; &nbsp;
-        <a href="{{ path({0: '/partners/reservation/advert-reservation', 'advert_id' : model.advert_id}) }}"
-           class="btn btn-orange btn-special bronirovanie-btn">Забронировать
-        </a>
-    </div>
-
-{% endif %}
-
-{% if model.apartment.user.profile.vip %}
-    <div class="modal fade" id="modal-user-info" data-title="Информация владельца">
-        <h3>Владелец {{ UserHelper.getUserName(model.apartment.user) }}</h3>
-        <br/>
-        <h3>О себе:</h3>
-        <p>{{ model.apartment.user.profile.about_me ?: 'Нет данных' }}</p>
-        <br/>
-        <h3>Дополнительная контактная информация:</h3>
-        <p>
-            <b>Дополнительный телефон:</b>
-            {% if model.apartment.user.profile.phone2 %}
-                {{ UserHelper.formatPhone(model.apartment.user.profile.phone2) }}
+            {% if model.apartment.user.isOnline() %}
+                Сейчас онлайн
             {% else %}
-                Нет данных
+                <span style="color: silver">
+                    Последний визит {{ DateTimeHelper.diffAgoPeriodRound(model.apartment.user.time_activity) }}
+                </span>
             {% endif %}
-        </p>
-        <p><b>Email:</b> {{ model.apartment.user.profile.email ?: 'Нет данных' }}</p>
-        <p><b>Skype:</b> {{ model.apartment.user.profile.skype ?: 'Нет данных' }}</p>
-        <p><b>Одноклассники:</b> {{ model.apartment.user.profile.ok ?: 'Нет данных' }}</p>
-        <p><b>Вконтакте:</b> {{ model.apartment.user.profile.vk ?: 'Нет данных' }}</p>
-        <p><b>Facebook:</b> {{ model.apartment.user.profile.fb ?: 'Нет данных' }}</p>
-        <p><b>Twitter:</b> {{ model.apartment.user.profile.twitter ?: 'Нет данных' }}</p>
+
+        </span>
+
+        {# if model.apartment.open_contacts #}
+        {% if true %}
+
+            <b>{{ UserHelper.formatPhone(model.apartment.user.phone) }}</b>
+
+{#            <div class="text-center">#}
+{#                <span class="btn btn-primary btn-special" onclick="writeMessage({{ model.apartment.user.id }})">#}
+{#                    Сообщение#}
+{#                </span>#}
+{#                {% if model.apartment.user.phone is empty %}#}
+{#                    &nbsp; &nbsp;#}
+{#                    <a href="{{ path({0: '/partners/reservation/advert-reservation', 'advert_id' : model.advert_id}) }}"#}
+{#                       class="btn btn-orange btn-special">Забронировать</a>#}
+{#                {% endif %}#}
+{#            </div>#}
+
+        {% else %}
+
+            <div class="text-center">
+                <span class="btn btn-primary btn-special contactopenphone-btn"
+                      onclick="fast_payment_widget('{{ constant('SERVICE_CONTACTS_OPEN_TO_USER', Service) }}', {'advert_id' : {{ model.advert_id }} })">
+                    Контакты
+                </span>
+
+                <a href="{{ path({0: '/partners/reservation/advert-reservation', 'advert_id' : model.advert_id}) }}"
+                   class="btn btn-orange btn-special bronirovanie-btn">Забронировать
+                </a>
+            </div>
+
+        {% endif %}
+
     </div>
-{% endif %}
+</div>
+
+
+{#{% if model.apartment.user.profile.vip %}#}
+{#    <div class="modal fade" id="modal-user-info" data-title="Информация владельца">#}
+{#        <h3>Владелец {{ UserHelper.getUserName(model.apartment.user) }}</h3>#}
+{#        <br/>#}
+{#        <h3>О себе:</h3>#}
+{#        <p>{{ model.apartment.user.profile.about_me ?: 'Нет данных' }}</p>#}
+{#        <br/>#}
+{#        <h3>Дополнительная контактная информация:</h3>#}
+{#        <p>#}
+{#            <b>Дополнительный телефон:</b>#}
+{#            {% if model.apartment.user.profile.phone2 %}#}
+{#                {{ UserHelper.formatPhone(model.apartment.user.profile.phone2) }}#}
+{#            {% else %}#}
+{#                Нет данных#}
+{#            {% endif %}#}
+{#        </p>#}
+{#        <p><b>Email:</b> {{ model.apartment.user.profile.email ?: 'Нет данных' }}</p>#}
+{#        <p><b>Skype:</b> {{ model.apartment.user.profile.skype ?: 'Нет данных' }}</p>#}
+{#        <p><b>Одноклассники:</b> {{ model.apartment.user.profile.ok ?: 'Нет данных' }}</p>#}
+{#        <p><b>Вконтакте:</b> {{ model.apartment.user.profile.vk ?: 'Нет данных' }}</p>#}
+{#        <p><b>Facebook:</b> {{ model.apartment.user.profile.fb ?: 'Нет данных' }}</p>#}
+{#        <p><b>Twitter:</b> {{ model.apartment.user.profile.twitter ?: 'Нет данных' }}</p>#}
+{#    </div>#}
+{#{% endif %}#}

@@ -106,19 +106,19 @@ class PreviewAdvertBoard extends Widget
                             <object class="apartment-metro-icon">
                                 <img src="./images/apartment-card/pedestrian.svg" alt="pedestrian">
                             </object>
-                            <span>45 минут</span>
+                            <span>?? минут</span>
                         </div>
                         <div class="apartment-metro-item">
                             <object class="apartment-metro-icon">
                                 <img src="./images/apartment-card/car.svg" alt="car">
                             </object>
-                            <span>15 минут</span>
+                            <span>?? минут</span>
                         </div>
                         <div class="apartment-metro-item">
                             <object class="apartment-metro-icon">
                                 <img src="./images/apartment-card/bus.svg" alt="bus">
                             </object>
-                            <span>25 минут</span>
+                            <span>?? минут</span>
                         </div>
                     </div>
                     <div class="apartment-location">'.$this->advert->apartment->city->name.', '.$this->advert->apartment->address.'</div>
@@ -146,7 +146,7 @@ class PreviewAdvertBoard extends Widget
                             <object class="apartment-icon">
                                 <img src="./images/icons/apartment/repairs.svg" alt="repairs">
                             </object>
-                            <span>Евроремонт</span>
+                            <span>'.$this->advert->apartment->remontName.'</span>
                         </div>
                     </div>
                 </div>

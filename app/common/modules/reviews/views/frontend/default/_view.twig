@@ -5,35 +5,20 @@
     @var bool user
 #}
 
-<div class="review-item clearfix">
-    <div class="represent">
-        {% if user %}
-            <div class="user">
-                {{ widget_widget({
-                    'template' :  '<div class="avatar">{face}</div><div class="name">{name}</div>',
-                    'data' : {
-                        'avatar_url' : model.user.profile.avatar_url,
-                        'name' : model.user.profile.name,
-                    },
-                }) }}
+<div class="review-card" data-toggle="modal" data-target="#modalReviewText">
+    <div class="review-logo" style="background: url('{{ model.user.profile.avatar_url }}') center no-repeat;"></div>
+    <div class="review-info-container">
+        <div class="review-info">
+            <div class="review-date">{{ model.created_at|date('d.m.Y') }}</div>
+            <div class="review-rating-container">
+                <span class="review-evaluation review-evaluation-5">{{ model.match_description + model.price_quality + model.cleanliness + model.entry }}</span>
+                Рейтинг квартиры
             </div>
-        {% else %}
-            <a href="{{ path({0 : '/partners/default/view', 'id' : model.apartment.apartment_id, 'city' : model.apartment.city.name_eng}) }}">
-                {{ preview_advert_tmp_widget({'apartment' : model.apartment}) }}
-            </a>
-        {% endif %}
-
-    </div>
-    <div class="info">
-        <div class="description">{{ model.text }}</div>
-        <ul class="characteristics">
-            <li><span class="r-{{ model.match_description }}">{{ model.match_description }}<sup>/5</sup></span>
-                Соответствие описанию
-            </li>
-            <li><span class="r-{{ model.price_quality }}">{{ model.price_quality }}<sup>/5</sup></span> Цена и Качество
-            </li>
-            <li><span class="r-{{ model.cleanliness }}">{{ model.cleanliness }}<sup>/5</sup></span> Чистота</li>
-            <li><span class="r-{{ model.entry }}">{{ model.entry }}<sup>/5</sup></span> Заселение</li>
-        </ul>
+        </div>
+        <div class="review-author">{{ model.user.profile.name }}</div>
+        <div class="review-text review-text-card">
+            {{ model.text }}
+        </div>
     </div>
 </div>
+
