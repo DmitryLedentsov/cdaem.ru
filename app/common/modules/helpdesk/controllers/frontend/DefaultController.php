@@ -18,7 +18,7 @@ class DefaultController extends \frontend\components\Controller
     /**
      * @inheritdoc
      */
-    public function behaviors()
+    public function behaviors(): array
     {
         return [
             'access' => [
@@ -37,7 +37,7 @@ class DefaultController extends \frontend\components\Controller
     /**
      * @inheritdoc
      */
-    public function beforeAction($action)
+    public function beforeAction($action): bool
     {
         if (!parent::beforeAction($action)) {
             return false;
@@ -142,13 +142,13 @@ class DefaultController extends \frontend\components\Controller
     }
 
     /**
-     * Задать вопрос
+     * Страница "Помощь"
      *
-     * @param null $url
-     * @return $this|array|string|Response
+     * @param string|null $url
+     * @return string
      * @throws \yii\web\HttpException
      */
-    public function actionHelp($url = null)
+    public function actionHelp(?string $url = null): string
     {
         $page = null;
 
@@ -162,28 +162,19 @@ class DefaultController extends \frontend\components\Controller
             ]);
         }
 
-        $model = new Helpdesk();
         $formModel = new HelpdeskForm(['scenario' => Yii::$app->user->isGuest ? 'guest-ask' : 'user-ask']);
+
         if ($formModel->load(Yii::$app->request->post())) {
-            $errors = ActiveForm::validate($formModel);
-            if (!$errors) {
-                if ($formModel->help()) {
-                    Yii::$app->session->setFlash('success', 'Обращение в техническую поддержку успешно отправлено.');
-                } else {
-                    Yii::$app->session->setFlash('danger', 'При отправки обращения возникла ошибка.');
-                }
-
-                return $this->refresh();
+            $errors = $this->validate($formModel);
+            if (empty($errors)) {
+                $formModel->help();
+                return $this->successAjaxResponse('Спасибо, ваше обращение успешно отправлено, мы свяжемся с вами в ближайшее время.');
             }
-            if (Yii::$app->request->isAjax) {
-                Yii::$app->response->format = Response::FORMAT_JSON;
-
-                return $errors;
-            }
+            return $this->validationErrorsAjaxResponse($errors);
         }
 
         return $this->render('help.twig', [
-            'model' => $model,
+            'model' => new Helpdesk(),
             'formModel' => $formModel,
         ]);
     }

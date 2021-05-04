@@ -17,7 +17,7 @@ class DefaultController extends \frontend\components\Controller
     /**
      * @inheritdoc
      */
-    public function behaviors()
+    public function behaviors(): array
     {
         $behaviors = [
             'access' => [
@@ -42,7 +42,7 @@ class DefaultController extends \frontend\components\Controller
     /**
      * @inheritdoc
      */
-    public function beforeAction($action)
+    public function beforeAction($action): bool
     {
         if (!parent::beforeAction($action)) {
             return false;
@@ -54,6 +54,40 @@ class DefaultController extends \frontend\components\Controller
     }
 
     /**
+     * Все
+     *
+     * @param null $city
+     * @return string
+     */
+    public function actionIndex($city = null): string
+    {
+        $model = new Article;
+
+        $query = Article::find()
+            ->orderBy(['date_create' => SORT_DESC]);
+
+        if (!is_null($city)) {
+            $query->where(['city' => $city]);
+        } else {
+            $query->where('city IS NULL');
+        }
+
+        $countQuery = clone $query;
+        $pages = new Pagination(['totalCount' => $countQuery->count()]);
+
+        $pages->defaultPageSize = (int)$this->module->recordsPerPage;
+        $models = $query->offset($pages->offset)
+            ->limit($pages->limit)
+            ->all();
+
+        return $this->render('index.twig', [
+            'model' => $model,
+            'models' => $models,
+            'pages' => $pages,
+        ]);
+    }
+
+    /**
      * Просмотр
      *
      * @param $id
@@ -61,7 +95,7 @@ class DefaultController extends \frontend\components\Controller
      * @return string
      * @throws HttpException
      */
-    public function actionView($id, $city = null)
+    public function actionView($id, $city = null): string
     {
         $query = Article::find();
 
@@ -88,65 +122,6 @@ class DefaultController extends \frontend\components\Controller
 
         return $this->render('view.twig', [
             'model' => $model,
-        ]);
-    }
-
-    /**
-     * Все
-     *
-     * @param null $city
-     * @return string
-     */
-    public function actionIndex($city = null)
-    {
-        $model = new Article;
-
-        $query = Article::find()
-            ->orderBy(['date_create' => SORT_DESC]);
-
-        if (!is_null($city)) {
-            $query->where(['city' => $city]);
-        } else {
-            $query->where('city IS NULL');
-        }
-
-        $countQuery = clone $query;
-        $pages = new Pagination(['totalCount' => $countQuery->count()]);
-
-        $pages->defaultPageSize = $this->module->recordsPerPage;
-        $models = $query->offset($pages->offset)
-            ->limit($pages->limit)
-            ->all();
-
-        return $this->render('index.twig', [
-            'model' => $model,
-            'models' => $models,
-            'pages' => $pages,
-        ]);
-    }
-
-    /**
-     * @param null $city
-     * @return string
-     */
-    public function actionNews($city = null)
-    {
-        $model = new Article;
-
-        $query = Article::find()->limit(20)
-            ->orderBy(['date_create' => SORT_DESC]);
-
-        if (!is_null($city)) {
-            $query->where(['city' => $city]);
-        } else {
-            $query->where('city IS NULL');
-        }
-
-        $models = $query->all();
-
-        return $this->render('news.twig', [
-            'model' => $model,
-            'models' => $models,
         ]);
     }
 }

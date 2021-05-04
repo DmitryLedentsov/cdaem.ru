@@ -2,7 +2,6 @@
 
 namespace common\widgets\frontend;
 
-use Yii;
 use yii\helpers\Html;
 use yii\widgets\LinkPager;
 use yii\helpers\ArrayHelper;
@@ -19,18 +18,21 @@ class CustomLinkPager extends LinkPager
     public $options = [
         'class' => 'pagination-panel-pages'
     ];
+
     /**
      * @inheritDoc
      */
     public $prevNextOtions = [
         'class' => 'pagination-panel-arrows'
     ];
+
     /**
      * @inheritDoc
      */
     public $linkContainerOptions = [
         'class' => 'pagination-page'
     ];
+
     /**
      * @inheritDoc
      */
@@ -175,9 +177,7 @@ class CustomLinkPager extends LinkPager
             return Html::tag($linkWrapTag, Html::tag($tag, $label, $disabledItemOptions), $options);
         }
 
-
         return Html::tag($linkWrapTag, Html::a($label, $this->pagination->createUrl($page), $linkOptions), $options);
-
     }
 
 }

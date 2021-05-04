@@ -4,54 +4,51 @@
     @var \frontend\pages\models\Page model
 #}
 
-{% extends "@app/themes/basic/layouts/main.twig" %}
+{% extends "@common/modules/site/views/layouts/main.twig" %}
 
-{% block title %} {{ this.registerTitle(model.title ~ ' | Сдаём.ру') }} {% endblock %}
-
-{% block header %}
-    {{ use('common/modules/site/widgets/BgHeader') }}
-    {{ bg_header_widget({'title': model.name}) }}
+{% block seo %}
+    {% include '@common/modules/site/views/_modules/_seo.twig' with {
+        'title': model.title ~ ' | Сдаём.ру',
+        'description':  model.description,
+        'keywords': model.keywords,
+    } %}
 {% endblock %}
 
-{% block navbar_bottom %}{% endblock %}
+{% block bodyClass %}l-base p-static{% endblock %}
 
 {% block breadcrumbs %}
-    <div class="container">
-        <div class="breadcrumbs">
-            {{ use('yii/widgets/Breadcrumbs') }}
-            {{ breadcrumbs_widget({
-                'itemTemplate' : "<li>{link}</li>\n",
-                'homeLink' :
+    <div class="container-fluid">
+        {{ use('yii/widgets/Breadcrumbs') }}
+        {{ breadcrumbs_widget({
+            'tag':  'div',
+            'options': {
+                'class': 'breadcrumbs'
+            },
+            'itemTemplate' : "{link}\n",
+            'homeLink' :
+            {
+                'label' : 'Главная',
+                'url' : '/'
+            },
+            'links':  [
                 {
-                    'label' : 'Главная',
-                    'url' : '/'
+                    'label': model.title,
+                    'template': '<span>{link}</span>\n'
                 },
-                'links':  [
-                    {
-                        'label': model.name,
-                        'url': {0 : '/pages/default/index', 'url' : model.url},
-                    },
-                ],
-            }) }}
-            <a href="{{ app.params['siteDomain'] }}/search" class="right-link breadcrumbs-links black">Доска объявлений</a>
-            <a class="breadcrumbs-links right-link" href="{{ app.params['siteDomain'] }}">Квартиры от Сдаём.Ру</a>
-        </div>
+            ],
+        }) }}
     </div>
-{% endblock %} 
+{% endblock %}
 
 
 {% block content %}
 
-    {{ this.registerMetaTag({'name' : 'description', 'content' : model.description }) }}
-    {{ this.registerMetaTag({'name' : 'keywords', 'content' : model.keywords }) }}
+    {{ use('common/modules/pages/assets/PagesAsset') }}
+    {{ register_pages_asset() }}
 
-    <div class="pages">
-        <div class="container container-certain primary text">
-            <div class="page-title-block">
-                <div class="title-wrap"><h3>{{ model.title|raw }}</h3></div>
-            </div>
+    <section class="static-container">
+        <div class="container-fluid">
             {{ model.text|raw }}
         </div>
-    </div>
-
+    </section>
 {% endblock %}

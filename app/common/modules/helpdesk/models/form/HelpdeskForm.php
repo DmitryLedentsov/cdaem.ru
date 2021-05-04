@@ -133,15 +133,14 @@ class HelpdeskForm extends \yii\base\Model
 
     /**
      * Техническая поддержка доски объявлений
-     * @return bool
      */
-    public function help()
+    public function help(): void
     {
         $model = $this->createModel();
         $model->source_type = Helpdesk::TYPE_PARTNERS;
         $model->department = Helpdesk::LETTER;
 
-        return $model->save();
+        $model->save(false);
     }
 
     /**

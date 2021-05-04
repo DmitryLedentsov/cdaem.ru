@@ -6,20 +6,15 @@
 
 {% extends "@common/modules/site/views/layouts/main.twig" %}
 
-{% block title %}{{ this.registerTitle(page.title) }}{% endblock %}
+{% block seo %}
+    {% include '@common/modules/site/views/_modules/_seo.twig' with {
+        'title': page.title ~ ' | Сдаём.ру',
+        'description':  page.description,
+        'keywords': page.keywords,
+    } %}
+{% endblock %}
 
-{#{% block header %}#}
-{#    {{ use('common/modules/site/widgets/BgHeader') }}#}
-{#    {{ bg_header_widget({'title': 'Помощь'}) }}#}
-{#{% endblock %}#}
-
-{#{% block navbar %}#}
-{#    {{ this.renderDynamic('return $this->render("@common/modules/office/views/frontend/layouts/navbar.twig");') | raw }}#}
-{#{% endblock %}#}
-
-{% block bodyClass %}l-base p-help{% endblock %}
-
-{% block divMainClass %}help{% endblock %}
+{% block bodyClass %}l-base p-help p-static{% endblock %}
 
 {% block breadcrumbs %}
     <div class="container-fluid">
@@ -38,6 +33,11 @@
             'links':  [
                 {
                     'label': 'Помощь',
+                    'url' : ['/helpdesk/default/help'],
+                    'template': '<span>{link}</span>\n'
+                },
+                {
+                    'label': page.title,
                     'template': '<span>{link}</span>\n'
                 },
             ],
@@ -45,30 +45,19 @@
     </div>
 {% endblock %}
 
-
 {% block content %}
 
-    {{ this.registerMetaTag({'name' : 'description', 'content' : page.description }) }}
-    {{ this.registerMetaTag({'name' : 'keywords', 'content' : page.keywords }) }}
+    {{ use('common/modules/helpdesk/assets/HelpAsset') }}
+    {{ register_help_asset() }}
 
-    {{ use('common/modules/site/assets/AppAsset') }}
-    {{ register_app_asset() }}
-
-    {{ use('common/modules/helpdesk/assets/HelpdeskAsset') }}
-    {{ register_helpdesk_asset() }}
-
-
-    {{ this.render("_nav-help.twig") | raw }}
-
-    <div class="container help container-certain orange text clearfix">
-        <div class="help-text">
+    <section class="static-container">
+        <div class="container-fluid">
             {% if page.text %}
                 {{ page.text | raw }}
             {% else %}
                 <p>Информация в стадии наполнения.</p>
             {% endif %}
         </div>
-    </div>
-
+    </section>
 
 {% endblock content %}

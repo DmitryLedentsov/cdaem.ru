@@ -5,63 +5,57 @@
 #}
 {{ use('common/modules/site/widgets/Captcha') }}
 
-<section class="appeal">
-    <div class="container-fluid">
-        <h2 class="appeal-title">Отправить обращение</h2>
-        <form class="form">
-            <div class="row">
-                <div class="form-group col-sm-12">
-                    <p class="appeal-subtitle">Ваши данные:</p>
-                </div>
-                <div class="form-group col-sm-6 col-md-4">
-                    <label>
-                        <input type="text" class="form-control" placeholder="Тема обращения" name="Helpdesk[theme]">
-                    </label>
-                </div>
+<form class="form" id="form-help" method="post" action="{{ url(['/helpdesk/default/help']) }}">
+    <div class="row">
+        <div class="form-group col-sm-12">
+            <p class="appeal-subtitle">Ваши данные:</p>
+        </div>
 
-                <div class="w-100 d-block d-md-none"></div>
-
-                {% if formModel.scenario == 'guest-ask' %}
-
-                    <div class="form-group col-sm-6 col-md-4">
-                        <label>
-                            <input type="text" class="form-control" placeholder="Введите ваше имя" name="Helpdesk[user_name]">
-                        </label>
-                    </div>
-{#                    <div class="form-group col-sm-6 col-md-4">#}
-{#                        <label>#}
-{#                            <input type="text" class="form-control" placeholder="Введите ваш e-mail" name="Helpdesk[email]">#}
-{#                        </label>#}
-{#                    </div>#}
-
-                {% endif %}
-
-                <div class="w-100 d-block d-md-none"></div>
-                <div class="form-group col-sm-6 col-md-4">
-                    <label>
-                        <select class="custom-select" name="Helpdesk[priority]">
-{#                            <option value="" selected>Приоритет</option>#}
-                            <option value="1">Не срочно</option>
-                            <option value="2">Срочно</option>
-                            <option value="3">Очень срочно</option>
-                            <option value="4">Критично</option>
-                        </select>
-                    </label>
-                </div>
-
-                <div class="form-group col-md-12">
-                    <label>
-                        <textarea class="form-control" placeholder="Обращение" name="Helpdesk[text]"></textarea>
-                    </label>
-                </div>
-
-                {{ captcha_widget({'form': form, 'model': model, 'name': 'verifyCode'}) }}
-
-                <div class="col-md-12 appeal-container">
-                    <p class="submit-text">Нажимая “отправить” вы соглашаетесь c правилами политики конфиденицальности</p>
-                    <button type="submit" class="btn btn-warning">Отправить</button>
-                </div>
+        {% if formModel.scenario == 'guest-ask' %}
+            <div class="form-group col-sm-6 col-md-4">
+                <label for="Helpdesk-user_name" class="d-none"></label>
+                <input type="text" class="form-control" placeholder="Введите ваше имя" name="Helpdesk[user_name]" id="Helpdesk-user_name">
+                <div class="invalid-feedback"></div>
             </div>
-        </form>
+            <div class="form-group col-sm-6 col-md-4">
+                <label for="Helpdesk-user_email" class="d-none"></label>
+                <input type="text" class="form-control" placeholder="Введите ваш e-mail" name="Helpdesk[email]" id="Helpdesk-user_email">
+                <div class="invalid-feedback"></div>
+           </div>
+        {% endif %}
+
+        <div class="form-group col-sm-8 col-md-8 col-xl-8">
+            <label for="Helpdesk-theme" class="d-none"></label>
+            <input type="text" class="form-control" placeholder="Тема обращения" name="Helpdesk[theme]" id="Helpdesk-theme">
+            <div class="invalid-feedback"></div>
+        </div>
+
+        <div class="form-group col-sm-4 col-md-4 col-xl-4">
+            <label for="Helpdesk-priority" class="d-none"></label>
+            <select class="custom-select" name="Helpdesk[priority]" id="Helpdesk-priority">
+            {% for key, priority in model.getPriorityArray() %}
+                <option value="{{ key }}">{{ priority.label }}</option>
+            {% endfor %}
+            </select>
+            <div class="invalid-feedback"></div>
+        </div>
+
+        <div class="form-group col-md-12">
+            <label for="Helpdesk-text" class="d-none"></label>
+            <textarea class="form-control" placeholder="Обращение" name="Helpdesk[text]" id="Helpdesk-text"></textarea>
+            <div class="invalid-feedback"></div>
+        </div>
+
+        {{ captcha_widget({'form': form, 'model': model, 'name': 'verifyCode'}) }}
+
+        <div class="col-md-12 appeal-container">
+            <p class="submit-text">
+                Нажимая "Отправить" вы соглашаетесь c правилами
+                <a href="{{ path('/pages/default/index', {'url' : 'privacy'}) }}" target="_blank">
+                    политики конфиденицальности.
+                </a>
+            </p>
+            <button type="submit" class="btn btn-warning">Отправить</button>
+        </div>
     </div>
-</section>
+</form>

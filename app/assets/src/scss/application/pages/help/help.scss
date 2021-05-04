@@ -11,16 +11,14 @@
         }
     }
 
-    .breadcrumbs {
-        margin: 0 0 2rem;
-    }
-
     .appeal {
+        margin-top: 2.5rem;
         background: url("../../images/background/help-appeal_bg.png") center/cover no-repeat;
         padding: 2.5rem 0 2rem;
         
         @include tablet-land() {
             padding: 5rem 0 4rem;
+            margin-top: 5rem;
         }
 
         &-title {

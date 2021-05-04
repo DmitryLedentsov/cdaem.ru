@@ -2,6 +2,8 @@
 
 namespace common\modules\articles;
 
+use Yii;
+
 /**
  * Bootstrap Backend
  * @package common\modules\articles
@@ -11,11 +13,11 @@ class BootstrapBackend implements \yii\base\BootstrapInterface
     /**
      * @inheritdoc
      */
-    public function bootstrap($app)
+    public function bootstrap($app): void
     {
         $articlesAccess = 1;
 
-        if (!\Yii::$app->user->can('articles-view') && !\Yii::$app->user->can('articles-create')
+        if (!Yii::$app->user->can('articles-view') && !Yii::$app->user->can('articles-create')
         ) {
             $articlesAccess = 0;
         }

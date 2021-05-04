@@ -7,12 +7,15 @@
 
 {% extends "@common/modules/site/views/layouts/main.twig" %}
 
-{% block title %} {{ this.registerTitle('Помощь в аренде квартир и загородных домов | Сдаём.ру') }} {% endblock %}
+{% block seo %}
+    {% include '@common/modules/site/views/_modules/_seo.twig' with {
+        'title': 'Помощь в аренде квартир и загородных домов | Сдаём.ру',
+        'description':  'Сдаём.ру связь с администрацией. Помощь в Аренде Квартир и загородных домов. Поиск жилья. Снять или сдать жилье. Keywords: Квартира на сутки, сдать квартиру, сдача жилья в аренду, снять квартиру на сутки, квартира на сутки недорого, квартиры на сутки без посредников, снять квартиру на сутки не дорого, снять квартиру на сутки без посредников',
+        'keywords': 'Сдаём.ру связь с администрацией. Помощь в Аренде Квартир и загородных домов. Поиск жилья. Снять или сдать жилье. Keywords: Квартира на сутки, сдать квартиру, сдача жилья в аренду, снять квартиру на сутки, квартира на сутки недорого, квартиры на сутки без посредников, снять квартиру на сутки не дорого, снять квартиру на сутки без посредников',
+    } %}
+{% endblock %}
 
 {% block bodyClass %}l-base p-help{% endblock %}
-
-{% block divMainClass %}help{% endblock %}
-
 
 {% block breadcrumbs %}
     <div class="container-fluid">
@@ -38,18 +41,10 @@
     </div>
 {% endblock %}
 
-
 {% block content %}
 
-    {{ this.registerMetaTag({'name' : 'description', 'content' : 'Сдаём.ру связь с администрацией. Помощь в Аренде Квартир и загородных домов. Поиск жилья. Снять или сдать жилье. Keywords: Квартира на сутки, сдать квартиру, сдача жилья в аренду, снять квартиру на сутки, квартира на сутки недорого, квартиры на сутки без посредников, снять квартиру на сутки не дорого, снять квартиру на сутки без посредников'}) }}
-    {{ this.registerMetaTag({'name' : 'keywords', 'content' : 'Сдаём.ру связь с администрацией. Помощь в Аренде Квартир и загородных домов. Поиск жилья. Снять или сдать жилье. Keywords: Квартира на сутки, сдать квартиру, сдача жилья в аренду, снять квартиру на сутки, квартира на сутки недорого, квартиры на сутки без посредников, снять квартиру на сутки не дорого, снять квартиру на сутки без посредников'}) }}
-
-    {{ use('common/modules/site/assets/AppAsset') }}
-    {{ register_app_asset() }}
-
-    {{ use('common/modules/helpdesk/assets/HelpdeskAsset') }}
-    {{ register_helpdesk_asset() }}
-
+    {{ use('common/modules/helpdesk/assets/HelpAsset') }}
+    {{ register_help_asset() }}
 
     {{ this.render("@common/modules/helpdesk/views/frontend/default/_nav-help.twig") | raw }}
 
@@ -57,13 +52,11 @@
 
 {% block additional_content %}
 
-    {{ this.render('_form.twig', {'model' : model, 'formModel' : formModel}) | raw }}
-
-    {% if app.session.hasFlash('danger') %}
-        {{ app.session.getFlash('danger') | raw }}
-    {% endif %}
-    {% if app.session.hasFlash('success') %}
-        {{ app.session.getFlash('success') | raw }}
-    {% endif %}
+    <section class="appeal">
+        <div class="container-fluid">
+            <h2 class="appeal-title">Отправить обращение</h2>
+            {{ this.render('_form.twig', {'model' : model, 'formModel' : formModel}) | raw }}
+        </div>
+    </section>
 
 {% endblock %}

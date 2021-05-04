@@ -2,14 +2,13 @@
 
 namespace common\modules\helpdesk\assets;
 
-use Yii;
 use yii\web\AssetBundle;
 
 /**
  * Менеджер ресурсов
  * @package common\modules\helpdesk\assets
  */
-class HelpdeskAsset extends AssetBundle
+class HelpAsset extends AssetBundle
 {
     /**
      * @inheritdoc
@@ -19,7 +18,11 @@ class HelpdeskAsset extends AssetBundle
     public $baseUrl = '@web';
 
     public $css = [
+        '/_new/css/pages/help.min.css',
+    ];
 
+    public $js = [
+        '/_new/js/pages/help.min.js',
     ];
 
     /**
@@ -28,15 +31,6 @@ class HelpdeskAsset extends AssetBundle
     public $depends = [
         \yii\web\JqueryAsset::class,
         \common\modules\site\assets\AppAsset::class,
+        \common\modules\pages\assets\PagesAsset::class,
     ];
-
-    /**
-     * @inheritdoc
-     */
-    public function init()
-    {
-        parent::init();
-
-
-    }
 }

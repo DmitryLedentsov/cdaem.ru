@@ -8,8 +8,7 @@
             zoom: 15,
             controls: []
         });
-
-        createMarker(myMap)
+        createMarker(myMap);
     }
 
     function createMarker(myMap) {

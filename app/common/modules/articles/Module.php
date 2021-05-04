@@ -11,7 +11,7 @@ class Module extends \yii\base\Module
     /**
      * @var integer Кол-во статей котрое необходимо выводить на страницу
      */
-    public $recordsPerPage = 10;
+    public $recordsPerPage = 12;
 
     /**
      * @var string Image path

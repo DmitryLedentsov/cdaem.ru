@@ -8,7 +8,13 @@
 
 {% extends "@common/modules/site/views/layouts/main.twig" %}
 
-{% block title %} {{ this.registerTitle('Статьи, которые помогут Снять Квартиру в Москве и области | Сдаём.ру') }} {% endblock %}
+{% block seo %}
+    {% include '@common/modules/site/views/_modules/_seo.twig' with {
+        'title': 'Статьи, которые помогут Снять Квартиру в Москве и области',
+        'description': 'Как правильно выбрать квартиру на час в Москве и области. Для чего снимают квартиры на час в Москве и области. Квартиры на сутки выручат в сложной ситуации.',
+        'keywords': 'Выбрать квартиру, статьи об аренде, как снять квартиру, аренда квартир плюсы, квартиры посуточно, квартира на час, квартира на сутки, снять квартиру на сутки, квартира на ночь, снять квартиру на ночь, квартира на месяц',
+    } %}
+{% endblock %}
 
 {% block bodyClass %}l-base p-news{% endblock %}
 
@@ -38,9 +44,6 @@
 
 {% block content %}
 
-    {{ this.registerMetaTag({'name' : 'description', 'content' : 'Как правильно выбрать квартиру на час в Москве и области. Для чего снимают квартиры на час в Москве и области. Квартиры на сутки выручат в сложной ситуации.'}) }}
-    {{ this.registerMetaTag({'name' : 'keywords', 'content' : 'Выбрать квартиру, статьи об аренде, как снять квартиру, аренда квартир плюсы, квартиры посуточно, квартира на час, квартира на сутки, снять квартиру на сутки, квартира на ночь, снять квартиру на ночь, квартира на месяц'}) }}
-
     {{ use('common/modules/articles/assets/ArticlesAsset') }}
     {{ register_articles_asset() }}
 
@@ -48,7 +51,6 @@
         <div class="container-fluid">
             <h2 class="section-title">Новости</h2>
             <div class="news-wrapper">
-
                 {% for article in models %}
                     <div class="news-card-wrapper">
                         <div class="news-card">
@@ -74,7 +76,6 @@
                         Статьи не найдены.
                     </div>
                 {% endfor %}
-
             </div>
         </div>
     </section>

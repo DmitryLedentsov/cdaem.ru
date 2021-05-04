@@ -5,7 +5,6 @@ namespace common\modules\site\assets;
 use yii\web\AssetBundle;
 
 /**
- * Class HomeAsset
  * Менеджер ресурсов
  * @package common\modules\site\assets
  */
@@ -31,7 +30,7 @@ class HomeAsset extends AssetBundle
      * Получить url адрес папки с ресурсами
      * @return string
      */
-    public static function getAssetUrl()
+    public static function getAssetUrl(): string
     {
         $obj = new self();
 

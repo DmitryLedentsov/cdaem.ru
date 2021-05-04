@@ -2,8 +2,8 @@
 
 namespace common\modules\helpdesk\models;
 
-use PDO;
 use Yii;
+use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
 use common\modules\users\models\User;
@@ -20,7 +20,7 @@ class Helpdesk extends ActiveRecord
     /**
      * @inheritdoc
      */
-    public static function tableName()
+    public static function tableName(): string
     {
         return '{{%helpdesk}}';
     }
@@ -28,7 +28,7 @@ class Helpdesk extends ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'ticket_id' => 'ID',
@@ -66,7 +66,7 @@ class Helpdesk extends ActiveRecord
     /**
      * @return array
      */
-    public static function getDepartmentArray($id = null)
+    public static function getDepartmentArray($id = null): array
     {
         $statuses = [
             self::LETTER => [
@@ -113,7 +113,7 @@ class Helpdesk extends ActiveRecord
     /**
      * @return array
      */
-    public static function getPriorityArray()
+    public static function getPriorityArray(): array
     {
         return [
             self::NOT_IMPORTANT => [
@@ -147,7 +147,7 @@ class Helpdesk extends ActiveRecord
     /**
      * @return array Массив статусов ответа
      */
-    public static function getAnsweredArray()
+    public static function getAnsweredArray(): array
     {
         return [
             self::ANSWERED => [
@@ -173,7 +173,7 @@ class Helpdesk extends ActiveRecord
     /**
      * @return array
      */
-    public static function getCloseArray()
+    public static function getCloseArray(): array
     {
         return [
             self::CLOSED => [
@@ -198,7 +198,7 @@ class Helpdesk extends ActiveRecord
     /**
      * @return array
      */
-    public static function getSourceTypeArray()
+    public static function getSourceTypeArray(): array
     {
         return [
             'agency' => [
@@ -213,17 +213,17 @@ class Helpdesk extends ActiveRecord
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
-    public function getUser()
+    public function getUser(): ActiveQuery
     {
         return $this->hasOne(User::class, ['id' => 'user_id']);
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
-    public function getHelpdeskAnswers()
+    public function getHelpdeskAnswers(): ActiveQuery
     {
         return $this->hasMany(HelpdeskAnswers::class, ['ticket_id' => 'ticket_id']);
     }

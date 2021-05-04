@@ -5,6 +5,7 @@ namespace frontend\components;
 use Yii;
 use yii\base\Model;
 use yii\helpers\Html;
+use yii\helpers\Json;
 
 /**
  * Общий контроллер
@@ -44,9 +45,33 @@ class Controller extends \yii\web\Controller
         return Yii::$app->getResponse()->redirect(Yii::$app->getRequest()->getUrl() . $anchor, 308);
     }
 
-    public function validation()
+    /**
+     * @param string $message
+     * @param array $data
+     * @return string
+     */
+    public function successAjaxResponse(string $message, array $data = []): string
     {
+        Yii::$app->response->statusCode = 200;
 
+        $result = [
+            'status' => 'success',
+            'message' => $message,
+            'data' => $data,
+        ];
+
+        return Json::encode($result);
+    }
+
+    /**
+     * @param array $errors
+     * @return string
+     */
+    public function validationErrorsAjaxResponse(array $errors): string
+    {
+        Yii::$app->response->statusCode = 422;
+
+        return Json::encode($errors);
     }
 
     /**
