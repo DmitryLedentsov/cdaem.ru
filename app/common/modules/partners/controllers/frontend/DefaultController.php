@@ -26,7 +26,7 @@ class DefaultController extends \frontend\components\Controller
     /**
      * @inheritdoc
      */
-    public function beforeAction($action)
+    public function beforeAction($action): bool
     {
         $this->module->viewPath = '@common/modules/partners/views/frontend';
 
@@ -59,7 +59,7 @@ class DefaultController extends \frontend\components\Controller
     /**
      * @inheritdoc
      */
-    public function behaviors()
+    public function behaviors(): array
     {
         $behaviors = [
             'access' => [
@@ -87,16 +87,16 @@ class DefaultController extends \frontend\components\Controller
     }
 
     /**
-     * Доска объявлений
+     * Доска объявлений (все города)
      * @return string
      */
-    public function actionIndex()
+    public function actionIndex(): string
     {
         $cities = models\Apartment::alphCities();
 
         $searchModel = new models\search\AdvertSearch();
 
-        return $this->render('index.twig', [
+        return $this->render('search.twig', [
             'cities' => $cities,
             'searchModel' => $searchModel,
         ]);
@@ -104,8 +104,9 @@ class DefaultController extends \frontend\components\Controller
 
     /**
      * Перенаправление на поддомен города
+     * @return Response
      */
-    public function actionPreRegion()
+    public function actionPreRegion(): Response
     {
         $city = City::findByNameEng(Yii::$app->request->get('city_code'));
 
@@ -123,7 +124,7 @@ class DefaultController extends \frontend\components\Controller
 
         unset($queryParams['city_name'], $queryParams['city_code']);
 
-        $this->redirect(array_merge($redirect, $queryParams), 302);
+        return $this->redirect(array_merge($redirect, $queryParams), 302);
     }
 
     /**
@@ -133,39 +134,13 @@ class DefaultController extends \frontend\components\Controller
      */
     public function actionRegion()
     {
-        $city = City::findByNameEng(Yii::$app->request->get('city'));
-
-        if (!$city) {
+        if (!$city = City::findByNameEng(Yii::$app->request->get('city'))) {
             throw new HttpException(404, 'Страница по данному адресу не существует');
         }
 
         $params = Yii::$app->request->get();
         $params['city_id'] = $city->city_id;
-        $articlesQuery = Article::find()->orderBy(['date_create' => SORT_DESC]);
-        if (!is_null($city)) {
-            $articlesQuery->where(['city' => $city]);
-        } else {
-            $articlesQuery->where('city IS NULL');
-        }
-        $articles = $articlesQuery->limit(1)->all();
 
-        $articlesQuery2 = Article::find()
-            ->orderBy(['date_create' => SORT_DESC]);
-
-        if (!is_null($city)) {
-            $articlesQuery2->where(['city' => $city]);
-        } else {
-            $articlesQuery2->where('city IS NULL');
-        }
-        $articlesall3 = $articlesQuery2->limit(9)->all();
-        $i = 0;
-        $articlesall2 = [];
-        foreach ($articlesall3 as $item) {
-            if ($i > 0) {
-                $articlesall2[] = $item;
-            }
-            $i++;
-        }
         $searchModel = new models\search\AdvertSearch();
         $dataProvider = $searchModel->search($params);
         $topAdverts = models\Advert::findAdvertsByCity($city->city_id, true, Yii::$app->request->get('sect'));
@@ -177,8 +152,6 @@ class DefaultController extends \frontend\components\Controller
             'searchModel' => $searchModel,
             'topAdverts' => $topAdverts,
             'dataProvider' => $dataProvider,
-            'articles' => $articles,
-            'articlesall2' => $articlesall2,
         ]);
     }
 

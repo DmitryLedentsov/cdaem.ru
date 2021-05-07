@@ -1,19 +1,22 @@
 {#
-    Просмотр
+    Доска объявлений
     @var \yii\web\View this
     @var common\modules\partners\models\Advert adverts
 #}
 
 {% extends "@common/modules/site/views/layouts/main.twig" %}
 
-{% block title %}{{ this.registerTitle('Квартира посуточно в ' ~ city.name ~ '. Снять квартиру  на сутки без посредников | Сдаём.ру') }}{% endblock %}
+{% block seo %}
+    {% include '@common/modules/site/views/_modules/_seo.twig' with {
+        'title': 'Квартира посуточно в ' ~ city.name ~ '. Снять квартиру  на сутки без посредников | Сдаём.ру',
+        'description':  '',
+        'keywords': '',
+    } %}
+{% endblock %}
 
 {% block bodyClass %}l-base p-board{% endblock %}
 
 {% block content %}
-
-    {{ this.registerMetaTag({'name' : 'description', 'content' : ''}) }}
-    {{ this.registerMetaTag({'name' : 'keywords', 'content' : ''}) }}
 
     {{ use('common/modules/partners/assets/frontend/RegionAsset') }}
     {{ register_region_asset() }}
@@ -84,48 +87,40 @@
     {{ advertising_top_slider_adverts_widget() }}
 
     {% if topAdverts %}
-    <section class="top-advert">
-        <div class="container-fluid">
-            <h2 class="section-title">Топ объявления</h2>
-        </div>
-        <div class="top-advert-slider">
-
-            {% for topAdvert in topAdverts %}
-                {{ preview_advert_board_widget({'advert': topAdvert}) }}
-            {% endfor %}
-
-        </div>
-    </section>
+        <section class="top-advert">
+            <div class="container-fluid">
+                <h2 class="section-title">Топ объявления</h2>
+            </div>
+            <div class="top-advert-slider">
+                {% for topAdvert in topAdverts %}
+                    {{ preview_advert_board_widget({'advert': topAdvert}) }}
+                {% endfor %}
+            </div>
+        </section>
     {% endif %}
 
-    <section class="apartment-list">
+    <section class="apartment-list mt-4">
         <div class="container-fluid">
             <div class="apartment-container">
                 <h2 class="section-title">Снять квартиру на сутки в Москве</h2>
-                <a href="./fastrent.html" class="btn btn-warning">БЫСТРО СНЯТЬ</a>
+                <a href="{{ path(['/partners/reservation/index']) }}" class="btn btn-warning" target="_blank">БЫСТРО СНЯТЬ</a>
             </div>
             <div class="apartment-card-container">
-
                 {% for advert in dataProvider.getModels() %}
                     {{ preview_advert_board_widget({'advert': advert}) }}
                 {% endfor %}
-
                 {% if dataProvider.getModels() is empty %}
                     <div class="alert alert-danger" role="alert">
                         Апартаменты не найдены.
                     </div>
                 {% endif %}
-
             </div>
         </div>
     </section>
-
-
 
     {{ use('common/widgets/frontend/CustomLinkPager') }}
     {{ custom_link_pager_widget({
         'pagination': dataProvider.getPagination()
     }) }}
-
 
 {% endblock content %}
