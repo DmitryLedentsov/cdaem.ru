@@ -8,6 +8,7 @@ use yii\helpers\Html;
 
 /**
  * Виджет отображает блок объявления на доске объявлений
+ * @package common\modules\partners\widgets\frontend
  */
 class PreviewAdvertBoard extends Widget
 {
@@ -77,7 +78,10 @@ class PreviewAdvertBoard extends Widget
             'city' => $this->advert->apartment->city->name_eng
         ]);
 
-        // Yii::t('app', '{n, plural, =0{нет комнат} one{# комната} =5{# комнат}  few{# комнаты} many{# комнат} other{# комнаты} }', ['n' => $this->advert->apartment->total_rooms])
+        $totalRoomsString = Yii::t(
+            'app', '{n, plural, =0{нет комнат} one{# комната} =5{# комнат}  few{# комнаты} many{# комнат} other{# комнаты} }',
+            ['n' => $this->advert->apartment->total_rooms]
+        );
 
         $online = '';
         if ($this->advert->apartment->user->isOnline()) {
@@ -97,26 +101,26 @@ class PreviewAdvertBoard extends Widget
                 <div class="apartment-item">
                     <div class="apartment-image-block">
                         <div class="apartment-price"><span class="apartment-price-value">'.$this->advert->priceText.'</span> / сут</div>
-                        <img class="apartment-image" src="'.$this->previewTitleImage.'" alt="advert-image">
+                        '. $this->getPreviewTitleImage().'
                         <button class="apartment-phone"></button>
                     </div>
                     <div class="apartment-metro">
                         <span>До метро:</span>
                         <div class="apartment-metro-item">
                             <object class="apartment-metro-icon">
-                                <img src="./images/apartment-card/pedestrian.svg" alt="pedestrian">
+                                <img src="/_new/images/apartment-card/pedestrian.svg" alt="pedestrian">
                             </object>
                             <span>?? минут</span>
                         </div>
                         <div class="apartment-metro-item">
                             <object class="apartment-metro-icon">
-                                <img src="./images/apartment-card/car.svg" alt="car">
+                                <img src="/_new/images/apartment-card/car.svg" alt="car">
                             </object>
                             <span>?? минут</span>
                         </div>
                         <div class="apartment-metro-item">
                             <object class="apartment-metro-icon">
-                                <img src="./images/apartment-card/bus.svg" alt="bus">
+                                <img src="/_new/images/apartment-card/bus.svg" alt="bus">
                             </object>
                             <span>?? минут</span>
                         </div>
@@ -126,25 +130,25 @@ class PreviewAdvertBoard extends Widget
                     <div class="apartment-info">
                         <div class="apartment-info-item  apartment-rooms">
                             <object class="apartment-icon">
-                                <img src="./images/icons/apartment/rooms.svg" alt="rooms">
+                                <img src="/_new/images/icons/apartment/rooms.svg" alt="rooms">
                             </object>
-                            <span>'.$this->advert->apartment->total_rooms.' комната</span>
+                            <span>'.$totalRoomsString.'</span>
                         </div>
                         <div class="apartment-info-item apartment-area">
                             <object class="apartment-icon">
-                                <img src="./images/icons/apartment/area.svg" alt="area">
+                                <img src="/_new/images/icons/apartment/area.svg" alt="area">
                             </object>
                             <span>'.$this->advert->apartment->total_area.' м2</span>
                         </div>
                         <div class="apartment-info-item  apartment-beds">
                             <object class="apartment-icon">
-                                <img src="./images/icons/apartment/beds.svg" alt="beds">
+                                <img src="/_new/images/icons/apartment/beds.svg" alt="beds">
                             </object>
-                            <span>'.$this->advert->apartment->beds.' спальных <br>места</span>
+                            <span>'.$this->advert->apartment->beds.' с. места</span>
                         </div>
                         <div class="apartment-info-item  apartment-repairs">
                             <object class="apartment-icon">
-                                <img src="./images/icons/apartment/repairs.svg" alt="repairs">
+                                <img src="/_new/images/icons/apartment/repairs.svg" alt="repairs">
                             </object>
                             <span>'.$this->advert->apartment->remontName.'</span>
                         </div>
@@ -175,9 +179,10 @@ class PreviewAdvertBoard extends Widget
         $alt = $this->advert->rentType->name;
         $alt .= ' ' . $title;
 
-        return Html::img($this->advert->apartment->titleImageSrc, [
+        return Html::a(Html::img($this->advert->apartment->titleImageSrc, [
             'alt' => $alt,
             'title' => $title,
-        ]);
+            'class' => 'apartment-image',
+        ]), ['/partners/default/view', 'city' => $this->advert->apartment->city->name_eng, 'id' => $this->advert->advert_id]);
     }
 }

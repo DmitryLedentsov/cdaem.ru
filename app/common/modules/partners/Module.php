@@ -73,7 +73,7 @@ class Module extends \yii\base\Module
     /**
      * @var integer
      */
-    public $pageSize = 70;
+    public $pageSize = 42;
 
     /**
      * Цена рекламного объявления
@@ -85,7 +85,7 @@ class Module extends \yii\base\Module
      * Кол-во рекламных объявлений
      * @var integer
      */
-    public $amountAdvertisements = 7;
+    public $amountAdvertisements = 14;
 
     /**
      * Процент, который платит владелец при подтверждении заявки

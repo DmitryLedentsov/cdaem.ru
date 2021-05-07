@@ -1,5 +1,5 @@
 {#
-    Главная страница
+    Страница "Все города"
     @var common\modules\agency\models\Apartment AgencyApartments
     @var common\modules\partners\models\Apartment AdvertsApartments
     @var \yii\web\View this
@@ -7,25 +7,20 @@
 
 {% extends "@common/modules/site/views/layouts/main.twig" %}
 
-{% block title %}{{ this.registerTitle('Доска объявлений по аренде посуточно, все города России и СНГ | Сдаём.ру') }}{% endblock %}
+{% block seo %}
+    {% include '@common/modules/site/views/_modules/_seo.twig' with {
+        'title': 'Доска объявлений по аренде посуточно, все города России | Сдаём.ру',
+        'description':  '',
+        'keywords': '',
+    } %}
+{% endblock %}
 
 {% block bodyClass %}l-base p-search{% endblock %}
 
-{#{% block header %}#}
-{#    {{ use('common/modules/site/widgets/BgHeader') }}#}
-{#    {{ bg_header_widget({'title': 'Доска объявлений'}) }}#}
-{#{% endblock %}#}
-
 {% block content %}
-
-    {{ this.registerMetaTag({'name' : 'description', 'content' : ''}) }}
-    {{ this.registerMetaTag({'name' : 'keywords', 'content' : ''}) }}
 
     {{ use('common/modules/partners/assets/frontend/AdvertAsset') }}
     {{ register_advert_asset() }}
-
-{#    {{ use('common/modules/geo/assets/frontend/MetroMskAsset') }}#}
-{#    {{ register_metro_msk_asset() }}#}
 
     {# Поиск #}
     {{ this.render('@common/modules/partners/views/frontend/default/_search_on_the_board.twig', {
@@ -33,20 +28,26 @@
         'searchModel': searchModel
     }) | raw }}
 
-
     <section class="about-advert">
         <div class="container-fluid">
             <div class="about-advert-container">
                 <div class="about-advert-item about-advert-item-image">
-                    <img src="./images/gallery/about-advert-image.png" alt="about advert image"/>
+                    <img src="/_new/images/gallery/about-advert-image.png" alt="about advert image"/>
                 </div>
                 <div class="about-advert-item about-advert-item-content">
                     <h2 class="section-title">Доска объявлений по всей России и СНГ</h2>
                     <p class="about-advert-text">
-                        Вы можете бесплатно разместить своё предложение по «аренде посуточно» и выбрать нужный раздел: Квартира на сутки, квартира на час, квартира на ночь, квартира на месяц, комната на сутки, койко-место, загородный дом или дом на выходные, коттедж на сутки. Также если Вы собрались в поездку: Санкт-Петербург, Ростов на дону, Новосибирск, Екатеринбург, Казань, Челябинск, Уфа, Самара, Нижний Новгород, Волгоград, Омск или любой другой город России, то можно заранее забронировать через Наш сайт www.cdaem.ru.
+                        Вы можете бесплатно разместить своё предложение по «аренде посуточно» и выбрать нужный раздел:
+                        Квартира на сутки, квартира на час, квартира на ночь, квартира на месяц, комната на сутки,
+                        койко-место, загородный дом или дом на выходные, коттедж на сутки. Также если Вы собрались
+                        в поездку: Санкт-Петербург, Ростов на дону, Новосибирск, Екатеринбург, Казань, Челябинск, Уфа,
+                        Самара, Нижний Новгород, Волгоград, Омск или любой другой город России, то можно заранее
+                        забронировать через Наш сайт <a href="https://cdaem.ru">www.cdaem.ru</a>.
                     </p>
                     <p class="about-advert-text">
-                        Если Вы едите в Москву или уже в Москве, то можно забронировать и подобрать квартиру посуточно через нашу фирму. Наши менеджеры профессионально подберут Вам нужный вариант, и Вы останетесь довольны. Мы работаем без посредников!
+                        Если Вы едите в Москву или уже в Москве, то можно забронировать и подобрать квартиру посуточно
+                        через нашу фирму. Наши менеджеры профессионально подберут Вам нужный вариант, и Вы останетесь
+                        довольны. Мы работаем без посредников!
                     </p>
                 </div>
             </div>
@@ -60,66 +61,66 @@
                 <div class="directions-column">
                     <div class="city">
                         <a class="city-link priority" href="{{ path('/partners/default/region', {'city' : 'msk'}) }}">
-                            <b>Москва —</b> 10 563 038 чел.
+                            <b>Москва —</b> 12 636 312 чел.
                         </a>
                     </div>
                     <div class="city">
                         <a class="city-link" href="{{ path('/partners/default/region', {'city' : 'ns'}) }}">
-                            <b>Новосибирск —</b> 1 409 137 чел.
+                            <b>Новосибирск —</b> 1 625 631 чел.
                         </a>
                     </div>
                     <div class="city">
                         <a class="city-link" href="{{ path('/partners/default/region', {'city' : 'nn'}) }}">
-                            <b>Нижний Новгород —</b> 1 271 045 чел.
+                            <b>Нижний Новгород —</b> 1 252 236 чел.
                         </a>
                     </div>
                     <div class="city">
                         <a class="city-link" href="{{ path('/partners/default/region', {'city' : 'chel'}) }}">
-                            <b>Челябинск —</b> 1 125 723 чел.
+                            <b>Челябинск —</b> 1 196 680 чел.
                         </a>
                     </div>
                 </div>
                 <div class="directions-column">
                     <div class="city">
                         <a class="city-link" href="{{ path('/partners/default/region', {'city' : 'spb'}) }}">
-                            <b>Санкт-Петербург —</b> 617 000 чел.
+                            <b>Санкт-Петербург —</b> 5 388 759 чел.
                         </a>
                     </div>
                     <div class="city">
                         <a class="city-link" href="{{ path('/partners/default/region', {'city' : 'ekaterinburg'}) }}">
-                            <b>Екатеринбург —</b> 1 365 567 чел.
+                            <b>Екатеринбург —</b> 1 526 903 чел.
                         </a>
                     </div>
                     <div class="city">
                         <a class="city-link" href="{{ path('/partners/default/region', {'city' : 'kazan'}) }}">
-                            <b>Казань —</b> 1 136 566 чел.
+                            <b>Казань —</b> 1 257 000 чел.
                         </a>
                     </div>
                     <div class="city">
                         <a class="city-link" href="{{ path('/partners/default/region', {'city' : 'samara'}) }}">
-                            <b>Самара —</b> 1 133 754 чел.
+                            <b>Самара —</b> 1 144 759 чел.
                         </a>
                     </div>
                 </div>
                 <div class="directions-column">
                     <div class="city">
                         <a class="city-link" href="{{ path('/partners/default/region', {'city' : 'rostov'}) }}">
-                            <b>Ростов-на-Дону —</b> 1 048 124 чел.
+                            <b>Ростов-на-Дону —</b> 1 137 904 чел.
                         </a>
                     </div>
                     <div class="city">
                         <a class="city-link" href="{{ path('/partners/default/region', {'city' : 'kemerovo'}) }}">
-                            <b>Кемерово —</b> 1 048 124 чел.
+                            <b>Кемерово —</b> 552 546 чел.
                         </a>
                     </div>
                     <div class="city">
                         <a class="city-link" href="{{ path('/partners/default/region', {'city' : 'ufa'}) }}">
-                            <b>Уфа —</b> 1 064 843 чел.
+                            <b>Уфа —</b> 1 140 273 чел.
                         </a>
                     </div>
                     <div class="city">
                         <a class="city-link" href="{{ path('/partners/default/region', {'city' : 'volgograd'}) }}">
-                            <b>Волгоград —</b> 1 015 813 чел.
+                            <b>Волгоград —</b> 1 008 998 чел.
                         </a>
                     </div>
                 </div>
@@ -129,33 +130,24 @@
     <section class="cities">
         <div class="container-fluid">
             <h2 class="section-title">Выберите город</h2>
-
             <div class="cities-list">
             {% for country, arCities in cities %}
-
                 {% for key, arCity in arCities %}
-
                     <div class="cities-column">
-                        <div class="letter">
-                            {{ key }}
-                        </div>
+                        <div class="letter">{{ key }}</div>
                         <div class="city-list">
                             {% for city in arCity %}
                                 <div class="city">
                                     <a class="city-link" href="{{ path('/partners/default/region', {'city' : city.name_eng}) }}">
-                                        <b>{{ city.name }} —</b> ?????? чел.
+                                        <b>{{ city.name }}</b>
                                     </a>
                                 </div>
                             {% endfor %}
                         </div>
-
                     </div>
-
                 {% endfor %}
-
             {% endfor %}
             </div>
-
         </div>
     </section>
 
