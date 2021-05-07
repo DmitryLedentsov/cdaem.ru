@@ -26,7 +26,7 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li {{ app.request.pathInfo == 'rules' ? 'class="active"' : '' }}>
-                                        <a href="{{ path(['/helpdesk/default/workvac']) }}">Вакансии</a>
+                                        <a href="{{ path(['/helpdesk/default/vacancy']) }}">Вакансии</a>
                                     </li>
                                     <li {{ app.request.pathInfo == 'kvartira_na_chas' ? 'class="active"' : '' }}>
                                         <a href="{{ path('/site/default/index', {'rentType' : 'kvartira_na_chas'}) }}">

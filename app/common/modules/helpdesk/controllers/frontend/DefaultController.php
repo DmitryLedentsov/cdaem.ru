@@ -81,61 +81,25 @@ class DefaultController extends \frontend\components\Controller
     }
 
     /**
-     * @return array|string|\yii\console\Response|Response
+     * Страница "Вакансии"
+     *
+     * @return string
      */
-    public function actionWorkvac()
+    public function actionVacancy(): string
     {
         $model = new Helpdesk();
         $formModel = new HelpdeskForm(['scenario' => 'guest-ask-work']);
+
         if ($formModel->load(Yii::$app->request->post())) {
-            $errors = ActiveForm::validate($formModel);
-            if (!$errors) {
-                if ($formModel->vacant()) {
-                    Yii::$app->session->setFlash('success', 'Обращение успешно отправлено.');
-                } else {
-                    Yii::$app->session->setFlash('danger', 'При отправки обращения возникла ошибка.');
-                }
-
-                return $this->refresh();
-            } elseif (Yii::$app->request->isAjax) {
-                Yii::$app->response->format = Response::FORMAT_JSON;
-
-                return $errors;
+            $errors = $this->validate($formModel);
+            if (empty($errors)) {
+                $formModel->vacancy();
+                return $this->successAjaxResponse('Спасибо, ваше обращение успешно отправлено, мы свяжемся с вами в ближайшее время.');
             }
+            return $this->validationErrorsAjaxResponse($errors);
         }
 
-        return $this->render('workvac.twig', [
-            'model' => $model,
-            'formModel' => $formModel,
-        ]);
-    }
-
-    /**
-     * @return array|string|Response
-     */
-    public function actionHelpphone()
-    {
-        $model = new Helpdesk();
-        $formModel = new HelpdeskForm(['scenario' => 'guest-ask-phone']);
-        if ($formModel->load(Yii::$app->request->post())) {
-            $errors = ActiveForm::validate($formModel);
-            if (!$errors) {
-                if ($formModel->phonehelp()) {
-                    Yii::$app->session->setFlash('success', 'Обращение успешно отправлено. Ваша заявка будет расмотренна в течении суток.');
-                } else {
-                    Yii::$app->session->setFlash('danger', 'При отправки обращения возникла ошибка.');
-                }
-
-                return Yii::$app->controller->redirect(['/users/user/profile']);
-            }
-            if (Yii::$app->request->isAjax) {
-                Yii::$app->response->format = Response::FORMAT_JSON;
-
-                return $errors;
-            }
-        }
-
-        return $this->render('helpphone.twig', [
+        return $this->render('vacancy.twig', [
             'model' => $model,
             'formModel' => $formModel,
         ]);
@@ -175,6 +139,37 @@ class DefaultController extends \frontend\components\Controller
 
         return $this->render('help.twig', [
             'model' => new Helpdesk(),
+            'formModel' => $formModel,
+        ]);
+    }
+
+    /**
+     * @return array|string|Response
+     */
+    public function actionHelpphone()
+    {
+        $model = new Helpdesk();
+        $formModel = new HelpdeskForm(['scenario' => 'guest-ask-phone']);
+        if ($formModel->load(Yii::$app->request->post())) {
+            $errors = ActiveForm::validate($formModel);
+            if (!$errors) {
+                if ($formModel->phonehelp()) {
+                    Yii::$app->session->setFlash('success', 'Обращение успешно отправлено. Ваша заявка будет расмотренна в течении суток.');
+                } else {
+                    Yii::$app->session->setFlash('danger', 'При отправки обращения возникла ошибка.');
+                }
+
+                return Yii::$app->controller->redirect(['/users/user/profile']);
+            }
+            if (Yii::$app->request->isAjax) {
+                Yii::$app->response->format = Response::FORMAT_JSON;
+
+                return $errors;
+            }
+        }
+
+        return $this->render('helpphone.twig', [
+            'model' => $model,
             'formModel' => $formModel,
         ]);
     }

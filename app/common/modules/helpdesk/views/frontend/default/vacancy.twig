@@ -1,0 +1,130 @@
+{#
+    Обращение в тех. поддержку
+    @var \yii\web\View this
+    @var \common\helpdesk\models\Helpdesk model
+    @var \common\helpdesk\models\form\HelpdeskForm formModel
+#}
+
+{% extends "@common/modules/site/views/layouts/main.twig" %}
+
+{% block seo %}
+    {% include '@common/modules/site/views/_modules/_seo.twig' with {
+        'title': 'Работа уборщицей в Москве, ищу работу уборщицы. | Сдаём.ру',
+        'description': 'Работа на Сдаём.ру в Москве, по всем районам.',
+        'keywords': '',
+    } %}
+{% endblock %}
+
+{% block bodyClass %}l-base p-vacancy{% endblock %}
+
+{% block breadcrumbs %}
+    <div class="container-fluid">
+        {{ use('yii/widgets/Breadcrumbs') }}
+        {{ breadcrumbs_widget({
+            'tag':  'div',
+            'options': {
+                'class': 'breadcrumbs'
+            },
+            'itemTemplate' : "{link}\n",
+            'homeLink' :
+            {
+                'label' : 'Главная',
+                'url' : '/'
+            },
+            'links':  [
+                {
+                    'label': 'Работа на Сдаём.ру',
+                    'url': ['/helpdesk/default/vacancy'],
+                },
+            ],
+        }) }}
+    </div>
+{% endblock %}
+
+{% block content %}
+
+    {{ use('common/modules/helpdesk/assets/VacancyAsset') }}
+    {{ register_vacancy_asset() }}
+
+    <section class="recruitment">
+        <div class="container-fluid">
+            <div class="recruitment-container">
+                <div class="recruitment-item recruitment-item-image">
+                    <img src="/_new/images/gallery/recruitment-image.png" alt="recruitment-image">
+                </div>
+                <div class="recruitment-item recruitment-item-content">
+                    <h2 class="recruitment-title">Набор сотрудников</h2>
+                    <h5 class="recruitment-subtitle">Требования:</h5>
+                    <p class="recruitment-text">
+                        Пунктуальность, внимательное отношение к работе, умение обучаться, активная, вежливая,
+                        ответственная, желание карьерного роста, пунктуальная. Обязанности: Уборка
+                        малогабаритных квартир в Москве, разъездная работа: Убрали одну квартиру,
+                        поехали на другую квартиру, если работы нет, то сидите на квартире, чай пьёте.
+                        На зарплату не влияет. В деньот двух до четырёх квартир, которые нужно убирать.
+                        Работник только на постоянную работу. Квартиры представлены у нас на сайте.
+                        Вакансия ограничена, так, как люди у нас работют годами, и уходят только по состоянию здоровья.
+                    </p>
+                    <h5 class="recruitment-subtitle">Условия:</h5>
+                    <p class="recruitment-text">
+                        Зарплата от <span>30 000 ₽</span> до <span>50 000 ₽</span>,
+                        есть ежедневные выплаты бонусов, сотрудников обучаем! Зарплата в срок, задержек не бывает!
+                        Есть график 2х2, 6/1, 5/2, 7/0. Звоните, мы вас ждём. Выходные строго по графику.
+                    </p>
+                    <div class="recruitment-phone">
+                        <a class="recruitment-phone-link" href="tel:1-562-867-5309">
+                            <object>
+                                <img class="recruitment-phone-logo" src="/_new/images/icons/phone-icon.svg" alt="phone">
+                            </object>
+                            8 966-096-23-60
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="appeal">
+        <div class="container-fluid">
+            <h2 class="appeal-title">Оставить заявку на работу</h2>
+            <form class="form" method="POST" id="form-vacancy" action="{{ url(['/helpdesk/default/vacancy']) }}">
+                <div class="row">
+                    <div class="form-group col-sm-12">
+                        <p class="appeal-subtitle">Ваши данные:</p>
+                    </div>
+                    <div class="form-group col-sm-6 col-md-4 col-lg-5">
+                        <label for="vacancy-name" class="d-none"></label>
+                        <input type="text" class="form-control" placeholder="Введите ваше имя" name="Helpdesk[user_name]" id="vacancy-name">
+                        <div class="invalid-feedback"></div>
+                    </div>
+                    <div class="w-100 d-block d-md-none"></div>
+                    <div class="form-group col-sm-6 col-md-4 col-lg-3">
+                        <label for="vacancy-email" class="d-none"></label>
+                        <input type="email" class="form-control" placeholder="Введите ваш Email" name="Helpdesk[email]" id="vacancy-email">
+                        <div class="invalid-feedback"></div>
+                    </div>
+                    <div class="w-100 d-block d-md-none"></div>
+                    <div class="form-group col-sm-6 col-md-4 col-lg-4">
+                        <label for="vacancy-phone" class="d-none"></label>
+                        <input type="tel" class="form-control" placeholder="+38(0__)-___-__-__" name="Helpdesk[phone]" id="vacancy-phone">
+                        <div class="invalid-feedback"></div>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="vacancy-text" class="d-none"></label>
+                        <textarea class="form-control" placeholder="Доп. информация" name="Helpdesk[text]" id="vacancy-text"></textarea>
+                        <div class="invalid-feedback"></div>
+                    </div>
+                    <div class="form-group col-md-12 appeal-container">
+                        <p class="submit-text">
+                            Нажимая "Отправить" вы соглашаетесь c правилами
+                            <a href="{{ path('/pages/default/index', {'url' : 'privacy'}) }}" target="_blank">
+                                политики конфиденицальности.
+                            </a>
+                        </p>
+                        <button type="submit" class="btn btn-warning">Отправить</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+{% endblock %}

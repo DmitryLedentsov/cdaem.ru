@@ -20,6 +20,8 @@ class HelpdeskForm extends \yii\base\Model
 
     public $email;
 
+    public $phone;
+
     public $user_name;
 
     public $partners_advert_id;
@@ -50,8 +52,8 @@ class HelpdeskForm extends \yii\base\Model
     {
         return [
             'guest-ask' => ['theme', 'text', 'priority', 'email', 'user_name'],
-            'guest-ask-work' => ['theme', 'text', 'priority', 'email', 'user_name'],
             'user-ask' => ['theme', 'text', 'priority'],
+            'guest-ask-work' => ['text', 'email', 'phone', 'user_name'],
             'guest-ask-phone' => ['theme', 'priority'],
             'guest-complaint-phone' => ['theme', 'priority'],
             'guest-complaint' => ['partners_advert_id', 'theme', 'text', 'priority', 'email', 'user_name'],
@@ -66,7 +68,7 @@ class HelpdeskForm extends \yii\base\Model
     public function rules()
     {
         return [
-            [['theme', 'text', 'priority', 'email', 'user_name'], 'required'],
+            [['theme', 'text', 'priority', 'email', 'phone', 'user_name'], 'required'],
             [['user_id', 'priority', 'answered', 'close'], 'integer'],
             ['priority', 'in', 'range' => array_keys(Helpdesk::getPriorityArray())],
             ['source_type', 'in', 'range' => array_keys(Helpdesk::getSourceTypeArray())],
@@ -74,7 +76,7 @@ class HelpdeskForm extends \yii\base\Model
             ['close', 'in', 'range' => array_keys(Helpdesk::getCloseArray())],
             [['text'], 'string'],
             [['email'], 'email'],
-            [['email'], 'string', 'max' => 255],
+            [['email', 'phone'], 'string', 'max' => 255],
             [['theme', 'user_name'], 'string', 'max' => 100],
             ['partners_advert_id', 'required'],
             ['partners_advert_id', 'exist', 'targetClass' => Advert::class, 'targetAttribute' => 'advert_id'],
@@ -112,13 +114,18 @@ class HelpdeskForm extends \yii\base\Model
         return $model->save();
     }
 
-    public function vacant()
+    /**
+     * Запрос на вакансию
+     */
+    public function vacancy(): void
     {
         $model = $this->createModel();
+        $model->theme = 'Вакансия';
         $model->source_type = Helpdesk::TYPE_AGENCY;
         $model->department = Helpdesk::LETTERWORK;
+        $model->priority = Helpdesk::NOT_IMPORTANT;
 
-        return $model->save();
+        $model->save(false);
     }
 
     public function phonehelp()

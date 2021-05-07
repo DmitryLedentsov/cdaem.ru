@@ -34,6 +34,7 @@ class Helpdesk extends ActiveRecord
             'ticket_id' => 'ID',
             'user_id' => 'User ID',
             'email' => 'Email',
+            'phone' => 'Телефон',
             'theme' => 'Тема обращения',
             'user_name' => 'Имя пользователя',
             'text' => 'Обращение',

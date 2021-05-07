@@ -19,7 +19,8 @@
     "/js/pages/apartment.min.js": "/js/pages/apartment.min.js?id=c6aa8bf980dc1fbe141c",
     "/js/pages/board.min.js": "/js/pages/board.min.js?id=4922ad1de6dabba76af9",
     "/js/pages/fastrent.min.js": "/js/pages/fastrent.min.js?id=5b2fe8abad2a1c0f497e",
-    "/js/pages/help.min.js": "/js/pages/help.min.js?id=12704bf3ccce99fd7da6",
+    "/js/pages/help.min.js": "/js/pages/help.min.js?id=960d8461741f99b97e82",
     "/js/pages/home.min.js": "/js/pages/home.min.js?id=d325a3e172674d319fed",
-    "/js/pages/search.min.js": "/js/pages/search.min.js?id=f4ba474ccc23dea3ef21"
+    "/js/pages/search.min.js": "/js/pages/search.min.js?id=f4ba474ccc23dea3ef21",
+    "/js/pages/vacancy.min.js": "/js/pages/vacancy.min.js?id=d1ba563bcc001b387a95"
 }
