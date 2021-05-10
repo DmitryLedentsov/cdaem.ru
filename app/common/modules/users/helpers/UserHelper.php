@@ -2,9 +2,9 @@
 
 namespace common\modules\users\helpers;
 
-use common\modules\users\models\backend\Profile;
 use yii\helpers\Html;
 use common\modules\users\models\User;
+use common\modules\users\models\backend\Profile;
 
 /**
  * Class UserHelper
@@ -25,7 +25,7 @@ class UserHelper
      * @param User $user
      * @return string
      */
-    public static function getOpenContactsBlock(User $user)
+    public static function getOpenContactsBlock(User $user): string
     {
         $result = Html::tag('p', Html::tag('b', self::getUserName($user)));
 
@@ -43,7 +43,7 @@ class UserHelper
      * @param User $user
      * @return string
      */
-    public static function getUserName(User $user)
+    public static function getUserName(User $user): string
     {
         $name = [];
 
@@ -64,10 +64,10 @@ class UserHelper
 
     /**
      * Форматирует номер телефона
-     * @param $phone
+     * @param string $phone
      * @return string
      */
-    public static function formatPhone($phone)
+    public static function formatPhone(string $phone): string
     {
         if (empty($phone)) {
             return 'не указан';
@@ -101,9 +101,11 @@ class UserHelper
         return $p . $phone;
     }
 
-    //Format phone 2
-
-    public static function formatPhone2($phone)
+    /**
+     * @param string $phone
+     * @return string
+     */
+    public static function formatPhone2(string $phone): string
     {
         if (empty($phone)) {
             return 'не указан';
@@ -132,7 +134,7 @@ class UserHelper
      * @param $email
      * @return string
      */
-    public static function formatEmail($email)
+    public static function formatEmail($email): string
     {
         if (empty($email)) {
             return 'Не указан';

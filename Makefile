@@ -28,7 +28,7 @@ bootstrap:
 	cat ./docker/hosts.sh | sudo /bin/sh
 	make build
 	$(docker_compose_dev) up -d
-	make composer cmd="global require "fxp/composer-asset-plugin:^1.3.1""
+	make composer cmd="global require 'fxp/composer-asset-plugin:1.4.6'"
 	make composer cmd=install
 	make npm-grunt cmd=install
 	make npm-grunt cmd='run dev'

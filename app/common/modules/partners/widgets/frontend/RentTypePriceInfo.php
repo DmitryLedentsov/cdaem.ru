@@ -81,7 +81,7 @@ class RentTypePriceInfo extends Widget
             }
         }
 
-        if($this->isText) {
+        if ($this->isText) {
             $this->_rentTypeHtmlB .= mb_strtolower($this->advert->priceText . ' '. $rentTypeText);
         } else {
             $this->_rentTypeHtmlB .= '
@@ -90,7 +90,6 @@ class RentTypePriceInfo extends Widget
                      <span>' . $rentTypeText . '</span>
                 </div>';
         }
-
     }
 
     /**

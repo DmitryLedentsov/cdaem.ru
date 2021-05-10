@@ -126,16 +126,11 @@ class UserController extends Controller
             return $this->goBack();
         }
 
-
         if ($model = models\LegalPerson::findByUserId(Yii::$app->user->id)) {
             $model->scenario = 'create';
         } else {
             $model = new models\LegalPerson(['scenario' => 'update']);
         }
-
-
-        //$model->formattedRegisterDate = '1.5.1990';
-        //echo $model->formattedRegisterDate;die;
 
         if ($model->load(Yii::$app->request->post())) {
             if ($model->validate()) {

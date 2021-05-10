@@ -68,15 +68,17 @@ class SeoText extends Widget
         if ($this->seoText && empty($this->seoText['text']) === false) {
             if ($this->type === 'footer') {
                 return sprintf(
-                  '<section class="txt">
+                    '<section class="txt">
                         <div class="container-fluid">
                             <div class="txt-container">%s</div>
                             <div class="txt-active" data-seo-text></div>
                         </div>
                     </section>
-                  ', Html::tag($this->tag, $this->seoText['text'], $this->options)
+                  ',
+                    Html::tag($this->tag, $this->seoText['text'], $this->options)
                 );
             }
+
             return Html::tag($this->tag, $this->seoText['text'], $this->options);
         }
 
