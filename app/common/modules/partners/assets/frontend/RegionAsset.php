@@ -15,6 +15,7 @@ class RegionAsset extends AssetBundle
      */
 //    public $sourcePath = '@frontend/themes/basic/assets';
     public $basePath = '@webroot';
+
     public $baseUrl = '@web';
 
     public $css = [
@@ -42,6 +43,5 @@ class RegionAsset extends AssetBundle
     public function init()
     {
         parent::init();
-
     }
 }

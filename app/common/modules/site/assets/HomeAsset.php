@@ -12,6 +12,7 @@ class HomeAsset extends AssetBundle
 {
     //public $sourcePath = '@common/modules/site/assets';
     public $basePath = '@webroot';
+
     public $baseUrl = '@web';
 
     public $css = [

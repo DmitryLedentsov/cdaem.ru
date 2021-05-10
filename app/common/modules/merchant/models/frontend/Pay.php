@@ -2,14 +2,13 @@
 
 namespace common\modules\merchant\models\frontend;
 
-
-use common\modules\partners\interfaces\ServiceInterface;
 use Yii;
 use yii\helpers\Json;
 use common\modules\users\models\User;
 use common\modules\merchant\models\Invoice;
 use common\modules\partners\models\Service;
 use common\modules\partners\traits\ModuleTrait;
+use common\modules\partners\interfaces\ServiceInterface;
 
 /**
  * Оплата счета

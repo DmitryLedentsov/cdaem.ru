@@ -15,6 +15,7 @@ class VacancyAsset extends AssetBundle
      */
 //    public $sourcePath = '@frontend/themes/basic/assets';
     public $basePath = '@webroot';
+
     public $baseUrl = '@web';
 
     public $css = [

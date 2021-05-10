@@ -37,30 +37,37 @@ class CustomLinkPager extends LinkPager
      * @inheritDoc
      */
     public $firstPageCssClass = '';
+
     /**
      * @inheritDoc
      */
     public $lastPageCssClass = '';
+
     /**
      * @inheritDoc
      */
     public $prevPageCssClass = 'pagination-arrows pagination-previous';
+
     /**
      * @inheritDoc
      */
     public $nextPageCssClass = 'pagination-arrows pagination-next';
+
     /**
      * @inheritDoc
      */
     public $activePageCssClass = 'is-active';
+
     /**
      * @inheritDoc
      */
     public $maxButtonCount = 3;
+
     /**
      * @inheritDoc
      */
     public $nextPageLabel = '';
+
     /**
      * @inheritDoc
      */
@@ -70,6 +77,7 @@ class CustomLinkPager extends LinkPager
      * @inheritDoc
      */
     public $firstPageLabel = true;
+
     /**
      * @inheritDoc
      */
@@ -179,5 +187,4 @@ class CustomLinkPager extends LinkPager
 
         return Html::tag($linkWrapTag, Html::a($label, $this->pagination->createUrl($page), $linkOptions), $options);
     }
-
 }

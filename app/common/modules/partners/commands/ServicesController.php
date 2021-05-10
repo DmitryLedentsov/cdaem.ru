@@ -2,10 +2,10 @@
 
 namespace common\modules\partners\commands;
 
-use common\modules\partners\interfaces\ServiceInterface;
 use Yii;
 use yii\helpers\Console;
 use common\modules\partners\models as models;
+use common\modules\partners\interfaces\ServiceInterface;
 
 /**
  * Services
@@ -192,6 +192,7 @@ class ServicesController extends \yii\console\Controller
     {
         if ($action != 'enable' && $action != 'disable' && $action != 'payment') {
             $this->stdout('FAIL: $action incorrect' . PHP_EOL, Console::FG_RED);
+
             return;
         }
 
@@ -236,7 +237,6 @@ class ServicesController extends \yii\console\Controller
             }
 
             $this->stdout('SUCCESS' . PHP_EOL, Console::FG_GREEN);
-
         } catch (\Exception $e) {
             Yii::error('Процесс ID' . $processId . ' - Ошибка: [' . $e->getMessage() . ']', 'services-email');
 
@@ -318,7 +318,6 @@ class ServicesController extends \yii\console\Controller
     {
         $transaction = Yii::$app->db->beginTransaction();
         try {
-
             if (($result = $service->disable()) === true) {
                 $process->date_expire = $currentDate;
                 $process->process = models\Service::PROCESS_FINISHED;

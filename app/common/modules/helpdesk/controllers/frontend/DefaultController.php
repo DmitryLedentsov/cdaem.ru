@@ -94,8 +94,10 @@ class DefaultController extends \frontend\components\Controller
             $errors = $this->validate($formModel);
             if (empty($errors)) {
                 $formModel->vacancy();
+
                 return $this->successAjaxResponse('Спасибо, ваше обращение успешно отправлено, мы свяжемся с вами в ближайшее время.');
             }
+
             return $this->validationErrorsAjaxResponse($errors);
         }
 
@@ -132,8 +134,10 @@ class DefaultController extends \frontend\components\Controller
             $errors = $this->validate($formModel);
             if (empty($errors)) {
                 $formModel->help();
+
                 return $this->successAjaxResponse('Спасибо, ваше обращение успешно отправлено, мы свяжемся с вами в ближайшее время.');
             }
+
             return $this->validationErrorsAjaxResponse($errors);
         }
 

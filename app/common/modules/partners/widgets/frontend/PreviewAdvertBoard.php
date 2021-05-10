@@ -79,7 +79,8 @@ class PreviewAdvertBoard extends Widget
         ]);
 
         $totalRoomsString = Yii::t(
-            'app', '{n, plural, =0{нет комнат} one{# комната} =5{# комнат}  few{# комнаты} many{# комнат} other{# комнаты} }',
+            'app',
+            '{n, plural, =0{нет комнат} one{# комната} =5{# комнат}  few{# комнаты} many{# комнат} other{# комнаты} }',
             ['n' => $this->advert->apartment->total_rooms]
         );
 
@@ -93,7 +94,7 @@ class PreviewAdvertBoard extends Widget
             $now_available = 'Сейчас свободно';
         }
 //        if ($this->advert->apartment->metroStation)
-//var_dump($this->advert->apartment->city->name);
+        //var_dump($this->advert->apartment->city->name);
         $selected = $this->advert->selected ? ' selected' : '';
         $contacts = $this->advert->apartment->open_contacts ? '<div class="contacts topper" title="Контакты открыты"></div>' : '';
 
