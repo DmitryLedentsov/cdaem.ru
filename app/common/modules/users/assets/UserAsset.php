@@ -2,7 +2,6 @@
 
 namespace common\modules\users\assets;
 
-use Yii;
 use yii\web\AssetBundle;
 
 /**
@@ -29,22 +28,4 @@ class UserAsset extends AssetBundle
     public $depends = [
         \yii\web\JqueryAsset::class,
     ];
-
-    /**
-     * @inheritdoc
-     */
-    public function init()
-    {
-        parent::init();
-
-        if (YII_DEBUG) {
-            $this->js = [
-                '/_new/js_dev/users.js',
-            ];
-        } else {
-            $this->js = [
-                '/_new/js/users.js',
-            ];
-        }
-    }
 }

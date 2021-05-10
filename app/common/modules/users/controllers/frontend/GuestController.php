@@ -49,6 +49,30 @@ class GuestController extends Controller
     }
 
     /**
+     * Авторизация
+     * @return Response
+     */
+    public function actionLogin(): Response
+    {
+        $formModel = new models\LoginForm(['scenario' => 'user']);
+
+        if ($formModel->load(Yii::$app->request->post())) {
+            $errors = $this->validate($formModel);
+            if (empty($errors)) {
+                $formModel->login();
+                return $this->redirect(['/office/default/index']);
+            }
+            return $this->response($this->validationErrorsAjaxResponse($errors));
+        }
+
+        return $this->response($this->render('login', [
+            'model' => $formModel,
+        ]));
+    }
+
+    // TODO: -----------------------------------------------------------------------
+
+    /**
      * Регистрация
      * @return array|string|Response
      */
@@ -128,31 +152,6 @@ class GuestController extends Controller
 
         return $this->render('resend', [
             'model' => $model
-        ]);
-    }
-
-    /**
-     * Авторизация
-     */
-    public function actionLogin()
-    {
-        $model = new models\LoginForm(['scenario' => 'user']);
-
-        if ($model->load(Yii::$app->request->post())) {
-            if ($model->validate()) {
-                if ($model->login()) {
-                    return $this->redirect(['/office/default/index']);
-                }
-            } elseif (Yii::$app->request->isAjax) {
-                Yii::$app->response->statusCode = 422;
-                Yii::$app->response->format = Response::FORMAT_JSON;
-
-                return $this->validate($model);
-            }
-        }
-
-        return $this->render('login', [
-            'model' => $model,
         ]);
     }
 

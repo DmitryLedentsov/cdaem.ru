@@ -2,7 +2,9 @@
 
 namespace frontend\components;
 
+use common\components\Response;
 use Yii;
+use yii\base\BaseObject;
 use yii\base\Model;
 use yii\helpers\Html;
 use yii\helpers\Json;
@@ -72,6 +74,20 @@ class Controller extends \yii\web\Controller
         Yii::$app->response->statusCode = 422;
 
         return Json::encode($errors);
+    }
+
+    /**
+     * @param string $content
+     * @return Response
+     */
+    public function response(string $content): Response
+    {
+        Yii::$app->response->content = $content;
+
+        /** @var Response $response */
+        $response = Yii::$app->response;
+
+        return $response;
     }
 
     /**
