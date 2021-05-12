@@ -60,8 +60,10 @@ class GuestController extends Controller
             $errors = $this->validate($formModel);
             if (empty($errors)) {
                 $formModel->login();
+
                 return $this->redirect(['/office/default/index']);
             }
+
             return $this->response($this->validationErrorsAjaxResponse($errors));
         }
 
@@ -70,95 +72,76 @@ class GuestController extends Controller
         ]));
     }
 
-    // TODO: -----------------------------------------------------------------------
-
     /**
      * Регистрация
-     * @return array|string|Response
+     * @return Response
      */
-    public function actionSignup()
+    public function actionSignup(): Response
     {
         $user = new models\User(['scenario' => 'signup']);
         $profile = new models\Profile(['scenario' => 'create']);
 
         if ($user->load(Yii::$app->request->post()) && $profile->load(Yii::$app->request->post())) {
-            if ($user->validate() && $profile->validate()) {
+            $errors = array_merge($this->validate($user), $this->validate($profile));
+            if (empty($errors)) {
                 $user->populateRelation('profile', $profile);
-                if ($user->save(false)) {
-                    if ($this->module->requireEmailConfirmation === true) {
-                        Yii::$app->consoleRunner->run('users/control/send-email ' . $user->email . ' signup "' . Yii::t('users', 'SUBJECT_SIGNUP') . '"');
-
-                        Yii::$app->session->setFlash('success', Yii::t('users', 'SUCCESS_SIGNUP_WITHOUT_LOGIN', [
-                            'url' => Url::toRoute('resend')
-                        ]));
-                    } else {
-                        Yii::$app->user->login($user);
-                        Yii::$app->session->setFlash('success', Yii::t('users', 'SUCCESS_SIGNUP_WITH_LOGIN'));
-                    }
-
-                    return $this->redirect(['login']);
+                $user->save(false);
+                if ($this->module->requireEmailConfirmation === true) {
+                    Yii::$app->consoleRunner->run('users/control/send-email ' . $user->email . ' signup "' . Yii::t('users', 'SUBJECT_SIGNUP') . '"');
+                    Yii::$app->session->setFlash('success', Yii::t('users', 'SUCCESS_SIGNUP_WITHOUT_LOGIN', [
+                        'url' => Url::toRoute('resend')
+                    ]));
                 } else {
-                    Yii::$app->session->setFlash('danger', Yii::t('users', 'FAIL_SIGNUP'));
-
-                    return $this->refresh();
+                    Yii::$app->user->login($user);
+                    Yii::$app->session->setFlash('success', Yii::t('users', 'SUCCESS_SIGNUP_WITH_LOGIN'));
                 }
-            } elseif (Yii::$app->request->isAjax) {
-                Yii::$app->response->statusCode = 422;
-                Yii::$app->response->format = Response::FORMAT_JSON;
 
-                return $this->validate($user, $profile);
+                return $this->redirect(['login']);
             }
+
+            return $this->response($this->validationErrorsAjaxResponse($errors));
         }
 
-        return $this->render('signup', [
+        return $this->response($this->render('signup', [
             'user' => $user,
             'profile' => $profile
-        ]);
+        ]));
     }
 
     /**
      * Повторная отправка ключа активации
-     * @return array|string|Response
+     * @return Response
      */
-    public function actionResend()
+    public function actionResend(): Response
     {
-        $model = new models\frontend\ResendForm();
+        $formModel = new models\frontend\ResendForm();
 
-        if ($model->load(Yii::$app->request->post())) {
-            if ($model->validate()) {
+        if ($formModel->load(Yii::$app->request->post())) {
+            $errors = $this->validate($formModel);
+            if (empty($errors)) {
                 if ($this->module->requireEmailConfirmation === true) {
-                    if ($user = $model->resend()) {
-                        Yii::$app->consoleRunner->run('users/control/send-email ' . $user->email . ' signup "' . Yii::t('users', 'SUBJECT_SIGNUP') . '"');
-                        Yii::$app->session->setFlash('success', Yii::t('users', 'SUCCESS_RESEND'));
+                    $user = $formModel->resend();
+                    Yii::$app->consoleRunner->run('users/control/send-email ' . $user->email . ' signup "' . Yii::t('users', 'SUBJECT_SIGNUP') . '"');
+                    Yii::$app->session->setFlash('success', Yii::t('users', 'SUCCESS_RESEND'));
 
-                        return $this->redirect(['login']);
-                    } else {
-                        Yii::$app->session->setFlash('danger', Yii::t('users', 'FAIL_RESEND'));
-
-                        return $this->refresh();
-                    }
-                } else {
-                    Yii::$app->session->setFlash('success', Yii::t('users', 'FAIL_RESEND_OFF'));
-
-                    return $this->refresh();
+                    return $this->redirect(['login']);
                 }
-            } elseif (Yii::$app->request->isAjax) {
-                Yii::$app->response->statusCode = 422;
-                Yii::$app->response->format = Response::FORMAT_JSON;
-
-                return $this->validate($model);
             }
+
+            return $this->response($this->validationErrorsAjaxResponse($errors));
         }
 
-        return $this->render('resend', [
-            'model' => $model
-        ]);
+        return $this->response($this->render('resend', [
+            'model' => $formModel
+        ]));
     }
 
     /**
      * Активация
+     * @param string $token
+     * @return Response
      */
-    public function actionActivation($token)
+    public function actionActivation(string $token): Response
     {
         $model = new models\frontend\ActivationForm(['secure_key' => $token]);
 
@@ -173,34 +156,29 @@ class GuestController extends Controller
 
     /**
      * Восстановить пароль
+     * @return Response
      */
-    public function actionRecovery()
+    public function actionRecovery(): Response
     {
-        $model = new models\frontend\RecoveryForm();
+        $formModel = new models\frontend\RecoveryForm();
 
-        if ($model->load(Yii::$app->request->post())) {
-            if ($model->validate()) {
-                if ($user = $model->recovery()) {
-                    Yii::$app->consoleRunner->run('users/control/send-email ' . $user->email . ' recovery "' . Yii::t('users', 'SUBJECT_RECOVERY') . '"');
-
-                    Yii::$app->session->setFlash('success', Yii::t('users', 'SUCCESS_RECOVERY'));
-                } else {
-                    Yii::$app->session->setFlash('danger', Yii::t('users', 'FAIL_RECOVERY'));
-                }
-
-                return $this->refresh();
-            } elseif (Yii::$app->request->isAjax) {
-                Yii::$app->response->statusCode = 422;
-                Yii::$app->response->format = Response::FORMAT_JSON;
-
-                return $this->validate($model);
+        if ($formModel->load(Yii::$app->request->post())) {
+            $errors = $this->validate($formModel);
+            if (empty($errors)) {
+                $user = $formModel->recovery();
+                Yii::$app->consoleRunner->run('users/control/send-email ' . $user->email . ' recovery "' . Yii::t('users', 'SUBJECT_RECOVERY') . '"');
+                Yii::$app->session->setFlash('success', Yii::t('users', 'SUCCESS_RECOVERY'));
             }
+
+            return $this->response($this->validationErrorsAjaxResponse($errors));
         }
 
-        return $this->render('recovery', [
-            'model' => $model
-        ]);
+        return $this->response($this->render('recovery', [
+            'model' => $formModel
+        ]));
     }
+
+    // -----------------------------------------------------------------------------------------------------------------
 
     /**
      * Подтверждение восстановления пароля

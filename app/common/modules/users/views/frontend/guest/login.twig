@@ -6,35 +6,37 @@
 
 {% extends "@common/modules/site/views/layouts/main.twig" %}
 
-{% block title %} Вход в личный кабинет | Сдаём.ру {% endblock %}
-
+{% block seo %}
+    {% include '@common/modules/site/views/_modules/_seo.twig' with {
+        'title': 'Вход в личный кабинет | Сдаём.ру',
+        'description': 'Сдаём.ру подберёт и забронирует Вам - квартира на сутки, аренда квартир на сутки, квартира сутки, посуточные квартиры, квартира на сутки в Москве,посуточные квартиры в Москве.',
+        'keywords': 'квартира на час, квартира на час в Москве, квартира час, снять квартиру на час, почасовая аренда квартиры квартира на сутки ,квартира сутки,квартира на сутки в Москве,аренда квартир на сутки,квартира на ночь,квартира на ночь в Москве,посуточная аренда,на сутки, доска бесплатных объявлений,доска объявлений',
+    } %}
+{% endblock %}
 
 {% block bodyClass %}l-base p-signIn{% endblock %}
-
 
 {% block content %}
 
     {{ use('common/modules/users/assets/UserAsset') }}
     {{ register_user_asset() }}
 
-    {{ this.registerMetaTag({'name' : 'description', 'content' : 'Сдаём.ру подберёт и забронирует Вам - квартира на сутки, аренда квартир на сутки, квартира сутки, посуточные квартиры, квартира на сутки в Москве,посуточные квартиры в Москве.'}) }}
-    {{ this.registerMetaTag({'name' : 'keywords', 'content' : 'квартира на час, квартира на час в Москве, квартира час, снять квартиру на час, почасовая аренда квартиры квартира на сутки ,квартира сутки,квартира на сутки в Москве,аренда квартир на сутки,квартира на ночь,квартира на ночь в Москве,посуточная аренда,на сутки, доска бесплатных объявлений,доска объявлений'}) }}
-
     <div class="sign-in">
 
-        {% if app.session.hasFlash('danger') %}
-            <div class="alert alert-danger" role="alert">
-                {{ app.session.getFlash('danger') | raw }}
-            </div>
-        {% endif %}
-
-        {% if app.session.hasFlash('success') %}
-            <div class="alert alert-success" role="alert">
-                {{ app.session.getFlash('success') | raw }}
-            </div>
-        {% endif %}
-
         <div class="container-fluid">
+
+            {% if app.session.hasFlash('danger') %}
+                <div class="alert alert-danger mb-5" role="alert">
+                    {{ app.session.getFlash('danger') | raw }}
+                </div>
+            {% endif %}
+
+            {% if app.session.hasFlash('success') %}
+                <div class="alert alert-success mb-5" role="alert">
+                    {{ app.session.getFlash('success') | raw }}
+                </div>
+            {% endif %}
+
             <div class="sign-in-content">
                 <h3 class="sign-in-title">Вход</h3>
                 <form class="form" method="post" action="{{ path(['/users/guest/login']) }}" id="form-signIn">

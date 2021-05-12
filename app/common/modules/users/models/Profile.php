@@ -27,7 +27,7 @@ class Profile extends \nepster\users\models\Profile
     /**
      * @inheritdoc
      */
-    public function init()
+    public function init(): void
     {
         parent::init();
         // $this->birthday = '0000-00-00';
@@ -37,7 +37,7 @@ class Profile extends \nepster\users\models\Profile
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         $labels = parent::attributeLabels();
 
@@ -66,7 +66,7 @@ class Profile extends \nepster\users\models\Profile
     /**
      * @inheritdoc
      */
-    public function scenarios()
+    public function scenarios(): array
     {
         return [
             //'create' => ['name', 'surname', 'second_name', 'whau', 'user_type', /*'user_partner',*/ 'advertising', /*'birthday', 'day', 'month', 'year'*/],
@@ -78,7 +78,7 @@ class Profile extends \nepster\users\models\Profile
     /**
      * @inheritdoc
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             // User type
@@ -150,7 +150,7 @@ class Profile extends \nepster\users\models\Profile
     /**
      * @inheritdoc
      */
-    public function beforeValidate()
+    public function beforeValidate(): bool
     {
         if (parent::beforeValidate()) {
 
@@ -175,7 +175,7 @@ class Profile extends \nepster\users\models\Profile
     /**
      * @inheritdoc
      */
-    public function beforeSave($insert)
+    public function beforeSave($insert): bool
     {
         if (parent::beforeSave($insert)) {
             if (is_object($this->image) && $avatarUrl = $this->uploadAvatar()) {
@@ -240,7 +240,7 @@ class Profile extends \nepster\users\models\Profile
     /**
      * @return array
      */
-    public static function getUserPartnerArray()
+    public static function getUserPartnerArray(): array
     {
         return [
             self::NO_PARTNER => [
@@ -254,9 +254,9 @@ class Profile extends \nepster\users\models\Profile
 
     /**
      * Загрузить изображение
-     * @return bool|string
+     * @return string|null
      */
-    private function uploadAvatar()
+    private function uploadAvatar(): ?string
     {
         $tmpPath = Yii::getAlias($this->module->avatarsTempPath);
         $tmpfileName = uniqid('', true) . '.' . $this->image->extension;
@@ -265,7 +265,7 @@ class Profile extends \nepster\users\models\Profile
 
         // Сохранить изображение во временную директорию
         if (!$this->image->saveAs($fileTmpPath)) {
-            return false;
+            return null;
         }
 
         // Инициализация изображения
@@ -292,6 +292,6 @@ class Profile extends \nepster\users\models\Profile
             return $fileName;
         }
 
-        return false;
+        return null;
     }
 }

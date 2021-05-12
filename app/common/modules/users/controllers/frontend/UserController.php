@@ -17,7 +17,7 @@ class UserController extends Controller
     /**
      * @inheritdoc
      */
-    public function behaviors()
+    public function behaviors(): array
     {
         return [
             'access' => [
@@ -35,7 +35,7 @@ class UserController extends Controller
     /**
      * @inheritdoc
      */
-    public function beforeAction($action)
+    public function beforeAction($action): bool
     {
         if (parent::beforeAction($action)) {
             $this->module->viewPath = '@common/modules/users/views/frontend';
@@ -50,7 +50,7 @@ class UserController extends Controller
      * Выход
      * @return Response
      */
-    public function actionLogout()
+    public function actionLogout(): Response
     {
         Yii::$app->user->logout();
 

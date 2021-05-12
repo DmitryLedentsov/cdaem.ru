@@ -2,12 +2,12 @@
 
 namespace frontend\components;
 
-use common\components\Response;
 use Yii;
-use yii\base\BaseObject;
 use yii\base\Model;
 use yii\helpers\Html;
 use yii\helpers\Json;
+use yii\base\BaseObject;
+use common\components\Response;
 
 /**
  * Общий контроллер

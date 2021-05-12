@@ -18,7 +18,7 @@ class LoginForm extends \nepster\users\models\LoginForm
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         $labels = parent::attributeLabels();
 
@@ -30,7 +30,7 @@ class LoginForm extends \nepster\users\models\LoginForm
     /**
      * @inheritdoc
      */
-    public function beforeValidate()
+    public function beforeValidate(): bool
     {
         parent::beforeValidate();
 
@@ -42,7 +42,7 @@ class LoginForm extends \nepster\users\models\LoginForm
     /**
      * @inheritdoc
      */
-    public function afterValidate()
+    public function afterValidate(): void
     {
         parent::afterValidate();
 

@@ -62,6 +62,7 @@ class GuestController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             if ($model->validate()) {
                 $model->login();
+
                 return $this->goHome();
             } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;

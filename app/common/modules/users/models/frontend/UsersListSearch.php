@@ -8,22 +8,22 @@ use common\modules\users\models\UsersList;
 
 /**
  * Class UsersListSearch
+ * @package common\modules\users\models\frontend
  */
 class UsersListSearch extends UsersList
 {
     /**
      * @inheritdoc
      */
-    public function rules()
+    public function rules(): array
     {
-        return [
-        ];
+        return [];
     }
 
     /**
      * @inheritdoc
      */
-    public function scenarios()
+    public function scenarios(): array
     {
         return Model::scenarios();
     }
@@ -31,7 +31,7 @@ class UsersListSearch extends UsersList
     /**
      * @inheritdoc
      */
-    public function formName()
+    public function formName(): string
     {
         return '';
     }
@@ -40,7 +40,7 @@ class UsersListSearch extends UsersList
      * @param $params
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params): ActiveDataProvider
     {
         $query = UsersList::find()
             ->joinWith([
