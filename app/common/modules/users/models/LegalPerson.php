@@ -12,7 +12,7 @@ class LegalPerson extends \nepster\users\models\LegalPerson
     /**
      * @inheritdoc
      */
-    public function scenarios()
+    public function scenarios(): array
     {
         return [
             'create' => ['name', 'legal_address', 'physical_address', 'formattedRegisterDate', 'INN', 'PPC', 'account', 'bank', 'KS', 'BIK', 'BIN', 'director', 'description'],
@@ -23,7 +23,7 @@ class LegalPerson extends \nepster\users\models\LegalPerson
     /**
      * @inheritdoc
      */
-    public function transactions()
+    public function transactions(): array
     {
         return [
             'create' => self::OP_ALL,
@@ -34,7 +34,7 @@ class LegalPerson extends \nepster\users\models\LegalPerson
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'name' => 'Название фирмы',
@@ -57,7 +57,7 @@ class LegalPerson extends \nepster\users\models\LegalPerson
     /**
      * @inheritdoc
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             ['name', 'required'],
@@ -105,12 +105,12 @@ class LegalPerson extends \nepster\users\models\LegalPerson
         ];
     }
 
-    public function getFormattedRegisterDate()
+    public function getFormattedRegisterDate(): string
     {
         return date('d.m.Y', strtotime($this->register_date));
     }
 
-    public function setFormattedRegisterDate($value)
+    public function setFormattedRegisterDate($value): void
     {
         $this->register_date = date('Y-m-d', strtotime($value));
     }
@@ -118,7 +118,7 @@ class LegalPerson extends \nepster\users\models\LegalPerson
     /**
      * @inheritdoc
      */
-    public function beforeSave($insert)
+    public function beforeSave($insert): bool
     {
         if (parent::beforeSave($insert)) {
             if (!$this->user_id) {

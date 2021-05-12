@@ -10,7 +10,7 @@ class Profile extends \common\modules\users\models\Profile
     /**
      * @inheritdoc
      */
-    public function scenarios()
+    public function scenarios(): array
     {
         return [
             'create' => ['name', 'surname', 'birthday', 'whau', 'about_me', 'legal_person', 'user_type', 'user_partner', 'user_partner_verify', 'user_partner_rating', 'phone2', 'phones', 'email', 'skype', 'ok', 'vk', 'phones', 'fb', 'twitter'],
@@ -21,7 +21,7 @@ class Profile extends \common\modules\users\models\Profile
     /**
      * @inheritdoc
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             // Name
@@ -59,7 +59,7 @@ class Profile extends \common\modules\users\models\Profile
     /**
      * @inheritdoc
      */
-    public function beforeSave($insert)
+    public function beforeSave($insert): bool
     {
         if (parent::beforeSave($insert)) {
             if ($this->scenario == 'create') {
