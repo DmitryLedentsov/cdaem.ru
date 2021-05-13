@@ -1701,12 +1701,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "32d72de1885889452f3d8aa298a90b04d263651b"
+                "reference": "491aa7d3fcf4cfdd19f08f5254ed713cfaa0ebe2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/32d72de1885889452f3d8aa298a90b04d263651b",
-                "reference": "32d72de1885889452f3d8aa298a90b04d263651b",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/491aa7d3fcf4cfdd19f08f5254ed713cfaa0ebe2",
+                "reference": "491aa7d3fcf4cfdd19f08f5254ed713cfaa0ebe2",
                 "shasum": ""
             },
             "require": {
@@ -1765,7 +1765,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-04-15T10:09:30+00:00"
+            "time": "2021-05-12T08:06:33+00:00"
         },
         {
             "name": "vitalik74/yii2-geocode-yandex",
@@ -5139,12 +5139,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "b44e65337e58013eb752bf357a50c14a09ff22b1"
+                "reference": "e84aab170bab4df0445d6c104a197a89df087ed7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/b44e65337e58013eb752bf357a50c14a09ff22b1",
-                "reference": "b44e65337e58013eb752bf357a50c14a09ff22b1",
+                "url": "https://api.github.com/repos/symfony/console/zipball/e84aab170bab4df0445d6c104a197a89df087ed7",
+                "reference": "e84aab170bab4df0445d6c104a197a89df087ed7",
                 "shasum": ""
             },
             "require": {
@@ -5226,7 +5226,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-05-10T14:42:11+00:00"
+            "time": "2021-05-13T09:45:23+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
