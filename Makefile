@@ -30,6 +30,7 @@ bootstrap:
 	$(docker_compose_dev) up -d
 	make composer cmd="global require 'fxp/composer-asset-plugin:1.4.6'"
 	make composer cmd=install
+	make npm cmd='i'
 	make npm-grunt cmd=install
 	make npm-grunt cmd='run dev'
 	make npm cmd='run dev'
@@ -46,6 +47,7 @@ start:
 	make php-yii cmd="migrate --interactive=0"
 	make cron-load
 	make cron-start
+	make npm cmd='i'
 	make npm cmd='run dev'
 	make npm-grunt cmd='run dev'
 	make npm-grunt cmd='run prod'
