@@ -25,9 +25,16 @@
                     </a>
                 </li>
             </ul>
-            <a href="{{ path(['/users/guest/login']) }}" class="btn btn-warning btn-special btn-sign-in" {{ this.context.action.id == 'login' ? '' : ' data-toggle="modal" data-target="#signIn"' }}>
-                Вход
-            </a>
+            {% if app.user.getIsGuest() %}
+                <a href="{{ path(['/users/guest/login']) }}" class="btn btn-warning btn-special btn-sign-in" {{ this.context.action.id == 'login' ? '' : ' data-toggle="modal" data-target="#signIn"' }}>
+                    Вход
+                </a>
+            {% endif %}
+            {% if app.user.getIsGuest() == false %}
+                <a href="{{ path(['/office/default/index']) }}">Кабинет</a>
+                &nbsp; | &nbsp;
+                <a href="{{ path(['/users/user/logout']) }}">Выход</a>
+            {% endif %}
         </nav>
     </div>
 </header>

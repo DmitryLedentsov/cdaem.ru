@@ -168,6 +168,8 @@ class GuestController extends Controller
                 $user = $formModel->recovery();
                 Yii::$app->consoleRunner->run('users/control/send-email ' . $user->email . ' recovery "' . Yii::t('users', 'SUBJECT_RECOVERY') . '"');
                 Yii::$app->session->setFlash('success', Yii::t('users', 'SUCCESS_RECOVERY'));
+
+                return $this->redirect(['login']);
             }
 
             return $this->response($this->validationErrorsAjaxResponse($errors));
