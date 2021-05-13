@@ -81,6 +81,10 @@ class GuestController extends Controller
         $user = new models\User(['scenario' => 'signup']);
         $profile = new models\Profile(['scenario' => 'create']);
 
+        if (Yii::$app->request->isAjax) {
+            dd(Yii::$app->request->post());
+        }
+
         if ($user->load(Yii::$app->request->post()) && $profile->load(Yii::$app->request->post())) {
             $errors = array_merge($this->validate($user), $this->validate($profile));
             if (empty($errors)) {
@@ -185,7 +189,7 @@ class GuestController extends Controller
     /**
      * Подтверждение восстановления пароля
      */
-    public function actionRecoveryConfirmation($token)
+    public function actionRecoveryConfirmation(string $token)
     {
         $model = new models\frontend\RecoveryConfirmationForm(['secure_key' => $token]);
 

@@ -13,7 +13,7 @@
     });
 
     // SignUp
-    $(document).on('submit', '#form-signup', function (e) {
+    $(document).on('submit', '#form-signUp', function (e) {
         e.preventDefault();
         let $form = $(this);
         window.ajaxRequest($form  /*{
