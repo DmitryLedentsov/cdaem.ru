@@ -36,7 +36,7 @@
                     {{ app.session.getFlash('success') | raw }}
                 </div>
             {% endif %}
-
+            secure_key
             <div class="sign-in-content">
                 <h3 class="sign-in-title">Установить новый пароль</h3>
                 <form class="form" method="post" action="{{ path(['/users/guest/recovery']) }}" id="form-recovery-confirmation">

@@ -189,7 +189,7 @@ class GuestController extends Controller
     {
         $formModel = new models\frontend\RecoveryConfirmationForm(['secure_key' => $token]);
 
-        if (!$formModel->isValidToken()) {
+        if ($formModel->isValidToken() === false) {
             Yii::$app->session->setFlash('danger', Yii::t('users', 'FAIL_RECOVERY_CONFIRMATION_WITH_INVALID_KEY'));
 
             return $this->redirect(['recovery']);
