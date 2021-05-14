@@ -4,44 +4,17 @@
     @var \frontend\users\models\RecoveryConfirmationForm model
 #}
 
-{% extends "@app/themes/basic/layouts/main.twig" %}
+{% extends "@common/modules/site/views/layouts/main.twig" %}
 
-{% block title %} {{ t('users', 'RECOVERY-CONFIRMATION.TITLE') }} | Сдаём.ру {% endblock %}
-
-{% block header %}
-    {{ use('common/modules/site/widgets/BgHeader') }}
-    {{ bg_header_widget({'title': 'Изменить пароль'}) }}
+{% block seo %}
+    {% include '@common/modules/site/views/_modules/_seo.twig' with {
+        'title':  t('users', 'RECOVERY-CONFIRMATION.TITLE') ~ ' | Сдаём.ру',
+        'description': 'Сдаём.ру подберёт и забронирует Вам - квартира на сутки, аренда квартир на сутки, квартира сутки, посуточные квартиры, квартира на сутки в Москве,посуточные квартиры в Москве.',
+        'keywords': 'квартира на час, квартира на час в Москве, квартира час, снять квартиру на час, почасовая аренда квартиры квартира на сутки ,квартира сутки,квартира на сутки в Москве,аренда квартир на сутки,квартира на ночь,квартира на ночь в Москве,посуточная аренда,на сутки, доска бесплатных объявлений,доска объявлений',
+    } %}
 {% endblock %}
 
-{% block navbar_bottom %}{% endblock %}
-
-{% block navbar %}
-    {{ this.renderDynamic('return $this->render("@common/modules/office/views/frontend/layouts/navbar.twig");') | raw }}
-{% endblock %}
-
-{% block breadcrumbs %}
-    <div class="breadcrumbs">
-        {{ use('yii/widgets/Breadcrumbs') }}
-        {{ breadcrumbs_widget({
-            'itemTemplate' : "<li>{link}</li>\n",
-            'homeLink' :
-            {
-                'label' : 'Главная',
-                'url' : '/'
-            },
-            'links':  [
-                {
-                    'label': 'Регистрация',
-                    'url': ['/users/guest/signup'],
-                },
-                {
-                    'label': 'Авторизация',
-                    'url': ['/users/guest/login'],
-                },
-            ],
-        }) }}
-    </div>
-{% endblock %}
+{% block bodyClass %}l-base p-signIn{% endblock %}
 
 
 {% block content %}
@@ -49,45 +22,39 @@
     {{ use('common/modules/users/assets/UserAsset') }}
     {{ register_user_asset() }}
 
-    {{ this.registerMetaTag({'name' : 'description', 'content' : 'Сдаём.ру подберёт и забронирует Вам - квартира на сутки, аренда квартир на сутки, квартира сутки, посуточные квартиры, квартира на сутки в Москве,посуточные квартиры в Москве.'}) }}
-    {{ this.registerMetaTag({'name' : 'keywords', 'content' : 'квартира на час, квартира на час в Москве, квартира час, снять квартиру на час, почасовая аренда квартиры квартира на сутки ,квартира сутки,квартира на сутки в Москве,аренда квартир на сутки,квартира на ночь,квартира на ночь в Москве,посуточная аренда,на сутки, доска бесплатных объявлений,доска объявлений'}) }}
+    <div class="sign-in">
+        <div class="container-fluid">
 
-    <div class="container">
-        <div class="container-certain primary" style="margin-bottom: 20%">
             {% if app.session.hasFlash('danger') %}
-                <div class="alert alert-danger" role="alert">
+                <div class="alert alert-danger mb-5" role="alert">
                     {{ app.session.getFlash('danger') | raw }}
                 </div>
             {% endif %}
 
             {% if app.session.hasFlash('success') %}
-                <div class="alert alert-success" role="alert">
+                <div class="alert alert-success mb-5" role="alert">
                     {{ app.session.getFlash('success') | raw }}
                 </div>
             {% endif %}
 
-            {{ use('yii/widgets/ActiveForm') }}
-            {% set form = active_form_begin({
-                'options' : {'class' : 'horizontal'},
-                'enableClientScript': false,
-                'id': 'form-recovery-confirmation',
-            }) %}
-
-            <div class="fields-fix">
-
-                {{ form.field(model, 'password', {'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'}).passwordInput() | raw }}
-                {{ form.field(model, 'repassword', {'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'}).passwordInput() | raw }}
-
-                <div class="form-group text-right">
-                    <a href="{{ path(['/users/guest/login']) }}">{{ t('users', 'SIGNIN') }}</a> |
-                    <a href="{{ path(['/users/guest/signup']) }}">{{ t('users', 'SIGNUP') }}</a> &nbsp;
-                    <input type="submit" value="{{ t('users', 'SEND') }}" class="btn btn-primary"/>
-                </div>
-
+            <div class="sign-in-content">
+                <h3 class="sign-in-title">Установить новый пароль</h3>
+                <form class="form" method="post" action="{{ path(['/users/guest/recovery']) }}" id="form-recovery-confirmation">
+                    <div class="form-group sign-in-password">
+                        <label for="recovery-confirmation-password" class="d-none"></label>
+                        <input type="password" class="form-control" placeholder="Введите новый пароль" name="RecoveryConfirmationForm[password]" id="recovery-confirmation-password">
+                        <div class="invalid-feedback"></div>
+                    </div>
+                    <div class="form-group sign-in-password">
+                        <label for="recovery-confirmation-repassword" class="d-none"></label>
+                        <input type="password" class="form-control" placeholder="Повторите пароль" name="RecoveryConfirmationForm[repassword]" id="recovery-confirmation-repassword">
+                        <div class="invalid-feedback"></div>
+                    </div>
+                    <div class="sign-in-buttons justify-content-center">
+                        <button type="submit" class="btn btn-warning btn-special">{{ t('users', 'SEND') }}</button>
+                    </div>
+                </form>
             </div>
-
-            {{ active_form_end() }}
-
         </div>
     </div>
 

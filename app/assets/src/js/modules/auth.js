@@ -45,4 +45,15 @@
          }*/);
     });
 
+    // Recovery password confirmation
+    $(document).on('submit', '#form-recovery-confirmation', function (e) {
+        e.preventDefault();
+        let $form = $(this);
+        window.ajaxRequest($form  /*{
+             beforeSend: function () {},
+             complete: function () {},
+             success: function () {}
+         }*/);
+    });
+
 })(jQuery);

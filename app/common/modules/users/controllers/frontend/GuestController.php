@@ -81,10 +81,6 @@ class GuestController extends Controller
         $user = new models\User(['scenario' => 'signup']);
         $profile = new models\Profile(['scenario' => 'create']);
 
-        if (Yii::$app->request->isAjax) {
-            dd(Yii::$app->request->post());
-        }
-
         if ($user->load(Yii::$app->request->post()) && $profile->load(Yii::$app->request->post())) {
             $errors = array_merge($this->validate($user), $this->validate($profile));
             if (empty($errors)) {
@@ -108,7 +104,7 @@ class GuestController extends Controller
 
         return $this->response($this->render('signup', [
             'user' => $user,
-            'profile' => $profile
+            'profile' => $profile,
         ]));
     }
 
@@ -136,7 +132,7 @@ class GuestController extends Controller
         }
 
         return $this->response($this->render('resend', [
-            'model' => $formModel
+            'model' => $formModel,
         ]));
     }
 
@@ -180,46 +176,37 @@ class GuestController extends Controller
         }
 
         return $this->response($this->render('recovery', [
-            'model' => $formModel
+            'model' => $formModel,
         ]));
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
-
     /**
      * Подтверждение восстановления пароля
+     * @param string $token
+     * @return Response
      */
-    public function actionRecoveryConfirmation(string $token)
+    public function actionRecoveryConfirmation(string $token): Response
     {
-        $model = new models\frontend\RecoveryConfirmationForm(['secure_key' => $token]);
+        $formModel = new models\frontend\RecoveryConfirmationForm(['secure_key' => $token]);
 
-        if (!$model->isValidToken()) {
+        if (!$formModel->isValidToken()) {
             Yii::$app->session->setFlash('danger', Yii::t('users', 'FAIL_RECOVERY_CONFIRMATION_WITH_INVALID_KEY'));
 
             return $this->redirect(['recovery']);
         }
 
-        if ($model->load(Yii::$app->request->post())) {
-            if ($model->validate()) {
-                if ($model->recovery()) {
-                    Yii::$app->session->setFlash('success', Yii::t('users', 'SUCCESS_RECOVERY_CONFIRMATION'));
-
-                    return $this->redirect(['login']);
-                } else {
-                    Yii::$app->session->setFlash('danger', Yii::t('users', 'FAIL_RECOVERY_CONFIRMATION'));
-
-                    return $this->refresh();
-                }
-            } elseif (Yii::$app->request->isAjax) {
-                Yii::$app->response->statusCode = 422;
-                Yii::$app->response->format = Response::FORMAT_JSON;
-
-                return $this->validate($model);
+        if ($formModel->load(Yii::$app->request->post())) {
+            $errors = $this->validate($formModel);
+            if (empty($errors)) {
+                $formModel->recovery();
+                Yii::$app->session->setFlash('success', Yii::t('users', 'SUCCESS_RECOVERY_CONFIRMATION'));
+                return $this->redirect(['login']);
             }
+            return $this->response($this->validationErrorsAjaxResponse($errors));
         }
 
-        return $this->render('recovery-confirmation', [
-            'model' => $model
-        ]);
+        return $this->response($this->render('recovery-confirmation', [
+            'model' => $formModel,
+        ]));
     }
 }
