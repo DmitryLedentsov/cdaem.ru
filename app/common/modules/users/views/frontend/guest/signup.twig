@@ -47,8 +47,6 @@
                         <div class="invalid-feedback"></div>
                     </div>
 
-
-
                     <div class="sign-in-buttons justify-content-center">
                         <button type="submit" class="btn btn-warning btn-special">{{ t('users', 'SIGNUP') }}</button>
                     </div>
@@ -92,10 +90,8 @@
     <p><b>Внимание:</b></p>
     <p>
         После регистрации Вам будет отправлено письмо с инструкциями по активации аккаунта. Если письмо не
-        пришло в течении 15 минут, Вы можете запросить <a href="{{ path('/users/guest/resend') }}">код
-            активации</a> повторно.
+        пришло в течении 15 минут, Вы можете запросить <a href="{{ path('/users/guest/resend') }}">код активации</a>
+        повторно.
     </p>
-
-
 
 {% endblock content %}

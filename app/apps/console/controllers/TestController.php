@@ -11,17 +11,16 @@ use Yii;
 class TestController extends \yii\console\Controller
 {
     /**
-     * Отправить письмо
+     * Отправить тестовое письмо
      *
-     * @param $setTo
-     * @return bool
+     * @param string $setTo
      */
-    public function actionMail($setTo)
+    public function actionMail(string $setTo): void
     {
         $mail = Yii::$app->getMailer();
         $mail->viewPath = '@common/mails';
 
-        return $mail->compose('test', [])
+        $mail->compose('test', [])
             ->setFrom(Yii::$app->getMailer()->messageConfig['from'])
             ->setTo($setTo)
             ->setSubject('Тестовое письмо')
