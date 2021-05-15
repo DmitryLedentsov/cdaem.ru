@@ -20,7 +20,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="" href="{{ path(['/users/guest/signup']) }}" data-toggle="modal" data-target="#signUp">
+                    <a class="{{ this.context.action.id == 'signup' ? 'active' : '' }}" href="{{ path(['/users/guest/signup']) }}" {{ this.context.action.id == 'signup' ? '' : ' data-toggle="modal" data-target="#signUp"' }}>
                         Регистрация
                     </a>
                 </li>

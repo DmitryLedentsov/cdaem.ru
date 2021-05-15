@@ -19,7 +19,7 @@ class UserAsset extends AssetBundle
     public $baseUrl = '@web';
 
     public $css = [
-        '/_new/css/pages/signIn.min.css',
+        '/_new/css/pages/auth.min.css',
     ];
 
     /**

@@ -14,14 +14,14 @@
     } %}
 {% endblock %}
 
-{% block bodyClass %}l-base p-signIn{% endblock %}
+{% block bodyClass %}l-base p-auth{% endblock %}
 
 {% block content %}
 
     {{ use('common/modules/users/assets/UserAsset') }}
     {{ register_user_asset() }}
 
-    <div class="sign-in">
+    <div class="auth">
         <div class="container-fluid">
 
             {% if app.session.hasFlash('danger') %}
@@ -36,15 +36,15 @@
                 </div>
             {% endif %}
 
-            <div class="sign-in-content">
-                <h3 class="sign-in-title">Восстановить пароль</h3>
+            <div class="auth-content">
+                <h3 class="auth-title">Восстановить пароль</h3>
                 <form class="form" method="post" action="{{ path(['/users/guest/recovery']) }}" id="form-recovery">
-                    <div class="form-group sign-in-email">
+                    <div class="form-group">
                         <label for="recovery-email" class="d-none"></label>
                         <input type="email" class="form-control" placeholder="Email" name="RecoveryForm[email]" id="recovery-email">
                         <div class="invalid-feedback"></div>
                     </div>
-                    <div class="sign-in-buttons justify-content-center">
+                    <div class="auth-buttons justify-content-center">
                         <button type="submit" class="btn btn-warning btn-special">{{ t('users', 'SEND') }}</button>
                     </div>
                 </form>

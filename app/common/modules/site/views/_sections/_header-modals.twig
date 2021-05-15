@@ -44,7 +44,7 @@
             <h3 class="modal-title text-center">Регистрация</h3>
             <button class="modal-close" data-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body">
-                <form class="form" action="{{ path(['/users/guest/signup']) }}" method="post" id="form-signup">
+                <form class="form" action="{{ path(['/users/guest/signup']) }}" method="post" id="form-signUp">
                     <div class="form-group">
                         <label for="signUp-email" class="d-none"></label>
                         <input type="email" class="form-control" placeholder="Введите ваш Email" name="User[email]" id="signUp-email">
@@ -52,7 +52,7 @@
                     </div>
                     <div class="form-group">
                         <label for="signUp-phone" class="d-none"></label>
-                        <input type="tel" class="form-control" placeholder="+38(0__)-___-__-__" name="User[phone]" id="signUp-phone">
+                        <input type="tel" class="form-control" placeholder="+7(___)___-__-__" name="User[phone]" id="signUp-phone">
                         <div class="invalid-feedback"></div>
                     </div>
                     <div class="form-group">
@@ -91,9 +91,11 @@
                             <div class="form-check">
                                 <input type="checkbox" class="form-check-input" name="User[agreement]" value="1" id="signUp-agreement">
                                 <label class="form-check-label" for="signUp-agreement">
-                                    С <a href="https://cdaem.ru/page/agreement" target="_blank">пользовательским соглашением</a>, с расценками на
-                                    размещение платных объявлений, а также получать СМС-оповещения при использовании определенных
-                                    сервисов на этом сайте.
+                                    <span>
+                                        С <a href="https://cdaem.ru/page/agreement" target="_blank">пользовательским соглашением</a>, с расценками на
+                                        размещение платных объявлений, а также получать СМС-оповещения при использовании определенных
+                                        сервисов на этом сайте.
+                                    </span>
                                 </label>
                                 <div class="invalid-feedback"></div>
                             </div>

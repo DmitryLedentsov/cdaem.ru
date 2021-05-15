@@ -200,8 +200,10 @@ class GuestController extends Controller
             if (empty($errors)) {
                 $formModel->recovery();
                 Yii::$app->session->setFlash('success', Yii::t('users', 'SUCCESS_RECOVERY_CONFIRMATION'));
+
                 return $this->redirect(['login']);
             }
+
             return $this->response($this->validationErrorsAjaxResponse($errors));
         }
 

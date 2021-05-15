@@ -14,7 +14,7 @@
     } %}
 {% endblock %}
 
-{% block bodyClass %}l-base p-signIn{% endblock %}
+{% block bodyClass %}l-base p-auth{% endblock %}
 
 
 {% block content %}
@@ -22,7 +22,7 @@
     {{ use('common/modules/users/assets/UserAsset') }}
     {{ register_user_asset() }}
 
-    <div class="sign-in">
+    <div class="auth">
         <div class="container-fluid">
 
             {% if app.session.hasFlash('danger') %}
@@ -36,21 +36,21 @@
                     {{ app.session.getFlash('success') | raw }}
                 </div>
             {% endif %}
-            secure_key
-            <div class="sign-in-content">
-                <h3 class="sign-in-title">Установить новый пароль</h3>
-                <form class="form" method="post" action="{{ path(['/users/guest/recovery']) }}" id="form-recovery-confirmation">
-                    <div class="form-group sign-in-password">
+
+            <div class="auth-content">
+                <h3 class="auth-title">Установить новый пароль</h3>
+                <form class="form" method="post" action="{{ path('/users/guest/recovery-confirmation', {'token': model.secure_key }) }}" id="form-recovery-confirmation">
+                    <div class="form-group">
                         <label for="recovery-confirmation-password" class="d-none"></label>
                         <input type="password" class="form-control" placeholder="Введите новый пароль" name="RecoveryConfirmationForm[password]" id="recovery-confirmation-password">
                         <div class="invalid-feedback"></div>
                     </div>
-                    <div class="form-group sign-in-password">
+                    <div class="form-group">
                         <label for="recovery-confirmation-repassword" class="d-none"></label>
                         <input type="password" class="form-control" placeholder="Повторите пароль" name="RecoveryConfirmationForm[repassword]" id="recovery-confirmation-repassword">
                         <div class="invalid-feedback"></div>
                     </div>
-                    <div class="sign-in-buttons justify-content-center">
+                    <div class="auth-buttons justify-content-center">
                         <button type="submit" class="btn btn-warning btn-special">{{ t('users', 'SEND') }}</button>
                     </div>
                 </form>

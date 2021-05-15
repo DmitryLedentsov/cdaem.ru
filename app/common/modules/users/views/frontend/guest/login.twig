@@ -14,14 +14,14 @@
     } %}
 {% endblock %}
 
-{% block bodyClass %}l-base p-signIn{% endblock %}
+{% block bodyClass %}l-base p-auth{% endblock %}
 
 {% block content %}
 
     {{ use('common/modules/users/assets/UserAsset') }}
     {{ register_user_asset() }}
 
-    <div class="sign-in">
+    <div class="auth">
 
         <div class="container-fluid">
 
@@ -37,23 +37,23 @@
                 </div>
             {% endif %}
 
-            <div class="sign-in-content">
-                <h3 class="sign-in-title">Вход</h3>
+            <div class="auth-content">
+                <h3 class="auth-title">Вход</h3>
                 <form class="form" method="post" action="{{ path(['/users/guest/login']) }}" id="form-signIn">
-                    <div class="form-group sign-in-email">
+                    <div class="form-group">
                         <label for="signIn-email" class="d-none"></label>
                         <input type="email" class="form-control" placeholder="Email" name="LoginForm[username]" id="signIn-email">
                         <div class="invalid-feedback"></div>
                     </div>
-                    <div class="form-group mb-0 sign-in-password">
+                    <div class="form-group mb-0">
                         <label for="signIn-password" class="d-none"></label>
                         <input type="password" class="form-control" placeholder="Введите ваш пароль" name="LoginForm[password]" id="signIn-password">
                         <div class="invalid-feedback"></div>
                         <a href="{{ path(['/users/guest/recovery']) }}" class="forgot-pass">{{ t('users', 'RECOVERY') }}</a>
                     </div>
-                    <div class="sign-in-buttons">
-                        <div class="sign-in-items">
-                            <label class="sign-in-save-pass">
+                    <div class="auth-buttons">
+                        <div class="auth-items">
+                            <label class="auth-save-pass">
                                 <input class="" type="checkbox" name="LoginForm[rememberMe]" value="1">
                                 <span class="input-text">Запомнить</span>
                             </label>
