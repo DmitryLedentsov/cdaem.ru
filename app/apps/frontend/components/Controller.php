@@ -6,7 +6,6 @@ use Yii;
 use yii\base\Model;
 use yii\helpers\Html;
 use yii\helpers\Json;
-use yii\base\BaseObject;
 use common\components\Response;
 
 /**
@@ -50,9 +49,9 @@ class Controller extends \yii\web\Controller
     /**
      * @param string $message
      * @param array $data
-     * @return string
+     * @return Response
      */
-    public function successAjaxResponse(string $message, array $data = []): string
+    public function successAjaxResponse(string $message, array $data = []): Response
     {
         Yii::$app->response->statusCode = 200;
 
@@ -62,18 +61,18 @@ class Controller extends \yii\web\Controller
             'data' => $data,
         ];
 
-        return Json::encode($result);
+        return $this->response(Json::encode($result));
     }
 
     /**
      * @param array $errors
-     * @return string
+     * @return Response
      */
-    public function validationErrorsAjaxResponse(array $errors): string
+    public function validationErrorsAjaxResponse(array $errors): Response
     {
         Yii::$app->response->statusCode = 422;
 
-        return Json::encode($errors);
+        return $this->response(Json::encode($errors));
     }
 
     /**
@@ -101,7 +100,7 @@ class Controller extends \yii\web\Controller
      * @param null $attributes
      * @return array
      */
-    public function validate($model, $attributes = null)
+    public function validate($model, $attributes = null): array
     {
         $result = [];
         if ($attributes instanceof Model) {
@@ -129,7 +128,7 @@ class Controller extends \yii\web\Controller
      * @param null $attributes
      * @return array
      */
-    public static function validateMultiple($models, $attributes = null)
+    public static function validateMultiple($models, $attributes = null): array
     {
         $result = [];
         /* @var $model Model */

@@ -7,6 +7,7 @@ use yii\helpers\Html;
 use yii\data\Pagination;
 use yii\web\HttpException;
 use common\modules\articles\models\Article;
+use yii\web\Response;
 
 /**
  * Статьи
@@ -57,9 +58,9 @@ class DefaultController extends \frontend\components\Controller
      * Все
      *
      * @param null $city
-     * @return string
+     * @return Response
      */
-    public function actionIndex($city = null): string
+    public function actionIndex($city = null): Response
     {
         $model = new Article;
 
@@ -80,11 +81,11 @@ class DefaultController extends \frontend\components\Controller
             ->limit($pages->limit)
             ->all();
 
-        return $this->render('index.twig', [
+        return $this->response($this->render('index.twig', [
             'model' => $model,
             'models' => $models,
             'pages' => $pages,
-        ]);
+        ]));
     }
 
     /**
@@ -92,10 +93,10 @@ class DefaultController extends \frontend\components\Controller
      *
      * @param $id
      * @param null $city
-     * @return string
+     * @return Response
      * @throws HttpException
      */
-    public function actionView($id, $city = null): string
+    public function actionView($id, $city = null): Response
     {
         $query = Article::find();
 
@@ -120,8 +121,8 @@ class DefaultController extends \frontend\components\Controller
             throw new HttpException(404, 'Статьи по адресу ' . $url . ' не существует.');
         }
 
-        return $this->render('view.twig', [
+        return $this->response($this->render('view.twig', [
             'model' => $model,
-        ]);
+        ]));
     }
 }

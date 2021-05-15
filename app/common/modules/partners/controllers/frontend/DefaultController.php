@@ -307,7 +307,6 @@ class DefaultController extends \frontend\components\Controller
     /**
      * Редактировать объявление
      * @param $id
-     * @return array|string
      * @throws HttpException
      */
     public function actionUpdate($id)

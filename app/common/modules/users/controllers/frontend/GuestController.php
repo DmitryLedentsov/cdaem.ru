@@ -64,7 +64,7 @@ class GuestController extends Controller
                 return $this->redirect(['/office/default/index']);
             }
 
-            return $this->response($this->validationErrorsAjaxResponse($errors));
+            return $this->validationErrorsAjaxResponse($errors);
         }
 
         return $this->response($this->render('login', [
@@ -99,7 +99,7 @@ class GuestController extends Controller
                 return $this->redirect(['login']);
             }
 
-            return $this->response($this->validationErrorsAjaxResponse($errors));
+            return $this->validationErrorsAjaxResponse($errors);
         }
 
         return $this->response($this->render('signup', [
@@ -128,7 +128,7 @@ class GuestController extends Controller
                 }
             }
 
-            return $this->response($this->validationErrorsAjaxResponse($errors));
+            return $this->validationErrorsAjaxResponse($errors);
         }
 
         return $this->response($this->render('resend', [
@@ -172,7 +172,7 @@ class GuestController extends Controller
                 return $this->redirect(['login']);
             }
 
-            return $this->response($this->validationErrorsAjaxResponse($errors));
+            return $this->validationErrorsAjaxResponse($errors);
         }
 
         return $this->response($this->render('recovery', [
@@ -204,7 +204,7 @@ class GuestController extends Controller
                 return $this->redirect(['login']);
             }
 
-            return $this->response($this->validationErrorsAjaxResponse($errors));
+            return $this->validationErrorsAjaxResponse($errors);
         }
 
         return $this->response($this->render('recovery-confirmation', [

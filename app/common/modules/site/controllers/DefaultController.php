@@ -26,7 +26,7 @@ class DefaultController extends \frontend\components\Controller
     /**
      * @inheritdoc
      */
-    public function actions()
+    public function actions(): array
     {
         return [
             'error' => [
@@ -39,7 +39,7 @@ class DefaultController extends \frontend\components\Controller
     /**
      * @inheritdoc
      */
-    /* public function behaviors() {
+    /* public function behaviors(): array {
       if (!YII_DEBUG) {
       return require(__DIR__ . '/../caching/default.php');
       }
@@ -53,11 +53,11 @@ class DefaultController extends \frontend\components\Controller
      *
      * В данном случае апартаменты доски зависят от фильтра апартаментов агенства
      *
-     * @param null $city
-     * @return string
+     * @param string|null $city
+     * @return Response
      * @throws NotFoundHttpException
      */
-    public function actionIndex($city = null)
+    public function actionIndex(?string $city = null): Response
     {
         $metaData = RentType::findRentTypeBySlug(Yii::$app->request->get('rentType', '/'));
 
@@ -81,18 +81,18 @@ class DefaultController extends \frontend\components\Controller
             Yii::$app->view->registerLinkTag(['rel' => 'canonical', 'href' => URL::to('https://cdaem.ru')]);
         }
 
-        return $this->render('home/index.twig', [
+        return $this->response($this->render('home/index.twig', [
             'metaData' => $metaData,
             'articles' => $articles,
             'searchModel' => $partnersSearch,
-        ]);
+        ]));
     }
 
     /**
-     * @return string
+     * @return Response
      * @throws NotFoundHttpException
      */
-    public function actionDayindex()
+    public function actionDayindex(): Response
     {
         $agencySearch = new AgencyAdvertSearch();
         $agencyDataProvider = $agencySearch->search(Yii::$app->request->queryParams);
@@ -107,23 +107,22 @@ class DefaultController extends \frontend\components\Controller
             throw new NotFoundHttpException();
         }
 
-        return $this->render('dayindex.twig', [
+        return $this->response($this->render('dayindex.twig', [
             'agencySearch' => $agencySearch,
             'agencyDataProvider' => $agencyDataProvider,
             'searchModel' => $partnersSearch,
             'partnersAdverts' => $partnersAdverts,
             'specialAdverts' => $specialAdverts,
             'metaData' => $metaData,
-        ]);
+        ]));
     }
 
     /**
-     * @return string
+     * @return Response
      */
-    public function actionBadbrowser()
+    public function actionBadbrowser(): Response
     {
-        return $this->render('badbrowser.twig', [
-        ]);
+        return $this->response($this->render('badbrowser.twig'));
     }
 
     /**
@@ -171,11 +170,11 @@ class DefaultController extends \frontend\components\Controller
     /**
      * Генерация карты сайта
      *
-     * @param null $city
-     * @return string|void
+     * @param string|null $city
+     * @return Response
      * @throws NotFoundHttpException
      */
-    public function actionSitemap($city = null)
+    public function actionSitemap(?string $city = null): Response
     {
         Yii::$app->response->format = \yii\web\Response::FORMAT_RAW;
 
@@ -185,18 +184,18 @@ class DefaultController extends \frontend\components\Controller
         $sitemap = new Sitemap;
 
         if ($city === null) {
-            return $sitemap->renderCommon();
+            return $this->response($sitemap->renderCommon());
         }
 
         $city = (substr($city, 0, 1) == '_') ? str_replace('_', '', $city) : $city;
 
         /** @var City|null $city */
-        $city = City::find()->where(['name_eng' => trim($city)])->one();
+        $cityModel = City::find()->where(['name_eng' => trim($city ?? '')])->one();
 
-        if ($city === null) {
+        if ($cityModel === null) {
             throw new NotFoundHttpException;
         }
 
-        return $sitemap->renderByCity($city);
+        return $this->response($sitemap->renderByCity($city));
     }
 }

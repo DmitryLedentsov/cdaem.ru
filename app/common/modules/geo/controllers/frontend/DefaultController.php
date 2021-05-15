@@ -4,6 +4,7 @@ namespace common\modules\geo\controllers\frontend;
 
 use yii\web\NotFoundHttpException;
 use common\modules\geo\models\City;
+use yii\web\Response;
 
 /**
  * Главный гео контроллер
@@ -14,7 +15,7 @@ class DefaultController extends \frontend\components\Controller
     /**
      * @inheritdoc
      */
-    public function beforeAction($action)
+    public function beforeAction($action): bool
     {
         if (!parent::beforeAction($action)) {
             return false;
@@ -29,17 +30,17 @@ class DefaultController extends \frontend\components\Controller
      * Общая карта
      *
      * @param null $city
-     * @return string
+     * @return Response
      * @throws NotFoundHttpException
      */
-    public function actionIndex($city = null)
+    public function actionIndex($city = null): Response
     {
-        $city = City::findByNameEng($city ? $city : 'msk');
+        $city = City::findByNameEng($city ?: 'msk');
 
         if (!$city) {
             throw new NotFoundHttpException();
         }
 
-        return $this->render('index.twig', ['city' => $city]);
+        return $this->response($this->render('index.twig', ['city' => $city]));
     }
 }

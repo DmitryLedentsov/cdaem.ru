@@ -5,6 +5,7 @@ namespace common\modules\pages\controllers\frontend;
 use Yii;
 use yii\web\HttpException;
 use common\modules\pages\models\Page;
+use yii\web\Response;
 
 /**
  * Default controller
@@ -15,7 +16,7 @@ class DefaultController extends \frontend\components\Controller
     /**
      * @inheritdoc
      */
-    public function behaviors()
+    public function behaviors(): array
     {
         $behaviors = [
             'access' => [
@@ -40,7 +41,7 @@ class DefaultController extends \frontend\components\Controller
     /**
      * @inheritdoc
      */
-    public function beforeAction($action)
+    public function beforeAction($action): bool
     {
         if (!parent::beforeAction($action)) {
             return false;
@@ -53,11 +54,12 @@ class DefaultController extends \frontend\components\Controller
 
     /**
      * Просмотр страницы
+     *
      * @param $url
-     * @return mixed|string
+     * @return Response
      * @throws HttpException
      */
-    public function actionIndex($url)
+    public function actionIndex($url): Response
     {
         $model = Page::getPageByUrl($url);
 
@@ -65,8 +67,8 @@ class DefaultController extends \frontend\components\Controller
             return $model->text;
         }
 
-        return $this->render('index.twig', [
+        return $this->response($this->render('index.twig', [
             'model' => $model,
-        ]);
+        ]));
     }
 }

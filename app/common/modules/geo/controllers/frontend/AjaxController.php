@@ -19,7 +19,7 @@ class AjaxController extends \frontend\components\Controller
     /**
      * @inheritdoc
      */
-    public function init()
+    public function init(): void
     {
         parent::init();
 
@@ -29,7 +29,7 @@ class AjaxController extends \frontend\components\Controller
     /**
      * @inheritdoc
      */
-    public function behaviors()
+    public function behaviors(): array
     {
         return [
             'corsFilter' => [
@@ -237,7 +237,7 @@ class AjaxController extends \frontend\components\Controller
      * @param Model $model
      * @return array
      */
-    private function getFeatureInfo(Model $model)
+    private function getFeatureInfo(Model $model): array
     {
         return [
             'id' => (($model instanceof ApartmentAgency) ? 'a' : 'p') . '_' . $model->apartment_id,

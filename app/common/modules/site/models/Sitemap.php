@@ -23,7 +23,7 @@ class Sitemap extends \yii\base\Model
      *
      * @return string
      */
-    public function renderCommon()
+    public function renderCommon(): string
     {
         $result = [];
 
@@ -145,7 +145,7 @@ class Sitemap extends \yii\base\Model
      * @param City $city
      * @return string
      */
-    public function renderByCity(City $city)
+    public function renderByCity(City $city): string
     {
         $result = [];
 
