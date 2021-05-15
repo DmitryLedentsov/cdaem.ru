@@ -196,6 +196,6 @@ class DefaultController extends \frontend\components\Controller
             throw new NotFoundHttpException;
         }
 
-        return $this->response($sitemap->renderByCity($city));
+        return $this->response($sitemap->renderByCity($cityModel));
     }
 }
