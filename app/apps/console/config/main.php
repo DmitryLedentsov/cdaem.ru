@@ -85,6 +85,9 @@ return [
         ],
     ],
     'components' => [
+        'request' => [
+            'class' => \yii\console\Request::class,
+        ],
         'response' => [
             'class' => \yii\console\Response::class,
         ],
