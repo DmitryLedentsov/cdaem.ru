@@ -42,6 +42,10 @@ class DefaultController extends \frontend\components\Controller
             return false;
         }
 
+        if (Yii::$app->request->getCurrentCitySubDomain() !== null) {
+            $this->redirect(Yii::$app->request->getCurrentUrlWithoutSubDomain());
+        }
+
         $this->module->viewPath = '@common/modules/helpdesk/views/frontend';
 
         return true;

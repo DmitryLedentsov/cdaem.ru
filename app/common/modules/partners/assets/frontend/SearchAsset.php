@@ -8,7 +8,7 @@ use yii\web\AssetBundle;
  * Менеджер ресурсов
  * @package common\modules\partners\assets\frontend
  */
-class AdvertAsset extends AssetBundle
+class SearchAsset extends AssetBundle
 {
     /**
      * @inheritdoc
@@ -23,7 +23,7 @@ class AdvertAsset extends AssetBundle
     ];
 
     public $js = [
-        '/_new/js/pages/search.min.js',
+
     ];
 
     public $depends = [

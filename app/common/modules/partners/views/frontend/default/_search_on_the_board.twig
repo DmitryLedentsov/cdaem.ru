@@ -17,56 +17,56 @@
                         {% endif %}
                     </h2>
                     <div class="search-navs-container">
-                        <a href="{{ path(['/partners/default/index']) }}">Доска объявлений</a>
+                        <a href="{{ path(['/partners/office/create']) }}">Добавить объявление</a>
+                        <a href="{{ path(['/partners/reservation/index']) }}">Быстро снять</a>
                         <a href="{{ path(['/office/default/index']) }}">Личный кабинет</a>
                     </div>
                 </div>
-
-                {{ html.beginForm('/partners/pre-region', 'GET')| raw }}
-
-                <div class="search-filters">
-                    <div class="search-filters-container">
-                        <div class="search-filter search-filter-type">
-                            <span class="search-filter-text">Выберите тип аренды</span>
+                <form method="get" action="{{ path(['/partners/pre-region']) }}">
+                    <div class="search-filters">
+                        <div class="search-filter search-filter-city">
+                            <span class="search-filter-text">Укажите ваш город</span>
                             <label>
-                                <label>
-                                    <select class="custom-select" name="sect">
-                                        {% for key, rentType in searchModel.rentTypesList %}
-                                            <option value="{{ key }}" {{ key == 2 ? 'selected="selected"' : '' }}>{{ rentType }}</option>
-                                        {% endfor %}
-                                    </select>
-                                </label>
+                                <input class="form-control input-search city-drop-down-list"
+                                       id="search-form-autocomplete"
+                                       type="text"
+                                       data-url="{{ path(['/geo/ajax/select-city']) }}" name="city"
+                                       autocomplete="off"
+                                       placeholder="Укажите ваш город">
+                                <input type="hidden" name="city_code" id="search-form-autocomplete-selected" value="msk">
                             </label>
                         </div>
-                        <div class="search-filter search-filter-rooms">
-                            <span class="search-filter-text search-filter-text-rooms">Комнаты:</span>
-                            <label>
+                        <div class="search-filters-container">
+                            <div class="search-filter search-filter-type">
+                                <span class="search-filter-text">Выберите тип аренды</span>
                                 <label>
-                                    <select class="custom-select" name="rooms">
-                                        {% for key, room in searchModel.roomsList %}
-                                            <option value="{{ key }}">{{ room }}</option>
-                                        {% endfor %}
-                                    </select>
+                                    <label>
+                                        <select class="custom-select" name="sect">
+                                            {% for key, rentType in searchModel.rentTypesList %}
+                                                <option value="{{ key }}" {{ key == 2 ? 'selected="selected"' : '' }}>{{ rentType }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </label>
                                 </label>
-                            </label>
+                            </div>
+                            <div class="search-filter search-filter-rooms">
+                                <span class="search-filter-text search-filter-text-rooms">Комнаты:</span>
+                                <label>
+                                    <label>
+                                        <select class="custom-select" name="rooms">
+                                            {% for key, room in searchModel.roomsList %}
+                                                <option value="{{ key }}">{{ room }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </label>
+                                </label>
+                            </div>
                         </div>
                     </div>
-                    <div class="search-filter search-filter-city">
-                        <span class="search-filter-text">Укажите ваш город</span>
-                        <label>
-                            <input class="form-control input-search city-drop-down-list" id="search-form-autocomplete" type="text"
-                                   data-url="{{ path(['/geo/ajax/select-city']) }}" name="city"
-                                   autocomplete="off" placeholder="Укажите ваш город">
-                        </label>
+                    <div class="search-btn-container">
+                        <button type="submit" class="btn btn-warning btn-special btn-add">Поиск объявлений</button>
                     </div>
-                </div>
-{#                <input type="submit" class="btn btn-primary" value="Поиск"/>#}
-                <div class="search-btn-container">
-                    <a href="{{ path(['/partners/default/create']) }}"><button class="btn btn-warning btn-special btn-add">Добавить объявление</button></a>
-                    <a href="{{ path(['/partners/reservation/index']) }}"><button class="btn btn-warning btn-special btn-add">Быстро снять</button></a>
-                </div>
-
-                {{ html.endForm() | raw }}
+                </form>
             </div>
         </div>
     </div>

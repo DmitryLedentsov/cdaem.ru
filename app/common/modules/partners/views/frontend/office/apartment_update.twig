@@ -1,5 +1,5 @@
 {#
-    Создать
+    Редактировать
     @var \yii\web\View this
     @var common\modules\partners\models\frontend\form\ApartmentForm apartment
     @var common\modules\partners\models\frontend\form\AdvertForm advert
@@ -9,7 +9,7 @@
 
 {% extends "@common/modules/office/views/frontend/layouts/main.twig" %}
 
-{% block title %}{{ this.registerTitle('Создать объявления | Сдаём.ру') }}{% endblock %}
+{% block title %}{{ this.registerTitle('Редактировать объявления | Сдаём.ру') }}{% endblock %}
 
 {% block breadcrumbs %}
     <div class="breadcrumbs">
@@ -27,20 +27,21 @@
                     'url': ['/office/default/index'],
                 },
                 {
-                    'label': 'Создать объявления',
-                    'url': ['/partners/default/create'],
+                    'label': 'Редактировать объявления',
+                    'url': { 0 : '/partners/office/update', 'id' : apartment.apartment_id },
                 },
             ],
         }) }}
     </div>
 {% endblock %}
 
-
 {% block sidebar %}
 
     <div class="text-help-section s1">
-        <h3>Создание объявления</h3>
-        <p>Создавая апартамент, Вы можете создать сразу несколько объявлений отметив соответствующие типы аренды.</p>
+        <h3>Редактирование объявлений</h3>
+        <p>При редактировании апартаментов, Вы можете удалить объявление убрав нужную галочку с типа аренды или создать
+            новые
+            отметив соответствующие галочки.</p>
     </div>
 
     <div class="text-help-section s2">
@@ -52,7 +53,6 @@
     </div>
 
 {% endblock %}
-
 
 {% block content %}
 

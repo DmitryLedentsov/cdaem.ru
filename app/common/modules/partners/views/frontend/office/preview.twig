@@ -1,4 +1,5 @@
 {% extends "@common/modules/office/views/frontend/layouts/main.twig" %}
+W
 {% block title %}{{ this.registerTitle('Мои объявления - Личный кабинет | Cdaem.ру') }}{% endblock %}
 
 {% block header %}
@@ -8,17 +9,17 @@
 
     <div class="container">
         <div style='text-align: center;padding: 5px'>
-            <a href="{{ path({'0' : '/partners/default/update', 'id' : model.apartment_id}) }}" class="edit-apartment"
+            <a href="{{ path({'0' : '/partners/office/update', 'id' : model.apartment_id}) }}" class="edit-apartment"
                style='display:inline-block;padding: 10px;font-size: 16px;background:#83d0d9;color: black;'>Редактировать</a>
             <a data-fancybox data-src="#hidden-window-2" href="javascript:;"
                style="display:inline-block;padding: 10px;font-size: 16px;background:red;color: black;">Удалить
                 квартиру</a>
-            <a href="{{ path(['/partners/default/create']) }}" class="no-board"
+            <a href="{{ path(['/partners/office/create']) }}" class="no-board"
                style='display:inline-block;padding: 10px;font-size: 16px;background: orange;color: white;'>Добавить</a>
         </div>
         <div class="accept-delete" id="hidden-window-2" style="display:none;">
             <h4 style="margin:10px;">Вы действительно хотите удалить данную квартиру?</h4>
-            <a class="backmap-btn" href="{{ path({'0' : '/partners/default/delete', 'id' : apartment.apartment_id}) }}">Удалить
+            <a class="backmap-btn" href="{{ path({'0' : '/partners/office/delete', 'id' : apartment.apartment_id}) }}">Удалить
                 квартиру</a>
             <a data-fancybox-close class="backmap-btn" style="background:green !important;">Нет, я передумал!</a>
         </div>

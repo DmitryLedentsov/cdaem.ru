@@ -59,12 +59,12 @@
     <p class="filter-title hidden-xs">Фильтр объявлений по типам:</p>
     <ul class="extra-menu filter-style long-list hidden-xs">
         <li{{ app.request.url=='/office/apartments' ? ' class="active"' : '' }}>
-            <a href="{{ path({0 : '/partners/default/apartments' }) }}">Все объявления</a>
+            <a href="{{ path({0 : '/partners/office/apartments' }) }}">Все объявления</a>
 
         </li>
         {% for rentTypeSlug, rentTypeName in searchModel.rentTypesList %}
             <li {{ rentTypeSlug == searchModel.slug ? 'class="active"' : null }}>
-                <a href="{{ path({0 : '/partners/default/apartments', 'filter' : 'slug=' ~ rentTypeSlug }) }}">{{ rentTypeName }}</a>
+                <a href="{{ path({0 : '/partners/office/apartments', 'filter' : 'slug=' ~ rentTypeSlug }) }}">{{ rentTypeName }}</a>
             </li>
         {% endfor %}
         <li><a id="ret" class="m-dotted example5 help-em" data-body="1">Подсказки</a></li>
@@ -103,9 +103,9 @@
                 <div class="row clearfix">
                     <div class="col-md-3">
                         <div class="extra-list links">
-                            <a href="{{ path({'0' : '/partners/default/update', 'id' : apartment.apartment_id}) }}"><p
+                            <a href="{{ path({'0' : '/partners/office/update', 'id' : apartment.apartment_id}) }}"><p
                                         class="edit hidden-xs"></p>Редактировать</a>
-                            <a href="{{ path({'0' : '/partners/default/preview', 'id' : apartment.apartment_id}) }}"
+                            <a href="{{ path({'0' : '/partners/office/preview', 'id' : apartment.apartment_id}) }}"
                                class="editapartment visible-xs">Просмотр</a>
 
                         </div>
@@ -149,7 +149,7 @@
         </div>
         <div class="accept-delete" id="hidden-window-1" style="display:none;">
             <h4 style="margin:10px;">Вы действительно хотите удалить данную квартиру?</h4>
-            <a class="backmap-btn" href="{{ path({'0' : '/partners/default/delete', 'id' : apartment.apartment_id}) }}">Удалить
+            <a class="backmap-btn" href="{{ path({'0' : '/partners/office/delete', 'id' : apartment.apartment_id}) }}">Удалить
                 квартиру</a>
             <a data-fancybox-close class="backmap-btn" style="background:green !important;">Нет, я передумал!</a>
         </div>
@@ -163,7 +163,7 @@
                     {{ use('frontend/themes/basic/assets/LightBoxAsset') }}
                     {{ register_light_box_asset() }}
                     <a style="position:absolute;top:0;left:0;width: 100%;height: 100%"
-                       href="{{ path({'0' : '/partners/default/preview', 'id' : apartment.apartment_id}) }}"></a>
+                       href="{{ path({'0' : '/partners/office/preview', 'id' : apartment.apartment_id}) }}"></a>
                 </div>
                 <div class="col-xs-8">
                     <h3 style="font-size:11px;">{{ ApartmentHelper.getAddress(apartment) }}</h3>
@@ -178,7 +178,7 @@
             {% if searchModel.errors.slug %}
                 {{ searchModel.errors.slug[0] }}
             {% else %}
-                Вы не добавили ни одного объявления. <a href="{{ path(['/partners/default/create']) }}">Добавить</a>.
+                Вы не добавили ни одного объявления. <a href="{{ path(['/partners/office/create']) }}">Добавить</a>.
             {% endif %}
         </div>
     {% endfor %}

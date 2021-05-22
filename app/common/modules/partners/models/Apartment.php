@@ -235,12 +235,18 @@ class Apartment extends \yii\db\ActiveRecord
     {
         $arCountries = [];
 
-        $arCountry = self::find()->select('city_id')->distinct()->asArray()->all();
-        //Вынял все города в которых есть квартиры
+        $arCountry = self::find()->select([self::tableName().'.city_id'])
+            ->leftJoin('city', self::tableName().'.`city_id` = `city`.`city_id`')
+            ->where('city.country_id = 3159') // Показываем только Россию
+            ->distinct()
+            ->asArray()
+            ->all();
+        // Вынял все города в которых есть квартиры
 
         foreach ($arCountry as $country) {
             array_push($arCountries, $country['city_id']);
         }
+
         // Сбил ключи получился просто массив city_id в которых есть квартиры
         $result = City::find()
             ->select(['city_id', 'city.name', 'name_eng', 'country.name as country_name'])

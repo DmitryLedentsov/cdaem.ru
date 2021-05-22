@@ -18,14 +18,16 @@ class BootstrapFrontend implements \yii\base\BootstrapInterface
         // Add module URL rules.
         $app->urlManager->addRules(
             [
-                'office/create-adverts' => '/partners/default/create',
-                'office/update-adverts/<id:\d+>' => '/partners/default/update',
-                'office/apartments/<filter>' => 'partners/default/apartments',
-                'office/apartments' => 'partners/default/apartments',
-                'office/control-image/<action:\w+>/<id:\d+>' => '/partners/ajax/control-image',
-                'office/calendar' => '/partners/default/calendar',
+                '/search' => '/partners/default/index',
+
+                'office/apartments/<filter>' => 'partners/office/apartments',
+                'office/apartments' => 'partners/office/apartments',
+                'office/create-adverts' => '/partners/office/create',
+                'office/update-adverts/<id:\d+>' => '/partners/office/update',
+                'office/calendar' => '/partners/office/calendar',
 
                 'office/reservations' => 'partners/reservation/reservations',
+                'office/control-image/<action:\w+>/<id:\d+>' => '/partners/ajax/control-image',
 
                 Yii::$app->params['siteSubDomain'] . '/office/total-bid/<find:\w+>' => 'partners/reservation/total-bid',
                 'office/total-bid/<find:\w+>' => 'partners/reservation/total-bid',
@@ -38,7 +40,6 @@ class BootstrapFrontend implements \yii\base\BootstrapInterface
                 Yii::$app->params['siteSubDomain'] . '/reservation' => '/partners/reservation/index',
                 'reservation' => '/partners/reservation/index',
 
-                '/search' => '/partners/default/index',
                 Yii::$app->params['siteSubDomain'] . '/flats/<id:\d+>' => '/partners/default/view',
                 Yii::$app->params['siteSubDomain'] . '/flats/<id:\d+>/others' => '/partners/default/others',
 

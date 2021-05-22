@@ -36,16 +36,21 @@ class GuestController extends Controller
      */
     public function beforeAction($action): bool
     {
-        if (parent::beforeAction($action)) {
-            $this->module->viewPath = '@common/modules/users/views/frontend';
-            if (!Yii::$app->user->isGuest) {
-                $this->goBack();
-            }
-
-            return true;
+        if (!parent::beforeAction($action)) {
+            return false;
         }
 
-        return false;
+        $this->module->viewPath = '@common/modules/users/views/frontend';
+
+        if (!Yii::$app->user->isGuest) {
+            $this->goBack();
+        }
+
+        if (Yii::$app->request->getCurrentCitySubDomain() !== null) {
+            $this->redirect(Yii::$app->request->getCurrentUrlWithoutSubDomain());
+        }
+
+        return true;
     }
 
     /**

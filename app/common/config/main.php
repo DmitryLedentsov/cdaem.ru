@@ -132,6 +132,9 @@ return [
             'enableAutoLogin' => true,
             'loginUrl' => ['/users/guest/login'],
         ],
+        'request' => [
+            'class' => \common\components\Request::class,
+        ],
         'response' => [
             'class' => \common\components\Response::class,
         ],

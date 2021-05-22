@@ -29,7 +29,7 @@ echo \common\modules\admin\widgets\ExtraControlWidget::widget([
             'label' => 'Создать',
         ],
         [
-            'url' => ['/partners/default/delete', 'id' => $model->apartment_id],
+            'url' => ['/partners/office/delete', 'id' => $model->apartment_id],
             'label' => 'Удалить',
         ]
     ]

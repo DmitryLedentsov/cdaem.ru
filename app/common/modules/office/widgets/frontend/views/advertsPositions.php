@@ -15,7 +15,7 @@ use common\modules\partners\widgets\frontend\PreviewAdvertTmp;
                 <?= PreviewAdvertTmp::widget([
                     'advert' => $advert,
                     'enableAdvertPosition' => true,
-                    'customUrl' => ['/partners/default/update', 'id' => $advert->apartment_id],
+                    'customUrl' => ['/partners/office/update', 'id' => $advert->apartment_id],
                 ]); ?>
             </div>
 

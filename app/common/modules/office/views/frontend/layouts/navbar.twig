@@ -1,6 +1,6 @@
 <div class="fixednav visible-xs">
     {% if app.user.id %} {% if app.user.identity.profile.user_type != constant('\\common\\modules\\users\\models\\Profile::WANT_RENT') %}
-        <a class="fixed-item" href="{{ path(['/partners/default/apartments']) }}" style="color:white;">
+        <a class="fixed-item" href="{{ path(['/partners/office/apartments']) }}" style="color:white;">
             <i class="fa fa-book"></i></a> {% endif %}{% endif %}
     <a class="fixed-item" href="{{ path(['/office/dialogs']) }}" style="color:white;">
         <i class="fa fa-envelope"></i>
@@ -46,7 +46,7 @@
                                     class="fa fa-gift"
                                     style="color: #f4ad49;position: absolute;right: 25px;top: 7px;"></i></a>
                         <a style="width:100%;position: relative;"
-                           href="{{ path({0 : '/partners/default/calendar'}) }}" {{ app.request.pathInfo == 'office/calendar' ? 'class="active"' : '' }}>Календарь<i
+                           href="{{ path({0 : '/partners/office/calendar'}) }}" {{ app.request.pathInfo == 'office/calendar' ? 'class="active"' : '' }}>Календарь<i
                                     class="fa fa-calendar"
                                     style="color: #f4ad49;position: absolute;right: 25px;top: 7px;"></i></a>
                     </div>
@@ -58,7 +58,7 @@
                                                                                               style="color: #f4ad49;position: absolute;right: 25px;top: 7px;"></i></a>
         {% if app.user.identity.profile.user_type != constant('\\common\\modules\\users\\models\\Profile::WANT_RENT') %}
             <a style="width:100%;position: relative;display:block;padding-left: 20px;font-size: 20px;color: white;text-decoration: none;"
-               href="{{ path(['/partners/default/create']) }}" class="no-board">Добавить объявление<i
+               href="{{ path(['/partners/office/create']) }}" class="no-board">Добавить объявление<i
                         class="fa fa-plus-square"
                         style="color: #f4ad49;position: absolute;right: 25px;top: 7px;"></i></a>
             {% if not app.user.isGuest %}
@@ -176,7 +176,7 @@
 
                 {% if app.user.identity.profile.user_type != constant('\\common\\modules\\users\\models\\Profile::WANT_RENT') %}
                     <li {{ app.request.pathInfo == 'office/create-adverts' ? 'class="active"' : '' }}><a
-                                href="{{ path(['/partners/default/create']) }}" class="no-board">Добавить объявление</a>
+                                href="{{ path(['/partners/office/create']) }}" class="no-board">Добавить объявление</a>
                     </li>
                     {% if not app.user.isGuest %}
                         <li {{ app.request.pathInfo == 'office/reviews' ? 'class="active"' : '' }}><a
@@ -206,7 +206,7 @@
 
                         {% if app.user.identity.profile.user_type != constant('\\common\\modules\\users\\models\\Profile::WANT_RENT') %}
                             <li {{ app.request.pathInfo == 'office/create-adverts' ? 'class="active"' : '' }}><a
-                                        href="{{ path(['/partners/default/create']) }}" class="no-board">Добавить
+                                        href="{{ path(['/partners/office/create']) }}" class="no-board">Добавить
                                     объявление</a></li>
                             {% if not app.user.isGuest %}
                                 <li {{ app.request.pathInfo == 'office/reviews' ? 'class="active"' : '' }}><a

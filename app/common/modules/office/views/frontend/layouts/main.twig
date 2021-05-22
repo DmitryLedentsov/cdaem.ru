@@ -56,11 +56,11 @@
                             покупки</a>
                         <a href="{{ path(['/office/default/top-slider']) }}" {{ app.request.pathInfo == 'office/top-slider-history' ? 'class="active"' : '' }}>Бегущая
                             строка</a>
-                        <a href="{{ path(['/partners/default/apartments']) }}"
+                        <a href="{{ path(['/partners/office/apartments']) }}"
                            {% if app.request.pathInfo == 'office/apartments' and strpos(app.request.pathInfo, 'type=available') == 0 %}class="active"{% endif %}>Мои
                             объявления</a>
                         <a href="{{ path(['/office/default/services']) }}" {{ app.request.pathInfo == 'office/services' ? 'class="active"' : '' }}>Услуги</a>
-                        <a href="{{ path({0 : '/partners/default/calendar'}) }}" {{ app.request.pathInfo == 'office/calendar' ? 'class="active"' : '' }}>Календарь</a>
+                        <a href="{{ path({0 : '/partners/office/calendar'}) }}" {{ app.request.pathInfo == 'office/calendar' ? 'class="active"' : '' }}>Календарь</a>
                     </div>
                 </div>
             {% endblock %}

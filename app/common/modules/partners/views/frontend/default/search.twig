@@ -19,8 +19,8 @@
 
 {% block content %}
 
-    {{ use('common/modules/partners/assets/frontend/AdvertAsset') }}
-    {{ register_advert_asset() }}
+    {{ use('common/modules/partners/assets/frontend/SearchAsset') }}
+    {{ register_search_asset() }}
 
     {# Поиск #}
     {{ this.render('@common/modules/partners/views/frontend/default/_search_on_the_board.twig', {
@@ -35,9 +35,9 @@
                     <img src="/_new/images/gallery/about-advert-image.png" alt="about advert image"/>
                 </div>
                 <div class="about-advert-item about-advert-item-content">
-                    <h2 class="section-title">Доска объявлений по всей России и СНГ</h2>
+                    <h2 class="section-title">Доска объявлений по всей России</h2>
                     <p class="about-advert-text">
-                        Вы можете бесплатно разместить своё предложение по «аренде посуточно» и выбрать нужный раздел:
+                        Вы можете бесплатно разместить своё предложение по «аренде посуточно» или выбрать нужный раздел:
                         Квартира на сутки, квартира на час, квартира на ночь, квартира на месяц, комната на сутки,
                         койко-место, загородный дом или дом на выходные, коттедж на сутки. Также если Вы собрались
                         в поездку: Санкт-Петербург, Ростов на дону, Новосибирск, Екатеринбург, Казань, Челябинск, Уфа,
@@ -139,7 +139,7 @@
                             {% for city in arCity %}
                                 <div class="city">
                                     <a class="city-link" href="{{ path('/partners/default/region', {'city' : city.name_eng}) }}">
-                                        <b>{{ city.name }}</b>
+                                        {{ city.name }}
                                     </a>
                                 </div>
                             {% endfor %}
