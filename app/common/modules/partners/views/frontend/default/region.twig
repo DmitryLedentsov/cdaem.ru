@@ -25,20 +25,21 @@
 
     <section class="intro">
         <div class="lookup-board">
-            <div class="container-fluid">
+            <form action="{{ path(['/partners/pre-region']) }}" method="get" class="container-fluid">
                 <div class="lookup-board-form">
                     <div class="lookup-board-filter lookup-board-filter-city">
                         <span class="lookup-board-filter-text">Город</span>
                         <label>
                             <input id="search-form-autocomplete" name="city" type="text" class="form-control input-search city-drop-down-list" data-url="{{ path(['/geo/ajax/select-city']) }}" value="{{city.name}}" placeholder="Город" />
+                            <input type="hidden" name="city_code" id="search-form-autocomplete-selected" value="msk">
                         </label>
                     </div>
                     <div class="lookup-board-filter lookup-board-filter-type">
                         <span class="lookup-board-filter-text">Выберите тип аренды</span>
                         <label>
-                            <select class="custom-select">
-                                {% for rentType in searchModel.rentTypesList %}
-                                <option {{ loop.index == 1 ? 'selected' : '' }}>{{ rentType }}</option>
+                            <select class="custom-select" name="sect">
+                                {% for key, rentType in searchModel.rentTypesList %}
+                                    <option value="{{ key }}" {{ key == 2 ? 'selected="selected"' : '' }}>{{ rentType }}</option>
                                 {% endfor %}
                             </select>
                         </label>
@@ -46,39 +47,62 @@
                     <div class="lookup-board-filter lookup-board-filter-rooms">
                         <span class="lookup-board-filter-text">Количество комнат</span>
                         <label>
-                            <select class="custom-select">
-                                {% for room in searchModel.roomsList %}
-                                    <option {{ loop.index == 1 ? 'selected' : '' }}>{{ room }}</option>
+                            <select class="custom-select" name="room">
+                                {% for key, room in searchModel.roomsList %}
+                                    <option value="{{ key }}" {{ loop.index == 1 ? 'selected' : '' }}>{{ room }}</option>
                                 {% endfor %}
                             </select>
                         </label>
                     </div>
                     <div class="lookup-board-filter lookup-board-filter-adress">
-                        <span class="lookup-board-filter-text">Введите адрес</span>
+                        <span class="lookup-board-filter-text">Сортировать</span>
                         <label>
-                            <input name="address" class="form-control" id="lookup-board-form-autocomplete" type="text" autocomplete="off" placeholder="Адрес, метро">
+                            <select class="custom-select" name="sort">
+                                <option value="0">По дате</option>
+                                <option value="1">От дешёвых к дорогим</option>
+                                <option value="2">От дорогих к дешёвым</option>
+                            </select>
                         </label>
                     </div>
                     <div class="lookup-board-filter lookup-board-filter-price">
                         <span class="lookup-board-filter-text">Цена</span>
                         <div class="lookup-board-filter-price-container">
                             <label>
-                                <input name="price_start" class="form-control lookup-board-price lookup-board-price-min" type="number" value="Цена от" placeholder="Цена от">
+                                <input
+                                        name="price_start"
+                                        class="form-control lookup-board-price lookup-board-price-min"
+                                        type="number"
+                                        value=""
+                                        placeholder="Цена от">
                             </label>
                             <label>
-                                <input name="price_end" class="form-control lookup-board-price lookup-board-price-max" type="number" value="Цена до" placeholder="Цена до">
+                                <input
+                                        name="price_end"
+                                        class="form-control lookup-board-price lookup-board-price-max"
+                                        type="number"
+                                        value=""
+                                        placeholder="Цена до">
                             </label>
                         </div>
                     </div>
                     <div class="lookup-board-filter lookup-board-filter-search">
-                        <button data-toggle="modal" data-target="#modalSearch" class="form-control lookup-board-search">РАСШИРЕННЫЙ ПОИСК</button>
+                        <button
+                                data-toggle="modal"
+                                data-target="#modalSearchFilters"
+                                type="button"
+                                class="form-control lookup-board-search">
+                            РАСШИРЕННЫЙ ПОИСК
+                        </button>
                     </div>
                 </div>
                 <div class="lookup-board-buttons">
-                    <a href="{{ path({ 0: '/geo/default/index', 'city': city.name_eng}) }}" class="btn btn-special button-map">НА КАРТЕ</a>
-                    <button class="btn btn-warning btn-special">НАЙТИ</button>
+                    <a href="{{ path({ 0: '/geo/default/index', 'city': city.name_eng}) }}" class="btn btn-special button-map">
+                        НА КАРТЕ
+                    </a>
+                    <button type="submit" class="btn btn-warning btn-special">НАЙТИ</button>
                 </div>
-            </div>
+                {% include "@common/modules/partners/views/frontend/default/_modal_search_filters.twig" %}
+            </form>
         </div>
     </section>
 

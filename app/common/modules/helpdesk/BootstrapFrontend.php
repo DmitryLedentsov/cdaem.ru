@@ -16,7 +16,6 @@ class BootstrapFrontend implements \yii\base\BootstrapInterface
         // Add module URL rules.
         $app->urlManager->addRules(
             [
-                'call' => '/helpdesk/default/index',
                 'vacancy' => '/helpdesk/default/vacancy',
                 'complaint/<advert_id:\d+>' => '/helpdesk/ajax/complaint',
                 'help/<url>' => '/helpdesk/default/help',

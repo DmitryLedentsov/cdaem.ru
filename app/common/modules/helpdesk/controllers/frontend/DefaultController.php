@@ -54,9 +54,11 @@ class DefaultController extends \frontend\components\Controller
     /**
      * Задать вопрос
      *
+     * --- было удалено из-за полного дубля с actionHelp
+     *
      * @return Response
      */
-    public function actionIndex(): Response
+    /*public function actionIndex(): Response
     {
         $model = new Helpdesk();
         $formModel = new HelpdeskForm(['scenario' => Yii::$app->user->isGuest ? 'guest-ask' : 'user-ask']);
@@ -76,7 +78,7 @@ class DefaultController extends \frontend\components\Controller
             'model' => $model,
             'formModel' => $formModel,
         ]));
-    }
+    }*/
 
     /**
      * Страница "Вакансии"
