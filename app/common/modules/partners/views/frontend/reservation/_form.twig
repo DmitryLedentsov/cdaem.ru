@@ -42,11 +42,8 @@
 
 {% block content %}
 
-    {{ this.registerMetaTag({'name' : 'description', 'content' : ''}) }}
-    {{ this.registerMetaTag({'name' : 'keywords', 'content' : ''}) }}
-
-    {{ use('common/modules/partners/assets/frontend/ApartmentAsset') }}
-    {{ register_apartment_asset() }}
+    {{ use('common/modules/partners/assets/frontend/ReservationAsset') }}
+    {{ register_reservation_asset() }}
 
     {{ use('frontend/themes/basic/assets/DateTimeAsset') }}
     {{ register_date_time_asset() }}
@@ -61,20 +58,24 @@
     {% endif %}
 
     {% if app.session.hasFlash('success') %}
-    <div class="alert alert-success" role="alert">
-        {{ app.session.getFlash('success') | raw }}
-    </div> <br/>
-    Ваша заявка будет доступна всем владельцам апартаментов на сайте {{ app.params.siteDomain }}. После того, как кто-нибудь откроет ваши контакты,
-    в <a href="{{ path(['/partners/reservation/total-bid']) }}" target="_blank">личном
-    кабинете</a> вы увидите, что заявка закрыта.
-    <br/>
+        <div class="alert alert-success" role="alert">
+            {{ app.session.getFlash('success') | raw }}
+        </div> <br/>
 
+        Ваша заявка будет доступна всем владельцам апартаментов на сайте {{ app.params.siteDomain }}. После того, как кто-нибудь откроет ваши контакты,
+        в <a href="{{ path(['/partners/reservation/total-bid']) }}" target="_blank">личном кабинете</a> вы увидите, что заявка закрыта.
+        <br/>
     {% else %}
 
     <section class="rent">
         <div class="container-fluid">
             <h2 class="section-title">Быстро снять</h2>
-            <p class="rent-text">Заполнение заявки "Быстро снять" совершенно бесплатно. После того, как Вы заполните все данные формы, Ваша заявка будет доступна всем агентам  и собственникам на сайте. После чего, когда кто-нибудь откроет Ваши контакты, в личном кабинете вы сможете увидеть это. Детальная инструкция будет отправлена на Ваш почтовый адрес.</p>
+            <p class="rent-text">
+                Заполнение заявки "Быстро снять" совершенно бесплатно. После того, как Вы заполните все данные формы,
+                Ваша заявка будет доступна всем агентам  и собственникам на сайте. После чего, когда кто-нибудь откроет
+                Ваши контакты, в личном кабинете вы сможете увидеть это. Детальная инструкция будет отправлена на Ваш
+                почтовый адрес.
+            </p>
             <div class="steps step-1 active">
                 <div class="rent-form-container">
                     <div class="rent-content">
@@ -86,7 +87,16 @@
                                 <option value="2">Воронеж</option>
                                 <option value="3">Москва</option>
                                 <option value="4">Санкт-Петербург</option>
-                                <option value="5">Воронеж</option>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% endif %}       <option value="5">Воронеж</option>
                                 <option value="6">Москва</option>
                             </select>
                         </label>

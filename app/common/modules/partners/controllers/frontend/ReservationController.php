@@ -75,6 +75,9 @@ class ReservationController extends \frontend\components\Controller
             $model->scenario = 'unauthorized';
         }
 
+        // TODO:
+        dd(Yii::$app->request->post());
+
         if ($model->load(Yii::$app->request->post())) {
             $errors = ActiveForm::validate($model);
             if (!$errors) {
@@ -95,7 +98,7 @@ class ReservationController extends \frontend\components\Controller
             }
         }
 
-        return $this->render('_form.twig', [
+        return $this->render('reservation.twig', [
             'reservationsForm' => $model,
         ]);
     }
