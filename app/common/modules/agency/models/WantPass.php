@@ -8,7 +8,7 @@ use yii\helpers\ArrayHelper;
 use common\modules\geo\models\Metro;
 use common\modules\realty\models\RentType;
 use common\modules\agency\traits\ModuleTrait;
-use common\modules\realty\models\Apartment as ApartmentConfig;
+use common\modules\realty\models\Apartment as TotalApartment;
 
 /**
  * Заявки на Хочу сдать квартиру
@@ -63,7 +63,7 @@ class WantPass extends \yii\db\ActiveRecord
      * Список Статусов
      * @return array
      */
-    public static function getStatusesArray()
+    public static function getStatusesArray(): array
     {
         return [
             self::PROCESSED => [
@@ -167,7 +167,7 @@ class WantPass extends \yii\db\ActiveRecord
      * Список типов аренды
      * @return array
      */
-    public static function getRentTypesList()
+    public static function getRentTypesList(): array
     {
         return RentType::rentTypeslist();
     }
@@ -176,7 +176,7 @@ class WantPass extends \yii\db\ActiveRecord
      * Список типов аренды
      * @return array
      */
-    public static function getMetroStations()
+    public static function getMetroStations(): array
     {
         $metro = Metro::find()
             ->select(['metro_id', 'name'])
@@ -191,16 +191,16 @@ class WantPass extends \yii\db\ActiveRecord
      * Список доступных вариантов количества комнат
      * @return array
      */
-    public static function getRoomsList()
+    public static function getRoomsList(): array
     {
-        return ApartmentConfig::getRoomsArray();
+        return TotalApartment::getRoomsArray();
     }
 
     /**
      * Текстовое представление обозначения на главной странице или нет
      * @return string
      */
-    public function getStatusText()
+    public function getStatusText(): string
     {
         return Yii::$app->BasisFormat->helper('Status')->getItem($this->statusesArray, $this->status);
     }

@@ -21,7 +21,7 @@ class ReservationController extends \frontend\components\Controller
     /**
      * @inheritdoc
      */
-    public function beforeAction($action)
+    public function beforeAction($action): bool
     {
         if (!parent::beforeAction($action)) {
             return false;
@@ -35,7 +35,7 @@ class ReservationController extends \frontend\components\Controller
     /**
      * @inheritdoc
      */
-    public function behaviors()
+    public function behaviors(): array
     {
         $behaviors = [
             'access' => [
@@ -76,7 +76,9 @@ class ReservationController extends \frontend\components\Controller
         }
 
         // TODO:
-        dd(Yii::$app->request->post());
+        if (Yii::$app->request->isPost) {
+            dd(Yii::$app->request->post());
+        }
 
         if ($model->load(Yii::$app->request->post())) {
             $errors = ActiveForm::validate($model);

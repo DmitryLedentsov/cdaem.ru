@@ -8,7 +8,7 @@ use yii\helpers\ArrayHelper;
 use common\modules\geo\models\Metro;
 use common\modules\realty\models\RentType;
 use common\modules\agency\traits\ModuleTrait;
-use common\modules\realty\models\Apartment as ApartmentConfig;
+use common\modules\realty\models\Apartment as TotalApartment;
 
 /**
  * Заявки на подберем квартиру
@@ -123,7 +123,7 @@ class Select extends \yii\db\ActiveRecord
      */
     public static function getRoomsList()
     {
-        return ApartmentConfig::getRoomsArray();
+        return TotalApartment::getRoomsArray();
     }
 
     /**

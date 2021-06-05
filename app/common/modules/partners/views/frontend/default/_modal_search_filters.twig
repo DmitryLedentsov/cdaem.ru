@@ -8,7 +8,7 @@
             </div>
             <div class="modal-body">
                 <div class="modal-select-container">
-                    <label>
+                    {# <label>
                         <select class="custom-select">
                             <option value="" selected>Тип сделки*</option>
                             <option value="1">Тип сделки</option>
@@ -17,17 +17,17 @@
                             <option value="4">Тип сделки</option>
                             <option value="5">Тип сделки</option>
                         </select>
-                    </label>
+                    </label>#}
                     <label>
-                        <select class="custom-select">
-                            <option value="" selected>До метро*</option>
-                            <option value="1">Неважно</option>
-                            <option value="2">Пешком</option>
-                            <option value="3">Транспортом</option>
+                        <select class="custom-select" name="metro_walk">
+                            <option value="">Расстояние до метро</option>
+                            {% for value,name in TotalApartment.getMetroWalkBaseArray() %}
+                                <option value="{{ value }}">{{ name }}</option>
+                            {% endfor %}
                         </select>
                     </label>
-                    <label>
-                        <div class="checkselect">
+                    {# <div class="checkselect">
+                        <label>
                             <label><input type="checkbox" name="brands[]" value="1"> Кондиционер</label>
                             <label><input type="checkbox" name="brands[]" value="2"> Холодильник</label>
                             <label><input type="checkbox" name="brands[]" value="3"> Посудомоечная машина</label>
@@ -38,9 +38,8 @@
                             <label><input type="checkbox" name="brands[]" value="8"> Интернет</label>
                             <label><input type="checkbox" name="brands[]" value="9"> Телефон</label>
                             <label><input type="checkbox" name="brands[]" value="10"> Телевизор</label>
-                        </div>
-                    </label>
-
+                        </label>
+                    </div>
                     <label>
                         <select class="custom-select">
                             <option value="" selected>Условия проживания*</option>
@@ -48,9 +47,9 @@
                             <option value="2">Условия проживания</option>
                             <option value="3">Условия проживания</option>
                         </select>
-                    </label>
+                    </label> #}
                 </div>
-                <div class="modal-select-container">
+                {# <div class="modal-select-container">
                     <div class="modal-area-container">
                         <h5 class="modal-subtitle">Общая площадь</h5>
                         <div class="modal-area modal-total-area">
@@ -65,10 +64,10 @@
                             <input name="kitchen-area" type="number" value="до" placeholder="До">
                         </div>
                     </div>
-                </div>
+                </div> #}
                 <h5 class="modal-subtitle">Жилая площадь</h5>
                 <div class="modal-select-container">
-                    <div class="modal-area modal-living-area">
+                    {# <div class="modal-area modal-living-area">
                         <input name="living-area" type="number" value="от" placeholder="От">
                         <input name="living-area" type="number" value="до" placeholder="До">
                     </div>
@@ -87,27 +86,24 @@
                             <option value="2">Высота потолков</option>
                             <option value="3">Высота потолков</option>
                         </select>
-                    </label>
+                    </label>#}
                     <label>
-                        <select class="custom-select">
-                            <option value="" selected>Ремонт*</option>
-                            <option value="1">Ремонт</option>
-                            <option value="2">Ремонт</option>
-                            <option value="3">Ремонт</option>
+                        <select class="custom-select" name="remont">
+                            <option value="">Любой ремонт</option>
+                            {% for value,name in TotalApartment.getRemontArray() %}
+                                <option value="{{ value }}">{{ name }}</option>
+                            {% endfor %}
                         </select>
                     </label>
                     <label>
-                        <select class="custom-select">
-                            <option value="" selected>Этаж*</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
+                        <select class="custom-select" name="floor">
+                            <option value="">Любой этаж</option>
+                            {% for value,name in TotalApartment.getFloorArray() %}
+                                <option value="{{ value }}">{{ name }}</option>
+                            {% endfor %}
                         </select>
                     </label>
-                    <label>
+                    {# <label>
                         <select class="custom-select">
                             <option value="" selected>Этажей в доме*</option>
                             <option value="1">1</option>
@@ -132,9 +128,9 @@
                             <option value="2">Тип дома</option>
                             <option value="3">Тип дома</option>
                         </select>
-                    </label>
+                    </label>#}
                 </div>
-                <h5 class="modal-subtitle">Год постройки</h5>
+                {# <h5 class="modal-subtitle">Год постройки</h5>
                 <div class="modal-select-container">
                     <div class="modal-area modal-year">
                         <input name="year" type="number" value="от" placeholder="От">
@@ -187,11 +183,13 @@
                     <label>
                         <input type="number" class="modal-ad-number input-field" placeholder="Номер объявления">
                     </label>
-                </div>
+                </div>#}
             </div>
             <div class="modal-footer modal-bottom">
                 <button type="reset" class="filter">Сбросить фильтры</button>
-                <button type="button" class="btn btn-warning btn-special" data-dismiss="modal" aria-label="Close">Поиск</button>
+                <button type="button" class="btn btn-warning btn-special" data-dismiss="modal" aria-label="Close">
+                    Поиск
+                </button>
             </div>
         </div>
     </div>

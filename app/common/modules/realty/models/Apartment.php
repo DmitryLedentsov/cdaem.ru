@@ -11,9 +11,21 @@ use yii\db\ActiveRecord;
 class Apartment extends ActiveRecord
 {
     /**
+     * @return array Список валюты
+     */
+    public static function getCurrencyArray(): array
+    {
+        return [
+            1 => 'RUB',
+            2 => 'USD',
+            3 => 'EUR',
+        ];
+    }
+
+    /**
      * @return array Список кол-во квартир
      */
-    public static function getRoomsArray()
+    public static function getRoomsArray(): array
     {
         return [
             1 => '1 комната',
@@ -26,21 +38,9 @@ class Apartment extends ActiveRecord
     }
 
     /**
-     * @return array Список валюты
-     */
-    public static function getCurrencyArray()
-    {
-        return [
-            1 => 'RUB',
-            2 => 'USD',
-            3 => 'EUR',
-        ];
-    }
-
-    /**
      * @return array Список типов ремонта
      */
-    public static function getRemontArray()
+    public static function getRemontArray(): array
     {
         return [
             1 => 'Старый',
@@ -53,7 +53,7 @@ class Apartment extends ActiveRecord
     /**
      * @return array Список кол-во спальных мест
      */
-    public static function getBedsArray()
+    public static function getBedsArray(): array
     {
         return [
             1 => '1 место',
@@ -69,7 +69,7 @@ class Apartment extends ActiveRecord
      * Список доступных выборов для дальности от метро
      * @return array
      */
-    public static function getMetroWalkArray()
+    public static function getMetroWalkArray(): array
     {
         return [
             0 => 'Нет метро',
@@ -100,6 +100,31 @@ class Apartment extends ActiveRecord
             65 => 'Около 15 минут транспортом',
             80 => 'Около 30 минут транспортом',
             90 => 'Час и более транспортом'
+        ];
+    }
+
+    /**
+     * Список доступных выборов для дальности от метро
+     * @return array
+     */
+    public static function getMetroWalkBaseArray(): array
+    {
+        return [
+            1 => 'Пешком',
+            2 => 'Транспортом',
+        ];
+    }
+
+    /**
+     * Массив доступных значений Этаж
+     * @return array
+     */
+    public static function getFloorArray(): array
+    {
+        return [
+            1 => 'Только первый',
+            2 => 'Не первый',
+            3 => 'Не последний',
         ];
     }
 }

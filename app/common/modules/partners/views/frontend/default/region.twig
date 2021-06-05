@@ -1,7 +1,10 @@
 {#
     Доска объявлений
     @var \yii\web\View this
-    @var common\modules\partners\models\Advert adverts
+    @var common\modules\geo\models\City city
+    @var common\modules\partners\models\frontend\search\AdvertSearch searchModel
+    @var ommon\modules\partners\models\frontend\Advert topAdverts
+    @var yii\data\ActiveDataProvider dataProvider
 #}
 
 {% extends "@common/modules/site/views/layouts/main.twig" %}
@@ -30,7 +33,13 @@
                     <div class="lookup-board-filter lookup-board-filter-city">
                         <span class="lookup-board-filter-text">Город</span>
                         <label>
-                            <input id="search-form-autocomplete" name="city" type="text" class="form-control input-search city-drop-down-list" data-url="{{ path(['/geo/ajax/select-city']) }}" value="{{city.name}}" placeholder="Город" />
+                            <input id="search-form-autocomplete"
+                                   name="city"
+                                   type="text"
+                                   class="form-control input-search city-drop-down-list"
+                                   data-url="{{ path(['/geo/ajax/select-city']) }}"
+                                   value="{{city.name}}"
+                                   placeholder="Город" />
                             <input type="hidden" name="city_code" id="search-form-autocomplete-selected" value="msk">
                         </label>
                     </div>
@@ -101,7 +110,7 @@
                     </a>
                     <button type="submit" class="btn btn-warning btn-special">НАЙТИ</button>
                 </div>
-                {% include "@common/modules/partners/views/frontend/default/_modal_search_filters.twig" %}
+                {% include "@common/modules/partners/views/frontend/default/_modal_search_filters.twig" with {} %}
             </form>
         </div>
     </section>
