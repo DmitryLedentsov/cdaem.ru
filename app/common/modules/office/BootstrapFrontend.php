@@ -13,7 +13,7 @@ class BootstrapFrontend implements \yii\base\BootstrapInterface
      */
     public function bootstrap($app)
     {
-        // Add module URL rules.
+        // Add module URL rules.reservations
         $app->urlManager->addRules(
             [
                 'office' => 'office/default/index',

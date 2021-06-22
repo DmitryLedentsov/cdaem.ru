@@ -176,7 +176,7 @@ class PreviewAdvertTmp extends Widget
                                 <object class="apartment-icon">
                                     <img src="./images/icons/apartment/rooms.svg" alt="rooms">
                                 </object>
-                                <span>' . $this->advert->apartment->rooms . ' комната</span>
+                                <span>Комнат: ' . $this->advert->apartment->total_rooms . '</span>
                             </div>
                             <div class="apartment-info-item apartment-area">
                                 <object class="apartment-icon">
