@@ -5,3 +5,6 @@ docker/docker-compose.override.yml
 docker/.docker.env
 docker/.env
 docker/nginx/default.conf
+app/apps/frontend/web/_new/js
+app/apps/frontend/web/_new/css
+app/apps/frontend/web/_new/mix-manifest.json
