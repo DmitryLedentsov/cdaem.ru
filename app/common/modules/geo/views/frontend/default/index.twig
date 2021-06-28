@@ -3,23 +3,30 @@
    @var \yii\web\View this
 #}
 
-{% extends "@app/themes/basic/layouts/main.twig" %}
+{% extends "@common/modules/site/views/layouts/main.twig" %}
+
+{% block seo %}
+    {% include '@common/modules/site/views/_modules/_seo.twig' with {
+        'title': '',
+        'description':  '',
+        'keywords': '',
+    } %}
+{% endblock %}
 
 {% block title %} {{ this.registerTitle('Найти апартаменты на карте | Сдаём.ру') }} {% endblock %}
 
-{% block header %}{% endblock %}
 
-{% block navbar %}
-    {{ this.renderDynamic('return $this->render("@common/modules/office/views/frontend/layouts/navbar.twig");') | raw }}
-{% endblock %}
-
-{% block navbar_bottom %}{% endblock %}
+{% block bodyClass %}l-base{% endblock %}
 
 {% block breadcrumbs %}
-    <div class="breadcrumbs">
+    <div class="container-fluid">
         {{ use('yii/widgets/Breadcrumbs') }}
         {{ breadcrumbs_widget({
-            'itemTemplate' : "<li>{link}</li>\n",
+            'tag':  'div',
+            'options': {
+                'class': 'breadcrumbs'
+            },
+            'itemTemplate' : "{link}\n",
             'homeLink' :
             {
                 'label' : 'Главная',
@@ -35,11 +42,7 @@
     </div>
 {% endblock %}
 
-
 {% block content %}
-
-    {{ this.registerMetaTag({'name' : 'description', 'content' : ''}) }}
-    {{ this.registerMetaTag({'name' : 'keywords', 'content' : ''}) }}
 
 
 
@@ -249,9 +252,5 @@
     </div>
 
 
-{% endblock %}
-
-{% block footer %}
-    {% include "@app/themes/basic/layouts/footer-partners.twig" %}
 {% endblock %}
 
