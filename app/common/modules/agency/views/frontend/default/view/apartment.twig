@@ -5,358 +5,152 @@
     @var common\modules\agency\models\form\ReservationForm reservationForm
     @var common\modules\agency\models\form\DetailsHistoryForm detailsHistoryForm
 #}
-<div class="apartment-view">
-    <div class="container">
+<div class="container-fluid">
+    <div id="map" style="width: 100%; height: 429px"></div>
+</div>
 
-        <div class="d-title"><h1 class="title-purpl">{{ model.apartment.city.name }}, {{ model.apartment.address }}
-                <span class="s-1">{{ model.apartment.mainDistrict.district_name }}{{ model.apartment.semiDistrict ? '('~model.apartment.semiDistrict.district_name~')' }}, м.{{ model.apartment.metroStation.metro.name }},</span>
-                <span class="s-2">{{ model.rentType.name }}.</span></h1></div>
-
-        <div id="carousel">
-            {% for image in model.apartment.orderedImages %}
-                <div class="image-box item">
-                    <div class="image">
-                        <a class="link" href="{{ image.reviewSrc }}" data-lightbox="example-set" data-title="">
-                            <img src="{{ image.previewSrc }}" class="shadow-box"
-                                 alt="{{ model.apartment.city.name }}, {{ model.apartment.address }} {{ model.rentType.name }} "
-                                 title="{{ model.apartment.city.name }}, {{ model.apartment.address }} {{ model.rentType.name }} №{{ model.advert_id }}"/>
-                        </a>
-                    </div>
+<section class="advert">
+    <div class="container-fluid">
+        <div class="advert-info">
+            <h2 class="advert-title">
+                {{ model.apartment.address }}{{ model.apartment.apartment ? ', кв.'~model.apartment.apartment }}
+            </h2>
+            <div class="advert-cost">
+                {# ???????? #}
+                <div class="advert-cost-info">
+                    <object class="advert-icon">
+                        <img src="./images/icons/apartment/hour.svg" alt="hour">
+                    </object>
+                    <p>Час: <span>?? ₽</span></p>
                 </div>
-            {% endfor %}
-        </div>
-
-
-        <div class="info">
-            <div class="properties">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="desc">
-                            <h4 class="title-r">Краткое описание</h4>
-                            <p>Количество комнат: <span>{{ model.apartment.total_rooms }}</span></p>
-                            <p>Удаленность от метро: <span>{{ model.apartment.metroWalkText }}</span></p>
-                            <p>Cпальных мест: <span>{{ model.apartment.beds }}</span></p>
-                            <p>Площадь: <span>{{ model.apartment.total_area }} м<sup>2</sup></span></p>
-                            <p>Ремонт: <span>{{ model.apartment.remontName }}</span></p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        {{ use('common/modules/agency/widgets/frontend/RentTypePriceInfoNew') }}
-                        {{ rent_type_price_info_new_widget({
-                            'adverts' : model.apartment.adverts,
-                            'advert' : model,
-                        }) }}
-                        <div style="text-align:center"><a class="btn btn-primary pink-btn"
-                                                          href="/agency/default/res?id={{ model.advert_id }}">Бронировать</a>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="devices">
-                            <h4 class="title">В квартире имеется</h4>
-                            <ul class="list">
-                                <li><span class="device-icon device-iron"></span></li>
-                                <li><span class="device-icon device-washing-machine"></span></li>
-                                <li><span class="device-icon device-bed"></span></li>
-                                <li><span class="device-icon device-tv"></span></li>
-                                <li><span class="device-icon device-refrigerator"></span></li>
-                                <li><span class="device-icon device-hair-dryer"></span></li>
-                                <li><span class="device-icon device-vacuum-cleaner"></span></li>
-                                <li><span class="device-icon device-shower"></span></li>
-                                <li><span class="device-icon device-phone"></span></li>
-                            </ul>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
+                <div class="advert-cost-info">
+                    <object class="advert-icon">
+                        <img src="./images/icons/apartment/night.svg" alt="night">
+                    </object>
+                    <p>Ночь: <span>?? ₽</span></p>
+                </div>
+                <div class="advert-cost-info">
+                    <object class="advert-icon">
+                        <img src="./images/icons/apartment/day.svg" alt="day">
+                    </object>
+                    <p>Сутки: <span>?? ₽</span></p>
+                </div>
+                <div class="advert-cost-info">
+                    <object class="advert-icon">
+                        <img src="./images/icons/apartment/months.svg" alt="months">
+                    </object>
+                    <p>Месяц: <span>?? ₽</span></p>
                 </div>
 
+                {# ???????? #}
 
             </div>
+            <div class="advert-list">
+                <ul>
+                    <li><b>Адрес:</b>
+                        {{ model.apartment.city.name }}, {{ model.apartment.address }}{{ model.apartment.apartment ? ', кв.'~model.apartment.apartment }}
+                    </li>
 
+                    {% if (model.apartment.metroStations) %}
 
-            <div class="description">
-                {{ model.apartment.description|raw }}
+                        <li><b>Метро:</b>
+                            {% for metroStation in model.apartment.metroStations %}
+                                {{ metroStation.metro.name }}{% if loop.last == false %},{% endif %}
+                            {% endfor %}
+                        </li>
+                        <li><b>Удаленность от метро:</b> {{ model.apartment.metroWalkText }}</li>
 
-                {% if model.info %}
-                    <p><br/></p>
-                    {{ model.info|raw }}
-                {% endif %}
+                    {% endif %}
 
-                {% if model.rules %}
-                    <p><br/></p>
-                    {{ model.rules|raw }}
-                {% endif %}
+                    <li><b>Этаж:</b> {{ model.apartment.floor }}</li>
+                    <li><b>Общая площадь:</b> {{ model.apartment.total_area }} м2</li>
+                    <li><b>Комнат:</b> {{ model.apartment.total_rooms }}</li>
+                    <li><b>Спальных мест:</b> {{ model.apartment.beds }}</li>
+                    <li><b>Ремонт:</b> {{ model.apartment.remontName }}</li>
 
-                {% if model.rentType.agency_rules %}
-                    <p><br/></p>
-                    {{ model.rentType.agency_rules | raw }}
-                {% endif %}
+                    <li class="repairs-icons">
+                        <img src="./images/apartment/repairs/freezer.svg" alt="freezer">
+                        <img src="./images/apartment/repairs/cooker.svg" alt="cooker">
+                        <img src="./images/apartment/repairs/iron.svg" alt="iron">
+                        <img src="./images/apartment/repairs/hair-dryer.svg" alt="hair-dryer">
+                        <img src="./images/apartment/repairs/wifi.svg" alt="wifi">
+                        <img src="./images/apartment/repairs/microwave.svg" alt="microwave">
+                        <img src="./images/apartment/repairs/smart-tv.svg" alt="smart-tv">
+                        <img src="./images/apartment/repairs/air-conditioner.svg" alt="air-conditioner">
+                        <img src="./images/apartment/repairs/washing-machine.svg" alt="washing-machine">
+                        <img src="./images/apartment/repairs/couch.svg" alt="couch">
+                        <img src="./images/apartment/repairs/bed.svg" alt="bed">
+                        <img src="./images/apartment/repairs/shower.svg" alt="shower">
+                        <img class="bath" src="./images/apartment/repairs/bath.svg" alt="bath">
+                        <img src="./images/apartment/repairs/jacuzzi.svg" alt="jacuzzi">
+                    </li>
+                    <li>
+                        <b>Информация от владельца:</b>
+                        <div>
+                            {% if model.apartment.description %}
+                                {{ model.apartment.description|raw }}
 
-                <p><br/></p>
-                <p><br/></p>
+                                {% if model.info %}
+                                    {{ model.info|raw }}
+                                {% endif %}
 
-                <h4 class="info-title">Типы аренды</h4>
+                                {% if model.rules %}
+                                    {{ model.rules|raw }}
+                                {% endif %}
 
-                <div class="rent-type-group">
-                    {#
-                        // Перечисление дополнительных типов аренды по которым сдается квартира
-                        {% for otherAdvert in model.apartment.adverts %}
-                            {% if otherAdvert.advert_id != model.advert_id %}
-                                <div class="r-group">
-                                    <span class="icon"></span>
-                                    <span>{{ otherAdvert.rentType.name }}</span>
-                                </div>
+                                {% if model.rentType.agency_rules %}
+                                    {{ model.rentType.agency_rules | raw }}
+                                {% endif %}
+
+                            {% else %}
+                                Дополнительная информация не указана.
                             {% endif %}
-                        {% endfor %}
-                    #}
-
-                    <div class="b-group">
-                        <span class="icon-b-type icon-rent-type-b-hour"></span>
-                        <span>На час</span>
-                    </div>
-
-                    <div class="b-group">
-                        <span class="icon-b-type icon-rent-type-b-night"></span>
-                        <span>На ночь</span>
-                    </div>
-
-                    <div class="b-group">
-                        <span class="icon-b-type icon-rent-type-b-day"></span>
-                        <span>На сутки</span>
-                    </div>
-
-                    <div class="b-group">
-                        <span class="icon-b-type icon-rent-type-b-month"></span>
-                        <span>На Месяц</span>
-                    </div>
-
-                    <div class="b-group">
-                        <span class="icon-b-type icon-rent-type-b-star"></span>
-                        <span>На новый год</span>
-                    </div>
-
-                </div>
+                        </div>
+                    </li>
+                </ul>
             </div>
-
-            <div class="clearfix"></div>
-
-
         </div>
+        <div class="advert-info">
+            <div class="advert-author">
 
-    </div>
+                {% include('@common/modules/agency/views/frontend/default/view/owner.twig') %}
 
-</div>
-
-{#
-    Способы оплаты
-#}
-
-<h4 class="title-pay">Варианты оплаты:</h4>
-
-<div class="container payment-methods-warning">
-    <span>Внимание:</span> без подтверждения диспетчера, оплату просьба не производить.
-</div>
-
-<div class="payment-methods">
-
-    <div class="container">
-        <div class="row">
-
-            <div class="method-1 col-md-2">
-                <h5>&#8544; Способ</h5>
-                <div class="pm-icon pm-icon-cash">
-                    <div class="payment-info">
-                        {{ include('@common/modules/agency/views/frontend/default/payments/cash.twig') }}
-                    </div>
-                </div>
-                <div class="desc">
-                    Наличными при заселении
-                </div>
             </div>
 
-            <div class="method-2{% if model.rent_type == 1 %} no-active{% endif %} col-md-7">
-                <h5>&#8545; Способ</h5>
-                <div class="pm-icon pm-icon-sberbank">
-                    <div class="payment-info">
-                        <h3>СБЕРБАНК</h3>
-                        <h4 class="text-center">Получить реквизиты на Ваш EMAIL</h4> <br/>
-                        <div class="payment-process">
-                            {% set form = active_form_begin({
-                                'id' : 'form-details-history-sberbank',
-                                'action': ['/agency/default/details'],
-                                'options' : {'class' : 'horizontal'},
-                                'enableClientScript': false,
-                            }) %}
-                            {{ form.field(detailsHistoryForm, 'advert_id').label(false).hiddenInput({'value' : model.advert_id}) | raw }}
-                            {{ form.field(detailsHistoryForm, 'type').label(false).hiddenInput({'value' : 'sberbank'}) | raw }}
-                            {{ form.field(detailsHistoryForm, 'payment', {
-                                'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'
-                            }).dropDownList(detailsHistoryForm.paymentArray, {'class' : "form-control select-white"}) | raw }}
-                            {{ form.field(detailsHistoryForm, 'phone', {'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'}).textInput({'class' : 'form-control phone-mask', 'placeholder' : '+7 (___) ___-____'}) | raw }}
-                            {{ form.field(detailsHistoryForm, 'email', {'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'}) | raw }}
-                            <div class="form-group text-right">
-                                <input type="submit" value="Отправить" class="btn btn-primary">
-                            </div>
-                            {{ active_form_end() }}
-                        </div>
-                    </div>
-                </div>
+            {% if model.apartment.orderedImages|length > 0 %}
+                <div class="advert-slider-for">
 
-                <div class="pm-icon pm-icon-alfabank">
-                    <div class="payment-info">
-                        <h3>Альфа - Банк</h3>
-                        <h4 class="text-center">Получить реквизиты на Ваш EMAIL</h4> <br/>
-                        <div class="payment-process">
-                            {% set form = active_form_begin({
-                                'id' : 'form-details-history-alfabank',
-                                'action': ['/agency/default/details'],
-                                'options' : {'class' : 'horizontal'},
-                                'enableClientScript': false,
-                            }) %}
-                            {{ form.field(detailsHistoryForm, 'advert_id').label(false).hiddenInput({'value' : model.advert_id}) | raw }}
-                            {{ form.field(detailsHistoryForm, 'type').label(false).hiddenInput({'value' : 'alfabank'}) | raw }}
-                            {{ form.field(detailsHistoryForm, 'payment', {
-                                'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'
-                            }).dropDownList(detailsHistoryForm.paymentArray, {'class' : "form-control select-white"}) | raw }}
-                            {{ form.field(detailsHistoryForm, 'phone', {'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'}).textInput({'class' : 'form-control phone-mask', 'placeholder' : '+7 (___) ___-____'}) | raw }}
-                            {{ form.field(detailsHistoryForm, 'email', {'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'}) | raw }}
-                            <div class="form-group text-right">
-                                <input type="submit" value="Отправить" class="btn btn-primary">
-                            </div>
-                            {{ active_form_end() }}
-                        </div>
-                    </div>
-                </div>
+                    {% for image in model.apartment.orderedImages %}
 
-                <div class="pm-icon pm-icon-yamoney">
-                    <div class="payment-info">
-                        <h3><a href="https://money.yandex.ru" target="_blank">Яндекс.Деньги</a></h3>
-                        <h4 class="text-center">Получить реквизиты на Ваш EMAIL</h4> <br/>
-                        <div class="payment-process">
-                            {% set form = active_form_begin({
-                                'id' : 'form-details-history-yamoney',
-                                'action': ['/agency/default/details'],
-                                'options' : {'class' : 'horizontal'},
-                                'enableClientScript': false,
-                            }) %}
-                            {{ form.field(detailsHistoryForm, 'advert_id').label(false).hiddenInput({'value' : model.advert_id}) | raw }}
-                            {{ form.field(detailsHistoryForm, 'type').label(false).hiddenInput({'value' : 'yamoney'}) | raw }}
-                            {{ form.field(detailsHistoryForm, 'phone', {'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'}).textInput({'class' : 'form-control phone-mask', 'placeholder' : '+7 (___) ___-____'}) | raw }}
-                            {{ form.field(detailsHistoryForm, 'email', {'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'}) | raw }}
-                            <div class="form-group text-right">
-                                <input type="submit" value="Отправить" class="btn btn-primary">
-                            </div>
-                            {{ active_form_end() }}
+                        <div class="advert-slider-for-item">
+                            <img src="{{ image.reviewSrc }}" alt="slider-image">
                         </div>
-                    </div>
-                </div>
 
-                <div class="pm-icon pm-icon-qiwi">
-                    <div class="payment-info">
-                        <h3><a href="https://qiwi.com/" target="_blank">Qiwi кошелёк</a></h3>
-                        <h4 class="text-center">Получить реквизиты на Ваш EMAIL</h4> <br/>
-                        <div class="payment-process">
-                            {% set form = active_form_begin({
-                                'id' : 'form-details-history-qiwi',
-                                'action': ['/agency/default/details'],
-                                'options' : {'class' : 'horizontal'},
-                                'enableClientScript': false,
-                            }) %}
-                            {{ form.field(detailsHistoryForm, 'advert_id').label(false).hiddenInput({'value' : model.advert_id}) | raw }}
-                            {{ form.field(detailsHistoryForm, 'type').label(false).hiddenInput({'value' : 'qiwi'}) | raw }}
-                            {{ form.field(detailsHistoryForm, 'phone', {'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'}).textInput({'class' : 'form-control phone-mask', 'placeholder' : '+7 (___) ___-____'}) | raw }}
-                            {{ form.field(detailsHistoryForm, 'email', {'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'}) | raw }}
-                            <div class="form-group text-right">
-                                <input type="submit" value="Отправить" class="btn btn-primary">
-                            </div>
-                            {{ active_form_end() }}
+                    {% endfor %}
+
+                </div>
+                <div class="advert-slider-nav">
+
+                    {% for image in model.apartment.orderedImages %}
+
+                        <div class="advert-slider-for-item">
+                            <img src="{{ image.previewSrc }}" alt="slider-image">
                         </div>
-                    </div>
-                </div>
 
-                <div class="pm-icon pm-icon-phone">
-                    <div class="payment-info">
-                        <h3>Оплата через телефон:</h3>
-                        <h4 class="text-center">Получить реквизиты на Ваш EMAIL</h4> <br/>
-                        <div class="payment-process">
-                            {% set form = active_form_begin({
-                                'id' : 'form-details-history-phone',
-                                'action': ['/agency/default/details'],
-                                'options' : {'class' : 'horizontal'},
-                                'enableClientScript': false,
-                            }) %}
-                            {{ form.field(detailsHistoryForm, 'advert_id').label(false).hiddenInput({'value' : model.advert_id}) | raw }}
-                            {{ form.field(detailsHistoryForm, 'type').label(false).hiddenInput({'value' : 'phone'}) | raw }}
-                            {{ form.field(detailsHistoryForm, 'phone', {'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'}).textInput({'class' : 'form-control phone-mask', 'placeholder' : '+7 (___) ___-____'}) | raw }}
-                            {{ form.field(detailsHistoryForm, 'email', {'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'}) | raw }}
-                            <div class="form-group text-right">
-                                <input type="submit" value="Отправить" class="btn btn-primary">
-                            </div>
-                            {{ active_form_end() }}
-                        </div>
-                    </div>
-                </div>
+                    {% endfor %}
 
-                <div class="desc">Для физических лиц</div>
+                </div>
+            {% endif %}
+
+            <div class="advert-button">
+                <button class="btn btn-warning" data-toggle="modal" data-target="#modalBook">Забронировать</button>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModalLong">Написать</button>
+                <button class="btn btn-warning" data-toggle="modal" data-target="#modalAppeal">Пожаловаться</button>
             </div>
-
-            <div class="method-3 col-md-1 right{% if model.rent_type == 1 %} no-active{% endif %}">
-                <h5>&#8546; Способ</h5>
-
-                <div class="pm-icon pm-icon-network">
-                    <div class="payment-info">В разработке...</div>
-                </div>
-
-                <div class="desc">Через интернет</div>
-            </div>
-
-            <div class="method-4 col-md-2 right{% if model.rent_type == 1 %} no-active{% endif %}">
-                <h5>&#8547; Способ</h5>
-
-                <div class="pm-icon pm-icon-legal">
-                    <div class="payment-info">
-                        <h3>Оплата для юридических лиц</h3>
-                        <p><b>Наименование фирмы:</b> ООО «КАРАТ»</p>
-                        <p><b>Адрес:</b> 127374, Москва, ул. Ращупкина, д 6.</p>
-                        <p><b>ИНН:</b> 7731558788</p>
-                        <p><b>КПП:</b> 773101001</p>
-                        <p><b>Расчетный счет:</b> Р/с 40702810400000001540</p>
-                        <p><b>Наименование банка:</b> В ООО КБ «РОСАВТОБАНК»</p>
-                        <p><b>Адрес банка:</b> 123056, г. Москва, ул.Зоологическая, д.26, стр.2</p>
-                        <p><b>К/с:</b> 30101810500000000857</p>
-                        <p><b>БИК:</b> 044585857</p>
-                        <p><b>ОГРН:</b> 1067761790359</p>
-                        <p><b>Ген.директор:</b> Севостьянов Михаил Михайлович</p>
-                        <p><br/></p>
-                        <h3>Выписать счет</h3>
-                        <div class="payment-process" style="margin: 0">
-                            {% set form = active_form_begin({
-                                'id' : 'form-details-history-legal',
-                                'action': ['/agency/default/details'],
-                                'options' : {'class' : 'horizontal'},
-                                'enableClientScript': false,
-                            }) %}
-                            {{ html.activeHiddenInput(detailsHistoryForm, 'advert_id', {'value' : model.advert_id}) | raw }}
-                            {{ form.field(detailsHistoryForm, 'type').label(false).hiddenInput({'value' : 'legal'}) | raw }}
-                            {{ form.field(detailsHistoryForm, 'phone', {'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'}).textInput({'class' : 'form-control phone-mask', 'placeholder' : '+7 (___) ___-____'}) | raw }}
-                            {{ form.field(detailsHistoryForm, 'email', {'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'}) | raw }}
-                            <div class="form-group text-right">
-                                <input type="submit" value="Отправить" class="btn btn-primary">
-                            </div>
-                            {{ active_form_end() }}
-                        </div>
-
-
-                    </div>
-                </div>
-
-                <div class="desc">Юр. лица</div>
-            </div>
-
-            <div class="clearfix"></div>
         </div>
     </div>
-
-</div>
+</section>
 
 
 {#

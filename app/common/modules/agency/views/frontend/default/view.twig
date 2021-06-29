@@ -6,37 +6,22 @@
     @var common\modules\agency\models\form\DetailsHistoryForm detailsHistoryForm
 #}
 
-{% extends "@app/themes/basic/layouts/main.twig" %}
+{% extends "@common/modules/site/views/layouts/main.twig" %}
+
+{% block seo %}
+    {% include '@common/modules/site/views/_modules/_seo.twig' with {
+        'title': model.meta_title,
+        'description':  model.meta_description,
+        'keywords': model.meta_keywords,
+    } %}
+{% endblock %}
 
 {% block title %} {{ model.meta_title }} {% endblock %}
 
-{% block header %}
-    <div id="map" style="width: 100%;  height: 300px" data-address="{{ model.apartment.address }}"></div>
-    <div class="callbackbar-block">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-7 callback-title-link-block">
-                    <span class="title-span">Квартиры от <a href="/" class="or-link">Сдаём.ру</a> без посредников - Москва</span>
-                    <span class="call" data-toggle="modal" data-target="#modal-callback"></span>
-                </div>
-                <div class="col-md-2">
-                    <div class="callback-phone-block">
-                        <div class="row phone-1"><span class="c-phone">+7 (903) 799-17-99</span></div>
-                        <div class="row phone-2"><span class="m-phone" style="">+7 (915) 455-94-94</span></div>
-                    </div>
-                </div>
-                <div class="col-md-3 callback-btn-block">
-                    <a href="{{ path(['/helpdesk/default/index']) }}" class="callback-btn">Связаться с диспетчером <br>
-                        Cdaem.ru</a>
-                </div>
-            </div>
-
-        </div>
-    </div>
-{% endblock %}
+{% block bodyClass %}l-base p-apartment{% endblock %}
 
 {% block breadcrumbs %}
-    <div class="breadcrumbs">
+    <div class="container-fluid">
         {{ use('yii/widgets/Breadcrumbs') }}
 
         {% set districts = model.apartment.mainDistrict.district_name %}
@@ -44,13 +29,16 @@
             {% set districts = districts ~ '(' ~ model.apartment.semiDistrict.district_name ~ ')' %}
         {% endif %}
 
-
         {{ breadcrumbs_widget({
-            'itemTemplate' : "<li>{link}</li>\n",
+            'tag':  'div',
+            'options': {
+                'class': 'breadcrumbs'
+            },
+            'itemTemplate' : "{link}\n",
             'homeLink' :
             {
                 'label' : 'Главная',
-                'url' : '/'
+                'url' : app.params.siteDomain
             },
             'links':  [
                 {
@@ -59,38 +47,25 @@
                 },
                 {
                     'label': model.rentType.name,
+                    'template' : "{link}\n",
+                    'url' : '#'
                 },
                 {
                     'label': districts,
+                    'template': '<span>{link}</span>\n'
                 },
             ],
         }) }}
     </div>
 {% endblock %}
 
-{% block navbarStickyHeader %}sticky-header{% endblock %}
-
 {% block content %}
-
-
-    {{ this.registerMetaTag({'name' : 'description', 'content' : model.meta_description}) }}
-    {{ this.registerMetaTag({'name' : 'keywords', 'content' : model.meta_keywords}) }}
 
     {{ use('common/modules/geo/assets/frontend/YMapAsset') }}
     {{ register_y_map_asset() }}
 
-    {{ use('common/modules/agency/assets/frontend/AgencyAsset') }}
-    {{ register_agency_asset() }}
-
-    {# Регистрация файлов для light box #}
-    {{ use('frontend/themes/basic/assets/LightBoxAsset') }}
-    {{ register_light_box_asset() }}
-
-    {{ use('frontend/themes/basic/assets/SliderAsset') }}
-    {{ register_slider_asset() }}
-
-    {{ use('frontend/themes/basic/assets/WaterSliderAsset') }}
-    {{ register_water_slider_asset() }}
+    {{ use('common/modules/agency/assets/frontend/ApartmentAsset') }}
+    {{ register_apartment_asset() }}
 
     {{ this.render('@common/modules/agency/views/frontend/default/view/apartment.twig', {
         'model' : model,
@@ -98,3 +73,32 @@
         'detailsHistoryForm' : detailsHistoryForm,
     }) | raw }}
 {% endblock content %}
+
+{% block additional_scripts %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var advertCoords = [55.76, 37.64];
+
+            ymaps.ready(init);
+            function init(){
+                var myMap = new ymaps.Map("map", {
+                    center: advertCoords,
+                    zoom: 15,
+                    controls: []
+                });
+
+                createMarker(myMap)
+            }
+
+            function createMarker(myMap) {
+                var myPlacemark = new ymaps.Placemark(advertCoords, {}, {
+                    iconLayout: 'default#image',
+                    iconImageHref: './images/icons/apartment/mapMarker.svg',
+                    iconImageSize: [32, 30]
+                });
+
+                myMap.geoObjects.add(myPlacemark);
+            }
+        });
+    </script>
+{% endblock %}

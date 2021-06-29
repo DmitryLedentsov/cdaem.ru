@@ -22,6 +22,11 @@ class RentTypePriceInfoNew extends Widget
     public $advert;
 
     /**
+     * @var \common\modules\agency\models\Advert
+     */
+    public $isText = false;
+
+    /**
      * @var string
      */
     protected $_rentTypeHtmlB;
@@ -80,13 +85,18 @@ class RentTypePriceInfoNew extends Widget
 
         $advertText = $this->advert->text ? $this->advert->text : 'Нет описания';
 
-        $this->_rentTypeHtmlB .= '
+
+        if ($this->isText) {
+            $this->_rentTypeHtmlB .= mb_strtolower($advertText);
+        } else {
+            $this->_rentTypeHtmlB .= '
                 <div class="br-item">
                     <h4>' . $rentTypeText . ' <span>' . $this->advert->priceText . '</span></h4>
                     <div class="txt">
                         ' . $advertText . '
                     </div>
                 </div>';
+        }
     }
 
     /**
