@@ -2,7 +2,6 @@
 
 namespace common\modules\agency\assets\frontend;
 
-use Yii;
 use yii\web\AssetBundle;
 
 /**
@@ -14,31 +13,26 @@ class AgencyAsset extends AssetBundle
     /**
      * @inheritdoc
      */
-    public $sourcePath = '@frontend/themes/basic/assets';
+//    public $sourcePath = '@frontend/themes/basic/assets';
+    public $basePath = '@webroot';
+
+    public $baseUrl = '@web';
+
+    public $css = [
+        '/_new/css/pages/agency.min.css',
+    ];
+
+    public $js = [
+        '/_new/js/pages/agency.min.js',
+    ];
 
     /**
      * @inheritdoc
      */
     public $depends = [
         \yii\web\JqueryAsset::class,
-        'frontend\themes\basic\assets\DateTimeAsset'
+        'frontend\themes\basic\assets\DateTimeAsset',
+        \common\modules\site\assets\AppAsset::class,
+        \common\modules\pages\assets\PagesAsset::class,
     ];
-
-    /**
-     * @inheritdoc
-     */
-    public function init()
-    {
-        parent::init();
-
-        if (YII_DEBUG) {
-            $this->js = [
-                'js_dev/agency.js',
-            ];
-        } else {
-            $this->js = [
-                'js/agency.js?v=' . filemtime(Yii::getAlias($this->sourcePath) . DIRECTORY_SEPARATOR . 'js/agency.js'),
-            ];
-        }
-    }
 }
