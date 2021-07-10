@@ -89,16 +89,8 @@ php-yii:
 	    $(app_run) sh -c "php yii"
     endif
 
-dump-geo-load:
-	$(db_run) sh -c "mysql -u root -p cdaem.ru --password='cdaemru' < /dumps/geo.sql"
-
 dump-dev:
 	$(db_run) sh -c "mysql -u root -p cdaem.ru --password='cdaemru' < /dumps/dev.cdaem.ru.sql"
-
-dump-import:
-	$(db_run) sh -c "mysql -u root -p cdaem.ru --password='cdaemru' < /dumps/articles.sql"
-	$(db_run) sh -c "mysql -u root -p cdaem.ru --password='cdaemru' < /dumps/pages.sql"
-	$(db_run) sh -c "mysql -u root -p cdaem.ru --password='cdaemru' < /dumps/seo_text.sql"
 
 php-init:
 	$(app_run) sh -c "php init"

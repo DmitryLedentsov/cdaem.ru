@@ -55,17 +55,12 @@ class DefaultController extends \frontend\components\Controller
             if (!Yii::$app->user->isGuest && Yii::$app->user->identity->profile->user_type == Profile::WANT_RENT) {
                 $userType = Yii::$app->BasisFormat->helper('Status')->getItem(Profile::getUserTypeArray(), Yii::$app->user->identity->profile->user_type);
                 //Yii::$app->session->setFlash('danger', '<b>Внимание:</b> <br/> Ваш тип аккаунта: "'. $userType . '" и Вы не можете производить данное действие. ');
-                $this->redirect(['/office/default/index']);
 
-                return false;
+                return $this->redirect(['/office/default/index']);
             }
         }
 
-        if (!parent::beforeAction($action)) {
-            return false;
-        }
-
-        return true;
+        return parent::beforeAction($action);
     }
 
     /**
@@ -75,7 +70,7 @@ class DefaultController extends \frontend\components\Controller
     public function actionIndex()
     {
         if (!Yii::$app->user->isGuest && Yii::$app->user->identity->profile->user_type == Profile::WANT_RENT) {
-            $this->redirect(['default/home']);
+            return $this->redirect(['/partners/reservation/total-bid']);
         }
 
         return $this->redirect(['/office/apartments']);
