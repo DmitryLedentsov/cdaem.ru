@@ -1,6 +1,6 @@
 {{ use('common/modules/partners/widgets/frontend/RentTypePriceInfo') }}
 
-<div class="advert-author-logo" style="background: url('{{ model.apartment.user.profile.vip ? model.apartment.user.profile.avatar_url : null }}' center no-repeat;"></div>
+<div class="advert-author-logo" style="background: url({{ model.apartment.user.profile.vip ? model.apartment.user.profile.avatar_url : null }}) center no-repeat;"></div>
 <div class="advert-author-info">
     <div class="advert-author-info-item"><b>Владелец:</b>
         <span class="advert-info-price">
@@ -17,49 +17,42 @@
 {#        {% endif %}#}
     </div>
     <div class="advert-author-info-item">
-        <span class="advert-info-online">
-
-            {% if model.apartment.user.isOnline() %}
-                Сейчас онлайн
+        <div>
+            {# if model.apartment.open_contacts #}
+            {% if true %}
+                <b>{{ UserHelper.formatPhone(model.apartment.user.phone) }}</b>
+                {#            <div class="text-center">#}
+                {#                <span class="btn btn-primary btn-special" onclick="writeMessage({{ model.apartment.user.id }})">#}
+                {#                    Сообщение#}
+                {#                </span>#}
+                {#                {% if model.apartment.user.phone is empty %}#}
+                {#                    &nbsp; &nbsp;#}
+                {#                    <a href="{{ path({0: '/partners/reservation/advert-reservation', 'advert_id' : model.advert_id}) }}"#}
+                {#                       class="btn btn-orange btn-special">Забронировать</a>#}
+                {#                {% endif %}#}
+                {#            </div>#}
             {% else %}
-                <span style="color: silver">
-                    Последний визит {{ DateTimeHelper.diffAgoPeriodRound(model.apartment.user.time_activity) }}
-                </span>
-            {% endif %}
-
-        </span>
-
-        {# if model.apartment.open_contacts #}
-        {% if true %}
-
-            <b>{{ UserHelper.formatPhone(model.apartment.user.phone) }}</b>
-
-{#            <div class="text-center">#}
-{#                <span class="btn btn-primary btn-special" onclick="writeMessage({{ model.apartment.user.id }})">#}
-{#                    Сообщение#}
-{#                </span>#}
-{#                {% if model.apartment.user.phone is empty %}#}
-{#                    &nbsp; &nbsp;#}
-{#                    <a href="{{ path({0: '/partners/reservation/advert-reservation', 'advert_id' : model.advert_id}) }}"#}
-{#                       class="btn btn-orange btn-special">Забронировать</a>#}
-{#                {% endif %}#}
-{#            </div>#}
-
-        {% else %}
-
-            <div class="text-center">
-                <span class="btn btn-primary btn-special contactopenphone-btn"
-                      onclick="fast_payment_widget('{{ constant('SERVICE_CONTACTS_OPEN_TO_USER', Service) }}', {'advert_id' : {{ model.advert_id }} })">
+                <div class="text-center">
+                <span class="btn btn-primary btn-special contactopenphone-btn" onclick="fast_payment_widget('{{ constant('SERVICE_CONTACTS_OPEN_TO_USER', Service) }}', {'advert_id' : {{ model.advert_id }} })">
                     Контакты
                 </span>
-
-                <a href="{{ path({0: '/partners/reservation/advert-reservation', 'advert_id' : model.advert_id}) }}"
-                   class="btn btn-orange btn-special bronirovanie-btn">Забронировать
-                </a>
-            </div>
-
-        {% endif %}
-
+                    <a href="{{ path({0: '/partners/reservation/advert-reservation', 'advert_id' : model.advert_id}) }}" class="btn btn-orange btn-special bronirovanie-btn">
+                        Забронировать
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+        <div>
+            <span class="advert-info-online">
+                {% if model.apartment.user.isOnline() %}
+                    Сейчас онлайн
+                {% else %}
+                    <span style="color: silver">
+                        Последний визит {{ DateTimeHelper.diffAgoPeriodRound(model.apartment.user.time_activity) }}
+                    </span>
+                {% endif %}
+            </span>
+        </div>
     </div>
 </div>
 
