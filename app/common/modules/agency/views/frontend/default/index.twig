@@ -4,140 +4,110 @@
     @var yii\data\ActiveDataProvider agencyDataProvider
 #}
 
-{% extends "@app/themes/basic/layouts/main.twig" %}
+{% extends "@common/modules/site/views/layouts/main.twig" %}
+
+{% block seo %}
+    {% include '@common/modules/site/views/_modules/_seo.twig' with {
+        'title': 'Снять квартиру на сутки 9037991799 | Сдаём.ру',
+        'description':  '',
+        'keywords': '',
+    } %}
+{% endblock %}
 
 {% block title %} Снять квартиру на сутки 9037991799 | Сдаём.ру  {% endblock %}
 
-{% block header %}
-    <script type="text/javascript" src="https://30487.cloff.ru/widget/hb2.3461.a7ebc5baf05b8a40a57c3c11df2c028e.js"></script>
-
-    <header class="header">
-        <div class="cdaem special container">
-            <div class="row">
-                <div class="logo col-xs-12 col-md-3">
-                    <a href="/">
-                        <img src="/basic-images/arenda-kvartir-posutochno-logo.png" alt="Cдаем.ру — квартиры без посредников " title="Cдаем.ру — квартиры без посредников "/>
-                    </a>
-                </div>
-                <div class="seo-text col-xs-12 col-sm-6">
-                    <div class="size seo-center">
-                        {{ seo_text_widget({'type' : 'header' }) | raw }}
-                    </div>
-                </div>
-                <div class="cls col-sm-6 col-xs-12 col-md-3">
-                    <div>{{ this.renderDynamic('return $this->render("@common/modules/site/views/default/logged.twig");') | raw }}</div>
-                    <div class="social-links">
-                        <ul>
-                            <li>
-                                <a href="https://www.facebook.com/cdaem.ru" rel="nofollow" target="_blank">
-                                    <img src="/basic-images/facebook-ico.png" alt="facebook"/>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://vk.com/cdaemru" rel="nofollow" target="_blank">
-                                    <img src="/basic-images/vk-ico.png" alt="vk"/>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="skype:cdaemru" rel="nofollow" target="_blank">
-                                    <img src="/basic-images/skype-ico.png" alt="skype"/>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </div>
-        {{ use('common/modules/site/widgets/BgHeader') }}
-        {{ bg_header_widget({'title': 'Проверенные квартиры от <span class="orange-part">Сдаём.ру</span>'}) }}
-    </header>
-
-    <div class="callbackbar-block">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-7 callback-title-link-block">
-                    <span class="title-span">Квартиры от <a href="/" class="or-link">Сдаём.ру</a> без посредников - Москва</span>
-                    <div class="phones-block agency-white-block" style="display: inline-block;">
-                        <span class="call absolute-p" data-toggle="modal" data-target="#modal-callback"></span>
-                        <a href="https://chat.whatsapp.com/HBYHOMkBYY89Jh2EElJuUv" rel="nofollow">
-                            <i class="fab fa-whatsapp fa-3x" style="line-height: 85px;" aria-hidden="true"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-3 callback-btn-block">
-                    <a href="{{ path(['/helpdesk/default/index']) }}" class="callback-btn">
-                        Связаться с диспетчером<br>Cdaem.ru
-                    </a>
-                </div>
-                <div class="col-md-2">
-                    <div class="callback-phone-block">
-                        <div class="row phone-1"><span class="c-phone">+7 (903) 799-17-99</span></div>
-                        <div class="row phone-2"><span class="m-phone" style="">+7 (915) 455-94-94</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-{% endblock %}
+{% block bodyClass %}l-base p-agency{% endblock %}
 
 {% block content %}
 
-    <div class="container">
-        <div class="breadcrumbs">
-            {{ use('yii/widgets/Breadcrumbs') }}
-            {{ breadcrumbs_widget({
-                'itemTemplate' : "<li>{link}</li>\n",
-                'homeLink' :
-                {
-                    'label' : 'Главная',
-                    'url' : '/'
-                },
-                'links':  [
-                    {
-                        'label': model.name,
-                        'url': {0 : '/pages/default/index', 'url' : model.url},
-                    },
-                ],
-            }) }}
-            <a href="{{ app.params['siteDomain'] }}/search" class="right-link breadcrumbs-links">Доска объявлений</a>
-        </div>
-    </div>
-    {#
-       Модальное окно для заказа обратного звонка
-   #}
-    <div class="modal fade" id="modal-callback" data-title="Заказать обратный звонок">
-
-        {% set form = active_form_begin({
-            'id' : 'form-callback',
-            'action' : ['/callback/default/index'],
-            'enableClientScript' : false,
-            'options' : {'class' : 'horizontal'}
-        }) %}
-
-        {{ form.field(callback, 'phone').textInput({'placeholder' : '+7 (___) ___-____'}) | raw }}
-
-        <div class="form-group text-center">
-            <input type="submit" value="Отправить" class="btn btn-primary"/>
-        </div>
-        {{ active_form_end() }}
-        <div class="row-call">
-            <div class="callback-phone-block">
-                <div class="row phone-1"><a href="tel:+79037991799"><span class="c-phone">+7 (903) 799-17-99</span></a>
-                </div>
-                <div class="row phone-2"><a href="tel:+79154559494"><span class="m-phone">+7 (915) 455-94-94</span></a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    {{ this.registerMetaTag({'name' : 'description', 'content' : metaData['meta_description']}) }}
-    {{ this.registerMetaTag({'name' : 'keywords', 'content' : metaData['meta_keywords']}) }}
+    {{ use('common/modules/agency/assets/frontend/AgencyAsset') }}
+    {{ register_agency_asset() }}
 
     {{ use('common/modules/agency/widgets/frontend/PreviewAdvert') }}
 
-    {{ use('frontend/themes/basic/assets/DateTimeAsset') }}
-    {{ register_date_time_asset() }}
+    <section class="intro">
+        <div class="lookup-agency">
+            <div class="container-fluid">
+                <div class="lookup-agency-form">
+                    <div class="lookup-agency-filter lookup-agency-filter-city">
+                        <span class="lookup-agency-filter-text">Город</span>
+                        <label>
+                            <input class="form-control" id="search-form-autocomplete" type="text" autocomplete="off" placeholder="Москва">
+                        </label>
+                    </div>
+                    <div class="lookup-agency-filter lookup-agency-filter-type">
+                        <span class="lookup-agency-filter-text">Выберите тип аренды</span>
+                        <label>
+                            <select class="custom-select">
+                                <option selected>Квартира на сутки</option>
+                                <option>Квартира на час</option>
+                                <option>Квартира на ночь</option>
+                                <option>Квартира на месяц</option>
+                                <option>Комната на сутки</option>
+                                <option>Кой-ко место</option>
+                                <option>Загородный дом</option>
+                                <option>Квартира на Новый Год</option>
+                                <option>Квартира от cdaem.ru</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="lookup-agency-filter lookup-agency-filter-rooms">
+                        <span class="lookup-agency-filter-text">Количество комнат</span>
+                        <label>
+                            <select class="custom-select">
+                                <option selected>Кол-во комнат</option>
+                                <option>1 комната</option>
+                                <option>2 комнаты</option>
+                                <option>3 комнаты</option>
+                                <option>4 комнаты</option>
+                                <option>5 комнат</option>
+                                <option>6+ комнат</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="lookup-agency-filter lookup-agency-filter-sort">
+                        <span class="lookup-agency-filter-text">Сортировать объявления</span>
+                        <label>
+                            <select class="custom-select">
+                                <option selected>Выбрать округ</option>
+                                <option>Округ 1</option>
+                                <option>Округ 2</option>
+                                <option>Округ 3</option>
+                                <option>Округ 4</option>
+                                <option>Округ 5</option>
+                                <option>Округ 6</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="lookup-agency-filter lookup-agency-filter-price">
+                        <span class="lookup-agency-filter-text">Цена</span>
+                        <div class="lookup-agency-filter-price-container">
+                            <label>
+                                <input class="form-control lookup-agency-price lookup-agency-price-min" name="price-min" type="number" value="Цена от" placeholder="Цена от">
+                            </label>
+                            <label>
+                                <input class="form-control lookup-agency-price lookup-agency-price-max" name="price-max" type="number" value="Цена до" placeholder="Цена до">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="lookup-agency-filter lookup-agency-filter-features">
+                        <span class="lookup-agency-filter-text">Особенности</span>
+                        <label>
+                            <select class="custom-select">
+                                <option selected>Только с онлайн владельцами</option>
+                                <option>Особенности 1</option>
+                                <option>Особенности 2</option>
+                                <option>Особенности 3</option>
+                                <option>Особенности 4</option>
+                                <option>Особенности 5</option>
+                                <option>Особенности 6</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     {{ this.render("@common/modules/agency/views/frontend/default/_realty_2.twig", {
         'searchModel' : agencySearch,
@@ -146,17 +116,6 @@
         'onlyAgency' : true
     }) | raw }}
 
-    {{ use('frontend/themes/basic/assets/SlickAsset') }}
-    {{ register_slick_asset() }}
-
-    <style>
-        @media (max-width: 380px) {
-            .bg-header {
-                height: 400px;
-                background-size: cover;
-                background-repeat: no-repeat;
-            }
-        }
-    </style>
+    {{ use('common/widgets/frontend/CustomLinkPager') }}
 
 {% endblock content %}

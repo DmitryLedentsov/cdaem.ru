@@ -5,10 +5,10 @@ namespace common\modules\agency\assets\frontend;
 use yii\web\AssetBundle;
 
 /**
- * Agency Asset
- * @package common\modules\agency\frontend\assets
+ * Менеджер ресурсов
+ * @package common\modules\agency\assets\frontend
  */
-class AgencyAsset extends AssetBundle
+class ApartmentAsset extends AssetBundle
 {
     /**
      * @inheritdoc
@@ -19,12 +19,12 @@ class AgencyAsset extends AssetBundle
     public $baseUrl = '@web';
 
     public $css = [
-        '/_new/css/pages/agency.min.css',
+        '/_new/css/pages/apartment.min.css',
     ];
 
     public $js = [
         'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js',
-        '/_new/js/pages/agency.min.js',
+        '/_new/js/pages/apartment.min.js'
     ];
 
     /**
@@ -32,8 +32,14 @@ class AgencyAsset extends AssetBundle
      */
     public $depends = [
         \yii\web\JqueryAsset::class,
-        'frontend\themes\basic\assets\DateTimeAsset',
         \common\modules\site\assets\AppAsset::class,
-        \common\modules\pages\assets\PagesAsset::class,
     ];
+
+    /**
+     * @inheritdoc
+     */
+    public function init()
+    {
+        parent::init();
+    }
 }

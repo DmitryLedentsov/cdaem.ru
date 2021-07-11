@@ -26,7 +26,7 @@ return [
         ],
     ],
     'params' => [
-        'siteDomain' => 'http://cdaem.loc',
-        'siteSubDomain' => 'http://<city>.cdaem.loc',
+        'siteDomain' => 'http://cdaem.loc:84',
+        'siteSubDomain' => 'http://<city>.cdaem.loc:84',
     ]
 ];

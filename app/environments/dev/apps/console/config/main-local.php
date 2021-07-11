@@ -3,7 +3,7 @@
 return [
     'components' => [
         'urlManager' => [
-            'hostInfo' => 'http://cdaem.loc',
+            'hostInfo' => 'http://cdaem.loc:84',
         ],
     ],
 ];

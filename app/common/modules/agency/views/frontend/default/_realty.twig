@@ -53,32 +53,25 @@
             {% for advert in dataProvider.getModels() %}
                 {{ preview_advert_widget({'advert': advert}) }}
             {% endfor %}
-
             <div class="clearfix"></div>
         </div>
-
         {% if dataProvider.getModels() is empty %}
             <div class="alert alert-danger" role="alert">
                 Апартаменты не найдены.
             </div>
             <style>
-
                 @media (max-width: 380px) {
                     .agency {
                         display: none;
                     }
                 }
-
                 @media (max-width: 480px) {
                     .agency {
                         display: none;
                     }
                 }
-
             </style>
         {% endif %}
-
-
     </div>
 </div>
 
