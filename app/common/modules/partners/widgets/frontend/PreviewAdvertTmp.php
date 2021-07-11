@@ -174,25 +174,25 @@ class PreviewAdvertTmp extends Widget
                         <div class="apartment-info">
                             <div class="apartment-info-item  apartment-rooms">
                                 <object class="apartment-icon">
-                                    <img src="./images/icons/apartment/rooms.svg" alt="rooms">
+                                    <img src="/_new/images/icons/apartment/rooms.svg" alt="rooms">
                                 </object>
                                 <span>Комнат: ' . $this->advert->apartment->total_rooms . '</span>
                             </div>
                             <div class="apartment-info-item apartment-area">
                                 <object class="apartment-icon">
-                                    <img src="./images/icons/apartment/area.svg" alt="area">
+                                    <img src="/_new/images/icons/apartment/area.svg" alt="area">
                                 </object>
                                 <span>' . $this->advert->apartment->total_area . ' м2</span>
                             </div>
                             <div class="apartment-info-item  apartment-beds">
                                 <object class="apartment-icon">
-                                    <img src="./images/icons/apartment/beds.svg" alt="beds">
+                                    <img src="/_new/images/icons/apartment/beds.svg" alt="beds">
                                 </object>
                                 <span>' . $this->advert->apartment->beds . ' спальных <br>места</span>
                             </div>
                             <div class="apartment-info-item  apartment-repairs">
                                 <object class="apartment-icon">
-                                    <img src="./images/icons/apartment/repairs.svg" alt="repairs">
+                                    <img src="/_new/images/icons/apartment/repairs.svg" alt="repairs">
                                 </object>
                                 <span>' . $this->advert->apartment->remontName . '</span>
                             </div>

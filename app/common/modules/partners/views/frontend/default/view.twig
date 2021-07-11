@@ -8,7 +8,13 @@
 
 {% extends "@common/modules/site/views/layouts/main.twig" %}
 
-{% block title %}{{ this.registerTitle('Снять ' ~ model.apartment.total_rooms ~ ' -комнатная ' ~ model.rentType.name ~ ' г. ' ~ model.apartment.city.name ~ ', ' ~ model.apartment.address) ~ ' | Сдаём.ру' }}{% endblock %}
+{% block seo %}
+    {% include '@common/modules/site/views/_modules/_seo.twig' with {
+        'title': 'Снять ' ~ model.apartment.total_rooms ~ ' -комнатная ' ~ model.rentType.name ~ ' г. ' ~ model.apartment.city.name ~ ', ' ~ model.apartment.address) ~ ' | Сдаём.ру',
+        'description': 'Стоимость аренды '~model.apartment.total_rooms~'-комнатная '~model.rentType.name~' г. '~model.apartment.city.name~', '~model.apartment.address~' - '~model.metaTagsPrice,
+        'keywords': model.rentType.meta_keywords,
+    } %}
+{% endblock %}
 
 {% block bodyClass %}l-base p-apartment{% endblock %}
 
@@ -42,9 +48,6 @@
 
 {% block content %}
 
-    {{ this.registerMetaTag({'name' : 'description', 'content' :'Стоимость аренды '~model.apartment.total_rooms~'-комнатная '~model.rentType.name~' г. '~model.apartment.city.name~', '~model.apartment.address~' - '~model.metaTagsPrice}) }}
-    {{ this.registerMetaTag({'name' : 'keywords', 'content' : model.rentType.meta_keywords}) }}
-
     {{ use('common/modules/partners/widgets/frontend/PreviewAdvert') }}
 
     {{ use('common/modules/partners/assets/frontend/ApartmentAsset') }}
@@ -53,7 +56,6 @@
     {# Подключение JavaScript yandex map #}
     {{ use('common/modules/geo/assets/frontend/YMapAsset') }}
     {{ register_y_map_asset() }}
-
 
     {{ this.render('@common/modules/partners/views/frontend/default/view/apartment.twig', {
         'model': model,
