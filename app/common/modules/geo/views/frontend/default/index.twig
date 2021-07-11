@@ -7,14 +7,11 @@
 
 {% block seo %}
     {% include '@common/modules/site/views/_modules/_seo.twig' with {
-        'title': '',
+        'title': 'рта города - ' ~ city.name ~ ' | Сдаём.ру',
         'description':  '',
         'keywords': '',
     } %}
 {% endblock %}
-
-{% block title %} {{ this.registerTitle('Найти апартаменты на карте | Сдаём.ру') }} {% endblock %}
-
 
 {% block bodyClass %}l-base{% endblock %}
 
@@ -34,6 +31,10 @@
             },
             'links':  [
                 {
+                    'label': 'Поиск',
+                    'url': ['/partners/default/index'],
+                },
+                {
                     'label': 'Карта города - ' ~ city.name,
                     'url': ['/geo/default/index'],
                 },
@@ -43,8 +44,6 @@
 {% endblock %}
 
 {% block content %}
-
-
 
     <div class="container">
 
@@ -128,17 +127,13 @@
 
 
         </style>
-        <hr>
-        <div style="text-align:center;"><a class="backmap-btn-2" href="{{ path(['/partners/default/index']) }}">Назад к
-                поиску</a></div>
-        <div id="map"></div>
 
+        <div id="map" class="mb-5"></div>
 
         <script src="//api-maps.yandex.ru/2.1/?lang=ru-RU" type="text/javascript"></script>
         <script type="text/javascript">
 
             ymaps.ready(init);
-
 
             function init() {
                 var myMap = new ymaps.Map('map', {
