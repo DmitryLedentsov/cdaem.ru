@@ -5,32 +5,26 @@
     @var bool onlyAgency
 #}
 
-
 {% if specialAdverts is not empty %}
-<section class="proposal">
-    <div class="container-fluid">
-        <h2 class="section-title">Спец. предложения</h2>
-    </div>
-    <div class="proposal-slider">
-
-        {% for specialAdvert in specialAdverts %}
-            {{ preview_advert_widget({'advert': specialAdvert}) }}
-        {% endfor %}
-
-    </div>
-</section>
+    <section class="proposal">
+        <div class="container-fluid">
+            <h2 class="section-title">Спец. предложения</h2>
+        </div>
+        <div class="proposal-slider">
+            {% for specialAdvert in specialAdverts %}
+                {{ preview_advert_widget({'advert': specialAdvert}) }}
+            {% endfor %}
+        </div>
+    </section>
 {% endif %}
 
 <section class="apartment-list">
     <div class="container-fluid">
         <h2 class="section-title">Снять квартиру на сутки в Москве</h2>
         <div class="apartment-card-container">
-
             {% for advert in dataProvider.getModels() %}
                 {{ preview_advert_widget({'advert': advert}) }}
             {% endfor %}
-
         </div>
     </div>
 </section>
-

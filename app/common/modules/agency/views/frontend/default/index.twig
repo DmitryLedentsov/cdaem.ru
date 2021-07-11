@@ -25,7 +25,6 @@
 
     {{ use('common/modules/agency/widgets/frontend/PreviewAdvert') }}
 
-
     <section class="intro">
         <div class="lookup-agency">
             <div class="container-fluid">
@@ -118,8 +117,5 @@
     }) | raw }}
 
     {{ use('common/widgets/frontend/CustomLinkPager') }}
-    {#   {{ custom_link_pager_widget({
-        'pagination': agencyDataProvider.getPagination()
-    }) }} #}
 
 {% endblock content %}
