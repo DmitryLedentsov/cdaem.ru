@@ -89,6 +89,11 @@
         width: 100%;
         border-radius: 0.4rem;
         box-shadow: 0 12px 16px rgba(5, 28, 55, 0.1);
+
+        &-image-container {
+            height: 220px;
+            overflow: hidden;
+        }
     }
 
     &-item {
@@ -114,6 +119,13 @@
         color: #151515;
         margin-bottom: 0.8rem;
         line-height: 1.2;
+
+        a {
+            color: #151515;
+            &:hover {
+                color: $color-base-link;
+            }
+        }
     }
 
     &-text {
@@ -121,7 +133,6 @@
         font-size: 0.75rem;
         color: #4C4C4C;
         opacity: 0.8;
-        margin-bottom: 1rem;
     }
 
     .btn-warning {

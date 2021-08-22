@@ -10,10 +10,18 @@ use yii\web\AssetBundle;
  */
 class OfficeAsset extends AssetBundle
 {
-    /**
-     * @inheritdoc
-     */
-    public $sourcePath = '@frontend/themes/basic/assets';
+    public $basePath = '@webroot';
+
+    public $baseUrl = '@web';
+
+    public $css = [
+        '/_new/css/interfaces.min.css',
+        '/_new/css/account/home.min.css',
+    ];
+
+    public $js = [
+        '/_new/js/pages/account/home.min.js',
+    ];
 
     /**
      * @inheritdoc
@@ -21,30 +29,4 @@ class OfficeAsset extends AssetBundle
     public $depends = [
         \yii\web\JqueryAsset::class,
     ];
-
-    /**
-     * @inheritdoc
-     */
-    public function init()
-    {
-        parent::init();
-
-        if (YII_DEBUG) {
-            $this->css = [
-                'css_dev/office.css',
-            ];
-
-            $this->js = [
-                'js_dev/office.js',
-            ];
-        } else {
-            $this->css = [
-                'css/office.css',
-            ];
-
-            $this->js = [
-                'js/office.js',
-            ];
-        }
-    }
 }

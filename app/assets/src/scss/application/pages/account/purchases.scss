@@ -1,0 +1,103 @@
+.p-purchases {
+  .purchases {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 48px 0 0;
+
+    @include tablet() {
+      margin: 48px -12.5px 0;
+    }
+
+    &-item {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      margin: 0 0 17px 0;
+
+      @include tablet() {
+        width: 50%;
+        justify-content: flex-end;
+        padding: 0 12.5px;
+      }
+
+      @include tablet-land() {
+        width: 33.33%;
+        justify-content: center;
+      }
+
+      &-wrapper {
+        width: 340px;
+        padding: 20px 7.2% 23px;
+        background-color: #fff;
+        box-shadow: 0 3px 31px rgba(0, 0, 0, 0.11);
+        border-radius: 5px;
+      }
+    }
+
+    &-header {
+      font-size: 20px;
+      font-weight: 700;
+      color: #000;
+    }
+
+    &-link {
+      margin-top: 20px;
+      display: inline-block;
+      width: 150px;
+      padding: 10px 0;
+      border-radius: 5px;
+      text-align: center;
+      font-size: 15px;
+      font-weight: 500;
+      text-transform: uppercase;
+
+      &-active {
+        border: 1px solid #03a800;
+        color: #03a800;
+
+        &:hover {
+          background-color: #03a800;
+          color: #fff;
+        }
+      }
+
+      &-error {
+        color: #ff3737;
+        border: 1px solid #ff3737;
+
+        &:hover {
+          background-color: #ff3737;
+          color: #fff;
+        }
+      }
+
+      &-paid {
+        color: #494949;
+        border: 1px solid #dcdcdc;
+
+        &:hover {
+          background-color: #dcdcdc;
+          color: #000;
+        }
+      }
+    }
+  }
+
+  .purchases-info {
+    margin-top: 12px;
+    font-size: 16px;
+    color: #000;
+
+    &-item {
+      &-name {
+        font-weight: 600;
+        letter-spacing: 0.4px;
+      }
+
+      &-date {
+        font-weight: 400;
+      }
+    }
+  }
+}

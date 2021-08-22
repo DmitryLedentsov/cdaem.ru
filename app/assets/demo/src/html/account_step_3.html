@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>Добавить объявление</title>
+    <!-- @include ./_section/_head.html -->
+    <link rel="stylesheet" media="screen" href="./css/pages/account/step.min.css"/>
+</head>
+
+<body class="l-account p-step">
+
+  <div class="wrapper">
+      <!-- @include _section/_header-collapse-account.html -->
+      <main class="main-account">
+          <section class="steps">
+              <div class="container-fluid">
+                  <div class="main-account__inner">
+                      <div class="section-head section-head-between">
+                          <h2 class="section-header">Параметры жилья</h2>
+                          <div class="steps-list">
+                            <div class="steps-list-item steps-list-item-active">1</div>
+                            <div class="steps-list-item steps-list-item-active">2</div>
+                            <div class="steps-list-item steps-list-item-active">3</div>
+                            <div class="steps-list-item">4</div>
+                            <div class="steps-list-item">5</div>
+                            <div class="steps-list-item">6</div>
+                          </div>
+                      </div>
+                      <!-- step -->
+                      <div class="step">
+                        <div class="step-line">
+                          <div class="step-column-33">
+                            <input type="text" name="total-area" class="step-input" placeholder="Общая площадь м2">
+                          </div>
+                          <div class="step-column-33">
+                            <select class="custom-select">
+                              <option value="">Расстояние до метро</option>
+                              <option value="">10</option>
+                              <option value="">20</option>
+                              <option value="">30</option>
+                            </select>
+                          </div>
+                          <div class="step-column-33">
+                            <select class="custom-select">
+                              <option value="">Этаж</option>
+                              <option value="">1</option>
+                              <option value="">2</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="step-line">
+                          <div class="step-column-33">
+                            <select class="custom-select">
+                              <option value="">Ремонт</option>
+                              <option value="">Ремонт</option>
+                              <option value="">Ремонт</option>
+                            </select>
+                          </div>
+                          <div class="step-column-33">
+                            <select class="custom-select">
+                              <option value="">Количество комнат</option>
+                              <option value="">1</option>
+                              <option value="">2</option>
+                            </select>
+                          </div>
+                          <div class="step-column-33">
+                            <select class="custom-select">
+                              <option value="">Кол-во спальных мест</option>
+                              <option value="">1</option>
+                              <option value="">2</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="step-column-100">
+                          <textarea name="description" class="step-textarea" placeholder="Описание жилья"></textarea>
+                        </div>
+                        <a href="#" class="step-next">Продолжить</a>
+                      </div>
+                  </div>
+              </div>
+          </section>
+      </main>
+      <!-- @include ./_section/_footer.html -->
+  </div>
+
+<!-- @include ./_section/_end_body.html -->
+
+<script src="./js/pages/account/home.min.js"></script>
+
+</body>
+
+</html>

@@ -3,26 +3,26 @@
     height: 68px;
     background: #FFFFFF;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-  
+
     @include tablet-land() {
         height: 88px;
     }
-  
+
     .container-fluid {
         display: flex;
         align-items: center;
         height: 100%;
     }
-  
-    
+
+
     &-logo {
         margin-right: auto;
-    
+
         @include tablet-land() {
             width: 145px;
         }
     }
-  
+
     .navbar-toggle {
         position: relative;
         width: 30px;
@@ -35,22 +35,22 @@
         display: block;
         outline: none;
         cursor: pointer;
-    
+
         @include tablet-land() {
             display: none;
         }
-  
+
         &::before,
         &::after {
             content: "";
             position: absolute;
         }
-    
+
         &::before {
             top: 8px;
             opacity: 1;
         }
-  
+
         &::after {
             top: 50%;
             left: 50%;
@@ -58,20 +58,20 @@
             height: 44px;
             transform: translate(-50%, -50%);
         }
-    
+
         span {
             position: absolute;
             transform-origin: right;
-    
+
             &:first-of-type {
                 top: 0;
             }
-    
+
             &:last-of-type {
                 bottom: 0;
             }
         }
-  
+
         &::before,
         span {
             right: 0;
@@ -80,18 +80,18 @@
             background: $color-warning;
             transition: 0.15s;
         }
-  
+
         &:not(.collapsed) {
             &::before {
                 opacity: 0;
             }
-    
+
             span {
                 &:first-of-type {
                     top: -2px;
                     transform: rotate(-45deg);
                 }
-    
+
                 &:last-of-type {
                     bottom: -2px;
                     transform: rotate(45deg);
@@ -114,13 +114,13 @@
     border: 1px solid $color-warning;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
     visibility: visible;
-  
+
     @include tablet() {
         right: 0;
         left: auto;
         width: 400px;
     }
-  
+
     @include tablet-land() {
         position: relative;
         top: auto;
@@ -135,22 +135,22 @@
         box-shadow: none;
         border: none;
     }
-  
+
     .nav {
         margin: 0;
         padding: 0;
-    
+
         @include tablet-land() {
             display: flex;
             flex-direction: row;
             justify-content: space-between;
             height: 100%;
         }
-    
+
         &-item {
             margin: 0.5rem;
             list-style: none;
-    
+
             @include tablet-land() {
                 margin: 0;
             }
@@ -187,10 +187,10 @@
             }
         }
     }
-  
+
     .btn {
         margin: 1.5rem auto 0;
-    
+
         @include tablet-land() {
             margin: 0 0 0 0.6rem;
         }

@@ -1,0 +1,107 @@
+{{ this.beginPage() }}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="{{ app.charset }}"/>
+    <noscript>
+        <meta http-equiv="refresh" content="0; URL={{ path(['/site/default/no-script']) }}">
+    </noscript>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE"/>
+
+    {{ html.csrfMetaTags() | raw }}
+    <title>{% block title %}{% endblock %}</title>
+    {{ this.head() }}
+</head>
+<body>
+{{ this.beginBody() }}
+{{ use('yii/bootstrap/Collapse') }}
+{{ use('yii/bootstrap/Modal') }}
+{{ use('frontend/themes/basic/assets/AppAsset') }}
+{{ register_app_asset() }}
+{{ use('yii/widgets/ActiveForm') }}
+
+{{ use('frontend/themes/basic/assets/BootAsset') }}
+{{ register_boot_asset() }}
+
+{{ this.registerMetaTag({'name' : 'description', 'content' : ''}) }}
+{{ this.registerMetaTag({'name' : 'keywords', 'content' : ''}) }}
+
+{{ use('common/modules/office/assets/frontend/OfficeAsset') }}
+{{ register_office_asset() }}
+
+{{ use('common/modules/partners/widgets/frontend/PreviewAdvertTmp') }}
+{{ use('common/modules/partners/widgets/frontend/PreviewAdvertTm') }}
+{{ use('common/modules/partners/widgets/frontend/ApartmentInfo') }}
+
+{% block header %}{% endblock %}
+
+{% block navbar %}
+    {{ this.renderDynamic('return $this->render("@common/modules/office/views/frontend/layouts/navbar.twig");') | raw }}
+{% endblock %}
+
+{% block breadcrumbs %}{% endblock %}
+{# Слайдер с рекламой #}
+<div class="container office clearfix">
+    <div class="info">
+        {#  Меню показывается только владельцам квартир #}
+        {% if app.user.identity.profile.user_type != constant('\\common\\modules\\users\\models\\Profile::WANT_RENT') %}
+            {% block options_group %}
+                <div class="options-group clearfix hidden-xs">
+                    <div class="options">
+                        <a href="{{ path(['/office/default/orders']) }}" {{ app.request.pathInfo == 'office/orders' ? 'class="active"' : '' }}>
+                            Мои покупки
+                        </a>
+                        <a href="{{ path(['/office/default/top-slider']) }}" {{ app.request.pathInfo == 'office/top-slider-history' ? 'class="active"' : '' }}>
+                            Бегущая строка
+                        </a>
+                        <a href="{{ path(['/partners/office/apartments']) }}"
+                           {% if app.request.pathInfo == 'office/apartments' and strpos(app.request.pathInfo, 'type=available') == 0 %}class="active"{% endif %}>
+                            Мои объявления
+                        </a>
+                        <a href="{{ path(['/office/default/services']) }}" {{ app.request.pathInfo == 'office/services' ? 'class="active"' : '' }}>
+                            Услуги
+                        </a>
+                        <a href="{{ path({0 : '/partners/office/calendar'}) }}" {{ app.request.pathInfo == 'office/calendar' ? 'class="active"' : '' }}>
+                            Календарь
+                        </a>
+                    </div>
+                </div>
+            {% endblock %}
+        {% endif %}
+        {#
+            Меню показывается всем
+        #}
+        <div class='hidden-xs'>
+            {% block graphical_menu %}
+                <!-- Графическое меню -->
+                {{ this.renderDynamic('return \\common\\modules\\office\\widgets\\frontend\\GraphicalMenu::widget();') | raw }}
+            {% endblock %}
+        </div>
+        <hr class="hr-new">
+        {% if app.session.hasFlash('danger') %}
+            <div class="alert alert-danger" role="alert">
+                {{ app.session.getFlash('danger') | raw }}
+            </div> <br/>
+        {% endif %}
+        {% if app.session.hasFlash('success') %}
+            <div class="alert alert-success" role="alert">
+                {{ app.session.getFlash('success') | raw }}
+            </div> <br/>
+        {% endif %}
+        {% block content %}{% endblock %}
+    </div>
+</div>
+{% block footer %}
+    {% include "@app/themes/basic/layouts/footer-partners.twig" %}
+{% endblock %}
+
+{{ this.endBody() }}
+
+{{ this.registerJs("$(document).ready(function(){
+    $('input[name=_csrf]').val('"~this.renderDynamic('return Yii::$app->request->csrfToken;')~"');
+});", constant('\\yii\\web\\View::POS_END')) }}
+</body>
+</html>
+{{ this.endPage() }}

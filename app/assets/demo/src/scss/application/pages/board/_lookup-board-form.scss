@@ -2,8 +2,7 @@
     
     .bootstrap-autocomplete,
     .dropdown-menu {
-        overflow-y: scroll; 
-        height: 320px;
+        overflow-y: scroll;
         width: auto;
 
         .dropdown-item {
@@ -136,13 +135,14 @@
     &-buttons {
         display: flex;
         justify-content: flex-end;
+        margin-top: 2.2rem;
     }
 
     .button-map {
         background: #E7E7E7;
         color: #565656;
         width: 150px;
-        margin-right: 1rem;
+        margin-right: 2rem;
         transition: color 0.2s;
 
         &:hover {

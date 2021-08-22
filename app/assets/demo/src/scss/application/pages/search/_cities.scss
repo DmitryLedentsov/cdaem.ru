@@ -1,4 +1,4 @@
-.cities{
+.cities {
     margin-bottom: 4rem;
 
     .section-title {
@@ -7,20 +7,37 @@
 
     &-list {
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
         flex-wrap: wrap;
-        margin: 0 -1.5rem;
     }
 
     &-column {
+        width: 100%;
         display: flex;
         flex-wrap: wrap;
-        width: auto;
-        line-height: 78px;
-        margin: 0 1.5rem 0;
+        margin-bottom: 1.5rem;
+
+        @include tablet() {
+            width: 50%;
+        }
+
+        @include tablet-land() {
+            width: 33.33%;
+        }
+    }
+
+    .letter {
+        justify-content: flex-start;
+        color: $color-warning;
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 2.2rem;
+        margin: 0.3rem 1.25rem 0 0;
+        width: 40px;
     }
 
     .city {
+        margin-bottom: 1rem;
 
         &-list {
             display: flex;
@@ -33,19 +50,10 @@
         &-link {
             color: #333333;
             transition: color 0.2s;
-    
+
             &:hover {
                 color: $color-base-link;
             }
         }
-    }
-
-    .letter {
-        justify-content: flex-start;
-        color: $color-warning;
-        text-transform: uppercase;
-        font-weight: 700;
-        font-size: 2.2rem;
-        margin: 0.3rem 1.25rem 0 -1.25rem;
     }
 }

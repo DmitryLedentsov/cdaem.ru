@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>Добавить объявление</title>
+    <!-- @include ./_section/_head.html -->
+    <link rel="stylesheet" media="screen" href="./css/pages/account/step.min.css"/>
+</head>
+
+<body class="l-account p-step">
+
+  <div class="wrapper">
+      <!-- @include _section/_header-collapse-account.html -->
+      <main class="main-account">
+          <section class="steps">
+              <div class="container-fluid">
+                  <div class="main-account__inner">
+                      <div class="section-head section-head-between">
+                          <h2 class="section-header">Шаг 2</h2>
+                          <div class="steps-list">
+                            <div class="steps-list-item steps-list-item-active">1</div>
+                            <div class="steps-list-item steps-list-item-active">2</div>
+                            <div class="steps-list-item">3</div>
+                            <div class="steps-list-item">4</div>
+                            <div class="steps-list-item">5</div>
+                            <div class="steps-list-item">6</div>
+                          </div>
+                      </div>
+                      <!-- step -->
+                      <div class="step">
+                        <div class="step-line">
+                          <div class="step-column-33">
+                            <select class="custom-select">
+                              <option value="">Тип аренды <sup>*</sup></option>
+                              <option value="">Квартира на сутки</option>
+                              <option value="">Квартира на ночь</option>
+                              <option value="">Квартира на час</option>
+                              <option value="">Квартира на месяц</option>
+                              <option value="">Комната на сутки</option>
+                              <option value="">Койко-место</option>
+                            </select>
+                          </div>
+                          <div class="step-column-33">
+                            <select class="custom-select">
+                              <option value="">Выбрать валюту</option>
+                              <option value="">Валюта 1</option>
+                              <option value="">Валюта 2</option>
+                            </select>
+                          </div>
+                          <div class="step-column-33">
+                            <input type="text" name="price" class="step-input" placeholder="Цена">
+                          </div>
+                        </div>
+                        <a href="#" class="step-next">Продолжить</a>
+                      </div>
+                  </div>
+              </div>
+          </section>
+      </main>
+      <!-- @include ./_section/_footer.html -->
+  </div>
+
+<!-- @include ./_section/_end_body.html -->
+
+<script src="./js/pages/account/home.min.js"></script>
+
+</body>
+
+</html>

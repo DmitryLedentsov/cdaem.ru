@@ -49,27 +49,38 @@
         }
     }
 
+
+
+    &-title {
+        font-weight: 600;
+        font-size: 1.5rem;
+        color: #000000;
+        text-align: center;
+        margin-bottom: 0;
+        order: 1;
+
+        @include phone() {
+            text-align: left;
+            order: 0;
+        }
+    }
+
     &-navs-container {
         display: flex;
         text-align: center;
         justify-content: center;
         flex-direction: column;
         align-self: center;
+        order: 0;
 
         @include phone() {
+            order: 1;
             text-align: right;
             justify-content: flex-end;
         }
 
         @media (min-width: 650px) {
             flex-direction: row;
-
-            a {
-                &:first-child {
-                    margin-bottom: 0 !important;
-                    margin-right: 1rem;
-                }
-            }
         }
 
         a {
@@ -81,9 +92,11 @@
             display: inline-block;
             padding-bottom: 0.2rem;
             border-bottom: 2px solid transparent;
+            margin-left: 1rem;
+            margin-bottom: 1rem;
 
-            &:first-child {
-                margin-bottom: 0.5rem;
+            @media (min-width: 650px) {
+                margin-bottom: 0;
             }
 
             &:hover, &:active {
@@ -98,19 +111,6 @@
                     display: block;
                 }
             }
-        }
-    }
-
-    &-title {
-        font-weight: 600;
-        font-size: 1.5rem;
-        color: #000000;
-        text-align: center;
-        margin-bottom: 0.6rem;
-
-        @include phone() {
-            text-align: left;
-            margin: 0;
         }
     }
 
@@ -242,8 +242,7 @@
 
         .bootstrap-autocomplete,
         .dropdown-menu {
-            overflow-y: scroll; 
-            height: 320px;
+            overflow-y: scroll;
             width: auto;
 
             .dropdown-item {
