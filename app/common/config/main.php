@@ -127,7 +127,7 @@ return [
     ],
     'components' => [
         'user' => [
-            'class' => \nepster\users\components\User::class,
+            'class' => \common\components\User::class,
             'identityClass' => \common\modules\users\models\User::class,
             'enableAutoLogin' => true,
             'loginUrl' => ['/users/guest/login'],

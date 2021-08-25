@@ -19,6 +19,13 @@ class User extends \nepster\users\models\User
      */
     public $agreement;
 
+
+    public function test(): string
+    {
+        return '777';
+    }
+
+
     /**
      * @inheritdoc
      */
