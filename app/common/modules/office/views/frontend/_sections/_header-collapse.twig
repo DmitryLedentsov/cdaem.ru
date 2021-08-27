@@ -27,22 +27,26 @@
                 {% include './__header_collapse_user_info.twig' %}
                 <ul class="nav navbar-nav">
                     <li class="nav-item">
-                        <a href="{{ path(['/partners/default/index']) }}">Доска объявлений</a>
+                        <a class="{{ app.request.pathInfo == 'search' ? 'active' : '' }}" href="{{ path(['/partners/default/index']) }}">
+                            Доска объявлений
+                        </a>
                     </li>
                     {#  Меню показывается только владельцам квартир #}
                     {% if app.user.identity.profile.user_type != constant('\\common\\modules\\users\\models\\Profile::WANT_RENT') %}
                         <li class="nav-item">
-                            <a class="" href="{{ path(['/partners/office/create']) }}">
+                            <a class="{{ app.request.pathInfo == 'office/create-adverts' ? 'active' : '' }}" href="{{ path(['/partners/office/create']) }}">
                                 Добавить объявление
                             </a>
                         </li>
                     {% else %}
                         <li class="nav-item">
-                            <a href="{{ path(['/partners/reservation/index']) }}">Быстро снять</a>
+                            <a class="{{ app.request.pathInfo == 'reservation' ? 'active' : '' }}" href="{{ path(['/partners/reservation/index']) }}">
+                                Быстро снять
+                            </a>
                         </li>
                     {% endif %}
                     <li class="nav-item">
-                        <a class="{{ this.context.action.id == 'help' ? 'active' : '' }}" href="{{ path(['/helpdesk/default/help']) }}">
+                        <a class="{{ app.request.pathInfo == 'help' ? 'active' : '' }}" href="{{ path(['/helpdesk/default/help']) }}">
                             Помощь
                         </a>
                     </li>
