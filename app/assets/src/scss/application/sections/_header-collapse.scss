@@ -4,6 +4,56 @@
     background: #FFFFFF;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
 
+    &-home {
+        background: none;
+        box-shadow: none;
+        width: auto;
+        height: auto;
+        order: 0;
+        position: relative;
+
+        .main-menu {
+            @media (max-width: 1023px) {
+                width: 280px !important;
+                padding: 5px !important;
+                border-radius: 5px;
+            }
+
+            .header-message {
+                display: none !important;
+                @include tablet-land() {
+                    display: flex !important;
+                }
+            }
+            .user-info {
+                &:before {
+                    @media (max-width: 1023px) {
+                        display: none !important;
+                    }
+                }
+                &-name {
+                    @include tablet-land() {
+                        color: white !important;
+                    }
+                }
+                &-balance {
+                    @include tablet-land() {
+                        color: #aaa6a6 !important;
+                    }
+                }
+                &-value {
+                    @include tablet-land() {
+                        color: #a79c9c !important;
+                    }
+                }
+            }
+        }
+
+        @include tablet-land() {
+            order: 1;
+        }
+    }
+
     @include tablet-land() {
         height: 88px;
     }
@@ -335,14 +385,17 @@
             }
 
             &-item {
-                margin-bottom: 19px;
                 font-size: 16px;
                 font-weight: 400;
                 color: #5b5b5b;
+                display: block;
+                margin: 10px 0;
+                width: 100%;
 
-                &:hover {
-                    font-weight: 700;
+                &.active, &:hover {
+                    font-weight: 500;
                     color: #ffa801;
+                    display: block;
                 }
 
                 &:last-child {
@@ -351,7 +404,7 @@
             }
 
             &-out {
-                display: inline-flex;
+                display: block;
                 align-items: center;
                 margin: 17px 0 19px 30px;
 
@@ -361,6 +414,10 @@
                     font-weight: 400;
                     color: #4c4c4c;
                     text-transform: uppercase;
+
+                    &:hover {
+                        color: #2d2d2d;
+                    }
                 }
             }
         }
@@ -377,6 +434,9 @@
 
         @include tablet-land() {
             width: auto;
+            .header-message {
+                display: none;
+            }
         }
     }
 
@@ -427,7 +487,7 @@
         }
 
         @include tablet-land() {
-            margin: 3px 3.4% 0 0;
+            margin: 3px 25px 0 0;
         }
     }
 

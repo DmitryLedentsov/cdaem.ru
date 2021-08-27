@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
-    <meta charset="utf-8">
-    <title>Вакансии</title>
+    <title>Мои покупки</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,15 +30,16 @@
     <link rel="stylesheet" media="screen" href="./vendor/datetimepicker/bootstrap-datetimepicker.min.css"/>
     <link rel="stylesheet" media="screen" href="./css/base.min.css"/>
     <link rel="stylesheet" media="screen" href="./css/interfaces.min.css"/>
-    <link rel="stylesheet" media="screen" href="./css/pages/vacancy.min.css"/>
+    <link rel="stylesheet" media="screen" href="./css/pages/account/purchases.min.css"/>
 </head>
-<body class="l-base p-vacancy">
+
+<body class="l-account p-purchases">
 
 <div class="wrapper">
     <header class="header-collapse">
         <div class="container-fluid">
             <a class="header-logo" href="./index.html">
-                <img src="./images/logo-dark.svg" alt="logo">
+                <img src="./images/account/img-logo-account.svg" alt="logo">
             </a>
             <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-menu"
                     aria-label="navbar-toggle">
@@ -48,113 +49,231 @@
             <nav class="main-menu collapse" id="main-menu">
                 <ul class="nav navbar-nav">
                     <li class="nav-item">
-                        <a class="active" href="#">
-                            Добавить объявление
-                        </a>
+                        <a class="active" href="#">Доска объявлений</a>
                     </li>
                     <li class="nav-item">
-                        <a href="./help.html">
-                            Помощь
-                        </a>
+                        <a href="#">Добавить объявление</a>
                     </li>
                     <li class="nav-item">
-                        <a href="./board.html">
-                            Расширенный поиск
-                        </a>
+                        <a href="#">Быстро снять</a>
                     </li>
                     <li class="nav-item">
-                        <a href="./signOut.html" data-toggle="modal" data-target="#signUp">
-                            Регистрация
-                        </a>
+                        <a href="#">Помощь</a>
                     </li>
                 </ul>
-                <a href="./signIn.html" class="btn btn-warning btn-special btn-sign-in" data-toggle="modal"
-                   data-target="#signIn">
-                    Вход
-                </a>
             </nav>
-        </div>
-    </header>
-    <main>
-        <div class="container-fluid">
-            <div class="breadcrumbs">
-                <a href="./index.html">Главная</a><span>Правила заселения</span>
-            </div>
-        </div>
-        <section class="recruitment">
-            <div class="container-fluid">
-                <div class="recruitment-container">
-                    <div class="recruitment-item recruitment-item-image">
-                        <img src="./images/gallery/recruitment-image.png" alt="recruitment-image">
-                    </div>
-                    <div class="recruitment-item recruitment-item-content">
-                        <h2 class="recruitment-title">Набор сотрудников</h2>
-                        <h5 class="recruitment-subtitle">Требования:</h5>
-                        <p class="recruitment-text">
-                            Пунктуальность, внимательное отношение к работе, умение обучаться, активная, вежливая,
-                            ответственная, желание карьерного роста, пунктуальная. Обязанности: Уборка
-                            малогабаритных квартир в Москве, разъездная работа: Убрали одну квартиру,
-                            поехали на другую квартиру, если работы нет, то сидите на квартире, чай пьёте.
-                            На зарплату не влияет. В деньот двух до четырёх квартир, которые нужно убирать.
-                            Работник только на постоянную работу. Квартиры представлены у нас на сайте.
-                            Вакансия ограничена, так, как люди у нас работют годами, и уходят только по состоянию
-                            здоровья.
-                        </p>
-                        <h5 class="recruitment-subtitle">Условия:</h5>
-                        <p class="recruitment-text">
-                            Зарплата от <span>30 000 ₽</span> до <span>50 000 ₽</span>,
-                            есть ежедневные выплаты бонусов, сотрудников обучаем! Зарплата в срок, задержек не бывает!
-                            Есть график 2х2.,6/1,5/2,7/0. Звоните, мы вас ждём. Выходные строго по графику.
-                        </p>
-                        <div class="recruitment-phone">
-                            <a class="recruitment-phone-link" href="tel:1-562-867-5309">
-                                <object>
-                                    <img class="recruitment-phone-logo" src="./images/icons/phone-icon.svg" alt="phone">
-                                </object>
-                                8 966-096-23-60
-                            </a>
-                        </div>
+            <div class="header-message">
+                <img src="./images/account/icon-lk-email.svg" alt="">
+                <span class="header-message-value">99</span>
+                <div class="message-info">
+                    <div class="message-info-header">Уведомления</div>
+                    <div class="list-message-info">
+                        <a href="#" class="list-message-info-item">
+                            <span class="list-message-info-name">Заявки</span>
+                            <span class="list-message-info-value">99</span>
+                        </a>
+                        <a href="#" class="list-message-info-item">
+                            <span class="list-message-info-name">Бронь</span>
+                            <span class="list-message-info-value">99</span>
+                        </a>
+                        <a href="#" class="list-message-info-item">
+                            <span class="list-message-info-name">Чат</span>
+                            <span class="list-message-info-value">99</span>
+                        </a>
                     </div>
                 </div>
             </div>
-        </section>
-        <section class="appeal">
+            <div class="user-info">
+                <div class="user-info-avatar">
+                    <img src="./images/account/img-avatar.png" alt="">
+                </div>
+                <div class="user-info-data">
+                    <div class="user-info-name">Власов Дмитрий</div>
+                    <div class="user-info-balance">Баланс: <span class="user-info-balance-value">4000 рублей</span></div>
+                </div>
+                <div class="user-change">
+                    <img src="./images/account/icon-change.svg" alt="">
+                </div>
+                <!-- settings -->
+                <div class="user-settings">
+                    <div class="user-settings-header">Мой профиль</div>
+                    <div class="user-settings-list">
+                        <a href="#" class="user-settings-item">Мои покупки</a>
+                        <a href="#" class="user-settings-item">Мои объявления</a>
+                        <a href="#" class="user-settings-item">Услуги</a>
+                        <a href="#" class="user-settings-item">Избранное</a>
+                        <a href="#" class="user-settings-item">Черный список</a>
+                        <a href="#" class="user-settings-item">Безопасная сделка</a>
+                        <a href="#" class="user-settings-item">Настройки</a>
+                        <a href="#" class="user-settings-item">Оплата</a>
+                    </div>
+                    <a href="#" class="user-settings-out">
+                        <img src="./images/account/icon-logout.svg" alt="">
+                        <span class="user-settings-out-text">Выйти</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="main-account">
+        <section class="my-purchases">
             <div class="container-fluid">
-                <h2 class="appeal-title">Оставить заявку на работу</h2>
-                <form class="form">
-                    <div class="row">
-                        <div class="form-group col-sm-12">
-                            <p class="appeal-subtitle">Ваши данные:</p>
+                <div class="main-account__inner">
+                    <div class="section-head section-head-between">
+                        <h2 class="section-header">Мои покупки</h2>
+                        <select class="custom-select">
+                            <option value="">Активные</option>
+                            <option value="">Не активные</option>
+                        </select>
+                    </div>
+                    <!-- list buy -->
+                    <div class="purchases">
+                        <div class="purchases-item">
+                            <div class="purchases-item-wrapper">
+                                <div class="purchases-header">Поднять в топ</div>
+                                <div class="purchases-info">
+                                    <div class="purchases-info-item">
+                                        <span class="purchases-info-item-name">Дата включения:</span>
+                                        <span class="purchases-info-item-date">16.05.21 18:30</span>
+                                    </div>
+                                    <div class="purchases-info-item">
+                                        <span class="purchases-info-item-name">Дата выключения:</span>
+                                        <span class="purchases-info-item-date">16.05.21 18:30</span>
+                                    </div>
+                                </div>
+                                <a href="#" class="purchases-link purchases-link-active">Активное</a>
+                            </div>
                         </div>
-                        <div class="form-group col-sm-6 col-md-4 col-lg-5">
-                            <label>
-                                <input type="text" class="form-control" placeholder="Введите ваше имя">
-                            </label>
+                        <div class="purchases-item">
+                            <div class="purchases-item-wrapper">
+                                <div class="purchases-header">Поднять в топ</div>
+                                <div class="purchases-info">
+                                    <div class="purchases-info-item">
+                                        <span class="purchases-info-item-name">Дата включения:</span>
+                                        <span class="purchases-info-item-date">16.05.21 18:30</span>
+                                    </div>
+                                    <div class="purchases-info-item">
+                                        <span class="purchases-info-item-name">Дата выключения:</span>
+                                        <span class="purchases-info-item-date">16.05.21 18:30</span>
+                                    </div>
+                                </div>
+                                <a href="#" class="purchases-link purchases-link-error">Ошибка</a>
+                            </div>
                         </div>
-                        <div class="w-100 d-block d-md-none"></div>
-                        <div class="form-group col-sm-6 col-md-4 col-lg-3">
-                            <label>
-                                <input type="email" class="form-control" placeholder="Введите ваш Email">
-                            </label>
+                        <div class="purchases-item">
+                            <div class="purchases-item-wrapper">
+                                <div class="purchases-header">Поднять в топ</div>
+                                <div class="purchases-info">
+                                    <div class="purchases-info-item">
+                                        <span class="purchases-info-item-name">Дата включения:</span>
+                                        <span class="purchases-info-item-date">16.05.21 18:30</span>
+                                    </div>
+                                    <div class="purchases-info-item">
+                                        <span class="purchases-info-item-name">Дата выключения:</span>
+                                        <span class="purchases-info-item-date">16.05.21 18:30</span>
+                                    </div>
+                                </div>
+                                <a href="#" class="purchases-link purchases-link-paid">Оплачено</a>
+                            </div>
                         </div>
-                        <div class="w-100 d-block d-md-none"></div>
-                        <div class="form-group col-sm-6 col-md-4 col-lg-4">
-                            <label>
-                                <input type="tel" class="form-control" placeholder="+38(0__)-___-__-__">
-                            </label>
+                        <div class="purchases-item">
+                            <div class="purchases-item-wrapper">
+                                <div class="purchases-header">Поднять в топ</div>
+                                <div class="purchases-info">
+                                    <div class="purchases-info-item">
+                                        <span class="purchases-info-item-name">Дата включения:</span>
+                                        <span class="purchases-info-item-date">16.05.21 18:30</span>
+                                    </div>
+                                    <div class="purchases-info-item">
+                                        <span class="purchases-info-item-name">Дата выключения:</span>
+                                        <span class="purchases-info-item-date">16.05.21 18:30</span>
+                                    </div>
+                                </div>
+                                <a href="#" class="purchases-link purchases-link-active">Активное</a>
+                            </div>
                         </div>
-                        <div class="form-group col-md-12">
-                            <label>
-                                <textarea class="form-control" placeholder="Доп. информация"></textarea>
-                            </label>
+                        <div class="purchases-item">
+                            <div class="purchases-item-wrapper">
+                                <div class="purchases-header">Поднять в топ</div>
+                                <div class="purchases-info">
+                                    <div class="purchases-info-item">
+                                        <span class="purchases-info-item-name">Дата включения:</span>
+                                        <span class="purchases-info-item-date">16.05.21 18:30</span>
+                                    </div>
+                                    <div class="purchases-info-item">
+                                        <span class="purchases-info-item-name">Дата выключения:</span>
+                                        <span class="purchases-info-item-date">16.05.21 18:30</span>
+                                    </div>
+                                </div>
+                                <a href="#" class="purchases-link purchases-link-active">Активное</a>
+                            </div>
                         </div>
-                        <div class="form-group col-md-12 appeal-container">
-                            <p class="submit-text">Нажимая “отправить” вы соглашаетесь c правилами политики
-                                конфиденицальности</p>
-                            <button type="submit" class="btn btn-warning">Отправить</button>
+                        <div class="purchases-item">
+                            <div class="purchases-item-wrapper">
+                                <div class="purchases-header">Поднять в топ</div>
+                                <div class="purchases-info">
+                                    <div class="purchases-info-item">
+                                        <span class="purchases-info-item-name">Дата включения:</span>
+                                        <span class="purchases-info-item-date">16.05.21 18:30</span>
+                                    </div>
+                                    <div class="purchases-info-item">
+                                        <span class="purchases-info-item-name">Дата выключения:</span>
+                                        <span class="purchases-info-item-date">16.05.21 18:30</span>
+                                    </div>
+                                </div>
+                                <a href="#" class="purchases-link purchases-link-active">Активное</a>
+                            </div>
+                        </div>
+                        <div class="purchases-item">
+                            <div class="purchases-item-wrapper">
+                                <div class="purchases-header">Поднять в топ</div>
+                                <div class="purchases-info">
+                                    <div class="purchases-info-item">
+                                        <span class="purchases-info-item-name">Дата включения:</span>
+                                        <span class="purchases-info-item-date">16.05.21 18:30</span>
+                                    </div>
+                                    <div class="purchases-info-item">
+                                        <span class="purchases-info-item-name">Дата выключения:</span>
+                                        <span class="purchases-info-item-date">16.05.21 18:30</span>
+                                    </div>
+                                </div>
+                                <a href="#" class="purchases-link purchases-link-active">Активное</a>
+                            </div>
+                        </div>
+                        <div class="purchases-item">
+                            <div class="purchases-item-wrapper">
+                                <div class="purchases-header">Поднять в топ</div>
+                                <div class="purchases-info">
+                                    <div class="purchases-info-item">
+                                        <span class="purchases-info-item-name">Дата включения:</span>
+                                        <span class="purchases-info-item-date">16.05.21 18:30</span>
+                                    </div>
+                                    <div class="purchases-info-item">
+                                        <span class="purchases-info-item-name">Дата выключения:</span>
+                                        <span class="purchases-info-item-date">16.05.21 18:30</span>
+                                    </div>
+                                </div>
+                                <a href="#" class="purchases-link purchases-link-active">Активное</a>
+                            </div>
+                        </div>
+                        <div class="purchases-item">
+                            <div class="purchases-item-wrapper">
+                                <div class="purchases-header">Поднять в топ</div>
+                                <div class="purchases-info">
+                                    <div class="purchases-info-item">
+                                        <span class="purchases-info-item-name">Дата включения:</span>
+                                        <span class="purchases-info-item-date">16.05.21 18:30</span>
+                                    </div>
+                                    <div class="purchases-info-item">
+                                        <span class="purchases-info-item-name">Дата выключения:</span>
+                                        <span class="purchases-info-item-date">16.05.21 18:30</span>
+                                    </div>
+                                </div>
+                                <a href="#" class="purchases-link purchases-link-active">Активное</a>
+                            </div>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
         </section>
     </main>
@@ -674,5 +793,8 @@
 <script src="./vendor/bootstrap-autocomplete.min.js"></script>
 <script src="./js/interface.min.js"></script>
 
+<script src="./js/pages/account/home.min.js"></script>
+
 </body>
+
 </html>

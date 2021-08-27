@@ -6,6 +6,9 @@
             </a>
             {{ this.render("@common/modules/site/views/_sections/_location.twig") | raw }}
         </div>
+        {% if app.user.getIsGuest() == false %}
+            {{ this.render("@common/modules/office/views/frontend/_sections/_header-collapse.twig", {'forHome': true}) | raw }}
+        {% endif %}
         <nav class="nav">
             <ul class="nav-list">
                 <li class="nav-item">
@@ -31,11 +34,6 @@
             <a href="{{ path(['/users/guest/login']) }}" class="btn btn-warning btn-special btn-sign-in" data-toggle="modal" data-target="#signIn">
                 Вход
             </a>
-        {% endif %}
-        {% if app.user.getIsGuest() == false %}
-            <a href="{{ path(['/office/default/index']) }}">Кабинет</a>
-            &nbsp; | &nbsp;
-            <a href="{{ path(['/users/user/logout']) }}">Выход</a>
         {% endif %}
     </div>
 </header>

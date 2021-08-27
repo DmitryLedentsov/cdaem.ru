@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
-    <meta charset="utf-8">
-    <title>Вакансии</title>
+    <title>Добавить объявление</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,239 +30,370 @@
     <link rel="stylesheet" media="screen" href="./vendor/datetimepicker/bootstrap-datetimepicker.min.css"/>
     <link rel="stylesheet" media="screen" href="./css/base.min.css"/>
     <link rel="stylesheet" media="screen" href="./css/interfaces.min.css"/>
-    <link rel="stylesheet" media="screen" href="./css/pages/vacancy.min.css"/>
+    <link rel="stylesheet" media="screen" href="./css/pages/account/step.min.css"/>
 </head>
-<body class="l-base p-vacancy">
 
-<div class="wrapper">
-    <header class="header-collapse">
-        <div class="container-fluid">
-            <a class="header-logo" href="./index.html">
-                <img src="./images/logo-dark.svg" alt="logo">
-            </a>
-            <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-menu"
-                    aria-label="navbar-toggle">
-                <span></span>
-                <span></span>
-            </button>
-            <nav class="main-menu collapse" id="main-menu">
-                <ul class="nav navbar-nav">
-                    <li class="nav-item">
-                        <a class="active" href="#">
-                            Добавить объявление
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="./help.html">
-                            Помощь
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="./board.html">
-                            Расширенный поиск
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="./signOut.html" data-toggle="modal" data-target="#signUp">
-                            Регистрация
-                        </a>
-                    </li>
-                </ul>
-                <a href="./signIn.html" class="btn btn-warning btn-special btn-sign-in" data-toggle="modal"
-                   data-target="#signIn">
-                    Вход
-                </a>
-            </nav>
-        </div>
-    </header>
-    <main>
-        <div class="container-fluid">
-            <div class="breadcrumbs">
-                <a href="./index.html">Главная</a><span>Правила заселения</span>
-            </div>
-        </div>
-        <section class="recruitment">
-            <div class="container-fluid">
-                <div class="recruitment-container">
-                    <div class="recruitment-item recruitment-item-image">
-                        <img src="./images/gallery/recruitment-image.png" alt="recruitment-image">
-                    </div>
-                    <div class="recruitment-item recruitment-item-content">
-                        <h2 class="recruitment-title">Набор сотрудников</h2>
-                        <h5 class="recruitment-subtitle">Требования:</h5>
-                        <p class="recruitment-text">
-                            Пунктуальность, внимательное отношение к работе, умение обучаться, активная, вежливая,
-                            ответственная, желание карьерного роста, пунктуальная. Обязанности: Уборка
-                            малогабаритных квартир в Москве, разъездная работа: Убрали одну квартиру,
-                            поехали на другую квартиру, если работы нет, то сидите на квартире, чай пьёте.
-                            На зарплату не влияет. В деньот двух до четырёх квартир, которые нужно убирать.
-                            Работник только на постоянную работу. Квартиры представлены у нас на сайте.
-                            Вакансия ограничена, так, как люди у нас работют годами, и уходят только по состоянию
-                            здоровья.
-                        </p>
-                        <h5 class="recruitment-subtitle">Условия:</h5>
-                        <p class="recruitment-text">
-                            Зарплата от <span>30 000 ₽</span> до <span>50 000 ₽</span>,
-                            есть ежедневные выплаты бонусов, сотрудников обучаем! Зарплата в срок, задержек не бывает!
-                            Есть график 2х2.,6/1,5/2,7/0. Звоните, мы вас ждём. Выходные строго по графику.
-                        </p>
-                        <div class="recruitment-phone">
-                            <a class="recruitment-phone-link" href="tel:1-562-867-5309">
-                                <object>
-                                    <img class="recruitment-phone-logo" src="./images/icons/phone-icon.svg" alt="phone">
-                                </object>
-                                8 966-096-23-60
-                            </a>
+<body class="l-account p-step">
+
+  <div class="wrapper">
+      <header class="header-collapse">
+          <div class="container-fluid">
+              <a class="header-logo" href="./index.html">
+                  <img src="./images/account/img-logo-account.svg" alt="logo">
+              </a>
+              <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-menu"
+                      aria-label="navbar-toggle">
+                  <span></span>
+                  <span></span>
+              </button>
+              <nav class="main-menu collapse" id="main-menu">
+                  <ul class="nav navbar-nav">
+                      <li class="nav-item">
+                          <a class="active" href="#">Доска объявлений</a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="#">Добавить объявление</a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="#">Быстро снять</a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="#">Помощь</a>
+                      </li>
+                  </ul>
+              </nav>
+              <div class="header-message">
+                  <img src="./images/account/icon-lk-email.svg" alt="">
+                  <span class="header-message-value">99</span>
+                  <div class="message-info">
+                      <div class="message-info-header">Уведомления</div>
+                      <div class="list-message-info">
+                          <a href="#" class="list-message-info-item">
+                              <span class="list-message-info-name">Заявки</span>
+                              <span class="list-message-info-value">99</span>
+                          </a>
+                          <a href="#" class="list-message-info-item">
+                              <span class="list-message-info-name">Бронь</span>
+                              <span class="list-message-info-value">99</span>
+                          </a>
+                          <a href="#" class="list-message-info-item">
+                              <span class="list-message-info-name">Чат</span>
+                              <span class="list-message-info-value">99</span>
+                          </a>
+                      </div>
+                  </div>
+              </div>
+              <div class="user-info">
+                  <div class="user-info-avatar">
+                      <img src="./images/account/img-avatar.png" alt="">
+                  </div>
+                  <div class="user-info-data">
+                      <div class="user-info-name">Власов Дмитрий</div>
+                      <div class="user-info-balance">Баланс: <span class="user-info-balance-value">4000 рублей</span></div>
+                  </div>
+                  <div class="user-change">
+                      <img src="./images/account/icon-change.svg" alt="">
+                  </div>
+                  <!-- settings -->
+                  <div class="user-settings">
+                      <div class="user-settings-header">Мой профиль</div>
+                      <div class="user-settings-list">
+                          <a href="#" class="user-settings-item">Мои покупки</a>
+                          <a href="#" class="user-settings-item">Мои объявления</a>
+                          <a href="#" class="user-settings-item">Услуги</a>
+                          <a href="#" class="user-settings-item">Избранное</a>
+                          <a href="#" class="user-settings-item">Черный список</a>
+                          <a href="#" class="user-settings-item">Безопасная сделка</a>
+                          <a href="#" class="user-settings-item">Настройки</a>
+                          <a href="#" class="user-settings-item">Оплата</a>
+                      </div>
+                      <a href="#" class="user-settings-out">
+                          <img src="./images/account/icon-logout.svg" alt="">
+                          <span class="user-settings-out-text">Выйти</span>
+                      </a>
+                  </div>
+              </div>
+          </div>
+      </header>
+      <main class="main-account">
+          <section class="steps">
+              <div class="container-fluid">
+                  <div class="main-account__inner">
+                      <div class="section-head section-head-between">
+                          <h2 class="section-header">Дополнительные параметры жилья</h2>
+                          <div class="steps-list">
+                            <div class="steps-list-item steps-list-item-active">1</div>
+                            <div class="steps-list-item steps-list-item-active">2</div>
+                            <div class="steps-list-item steps-list-item-active">3</div>
+                            <div class="steps-list-item">4</div>
+                            <div class="steps-list-item">5</div>
+                            <div class="steps-list-item">6</div>
+                          </div>
+                      </div>
+                      <!-- step -->
+                      <div class="step">
+                        <div class="step-line">
+                          <div class="step-column-33">
+                            <input type="text" name="" class="step-input" placeholder="Количество спален">
+                          </div>
+                          <div class="step-column-33">
+                            <input type="text" name="" class="step-input" placeholder="Количество кроватей">
+                          </div>
+                          <div class="step-column-33">
+                            <input type="text" name="" class="step-input" placeholder="Количество гостей">
+                          </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="appeal">
-            <div class="container-fluid">
-                <h2 class="appeal-title">Оставить заявку на работу</h2>
-                <form class="form">
-                    <div class="row">
-                        <div class="form-group col-sm-12">
-                            <p class="appeal-subtitle">Ваши данные:</p>
+                        <div class="step-line">
+                          <div class="step-column-33">
+                            <select class="custom-select">
+                              <option value="">Балкон</option>
+                              <option value="">Да</option>
+                              <option value="">Нет</option>
+                            </select>
+                          </div>
+                          <div class="step-column-33">
+                            <select class="custom-select">
+                              <option value="">Санузел</option>
+                              <option value="">Да</option>
+                              <option value="">Нет</option>
+                            </select>
+                          </div>
+                          <div class="step-column-33">
+                            <select class="custom-select">
+                              <option value="">Ванна и душ</option>
+                              <option value="">Да</option>
+                              <option value="">Нет</option>
+                            </select>
+                          </div>
                         </div>
-                        <div class="form-group col-sm-6 col-md-4 col-lg-5">
-                            <label>
-                                <input type="text" class="form-control" placeholder="Введите ваше имя">
-                            </label>
+                        <div class="step-line">
+                          <div class="step-column-33">
+                            <select class="custom-select">
+                              <option value="">Отопление</option>
+                              <option value="">Да</option>
+                              <option value="">Нет</option>
+                            </select>
+                          </div>
+                          <div class="step-column-33">
+                            <select class="custom-select">
+                              <option value="">Безопасность</option>
+                              <option value="">Да</option>
+                              <option value="">Нет</option>
+                            </select>
+                          </div>
+                          <div class="step-column-33">
+                            <select class="custom-select">
+                              <option value="">Парковка</option>
+                              <option value="">Да</option>
+                              <option value="">Нет</option>
+                            </select>
+                          </div>
                         </div>
-                        <div class="w-100 d-block d-md-none"></div>
-                        <div class="form-group col-sm-6 col-md-4 col-lg-3">
-                            <label>
-                                <input type="email" class="form-control" placeholder="Введите ваш Email">
-                            </label>
+                        <div class="step-line">
+                          <div class="step-column-33">
+                            <input type="text" name="" class="step-input" placeholder="Высота потолков">
+                          </div>
+                          <div class="step-column-33">
+                            <select class="custom-select">
+                              <option value="">Вид из окна</option>
+                              <option value="">Да</option>
+                              <option value="">Нет</option>
+                            </select>
+                          </div>
+                          <div class="step-column-33">
+                            <select class="custom-select">
+                              <option value="">Покрытие пола</option>
+                              <option value="">Да</option>
+                              <option value="">Нет</option>
+                            </select>
+                          </div>
                         </div>
-                        <div class="w-100 d-block d-md-none"></div>
-                        <div class="form-group col-sm-6 col-md-4 col-lg-4">
-                            <label>
-                                <input type="tel" class="form-control" placeholder="+38(0__)-___-__-__">
-                            </label>
+                        <div class="step-block">
+                          <div class="step-block-header">О доме</div>
+                          <div class="step-line">
+                            <div class="step-column-33">
+                              <select class="custom-select">
+                                <option value="">Тип здания</option>
+                                <option value="">Да</option>
+                                <option value="">Нет</option>
+                              </select>
+                            </div>
+                            <div class="step-column-33">
+                              <input type="text" name="" class="step-input" placeholder="Год постройки">
+                            </div>
+                            <div class="step-column-33">
+                              <input type="text" name="" class="step-input" placeholder="Количество подъездов">
+                            </div>
+                          </div>
+                          <div class="step-line">
+                            <div class="step-column-33">
+                              <select class="custom-select">
+                                <option value="">Серия здания</option>
+                                <option value="">Да</option>
+                                <option value="">Нет</option>
+                              </select>
+                            </div>
+                            <div class="step-column-33">
+                              <input type="text" name="" class="step-input" placeholder="Управляющая компания">
+                            </div>
+                            <div class="step-column-33">
+                              <input type="text" name="" class="step-input" placeholder="Номер квартиры">
+                            </div>
+                          </div>
                         </div>
-                        <div class="form-group col-md-12">
-                            <label>
-                                <textarea class="form-control" placeholder="Доп. информация"></textarea>
-                            </label>
+                        <div class="step-block">
+                          <div class="step-block-header">Условия проживания</div>
+                          <div class="step-line">
+                            <div class="step-column-33">
+                              <select class="custom-select">
+                                <option value="">Правила дома</option>
+                                <option value="">Да</option>
+                                <option value="">Нет</option>
+                              </select>
+                            </div>
+                            <div class="step-column-33">
+                              <select class="custom-select">
+                                <option value="">Удобства</option>
+                                <option value="">Да</option>
+                                <option value="">Нет</option>
+                              </select>
+                            </div>
+                            <div class="step-column-33">
+                              <select class="custom-select">
+                                <option value="">Техника</option>
+                                <option value="">Да</option>
+                                <option value="">Нет</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="step-line">
+                            <div class="step-column-33">
+                              <select class="custom-select">
+                                <option value="">Кухонная плита</option>
+                                <option value="">Да</option>
+                                <option value="">Нет</option>
+                              </select>
+                            </div>
+                            <div class="step-column-33">
+                              <select class="custom-select">
+                                <option value="">Дополнительные удобства</option>
+                                <option value="">Да</option>
+                                <option value="">Нет</option>
+                              </select>
+                            </div>
+                          </div>
                         </div>
-                        <div class="form-group col-md-12 appeal-container">
-                            <p class="submit-text">Нажимая “отправить” вы соглашаетесь c правилами политики
-                                конфиденицальности</p>
-                            <button type="submit" class="btn btn-warning">Отправить</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </section>
-    </main>
-    <footer class="footer">
-        <div class="footer-info">
-            <div class="container-fluid">
-                <div class="footer-container about-us">
-                    <h6 class="footer-title">о компании</h6>
-                    <p class="about-us-info">
-                        Планируется деловая поездка или беззаботный туристический визит в столицу?
-                        Теперь для вас не проблема, где остановится в мегаполисе, не переживая о своем
-                        персональном комфорте. Доска объявлений cdaem.ru поможет сэкономить на проживании
-                        в отдельной уютной квартире, не переплачивая за навязчивый сервис дорогих гостиниц.
-                    </p>
-                </div>
-                <div class="footer-container footer-contacts contacts">
-                    <h6 class="footer-title">контакты</h6>
-                    <ul>
-                        <li class="nav-item footer-sub-title text-uppercase">Агенство в москве</li>
-                        <li class="nav-item">
-                            <a class="nav-link contacts-email" href="#">
-                                support@cdaem.ru
-                            </a>
-                        </li>
-                        <li class="nav-item footer-sub-title text-uppercase">Возник вопрос?</li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="">
-                                <img src="./images/icons/phone.svg" alt="phone">
-                                Свяжитесь с нами
-                            </a>
-                        </li>
-                        <li class="nav-item footer-sub-title text-uppercase">Мы в соц. сетях</li>
-                        <li class="nav-item">
-                            <ul class="social-links">
-                                <li>
-                                    <a href="https://www.facebook.com/cdaem.ru" rel="nofollow" target="_blank"
-                                       class="nav-link">
-                                        <i class="fab fa-facebook"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://new.vk.com/cdaemru" rel="nofollow" target="_blank" class="nav-link">
-                                        <i class="fab fa-vk"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://plus.google.com/communities/104623882749857804458" rel="nofollow"
-                                       target="_blank" class="nav-link">
-                                        <i class="fab fa-google-plus"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="skype:cdaemru" rel="nofollow" target="_blank" class="nav-link">
-                                        <i class="fab fa-skype"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <nav class="footer-container footer-nav">
-                    <h6 class="footer-title">навигация</h6>
-                    <ul>
-                        <li class="nav-item">
-                            <a class="nav-link" href="./help.html">Помощь</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="./rules.html">Права</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Правообладатели</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Квартира на час</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Квартира на сутки</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Квартира на ночь</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="./agency.html">Сдаем.ру</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="./vacancy.html">Работа</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="./news.html">Новости</a>
-                        </li>
-                    </ul>
-                </nav>
-                <span class="btn btn-to-up" data-scroll-top></span>
-            </div>
-        </div>
-        <div class="footer-inner">
-            <div class="container-fluid">
-                <a class="footer-logo" href="index.html">
-                    <img src="./images/logo-dark.svg" alt="logo">
-                </a>
-                <p class="footer-copyright">
-                    <span class="font-weight-bold">© 2012-2020 cdaem.ru</span>
-                    <span>Все права защищены</span>
-                </p>
-            </div>
-        </div>
-    </footer>
-</div>
+                        <a href="#" class="step-next">Опубликовать</a>
+                      </div>
+                  </div>
+              </div>
+          </section>
+      </main>
+      <footer class="footer">
+          <div class="footer-info">
+              <div class="container-fluid">
+                  <div class="footer-container about-us">
+                      <h6 class="footer-title">о компании</h6>
+                      <p class="about-us-info">
+                          Планируется деловая поездка или беззаботный туристический визит в столицу?
+                          Теперь для вас не проблема, где остановится в мегаполисе, не переживая о своем
+                          персональном комфорте. Доска объявлений cdaem.ru поможет сэкономить на проживании
+                          в отдельной уютной квартире, не переплачивая за навязчивый сервис дорогих гостиниц.
+                      </p>
+                  </div>
+                  <div class="footer-container footer-contacts contacts">
+                      <h6 class="footer-title">контакты</h6>
+                      <ul>
+                          <li class="nav-item footer-sub-title text-uppercase">Агенство в москве</li>
+                          <li class="nav-item">
+                              <a class="nav-link contacts-email" href="#">
+                                  support@cdaem.ru
+                              </a>
+                          </li>
+                          <li class="nav-item footer-sub-title text-uppercase">Возник вопрос?</li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="">
+                                  <img src="./images/icons/phone.svg" alt="phone">
+                                  Свяжитесь с нами
+                              </a>
+                          </li>
+                          <li class="nav-item footer-sub-title text-uppercase">Мы в соц. сетях</li>
+                          <li class="nav-item">
+                              <ul class="social-links">
+                                  <li>
+                                      <a href="https://www.facebook.com/cdaem.ru" rel="nofollow" target="_blank"
+                                         class="nav-link">
+                                          <i class="fab fa-facebook"></i>
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a href="https://new.vk.com/cdaemru" rel="nofollow" target="_blank" class="nav-link">
+                                          <i class="fab fa-vk"></i>
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a href="https://plus.google.com/communities/104623882749857804458" rel="nofollow"
+                                         target="_blank" class="nav-link">
+                                          <i class="fab fa-google-plus"></i>
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a href="skype:cdaemru" rel="nofollow" target="_blank" class="nav-link">
+                                          <i class="fab fa-skype"></i>
+                                      </a>
+                                  </li>
+                              </ul>
+                          </li>
+                      </ul>
+                  </div>
+                  <nav class="footer-container footer-nav">
+                      <h6 class="footer-title">навигация</h6>
+                      <ul>
+                          <li class="nav-item">
+                              <a class="nav-link" href="./help.html">Помощь</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="./rules.html">Права</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="#">Правообладатели</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="#">Квартира на час</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="#">Квартира на сутки</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="#">Квартира на ночь</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="./agency.html">Сдаем.ру</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="./vacancy.html">Работа</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="./news.html">Новости</a>
+                          </li>
+                      </ul>
+                  </nav>
+                  <span class="btn btn-to-up" data-scroll-top></span>
+              </div>
+          </div>
+          <div class="footer-inner">
+              <div class="container-fluid">
+                  <a class="footer-logo" href="index.html">
+                      <img src="./images/logo-dark.svg" alt="logo">
+                  </a>
+                  <p class="footer-copyright">
+                      <span class="font-weight-bold">© 2012-2020 cdaem.ru</span>
+                      <span>Все права защищены</span>
+                  </p>
+              </div>
+          </div>
+      </footer>
+  </div>
 
 <div class="modal fade" id="fastRent" tabindex="-1" role="dialog" aria-labelledby="fastRent" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -674,5 +805,8 @@
 <script src="./vendor/bootstrap-autocomplete.min.js"></script>
 <script src="./js/interface.min.js"></script>
 
+<script src="./js/pages/account/home.min.js"></script>
+
 </body>
+
 </html>

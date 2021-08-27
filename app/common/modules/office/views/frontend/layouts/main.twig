@@ -17,6 +17,7 @@
 <body class="{% block bodyClass %}{% endblock %}">
 {{ this.beginBody() }}
 
+{{ use('yii/widgets/ActiveForm') }}
 
 {{ use('common/modules/site/assets/AppAsset') }}
 {{ register_app_asset() }}

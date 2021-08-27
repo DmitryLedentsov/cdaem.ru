@@ -1,0 +1,55 @@
+<div class="user-info">
+    {{ use('nepster/faceviewer/Widget') }}
+    {{ widget_widget({
+        'template' : '<div class="user-info-avatar">{face}</div>',
+        'data' : {
+            avatar_url: app.user.identity.avatar_url,
+        }
+    }) }}
+    <div class="user-info-data">
+        <div class="user-info-name">{{ app.user.getDisplayName() }}</div>
+        <div class="user-info-balance">Баланс:
+            <span class="user-info-balance-value">
+                {{ app.formatter.asCurrency(app.user.identity.funds_main, 'rub') | raw }}
+            </span>
+        </div>
+    </div>
+    <div class="user-change">
+        <img src="/_new/images/account/icon-change.svg" alt="" />
+    </div>
+    <div class="user-settings">
+        <div class="user-settings-header">Мой профиль</div>
+        <div class="user-settings-list">
+            <a class="user-settings-item{{ app.request.pathInfo == 'office/orders' ? ' active' : '' }}" href="{{ path(['/office/default/orders']) }}">
+                Мои покупки
+            </a>
+            <a class="user-settings-item{{ app.request.pathInfo == 'office/apartments' and strpos(app.request.pathInfo, 'type=available') == 0 ? ' active' : ''}}"
+               href="{{ path(['/partners/office/apartments']) }}">Мои объявления
+            </a>
+            <a class="user-settings-item{{ app.request.pathInfo == 'office/services' ? ' active' : '' }}" href="{{ path(['/office/default/services']) }}">
+                Услуги
+            </a>
+            <a class="user-settings-item{{ app.request.pathInfo == 'office/calendar' ? ' active' : '' }}" href="{{ path({0 : '/partners/office/calendar'}) }}">
+                Календарь
+            </a>
+            <a class="user-settings-item{{ app.request.pathInfo == 'office/top-slider-history' ? ' active' : '' }}" href="{{ path(['/office/default/top-slider']) }}">
+                Бегущая строка
+            </a>
+            <a href="{{ path(['/office/default/bookmark']) }}" class="user-settings-item{{ app.request.pathInfo == 'office/bookmark' ? ' active' : '' }}">
+                Избранное
+            </a>
+            <a href="{{ path(['/office/default/blacklist']) }}" class="user-settings-item{{ app.request.pathInfo == 'office/blacklist' ? ' active' : '' }}">
+                Черный список
+            </a>
+            <a href="#" class="user-settings-item">Безопасная сделка</a>
+            <a href="{{ path(['/users/user/profile']) }}" class="user-settings-item{{ app.request.pathInfo == 'profile' ? ' active' : '' }}">
+                Настройки
+            </a>
+            {# <a href="#" class="user-settings-item">Оплата</a> #}
+        </div>
+        <a href="{{ path(['/users/user/logout']) }}" class="user-settings-out">
+            <img src="/_new/images/account/icon-logout.svg" alt="" />
+            <span class="user-settings-out-text">Выйти</span>
+        </a>
+    </div>
+</div>

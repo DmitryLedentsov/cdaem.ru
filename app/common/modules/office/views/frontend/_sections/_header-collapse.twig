@@ -1,128 +1,62 @@
-{#
+{% if forHome is defined and forHome == true %}
 
-
-        <div class="header-fast-access">
-            <div class="header-message">
-                <i class="header-message-icon"></i>
-                <span class="header-message-value">--</span>
-                <div class="message-info">
-                    <div class="message-info-header">Уведомления</div>
-
-                </div>
+    <header class="header-collapse header-collapse-home">
+        <div class="container-fluid">
+            <nav class="main-menu collapse" id="main-menu">
+                {% include './__header_collapse_user_info.twig' %}
+                {% include './__header_collapse_message.twig' %}
+            </nav>
+            <div class="header-fast-access">
+                {% include './__header_collapse_message.twig' %}
+                <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-menu" aria-label="navbar-toggle">
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
-            <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-menu" aria-label="navbar-toggle">
-                <span></span>
-                <span></span>
-            </button>
         </div>
-    </div>
-</header>
-#}
+    </header>
 
-<header class="header-collapse">
-    <div class="container-fluid">
-        <a class="header-logo" href="/">
-            <img src="/_new/images/logo-dark.svg" alt="cdaem.ru" />
-        </a>
-        <nav class="main-menu collapse" id="main-menu">
-            <div class="user-info">
-                {{ use('nepster/faceviewer/Widget') }}
-                {{ widget_widget({
-                    'template' : '<div class="user-info-avatar">{face}</div>',
-                    'data' : {
-                        avatar_url: app.user.identity.avatar_url,
-                    }
-                }) }}
-                <div class="user-info-data">
-                    <div class="user-info-name">{{ app.user.getDisplayName() }}</div>
-                    <div class="user-info-balance">Баланс:
-                        <span class="user-info-balance-value">
-                            {{ app.formatter.asCurrency(app.user.identity.funds_main, 'rub') | raw }}
-                        </span>
-                    </div>
-                </div>
-                <div class="user-change">
-                    <img src="/_new/images/account/icon-change.svg" alt="">
-                </div>
-                <div class="user-settings">
-                    <div class="user-settings-header">Мой профиль</div>
-                    <div class="user-settings-list">
-                        <a class="user-settings-item" href="{{ path(['/office/default/orders']) }}" {{ app.request.pathInfo == 'office/orders' ? 'class="active"' : '' }}>
-                            Мои покупки
-                        </a>
-                        <a class="user-settings-item" href="{{ path(['/partners/office/apartments']) }}"
-                           {% if app.request.pathInfo == 'office/apartments' and strpos(app.request.pathInfo, 'type=available') == 0 %}class="active"{% endif %}>
-                            Мои объявления
-                        </a>
-                        <a class="user-settings-item" href="{{ path(['/office/default/services']) }}" {{ app.request.pathInfo == 'office/services' ? 'class="active"' : '' }}>
-                            Услуги
-                        </a>
-                        <a class="user-settings-item" href="{{ path({0 : '/partners/office/calendar'}) }}" {{ app.request.pathInfo == 'office/calendar' ? 'class="active"' : '' }}>
-                            Календарь
-                        </a>
-                        <a class="user-settings-item" href="{{ path(['/office/default/top-slider']) }}" {{ app.request.pathInfo == 'office/top-slider-history' ? 'class="active"' : '' }}>
-                            Бегущая строка
-                        </a>
-                        <a href="{{ path(['/office/default/bookmark']) }}" class="user-settings-item">Избранное</a>
-                        <a href="{{ path(['/office/default/blacklist']) }}" class="user-settings-item">Черный список</a>
-                        <a href="#" class="user-settings-item">Безопасная сделка</a>
-                        <a href="{{ path(['/users/user/profile']) }}" class="user-settings-item">Настройки</a>
-                        {# <a href="#" class="user-settings-item">Оплата</a> #}
-                    </div>
-                    <a href="{{ path(['/users/user/logout']) }}" class="user-settings-out">
-                        <img src="/_new/images/account/icon-logout.svg" alt="" />
-                        <span class="user-settings-out-text">Выйти</span>
-                    </a>
-                </div>
-            </div>
-            <ul class="nav navbar-nav">
-                <li class="nav-item">
-                    <a href="{{ path(['/partners/default/index']) }}">Доска объявлений</a>
-                </li>
-                {#  Меню показывается только владельцам квартир #}
-                {% if app.user.identity.profile.user_type != constant('\\common\\modules\\users\\models\\Profile::WANT_RENT') %}
+{% else %}
+
+    <header class="header-collapse">
+        <div class="container-fluid">
+            <a class="header-logo" href="/">
+                <img src="/_new/images/logo-dark.svg" alt="cdaem.ru" />
+            </a>
+            <nav class="main-menu collapse" id="main-menu">
+                {% include './__header_collapse_user_info.twig' %}
+                <ul class="nav navbar-nav">
                     <li class="nav-item">
-                        <a class="" href="{{ path(['/partners/office/create']) }}">
-                            Добавить объявление
+                        <a href="{{ path(['/partners/default/index']) }}">Доска объявлений</a>
+                    </li>
+                    {#  Меню показывается только владельцам квартир #}
+                    {% if app.user.identity.profile.user_type != constant('\\common\\modules\\users\\models\\Profile::WANT_RENT') %}
+                        <li class="nav-item">
+                            <a class="" href="{{ path(['/partners/office/create']) }}">
+                                Добавить объявление
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a href="{{ path(['/partners/reservation/index']) }}">Быстро снять</a>
+                        </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <a class="{{ this.context.action.id == 'help' ? 'active' : '' }}" href="{{ path(['/helpdesk/default/help']) }}">
+                            Помощь
                         </a>
                     </li>
-                {% endif %}
-                <li class="nav-item">
-                    <a href="{{ path(['/partners/reservation/index']) }}">Быстро снять</a>
-                </li>
-                <li class="nav-item">
-                    <a class="{{ this.context.action.id == 'help' ? 'active' : '' }}" href="{{ path(['/helpdesk/default/help']) }}">
-                        Помощь
-                    </a>
-                </li>
-            </ul>
-        </nav>
-        <div class="header-fast-access">
-            <div class="header-message">
-                <i class="header-message-icon"></i>
-                <span class="header-message-value">--</span>
-                <div class="message-info">
-                    <div class="message-info-header">Уведомления</div>
-                    <div class="list-message-info">
-                        <a href="{{ path(['/partners/reservation/total-bid']) }}" class="list-message-info-item">
-                            <span class="list-message-info-name">Заявки</span>
-                            <span class="list-message-info-value">--</span>
-                        </a>
-                        <a href="{{ path(['/partners/reservation/reservations']) }}" class="list-message-info-item">
-                            <span class="list-message-info-name">Бронь</span>
-                            <span class="list-message-info-value">--</span>
-                        </a>
-                        <a href="{{ path(['/messages/default/index']) }}" class="list-message-info-item">
-                            <span class="list-message-info-name">Сообщения</span>
-                            <span class="list-message-info-value">--</span>
-                        </a>
-                    </div>
-                </div>
+                </ul>
+                {% include './__header_collapse_message.twig' %}
+            </nav>
+            <div class="header-fast-access">
+                {% include './__header_collapse_message.twig' %}
+                <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-menu" aria-label="navbar-toggle">
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
-            <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-menu" aria-label="navbar-toggle">
-                <span></span>
-                <span></span>
-            </button>
         </div>
-    </div>
-</header>
+    </header>
+
+{% endif %}
