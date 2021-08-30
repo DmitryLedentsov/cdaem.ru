@@ -7,7 +7,7 @@
 
 {% extends "@common/modules/office/views/frontend/layouts/main.twig" %}
 
-{% block bodyClass %}l-account p-home{% endblock %}
+{% block bodyClass %}p-home{% endblock %}
 
 {% block title %}Мои объявления - Личный кабинет | Cdaem.ру{% endblock %}
 
@@ -36,13 +36,38 @@
 
 {% block content %}
 
-    <p>
-        ---
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-    </p>
+    {% for apartment in dataProvider.getModels() %}
+
+
+        <p>Комнат:{{ apartment.total_rooms }}</p>
+        <p>Спальных мест:{{ apartment.beds }}</p>
+        <p>Общая площадь:{{ apartment.total_area }}</p>
+        <p>Ремонт:{{ apartment.total_area }}м<sup>2</sup></p>
+
+        {{ ApartmentHelper.getInfoNew(apartment) | raw }}
+        {{ ApartmentHelper.getAddress(apartment) }}
+
+        <div style="margin-top: 50px;">
+            {{ ApartmentHelper.getAdvertsNew(apartment) | raw }}
+            <div class="reviews">
+                <a href="{{ path({'0' : '/reviews/default/index', 'id' : apartment.apartment_id}) }}">Отзывов:
+                    {{ this.renderDynamic("return \\common\\modules\\reviews\\models\\Review::find()->where(['apartment_id' => "~apartment.apartment_id~"])->moderation()->count();") | raw }}
+                </a>
+            </div>
+        </div>
+
+        <hr>
+
+
+
+    {% else %}
+        <div class="alert alert-info">
+            {% if searchModel.errors.slug %}
+                {{ searchModel.errors.slug[0] }}
+            {% else %}
+                Вы не добавили ни одного объявления. <a href="{{ path(['/partners/office/create']) }}">Добавить</a>.
+            {% endif %}
+        </div>
+    {% endfor %}
 
 {% endblock content %}

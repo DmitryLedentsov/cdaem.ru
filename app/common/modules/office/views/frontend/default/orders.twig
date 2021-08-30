@@ -6,7 +6,7 @@
 
 {% extends "@common/modules/office/views/frontend/layouts/main.twig" %}
 
-{% block title %}{{ this.registerTitle('Мои покупки - Личный кабинет | Сдаём.ру') }}{% endblock %}
+{% block title %}Мои покупки - Личный кабинет | Сдаём.ру{% endblock %}
 
 {% block header %}{% endblock %}
 
@@ -40,7 +40,7 @@
 
 
 {% block content %}
-    <h4 style="text-align:center;border-bottom:2px solid orange;font-size:30px;">Мои покупки</h4>
+    <h4>Мои покупки</h4>
     {% if app.session.hasFlash('info') %}
         <div class="alert alert-info" role="alert">
             {{ app.session.getFlash('info') | raw }}

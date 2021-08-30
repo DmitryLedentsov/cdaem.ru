@@ -14,7 +14,7 @@
     <title>{% block title %}{% endblock %}</title>
     {{ this.head() }}
 </head>
-<body class="{% block bodyClass %}{% endblock %}">
+<body class="l-account {% block bodyClass %}{% endblock %}">
 {{ this.beginBody() }}
 
 {{ use('yii/widgets/ActiveForm') }}
@@ -29,7 +29,13 @@
     {% block navbar %}
         {{ this.renderDynamic('return $this->render("@common/modules/office/views/frontend/_sections/_header-collapse.twig");') | raw }}
     {% endblock %}
-    {% block content %}{% endblock %}
+    <main class="main-account">
+        <div class="container-fluid">
+            <div class="main-account-inner">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </main>
     {% block footer %}
         {{ this.render("@common/modules/site/views/_sections/_footer.twig") | raw }}
     {% endblock %}

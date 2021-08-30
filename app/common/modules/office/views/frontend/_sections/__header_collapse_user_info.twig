@@ -20,9 +20,6 @@
     <div class="user-settings">
         <div class="user-settings-header">Мой профиль</div>
         <div class="user-settings-list">
-            <a class="user-settings-item{{ app.request.pathInfo == 'office/orders' ? ' active' : '' }}" href="{{ path(['/office/default/orders']) }}">
-                Мои покупки
-            </a>
             <a class="user-settings-item{{ app.request.pathInfo == 'office/apartments' and strpos(app.request.pathInfo, 'type=available') == 0 ? ' active' : ''}}"
                href="{{ path(['/partners/office/apartments']) }}">Мои объявления
             </a>
@@ -31,6 +28,9 @@
             </a>
             <a class="user-settings-item{{ app.request.pathInfo == 'office/calendar' ? ' active' : '' }}" href="{{ path({0 : '/partners/office/calendar'}) }}">
                 Календарь
+            </a>
+            <a class="user-settings-item{{ app.request.pathInfo == 'office/orders' ? ' active' : '' }}" href="{{ path(['/office/default/orders']) }}">
+                Мои покупки
             </a>
             <a class="user-settings-item{{ app.request.pathInfo == 'office/top-slider-history' ? ' active' : '' }}" href="{{ path(['/office/default/top-slider']) }}">
                 Бегущая строка
