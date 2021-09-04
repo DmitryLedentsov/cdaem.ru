@@ -4,81 +4,82 @@
 <head>
     <title>Добавить объявление</title>
     <!-- @include ./_section/_head.html -->
-    <link rel="stylesheet" media="screen" href="./css/pages/account/step.min.css"/>
+    <link rel="stylesheet" media="screen" href="./css/pages/account/create-adv.min.css"/>
 </head>
 
-<body class="l-account p-step">
+<body class="l-account p-create-adv">
 
-  <div class="wrapper">
-      <!-- @include _section/_header-collapse-account.html -->
-      <main class="main-account">
-          <section class="steps">
-              <div class="container-fluid">
-                  <div class="main-account__inner">
-                      <div class="section-head section-head-between">
-                          <h2 class="section-header">Добавить объявление</h2>
-                          <div class="steps-list">
-                            <div class="steps-list-item steps-list-item-active">1</div>
-                            <div class="steps-list-item">2</div>
-                            <div class="steps-list-item">3</div>
-                            <div class="steps-list-item">4</div>
-                            <div class="steps-list-item">5</div>
-                            <div class="steps-list-item">6</div>
-                          </div>
-                      </div>
-                      <!-- step -->
-                      <div class="step">
-                        <div class="step-line">
-                          <div class="step-column-33">
+<div class="wrapper">
+    <!-- @include _section/_header-collapse-account.html -->
+    <main class="main-account">
+        <div class="container-fluid">
+            <div class="main-account-inner">
+
+                <div class="section-head section-head-between">
+                    <h2 class="section-header">Добавить объявление</h2>
+                    <div class="steps-list">
+                        <div class="steps-list-item steps-list-item-active">1</div>
+                        <div class="steps-list-item">2</div>
+                        <div class="steps-list-item">3</div>
+                        <div class="steps-list-item">4</div>
+                        <div class="steps-list-item">5</div>
+                        <div class="steps-list-item">6</div>
+                    </div>
+                </div>
+                <!-- step -->
+                <div class="step">
+                    <div class="step-line">
+                        <div class="step-column-33">
                             <select class="custom-select">
-                              <option value="">Город</option>
-                              <option value="">Москва</option>
-                              <option value="">Санкт-Петербург</option>
+                                <option value="">Город</option>
+                                <option value="">Москва</option>
+                                <option value="">Санкт-Петербург</option>
                             </select>
-                          </div>
-                          <div class="step-column-33">
+                        </div>
+                        <div class="step-column-33">
                             <label class="step-label">
-                              <input type="text" name="address" required="1" class="step-input">
-                              <div class="step-label-text">Адрес <sup>*</sup></div>
+                                <input type="text" name="address" required="1" class="step-input">
+                                <div class="step-label-text">Адрес <sup>*</sup></div>
                             </label>
-                          </div>
-                          <div class="step-column-33">
+                        </div>
+                        <div class="step-column-33">
                             <select class="custom-select">
-                              <option value="">Метро</option>
-                              <option value="">Метро 1</option>
-                              <option value="">Метро 2</option>
+                                <option value="">Метро</option>
+                                <option value="">Метро 1</option>
+                                <option value="">Метро 2</option>
                             </select>
-                          </div>
                         </div>
-                        <div class="maps">
-                          <div class="maps-data">
+                    </div>
+                    <div class="maps">
+                        <div class="maps-data">
                             <div class="maps-data-item">
-                              <div class="maps-data-header">Где вы?</div>
-                              <div class="maps-link">
-                                <a href="#" class="maps-link-item maps-link-active">Город</a>
-                                <a href="#" class="maps-link-item">За городом</a>
-                              </div>
+                                <div class="maps-data-header">Где вы?</div>
+                                <div class="maps-link">
+                                    <a href="#" class="maps-link-item maps-link-active">Город</a>
+                                    <a href="#" class="maps-link-item">За городом</a>
+                                </div>
                             </div>
                             <div class="maps-data-item">
-                              <div class="maps-data-header">Выберите город</div>
-                              <div class="maps-link">
-                                <a href="#" class="maps-link-item">Москва</a>
-                                <a href="#" class="maps-link-item">Санкт-Петербург</a>
-                              </div>
+                                <div class="maps-data-header">Выберите город</div>
+                                <div class="maps-link">
+                                    <a href="#" class="maps-link-item">Москва</a>
+                                    <a href="#" class="maps-link-item">Санкт-Петербург</a>
+                                </div>
                             </div>
-                          </div>
-                          <div class="maps-frame">
+                        </div>
+                        <div class="maps-frame">
                             <img src="./images/account/img-maps.png" alt="">
-                          </div>
                         </div>
-                        <a href="#" class="step-next">Продолжить</a>
-                      </div>
-                  </div>
-              </div>
-          </section>
-      </main>
-      <!-- @include ./_section/_footer.html -->
-  </div>
+                    </div>
+                    <a href="#" class="step-next">Продолжить</a>
+                </div>
+
+
+            </div>
+        </div>
+    </main>
+    <!-- @include ./_section/_footer.html -->
+</div>
 
 <!-- @include ./_section/_end_body.html -->
 

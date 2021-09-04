@@ -22,11 +22,12 @@
         padding: 1.5rem 0;
         display: flex;
         align-items: center;
-        flex-direction: column;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
 
         @include tablet-land() {
             padding: 0 1.5rem;
-            flex-direction: row;
             justify-content: space-between;
             height: 105px;
         }
@@ -35,6 +36,8 @@
     .nav {
         padding-right: 1.5rem;
         margin: 2rem 0;
+        width: 100%;
+        justify-content: center;
 
         @media (min-width: 620px) {
             height: 3rem;
@@ -42,7 +45,9 @@
 
         @include tablet-land() {
             height: inherit;
+            width: auto;
             margin: 0 0 0 auto;
+            justify-content: normal;
         }
 
         &-list {

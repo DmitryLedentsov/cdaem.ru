@@ -1,79 +1,79 @@
 <header class="header-collapse">
     <div class="container-fluid">
         <a class="header-logo" href="./index.html">
-            <img src="./images/account/img-logo-account.svg" alt="logo">
+            <img src="./images/logo-dark.svg" alt="logo">
         </a>
-        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-menu"
-                aria-label="navbar-toggle">
-            <span></span>
-            <span></span>
-        </button>
         <nav class="main-menu collapse" id="main-menu">
+            <div class="user-info">
+                <div class="user-info-avatar">
+                    <img src="./images/account/img-avatar.png" alt="">
+                </div>
+                <div class="user-info-data">
+                    <div class="user-info-name">Власов Дмитрий</div>
+                    <div class="user-info-balance">Баланс: <span class="user-info-balance-value">4000 ₽</span></div>
+                </div>
+                <div class="user-change">
+                    <img src="./images/account/icon-change.svg" alt="">
+                </div>
+                <div class="user-settings">
+                    <div class="user-settings-header">Мой профиль</div>
+                    <div class="user-settings-list">
+                        <a href="#" class="user-settings-item">Мои покупки</a>
+                        <a href="#" class="user-settings-item">Мои объявления</a>
+                        <a href="#" class="user-settings-item">Услуги</a>
+                        <a href="#" class="user-settings-item">Избранное</a>
+                        <a href="#" class="user-settings-item">Черный список</a>
+                        <a href="#" class="user-settings-item">Безопасная сделка</a>
+                        <a href="#" class="user-settings-item">Настройки</a>
+                        <a href="#" class="user-settings-item">Оплата</a>
+                    </div>
+                    <a href="#" class="user-settings-out">
+                        <img src="./images/account/icon-logout.svg" alt="" />
+                        <span class="user-settings-out-text">Выйти</span>
+                    </a>
+                </div>
+            </div>
             <ul class="nav navbar-nav">
                 <li class="nav-item">
-                    <a class="active" href="#">Доска объявлений</a>
+                    <a class="active" href="./board.html">Доска объявлений</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#">Добавить объявление</a>
+                    <a href="./account_step.html">Добавить объявление</a>
                 </li>
-                <li class="nav-item">
+                <!--<li class="nav-item">
                     <a href="#">Быстро снять</a>
-                </li>
+                </li>-->
                 <li class="nav-item">
-                    <a href="#">Помощь</a>
+                    <a href="./help.html">Помощь</a>
                 </li>
             </ul>
         </nav>
-        <div class="header-message">
-            <img src="./images/account/icon-lk-email.svg" alt="">
-            <span class="header-message-value">99</span>
-            <div class="message-info">
-                <div class="message-info-header">Уведомления</div>
-                <div class="list-message-info">
-                    <a href="#" class="list-message-info-item">
-                        <span class="list-message-info-name">Заявки</span>
-                        <span class="list-message-info-value">99</span>
-                    </a>
-                    <a href="#" class="list-message-info-item">
-                        <span class="list-message-info-name">Бронь</span>
-                        <span class="list-message-info-value">99</span>
-                    </a>
-                    <a href="#" class="list-message-info-item">
-                        <span class="list-message-info-name">Чат</span>
-                        <span class="list-message-info-value">99</span>
-                    </a>
+        <div class="header-fast-access">
+            <div class="header-message">
+                <i class="header-message-icon"></i>
+                <span class="header-message-value">99</span>
+                <div class="message-info">
+                    <div class="message-info-header">Уведомления</div>
+                    <div class="list-message-info">
+                        <a href="#" class="list-message-info-item">
+                            <span class="list-message-info-name">Заявки</span>
+                            <span class="list-message-info-value">99</span>
+                        </a>
+                        <a href="#" class="list-message-info-item">
+                            <span class="list-message-info-name">Бронь</span>
+                            <span class="list-message-info-value">99</span>
+                        </a>
+                        <a href="#" class="list-message-info-item">
+                            <span class="list-message-info-name">Сообщения</span>
+                            <span class="list-message-info-value">99</span>
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="user-info">
-            <div class="user-info-avatar">
-                <img src="./images/account/img-avatar.png" alt="">
-            </div>
-            <div class="user-info-data">
-                <div class="user-info-name">Власов Дмитрий</div>
-                <div class="user-info-balance">Баланс: <span class="user-info-balance-value">4000 рублей</span></div>
-            </div>
-            <div class="user-change">
-                <img src="./images/account/icon-change.svg" alt="">
-            </div>
-            <!-- settings -->
-            <div class="user-settings">
-                <div class="user-settings-header">Мой профиль</div>
-                <div class="user-settings-list">
-                    <a href="#" class="user-settings-item">Мои покупки</a>
-                    <a href="#" class="user-settings-item">Мои объявления</a>
-                    <a href="#" class="user-settings-item">Услуги</a>
-                    <a href="#" class="user-settings-item">Избранное</a>
-                    <a href="#" class="user-settings-item">Черный список</a>
-                    <a href="#" class="user-settings-item">Безопасная сделка</a>
-                    <a href="#" class="user-settings-item">Настройки</a>
-                    <a href="#" class="user-settings-item">Оплата</a>
-                </div>
-                <a href="#" class="user-settings-out">
-                    <img src="./images/account/icon-logout.svg" alt="">
-                    <span class="user-settings-out-text">Выйти</span>
-                </a>
-            </div>
+            <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-menu" aria-label="navbar-toggle">
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </div>
 </header>

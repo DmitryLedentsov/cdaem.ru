@@ -13,10 +13,6 @@
 @import "../modules/appeal-form";
 @import "../modules/location";
 
-// Layouts
-@import "../application/layouts/base";
-@import "../application/layouts/account";
-
 // Sections
 @import "../application/sections/header";
 @import "../application/sections/header-collapse";
@@ -24,3 +20,8 @@
 @import "../application/sections/breadcrumbs";
 @import "../application/sections/apartment-card";
 @import "../application/sections/search-form";
+@import "../application/sections/adv-card";
+
+// Layouts
+@import "../application/layouts/base";
+@import "../application/layouts/account";
