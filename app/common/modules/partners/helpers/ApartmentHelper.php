@@ -15,19 +15,35 @@ use common\modules\partners\models\Apartment;
 class ApartmentHelper
 {
     /**
+     * @param Apartment $apartment
+     * @return string
+     */
+    public static function getDefaultPreviewImageSrc(Apartment $apartment)
+    {
+        $image = $apartment->titleImage;
+
+        if ($image !== null) {
+            return $image->getPreviewSrc();
+        }
+
+        return Yii::$app->params['siteDomain'] . Yii::$app->getModule('partners')->defaultImageSrc;
+    }
+
+
+    /**
      * Возвращает адресс апартамента
      * @param Apartment $model
      * @return string
      */
-    public static function getAddress(Apartment $model)
+    public static function getAddress(Apartment $model): string
     {
         if ($model->city) {
             $result = [];
-            $result[] = $model->address;
             $result[] = $model->city->name;
-            if ($model->city->country) {
+            $result[] = $model->address;
+            /*if ($model->city->country) {
                 $result[] = $model->city->country->name;
-            }
+            }*/
 
             return implode(', ', $result);
         }

@@ -5,7 +5,7 @@ use yii\db\Migration;
 /**
  * Class m150101_231661_partners_reservations_conflict
  *
- * Поле конфликт обозначает, что оба польователя нажали незаезд и у них возник конфликт
+ * Поле конфликт обозначает, что оба пользователя нажали незаезд и у них возник конфликт
  */
 class m150101_231661_partners_reservations_conflict extends Migration
 {

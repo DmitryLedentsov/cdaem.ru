@@ -3,7 +3,7 @@
         <div class="adv-card-details">
             <div class="d-flex flex-wrap">
                 <div class="adv-list-img">
-                    <img src="/_new/images/account/img-appartment.png" alt="" />
+                    <img src="{{ ApartmentHelper.getDefaultPreviewImageSrc(apartment) }}" alt="" />
                 </div>
                 <div class="adv-list-data">
                     <div class="adv-state adv-state-active">
@@ -16,8 +16,13 @@
                         </a>
                     </div>
                     <div class="adv-address">
-                        <span class="adv-address-name">Москва, Большая полянка 28</span>
-                        <a href="#" class="adv-address-link">Отзывов: 2</a>
+                        <span class="adv-address-name">{{ ApartmentHelper.getAddress(apartment) }}</span>
+                        <a href="{{ path({'0' : '/reviews/default/index', 'id' : apartment.apartment_id}) }}" class="adv-address-link">
+                            {{ t('app',
+                                '{n, plural, =0{Нет отзывов} one{# отзыв} few{# отзыва} many{# отзывов} other{# отзывов}}',
+                                {'n': this.renderDynamic("return \\common\\modules\\reviews\\models\\Review::find()->where(['apartment_id' => "~apartment.apartment_id~"])->moderation()->count();")}
+                            ) }}
+                        </a>
                     </div>
                     <div class="adv-card-metro">
                         <span class="adv-card-metro-name">
@@ -53,7 +58,7 @@
                         <span class="adv-card-safe-icon">
                             <img src="/_new/images/account/icon-safe-deal.svg" alt="" />
                             <span class="adv-card-safe-tooltip">
-                                Дааная услуга позволяет безопасное бронирование без вашего участия.
+                                Данная услуга позволяет безопасное бронирование без вашего участия.
                                 При нажатии на кнопку "Закрыть контакты" действие дублируется на все объявления...
                                 Добавить описание.
                             </span>
@@ -64,35 +69,47 @@
                             <div class="apartment-info-icon">
                                 <img src="/_new/images/account/icon-my-apartment-info-room.svg" alt="">
                             </div>
-                            <div class="apartment-info-text">1 комната</div>
+                            <div class="apartment-info-text">
+                                {{ t('app',
+                                    '{n, plural, one{# комната} few{# комнаты} many{# комнат} other{# комнат}}',
+                                    {'n': apartment.total_rooms}
+                                ) }}
+                            </div>
                         </div>
                         <div class="apartment-info-item">
                             <div class="apartment-info-icon">
                                 <img src="/_new/images/account/icon-my-apartment-info-sl-places.svg" alt="">
                             </div>
-                            <div class="apartment-info-text">2 сп. места</div>
+                            <div class="apartment-info-text">
+                                {{ t('app',
+                                    '{n, plural, one{# сп. место} few{# сп. места} many{# сп. мест} other{# сп. мест}}',
+                                    {'n': apartment.beds}
+                                ) }}
+                            </div>
                         </div>
                         <div class="apartment-info-item">
                             <div class="apartment-info-icon">
                                 <img src="/_new/images/account/icon-my-apartment-info-square.svg" alt="">
                             </div>
-                            <div class="apartment-info-text">35 м <sup>2</sup></div>
+                            <div class="apartment-info-text">{{ apartment.total_area }} м<sup>2</sup></div>
                         </div>
                         <div class="apartment-info-item">
                             <div class="apartment-info-icon">
                                 <img src="/_new/images/account/icon-my-apartment-info-repair.svg" alt="">
                             </div>
-                            <div class="apartment-info-text">Евроремонт</div>
+                            <div class="apartment-info-text">
+                                {{ apartment.getRemontName() }}
+                            </div>
                         </div>
                         <div class="apartment-info-item">
                             <div class="apartment-info-icon">
                                 <img src="/_new/images/account/icon-my-apartment-info-num-person.svg" alt="">
                             </div>
-                            <div class="apartment-info-text">2 чел.</div>
+                            <div class="apartment-info-text">{{ apartment.getGuestsLimit() }} чел.</div>
                         </div>
                     </div>
                     <div class="adv-card-action">
-                        <a href="#" class="adv-card-action-item">Просмотреть</a>
+                        <a href="{{ path({'0' : '/partners/office/preview', 'id' : apartment.apartment_id}) }}" class="adv-card-action-item">Просмотреть</a>
                         <a href="#" class="adv-card-action-item">Удалить</a>
                         <a href="#" class="adv-card-action-date">
                             <span class="adv-card-action-icon">
@@ -151,6 +168,13 @@
         </div>
         <div class="adv-card-advs">
             <div class="adv-card-advs-price">
+
+                {% for advert in apartment.adverts %}
+                    {{ advert.rent_type }} /
+                    {{ advert.price | number_format(0, '.', '') }} ₽ /
+                    {{ advert.position }}
+                {% endfor %}
+
                 <!-- ===================================== -->
                 <div class="adv-card-advs-price-item">
                     <span class="adv-card-advs-price-icon">
@@ -276,13 +300,14 @@
     </div>
     <div class="adv-card-line adv-card-line-top">
         <div class="adv-content">
-            <div class="adv-content-change"></div>
-            <div class="adv-content-inner">
-                Вы можете бесплатно разместить своё предложение по «аренде посуточно» и
-                выбрать нужный раздел: Квартира на... разместить своё предложение по «аренде посуточно» и выбрать
-                разместить своё предложение по «аренде посуточно» и выбрать разместить своё предложение по «аренде
-                посуточно» и выбрать разместить своё предложение по «аренде посуточно» и выбрать
-            </div>
+            {% if apartments.description %}
+                <div class="adv-content-change"></div>
+                <div class="adv-content-inner">
+                    {{ apartments.description }}
+                </div>
+            {% else %}
+                <div class="adv-content-inner">Нет описания</div>
+            {% endif %}
         </div>
         <div class="adv-card-change">
             <button class="adv-card-change-item">Попасть в слайдер</button>
@@ -290,7 +315,7 @@
             <button class="adv-card-change-item">Выделить цветом</button>
             <button class="adv-card-change-item">Поднять позицию</button>
             <button class="adv-card-change-item">Поднять в топ</button>
-            <a href="#" class="adv-card-change-edit">
+            <a href="{{ path({'0' : '/partners/office/update', 'id' : apartment.apartment_id}) }}" class="adv-card-change-edit">
                 <span class="adv-card-change-edit-icon">
                     <img src="/_new/images/account/icon-price-my-adv-change.svg" alt="">
                 </span>

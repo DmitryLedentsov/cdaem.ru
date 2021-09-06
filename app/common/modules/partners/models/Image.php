@@ -99,7 +99,7 @@ class Image extends \yii\db\ActiveRecord
      * Удаляет записи из БД вместе с файлами из сервера
      * WARNING: Если вы не укажете никакого условия, метод удалит все записи в этой таблице
      * @param string|array $condition
-     * Пожалуйста обратитесь к [[ActiveRecord::deleteAll()]] чтобы узнать как назначать параметры.
+     * Пожалуйста, обратитесь к [[ActiveRecord::deleteAll()]] чтобы узнать как назначать параметры.
      * @param array $params
      * @return integer количество удаленных записей
      */

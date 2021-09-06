@@ -51,6 +51,22 @@ class Apartment extends ActiveRecord
     }
 
     /**
+     * @return array лимит гостей
+     */
+    public static function getGuestsLimitArray(): array
+    {
+        return [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+        ];
+    }
+
+    /**
      * @return array Список кол-во спальных мест
      */
     public static function getBedsArray(): array

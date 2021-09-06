@@ -357,13 +357,22 @@ class Apartment extends \yii\db\ActiveRecord
     }
 
     /**
+     * @inheritdoc
+     */
+    public function getGuestsLimitList()
+    {
+        return TotalApartment::getGuestsLimitArray();
+    }
+
+    /**
      * Текстовое представление типа ремонта
      * @return mixed|null
      */
     public function getRemontName()
     {
         if ($this->remont) {
-            return ArrayHelper::getValue($this->remontList, $this->remont);
+            $name = ArrayHelper::getValue($this->remontList, $this->remont);
+            return trim(sprintf('%s %s', $name, $this->remont === 3 ? '' : 'ремонт'));
         }
 
         return null;
@@ -379,6 +388,15 @@ class Apartment extends \yii\db\ActiveRecord
         }
 
         return null;
+    }
+
+    /**
+     * Максимальное кол-во гостей
+     * @return int
+     */
+    public function getGuestsLimit(): int
+    {
+        return $this->guests_limit ?: 2;
     }
 
     /**
