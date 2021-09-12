@@ -84,6 +84,18 @@
                 font-size: 14px;
                 font-weight: 500;
                 color: #252525;
+
+                &-type {
+                    display: block;
+                    line-height: 1;
+                    font-size: 95%;
+                }
+                &-position {
+                    display: block;
+                    margin-top: 4px;
+                    font-size: 82%;
+                    line-height: 1;
+                }
             }
 
             &-value {
@@ -91,6 +103,8 @@
                 background: none;
                 border: none;
                 cursor: pointer;
+                display: flex;
+                flex-wrap: nowrap;
             }
 
             &-number {

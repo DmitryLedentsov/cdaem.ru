@@ -438,6 +438,16 @@ class Apartment extends \yii\db\ActiveRecord
     }
 
     /**
+     * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getFacilities()
+    {
+        return $this->hasMany(Facility::class, ['facility_id' => 'facility_id'])
+            ->viaTable('{{%partners_apartments_facilities}}', ['apartment_id' => 'apartment_id']);
+    }
+
+    /**
      * @inheritdoc
      */
     public function hasReserved($date_from, $date_to)

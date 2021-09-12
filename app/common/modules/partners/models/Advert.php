@@ -309,4 +309,5 @@ class Advert extends \yii\db\ActiveRecord
     {
         return Yii::$app->formatter->asCurrency($this->price, ArrayHelper::getValue($this->currencyList, $this->currency));
     }
+
 }

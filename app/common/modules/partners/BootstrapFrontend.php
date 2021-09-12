@@ -22,8 +22,9 @@ class BootstrapFrontend implements \yii\base\BootstrapInterface
 
                 'office/apartments/<filter>' => 'partners/office/apartments',
                 'office/apartments' => 'partners/office/apartments',
-                'office/create-adverts' => '/partners/office/create',
-                'office/update-adverts/<id:\d+>' => '/partners/office/update',
+                'office/apartment/create' => '/partners/office/create',
+                'office/apartment/<id:\d+>' => 'partners/office/preview',
+                'office/apartment/<id:\d+>/update' => '/partners/office/update',
                 'office/calendar' => '/partners/office/calendar',
 
                 'office/reservations' => 'partners/reservation/reservations',

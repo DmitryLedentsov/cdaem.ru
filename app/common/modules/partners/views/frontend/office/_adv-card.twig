@@ -58,9 +58,8 @@
                         <span class="adv-card-safe-icon">
                             <img src="/_new/images/account/icon-safe-deal.svg" alt="" />
                             <span class="adv-card-safe-tooltip">
-                                Данная услуга позволяет безопасное бронирование без вашего участия.
+                                Данная услуга позволяет осуществить безопасное бронирование без вашего участия.
                                 При нажатии на кнопку "Закрыть контакты" действие дублируется на все объявления...
-                                Добавить описание.
                             </span>
                         </span>
                     </div>
@@ -120,174 +119,52 @@
                     </div>
                 </div>
             </div>
-            <!-- services -->
-            <div class="adv-card-services">
-                <span class="adv-card-service-icon">
-                    <img src="/_new/images/account/services/refrigerator.svg" alt="">
-                </span>
-                <span class="adv-card-service-icon">
-                    <img src="/_new/images/account/services/plate.svg" alt="">
-                </span>
-                <span class="adv-card-service-icon">
-                    <img src="/_new/images/account/services/iron.svg" alt="">
-                </span>
-                <span class="adv-card-service-icon">
-                    <img src="/_new/images/account/services/hair-dryer.svg" alt="">
-                </span>
-                <span class="adv-card-service-icon">
-                    <img src="/_new/images/account/services/wi-fi.svg" alt="">
-                </span>
-                <span class="adv-card-service-icon">
-                    <img src="/_new/images/account/services/microwave.svg" alt="">
-                </span>
-                <span class="adv-card-service-icon">
-                    <img src="/_new/images/account/services/tv.svg" alt="">
-                </span>
-                <span class="adv-card-service-icon">
-                    <img src="/_new/images/account/services/air-conditioner.svg" alt="">
-                </span>
-                <span class="adv-card-service-icon">
-                    <img src="/_new/images/account/services/washing-machine.svg" alt="">
-                </span>
-                <span class="adv-card-service-icon">
-                    <img src="/_new/images/account/services/sofa.svg" alt="">
-                </span>
-                <span class="adv-card-service-icon">
-                    <img src="/_new/images/account/services/bed.svg" alt="">
-                </span>
-                <span class="adv-card-service-icon">
-                    <img src="/_new/images/account/services/shower.svg" alt="">
-                </span>
-                <span class="adv-card-service-icon">
-                    <img src="/_new/images/account/services/bath.svg" alt="">
-                </span>
-                <span class="adv-card-service-icon">
-                    <img src="/_new/images/account/services/jacuzzi.svg" alt="">
-                </span>
-            </div>
+            {% if apartment.facilities %}
+                <div class="adv-card-services">
+                    {% for facility in apartment.facilities %}
+                        <span class="adv-card-service-icon">
+                            <img src="/_new/images/account/services/{{ facility.alias }}.svg" title="{{ facility.name }}" alt="{{ facility.name }}" />
+                        </span>
+                    {% endfor %}
+                </div>
+            {% endif %}
         </div>
         <div class="adv-card-advs">
             <div class="adv-card-advs-price">
-
                 {% for advert in apartment.adverts %}
-                    {{ advert.rent_type }} /
-                    {{ advert.price | number_format(0, '.', '') }} ₽ /
-                    {{ advert.position }}
+                    <div class="adv-card-advs-price-item">
+                        <span class="adv-card-advs-price-icon">
+                            {% if advert.rentType.getIconName(advert.rentType.slug) %}
+                                <img src="/_new/images/icons/apartment/{{ advert.rentType.getIconName(advert.rentType.slug) }}.svg" title="{{ advert.rentType.name }}" alt="" />
+                            {% endif %}
+                        </span>
+                        <span class="adv-card-advs-price-text">
+                            <span class="adv-card-advs-price-text-type">{{ advert.rentType.short_name }}</span>
+                            <span class="adv-card-advs-price-text-position"><span>{{ advert.position }}</span> в топе</span>
+                        </span>
+                        <button class="adv-card-advs-price-value">
+                            <span class="adv-card-advs-price-number">{{ advert.price | number_format(0, '.', '') }} ₽</span>
+                            <span class="adv-card-advs-price-change">
+                            <img src="/_new/images/account/icon-price-my-adv-change.svg" alt="" />
+                        </span>
+                        </button>
+                        <!-- hidden block -->
+                        <div class="adv-card-advs-modal adv-card-advs-hidden">
+                            <form action="#" class="adv-form">
+                                <div class="adv-form-line adv-form-line-between">
+                                    <input type="text" class="adv-form-input" value="{{ advert.price | number_format(0, '', '') }}">
+                                    <input type="submit" value="Готово" class="adv-form-submit">
+                                </div>
+                                <div class="adv-form-line">
+                                    <label class="adv-form-label">
+                                        <input type="checkbox" class="adv-form-checkbox">
+                                        <span class="adv-form-label-text">Применить ко всем</span>
+                                    </label>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 {% endfor %}
-
-                <!-- ===================================== -->
-                <div class="adv-card-advs-price-item">
-                    <span class="adv-card-advs-price-icon">
-                        <img src="/_new/images/icons/apartment/hour.svg" alt="">
-                    </span>
-                    <span class="adv-card-advs-price-text">Сутки: 1 в топе</span>
-                    <button class="adv-card-advs-price-value">
-                        <span class="adv-card-advs-price-number">1000 р</span>
-                        <span class="adv-card-advs-price-change">
-                            <img src="/_new/images/account/icon-price-my-adv-change.svg" alt="">
-                        </span>
-                    </button>
-                    <!-- hidden block -->
-                    <div class="adv-card-advs-modal adv-card-advs-hidden">
-                        <form action="#" class="adv-form">
-                            <div class="adv-form-line adv-form-line-between">
-                                <input type="text" class="adv-form-input" placeholder="1000р">
-                                <input type="submit" value="Готово" class="adv-form-submit">
-                            </div>
-                            <div class="adv-form-line">
-                                <label class="adv-form-label">
-                                    <input type="checkbox" class="adv-form-checkbox">
-                                    <span class="adv-form-label-text">Применить ко всем</span>
-                                </label>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <!-- ===================================== -->
-                <div class="adv-card-advs-price-item">
-                    <span class="adv-card-advs-price-icon">
-                        <img src="/_new/images/icons/apartment/night.svg" alt="">
-                    </span>
-                    <span class="adv-card-advs-price-text">Ночь: 2 в топе</span>
-                    <button class="adv-card-advs-price-value">
-                        <span class="adv-card-advs-price-number">1000 р</span>
-                        <span class="adv-card-advs-price-change">
-                            <img src="/_new/images/account/icon-price-my-adv-change.svg" alt="">
-                        </span>
-                    </button>
-                    <!-- hidden block -->
-                    <div class="adv-card-advs-modal adv-card-advs-hidden">
-                        <form action="#" class="adv-form">
-                            <div class="adv-form-line adv-form-line-between">
-                                <input type="text" class="adv-form-input" placeholder="1000р">
-                                <input type="submit" value="Готово" class="adv-form-submit">
-                            </div>
-                            <div class="adv-form-line">
-                                <label class="adv-form-label">
-                                    <input type="checkbox" class="adv-form-checkbox">
-                                    <span class="adv-form-label-text">Применить ко всем</span>
-                                </label>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <!-- ===================================== -->
-                <div class="adv-card-advs-price-item">
-                    <span class="adv-card-advs-price-icon">
-                        <img src="/_new/images/icons/apartment/day.svg" alt="">
-                    </span>
-                    <span class="adv-card-advs-price-text">Час: 1 в топе</span>
-                    <button class="adv-card-advs-price-value">
-                        <span class="adv-card-advs-price-number">1000 р</span>
-                        <span class="adv-card-advs-price-change">
-                            <img src="/_new/images/account/icon-price-my-adv-change.svg" alt="">
-                        </span>
-                    </button>
-                    <!-- hidden block -->
-                    <div class="adv-card-advs-modal adv-card-advs-hidden">
-                        <form action="#" class="adv-form">
-                            <div class="adv-form-line adv-form-line-between">
-                                <input type="text" class="adv-form-input" placeholder="1000р">
-                                <input type="submit" value="Готово" class="adv-form-submit">
-                            </div>
-                            <div class="adv-form-line">
-                                <label class="adv-form-label">
-                                    <input type="checkbox" class="adv-form-checkbox">
-                                    <span class="adv-form-label-text">Применить ко всем</span>
-                                </label>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <!-- ===================================== -->
-                <div class="adv-card-advs-price-item">
-                    <span class="adv-card-advs-price-icon">
-                        <img src="/_new/images/icons/apartment/months.svg" alt="">
-                    </span>
-                    <span class="adv-card-advs-price-text">Месяц: 1 в топе</span>
-                    <button class="adv-card-advs-price-value">
-                        <span class="adv-card-advs-price-number">1000 р</span>
-                        <span class="adv-card-advs-price-change">
-                            <img src="/_new/images/account/icon-price-my-adv-change.svg" alt="">
-                        </span>
-                    </button>
-                    <!-- hidden block -->
-                    <div class="adv-card-advs-modal adv-card-advs-hidden">
-                        <form action="#" class="adv-form">
-                            <div class="adv-form-line adv-form-line-between">
-                                <input type="text" class="adv-form-input" placeholder="1000р">
-                                <input type="submit" value="Готово" class="adv-form-submit">
-                            </div>
-                            <div class="adv-form-line">
-                                <label class="adv-form-label">
-                                    <input type="checkbox" class="adv-form-checkbox">
-                                    <span class="adv-form-label-text">Применить ко всем</span>
-                                </label>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <!-- ===================================== -->
             </div>
             <div class="adv-card-advs-static">
                 <div class="adv-card-advs-static-icon">

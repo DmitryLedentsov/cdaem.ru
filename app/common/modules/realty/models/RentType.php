@@ -86,4 +86,28 @@ class RentType extends \yii\db\ActiveRecord
 
         return ArrayHelper::map($rentTypes, 'rent_type_id', 'name');
     }
+
+    /**
+     * @param string $icon
+     * @return string|null
+     */
+    public static function getIconName(string $icon): ?string
+    {
+        switch ($icon) {
+            case 'kvartira_na_chas':
+                return 'hour';
+
+            case 'na_noch':
+                return 'night';
+
+            case 'kvartira_na_sutki':
+                return 'day';
+
+            case 'kvartira_na_mesyac':
+                return 'months';
+
+            default:
+                return null;
+        }
+    }
 }
