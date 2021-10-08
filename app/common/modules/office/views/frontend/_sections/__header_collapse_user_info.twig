@@ -20,20 +20,25 @@
     <div class="user-settings">
         <div class="user-settings-header">Мой профиль</div>
         <div class="user-settings-list">
-            <a class="user-settings-item{{ app.request.pathInfo == 'office/apartments' and strpos(app.request.pathInfo, 'type=available') == 0 ? ' active' : ''}}"
-               href="{{ path(['/partners/office/apartments']) }}">Мои объявления
+            <a href="{{ path(['/partners/reservation/reservations']) }}" class="user-settings-item{{ app.request.pathInfo == 'office/reservations' ? ' active' : '' }}">
+                Безопасная сделка
             </a>
-            <a class="user-settings-item{{ app.request.pathInfo == 'office/services' ? ' active' : '' }}" href="{{ path(['/office/default/services']) }}">
-                Услуги
-            </a>
-            <a class="user-settings-item{{ app.request.pathInfo == 'office/calendar' ? ' active' : '' }}" href="{{ path({0 : '/partners/office/calendar'}) }}">
-                Календарь
-            </a>
+            {% if app.user.identity.profile.user_type != constant('\\common\\modules\\users\\models\\Profile::WANT_RENT') %}
+                <a class="user-settings-item{{ app.request.pathInfo == 'office/apartments' and strpos(app.request.pathInfo, 'type=available') == 0 ? ' active' : ''}}"
+                   href="{{ path(['/partners/office/apartments']) }}">Мои объявления
+                </a>
+                <a class="user-settings-item{{ app.request.pathInfo == 'office/services' ? ' active' : '' }}" href="{{ path(['/office/default/services']) }}">
+                    Услуги
+                </a>
+                <a class="user-settings-item{{ app.request.pathInfo == 'office/top-slider-history' ? ' active' : '' }}" href="{{ path(['/office/default/top-slider']) }}">
+                    Бегущая строка
+                </a>
+            {% endif %}
             <a class="user-settings-item{{ app.request.pathInfo == 'office/orders' ? ' active' : '' }}" href="{{ path(['/office/default/orders']) }}">
                 Мои покупки
             </a>
-            <a class="user-settings-item{{ app.request.pathInfo == 'office/top-slider-history' ? ' active' : '' }}" href="{{ path(['/office/default/top-slider']) }}">
-                Бегущая строка
+            <a class="user-settings-item{{ app.request.pathInfo == 'office/calendar' ? ' active' : '' }}" href="{{ path({0 : '/partners/office/calendar'}) }}">
+                Календарь
             </a>
             <a href="{{ path(['/office/default/bookmark']) }}" class="user-settings-item{{ app.request.pathInfo == 'office/bookmark' ? ' active' : '' }}">
                 Избранное
@@ -41,7 +46,6 @@
             <a href="{{ path(['/office/default/blacklist']) }}" class="user-settings-item{{ app.request.pathInfo == 'office/blacklist' ? ' active' : '' }}">
                 Черный список
             </a>
-            <a href="#" class="user-settings-item">Безопасная сделка</a>
             <a href="{{ path(['/users/user/profile']) }}" class="user-settings-item{{ app.request.pathInfo == 'profile' ? ' active' : '' }}">
                 Настройки
             </a>

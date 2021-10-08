@@ -35,6 +35,8 @@
 
 {% block content %}
 
+    {{ use('common/modules/partners/widgets/frontend/PreviewAdvertTmp') }}
+
     {{ use('common/modules/partners/assets/frontend/ApartmentAsset') }}
     {{ register_apartment_asset() }}
 
@@ -121,23 +123,19 @@
                 {% endif %}
             </div>
             <div class="col-md-6">
-
                 <div class="present">
-
                     {{ preview_advert_tmp_widget({'advert' : reservation.advert}) }}
-
                 </div>
                 <div class="extra-list">
-
-
                     {% if reservation.cancel == 0 %}
                         <p>{{ reservation.advert.apartment.city.country.name }}
                             , {{ reservation.advert.apartment.city.name }}
                             , {{ reservation.advert.apartment.address }}</p>
                         <p>
                             Комнат: <span class="color-info">{{ reservation.advert.apartment.total_rooms }}</span>,
-                            Спальных мест: <span
-                                    class="color-info">{{ ArrayHelper.getValue( reservation.advert.apartment.bedsList,  reservation.advert.apartment.beds) }}</span>,
+                            Спальных мест: <span class="color-info">
+                                {{ ArrayHelper.getValue( reservation.advert.apartment.bedsList,  reservation.advert.apartment.beds) }}
+                            </span>,
                             <br/> Общая площадь: <span class="color-info">{{ reservation.advert.apartment.total_area }} м2</span>,
                             <span class="color-info">{{ reservation.advert.apartment.remontName }}</span>
                         </p>
@@ -183,18 +181,9 @@
                     {% if reservation.landlord_open_contacts %}
                         <div class="alert alert-success">Арендодатель открыл Ваши контакты. Ожидайте связи.</div>
                     {% endif %}
-
                 </div>
-
             </div>
-
-
         </div>
-
-
-
-
-
 
     {% else %}
         <div class="alert alert-info">

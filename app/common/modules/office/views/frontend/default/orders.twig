@@ -8,6 +8,8 @@
 
 {% block title %}Мои покупки - Личный кабинет | Сдаём.ру{% endblock %}
 
+{% block bodyClass %}l-account p-purchases{% endblock %}
+
 {% block header %}{% endblock %}
 
 {% block breadcrumbs %}
@@ -40,50 +42,72 @@
 
 
 {% block content %}
-    <h4>Мои покупки</h4>
+
+    {{ use('common/modules/office/assets/frontend/OrdersAsset') }}
+    {{ register_orders_asset() }}
+
     {% if app.session.hasFlash('info') %}
         <div class="alert alert-info" role="alert">
             {{ app.session.getFlash('info') | raw }}
         </div> <br/>
     {% endif %}
 
-    {% for process in dataProvider.getModels() %}
+    <div class="section-head section-head-between">
+        <h2 class="section-header">Мои покупки</h2>
+        {% if dataProvider.count() %}
+            <select class="custom-select">
+                <option value="">Все</option>
+                <option value="">Активные</option>
+                <option value="">Не активные</option>
+            </select>
+        {% endif %}
+    </div>
 
-        <div class="apartment-item clearfix {% if process.process == 1 %}closed{% endif %}">
-            <div class="apartment-description">
-                <h3> {{ app.service.load(process.service).getName() }}</h3>
-                <div class="apartment-blocks">
-                    <div class="extra-list">
-                        <p>
-                            Дата включения: <br> {{ DateTimeHelper.toFullDateTime(process.date_start) | raw }} <br/>
-                            Дата выключения: <br>
-                            {% if process.date_expire is not empty %}
-                                {{ DateTimeHelper.toFullDateTime(process.date_expire) | raw }}
-                            {% else %}
-                                Нет
-                            {% endif %}
-                        </p>
-                    </div>
-                    <div class="extra-list">
-                        <br/>
-                        <b>Статус услуги</b>
-                        <p> {{ StatusHelper.getItem(process.getProcessArray(), process.process) |raw }}</p>
-                    </div>
-                    <div class="extra-list">
-                        <br>
-                        <p class="color-success" style="font-size: 140%">Оплачено</p>
+    {% if dataProvider.count() %}
+        <div class="purchases">
+            {% for service in dataProvider.getModels() %}
+                <div class="purchases-item">
+                    <div class="purchases-item-wrapper">
+                        <div class="purchases-header">{{ app.service.load(service.service).getName() }}</div>
+                        <div class="purchases-info">
+                            <div class="purchases-info-item">
+                                <span class="purchases-info-item-name">Дата включения:</span>
+                                <span class="purchases-info-item-date">
+                                    {{ DateTimeHelper.toFullDateTime(service.date_start) | raw }}
+                                </span>
+                            </div>
+                            <div class="purchases-info-item">
+                                <span class="purchases-info-item-name">Дата выключения:</span>
+                                <span class="purchases-info-item-date">
+                                    {% if service.date_expire is not empty %}
+                                        {{ DateTimeHelper.toFullDateTime(service.date_expire) | raw }}
+                                    {% else %}
+                                        Нет
+                                    {% endif %}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="mt-2">
+                            {{ StatusHelper.getItem(service.getProcessArray(), service.process) | raw }}
+                        </div>
                     </div>
                 </div>
-            </div>
+            {% endfor %}
         </div>
+
+        {{ use ('yii/widgets/LinkPager') }}
+        {{ link_pager_widget({'pagination' : dataProvider.pagination}) }}
 
     {% else %}
-        <div class="alert alert-info">
-            У Вас нет ни одного заказа. <a href="{{ path(['/office/default/services']) }}">Услуги</a>.
-        </div>
-    {% endfor %}
 
-    {{ use ('yii/widgets/LinkPager') }}
-    {{ link_pager_widget({'pagination' : dataProvider.pagination}) }}
+        <div class="alert alert-info mt-5 mb-0">
+            {% if app.user.identity.profile.user_type == constant('\\common\\modules\\users\\models\\Profile::WANT_RENT') %}
+                У Вас нет ни одного заказа.
+            {% else %}
+                У Вас нет ни одного заказа. Перейдите в раздел <a href="{{ path(['/office/default/services']) }}">услуги</a>.
+            {% endif %}
+        </div>
+
+    {% endif %}
 
 {% endblock content %}
