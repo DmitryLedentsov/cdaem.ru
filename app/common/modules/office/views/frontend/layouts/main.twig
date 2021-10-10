@@ -31,7 +31,7 @@
     {% endblock %}
     <main class="main-account">
         <div class="container-fluid">
-            <div class="main-account-inner">
+            <div class="{% block contentWrapperClass %}main-account-inner{% endblock %}">
                 {% block content %}{% endblock %}
             </div>
         </div>
