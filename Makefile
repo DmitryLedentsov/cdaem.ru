@@ -40,8 +40,6 @@ bootstrap:
 	make npm-grunt cmd=install
 	make npm-grunt cmd='run dev'
 	make npm cmd='run dev'
-	sleep 10
-	make restart
 
 start:
 	$(docker_compose_dev) up -d
