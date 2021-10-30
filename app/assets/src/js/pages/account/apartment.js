@@ -1,13 +1,7 @@
 (function ($) {
     "use strict";
 
-    // TODO:
-    alert('src/pages/account/apartment.js');
-
-
-
     ymaps.ready(init);
-
     let apartMap;
 
     function init() {
@@ -18,6 +12,7 @@
             searchControlProvider: 'yandex#search'
         });
 
+        // todo тесовый маркер для обозначения адреса
         apartMap.geoObjects.add(new ymaps.Placemark([55.684758, 37.738521], {
             balloonContent: ''
         }, {
