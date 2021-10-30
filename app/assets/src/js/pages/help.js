@@ -1,7 +1,6 @@
 (function ($) {
   "use strict";
 
-    // Login
     $(document).on('submit', '#form-help', function (e) {
         e.preventDefault();
         let $form = $(this);

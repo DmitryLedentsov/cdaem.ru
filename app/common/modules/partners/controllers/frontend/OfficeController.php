@@ -125,6 +125,10 @@ class OfficeController extends \frontend\components\Controller
         $image = new models\form\ImageForm(['scenario' => 'user-create']);
 
         if (Yii::$app->request->isAjax && Yii::$app->request->isPost) {
+
+            // TODO:
+            dd(self::class, $_POST, $_FILES);
+
             Yii::$app->response->format = Response::FORMAT_JSON;
             $advert->load(Yii::$app->request->post());
             $apartment->load(Yii::$app->request->post());
