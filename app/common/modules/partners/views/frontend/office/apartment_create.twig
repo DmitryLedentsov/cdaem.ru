@@ -89,14 +89,49 @@
                     <div class="maps-data-item">
                         <div class="maps-data-header">Популярные города</div>
                         <div class="maps-link">
-                            <span class="maps-link-item">Москва</span>
-                            <span class="maps-link-item">Санкт-Петербург</span>
+                            <span class="maps-link-item" data-latitude="55.76" data-longitude="37.64">Москва</span>
+                            <span class="maps-link-item" data-latitude="59.96" data-longitude="30.16">Санкт-Петербург</span>
                         </div>
                     </div>
                 </div>
-                <div class="maps-frame">
-                    <img src="/_new/images/account/img-maps.png" alt="" />
+                <div id="map" class="maps-frame">
+{#                    <img src="/_new/images/account/img-maps.png" alt="" />#}
                 </div>
+
+                {# TODO перенсти в ассеты #}
+                <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=65a47f65-37ef-4724-b7c7-fba4b0cab20c" type="text/javascript"></script>
+                <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+
+                <script>
+                    ymaps.ready(init);
+
+                    let apartMap;
+
+                    function init() {
+                        apartMap = new ymaps.Map("map", {
+                            center: [55.76, 37.64],
+                            zoom: 10
+                        }, {
+                            searchControlProvider: 'yandex#search'
+                        });
+
+                        apartMap.geoObjects.add(new ymaps.Placemark([55.684758, 37.738521], {
+                            balloonContent: ''
+                        }, {
+                            preset: 'islands#icon',
+                            iconColor: '#0095b6'
+                        }))
+                    }
+
+                    $('.maps-link-item').click(function () {
+                        // console.log();
+                        const point = $(this).data();
+                        apartMap.setCenter([point.latitude, point.longitude]);
+                    });
+
+
+                </script>
+
             </div>
         </div>
     </div>
