@@ -29,17 +29,15 @@
 
 
     ///////////////////////////////////////////////////////////////////////////////////
-    // Отправка формы
+    // Отправка формы          form-apartment
     $(document).on('submit', '#form-apartment', function (e) {
         e.preventDefault();
         let $form = $(this);
 
         window.ajaxRequest($form, {
             success: function (response) {
-
                 // TODO:
                 alert('Success- src/pages/account/apartment.js');
-
             }
         });
     });

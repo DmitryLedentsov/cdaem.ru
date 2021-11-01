@@ -115,6 +115,9 @@ class ApartmentForm extends Apartment
             ['beds', 'required'],
             ['beds', 'in', 'range' => array_keys(TotalApartment::getBedsArray())],
 
+            ['sleeping_place', 'required'],
+            ['sleeping_place', 'in', 'range' => array_keys(TotalApartment::getSleepingPlacesArray())],
+
             ['remont', 'required'],
             ['remont', 'in', 'range' => array_keys($this->remontList)],
 

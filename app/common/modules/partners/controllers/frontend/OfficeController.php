@@ -2,6 +2,7 @@
 
 namespace common\modules\partners\controllers\frontend;
 
+use common\modules\geo\models\City;
 use common\modules\users\models\Profile;
 use Yii;
 use yii\helpers\Url;
@@ -127,13 +128,19 @@ class OfficeController extends \frontend\components\Controller
         if (Yii::$app->request->isAjax && Yii::$app->request->isPost) {
 
             // TODO:
-            dd(self::class, $_POST, $_FILES);
-
+            // dd(self::class, $_POST, $_FILES);
             Yii::$app->response->format = Response::FORMAT_JSON;
-            $advert->load(Yii::$app->request->post());
+
+            // dd(Yii::$app->request->post());
+            // dd($rentTypes);
+            // dd(Yii::$app->request->post(), $apartment, $result, $apartment->city_id);
+
             $apartment->load(Yii::$app->request->post());
+            $advert->load(Yii::$app->request->post());
             $image->load(Yii::$app->request->post());
             $errors = array_merge(ActiveForm::validate($apartment), ActiveForm::validate($advert), ActiveForm::validate($image));
+
+            // dd($errors);
 
             if (!$errors) {
                 $apartment->populateRelation('adverts', $advert);
@@ -162,6 +169,14 @@ class OfficeController extends \frontend\components\Controller
             'advert' => $advert,
             'rentTypes' => $rentTypes,
             'image' => $image,
+            'cities' => City::dropDownList(),
+            'metroWalks' => \common\modules\realty\models\Apartment::getMetroWalkArray(),
+            'currencies' => \common\modules\realty\models\Apartment::getCurrencyArray(),
+            'rooms' => \common\modules\realty\models\Apartment::getRoomsArray(),
+            'sleepingPlaces' => \common\modules\realty\models\Apartment::getSleepingPlacesArray(),
+            'beds' => \common\modules\realty\models\Apartment::getBedsArray(),
+            'remont' => \common\modules\realty\models\Apartment::getRemontArray(),
+            'floor' => \common\modules\realty\models\Apartment::getFloorArray(),
         ]);
     }
 

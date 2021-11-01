@@ -28,7 +28,7 @@ class ImageForm extends Image
     {
         return [
             'user-create' => ['files'],
-            'user-update' => ['files'],
+            'user-create' => ['files'],
         ];
     }
 
@@ -57,7 +57,6 @@ class ImageForm extends Image
     {
         if (parent::beforeValidate()) {
             $this->files = UploadedFile::getInstances($this, 'files');
-
             return true;
         }
 
