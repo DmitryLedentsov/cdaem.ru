@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>Личный кабинет</title>
+    <!-- @include ./_section/_head.html -->
+    <link rel="stylesheet" media="screen" href="./css/pages/account/profile.min.css"/>
+</head>
+
+<body class="l-account p-account-profile">
+
+<div class="wrapper">
+    <!-- @include _section/_header-collapse-account.html -->
+    <main class="main-account">
+        <div class="container-fluid">
+            <div class="main-account-inner">
+                <section class="account-profile">
+                    <form method="post" action="">
+                        <div class="profile-section">
+                            <div class="profile-section-header">Основные</div>
+                            <div class="profile-section-line">
+                                <div class="form-group is-invalid">
+                                    <label>
+                                        <input type="tel" class="form-control is-invalid" placeholder="Телефон">
+                                    </label>
+                                    <div class="invalid-feedback">Example invalid feedback text</div>
+                                </div>
+                                <div class="form-group">
+                                    <label>
+                                        <input type="email" class="form-control" placeholder="Email">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="profile-section">
+                            <div class="profile-section-header">Редактировать профиль</div>
+                            <div class="avatar-wrapper">
+                                <div class="profile-avatar" style="background-image: url('./images/account/img-avatar.png')"></div>
+                                <label for="profile-avatar-file">Изменить</label>
+                                <input type="file" id="profile-avatar-file">
+                            </div>
+                            <div class="profile-section-line">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="text" name="surname" class="form-control" placeholder="Фамилия">
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label>
+                                        <input type="text" name="firstname" class="form-control" placeholder="Имя">
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label>
+                                        <input type="text" name="middlename" class="form-control" placeholder="Отчество">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="profile-section-line">
+                                <div class="form-group-100">
+                                    <label>
+                                        <textarea name="aboutself" class="form-control" placeholder="О себе"></textarea>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="profile-section">
+                            <div class="profile-section-header">Тип аккаунта</div>
+                            <div class="profile-section-line">
+                                <div class="form-group">
+                                    <label>
+                                        <select class="custom-select" name="account_legal">
+                                            <option value="1">Юридическое лицо</option>
+                                            <option value="0">Физическое лицо</option>
+                                        </select>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label>
+                                        <select class="custom-select" name="account_type">
+                                            <option value="agency">Агентство</option>
+                                            <option value="owner">Собственник</option>
+                                            <option value="renter">Хочу снять</option>
+                                        </select>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="profile-section">
+                            <div class="profile-section-header">Дополнительная информация</div>
+                            <div class="profile-section-line">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="text" class="form-control" placeholder="Вконтакте">
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label>
+                                        <input type="text" class="form-control" placeholder="Facebook">
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label>
+                                        <input type="text" class="form-control" placeholder="Twitter">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="profile-section-line">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="text" class="form-control" placeholder="Skype">
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label>
+                                        <input type="email" class="form-control" placeholder="Доп e-mail">
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label>
+                                        <input type="tel" class="form-control" placeholder="Доп телефон">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="profile-section">
+                            <div class="profile-section-header">Безопасность</div>
+                            <div class="profile-section-line">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="password" class="form-control" placeholder="Текущий пароль">
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label>
+                                        <input type="password" class="form-control" placeholder="Новый пароль">
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label>
+                                        <input type="password" class="form-control" placeholder="Повторите пароль">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="profile-section text-left">
+                            <button type="submit" class="btn btn-warning">Сохранить</button>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </div>
+        <!-- include _section/_pagination.html -->
+    </main>
+    <!-- @include ./_section/_footer.html -->
+</div>
+
+<!-- @include ./_section/_end_body.html -->
+
+<script src="./js/pages/account/home.min.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,170 @@
+{#
+    Профиль
+    @var \yii\web\View this
+    @var \frontend\users\models\Profile model
+#}
+
+{% extends "@common/modules/office/views/frontend/layouts/main.twig" %}
+
+{% block title %} {{ t('users', 'PROFILE.TITLE') }} - Личный кабинет | Сдаём.ру {% endblock %}
+
+{% block header %}{% endblock %}
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        {{ use('yii/widgets/Breadcrumbs') }}
+        {{ breadcrumbs_widget({
+            'itemTemplate' : "<li>{link}</li>\n",
+            'homeLink' :
+            {
+                'label' : 'Главная',
+                'url' : '/'
+            },
+            'links':  [
+                {
+                    'label': 'Личный кабинет',
+                    'url' : ['/office/default/index']
+                },
+                {
+                    'label': 'Редактировать профиль',
+                },
+            ],
+        }) }}
+    </div>
+{% endblock %}
+
+
+{% block content %}
+
+    {{ use('common/modules/users/assets/UserAsset') }}
+    {{ register_user_asset() }}
+
+
+    <div class="options-group clearfix" style="margin: auto; text-align: center">
+        <div class="options" style="display: inline-block; float: none">
+            <a href="{{ path(['/users/user/profile']) }}" {{ app.request.pathInfo == 'profile' ? 'class="active"' : '' }}>Редактировать профиль</a>
+            <a href="{{ path(['/users/user/password']) }}"
+               {% if app.request.pathInfo == 'password' %}class="active"{% endif %}>Изменить пароль</a>
+            {% if app.user.identity.profile.legal_person %}
+                <a href="{{ path(['/users/user/legal-person']) }}"
+                   {% if app.request.pathInfo == 'legal-person' %}class="active"{% endif %}>Юридическое лицо</a>
+            {% endif %}
+        </div>
+    </div>
+
+
+    <p><br/></p>
+
+    <div class="container-certain primary text" style="width:70%">
+
+        {% set form = active_form_begin({
+            'options' : {'class' : 'horizontal'},
+            'enableClientScript': false,
+            'id': 'form-profile'
+        }) %}
+
+
+        <h3 style="margin: 0">Основное</h3>
+        <span class="color-closed">Закрыто для редактирования</span><br>
+        <p style="font-size:18px; color:red;">Указываем только мобильный телефон, как основной, Вам будут приходить смс
+            по броням. Дополнительный телефон любой.: (---)***-**-**</p>
+
+
+        <div class="form-group field-profile-name">
+            {% if app.session.hasFlash('danger') %}
+                <div class="alert alert-danger" role="alert">
+                    {{ app.session.getFlash('danger') | raw }}
+                </div> <br/>
+            {% endif %}
+
+            {% if app.session.hasFlash('success') %}
+                <div class="alert alert-success" role="alert">
+                    {{ app.session.getFlash('success') | raw }}
+                </div> <br/>
+            {% endif %}
+            <div class="col-l">
+                <label class="control-label">Телефон</label>
+            </div>
+            <div class="col-i">
+                <li class="btn btn-white btn-file"><a href="{{ path(['/helpdesk/default/helpphone']) }}"
+                                                      style="color:black;">Поменять номер</a></li>
+                <p><br/></p>
+                <input class="form-control" name="User[phone]" id="phone" value="{{ app.user.identity.phone }}"
+                       type="text" disabled="disabled">
+
+            </div>
+        </div>
+
+        <div class="form-group field-profile-name">
+            <div class="col-l">
+                <label class="control-label">EMAIL</label>
+            </div>
+            <div class="col-i">
+                <input class="form-control" name="User[name]" value="{{ app.user.identity.email }}" type="email"
+                       disabled="disabled">
+            </div>
+        </div>
+
+
+        <p><br/></p>
+
+
+        <h3>Редактировать профиль</h3>
+        {{ form.field(model, 'name', {'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'}) | raw }}
+        {{ form.field(model, 'surname', {'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'}) | raw }}
+        {{ form.field(model, 'second_name', {'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'}) | raw }}
+        {{ form.field(model, 'about_me', {'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'}).textarea() | raw }}
+
+        {{ form.field(model, 'image', {
+            'template' : '<div class="col-l">{label}</div> <div class="col-i"><span class="btn btn-white btn-file">'~model.getAttributeLabel('image')~'{input}</span>{error}</div>'
+        }).label(false).fileInput() | raw }}
+
+        <div class="form-group">
+            <div class="col-l"></div>
+            <div class="col-i">
+                <div id="image-preview">
+                    {{ widget_widget({
+                        'template' :  '{face}',
+                        'data' : model,
+                        'faceImgOptions' : {
+                            'data-type' : 'default'
+                        }
+                    }) }}
+                </div>
+            </div>
+        </div>
+
+
+        <p><br/></p>
+
+        <h3>Тип аккаунта</h3>
+        {{ form.field(model, 'user_type', {
+            'options' : {'class' : 'form-group white'},
+            'template' : '<div class="col-l">&nbsp;</div> <div class="col-i">{input}{error}</div>'
+        }).dropDownList(StatusHelper.getList(model.getUserTypeArray()), {'class' : 'form-control select-white'}) | raw }}
+
+        {{ form.field(model, 'legal_person', {
+            'options' : {'class' : 'form-group white'},
+            'template' : '<div class="col-l">&nbsp;</div> <div class="col-i">{label}{input}{error}</div>'
+        }).dropDownList(app.formatter.booleanFormat, {'class' : 'form-control select-white'}) | raw }}
+
+        <p><br/></p>
+
+        <h3>Контактная информация</h3>
+        <p style="font-size:18px; color:red;">Указываем мобильный телефон, как дополнительный: (---)***-**-**</p>
+        {{ form.field(model, 'phone2', {'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'}) | raw }}
+        {{ form.field(model, 'email', {'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'}) | raw }}
+        {{ form.field(model, 'skype', {'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'}) | raw }}
+        {{ form.field(model, 'ok', {'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'}) | raw }}
+        {{ form.field(model, 'vk', {'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'}) | raw }}
+        {{ form.field(model, 'fb', {'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'}) | raw }}
+        {{ form.field(model, 'twitter', {'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'}) | raw }}
+
+
+        <div class="form-group text-right">
+            <input type="submit" value="{{ t('users', 'SAVE') }}" class="btn btn-primary"/>
+        </div>
+        {{ active_form_end() }}
+    </div>
+
+{% endblock content %}
