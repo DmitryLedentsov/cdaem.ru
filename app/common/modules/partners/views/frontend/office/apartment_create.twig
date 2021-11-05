@@ -204,12 +204,14 @@
                         </select>
                     </div>
                     <div class="step-column-33">
-                        <select name="floor" class="custom-select">
+                        <input type="text" name="ApartmentForm[floor]" placeholder="Этаж" class="step-input" />
+
+                        {#<select name="floor" class="custom-select">
                             <option value="">Этаж</option>
                             {% for id, value in floor %}
                                 <option value="{{ id }}">{{ value }}</option>
                             {% endfor %}
-                        </select>
+                        </select>#}
                     </div>
                 </div>
                 <div class="step-column-100">
@@ -232,42 +234,42 @@
             <div class="step-photo">
                 <div class="step-photo-item">
                     <label class="step-photo-label">
-                        <input type="file" name="ImageForm[files[]]" accept=".gif, .jpg, .png" class="step-photo-input">
+                        <input type="file" name="ImageForm[files][]" accept=".gif, .jpg, .png" class="step-photo-input">
                         <div class="step-photo-frame"></div>
                         <span>Выбрать фото</span>
                     </label>
                 </div>
                 <div class="step-photo-item">
                     <label class="step-photo-label">
-                        <input type="file" name="ImageForm[files[]]" accept=".gif, .jpg, .png" class="step-photo-input">
+                        <input type="file" name="ImageForm[files][]" accept=".gif, .jpg, .png" class="step-photo-input">
                         <div class="step-photo-frame"></div>
                         <span>Выбрать фото</span>
                     </label>
                 </div>
                 <div class="step-photo-item">
                     <label class="step-photo-label">
-                        <input type="file" name="ImageForm[files[]]" accept=".gif, .jpg, .png" class="step-photo-input">
+                        <input type="file" name="ImageForm[files][]" accept=".gif, .jpg, .png" class="step-photo-input">
                         <div class="step-photo-frame"></div>
                         <span>Выбрать фото</span>
                     </label>
                 </div>
                 <div class="step-photo-item">
                     <label class="step-photo-label">
-                        <input type="file" name="ImageForm[files[]]" accept=".gif, .jpg, .png" class="step-photo-input">
+                        <input type="file" name="ImageForm[files][]" accept=".gif, .jpg, .png" class="step-photo-input">
                         <div class="step-photo-frame"></div>
                         <span>Выбрать фото</span>
                     </label>
                 </div>
                 <div class="step-photo-item">
                     <label class="step-photo-label">
-                        <input type="file" name="ImageForm[files[]]" accept=".gif, .jpg, .png" class="step-photo-input">
+                        <input type="file" name="ImageForm[files][]" accept=".gif, .jpg, .png" class="step-photo-input">
                         <div class="step-photo-frame"></div>
                         <span>Выбрать фото</span>
                     </label>
                 </div>
                 <div class="step-photo-item">
                     <label class="step-photo-label">
-                        <input type="file" name="ImageForm[files[]]" accept=".gif, .jpg, .png" class="step-photo-input">
+                        <input type="file" name="ImageForm[files][]" accept=".gif, .jpg, .png" class="step-photo-input">
                         <div class="step-photo-frame"></div>
                         <span>Выбрать фото</span>
                     </label>

@@ -127,17 +127,16 @@ class OfficeController extends \frontend\components\Controller
 
         if (Yii::$app->request->isAjax && Yii::$app->request->isPost) {
 
-            // TODO:
-            // dd(self::class, $_POST, $_FILES);
+            //dd(self::class, $_POST, $_FILES);
             Yii::$app->response->format = Response::FORMAT_JSON;
 
             // dd(Yii::$app->request->post());
-            // dd($rentTypes);
             // dd(Yii::$app->request->post(), $apartment, $result, $apartment->city_id);
 
             $apartment->load(Yii::$app->request->post());
             $advert->load(Yii::$app->request->post());
             $image->load(Yii::$app->request->post());
+
             $errors = array_merge(ActiveForm::validate($apartment), ActiveForm::validate($advert), ActiveForm::validate($image));
 
             // dd($errors);
@@ -145,7 +144,9 @@ class OfficeController extends \frontend\components\Controller
             if (!$errors) {
                 $apartment->populateRelation('adverts', $advert);
                 $apartment->populateRelation('images', $image);
-                if (Yii::$app->request->post('submit')) {
+
+                // if (Yii::$app->request->post('submit')) // TODO зачем это?
+                {
                     if ($apartment->save(false)) {
                         Yii::$app->session->setFlash('success', 'Ваше объявление успешно добавлено в нашу базу данных.');
 
@@ -176,7 +177,7 @@ class OfficeController extends \frontend\components\Controller
             'sleepingPlaces' => \common\modules\realty\models\Apartment::getSleepingPlacesArray(),
             'beds' => \common\modules\realty\models\Apartment::getBedsArray(),
             'remont' => \common\modules\realty\models\Apartment::getRemontArray(),
-            'floor' => \common\modules\realty\models\Apartment::getFloorArray(),
+            // 'floor' => \common\modules\realty\models\Apartment::getFloorArray(),
         ]);
     }
 
