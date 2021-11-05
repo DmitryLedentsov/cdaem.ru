@@ -10,7 +10,6 @@ use common\modules\users\models as models;
 
 /**
  * Контроллер для управления пользователями
- * @package common\modules\users\controllers\frontend
  */
 class UserController extends Controller
 {

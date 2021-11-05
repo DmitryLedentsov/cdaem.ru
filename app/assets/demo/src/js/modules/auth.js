@@ -1,36 +1,59 @@
 (function ($) {
     "use strict";
 
-    $('#form-signIn').displayValidation({
-        'email': [],
-        'password': ['Неверный пароль'],
+    // Login
+    $(document).on('submit', '#form-signIn', function (e) {
+        e.preventDefault();
+        let $form = $(this);
+        window.ajaxRequest($form  /*{
+             beforeSend: function () {},
+             complete: function () {},
+             success: function () {}
+         }*/);
     });
 
-
-    $('#form-forgotPassword').displayValidation({
-        'email': ['Пользователь с таким Email не найден'],
-    });
-
-
-    $('#form-signUp').displayValidation({
-        'email': ['Пользователь с таким Email уже зарегистрирован'],
-        'phone': ['Пользователь с таким телефоном уже зарегистрирован'],
-        'password': ['Вы ввели слишком слабый пароль'],
-        'name': ['Введите ваше имя'],
-        'user_type': ['Указан некорректный тип аренды'],
-    });
-
+    // SignUp
     $(document).on('submit', '#form-signUp', function (e) {
         e.preventDefault();
-
-        $('#form-signUp').displayValidation({
-            'email': ['Пользователь с таким Email уже зарегистрирован'],
-            'phone': ['Пользователь с таким телефоном уже зарегистрирован'],
-            'password': ['Вы ввели слишком слабый пароль'],
-            'name': ['Введите ваше имя'],
-            'user_type': ['Указан некорректный тип аренды'],
-        });
+        let $form = $(this);
+        window.ajaxRequest($form  /*{
+             beforeSend: function () {},
+             complete: function () {},
+             success: function () {}
+         }*/);
     });
 
+    // Password recovery
+    $(document).on('submit', '#form-recovery', function (e) {
+        e.preventDefault();
+        let $form = $(this);
+        window.ajaxRequest($form  /*{
+             beforeSend: function () {},
+             complete: function () {},
+             success: function () {}
+         }*/);
+    });
+
+    // Resend code activation
+    $(document).on('submit', '#form-resend', function (e) {
+        e.preventDefault();
+        let $form = $(this);
+        window.ajaxRequest($form  /*{
+             beforeSend: function () {},
+             complete: function () {},
+             success: function () {}
+         }*/);
+    });
+
+    // Recovery password confirmation
+    $(document).on('submit', '#form-recovery-confirmation', function (e) {
+        e.preventDefault();
+        let $form = $(this);
+        window.ajaxRequest($form  /*{
+             beforeSend: function () {},
+             complete: function () {},
+             success: function () {}
+         }*/);
+    });
 
 })(jQuery);

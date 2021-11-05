@@ -1,0 +1,131 @@
+$link-color: #0b6cff;
+
+.p-account-profile {
+
+    a {
+        color: $link-color;
+    }
+
+    .account-profile {
+        @include tablet() {
+            padding: 2% 4%;
+        }
+
+        .profile {
+            &-section:not(:first-child) {
+                margin-top: 36px;
+            }
+
+            &-section:last-child {
+                margin-top: 30px;
+            }
+
+            &-section {
+                &-header {
+                    margin-bottom: 15px;
+                    font-size: 24px;
+                    font-weight: 700;
+                    color: #151515;
+                    line-height: 1.2;
+                }
+                @include tablet() {
+                    &-header {
+                        font-size: 30px;
+                    }
+                }
+
+                &-line {
+                    display: flex;
+                    flex-wrap: wrap;
+                    margin-bottom: 17px;
+
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    .form-group {
+        width: 100%;
+
+        input {
+            background: #fff url("../../../images/icons/pencil.svg") no-repeat right .75rem center;
+        }
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        .custom-select {
+            padding: 0 15px 0 19px;
+        }
+
+        @include phone() {
+            width: 48%;
+            margin: 0 2% 1% 0;
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+
+        @include tablet() {
+            width: 32.5%;
+            margin: 0 1.2% 0 0;
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+
+        &-100 {
+            width: 100%;
+            label {
+                width: 100%;
+            }
+        }
+    }
+
+    .avatar-wrapper {
+        margin-bottom: 17px;
+
+        label {
+            color: $link-color;
+            cursor: pointer;
+        }
+
+        label:hover{
+            text-decoration: underline;
+        }
+
+        #profile-avatar-file{
+            display:none;
+        }
+
+        button.avatar-update {
+            background: none!important;
+            border: none;
+            padding: 0!important;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    }
+
+    .profile {
+        .btn {
+            width: 208px;
+            height: 47px;
+            border-radius: 5px;
+            font-size: 15px;
+        }
+        &-avatar {
+            margin-left: 5px;
+            margin-bottom: 8px;
+            width: 73px;
+            height: 73px;
+            background-size: cover;
+        }
+    }
+}

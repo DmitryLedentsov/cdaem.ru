@@ -5,10 +5,7 @@
 
 {% extends "@common/modules/office/views/frontend/layouts/main.twig" %}
 
-{% block title %}{{ this.registerTitle('Бронь - Личный кабинет | Сдаём.ру') }}{% endblock %}
-
-{% block header %}
-    <meta http-equiv="Refresh" content="95"/>{% endblock %}
+{% block title %}Бронь - Личный кабинет | Сдаём.ру{% endblock %}
 
 {% block breadcrumbs %}
     <div class="breadcrumbs">
@@ -35,19 +32,26 @@
 
 
 {% block content %}
+
     {{ use('frontend/themes/basic/assets/SlickAsset') }}
     {{ register_slick_asset() }}
+
     {{ use('common/modules/partners/assets/frontend/ApartmentAsset') }}
     {{ register_apartment_asset() }}
+
+    {{ use('common/modules/partners/widgets/frontend/PreviewAdvertTmp') }}
+
+
     <h4 style="text-align:center;border-bottom:2px solid orange;font-size:30px;">Бронь обьявлений</h4>
     <div class="visible-xs multiple-items-7">
         {% for reservation in dataProvider.getModels() %}
 
-
             <div class="row apartment-item mini clearfix {% if reservation.closed != 0 %}closed{% endif %}">
                 <div class="apartment-item-title">
-                    <h3>{{ ApartmentHelper.getAddress(reservation.advert.apartment) }} | Объявление
-                        №{{ reservation.advert.advert_id }}</h3>
+                    <h3>
+                        {{ ApartmentHelper.getAddress(reservation.advert.apartment) }} | Объявление
+                        №{{ reservation.advert.advert_id }}
+                    </h3>
                 </div>
                 <p class="accent-time" style="padding: 0 20px;"> Заявка
                     создана: {{ this.renderDynamic('return \\nepster\\basis\\helpers\\DateTimeHelper::diffAgoPeriodRound("'~reservation.date_create~'");') | raw }}</p>

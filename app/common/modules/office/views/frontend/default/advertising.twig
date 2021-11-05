@@ -43,6 +43,9 @@
 
 
 {% block content %}
+
+    {{ use('common/modules/partners/widgets/frontend/PreviewAdvertTmp') }}
+
     <h4 style="text-align:center;border-bottom:2px solid orange;font-size:30px;">Мои рекламные объявления</h4>
     {% for advertisement in dataProvider.getModels() %}
 

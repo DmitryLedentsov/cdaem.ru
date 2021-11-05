@@ -1,0 +1,345 @@
+.p-account-chat {
+
+    .account-chat {
+        @include tablet() {
+            padding: 2% 4%;
+        }
+    }
+
+    .chat-section {
+        &-header {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+
+            @include tablet() {
+                margin-bottom: 35px;
+            }
+
+            &-title {
+                margin-bottom: 5px;
+
+                @include tablet() {
+                    margin-bottom: 15px;
+                }
+            }
+
+            &-selects {
+                margin-left: auto;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: flex-end;
+            }
+        }
+
+        .chat-section-message {
+            display: flex;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+
+            @include phone() {
+                flex-wrap: nowrap;
+            }
+
+            &-avatar {
+                width: 32px;
+                height: 32px;
+                margin-left: 5px;
+                margin-bottom: 8px;
+                background-size: cover;
+
+                @include tablet() {
+                    width: 58px;
+                    height: 58px;
+                }
+            }
+
+            &-bubble {
+                display: flex;
+                flex-wrap: wrap;
+
+                @include phone() {
+                    margin-left: 24px;
+                }
+
+                .chat-bubble-time {
+                    margin-left: auto;
+                    font-size: 13px;
+                    color: #8C8C8C;
+                }
+
+                .chat-bubble-username {
+                    font-weight: 600;
+                    font-size: 16px;
+
+                    @include tablet() {
+                        font-weight: 700;
+                        font-size: 18px;
+                    }
+                }
+
+                .chat-bubble-body {
+                    padding: 15px;
+                    margin-top: 15px;
+                    background: #E3E3E3;
+                    border-radius: 0 10px 10px 10px;
+
+                    @include phone() {
+                        padding: 25px;
+                    }
+
+                    @include tablet() {
+                        padding: 15px 55px 15px 20px;
+                    }
+                }
+            }
+        }
+
+        &-messages {
+            .chat-section-message-right {
+                .chat-section-message-bubble {
+                    margin-left: 0;
+
+                    @include phone() {
+                        margin-right: 24px;
+                    }
+                }
+
+                .chat-section-avatar-wrapper {
+                    order: -1;
+                    margin-left: auto;
+
+                    @include phone() {
+                        order: 2;
+                    }
+                }
+
+                .chat-bubble-time {
+                    margin: 0;
+                    order: 1;
+                }
+
+                .chat-bubble-body {
+                    order: 3;
+                    border-radius: 10px 0 10px 10px;
+                }
+
+                .chat-bubble-username {
+                    order: 2;
+                    margin-left: auto;
+                }
+            }
+        }
+    }
+
+    .chat-talks {
+        .talk-highlight {
+            background: #E9F5E7 !important;
+            border: 3px solid #AFE4AE !important;
+
+            .chat-bubble-body {
+                background: #fff;
+            }
+        }
+
+        .chat-section-message {
+            display: block;
+            background: #FAFAFA;
+            border: 3px solid #F5F5F5;
+            box-sizing: border-box;
+            border-radius: 20px;
+            padding: 15px;
+            align-items: center;
+
+            @include tablet() {
+                padding: 20px 15px;
+                clear: left;
+            }
+
+            .chat-section-avatar-wrapper {
+                float: left;
+            }
+
+            .chat-bubble-username {
+                padding-top: 7px;
+                margin-left: 45px;
+
+                @include tablet() {
+                    padding-top: 18px;
+                    margin-left: 15px;
+                    float: left;
+                }
+            }
+
+            .chat-bubble-time {
+                float: right;
+
+                @include tablet() {
+                    padding-top: 18px;
+                }
+            }
+
+            &-bubble {
+                display: block;
+                margin: 0;
+                flex-wrap: nowrap;
+            }
+
+            .chat-bubble-wrapper {
+                display: flex;
+                align-items: center;
+                clear: right;
+
+                .chat-bubble-body {
+                    padding: 15px;
+
+                    @include tablet() {
+                        margin-left: 24px;
+                    }
+
+                    &.chat-body-ellipsis {
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+                }
+            }
+        }
+    }
+
+    .chat-alerts {
+        .chat-alert {
+            position: relative;
+            padding: 15px;
+            margin-top: 14px;
+            background: #FFECEC;
+            border: 3px solid #FFCECE;
+            box-sizing: border-box;
+            border-radius: 20px;
+
+            @include phone() {
+                padding: 25px;
+            }
+
+            @include tablet() {
+                padding: 22px 100px 24px 65px;
+            }
+
+            &-header {
+                font-weight: bold;
+                font-size: 18px;
+                padding-bottom: 8px;
+                padding-top: 30px;
+
+                @include tablet() {
+                    padding-top: 0;
+                }
+
+            }
+
+            &-icon {
+                position: absolute;
+                left: 15px;
+                width: 54px;
+                height: 38px;
+                background: url("../../../images/icons/mail.svg") no-repeat;
+
+                @include phone() {
+                    left: 25px;
+                }
+
+                @include tablet() {
+                    left: 27px;
+                }
+            }
+
+            &-time {
+                font-size: 13px;
+                color: #8C8C8C;
+                position: absolute;
+                left: 48px;
+
+                @include phone() {
+                    left: 58px;
+                }
+
+                @include tablet() {
+                    right: 30px;
+                    top: 22px;
+                    left: auto;
+                }
+            }
+        }
+    }
+
+    .form-group {
+        #rent_price {
+            width: 100%;
+
+            @include tablet() {
+                width: 100%;
+                margin: 0 1.2% 0 0;
+            }
+        }
+
+        #message_type {
+            width: 100%;
+
+            @include tablet() {
+                width: 100%;
+                margin: 0 1.2% 0 10px;
+            }
+        }
+
+    }
+
+
+    .chat-message-textarea {
+        .form-control {
+            cursor: auto!important;
+        }
+        .form-group {
+            margin-top: 25px;
+            margin-bottom: 0;
+            position: relative;
+
+            #chat_message_textarea {
+                border-radius: 20px;
+                padding: 15px 55px 15px 15px;
+                min-height: 129px;
+                max-height: 700px;
+                background: #eee;
+                border: 0;
+            }
+
+            #chat_message_send {
+                width: 36px;
+                height: 36px;
+                border: none;
+                padding: 0 !important;
+                cursor: pointer;
+                position: absolute;
+                right: 14px;
+                bottom: 19px;
+
+                background: url("../../../images/icons/send.svg") no-repeat right -1.45rem top -0.72rem, linear-gradient(348.56deg, #FF8A00 18.09%, #FFB800 98.97%);
+                box-shadow: 0 12px 23px rgba(62, 73, 84, 0.04);
+                border-radius: 10px;
+            }
+
+            #attach_to_message_label {
+                width: 17px;
+                height: 15px;
+                position: absolute;
+                bottom: 66px;
+                right: 23px;
+                cursor: pointer;
+                background: #eee url("../../../images/icons/folder.svg") no-repeat;
+            }
+
+            input#attach_to_message_file {
+                display: none;
+            }
+        }
+    }
+}

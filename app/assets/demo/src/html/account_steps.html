@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>Добавить объявление</title>
+    <!-- @include ./_section/_head.html -->
+    <link rel="stylesheet" media="screen" href="./css/pages/account/create-adv.min.css"/>
+</head>
+
+<body class="l-account p-create-adv">
+
+<div class="wrapper">
+    <!-- @include _section/_header-collapse-account.html -->
+    <main class="main-account">
+        <div class="container-fluid">
+
+            <div class="main-account-inner">
+                <div class="section-head section-head-between">
+                    <h2 class="section-header">Добавить объявление</h2>
+                    <div class="steps-list">
+                        <div class="steps-list-item steps-list-item-active">1</div>
+                        <div class="steps-list-item">2</div>
+                        <div class="steps-list-item">3</div>
+                        <div class="steps-list-item">4</div>
+                        <div class="steps-list-item">5</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-line">
+                        <div class="step-column-33">
+                            <input type="text" placeholder="Введите город" class="step-input" />
+                        </div>
+                        <div class="step-column-66">
+                            <label class="step-label">
+                                <input type="text" name="address" required class="step-input">
+                                <div class="step-label-text">Адрес <sup>*</sup></div>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="step-line">
+                        <div class="step-column-33">
+                            <select class="custom-select">
+                                <option value="">Метро</option>
+                                <option value="">Метро 1</option>
+                                <option value="">Метро 2</option>
+                            </select>
+                        </div>
+                        <div class="step-column-33">
+                            <select class="custom-select">
+                                <option value="">Расстояние до метро</option>
+                                <option value="">10</option>
+                                <option value="">20</option>
+                                <option value="">30</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="maps">
+                        <div class="maps-data">
+                            <div class="maps-data-item">
+                                <div class="maps-data-header">Популярные города</div>
+                                <div class="maps-link">
+                                    <span class="maps-link-item">Москва</span>
+                                    <span class="maps-link-item">Санкт-Петербург</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="maps-frame">
+                            <img src="./images/account/img-maps.png" alt="" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="main-account-inner mt-5">
+                <div class="section-head section-head-between">
+                    <h2 class="section-header">Тип аренды</h2>
+                    <div class="steps-list">
+                        <div class="steps-list-item steps-list-item-active">1</div>
+                        <div class="steps-list-item steps-list-item-active">2</div>
+                        <div class="steps-list-item">3</div>
+                        <div class="steps-list-item">4</div>
+                        <div class="steps-list-item">5</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-line">
+                        <div class="step-column-33">
+                            <select class="custom-select">
+                                <option value="">Тип аренды <sup>*</sup></option>
+                                <option value="">Квартира на сутки</option>
+                                <option value="">Квартира на ночь</option>
+                                <option value="">Квартира на час</option>
+                                <option value="">Квартира на месяц</option>
+                                <option value="">Комната на сутки</option>
+                                <option value="">Койко-место</option>
+                            </select>
+                        </div>
+                        <div class="step-column-33">
+                            <select class="custom-select">
+                                <option value="">Выбрать валюту</option>
+                                <option value="">Валюта 1</option>
+                                <option value="">Валюта 2</option>
+                            </select>
+                        </div>
+                        <div class="step-column-33">
+                            <input type="text" name="price" class="step-input" placeholder="Цена">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="main-account-inner mt-5">
+                <div class="section-head section-head-between">
+                    <h2 class="section-header">Параметры жилья</h2>
+                    <div class="steps-list">
+                        <div class="steps-list-item steps-list-item-active">1</div>
+                        <div class="steps-list-item steps-list-item-active">2</div>
+                        <div class="steps-list-item steps-list-item-active">3</div>
+                        <div class="steps-list-item">4</div>
+                        <div class="steps-list-item">5</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-line">
+                        <div class="step-column-33">
+                            <select class="custom-select">
+                                <option value="">Общая площадь м2</option>
+                                <option value="">1</option>
+                                <option value="">2</option>
+                            </select>
+                        </div>
+                        <div class="step-column-33">
+                            <select class="custom-select">
+                                <option value="">Количество комнат</option>
+                                <option value="">1</option>
+                                <option value="">2</option>
+                            </select>
+                        </div>
+                        <div class="step-column-33">
+                            <select class="custom-select">
+                                <option value="">Кол-во спальных мест</option>
+                                <option value="">1</option>
+                                <option value="">2</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="step-line">
+                        <div class="step-column-33">
+                            <select class="custom-select">
+                                <option value="">Количество кроватей</option>
+                                <option value="">1</option>
+                                <option value="">2</option>
+                            </select>
+                        </div>
+                        <div class="step-column-33">
+                            <select class="custom-select">
+                                <option value="">Ремонт</option>
+                                <option value="">Ремонт</option>
+                                <option value="">Ремонт</option>
+                            </select>
+                        </div>
+                        <div class="step-column-33">
+                            <select class="custom-select">
+                                <option value="">Этаж</option>
+                                <option value="">1</option>
+                                <option value="">2</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="step-column-100">
+                        <textarea name="description" class="step-textarea" placeholder="Описание жилья"></textarea>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="main-account-inner mt-5">
+                <div class="section-head section-head-between">
+                    <h2 class="section-header">Добавить фотографии</h2>
+                    <div class="steps-list">
+                        <div class="steps-list-item steps-list-item-active">1</div>
+                        <div class="steps-list-item steps-list-item-active">2</div>
+                        <div class="steps-list-item steps-list-item-active">3</div>
+                        <div class="steps-list-item steps-list-item-active">4</div>
+                        <div class="steps-list-item">5</div>
+                    </div>
+                </div>
+                <div class="step-photo">
+                    <div class="step-photo-item">
+                        <label class="step-photo-label">
+                            <input type="file" name="image_1" accept=".gif, .jpg, .png" class="step-photo-input">
+                            <div class="step-photo-frame"></div>
+                            <span>Выбрать фото</span>
+                        </label>
+                    </div>
+                    <div class="step-photo-item">
+                        <label class="step-photo-label">
+                            <input type="file" name="image_2" accept=".gif, .jpg, .png" class="step-photo-input">
+                            <div class="step-photo-frame"></div>
+                            <span>Выбрать фото</span>
+                        </label>
+                    </div>
+                    <div class="step-photo-item">
+                        <label class="step-photo-label">
+                            <input type="file" name="image_3" accept=".gif, .jpg, .png" class="step-photo-input">
+                            <div class="step-photo-frame"></div>
+                            <span>Выбрать фото</span>
+                        </label>
+                    </div>
+                    <div class="step-photo-item">
+                        <label class="step-photo-label">
+                            <input type="file" name="image_4" accept=".gif, .jpg, .png" class="step-photo-input">
+                            <div class="step-photo-frame"></div>
+                            <span>Выбрать фото</span>
+                        </label>
+                    </div>
+                    <div class="step-photo-item">
+                        <label class="step-photo-label">
+                            <input type="file" name="image_5" accept=".gif, .jpg, .png" class="step-photo-input">
+                            <div class="step-photo-frame"></div>
+                            <span>Выбрать фото</span>
+                        </label>
+                    </div>
+                    <div class="step-photo-item">
+                        <label class="step-photo-label">
+                            <input type="file" name="image_6" accept=".gif, .jpg, .png" class="step-photo-input">
+                            <div class="step-photo-frame"></div>
+                            <span>Выбрать фото</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="main-account-inner mt-5">
+                <div class="section-head section-head-between">
+                    <h2 class="section-header">Удобства</h2>
+                    <div class="steps-list">
+                        <div class="steps-list-item steps-list-item-active">1</div>
+                        <div class="steps-list-item steps-list-item-active">2</div>
+                        <div class="steps-list-item steps-list-item-active">3</div>
+                        <div class="steps-list-item steps-list-item-active">4</div>
+                        <div class="steps-list-item steps-list-item-active">5</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-line">
+                        <div class="step-column-33">
+                            <select class="custom-select">
+                                <option value="">Холодильник</option>
+                                <option value="">Да</option>
+                                <option value="">Нет</option>
+                            </select>
+                        </div>
+                        <div class="step-column-33">
+                            <select class="custom-select">
+                                <option value="">Плита</option>
+                                <option value="">Да</option>
+                                <option value="">Нет</option>
+                            </select>
+                        </div>
+                        <div class="step-column-33">
+                            <select class="custom-select">
+                                <option value="">Утюг</option>
+                                <option value="">Да</option>
+                                <option value="">Нет</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="step-line">
+                        <div class="step-column-33">
+                            <select class="custom-select">
+                                <option value="">Фен</option>
+                                <option value="">Да</option>
+                                <option value="">Нет</option>
+                            </select>
+                        </div>
+                        <div class="step-column-33">
+                            <select class="custom-select">
+                                <option value="">Wi-Fi</option>
+                                <option value="">Да</option>
+                                <option value="">Нет</option>
+                            </select>
+                        </div>
+                        <div class="step-column-33">
+                            <select class="custom-select">
+                                <option value="">Микроволновка</option>
+                                <option value="">Да</option>
+                                <option value="">Нет</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="step-line">
+                        <div class="step-column-33">
+                            <select class="custom-select">
+                                <option value="">TV</option>
+                                <option value="">Да</option>
+                                <option value="">Нет</option>
+                            </select>
+                        </div>
+                        <div class="step-column-33">
+                            <select class="custom-select">
+                                <option value="">Кондиционер</option>
+                                <option value="">Да</option>
+                                <option value="">Нет</option>
+                            </select>
+                        </div>
+                        <div class="step-column-33">
+                            <select class="custom-select">
+                                <option value="">Стиральная машина</option>
+                                <option value="">Да</option>
+                                <option value="">Нет</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="step-line">
+                        <div class="step-column-33">
+                            <select class="custom-select">
+                                <option value="">Диван</option>
+                                <option value="">Да</option>
+                                <option value="">Нет</option>
+                            </select>
+                        </div>
+                        <div class="step-column-33">
+                            <select class="custom-select">
+                                <option value="">Кровать</option>
+                                <option value="">Да</option>
+                                <option value="">Нет</option>
+                            </select>
+                        </div>
+                        <div class="step-column-33">
+                            <select class="custom-select">
+                                <option value="">Ванна</option>
+                                <option value="">Да</option>
+                                <option value="">Нет</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="step-line">
+                        <div class="step-column-33">
+                            <select class="custom-select">
+                                <option value="">Душ</option>
+                                <option value="">Да</option>
+                                <option value="">Нет</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="step-block">
+                        <div class="step-block-header">Дополнительно</div>
+                        <div class="step-line">
+                            <div class="step-column-33">
+                                <select class="custom-select">
+                                    <option value="">Парковка</option>
+                                    <option value="">Да</option>
+                                    <option value="">Нет</option>
+                                </select>
+                            </div>
+                            <div class="step-column-33">
+                                <select class="custom-select">
+                                    <option value="">Безопасность</option>
+                                    <option value="">Да</option>
+                                    <option value="">Нет</option>
+                                </select>
+                            </div>
+                            <div class="step-column-33">
+                                <select class="custom-select">
+                                    <option value="">Балкон</option>
+                                    <option value="">Да</option>
+                                    <option value="">Нет</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="step-line">
+                            <div class="step-column-33">
+                                <select class="custom-select">
+                                    <option value="">Санузел</option>
+                                    <option value="">Да</option>
+                                    <option value="">Нет</option>
+                                </select>
+                            </div>
+                            <div class="step-column-33">
+                                <select class="custom-select">
+                                    <option value="">Отопление</option>
+                                    <option value="">Да</option>
+                                    <option value="">Нет</option>
+                                </select>
+                            </div>
+                            <div class="step-column-33">
+                                <select class="custom-select">
+                                    <option value="">Покрытие пола</option>
+                                    <option value="">Да</option>
+                                    <option value="">Нет</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step-block">
+                        <div class="step-block-header">О доме</div>
+                        <div class="step-line">
+                            <div class="step-column-33">
+                                <select class="custom-select">
+                                    <option value="">Тип здания</option>
+                                    <option value="">Да</option>
+                                    <option value="">Нет</option>
+                                </select>
+                            </div>
+                            <div class="step-column-33">
+                                <input type="text" name="" class="step-input" placeholder="Год постройки">
+                            </div>
+                            <div class="step-column-33">
+                                <input type="text" name="" class="step-input" placeholder="Количество подъездов">
+                            </div>
+                        </div>
+                        <div class="step-line">
+                            <div class="step-column-33">
+                                <select class="custom-select">
+                                    <option value="">Серия здания</option>
+                                    <option value="">Да</option>
+                                    <option value="">Нет</option>
+                                </select>
+                            </div>
+                            <div class="step-column-33">
+                                <input type="text" name="" class="step-input" placeholder="Управляющая компания">
+                            </div>
+                            <div class="step-column-33">
+                                <input type="text" name="" class="step-input" placeholder="Номер квартиры">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="main-account-inner mt-5">
+                <div class="text-center">
+                    <button type="submit" class="btn step-next">Опубликовать</button>
+                </div>
+            </div>
+
+
+        </div>
+    </main>
+    <!-- @include ./_section/_footer.html -->
+</div>
+
+<!-- @include ./_section/_end_body.html -->
+
+<script src="./js/pages/account/home.min.js"></script>
+
+</body>
+
+</html>

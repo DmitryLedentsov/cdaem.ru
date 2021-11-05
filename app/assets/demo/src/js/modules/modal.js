@@ -19,22 +19,20 @@
         }
     });
 
+
     // bootstrap modal template
     const defaultModal = $([
         '<div id="main-modal" class="modal fade">',
-        '    <div class="modal-dialog">',
+        '    <div class="modal-dialog modal-dialog-centered">',
         '        <div class="modal-content">',
-        '            <div class="modal-header">',
-        '                <h5 class="modal-title">&nbsp;</h5>',
-        '                <button type="button" data-dismiss="modal" class="close">',
-        '                   <span>&times;</span>',
-        '               </button>',
-        '            </div>',
+        '            <h3 class="modal-title text-left">&nbsp;</h3>',
+        '            <button class="modal-close" data-dismiss="modal" aria-label="Close"></button>',
         '            <div class="modal-body">&nbsp;</div>',
         '        </div>',
         '    </div>',
         '</div>'
     ].join("\n"));
+
 
     // add bootstrap window to body
     $('body').append(defaultModal);

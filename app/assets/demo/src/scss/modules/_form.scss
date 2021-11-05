@@ -41,7 +41,7 @@ input[type="submit"]:focus, input[type="button"]:focus
     border: 1px solid #D7D7D7;
     height: calc(2.5rem + 2px);
 
-    &:hover {
+    &:not(input):hover {
         cursor: pointer;
     }
 
@@ -55,6 +55,10 @@ input[type="submit"]:focus, input[type="button"]:focus
     background: #fff url("../images/icons/select-arrow.svg") no-repeat right .75rem center;
 }
 
+.form-group.is-invalid .invalid-feedback {
+    opacity: 0.9 !important;
+    display: block !important;
+}
 
 .is-invalid + .invalid-feedback {
     opacity: 0.9 !important;
