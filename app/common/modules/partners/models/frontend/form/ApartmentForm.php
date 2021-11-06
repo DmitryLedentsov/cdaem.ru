@@ -4,6 +4,7 @@ namespace common\modules\partners\models\frontend\form;
 
 use common\modules\geo\models\City;
 use common\modules\geo\models\Metro;
+use common\modules\partners\models\Facility;
 use common\modules\partners\models\frontend\Image;
 use common\modules\partners\models\frontend\Advert;
 use common\modules\partners\models\frontend\Apartment;
@@ -197,7 +198,6 @@ class ApartmentForm extends Apartment
 
         // Создание объявлений для апартаментов при создании
         if ($this->scenario === 'user-create') {
-
             // Сохраняем объявления
             foreach ($this->adverts->newAdverts as $advert) {
                 $newAdvert = new AdvertForm();
@@ -296,6 +296,13 @@ class ApartmentForm extends Apartment
                     $metroStations->save(false);
                 }
             }
+        }
+
+
+        // Сохраняем удобства
+        foreach ($this->facilities->facilities as $facility) {
+            /** @var Facility $facility */
+            $facility->link('apartments', $this);
         }
 
         return true;

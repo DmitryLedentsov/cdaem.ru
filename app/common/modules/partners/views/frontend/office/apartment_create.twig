@@ -205,13 +205,6 @@
                     </div>
                     <div class="step-column-33">
                         <input type="text" name="ApartmentForm[floor]" placeholder="Этаж" class="step-input" />
-
-                        {#<select name="floor" class="custom-select">
-                            <option value="">Этаж</option>
-                            {% for id, value in floor %}
-                                <option value="{{ id }}">{{ value }}</option>
-                            {% endfor %}
-                        </select>#}
                     </div>
                 </div>
                 <div class="step-column-100">
@@ -291,130 +284,112 @@
             <div class="step">
                 <div class="step-line">
                     <div class="step-column-33">
-                        <select name="refrigerator" class="custom-select">
+                        <select name="FacilityForm[refrigerator]" class="custom-select">
                             <option value="">Холодильник</option>
-                            <option value="">Да</option>
-                            <option value="">Нет</option>
+                            <option value="1">Да</option>
+                            <option value="0">Нет</option>
                         </select>
                     </div>
                     <div class="step-column-33">
-                        <select name="stove" class="custom-select">
+                        <select name="FacilityForm[stove]" class="custom-select">
                             <option value="">Плита</option>
-                            <option value="">Да</option>
-                            <option value="">Нет</option>
+                            <option value="1">Да</option>
+                            <option value="0">Нет</option>
                         </select>
                     </div>
                     <div class="step-column-33">
-                        <select name="iron" class="custom-select">
+                        <select name="FacilityForm[iron]" class="custom-select">
                             <option value="">Утюг</option>
-                            <option value="">Да</option>
-                            <option value="">Нет</option>
+                            <option value="1">Да</option>
+                            <option value="0">Нет</option>
                         </select>
                     </div>
                 </div>
                 <div class="step-line">
                     <div class="step-column-33">
-                        <select name="hair_dryer" class="custom-select">
+                        <select name="FacilityForm[hair-dryer]" class="custom-select">
                             <option value="">Фен</option>
-                            <option value="">Да</option>
-                            <option value="">Нет</option>
+                            <option value="1">Да</option>
+                            <option value="0">Нет</option>
                         </select>
                     </div>
                     <div class="step-column-33">
-                        <select name="wi_fi" class="custom-select">
+                        <select name="FacilityForm[wi-fi]" class="custom-select">
                             <option value="">Wi-Fi</option>
-                            <option value="">Да</option>
-                            <option value="">Нет</option>
+                            <option value="1">Да</option>
+                            <option value="0">Нет</option>
                         </select>
                     </div>
                     <div class="step-column-33">
-                        <select name="microwave" class="custom-select">
+                        <select name="FacilityForm[microwave]" class="custom-select">
                             <option value="">Микроволновка</option>
-                            <option value="">Да</option>
-                            <option value="">Нет</option>
+                            <option value="1">Да</option>
+                            <option value="0">Нет</option>
                         </select>
                     </div>
                 </div>
                 <div class="step-line">
                     <div class="step-column-33">
-                        <select name="tv" class="custom-select">
+                        <select name="FacilityForm[tv]" class="custom-select">
                             <option value="">TV</option>
-                            <option value="">Да</option>
-                            <option value="">Нет</option>
+                            <option value="1">Да</option>
+                            <option value="0">Нет</option>
                         </select>
                     </div>
                     <div class="step-column-33">
-                        <select name="air_conditioner" class="custom-select">
+                        <select name="FacilityForm[air-conditioner]" class="custom-select">
                             <option value="">Кондиционер</option>
-                            <option value="">Да</option>
-                            <option value="">Нет</option>
+                            <option value="1">Да</option>
+                            <option value="0">Нет</option>
                         </select>
                     </div>
                     <div class="step-column-33">
-                        <select name="washing_machine" class="custom-select">
+                        <select name="FacilityForm[washing-machine]" class="custom-select">
                             <option value="">Стиральная машина</option>
-                            <option value="">Да</option>
-                            <option value="">Нет</option>
+                            <option value="1">Да</option>
+                            <option value="0">Нет</option>
                         </select>
                     </div>
                 </div>
                 <div class="step-line">
                     <div class="step-column-33">
-                        <select name="sofa" class="custom-select">
+                        <select name="FacilityForm[sofa]" class="custom-select">
                             <option value="">Диван</option>
-                            <option value="">Да</option>
-                            <option value="">Нет</option>
+                            <option value="1">Да</option>
+                            <option value="0">Нет</option>
                         </select>
                     </div>
                     <div class="step-column-33">
-                        <select name="bed" class="custom-select">
+                        <select name="FacilityForm[bed]" class="custom-select">
                             <option value="">Кровать</option>
-                            <option value="">Да</option>
-                            <option value="">Нет</option>
+                            <option value="1">Да</option>
+                            <option value="0">Нет</option>
                         </select>
                     </div>
                     <div class="step-column-33">
-                        <select name="shower" class="custom-select">
+                        <select name="FacilityForm[shower]" class="custom-select">
                             <option value="">Душ</option>
-                            <option value="">Да</option>
-                            <option value="">Нет</option>
+                            <option value="1">Да</option>
+                            <option value="0">Нет</option>
                         </select>
                     </div>
                 </div>
                 <div class="step-line">
                     <div class="step-column-33">
-                        <select name="bath" class="custom-select">
+                        <select name="FacilityForm[bath]" class="custom-select">
                             <option value="">Ванна</option>
-                            <option value="">Да</option>
-                            <option value="">Нет</option>
+                            <option value="1">Да</option>
+                            <option value="0">Нет</option>
                         </select>
                     </div>
                     <div class="step-column-33">
-                        <select name="jacuzzi" class="custom-select">
+                        <select name="FacilityForm[jacuzzi]" class="custom-select">
                             <option value="">Джакузи</option>
-                            <option value="">Да</option>
-                            <option value="">Нет</option>
+                            <option value="1">Да</option>
+                            <option value="0">Нет</option>
                         </select>
                     </div>
                 </div>
-
-                <div class="step-line facilities-list">
-                    <i class="refrigerator"></i>
-                    <i class="stove"></i>
-                    <i class="iron"></i>
-                    <i class="hair-dryer"></i>
-                    <i class="wi-fi"></i>
-                    <i class="microwave"></i>
-                    <i class="tv"></i>
-                    <i class="air-conditioner"></i>
-                    <i class="washing-machine"></i>
-                    <i class="sofa"></i>
-                    <i class="bed"></i>
-                    <i class="shower"></i>
-                    <i class="bath"></i>
-                    <i class="jacuzzi"></i>
-                </div>
-
                 <div class="step-block">
                     <div class="step-block-header">Дополнительно</div>
                     <div class="step-line">

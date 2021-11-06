@@ -34,4 +34,15 @@ class Facility extends \yii\db\ActiveRecord
             'date_update' => 'Дата редактирования',
         ];
     }
+
+
+    /**
+     * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getApartments()
+    {
+        return $this->hasMany(Apartment::class, ['apartment_id' => 'apartment_id'])
+            ->viaTable('{{%partners_apartments_facilities}}', ['facility_id' => 'facility_id']);
+    }
 }
