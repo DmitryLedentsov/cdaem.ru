@@ -213,11 +213,11 @@ class Profile extends \nepster\users\models\Profile
     public static function getUserTypeArray(): array
     {
         return [
-            self::AGENCY => [
-                'label' => 'Агентство',
-            ],
             self::OWNER => [
                 'label' => 'Собственник',
+            ],
+            self::AGENCY => [
+                'label' => 'Агентство',
             ],
             self::MEDIATOR => [
                 'label' => 'Посредник',
