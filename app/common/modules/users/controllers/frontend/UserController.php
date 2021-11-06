@@ -66,12 +66,15 @@ class UserController extends Controller
      */
     public function actionProfile()
     {
-        $model = models\Profile::findByUserId(Yii::$app->user->id);
-        $model->setScenario('update');
+        $profile = models\Profile::findByUserId(Yii::$app->user->id);
+        $profile->setScenario('update');
 
-        if ($model->load(Yii::$app->request->post())) {
-            if ($model->validate()) {
-                if ($model->save(false)) {
+        if ($profile->load(Yii::$app->request->post())) {
+
+            dd(self::class, Yii::$app->request->post());
+
+            if ($profile->validate()) {
+                if ($profile->save(false)) {
                     Yii::$app->session->setFlash('success', Yii::t('users', 'SUCCESS_UPDATE'));
                 } else {
                     Yii::$app->session->setFlash('danger', Yii::t('users', 'FAIL_UPDATE'));
@@ -81,12 +84,12 @@ class UserController extends Controller
             } elseif (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
 
-                return ActiveForm::validate($model);
+                return ActiveForm::validate($profile);
             }
         }
 
         return $this->render('profile', [
-            'model' => $model
+            'profile' => $profile,
         ]);
     }
 

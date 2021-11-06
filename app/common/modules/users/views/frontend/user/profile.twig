@@ -40,20 +40,21 @@
     {{ register_user_asset() }}
 
     <section class="account-profile">
-        <form method="post" action="{{ url(['/users/user/profile']) }}" enctype="multipart/form-data">
+        <form method="post" id="form-profile" action="{{ url(['/users/user/profile']) }}" enctype="multipart/form-data">
             <div class="profile-section">
                 <div class="profile-section-header">Основные</div>
                 <div class="profile-section-line">
-                    <div class="form-group is-invalid">
+                    <div class="form-group">
                         <label>
-                            <input type="tel" class="form-control is-invalid" placeholder="Телефон">
+                            <input type="tel" name="Profile[phone]" class="form-control" placeholder="Телефон">
                         </label>
-                        <div class="invalid-feedback">Example invalid feedback text</div>
+                        <div class="invalid-feedback"></div>
                     </div>
                     <div class="form-group">
                         <label>
-                            <input type="email" class="form-control" placeholder="Email">
+                            <input type="email" class="form-control" name="Profile[Phone]" placeholder="Email">
                         </label>
+                        <div class="invalid-feedback"></div>
                     </div>
                 </div>
             </div>
@@ -67,25 +68,29 @@
                 <div class="profile-section-line">
                     <div class="form-group">
                         <label>
-                            <input type="text" name="surname" class="form-control" placeholder="Фамилия">
+                            <input type="text" name="Profile[name]" class="form-control" placeholder="Фамилия">
                         </label>
+                        <div class="invalid-feedback"></div>
                     </div>
                     <div class="form-group">
                         <label>
-                            <input type="text" name="firstname" class="form-control" placeholder="Имя">
+                            <input type="text" name="Profile[surname]" class="form-control" placeholder="Имя">
                         </label>
+                        <div class="invalid-feedback"></div>
                     </div>
                     <div class="form-group">
                         <label>
-                            <input type="text" name="middlename" class="form-control" placeholder="Отчество">
+                            <input type="text" name="Profile[patronymic]" class="form-control" placeholder="Отчество">
                         </label>
+                        <div class="invalid-feedback"></div>
                     </div>
                 </div>
                 <div class="profile-section-line">
-                    <div class="form-group-100">
+                    <div class="form-group form-group-100">
                         <label>
-                            <textarea name="aboutself" class="form-control" placeholder="О себе"></textarea>
+                            <textarea name="Profile[about_me]" class="form-control" placeholder="О себе"></textarea>
                         </label>
+                        <div class="invalid-feedback"></div>
                     </div>
                 </div>
             </div>
@@ -94,7 +99,7 @@
                 <div class="profile-section-line">
                     <div class="form-group">
                         <label>
-                            <select class="custom-select" name="account_legal">
+                            <select class="custom-select" name="Profile[account_legal]">
                                 <option value="0">Физическое лицо</option>
                                 <option value="1">Юридическое лицо</option>
                             </select>
@@ -102,12 +107,13 @@
                     </div>
                     <div class="form-group">
                         <label>
-                            <select class="custom-select" name="account_type">
-                                <option value="agency">Агентство</option>
-                                <option value="owner">Собственник</option>
-                                <option value="renter">Хочу снять</option>
+                            <select class="custom-select" name="Profile[user_type]">
+                                {% for key, userType in profile.getUserTypeArray() %}
+                                    <option value="{{ key }}">{{ userType.label }}</option>
+                                {% endfor %}
                             </select>
                         </label>
+                        <div class="invalid-feedback"></div>
                     </div>
                 </div>
             </div>
@@ -116,35 +122,41 @@
                 <div class="profile-section-line">
                     <div class="form-group">
                         <label>
-                            <input type="text" class="form-control" placeholder="Вконтакте">
+                            <input type="text" name="Profile[vk]" class="form-control" placeholder="Вконтакте">
                         </label>
+                        <div class="invalid-feedback"></div>
                     </div>
                     <div class="form-group">
                         <label>
-                            <input type="text" class="form-control" placeholder="Facebook">
+                            <input type="text" name="Profile[fb]" class="form-control" placeholder="Facebook">
                         </label>
+                        <div class="invalid-feedback"></div>
                     </div>
                     <div class="form-group">
                         <label>
-                            <input type="text" class="form-control" placeholder="Twitter">
+                            <input type="text" name="Profile[twitter]" class="form-control" placeholder="Twitter">
                         </label>
+                        <div class="invalid-feedback"></div>
                     </div>
                 </div>
                 <div class="profile-section-line">
                     <div class="form-group">
                         <label>
-                            <input type="text" class="form-control" placeholder="Skype">
+                            <input type="text" name="Profile[skype]" class="form-control" placeholder="Skype">
                         </label>
+                        <div class="invalid-feedback"></div>
                     </div>
                     <div class="form-group">
                         <label>
-                            <input type="email" class="form-control" placeholder="Доп e-mail">
+                            <input type="email" name="Profile[email]" class="form-control" placeholder="Доп e-mail">
                         </label>
+                        <div class="invalid-feedback"></div>
                     </div>
                     <div class="form-group">
                         <label>
-                            <input type="tel" class="form-control" placeholder="Доп телефон">
+                            <input type="tel" name="Profile[phone2]" class="form-control" placeholder="Доп телефон">
                         </label>
+                        <div class="invalid-feedback"></div>
                     </div>
                 </div>
             </div>
@@ -153,18 +165,21 @@
                 <div class="profile-section-line">
                     <div class="form-group">
                         <label>
-                            <input type="password" class="form-control" placeholder="Текущий пароль">
+                            <input type="password" name="Password[current]" class="form-control" placeholder="Текущий пароль">
                         </label>
+                        <div class="invalid-feedback"></div>
                     </div>
                     <div class="form-group">
                         <label>
-                            <input type="password" class="form-control" placeholder="Новый пароль">
+                            <input type="password" name="Password[new]" class="form-control" placeholder="Новый пароль">
                         </label>
+                        <div class="invalid-feedback"></div>
                     </div>
                     <div class="form-group">
                         <label>
-                            <input type="password" class="form-control" placeholder="Повторите пароль">
+                            <input type="password" name="Password[repeat]" class="form-control" placeholder="Повторите пароль">
                         </label>
+                        <div class="invalid-feedback"></div>
                     </div>
                 </div>
             </div>
@@ -173,5 +188,9 @@
             </div>
         </form>
     </section>
+
+    <pre>
+        {{ dump(profile) }}
+    </pre>
 
 {% endblock content %}

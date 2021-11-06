@@ -8,7 +8,7 @@
 
 {% extends "@common/modules/office/views/frontend/layouts/main.twig" %}
 
-{% block title %}{{ this.registerTitle('Отзывы | Сдаём.ру') }}{% endblock %}
+{% block title %}Отзывы | Сдаём.ру{% endblock %}
 
 {% block breadcrumbs %}
     <div class="breadcrumbs">
@@ -43,19 +43,16 @@
                 <div class="clearfix">
                     <div class="title">Отзывы (<span>{{ countReviews }}</span>):</div>
                 </div>
-
                 {% for review in dataProvider.getModels() %}
                     {{ this.render('_view.twig', {
                         'user' : false,
                         'model' : review,
                     }) | raw }}
                 {% endfor %}
-
                 {{ use('yii/widgets/LinkPager') }}
                 {{ link_pager_widget({
                     'pagination' : dataProvider.pagination
                 }) }}
-
             </div>
         </div>
     {% else %}
