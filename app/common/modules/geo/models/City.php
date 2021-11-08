@@ -106,13 +106,16 @@ class City extends \yii\db\ActiveRecord
                 ->select(self::tableName() . '.city_id, ' . self::tableName() . '.name, ' . Country::tableName() . '.name AS country')
                 ->from(self::tableName())
                 ->leftJoin(Country::tableName(), Country::tableName() . '.country_id = ' . self::tableName() . '.country_id')
+                ->where([Country::tableName() . '.name' => 'Россия'])
                 ->orderBy([self::tableName() . '.name' => SORT_ASC])
                 ->all();
 
             $result = [];
 
+
             foreach ($rows as &$row) {
-                $result[$row['city_id']] = $row['name'] . ' ' . '(' . $row['country'] . ')';
+                // $result[$row['city_id']] = $row['name'] . ' ' . '(' . $row['country'] . ')'; // пока только по России
+                $result[$row['city_id']] = $row['name'];
                 unset($row);
             }
 

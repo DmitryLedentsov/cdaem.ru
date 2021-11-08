@@ -62,11 +62,14 @@ class AdvertForm extends Advert
                 $result = [];
 
                 foreach ($this->rent_type as $rentTypeId) {
-                    if (isset($this->price[$rentTypeId]) && isset($this->currency[$rentTypeId])) {
+                    // if (isset($this->price[$rentTypeId]) && isset($this->currency[$rentTypeId])) { // TODO пока оставляем одну цену для всех типов аренды
+                    if (isset($this->price) && isset($this->currency)) {
                         $result[] = [
                             'rent_type_id' => $rentTypeId,
-                            'price' => $this->price[$rentTypeId],
-                            'currency' => $this->currency[$rentTypeId],
+                            // 'price' => $this->price[$rentTypeId], // TODO пока оставляем одну цену для всех типов аренды
+                            'price' => $this->price,
+                            // 'currency' => $this->currency[$rentTypeId], // TODO пока оставляем одну цену для всех типов аренды
+                            'currency' => $this->currency,
                         ];
                     }
                 }
@@ -81,7 +84,6 @@ class AdvertForm extends Advert
             } else {
                 $this->addError('rent_type', 'Укажите объявления для недвижимости');
             }
-
             return true;
         }
 

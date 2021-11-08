@@ -16,6 +16,7 @@ class OfficeAsset extends AssetBundle
 
     public $js = [
         '/_new/js/pages/account/home.min.js',
+        '/_new/js/pages/account/apartment.min.js',
     ];
 
     /**
@@ -23,5 +24,6 @@ class OfficeAsset extends AssetBundle
      */
     public $depends = [
         \common\modules\office\assets\frontend\OfficeAsset::class,
+        \common\modules\geo\assets\frontend\YMapAsset::class
     ];
 }

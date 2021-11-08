@@ -2,8 +2,10 @@
 
 namespace common\modules\partners\controllers\frontend;
 
+use common\modules\geo\models\City;
 use common\modules\users\models\Profile;
 use Yii;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use yii\web\Response;
 use yii\web\HttpException;
@@ -123,21 +125,46 @@ class OfficeController extends \frontend\components\Controller
         $rentTypes = models\form\AdvertForm::getPreparedRentTypesAdvertsList(RentType::rentTypeslist(), $apartment->adverts);
         $advert = new models\form\AdvertForm(['scenario' => 'user-create']);
         $image = new models\form\ImageForm(['scenario' => 'user-create']);
+        $facility = new models\form\FacilityForm(['scenario' => 'user-create']);
 
         if (Yii::$app->request->isAjax && Yii::$app->request->isPost) {
+
+            //dd(self::class, $_POST, $_FILES);
             Yii::$app->response->format = Response::FORMAT_JSON;
-            $advert->load(Yii::$app->request->post());
+
+            // dd(Yii::$app->request->post());
+            // dd(Yii::$app->request->post(), $apartment, $result, $apartment->city_id);
+
             $apartment->load(Yii::$app->request->post());
+            $advert->load(Yii::$app->request->post());
             $image->load(Yii::$app->request->post());
-            $errors = array_merge(ActiveForm::validate($apartment), ActiveForm::validate($advert), ActiveForm::validate($image));
+
+            // Собираем удобства в массив
+            $facilities = ArrayHelper::getValue(Yii::$app->request->post(), 'FacilityForm');
+
+            if ($facilities) {
+                $facility->load(['FacilityForm' => [
+                    "facilities" => $facilities
+                ]]);
+            }
+
+            // dd(Yii::$app->request->post(), $facility);
+
+            $errors = array_merge(ActiveForm::validate($apartment), ActiveForm::validate($advert), ActiveForm::validate($image), ActiveForm::validate($facility));
+
+            // dd($errors);
 
             if (!$errors) {
                 $apartment->populateRelation('adverts', $advert);
                 $apartment->populateRelation('images', $image);
-                if (Yii::$app->request->post('submit')) {
+                $apartment->populateRelation('facilities', $facility);
+
+                // if (Yii::$app->request->post('submit')) // TODO зачем это?
+                {
                     if ($apartment->save(false)) {
                         Yii::$app->session->setFlash('success', 'Ваше объявление успешно добавлено в нашу базу данных.');
 
+                        // dd(2);
                         return $this->redirect(['/partners/office/apartments']);
                     }
 
@@ -158,6 +185,13 @@ class OfficeController extends \frontend\components\Controller
             'advert' => $advert,
             'rentTypes' => $rentTypes,
             'image' => $image,
+            'cities' => City::dropDownList(),
+            'metroWalks' => \common\modules\realty\models\Apartment::getMetroWalkArray(),
+            'currencies' => \common\modules\realty\models\Apartment::getCurrencyArray(),
+            'rooms' => \common\modules\realty\models\Apartment::getRoomsArray(),
+            'sleepingPlaces' => \common\modules\realty\models\Apartment::getSleepingPlacesArray(),
+            'beds' => \common\modules\realty\models\Apartment::getBedsArray(),
+            'remont' => \common\modules\realty\models\Apartment::getRemontArray(),
         ]);
     }
 

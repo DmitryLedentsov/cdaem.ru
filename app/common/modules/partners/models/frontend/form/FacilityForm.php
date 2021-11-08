@@ -2,13 +2,14 @@
 
 namespace common\modules\partners\models\frontend\form;
 
+use common\modules\partners\models\frontend\Facility;
+use yii\debug\models\search\Db;
 use yii\web\UploadedFile;
-use common\modules\partners\models\frontend\Image;
 
 /**
  * @inheritdoc
  */
-class ImageForm extends Image
+class FacilityForm extends Facility
 {
     /**
      * @inheritdoc
@@ -27,8 +28,7 @@ class ImageForm extends Image
     public function scenarios()
     {
         return [
-            'user-create' => ['files'],
-            'user-create' => ['files'],
+            'user-create' => ['facilities'],
         ];
     }
 
@@ -37,17 +37,7 @@ class ImageForm extends Image
      */
     public function rules()
     {
-        return [
-            ['files', 'required', 'on' => 'user-create'],
-            [
-                'files', 'image',
-                'skipOnEmpty' => true,
-                'extensions' => 'png, jpg, jpeg, gif',
-                'maxFiles' => $this->module->maxUploadImages,
-                'minWidth' => $this->module->previewImageResizeWidth,
-                'maxSize' => $this->module->imageMaxSize
-            ]
-        ];
+        return []; // TODO ограничить списком удобств?
     }
 
     /**
@@ -56,7 +46,15 @@ class ImageForm extends Image
     public function beforeValidate()
     {
         if (parent::beforeValidate()) {
-            $this->files = UploadedFile::getInstances($this, 'files');
+            $facilities = [];
+            foreach ($this->facilities as $alias => $active) {
+                if ($active === '1') {
+                    $facility = Facility::findOne(['alias' => $alias]);
+                    $facilities[] = $facility;
+                }
+            }
+
+            $this->facilities = $facilities;
             return true;
         }
 

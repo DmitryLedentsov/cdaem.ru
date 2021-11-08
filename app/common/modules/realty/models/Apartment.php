@@ -67,9 +67,24 @@ class Apartment extends ActiveRecord
     }
 
     /**
-     * @return array Список кол-во спальных мест
+     * @return array Список кол-во кроватей
      */
     public static function getBedsArray(): array
+    {
+        return [
+            1 => '1 кровать',
+            2 => '2 кровати',
+            3 => '3 кровати',
+            4 => '4 кровати',
+            5 => '5 кроватей',
+            6 => '6 и более',
+        ];
+    }
+
+    /**
+     * @return array Список кол-во спальных мест
+     */
+    public static function getSleepingPlacesArray(): array
     {
         return [
             1 => '1 место',

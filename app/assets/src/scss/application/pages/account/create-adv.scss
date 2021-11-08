@@ -159,13 +159,14 @@
     .maps {
         position: relative;
         display: flex;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         justify-content: space-between;
         margin-top: 25px;
     }
 
     .maps-data {
-        width: 100%;
+        z-index: 1;
+        width: 22%;
         bottom: 4px;
         background-color: #fff;
         border-radius: 6px;
@@ -187,11 +188,11 @@
         }
 
         @include tablet() {
-            position: absolute;
+            /*position: absolute;
             left: 0;
             top: -15px;
             bottom: 0;
-            width: 241px;
+            width: 241px;*/
         }
     }
 
@@ -207,6 +208,7 @@
             font-weight: 500;
             color: #848484;
             text-decoration: none;
+            cursor: pointer;
 
             &:last-child {
                 margin-bottom: 0;
