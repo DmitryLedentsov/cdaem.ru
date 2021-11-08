@@ -4,7 +4,6 @@ namespace common\modules\users\controllers\frontend;
 
 use Yii;
 use yii\web\Response;
-use yii\widgets\ActiveForm;
 use frontend\components\Controller;
 use common\modules\users\models as models;
 
@@ -62,71 +61,61 @@ class UserController extends Controller
 
     /**
      * Профиль
-     * @return array|string|Response
+     * @return Response
      */
-    public function actionProfile()
+    public function actionProfile(): Response
     {
         $profile = models\Profile::findByUserId(Yii::$app->user->id);
         $profile->setScenario('update');
 
         if ($profile->load(Yii::$app->request->post())) {
+            $errors = $this->validate($profile);
+            if (empty($errors)) {
+                $profile->save(false);
 
+                return $this->successAjaxResponse(Yii::t('users', 'SUCCESS_UPDATE'));
+            }
+
+            // TODO:
             dd(self::class, Yii::$app->request->post());
 
-            if ($profile->validate()) {
-                if ($profile->save(false)) {
-                    Yii::$app->session->setFlash('success', Yii::t('users', 'SUCCESS_UPDATE'));
-                } else {
-                    Yii::$app->session->setFlash('danger', Yii::t('users', 'FAIL_UPDATE'));
-                }
-
-                return $this->refresh();
-            } elseif (Yii::$app->request->isAjax) {
-                Yii::$app->response->format = Response::FORMAT_JSON;
-
-                return ActiveForm::validate($profile);
-            }
+            return $this->validationErrorsAjaxResponse($errors);
         }
 
-        return $this->render('profile', [
+        return $this->response($this->render('profile', [
             'profile' => $profile,
-        ]);
+        ]));
     }
 
     /**
      * Изменить пароль
-     * @return array|string|Response
+     * @return Response
      */
-    public function actionPassword()
+    public function actionPassword(): Response
     {
         $model = new models\frontend\PasswordForm();
 
         if ($model->load(Yii::$app->request->post())) {
-            if ($model->validate()) {
-                if ($model->password()) {
-                    Yii::$app->session->setFlash('success', Yii::t('users', 'SUCCESS_PASSWORD_CHANGE'));
-                } else {
-                    Yii::$app->session->setFlash('danger', Yii::t('users', 'FAIL_PASSWORD_CHANGE'));
-                }
+            $errors = $this->validate($model);
+            if (empty($errors)) {
+                $model->password();
 
-                return $this->refresh();
-            } elseif (Yii::$app->request->isAjax) {
-                Yii::$app->response->format = Response::FORMAT_JSON;
-
-                return ActiveForm::validate($model);
+                return $this->successAjaxResponse(Yii::t('users', 'SUCCESS_PASSWORD_CHANGE'));
             }
+
+            return $this->validationErrorsAjaxResponse($errors);
         }
 
-        return $this->render('password', [
-            'model' => $model
-        ]);
+        return $this->response($this->render('password', [
+            'model' => $model,
+        ]));
     }
 
     /**
      * Изменить данные юридического лица
-     * @return array|string|Response
+     * @return Response
      */
-    public function actionLegalPerson()
+    public function actionLegalPerson(): Response
     {
         if (!Yii::$app->user->identity->profile->legal_person) {
             return $this->goBack();
@@ -139,23 +128,18 @@ class UserController extends Controller
         }
 
         if ($model->load(Yii::$app->request->post())) {
-            if ($model->validate()) {
-                if ($model->save(false)) {
-                    Yii::$app->session->setFlash('success', Yii::t('users', 'SUCCESS_LEGAL_PERSON_UPDATE'));
-                } else {
-                    Yii::$app->session->setFlash('danger', Yii::t('users', 'FAIL_LEGAL_PERSON_UPDATE'));
-                }
+            $errors = $this->validate($model);
+            if (empty($errors)) {
+                $model->save(false);
 
-                return $this->refresh();
-            } elseif (Yii::$app->request->isAjax) {
-                Yii::$app->response->format = Response::FORMAT_JSON;
-
-                return ActiveForm::validate($model);
+                return $this->successAjaxResponse(Yii::t('users', 'SUCCESS_LEGAL_PERSON_UPDATE'));
             }
+
+            return $this->validationErrorsAjaxResponse($errors);
         }
 
-        return $this->render('legal-person', [
+        return $this->response($this->render('legal-person', [
             'model' => $model
-        ]);
+        ]));
     }
 }

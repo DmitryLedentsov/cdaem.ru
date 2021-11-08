@@ -46,13 +46,13 @@
                 <div class="profile-section-line">
                     <div class="form-group">
                         <label>
-                            <input type="tel" name="Profile[phone]" class="form-control" placeholder="Телефон">
+                            <input type="tel" name="User[phone]" class="form-control" placeholder="Телефон" value="{{ profile.user.phone }}" disabled>
                         </label>
                         <div class="invalid-feedback"></div>
                     </div>
                     <div class="form-group">
                         <label>
-                            <input type="email" class="form-control" name="Profile[Phone]" placeholder="Email">
+                            <input type="email" class="form-control" name="User[email]" placeholder="Email" value="{{ profile.user.email }}" disabled>
                         </label>
                         <div class="invalid-feedback"></div>
                     </div>
@@ -68,13 +68,13 @@
                 <div class="profile-section-line">
                     <div class="form-group">
                         <label>
-                            <input type="text" name="Profile[name]" class="form-control" placeholder="Фамилия">
+                            <input type="text" name="Profile[name]" class="form-control" placeholder="Фамилия" value="{{ profile.name }}">
                         </label>
                         <div class="invalid-feedback"></div>
                     </div>
                     <div class="form-group">
                         <label>
-                            <input type="text" name="Profile[surname]" class="form-control" placeholder="Имя">
+                            <input type="text" name="Profile[surname]" class="form-control" placeholder="Имя" value="{{ profile.surname }}">
                         </label>
                         <div class="invalid-feedback"></div>
                     </div>
@@ -88,7 +88,7 @@
                 <div class="profile-section-line">
                     <div class="form-group form-group-100">
                         <label>
-                            <textarea name="Profile[about_me]" class="form-control" placeholder="О себе"></textarea>
+                            <textarea name="Profile[about_me]" class="form-control" placeholder="О себе">{{ profile.about_me }}</textarea>
                         </label>
                         <div class="invalid-feedback"></div>
                     </div>
@@ -100,8 +100,8 @@
                     <div class="form-group">
                         <label>
                             <select class="custom-select" name="Profile[account_legal]">
-                                <option value="0">Физическое лицо</option>
-                                <option value="1">Юридическое лицо</option>
+                                <option value="0"{{ profile.account_legal == 0 ? ' selected' : ''}}>Физическое лицо</option>
+                                <option value="1"{{ profile.account_legal == 1 ? ' selected' : ''}}>Юридическое лицо</option>
                             </select>
                         </label>
                     </div>
@@ -109,7 +109,7 @@
                         <label>
                             <select class="custom-select" name="Profile[user_type]">
                                 {% for key, userType in profile.getUserTypeArray() %}
-                                    <option value="{{ key }}">{{ userType.label }}</option>
+                                    <option value="{{ key }}"{{ profile.user_type == key ? ' selected' : ''}}>{{ userType.label }}</option>
                                 {% endfor %}
                             </select>
                         </label>
@@ -122,19 +122,19 @@
                 <div class="profile-section-line">
                     <div class="form-group">
                         <label>
-                            <input type="text" name="Profile[vk]" class="form-control" placeholder="Вконтакте">
+                            <input type="text" name="Profile[vk]" class="form-control" value="{{ profile.vk }}" placeholder="Вконтакте">
                         </label>
                         <div class="invalid-feedback"></div>
                     </div>
                     <div class="form-group">
                         <label>
-                            <input type="text" name="Profile[fb]" class="form-control" placeholder="Facebook">
+                            <input type="text" name="Profile[fb]" class="form-control" value="{{ profile.fb }}" placeholder="Facebook">
                         </label>
                         <div class="invalid-feedback"></div>
                     </div>
                     <div class="form-group">
                         <label>
-                            <input type="text" name="Profile[twitter]" class="form-control" placeholder="Twitter">
+                            <input type="text" name="Profile[twitter]" class="form-control" value="{{ profile.twitter }}" placeholder="Twitter">
                         </label>
                         <div class="invalid-feedback"></div>
                     </div>
@@ -142,19 +142,19 @@
                 <div class="profile-section-line">
                     <div class="form-group">
                         <label>
-                            <input type="text" name="Profile[skype]" class="form-control" placeholder="Skype">
+                            <input type="text" name="Profile[skype]" class="form-control" value="{{ profile.skype }}" placeholder="Skype">
                         </label>
                         <div class="invalid-feedback"></div>
                     </div>
                     <div class="form-group">
                         <label>
-                            <input type="email" name="Profile[email]" class="form-control" placeholder="Доп e-mail">
+                            <input type="email" name="Profile[email]" class="form-control" value="{{ profile.email }}" placeholder="Доп e-mail">
                         </label>
                         <div class="invalid-feedback"></div>
                     </div>
                     <div class="form-group">
                         <label>
-                            <input type="tel" name="Profile[phone2]" class="form-control" placeholder="Доп телефон">
+                            <input type="tel" name="Profile[phone2]" class="form-control" value="{{ profile.phone2 }}" placeholder="Доп телефон">
                         </label>
                         <div class="invalid-feedback"></div>
                     </div>

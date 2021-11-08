@@ -69,9 +69,30 @@ class Profile extends \nepster\users\models\Profile
     public function scenarios(): array
     {
         return [
-            //'create' => ['name', 'surname', 'second_name', 'whau', 'user_type', /*'user_partner',*/ 'advertising', /*'birthday', 'day', 'month', 'year'*/],
-            'create' => ['name', 'user_type', 'advertising'],
-            'update' => ['name', 'surname', 'second_name', 'image', 'about_me', 'user_type', 'phone2', 'phones', 'email', 'skype', 'ok', 'vk', 'phones', 'fb', 'twitter', 'legal_person'],
+            'create' => [
+                'name',
+                'user_type',
+                'advertising',
+            ],
+            'update' => [
+                'name',
+                'surname',
+                'second_name',
+                // 'patronymic',
+                'image',
+                'about_me',
+                'user_type',
+                'phone2',
+                'phones',
+                'email',
+                'skype',
+                'ok',
+                'vk',
+                'phones',
+                'fb',
+                'twitter',
+                'legal_person',
+            ],
         ];
     }
 
