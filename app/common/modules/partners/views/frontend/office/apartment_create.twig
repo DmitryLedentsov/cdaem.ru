@@ -62,8 +62,8 @@
                     <div class="step-column-33">
 {#                        <input type="text" name="city" placeholder="Введите город" class="step-input" />#}
 
-                        <select name="ApartmentForm[city_id]" class="custom-select">
-                            <option value="0">Выберите город</option>
+                        <select name="ApartmentForm[city_id]" required class="custom-select">
+                            <option value="">Выберите город <sup>*</sup></option>
                             {% for city_id, city in cities %}
                                 <option value="{{ city_id }}">{{ city }}</option>
                             {% endfor %}
@@ -125,22 +125,22 @@
                 <div class="step-line">
                     <div class="step-column-33">
                         <select name="AdvertForm[rent_type][]" required multiple class="custom-select">
-                            <option value="">Тип аренды <sup>*</sup></option>
+{#                            <option value="">Тип аренды <sup>*</sup></option>#}
                             {% for id, value in rentTypes %}
                                 <option value="{{ id }}">{{ value.name }}</option>
                             {% endfor %}
                         </select>
                     </div>
                     <div class="step-column-33">
-                        <select name="AdvertForm[currency]" class="custom-select">
-                            <option value="">Выбрать валюту</option>
+                        <select name="AdvertForm[currency]" required class="custom-select">
+                            <option value="">Выбрать валюту <sup>*</sup></option>
                             {% for id, value in currencies %}
                                 <option value="{{ id }}">{{ value }}</option>
                             {% endfor %}
                         </select>
                     </div>
                     <div class="step-column-33">
-                        <input type="text" name="AdvertForm[price]" class="step-input" placeholder="Цена">
+                        <input type="text" name="AdvertForm[price]" required class="step-input" placeholder="Цена *">
                     </div>
                 </div>
             </div>
@@ -227,7 +227,7 @@
             <div class="step-photo">
                 <div class="step-photo-item">
                     <label class="step-photo-label">
-                        <input type="file" name="ImageForm[files][]" accept=".gif, .jpg, .png" class="step-photo-input">
+                        <input type="file" name="ImageForm[files][]" accept=".gif, .jpg, .png" required class="step-photo-input">
                         <div class="step-photo-frame"></div>
                         <span>Выбрать фото</span>
                     </label>
