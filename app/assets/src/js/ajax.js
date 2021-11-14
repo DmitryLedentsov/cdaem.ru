@@ -109,7 +109,9 @@ $(function () {
                 params.complete && params.complete(response);
             },
             success: function (response) {
-
+                if (response.status === 'success' && response.message) {
+                    window.toastSuccess(response.message);
+                }
                 if (params.success) {
                     checkResponse(response, params.success);
                 }
