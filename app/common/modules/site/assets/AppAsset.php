@@ -21,6 +21,7 @@ class AppAsset extends AssetBundle
         '/_new/vendor/bootstrap/bootstrap.min.css',
         '/_new/vendor/daterangepicker/daterangepicker.min.css',
         '/_new/vendor/datetimepicker/bootstrap-datetimepicker.min.css',
+        '/_new/vendor/toastr/toastr.min.css',
         '/_new/css/base.min.css',
         '/_new/css/interfaces.min.css',
     ];
@@ -29,6 +30,7 @@ class AppAsset extends AssetBundle
         '/_new/vendor/popper.min.js',
         '/_new/vendor/moment_ru.min.js',
         '/_new/vendor/bootstrap/bootstrap.min.js',
+        '/_new/vendor/toastr/toastr.min.js',
         '/_new/vendor/display-validation.min.js',
         '/_new/vendor/jquery.inputmask.min.js',
         '/_new/vendor/daterangepicker/daterangepicker.min.js',

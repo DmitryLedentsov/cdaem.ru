@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>Апартаменты</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language" content="ru"/>
+    <meta name="description" content="---">
+    <meta name="keywords" content="--">
+    <meta name="domain" content="--">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="currency" content="rub"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:site_name" content="---"/>
+    <meta property="og:url" content="---">
+    <meta property="og:title" content="---">
+    <meta property="og:description" content="---">
+    <meta property="og:image" content="og-home.png">
+    <meta property="og:image:type" content="image/png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon-32x32.png">
+    <link rel="stylesheet" media="screen" href="./vendor/bootstrap/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css">
+    <link rel="stylesheet" media="screen" href="./vendor/daterangepicker/daterangepicker.min.css"/>
+    <link rel="stylesheet" media="screen" href="./vendor/datetimepicker/bootstrap-datetimepicker.min.css"/>
+    <link rel="stylesheet" media="screen" href="./css/base.min.css"/>
+    <link rel="stylesheet" media="screen" href="./css/interfaces.min.css"/>
+    <link rel="stylesheet" media="screen" href="./css/pages/apartment.min.css"/>
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=3dd27c27-e51a-4660-a191-5c0413af0c03&lang=ru_RU"></script>
+</head>
+<body class="l-base p-apartment">
+
+<div class="wrapper">
+    <header class="header-collapse">
+        <div class="container-fluid">
+            <a class="header-logo" href="./index.html">
+                <img src="./images/logo-dark.svg" alt="logo">
+            </a>
+            <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-menu" aria-label="navbar-toggle">
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="main-menu collapse" id="main-menu">
+                <ul class="nav navbar-nav">
+                    <li class="nav-item">
+                        <a class="active" href="#">Добавить объявление</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="./help.html">Помощь</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="./board.html">Расширенный поиск</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="./signOut.html" data-toggle="modal" data-target="#signUp">Регистрация</a>
+                    </li>
+                </ul>
+                <a href="./signIn.html" class="btn btn-warning btn-special btn-sign-in" data-toggle="modal" data-target="#signIn">
+                    Вход
+                </a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="container-fluid">
+            <div class="breadcrumbs">
+                <a href="./index.html">Главная</a><span>Москва, Сеславинская, дом 26</span>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div id="map" style="width: 100%; height: 429px"></div>
+        </div>
+        <section class="advert">
+            <div class="container-fluid">
+                <div class="advert-info">
+                    <h2 class="advert-title">Сеславинская, дом 26</h2>
+                    <div class="advert-cost">
+                        <div class="advert-cost-info">
+                            <object class="advert-icon">
+                                <img src="./images/icons/apartment/hour.svg" alt="hour">
+                            </object>
+                            <p>Час: <span>800 ₽</span></p>
+                        </div>
+                        <div class="advert-cost-info">
+                            <object class="advert-icon">
+                                <img src="./images/icons/apartment/night.svg" alt="night">
+                            </object>
+                            <p>Ночь: <span>800 ₽</span></p>
+                        </div>
+                        <div class="advert-cost-info">
+                            <object class="advert-icon">
+                                <img src="./images/icons/apartment/day.svg" alt="day">
+                            </object>
+                            <p>Сутки: <span>8 100 ₽</span></p>
+                        </div>
+                        <div class="advert-cost-info">
+                            <object class="advert-icon">
+                                <img src="./images/icons/apartment/months.svg" alt="months">
+                            </object>
+                            <p>Месяц: <span>80 000 ₽</span></p>
+                        </div>
+                    </div>
+                    <div class="advert-list">
+                        <ul>
+                            <li><b>Адрес:</b> Москва, Сеславинская, дом 26</li>
+                            <li><b>Метро:</b> Багратионовская, Филевский парк</li>
+                            <li><b>Удаленность от метро:</b> 1 минута</li>
+                            <li><b>Этаж:</b> 3</li>
+                            <li><b>Общая площадь:</b> 32 м2</li>
+                            <li><b>Комнат:</b> 1</li>
+                            <li><b>Спальных мест:</b> 4</li>
+                            <li><b>Ремонт:</b> Евроремонт</li>
+                            <li class="repairs-icons">
+                                <img src="./images/apartment/repairs/freezer.svg" alt="freezer">
+                                <img src="./images/apartment/repairs/cooker.svg" alt="cooker">
+                                <img src="./images/apartment/repairs/iron.svg" alt="iron">
+                                <img src="./images/apartment/repairs/hair-dryer.svg" alt="hair-dryer">
+                                <img src="./images/apartment/repairs/wifi.svg" alt="wifi">
+                                <img src="./images/apartment/repairs/microwave.svg" alt="microwave">
+                                <img src="./images/apartment/repairs/smart-tv.svg" alt="smart-tv">
+                                <img src="./images/apartment/repairs/air-conditioner.svg" alt="air-conditioner">
+                                <img src="./images/apartment/repairs/washing-machine.svg" alt="washing-machine">
+                                <img src="./images/apartment/repairs/couch.svg" alt="couch">
+                                <img src="./images/apartment/repairs/bed.svg" alt="bed">
+                                <img src="./images/apartment/repairs/shower.svg" alt="shower">
+                                <img class="bath" src="./images/apartment/repairs/bath.svg" alt="bath">
+                                <img src="./images/apartment/repairs/jacuzzi.svg" alt="jacuzzi">
+                            </li>
+                            <li>
+                                <b>Информация от владельца:</b>
+                                <div>
+                                    Сдам уютную с хорошим ремонтом квартиру на часы,ночь,сутки,неделю,сессию.
+                                    В квартире чисто уютно и есть всё необходимое для культурного отдыха и проживания
+                                    в том числе интернет.В шаговой доступности остановки общественного транспорта,
+                                    супермаркет, кафе, ресторан.
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="advert-info">
+                    <div class="advert-author">
+                        <div class="advert-author-logo"></div>
+                        <div class="advert-author-info">
+                            <div class="advert-author-info-item"><b>Владелец:</b> <span class="advert-info-price">15 000 ₽ / сутки</span>
+                            </div>
+                            <div class="advert-author-info-item">Валерий Губин Алексеевич</div>
+                            <div class="advert-author-info-item"><span class="advert-info-online">Сейчас онлайн</span>
+                                <b>+7 900 000 00 00</b></div>
+                        </div>
+                    </div>
+                    <div class="advert-slider-for">
+                        <div class="advert-slider-for-item">
+                            <img src="./images/slider/slider1.png" alt="slider-image">
+                        </div>
+                        <div class="advert-slider-for-item">
+                            <img src="./images/slider/slider2.png" alt="slider-image">
+                        </div>
+                        <div class="advert-slider-for-item">
+                            <img src="./images/slider/slider3.png" alt="slider-image">
+                        </div>
+                        <div class="advert-slider-for-item">
+                            <img src="./images/slider/slider4.png" alt="slider-image">
+                        </div>
+                        <div class="advert-slider-for-item">
+                            <img src="./images/slider/slider5.png" alt="slider-image">
+                        </div>
+                    </div>
+                    <div class="advert-slider-nav">
+                        <div class="advert-slider-nav-item">
+                            <img src="./images/slider/slider1.png" alt="slider-image">
+                        </div>
+                        <div class="advert-slider-nav-item">
+                            <img src="./images/slider/slider2.png" alt="slider-image">
+                        </div>
+                        <div class="advert-slider-nav-item">
+                            <img src="./images/slider/slider3.png" alt="slider-image">
+                        </div>
+                        <div class="advert-slider-nav-item">
+                            <img src="./images/slider/slider4.png" alt="slider-image">
+                        </div>
+                        <div class="advert-slider-nav-item">
+                            <img src="./images/slider/slider5.png" alt="slider-image">
+                        </div>
+                    </div>
+                    <div class="advert-button">
+                        <button class="btn btn-warning" data-toggle="modal" data-target="#modalBook">Забронировать
+                        </button>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-warning" data-toggle="modal"
+                                data-target="#exampleModalLong">Написать
+                        </button>
+                        <button class="btn btn-warning" data-toggle="modal" data-target="#modalAppeal">Пожаловаться
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="apartment-list">
+            <div class="container-fluid">
+                <h2 class="section-title">Объявление от владельца</h2>
+                <div class="apartment-card-container">
+                    <div class="apartment-card">
+                        <div class="apartment-item">
+                            <div class="apartment-image-block">
+                                <div class="apartment-price apartment-prices">1500₽ / 24ч</div>
+                                <img class="apartment-image" src="./images/apartment/apartment-image.png"
+                                     alt="advert-image">
+                                <button class="apartment-phone"></button>
+                            </div>
+                            <div class="apartment-period">Квартира на сутки</div>
+                            <div class="apartment-location">Москва, Большая полянка 28</div>
+                            <div class="apartment-position">Удаленность от метро: 1 минута</div>
+                            <div class="apartment-info">
+                                <div class="apartment-info-item  apartment-rooms">
+                                    <object class="apartment-icon">
+                                        <img src="./images/icons/apartment/rooms.svg" alt="rooms">
+                                    </object>
+                                    <span>1 комната</span>
+                                </div>
+                                <div class="apartment-info-item apartment-area">
+                                    <object class="apartment-icon">
+                                        <img src="./images/icons/apartment/area.svg" alt="area">
+                                    </object>
+                                    <span>35 м2</span>
+                                </div>
+                                <div class="apartment-info-item  apartment-beds">
+                                    <object class="apartment-icon">
+                                        <img src="./images/icons/apartment/beds.svg" alt="beds">
+                                    </object>
+                                    <span>2 спальных <br>места</span>
+                                </div>
+                                <div class="apartment-info-item  apartment-repairs">
+                                    <object class="apartment-icon">
+                                        <img src="./images/icons/apartment/repairs.svg" alt="repairs">
+                                    </object>
+                                    <span>Евроремонт</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="apartment-buttons">
+                            <button class="apartment-button apartment-button--book"><span class="apartment-button-text">Забронировать</span>
+                            </button>
+                            <button class="apartment-button apartment-button--contact"><span
+                                    class="apartment-button-text">Связаться</span></button>
+                        </div>
+                    </div>
+                    <div class="apartment-card">
+                        <div class="apartment-item">
+                            <div class="apartment-image-block">
+                                <div class="apartment-price  apartment-prices">1500₽ / 24ч</div>
+                                <img class="apartment-image" src="./images/apartment/apartment-image.png"
+                                     alt="advert-image">
+                                <button class="apartment-phone"></button>
+                            </div>
+                            <div class="apartment-period">Квартира на сутки</div>
+                            <div class="apartment-location">Москва, Большая полянка 28</div>
+                            <div class="apartment-position">Удаленность от метро: 1 минута</div>
+                            <div class="apartment-info">
+                                <div class="apartment-info-item apartment-rooms">
+                                    <object class="apartment-icon">
+                                        <img src="./images/icons/apartment/rooms.svg" alt="rooms">
+                                    </object>
+                                    <span>1 комната</span>
+                                </div>
+                                <div class="apartment-info-item apartment-area">
+                                    <object class="apartment-icon">
+                                        <img src="./images/icons/apartment/area.svg" alt="area">
+                                    </object>
+                                    <span>35 м2</span>
+                                </div>
+                                <div class="apartment-info-item apartment-beds">
+                                    <object class="apartment-icon">
+                                        <img src="./images/icons/apartment/beds.svg" alt="beds">
+                                    </object>
+                                    <span>2 спальных <br>места</span>
+                                </div>
+                                <div class="apartment-info-item apartment-repairs">
+                                    <object class="apartment-icon">
+                                        <img src="./images/icons/apartment/repairs.svg" alt="repairs">
+                                    </object>
+                                    <span>Евроремонт</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="apartment-buttons">
+                            <button class="apartment-button apartment-button--book"><span class="apartment-button-text">Забронировать</span>
+                            </button>
+                            <button class="apartment-button apartment-button--contact"><span
+                                    class="apartment-button-text">Связаться</span></button>
+                        </div>
+                    </div>
+                    <div class="apartment-card">
+                        <div class="apartment-item">
+                            <div class="apartment-image-block">
+                                <div class="apartment-price  apartment-prices">1500₽ / 24ч</div>
+                                <img class="apartment-image" src="./images/apartment/apartment-image.png"
+                                     alt="advert-image">
+                                <button class="apartment-phone"></button>
+                            </div>
+                            <div class="apartment-period">Квартира на сутки</div>
+                            <div class="apartment-location">Москва, Большая полянка 28</div>
+                            <div class="apartment-position">Удаленность от метро: 1 минута</div>
+                            <div class="apartment-info">
+                                <div class="apartment-info-item apartment-rooms">
+                                    <object class="apartment-icon">
+                                        <img src="./images/icons/apartment/rooms.svg" alt="rooms">
+                                    </object>
+                                    <span>1 комната</span>
+                                </div>
+                                <div class="apartment-info-item apartment-area">
+                                    <object class="apartment-icon">
+                                        <img src="./images/icons/apartment/area.svg" alt="area">
+                                    </object>
+                                    <span>35 м2</span>
+                                </div>
+                                <div class="apartment-info-item apartment-beds">
+                                    <object class="apartment-icon">
+                                        <img src="./images/icons/apartment/beds.svg" alt="beds">
+                                    </object>
+                                    <span>2 спальных <br>места</span>
+                                </div>
+                                <div class="apartment-info-item apartment-repairs">
+                                    <object class="apartment-icon">
+                                        <img src="./images/icons/apartment/repairs.svg" alt="repairs">
+                                    </object>
+                                    <span>Евроремонт</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="apartment-buttons">
+                            <button class="apartment-button apartment-button--book"><span class="apartment-button-text">Забронировать</span>
+                            </button>
+                            <button class="apartment-button apartment-button--contact"><span
+                                    class="apartment-button-text">Связаться</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="reviews">
+            <div class="container-fluid">
+                <div class="reviews-top">
+                    <h2 class="section-title">Отзывы</h2>
+                    <button type="button" class="give-feedback" data-toggle="modal" data-target="#modalReview">Оставить
+                        отзыв
+                    </button>
+                </div>
+                <div class="reviews-container">
+                    <div class="review-card" data-toggle="modal" data-target="#modalReviewText">
+                        <div class="review-logo"></div>
+                        <div class="review-info-container">
+                            <div class="review-info">
+                                <div class="review-date">12.10.2020</div>
+                                <div class="review-rating-container">
+                                    <span class="review-evaluation review-evaluation-5">16</span>
+                                    Рейтинг квартиры
+                                </div>
+                            </div>
+                            <div class="review-author">Аркадий Яковлевич</div>
+                            <div class="review-text review-text-card">
+                                Это мой отзыв да я считаю что квартира достаточно скромная за 1000 рублей я ожидал
+                                конечно большего, извиняюсь заранее перед владельцем но вы
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-card" data-toggle="modal" data-target="#modalReviewText">
+                        <div class="review-logo"></div>
+                        <div class="review-info-container">
+                            <div class="review-info">
+                                <div class="review-date">12.10.2020</div>
+                                <div class="review-rating-container">
+                                    <span class="review-evaluation review-evaluation-5">16</span>
+                                    Рейтинг квартиры
+                                </div>
+                            </div>
+                            <div class="review-author">Аркадий Яковлевич</div>
+                            <div class="review-text review-text-card">
+                                Это мой отзыв да я считаю что квартира достаточно скромная за 1000 рублей я ожидал
+                                конечно большего, извиняюсь заранее перед владельцем но вы
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-card" data-toggle="modal" data-target="#modalReviewText">
+                        <div class="review-logo"></div>
+                        <div class="review-info-container">
+                            <div class="review-info">
+                                <div class="review-date">12.10.2020</div>
+                                <div class="review-rating-container">
+                                    <span class="review-evaluation review-evaluation-5">16</span>
+                                    Рейтинг квартиры
+                                </div>
+                            </div>
+                            <div class="review-author">Аркадий Яковлевич</div>
+                            <div class="review-text review-text-card">
+                                Это мой отзыв да я считаю что квартира достаточно скромная за 1000 рублей я ожидал
+                                конечно большего, извиняюсь заранее перед владельцем но вы
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-card" data-toggle="modal" data-target="#modalReviewText">
+                        <div class="review-logo"></div>
+                        <div class="review-info-container">
+                            <div class="review-info">
+                                <div class="review-date">12.10.2020</div>
+                                <div class="review-rating-container">
+                                    <span class="review-evaluation review-evaluation-5">16</span>
+                                    Рейтинг квартиры
+                                </div>
+                            </div>
+                            <div class="review-author">Аркадий Яковлевич</div>
+                            <div class="review-text review-text-card">
+                                Это мой отзыв да я считаю что квартира достаточно скромная за 1000 рублей ожидал конечно
+                                большего, извиняюсь заранее перед владельцем но вы
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="advertisement">
+            <div class="container-fluid">
+                <h2 class="section-title">Реклама от владельца</h2>
+                <div class="advertisement-list">
+                    <div class="advertisement-card">
+                        <a href="#">
+                            <img src="./images/apartment/advertisement-image.png" alt="advertisement-image">
+                        </a>
+                    </div>
+                    <div class="advertisement-card">
+                        <a href="#">
+                            <img src="./images/apartment/advertisement-image.png" alt="advertisement-image">
+                        </a>
+                    </div>
+                    <div class="advertisement-card">
+                        <a href="#">
+                            <img src="./images/apartment/advertisement-image.png" alt="advertisement-image">
+                        </a>
+                    </div>
+                    <div class="advertisement-card">
+                        <a href="#">
+                            <img src="./images/apartment/advertisement-image.png" alt="advertisement-image">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="footer-info">
+            <div class="container-fluid">
+                <div class="footer-container about-us">
+                    <h6 class="footer-title">о компании</h6>
+                    <p class="about-us-info">
+                        Планируется деловая поездка или беззаботный туристический визит в столицу?
+                        Теперь для вас не проблема, где остановится в мегаполисе, не переживая о своем
+                        персональном комфорте. Доска объявлений cdaem.ru поможет сэкономить на проживании
+                        в отдельной уютной квартире, не переплачивая за навязчивый сервис дорогих гостиниц.
+                    </p>
+                </div>
+                <div class="footer-container footer-contacts contacts">
+                    <h6 class="footer-title">контакты</h6>
+                    <ul>
+                        <li class="nav-item footer-sub-title text-uppercase">Агенство в москве</li>
+                        <li class="nav-item">
+                            <a class="nav-link contacts-email" href="#">
+                                support@cdaem.ru
+                            </a>
+                        </li>
+                        <li class="nav-item footer-sub-title text-uppercase">Возник вопрос?</li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="">
+                                <img src="./images/icons/phone.svg" alt="phone">
+                                Свяжитесь с нами
+                            </a>
+                        </li>
+                        <li class="nav-item footer-sub-title text-uppercase">Мы в соц. сетях</li>
+                        <li class="nav-item">
+                            <ul class="social-links">
+                                <li>
+                                    <a href="https://www.facebook.com/cdaem.ru" rel="nofollow" target="_blank"
+                                       class="nav-link">
+                                        <i class="fab fa-facebook"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://new.vk.com/cdaemru" rel="nofollow" target="_blank" class="nav-link">
+                                        <i class="fab fa-vk"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://plus.google.com/communities/104623882749857804458" rel="nofollow"
+                                       target="_blank" class="nav-link">
+                                        <i class="fab fa-google-plus"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="skype:cdaemru" rel="nofollow" target="_blank" class="nav-link">
+                                        <i class="fab fa-skype"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <nav class="footer-container footer-nav">
+                    <h6 class="footer-title">навигация</h6>
+                    <ul>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./help.html">Помощь</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./rules.html">Права</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Правообладатели</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Квартира на час</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Квартира на сутки</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Квартира на ночь</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./agency.html">Сдаем.ру</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./vacancy.html">Работа</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./news.html">Новости</a>
+                        </li>
+                    </ul>
+                </nav>
+                <span class="btn btn-to-up" data-scroll-top></span>
+            </div>
+        </div>
+        <div class="footer-inner">
+            <div class="container-fluid">
+                <a class="footer-logo" href="index.html">
+                    <img src="./images/logo-dark.svg" alt="logo">
+                </a>
+                <p class="footer-copyright">
+                    <span class="font-weight-bold">© 2012-2020 cdaem.ru</span>
+                    <span>Все права защищены</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+</div>
+
+
+<!-- Modal -->
+<div class="modal modal-pay fade" id="exampleModalLong" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-window" role="document">
+        <div class="modal-content modal-item">
+            <div class="modal-header modal-top">
+                <h4 class="modal-title modal-header-title" id="exampleModalLongTitle">Оплата</h4>
+                <button type="button" class="close btn-close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5 class="modal-pay-subtitle">Выберите способ оплаты</h5>
+                <div class="modal-pay-logo">
+                    <label class="qiwi">
+                        <img src="./images/apartment/qiwi-logo.png" class="qiwi-logo" alt="qiwi-logo">
+                        <input type="radio" class="logo-pay qiwi-pay" name="qiwi">
+                    </label>
+                    <label class="yandex">
+                        <img src="./images/apartment/yandex-logo.png" class="yandex-logo" alt="yandex-logo">
+                        <input type="radio" class="logo-pay yandex-pay" name="qiwi">
+                    </label>
+                    <label class="visa">
+                        <img src="./images/apartment/visa-logo.png" class="visa-logo" alt="visa-logo">
+                        <input type="radio" class="logo-pay visa-pay" name="qiwi">
+                    </label>
+                </div>
+                <h5 class="modal-pay-subtitle">Все способы оплаты</h5>
+                <div class="modal-pay-select">
+                    <label>
+                        <select class="custom-select">
+                            <option selected>Yandex деньги</option>
+                            <option>Visa</option>
+                            <option>Qiwi</option>
+                        </select>
+                    </label>
+                </div>
+                <h5 class="modal-pay-subtitle modal-subtitle-contact">Открыть контакты владельца</h5>
+                <p class="modal-text">Услуга платная, после оплаты, Вам на указанный Email будет отправлено письмо со
+                    всеми контактными данными, указанными владельцем объявления.</p>
+                <div class="modal-email-container">
+                    <label for="modal-Email" class="d-none"></label>
+                    <input type="email" class="modal-email input-field" placeholder="Укажите ваш E-mail" name="email"
+                           id="modal-Email">
+                    <div class="invalid-feedback"></div>
+                </div>
+                <p class="modal-text-bold">Стоимость услуги: 30 руб.</p>
+            </div>
+            <div class="modal-footer modal-bottom">
+                <div class="modal-submit">
+                    <label>
+                        <input type="checkbox" class="submit" name="submit">
+                        <span class="modal-submit-text">
+                           Оплачивая вы соглашаетесь с правилами <br>
+                            <a href="">политики конфиденциальности</a>
+                        </span>
+                    </label>
+                </div>
+                <button type="button" class="btn btn-warning btn-special">оплатить</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal modal-feedback fade" id="modalReview" tabindex="-1" role="dialog" aria-labelledby="modalReviewLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-window" role="document">
+        <div class="modal-content modal-item">
+            <div class="modal-header modal-top">
+                <h4 class="modal-title modal-header-title" id="modalReviewLabel">Поставьте оценку</h4>
+                <button type="button" class="close btn-close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-select-container">
+                    <label>
+                        <select class="custom-select">
+                            <option selected>Цена качество</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </label>
+                    <label>
+                        <select class="custom-select">
+                            <option selected>Соответствие описанию</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </label>
+                    <label>
+                        <select class="custom-select">
+                            <option selected>Заселение</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </label>
+                    <label>
+                        <select class="custom-select">
+                            <option selected>Чистота</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </label>
+                </div>
+                <h5 class="modal-subtitle">Ваш отзыв</h5>
+                <div class="modal-feedback-container">
+                    <label>
+                        <input type="text" class="modal-feedback-author input-field" placeholder="Ваше имя и фамилия">
+                    </label>
+                    <label>
+                        <textarea class="modal-textarea" placeholder="Текст отзыва"></textarea>
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer modal-bottom">
+                <div class="modal-submit">
+                    <label>
+                        <input type="checkbox" class="submit" name="submit">
+                        <span class="modal-submit-text">
+                           Оплачивая вы соглашаетесь с правилами <br>
+                            <a href="">политики конфиденциальности</a>
+                        </span>
+                    </label>
+                </div>
+                <button type="button" class="btn btn-warning btn-special">оставить</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal modal-review-text fade" id="modalReviewText" tabindex="-1" role="dialog"
+     aria-labelledby="modalReviewLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-window" role="document">
+        <div class="modal-content modal-item">
+            <div class="modal-header modal-top">
+                <button type="button" class="close btn-close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body modal-body-review">
+                <div class="review-logo"></div>
+                <div class="review-info-container">
+                    <div class="review-info">
+                        <div class="review-date">12.10.2020</div>
+                    </div>
+                    <div class="review-author">Аркадий Яковлевич</div>
+                    <div class="review-text">
+                        Обращаем Ваше внимание, что квартиры на 1 сутки, бронируются только словесно, т.к эту квартиру
+                        могут продлить гости проживающие в ней, тогда диспетчер Вам подберет новый вариант. В противном
+                        случаи, ответственности мы не несем, и не за что не отвечаем, данная ситуация от нас не зависит.
+                        При бронировании квартир на 2 суток и более, мы предлагаем Вам несколько вариантов оплаты брони.
+                    </div>
+                    <div class="review-text">
+                        Как правило бронь взимается за первые сутки проживания, а по факту прибытия на квартиру с Вами
+                        заключается договор на весь срок проживания, Вы доплачиваете оставшеюся сумму, и Ваша бронь
+                        включается в полную сумму оплаты оказанных услуг. В случае отказа от брони или изменения времени
+                        проживания (даты заезда на более позднюю или даты отъезда на более раннюю), внесенная предоплата
+                        (бронь) не возвращается. Если после оплаты проживания Вы решите сократить срок своего пребывания
+                        в квартире предупредив мене чем за сутки.
+                    </div>
+                    <div class="review-rating">
+                        <div class="review-rating-container">
+                            <span class="review-evaluation review-evaluation-5">5</span>
+                            Чистота
+                        </div>
+                        <div class="review-rating-container">
+                            <span class="review-evaluation review-evaluation-4">4</span>
+                            Цена качество
+                        </div>
+                        <div class="review-rating-container">
+                            <span class="review-evaluation review-evaluation-5">5</span>
+                            Заселение
+                        </div>
+                        <div class="review-rating-container">
+                            <span class="review-evaluation review-evaluation-5">5</span>
+                            Соответствие описанию
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal modal-appeal fade" id="modalAppeal" tabindex="-1" role="dialog" aria-labelledby="modalAppealLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-window" role="document">
+        <div class="modal-content modal-item">
+            <div class="modal-header modal-top">
+                <h4 class="modal-title modal-header-title" id="modalAppealLabel">Пожаловаться</h4>
+                <button type="button" class="close btn-close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-select-container">
+                    <label>
+                        <input type="text" class="modal-appeal-author input-field" placeholder="Ваше имя">
+                    </label>
+                    <label>
+                        <input type="text" class="modal-appeal-email input-field" placeholder="Ваш E-mail">
+                    </label>
+                    <label>
+                        <select class="custom-select">
+                            <option value="" selected>Приоритет</option>
+                            <option value="1">Не срочно</option>
+                            <option value="2">Срочно</option>
+                            <option value="3">Очень срочно</option>
+                            <option value="4">Критично</option>
+                        </select>
+                    </label>
+                    <label>
+                        <input type="text" class="modal-appeal-theme input-field" placeholder="Тема обращения">
+                    </label>
+                </div>
+                <label class="modal-appeal-label">
+                    <textarea class="modal-textarea" placeholder="Текст"></textarea>
+                </label>
+            </div>
+            <div class="modal-footer modal-bottom">
+                <div class="modal-submit">
+                    <label>
+                        <input type="checkbox" class="submit" name="submit">
+                        <span class="modal-submit-text">
+                           Оплачивая вы соглашаетесь с правилами <br>
+                            <a href="">политики конфиденциальности</a>
+                        </span>
+                    </label>
+                </div>
+                <button type="button" class="btn btn-warning btn-special">отправить</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal modal-book fade" id="modalBook" tabindex="-1" role="dialog" aria-labelledby="modalBookLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-window" role="document">
+        <div class="modal-content modal-item">
+            <div class="modal-header modal-top">
+                <h4 class="modal-title modal-header-title" id="modalBookLabel">Забронировать</h4>
+                <button type="button" class="close btn-close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <label class="modal-book-author-label">
+                    <input type="text" class="modal-book-author input-field" placeholder="Ф.И.О*">
+                </label>
+                <div class="modal-book-container">
+                    <div class="modal-select-container">
+                        <label>
+                            <input type="text" class="modal-book-email input-field" placeholder="E-mail*">
+                        </label>
+                        <label>
+                            <input type="tel" class="modal-book-tel input-field" placeholder="Телефон*">
+                        </label>
+                        <label>
+                            <select class="custom-select">
+                                <option value="" selected>Откуда узнали о нас</option>
+                                <option value="1">Поисковая система</option>
+                                <option value="2">Реклама в интернете</option>
+                                <option value="3">Газета или журнал</option>
+                                <option value="4">Порекомендовали знакомые</option>
+                                <option value="5">Другое</option>
+                            </select>
+                        </label>
+                        <label>
+                            <select class="custom-select">
+                                <option value="" selected>Количество человек*</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6+</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="modal-select-container">
+                        <div class="search-form-group" data-daterangepicker>
+                            <div class="search-form-filter search-form-filter-calendar daterangepicker-from">
+                                <span class="daterangepicker-text">
+                                    <span class="daterangepicker-month">2 января</span>,
+                                    <span class="daterangepicker-day">суббота</span>
+                                </span>
+                                <input type="hidden" value="">
+                            </div>
+                            <div class="search-form-filter search-form-filter-calendar daterangepicker-to">
+                                <span class="daterangepicker-text">
+                                    <span class="daterangepicker-month">15 января</span>,
+                                    <span class="daterangepicker-day">суббота</span>
+                                </span>
+                                <input type="hidden" value="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h5 class="modal-subtitle">Дополнительная информация</h5>
+                <label class="modal-book-label">
+                    <textarea class="modal-textarea" placeholder="Текст"></textarea>
+                </label>
+            </div>
+            <div class="modal-footer modal-bottom">
+                <div class="modal-submit">
+                    <label>
+                        <input type="checkbox" class="submit" name="submit">
+                    </label>
+                    <p class="modal-submit-text">
+                        Нажимая “готово” вы соглашаетесь <br> с правилами политики
+                        <a href="">конфиденциальности</a>.
+                    </p>
+                </div>
+                <button type="button" class="btn btn-warning btn-special">Забронировать</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="./vendor/jquery-3.5.1.min.js"></script>
+<script src="./vendor/moment_ru.min.js"></script>
+<script src="./vendor/bootstrap/bootstrap.min.js"></script>
+<script src="./vendor/jquery.inputmask.min.js"></script>
+<script src="./vendor/daterangepicker/daterangepicker.min.js"></script>
+<script src="./vendor/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script src="./vendor/display-validation.min.js"></script>
+<script src="./js/interface.min.js"></script>
+<script src="./js/pages/apartment.min.js"></script>
+
+<script type="text/javascript">
+    var advertCoords = [55.76, 37.64];
+
+    ymaps.ready(init);
+
+    function init() {
+        var myMap = new ymaps.Map("map", {
+            center: advertCoords,
+            zoom: 15,
+            controls: []
+        });
+
+        createMarker(myMap)
+    }
+
+    function createMarker(myMap) {
+        var myPlacemark = new ymaps.Placemark(advertCoords, {}, {
+            iconLayout: 'default#image',
+            iconImageHref: './images/icons/apartment/mapMarker.svg',
+            iconImageSize: [32, 30]
+        });
+
+        myMap.geoObjects.add(myPlacemark);
+    }
+</script>
+</body>
+</html>

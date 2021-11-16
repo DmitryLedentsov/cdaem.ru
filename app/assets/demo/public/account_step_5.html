@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>Добавить объявление</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language" content="ru"/>
+    <meta name="description" content="---">
+    <meta name="keywords" content="--">
+    <meta name="domain" content="--">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="currency" content="rub"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:site_name" content="---"/>
+    <meta property="og:url" content="---">
+    <meta property="og:title" content="---">
+    <meta property="og:description" content="---">
+    <meta property="og:image" content="og-home.png">
+    <meta property="og:image:type" content="image/png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon-32x32.png">
+    <link rel="stylesheet" media="screen" href="./vendor/bootstrap/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css">
+    <link rel="stylesheet" media="screen" href="./vendor/daterangepicker/daterangepicker.min.css"/>
+    <link rel="stylesheet" media="screen" href="./vendor/datetimepicker/bootstrap-datetimepicker.min.css"/>
+    <link rel="stylesheet" media="screen" href="./css/base.min.css"/>
+    <link rel="stylesheet" media="screen" href="./css/interfaces.min.css"/>
+    <link rel="stylesheet" media="screen" href="./css/pages/account/step.min.css"/>
+</head>
+
+<body class="l-account p-step">
+
+  <div class="wrapper">
+      <header class="header-collapse">
+          <div class="container-fluid">
+              <a class="header-logo" href="./index.html">
+                  <img src="./images/logo-dark.svg" alt="logo">
+              </a>
+              <nav class="main-menu collapse" id="main-menu">
+                  <div class="user-info">
+                      <div class="user-info-avatar">
+                          <img src="./images/account/img-avatar.png" alt="">
+                      </div>
+                      <div class="user-info-data">
+                          <div class="user-info-name">Власов Дмитрий</div>
+                          <div class="user-info-balance">Баланс: <span class="user-info-balance-value">4000 ₽</span></div>
+                      </div>
+                      <div class="user-change">
+                          <img src="./images/account/icon-change.svg" alt="">
+                      </div>
+                      <div class="user-settings">
+                          <div class="user-settings-header">Мой профиль</div>
+                          <div class="user-settings-list">
+                              <a href="#" class="user-settings-item">Мои покупки</a>
+                              <a href="#" class="user-settings-item">Мои объявления</a>
+                              <a href="#" class="user-settings-item">Услуги</a>
+                              <a href="#" class="user-settings-item">Избранное</a>
+                              <a href="#" class="user-settings-item">Черный список</a>
+                              <a href="#" class="user-settings-item">Безопасная сделка</a>
+                              <a href="#" class="user-settings-item">Настройки</a>
+                              <a href="#" class="user-settings-item">Оплата</a>
+                          </div>
+                          <a href="#" class="user-settings-out">
+                              <img src="./images/account/icon-logout.svg" alt="" />
+                              <span class="user-settings-out-text">Выйти</span>
+                          </a>
+                      </div>
+                  </div>
+                  <ul class="nav navbar-nav">
+                      <li class="nav-item">
+                          <a class="active" href="./board.html">Доска объявлений</a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="./account_step.html">Добавить объявление</a>
+                      </li>
+                      <!--<li class="nav-item">
+                          <a href="#">Быстро снять</a>
+                      </li>-->
+                      <li class="nav-item">
+                          <a href="./help.html">Помощь</a>
+                      </li>
+                  </ul>
+              </nav>
+              <div class="header-fast-access">
+                  <div class="header-message">
+                      <i class="header-message-icon"></i>
+                      <span class="header-message-value">99</span>
+                      <div class="message-info">
+                          <div class="message-info-header">Уведомления</div>
+                          <div class="list-message-info">
+                              <a href="#" class="list-message-info-item">
+                                  <span class="list-message-info-name">Заявки</span>
+                                  <span class="list-message-info-value">99</span>
+                              </a>
+                              <a href="#" class="list-message-info-item">
+                                  <span class="list-message-info-name">Бронь</span>
+                                  <span class="list-message-info-value">99</span>
+                              </a>
+                              <a href="#" class="list-message-info-item">
+                                  <span class="list-message-info-name">Сообщения</span>
+                                  <span class="list-message-info-value">99</span>
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+                  <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-menu" aria-label="navbar-toggle">
+                      <span></span>
+                      <span></span>
+                  </button>
+              </div>
+          </div>
+      </header>
+      <main class="main-account">
+          <section class="steps">
+              <div class="container-fluid">
+                  <div class="main-account-inner">
+                      <div class="section-head section-head-between">
+                          <h2 class="section-header">Дополнительные параметры жилья</h2>
+                          <div class="steps-list">
+                            <div class="steps-list-item steps-list-item-active">1</div>
+                            <div class="steps-list-item steps-list-item-active">2</div>
+                            <div class="steps-list-item steps-list-item-active">3</div>
+                            <div class="steps-list-item">4</div>
+                            <div class="steps-list-item">5</div>
+                            <div class="steps-list-item">6</div>
+                          </div>
+                      </div>
+                      <!-- step -->
+                      <div class="step">
+                        <div class="step-line">
+                          <div class="step-column-33">
+                            <input type="text" name="" class="step-input" placeholder="Количество спален">
+                          </div>
+                          <div class="step-column-33">
+                            <input type="text" name="" class="step-input" placeholder="Количество кроватей">
+                          </div>
+                          <div class="step-column-33">
+                            <input type="text" name="" class="step-input" placeholder="Количество гостей">
+                          </div>
+                        </div>
+                        <div class="step-line">
+                          <div class="step-column-33">
+                            <select class="custom-select">
+                              <option value="">Балкон</option>
+                              <option value="">Да</option>
+                              <option value="">Нет</option>
+                            </select>
+                          </div>
+                          <div class="step-column-33">
+                            <select class="custom-select">
+                              <option value="">Санузел</option>
+                              <option value="">Да</option>
+                              <option value="">Нет</option>
+                            </select>
+                          </div>
+                          <div class="step-column-33">
+                            <select class="custom-select">
+                              <option value="">Ванна и душ</option>
+                              <option value="">Да</option>
+                              <option value="">Нет</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="step-line">
+                          <div class="step-column-33">
+                            <select class="custom-select">
+                              <option value="">Отопление</option>
+                              <option value="">Да</option>
+                              <option value="">Нет</option>
+                            </select>
+                          </div>
+                          <div class="step-column-33">
+                            <select class="custom-select">
+                              <option value="">Безопасность</option>
+                              <option value="">Да</option>
+                              <option value="">Нет</option>
+                            </select>
+                          </div>
+                          <div class="step-column-33">
+                            <select class="custom-select">
+                              <option value="">Парковка</option>
+                              <option value="">Да</option>
+                              <option value="">Нет</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="step-line">
+                          <div class="step-column-33">
+                            <input type="text" name="" class="step-input" placeholder="Высота потолков">
+                          </div>
+                          <div class="step-column-33">
+                            <select class="custom-select">
+                              <option value="">Вид из окна</option>
+                              <option value="">Да</option>
+                              <option value="">Нет</option>
+                            </select>
+                          </div>
+                          <div class="step-column-33">
+                            <select class="custom-select">
+                              <option value="">Покрытие пола</option>
+                              <option value="">Да</option>
+                              <option value="">Нет</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="step-block">
+                          <div class="step-block-header">О доме</div>
+                          <div class="step-line">
+                            <div class="step-column-33">
+                              <select class="custom-select">
+                                <option value="">Тип здания</option>
+                                <option value="">Да</option>
+                                <option value="">Нет</option>
+                              </select>
+                            </div>
+                            <div class="step-column-33">
+                              <input type="text" name="" class="step-input" placeholder="Год постройки">
+                            </div>
+                            <div class="step-column-33">
+                              <input type="text" name="" class="step-input" placeholder="Количество подъездов">
+                            </div>
+                          </div>
+                          <div class="step-line">
+                            <div class="step-column-33">
+                              <select class="custom-select">
+                                <option value="">Серия здания</option>
+                                <option value="">Да</option>
+                                <option value="">Нет</option>
+                              </select>
+                            </div>
+                            <div class="step-column-33">
+                              <input type="text" name="" class="step-input" placeholder="Управляющая компания">
+                            </div>
+                            <div class="step-column-33">
+                              <input type="text" name="" class="step-input" placeholder="Номер квартиры">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="step-block">
+                          <div class="step-block-header">Условия проживания</div>
+                          <div class="step-line">
+                            <div class="step-column-33">
+                              <select class="custom-select">
+                                <option value="">Правила дома</option>
+                                <option value="">Да</option>
+                                <option value="">Нет</option>
+                              </select>
+                            </div>
+                            <div class="step-column-33">
+                              <select class="custom-select">
+                                <option value="">Удобства</option>
+                                <option value="">Да</option>
+                                <option value="">Нет</option>
+                              </select>
+                            </div>
+                            <div class="step-column-33">
+                              <select class="custom-select">
+                                <option value="">Техника</option>
+                                <option value="">Да</option>
+                                <option value="">Нет</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="step-line">
+                            <div class="step-column-33">
+                              <select class="custom-select">
+                                <option value="">Кухонная плита</option>
+                                <option value="">Да</option>
+                                <option value="">Нет</option>
+                              </select>
+                            </div>
+                            <div class="step-column-33">
+                              <select class="custom-select">
+                                <option value="">Дополнительные удобства</option>
+                                <option value="">Да</option>
+                                <option value="">Нет</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <a href="#" class="step-next">Опубликовать</a>
+                      </div>
+                  </div>
+              </div>
+          </section>
+      </main>
+      <footer class="footer">
+          <div class="footer-info">
+              <div class="container-fluid">
+                  <div class="footer-container about-us">
+                      <h6 class="footer-title">о компании</h6>
+                      <p class="about-us-info">
+                          Планируется деловая поездка или беззаботный туристический визит в столицу?
+                          Теперь для вас не проблема, где остановится в мегаполисе, не переживая о своем
+                          персональном комфорте. Доска объявлений cdaem.ru поможет сэкономить на проживании
+                          в отдельной уютной квартире, не переплачивая за навязчивый сервис дорогих гостиниц.
+                      </p>
+                  </div>
+                  <div class="footer-container footer-contacts contacts">
+                      <h6 class="footer-title">контакты</h6>
+                      <ul>
+                          <li class="nav-item footer-sub-title text-uppercase">Агенство в москве</li>
+                          <li class="nav-item">
+                              <a class="nav-link contacts-email" href="#">
+                                  support@cdaem.ru
+                              </a>
+                          </li>
+                          <li class="nav-item footer-sub-title text-uppercase">Возник вопрос?</li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="">
+                                  <img src="./images/icons/phone.svg" alt="phone">
+                                  Свяжитесь с нами
+                              </a>
+                          </li>
+                          <li class="nav-item footer-sub-title text-uppercase">Мы в соц. сетях</li>
+                          <li class="nav-item">
+                              <ul class="social-links">
+                                  <li>
+                                      <a href="https://www.facebook.com/cdaem.ru" rel="nofollow" target="_blank"
+                                         class="nav-link">
+                                          <i class="fab fa-facebook"></i>
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a href="https://new.vk.com/cdaemru" rel="nofollow" target="_blank" class="nav-link">
+                                          <i class="fab fa-vk"></i>
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a href="https://plus.google.com/communities/104623882749857804458" rel="nofollow"
+                                         target="_blank" class="nav-link">
+                                          <i class="fab fa-google-plus"></i>
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a href="skype:cdaemru" rel="nofollow" target="_blank" class="nav-link">
+                                          <i class="fab fa-skype"></i>
+                                      </a>
+                                  </li>
+                              </ul>
+                          </li>
+                      </ul>
+                  </div>
+                  <nav class="footer-container footer-nav">
+                      <h6 class="footer-title">навигация</h6>
+                      <ul>
+                          <li class="nav-item">
+                              <a class="nav-link" href="./help.html">Помощь</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="./rules.html">Права</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="#">Правообладатели</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="#">Квартира на час</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="#">Квартира на сутки</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="#">Квартира на ночь</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="./agency.html">Сдаем.ру</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="./vacancy.html">Работа</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="./news.html">Новости</a>
+                          </li>
+                      </ul>
+                  </nav>
+                  <span class="btn btn-to-up" data-scroll-top></span>
+              </div>
+          </div>
+          <div class="footer-inner">
+              <div class="container-fluid">
+                  <a class="footer-logo" href="index.html">
+                      <img src="./images/logo-dark.svg" alt="logo">
+                  </a>
+                  <p class="footer-copyright">
+                      <span class="font-weight-bold">© 2012-2020 cdaem.ru</span>
+                      <span>Все права защищены</span>
+                  </p>
+              </div>
+          </div>
+      </footer>
+  </div>
+
+<div class="modal fade" id="fastRent" tabindex="-1" role="dialog" aria-labelledby="fastRent" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <h3 class="modal-title text-center">Быстро снять</h3>
+            <button class="modal-close" data-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-body">
+                <form class="form">
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#test1">Адрес</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#test2">Время</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#test3">Предпочтения</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#test4">Регистрация</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="test1" class="tab-pane fade show active">
+                            <h6>Место аренды:</h6>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>
+                                        <select class="custom-select">
+                                            <option selected>Город</option>
+                                            <option>test1111</option>
+                                            <option>test2222</option>
+                                            <option>test3333</option>
+                                        </select>
+                                    </label>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>
+                                        <select class="custom-select">
+                                            <option selected>Метро</option>
+                                            <option>test1111</option>
+                                            <option>test2222</option>
+                                            <option>test3333</option>
+                                        </select>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <input type="text" class="form-control" placeholder="Адрес">
+                                </label>
+                            </div>
+
+                            <div class="form-group row col-md-6">
+                                <label>
+                                    <select class="custom-select">
+                                        <option selected>Тип аренды</option>
+                                        <option>test1111</option>
+                                        <option>test2222</option>
+                                        <option>test3333</option>
+                                    </select>
+                                </label>
+                            </div>
+
+
+                            <h6>Со мной:</h6>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>
+                                        <select class="custom-select">
+                                            <option selected>Кол-во человек</option>
+                                            <option>test1111</option>
+                                            <option>test2222</option>
+                                            <option>test3333</option>
+                                        </select>
+                                    </label>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>
+                                        <select class="custom-select">
+                                            <option selected>Дети</option>
+                                            <option>test1111</option>
+                                            <option>test2222</option>
+                                            <option>test3333</option>
+                                        </select>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <input type="text" class="form-control" placeholder="Животные">
+                                </label>
+                            </div>
+
+                        </div>
+                        <div id="test2" class="tab-pane fade">
+                            <h6>Укажите дату брони</h6>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>
+                                        <input type="text" class="form-control " placeholder="Заезд" data-datepicker>
+                                    </label>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>
+                                        <input type="text" class="form-control" placeholder="Выезд" data-timepicker>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>
+                                        <input type="text" class="form-control" placeholder="Время">
+                                    </label>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>
+                                        <input type="text" class="form-control" placeholder="Время">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="test3" class="tab-pane fade">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>Заявка актуальна</label>
+                                    <select class="custom-select">
+                                        <option>15 минут</option>
+                                        <option>30 минут</option>
+                                        <option>60 минут</option>
+                                        <option selected>24 часа</option>
+                                        <option>До даты заезда</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>Бюджет</label>
+                                    <select class="custom-select">
+                                        <option selected>Не важно</option>
+                                        <option>до 3 000р за сутки</option>
+                                        <option>до 5 000р за сутки</option>
+                                        <option>до 10 000р за сутки</option>
+                                        <option>10 000р и более за сутки</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Этаж</label>
+                                    <select class="custom-select">
+                                        <option selected>Не важно</option>
+                                        <option>Только первый</option>
+                                        <option>Не первый</option>
+                                        <option>Не последний</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>Кол-во комнат</label>
+                                    <select class="custom-select">
+                                        <option selected>Не важно</option>
+                                        <option>1 комната</option>
+                                        <option>2 комнаты</option>
+                                        <option>3 комнаты</option>
+                                        <option>4 комнаты</option>
+                                        <option>5 комнат</option>
+                                        <option>6 комнат и более</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>Кол-во спальных мест</label>
+                                    <select class="custom-select">
+                                        <option selected>Не важно</option>
+                                        <option>1 место</option>
+                                        <option>2 места</option>
+                                        <option>3 места</option>
+                                        <option>4 места</option>
+                                        <option>5 мест</option>
+                                        <option>6 мест и более</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Пожелания</label>
+                                    <textarea class="form-control" name=""></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="test4" class="tab-pane fade">
+                            <div class="modal-extra mt-4">
+                                <h6 class="txt-width-notice">Быстрая регистрация</h6>
+                                <div class="form-group">
+                                    <label>
+                                        <input type="email" class="form-control" placeholder="Email">
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label>
+                                        <input type="tel" class="form-control" placeholder="Телефон">
+                                    </label>
+                                </div>
+                                <strong>Регистрируясь на сайте я соглашаюсь:</strong>
+                                <p>
+                                    <label class="form-check-label d-flex align-items-start">
+                                        <input type="checkbox" name="advertising" value="1">
+                                        <span>
+                                    Получать рекламные и информационные EMAIL рассылки от "cdaem.ru" и партнеров и не возражаю
+                                    о передачи моих персональных данных третьим лицам.
+                                </span>
+                                    </label>
+                                </p>
+                                <p>
+                                    <label class="form-check-label d-flex align-items-start">
+                                        <input type="checkbox" name="agreement" value="1">
+                                        <span>
+                                    С <a href="https://cdaem.ru/page/agreement" target="_blank">пользовательским соглашением</a>, с расценками на
+                                    размещение платных объявлений, а также получать СМС-оповещения при использовании определенных
+                                    сервисов на этом сайте.
+                                </span>
+                                    </label>
+                                </p>
+                                <strong>Внимание:</strong>
+                                <p>
+                                    После регистрации Вам будет отправлено письмо с инструкциями по активации аккаунта.
+                                    Если письмо не пришло в течении 15 минут, Вы можете запросить
+                                    <a href="https://cdaem.ru/users/guest/resend" target="_blank">код активации</a>
+                                    повторно.
+                                </p>
+                                <div class="mt-4 text-center">
+                                    <button type="submit" class="btn btn-warning btn-special">Отправить</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="forgotPassword" tabindex="-1" role="dialog" aria-labelledby="forgotPassword"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <h3 class="modal-title text-center">Восстановить пароль</h3>
+            <button class="modal-close" data-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-body">
+                <form class="form" method="post" action="" id="form-forgotPassword">
+                    <div class="form-group">
+                        <label for="forgotPassword-email" class="d-none"></label>
+                        <input type="email" class="form-control" placeholder="Email" name="email"
+                               id="forgotPassword-email">
+                        <div class="invalid-feedback"></div>
+                    </div>
+                    <div class="form-group d-flex flex-column justify-content-center align-items-center mb-0">
+                        <button type="submit" class="btn btn-warning btn-special">Продолжить</button>
+                    </div>
+                    <div class="modal-extra mt-4">
+                        <strong>Внимание:</strong>
+                        <p>
+                            На ваш почтовый адрес будет отправлено письмо с инструкциями по восстановлению пароля.
+                        </p>
+                        <p>
+                            Если Вы вспомнили свой пароль, вы можете
+                            <span data-toggle="modal" data-target="#signIn" class="link-modal">войти</span> в аккаунт.
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="signIn" tabindex="-1" role="dialog" aria-labelledby="signIn" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <h3 class="modal-title text-center">Вход</h3>
+            <button class="modal-close" data-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-body">
+                <form class="form" method="post" action="" id="form-signIn">
+                    <div class="form-group">
+                        <label for="signIn-email" class="d-none"></label>
+                        <input type="email" class="form-control" placeholder="Email" name="email" id="signIn-email">
+                        <div class="invalid-feedback"></div>
+                    </div>
+                    <div class="form-group mb-0">
+                        <label for="signIn-password" class="d-none"></label>
+                        <input type="password" class="form-control" placeholder="Введите ваш пароль" name="password"
+                               id="signIn-password">
+                        <div class="invalid-feedback"></div>
+                    </div>
+                    <div class="form-group d-flex justify-content-between align-items-center mt-4 mb-4">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="" type="checkbox" name="passCheck">
+                                <span class="text-smaller">Запомнить пароль</span>
+                            </label>
+                        </div>
+                        <span data-toggle="modal" data-target="#forgotPassword" class="link-modal text-smaller">
+                            Забыли пароль?
+                        </span>
+                    </div>
+                    <div class="form-group d-flex flex-column justify-content-center align-items-center mb-0">
+                        <button type="submit" class="btn btn-warning btn-special">Войти</button>
+                        <span data-toggle="modal" data-target="#signUp" class="link-modal mt-3">Регистрация</span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="signUp" tabindex="-1" role="dialog" aria-labelledby="signUp" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <h3 class="modal-title text-center">Регистрация</h3>
+            <button class="modal-close" data-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-body">
+                <form class="form" action="" method="post" id="form-signUp">
+                    <div class="form-group">
+                        <label for="signUp-email" class="d-none"></label>
+                        <input type="email" class="form-control" placeholder="Введите ваш Email" name="email"
+                               id="signUp-email">
+                        <div class="invalid-feedback"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="signUp-phone" class="d-none"></label>
+                        <input type="tel" class="form-control" placeholder="+38(0__)-___-__-__" name="phone"
+                               id="signUp-phone">
+                        <div class="invalid-feedback"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="signUp-password" class="d-none"></label>
+                        <input type="password" class="form-control" placeholder="Введите ваш пароль" name="password"
+                               id="signUp-password">
+                        <div class="invalid-feedback"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="signUp-name" class="d-none"></label>
+                        <input type="text" class="form-control" placeholder="Введите ваше имя" name="name"
+                               id="signUp-name">
+                        <div class="invalid-feedback"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="d-none" for="signUp-user_type"></label>
+                        <select class="custom-select" name="user_type" id="signUp-user_type">
+                            <option value="" selected>Тип аккаунта</option>
+                            <option value="4">Агенство</option>
+                            <option value="3">Собственник</option>
+                            <option value="2">Посредник</option>
+                            <option value="1">Хочу снять</option>
+                        </select>
+                        <div class="invalid-feedback"></div>
+                    </div>
+                    <div class="modal-extra mt-4">
+                        <strong>Регистрируясь на сайте я соглашаюсь:</strong>
+                        <div class="form-group">
+                            <label class="form-check-label d-flex align-items-start">
+                                <input type="checkbox" name="advertising" value="1">
+                                <span>
+                                    Получать рекламные и информационные EMAIL рассылки от "cdaem.ru" и партнеров и не возражаю
+                                    о передачи моих персональных данных третьим лицам.
+                                </span>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" name="User[agreement]" value="1"
+                                       id="signUp-agreement">
+                                <label class="form-check-label" for="signUp-agreement">
+                                    С <a href="https://cdaem.ru/page/agreement" target="_blank">пользовательским
+                                    соглашением</a>, с расценками на
+                                    размещение платных объявлений, а также получать СМС-оповещения при использовании
+                                    определенных
+                                    сервисов на этом сайте.
+                                </label>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+                        <strong>Внимание:</strong>
+                        <p>
+                            После регистрации Вам будет отправлено письмо с инструкциями по активации аккаунта.
+                            Если письмо не пришло в течении 15 минут, Вы можете запросить
+                            <a href="https://cdaem.ru/users/guest/resend" target="_blank">код активации</a> повторно.
+                        </p>
+                    </div>
+                    <div class="form-group d-flex flex-column justify-content-center align-items-center mt-4 mb-0">
+                        <button type="submit" class="btn btn-warning btn-special">Продолжить</button>
+                        <p class="mt-4">
+                            <span>Есть аккаунт?</span>
+                            <span data-toggle="modal" data-target="#signIn" class="link-modal">Войти</span>
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="./vendor/popper.min.js"></script>
+<script src="./vendor/jquery-3.5.1.min.js"></script>
+<script src="./vendor/moment_ru.min.js"></script>
+<script src="./vendor/bootstrap/bootstrap.min.js"></script>
+<script src="./vendor/display-validation.min.js"></script>
+<script src="./vendor/jquery.inputmask.min.js"></script>
+<script src="./vendor/daterangepicker/daterangepicker.min.js"></script>
+<script src="./vendor/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="./vendor/bootstrap-autocomplete.min.js"></script>
+<script src="./js/interface.min.js"></script>
+
+<script src="./js/pages/account/home.min.js"></script>
+
+</body>
+
+</html>
