@@ -44,7 +44,8 @@
 
         // $window.find('.modal-header').addClass(type);
         $window.find('.modal-title').text(title);
-        $window.find('.modal-body').text(description);
+        // $window.find('.modal-body').text(description);
+        $window.find('.modal-body').html(description);
 
         $window.modal('show');
     };

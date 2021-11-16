@@ -27,6 +27,18 @@
         apartMap.setCenter([point.latitude, point.longitude]);
     });
 
+    // Интеграция с dadata.ru
+    $("#address").suggestions({
+        token: "79b777f05108f902a4019130a57fe5e7db725cc5",
+        type: "ADDRESS",
+        /* Вызывается, когда пользователь выбирает одну из подсказок */
+        onSelect: function(suggestion) {
+            console.log(suggestion);
+            console.log(suggestion.value); // если убрать всё до первой запятой включительно, получим адрес без города, так хранится в БД.
+            console.log(suggestion.data.city); // название города (можно найти id)
+            console.log(suggestion.data.metro); // три ближайших станции
+        }
+    });
 
     ///////////////////////////////////////////////////////////////////////////////////
     // Отправка формы          form-apartment
@@ -37,7 +49,20 @@
         window.ajaxRequest($form, {
             success: function (response) {
                 // TODO:
-                alert('Success- src/pages/account/apartment.js');
+                // alert('Success- src/pages/account/apartment.js');
+                // console.log(response);
+
+                if (response.status === 'error') {
+                    let errors = '';
+                    const data = response.data;
+
+                    for (let property in data) {
+                        console.log(data[property][0]);
+                        errors += data[property][0] + "<br>";
+                    }
+
+                    window.openWindow('Ошибка валидации', errors);
+                }
             }
         });
     });

@@ -24,6 +24,7 @@ class OfficeAsset extends AssetBundle
      */
     public $depends = [
         \common\modules\office\assets\frontend\OfficeAsset::class,
-        \common\modules\geo\assets\frontend\YMapAsset::class
+        \common\modules\geo\assets\frontend\YMapAsset::class,
+        \common\modules\geo\assets\frontend\DadataAsset::class
     ];
 }

@@ -177,7 +177,11 @@ class OfficeController extends \frontend\components\Controller
                 return [];
             }
 
-            return $errors;
+            // return $errors; // в ответе ожидается структура {status: '', data: ''}
+            return [
+                'status' => 'error',
+                'data' => $errors
+            ];
         }
 
         return $this->render('apartment_create.twig', [

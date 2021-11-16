@@ -38,7 +38,7 @@ class ImageForm extends Image
     public function rules()
     {
         return [
-            ['files', 'required', 'on' => 'user-create'],
+            // ['files', 'required', 'on' => 'user-create'],
             [
                 'files', 'image',
                 'skipOnEmpty' => true,

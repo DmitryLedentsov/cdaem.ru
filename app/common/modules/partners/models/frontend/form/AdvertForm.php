@@ -82,7 +82,7 @@ class AdvertForm extends Advert
 
                 $this->newAdverts = $result;
             } else {
-                $this->addError('rent_type', 'Укажите объявления для недвижимости');
+                $this->addError('rent_type', 'Укажите тип объявления для недвижимости');
             }
             return true;
         }
