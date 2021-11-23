@@ -28,15 +28,71 @@
     });
 
     // Интеграция с dadata.ru
-    $("#address").suggestions({
-        token: "79b777f05108f902a4019130a57fe5e7db725cc5",
+    const apiToken = "79b777f05108f902a4019130a57fe5e7db725cc5";
+    const addressField = $("#address");
+
+    addressField.suggestions({
+        token: apiToken,
         type: "ADDRESS",
         /* Вызывается, когда пользователь выбирает одну из подсказок */
         onSelect: function(suggestion) {
             console.log(suggestion);
             console.log(suggestion.value); // если убрать всё до первой запятой включительно, получим адрес без города, так хранится в БД.
             console.log(suggestion.data.city); // название города (можно найти id)
-            console.log(suggestion.data.metro); // три ближайших станции
+            console.log(suggestion.data.metro); // три ближайших станции // только для тарифа «максимальный» 36К в год
+        }
+    }).prop("disabled", "disabled");
+
+    // поиск только по городам
+    var defaultFormatResult = $.Suggestions.prototype.formatResult;
+
+    function formatResult(value, currentValue, suggestion, options) {
+        var newValue = suggestion.data.city;
+        suggestion.value = newValue;
+        return defaultFormatResult.call(this, newValue, currentValue, suggestion, options);
+    }
+
+    function formatSelected(suggestion) {
+        return suggestion.data.city;
+    }
+
+    function blockAddressField() {
+        addressField.suggestions().setOptions({
+            restrict_value: false
+        });
+        addressField.prop('disabled', 'disabled');
+        addressField.val('');
+    }
+
+    $("#city").suggestions({
+        token: apiToken,
+        type: "ADDRESS",
+        hint: false,
+        bounds: "city",
+        constraints: {
+            locations: { city_type_full: "город" }
+        },
+        formatResult: formatResult,
+        formatSelected: formatSelected,
+        /* Вызывается, когда пользователь выбирает одну из подсказок */
+        onSelect: function(suggestion) {
+            console.log(suggestion);
+            console.log(suggestion.data.city);
+            if (suggestion.data && suggestion.data.kladr_id) {
+                addressField.removeAttr('disabled');
+                addressField.suggestions().setOptions({
+                    constraints: {
+                        locations: { kladr_id: suggestion.data.kladr_id }
+                    },
+                    restrict_value: true
+                });
+            }
+            else {
+                blockAddressField();
+            }
+        },
+        onSelectNothing: function () {
+            blockAddressField();
         }
     });
 

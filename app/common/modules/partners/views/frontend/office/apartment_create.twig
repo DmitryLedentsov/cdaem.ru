@@ -60,14 +60,14 @@
             <div class="step">
                 <div class="step-line">
                     <div class="step-column-33">
-{#                        <input type="text" name="city" placeholder="Введите город" class="step-input" />#}
+                        <input type="text" id="city" name="city" placeholder="Введите город" class="step-input" />
 
-                        <select name="ApartmentForm[city_id]" class="custom-select">
+                        {#<select name="ApartmentForm[city_id]" class="custom-select">
                             <option value="">Выберите город <sup>*</sup></option>
                             {% for city_id, city in cities %}
                                 <option value="{{ city_id }}">{{ city }}</option>
                             {% endfor %}
-                        </select>
+                        </select>#}
                     </div>
                     <div class="step-column-66">
 {#                        <label class="step-label">#} {#Внутри label выпадашка dadata.ру не работает.#}
@@ -118,7 +118,7 @@
                     <div class="steps-list-item steps-list-item-active">1</div>
                     <div class="steps-list-item steps-list-item-active">2</div>
                     <div class="steps-list-item">3</div>
-                    <div class="steps-list-item">4</div>
+                    <div class="steps-list-item">4</div
                     <div class="steps-list-item">5</div>
                 </div>
             </div>
