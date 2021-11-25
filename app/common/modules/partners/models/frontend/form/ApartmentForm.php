@@ -20,6 +20,8 @@ class ApartmentForm extends Apartment
 
     public $translit;
 
+    public $city_name;
+
     /**
      * @inheritdoc
      */
@@ -72,8 +74,8 @@ class ApartmentForm extends Apartment
     public function scenarios()
     {
         return [
-            'user-create' => ['city_id', 'address', 'apartment', 'floor', 'total_rooms', 'total_area', 'beds', 'remont', 'metro_walk', 'description', 'visible', 'metro_array'],
-            'user-update' => ['city_id', 'address', 'apartment', 'floor', 'total_rooms', 'total_area', 'beds', 'remont', 'metro_walk', 'description', 'visible', 'metro_array'],
+            'user-create' => ['city_name', /*'city_id',*/ 'address', 'apartment', 'floor', 'total_rooms', 'total_area', 'beds', 'remont', 'metro_walk', 'description', 'visible', 'metro_array'],
+            'user-update' => ['city_name', /*'city_id',*/ 'address', 'apartment', 'floor', 'total_rooms', 'total_area', 'beds', 'remont', 'metro_walk', 'description', 'visible', 'metro_array'],
         ];
     }
 
@@ -94,9 +96,12 @@ class ApartmentForm extends Apartment
     public function rules()
     {
         return [
-            ['city_id', 'required'],
-            ['city_id', 'integer'],
-            ['city_id', 'exist', 'targetClass' => \common\modules\geo\models\City::class, 'targetAttribute' => 'city_id'],
+            // ['city_id', 'required'],
+            // ['city_id', 'integer'],
+            // ['city_id', 'exist', 'targetClass' => \common\modules\geo\models\City::class, 'targetAttribute' => 'city_id'],
+
+            ['city_name', 'required'],
+            ['city_name', 'string'],
 
             ['address', 'required'],
             ['address', 'string'],
@@ -150,8 +155,26 @@ class ApartmentForm extends Apartment
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {
+
             if ($this->scenario == 'user-create') {
                 $this->status = self::INACTIVE;
+
+                // $cityName = $this->city_name;
+
+                $city = City::findByName($this->city_name);
+
+                if (!$city) {
+                    $city = (new City([
+                        'country_id' => 3159, // Россия
+                        'region_id' => 4042477, // Морокко TODO нужно ли пробрасывать из дадаты?
+                        'name' => $this->city_name,
+                        'is_popular' => 0
+                    ]));
+
+                    $city->save(false);
+
+                }
+                $this->city_id = $city->city_id;
             }
 
             if ($this->scenario == 'user-update') {
