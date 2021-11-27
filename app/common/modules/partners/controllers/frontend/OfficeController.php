@@ -117,9 +117,9 @@ class OfficeController extends \frontend\components\Controller
 
     /**
      * Добавить объявление
-     * @return array|string|Response
+     * @return Response
      */
-    public function actionCreate()
+    public function actionCreate(): Response
     {
         $apartment = new models\form\ApartmentForm(['scenario' => 'user-create']);
         $rentTypes = models\form\AdvertForm::getPreparedRentTypesAdvertsList(RentType::rentTypeslist(), $apartment->adverts);
@@ -129,9 +129,7 @@ class OfficeController extends \frontend\components\Controller
 
         if (Yii::$app->request->isAjax && Yii::$app->request->isPost) {
 
-            //dd(self::class, $_POST, $_FILES);
-            Yii::$app->response->format = Response::FORMAT_JSON;
-
+            // dd(self::class, $_POST, $_FILES);
             // dd(Yii::$app->request->post());
             // dd(Yii::$app->request->post(), $apartment, $result, $apartment->city_id);
 
@@ -144,47 +142,32 @@ class OfficeController extends \frontend\components\Controller
 
             if ($facilities) {
                 $facility->load(['FacilityForm' => [
-                    "facilities" => $facilities
+                    'facilities' => $facilities,
                 ]]);
             }
 
-            // dd(Yii::$app->request->post(), $facility);
+            $errors = array_merge(
+                $this->validate($apartment),
+                $this->validate($advert),
+                $this->validate($image),
+                $this->validate($facility)
+            );
 
-            $errors = array_merge(ActiveForm::validate($apartment), ActiveForm::validate($advert), ActiveForm::validate($image), ActiveForm::validate($facility));
-
-            // dd($errors);
-
-            if (!$errors) {
+            if (empty($errors)) {
                 $apartment->populateRelation('adverts', $advert);
                 $apartment->populateRelation('images', $image);
                 $apartment->populateRelation('facilities', $facility);
+                $apartment->save(false);
 
-                // if (Yii::$app->request->post('submit')) // TODO зачем это?
-                {
-                    if ($apartment->save(false)) {
-                        Yii::$app->session->setFlash('success', 'Ваше объявление успешно добавлено в нашу базу данных.');
+                Yii::$app->session->setFlash('success', 'Ваше объявление успешно добавлено в нашу базу данных.');
 
-                        // dd(2);
-                        return $this->redirect(['/partners/office/apartments']);
-                    }
-
-                    return [
-                        'status' => 0,
-                        'message' => 'При добавлении объявления возникла ошибка, пожалуйста попробуйте еще раз или обратитесь в техническую поддержку.',
-                    ];
-                }
-
-                return [];
+                return $this->redirect(['/partners/office/apartments']);
             }
 
-            // return $errors; // в ответе ожидается структура {status: '', data: ''}
-            return [
-                'status' => 'error',
-                'data' => $errors
-            ];
+            return $this->validationErrorsAjaxResponse($errors);
         }
 
-        return $this->render('apartment_create.twig', [
+        return $this->response($this->render('apartment_create.twig', [
             'apartment' => $apartment,
             'advert' => $advert,
             'rentTypes' => $rentTypes,
@@ -196,7 +179,7 @@ class OfficeController extends \frontend\components\Controller
             'sleepingPlaces' => \common\modules\realty\models\Apartment::getSleepingPlacesArray(),
             'beds' => \common\modules\realty\models\Apartment::getBedsArray(),
             'remont' => \common\modules\realty\models\Apartment::getRemontArray(),
-        ]);
+        ]));
     }
 
     /**

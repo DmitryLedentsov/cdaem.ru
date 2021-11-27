@@ -104,21 +104,7 @@
 
         window.ajaxRequest($form, {
             success: function (response) {
-                // TODO:
-                // alert('Success- src/pages/account/apartment.js');
-                // console.log(response);
 
-                if (response.status === 'error') {
-                    let errors = '';
-                    const data = response.data;
-
-                    for (let property in data) {
-                        console.log(data[property][0]);
-                        errors += data[property][0] + "<br>";
-                    }
-
-                    window.openWindow('Ошибка валидации', errors);
-                }
             }
         });
     });

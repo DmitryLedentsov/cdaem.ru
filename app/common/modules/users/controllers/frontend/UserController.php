@@ -77,7 +77,7 @@ class UserController extends Controller
             }
 
             // TODO:
-            dd(self::class, Yii::$app->request->post());
+            // dd(self::class, Yii::$app->request->post());
 
             return $this->validationErrorsAjaxResponse($errors);
         }
