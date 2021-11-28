@@ -321,7 +321,8 @@
 
             @include tablet-land() {
                 margin-right: 0.7%;
-                width: 176px;
+                //width: 176px;
+                width: 213px;
 
                 &:nth-child(2n),
                 &:nth-child(3n) {
