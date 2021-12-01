@@ -158,7 +158,8 @@
 
     .maps {
         position: relative;
-        display: flex;
+        //display: flex;
+        display: none;
         flex-wrap: nowrap;
         justify-content: space-between;
         margin-top: 25px;

@@ -40,6 +40,24 @@
             console.log(suggestion.value); // если убрать всё до первой запятой включительно, получим адрес без города, так хранится в БД.
             console.log(suggestion.data.city); // название города (можно найти id)
             console.log(suggestion.data.metro); // три ближайших станции // только для тарифа «максимальный» 36К в год
+
+            // центрируем карту по адресу
+            const point = {
+                lat: suggestion.data.geo_lat,
+                lon: suggestion.data.geo_lon
+            };
+
+            if (point.lat && point.lon) {
+                apartMap.setCenter([point.lat, point.lon]);
+                apartMap.setZoom(15);
+
+                apartMap.geoObjects.add(new ymaps.Placemark([point.lat, point.lon], {
+                    balloonContent: ''
+                }, {
+                    preset: 'islands#icon',
+                    iconColor: '#0095b6'
+                }));
+            }
         }
     }).prop("disabled", "disabled");
 
@@ -62,6 +80,9 @@
         });
         addressField.prop('disabled', 'disabled');
         addressField.val('');
+
+        $('.maps').css({display: 'none'});
+        $('#address-wrapper').css({display: 'none'});
     }
 
     $("#city").suggestions({
@@ -86,6 +107,15 @@
                     },
                     restrict_value: true
                 });
+
+                // центрируем карту по городу
+                if (suggestion.data.geo_lat && suggestion.data.geo_lon) {
+                    apartMap.setCenter([suggestion.data.geo_lat, suggestion.data.geo_lon]);
+                    apartMap.setZoom(10);
+                }
+
+                $('.maps').css({display: 'flex'});
+                $('#address-wrapper').css({display: 'block'});
             }
             else {
                 blockAddressField();
