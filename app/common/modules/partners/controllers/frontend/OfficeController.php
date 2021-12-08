@@ -3,6 +3,7 @@
 namespace common\modules\partners\controllers\frontend;
 
 use common\modules\geo\models\City;
+use common\modules\realty\models\Apartment as ApartmentModel;
 use common\modules\users\models\Profile;
 use Yii;
 use yii\helpers\ArrayHelper;
@@ -173,12 +174,17 @@ class OfficeController extends \frontend\components\Controller
             'rentTypes' => $rentTypes,
             'image' => $image,
             'cities' => City::dropDownList(),
-            'metroWalks' => \common\modules\realty\models\Apartment::getMetroWalkArray(),
-            'currencies' => \common\modules\realty\models\Apartment::getCurrencyArray(),
-            'rooms' => \common\modules\realty\models\Apartment::getRoomsArray(),
-            'sleepingPlaces' => \common\modules\realty\models\Apartment::getSleepingPlacesArray(),
-            'beds' => \common\modules\realty\models\Apartment::getBedsArray(),
-            'remont' => \common\modules\realty\models\Apartment::getRemontArray(),
+            'metroWalks' => ApartmentModel::getMetroWalkArray(),
+            'currencies' => ApartmentModel::getCurrencyArray(),
+            'rooms' => ApartmentModel::getRoomsArray(),
+            'sleepingPlaces' => ApartmentModel::getSleepingPlacesArray(),
+            'beds' => ApartmentModel::getBedsArray(),
+            'remont' => ApartmentModel::getRemontArray(),
+            'safety' => ApartmentModel::getSafetyArray(),
+            'heating' => ApartmentModel::getHeatingArray(),
+            'floorCovering' => ApartmentModel::getFloorCoveringArray(),
+            'bathroom' => ApartmentModel::getBathroomArray(),
+            'buildingType' => ApartmentModel::getBuildingTypeArray(),
         ]));
     }
 

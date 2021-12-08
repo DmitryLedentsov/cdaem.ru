@@ -61,12 +61,14 @@
                 <div class="step-line">
                     <div class="step-column-33">
                         <div class="form-group">
+                            <label for="ApartmentForm[city_name]">Город <sup>*</sup></label>
                             <input type="text" id="city" name="ApartmentForm[city_name]" placeholder="Введите город" class="form-control" />
                             <div class="invalid-feedback"></div>
                         </div>
                     </div>
                     <div class="step-column-66" id="address-wrapper" style="display: none">
                         <div class="form-group">
+                            <label for="ApartmentForm[address]">Адрес <sup>*</sup></label>
                             <input type="text" id="address" name="ApartmentForm[address]" class="form-control" placeholder="Введите адрес" autocomplete="new-password" autocorrect="off" autocapitalize="off" spellcheck="false">
                             <div class="step-label-text">Адрес <sup>*</sup></div>
                             <div class="invalid-feedback"></div>
@@ -83,8 +85,8 @@
                         </select>
                     </div>
                     <div class="step-column-33">
+                        <label for="ApartmentForm[metro_walk]">Расстояние до метро</label>
                         <select name="ApartmentForm[metro_walk]" class="custom-select">
-                            <option value="">Расстояние до метро</option>
                             {% for id, value in metroWalks %}
                                 <option value="{{ id }}">{{ value }}</option>
                             {% endfor %}
@@ -127,15 +129,16 @@
                         </select>
                     </div>
                     <div class="step-column-33">
+                        <label for="AdvertForm[currency]">Валюта <sup>*</sup></label>
                         <select name="AdvertForm[currency]" class="custom-select">
-                            <option value="">Выбрать валюту <sup>*</sup></option>
                             {% for id, value in currencies %}
                                 <option value="{{ id }}">{{ value }}</option>
                             {% endfor %}
                         </select>
                     </div>
                     <div class="step-column-33">
-                        <input type="text" name="AdvertForm[price]" class="step-input" placeholder="Цена *">
+                        <label for="AdvertForm[price]">Цена <sup>*</sup></label>
+                        <input type="text" name="AdvertForm[price]" class="step-input" placeholder="Введите цену">
                     </div>
                 </div>
             </div>
@@ -156,14 +159,15 @@
                 <div class="step-line">
                     <div class="step-column-33">
                         <div class="form-group">
-                            <input type="text" name="ApartmentForm[total_area]" placeholder="Общая площадь м2" class="step-input" />
+                            <label for="ApartmentForm[total_area]">Общая площадь м<sup>2</sup> *</label>
+                            <input type="text" name="ApartmentForm[total_area]" placeholder="Введите площадь" class="step-input" />
                             <div class="invalid-feedback"></div>
                         </div>
                     </div>
                     <div class="step-column-33">
                         <div class="form-group">
+                            <label for="ApartmentForm[total_rooms]">Количество комнат <sup>*</sup></label>
                             <select name="ApartmentForm[total_rooms]" class="custom-select">
-                                <option value="">Количество комнат</option>
                                 {% for id, value in rooms %}
                                     <option value="{{ id }}">{{ value }}</option>
                                 {% endfor %}
@@ -173,8 +177,8 @@
                     </div>
                     <div class="step-column-33">
                         <div class="form-group">
+                            <label for="ApartmentForm[sleeping_place]">Количество спальных мест</label>
                             <select name="ApartmentForm[sleeping_place]" class="custom-select">
-                                <option value="">Кол-во спальных мест</option>
                                 {% for id, value in sleepingPlaces %}
                                     <option value="{{ id }}">{{ value }}</option>
                                 {% endfor %}
@@ -186,8 +190,8 @@
                 <div class="step-line">
                     <div class="step-column-33">
                         <div class="form-group">
+                            <label for="ApartmentForm[beds]">Количество кроватей</label>
                             <select name="ApartmentForm[beds]" class="custom-select">
-                                <option value="">Количество кроватей</option>
                                 {% for id, value in beds %}
                                     <option value="{{ id }}">{{ value }}</option>
                                 {% endfor %}
@@ -197,8 +201,8 @@
                     </div>
                     <div class="step-column-33">
                         <div class="form-group">
+                            <label for="ApartmentForm[remont]">Ремонт <sup>*</sup></label>
                             <select name="ApartmentForm[remont]" class="custom-select">
-                                <option value="">Ремонт</option>
                                 {% for id, value in remont %}
                                     <option value="{{ id }}">{{ value }}</option>
                                 {% endfor %}
@@ -208,14 +212,16 @@
                     </div>
                     <div class="step-column-33">
                         <div class="form-group">
-                            <input type="text" name="ApartmentForm[floor]" placeholder="Этаж" class="step-input" />
+                            <label for="ApartmentForm[floor]">Этаж <sup>*</sup></label>
+                            <input type="text" name="ApartmentForm[floor]" placeholder="Введите этаж" class="step-input" />
                             <div class="invalid-feedback"></div>
                         </div>
                     </div>
                 </div>
                 <div class="step-column-100">
                     <div class="form-group">
-                        <textarea name="ApartmentForm[description]" class="step-textarea" placeholder="Описание жилья"></textarea>
+                        <label for="ApartmentForm[description]">Описание жилья</label>
+                        <textarea name="ApartmentForm[description]" class="step-textarea" placeholder="Введите описание"></textarea>
                         <div class="invalid-feedback"></div>
                     </div>
                 </div>
@@ -325,25 +331,25 @@
                     <div class="step-column-33">
                         <label>Холодильник</label>
                         <select name="FacilityForm[refrigerator]" class="custom-select">
-                            <option value="">&mdash;</option>
+{#                            <option value="">&mdash;</option>#}
                             <option value="1">Есть</option>
-                            <option value="0" selected>Нету</option>
+                            <option value="0" selected>Нет</option>
                         </select>
                     </div>
                     <div class="step-column-33">
                         <label>Плита</label>
                         <select name="FacilityForm[stove]" class="custom-select">
-                            <option value="">&mdash;</option>
+{#                            <option value="">&mdash;</option>#}
                             <option value="1">Есть</option>
-                            <option value="0" selected>Нету</option>
+                            <option value="0" selected>Нет</option>
                         </select>
                     </div>
                     <div class="step-column-33">
                         <label>Утюг</label>
                         <select name="FacilityForm[iron]" class="custom-select">
-                            <option value="">&mdash;</option>
+{#                            <option value="">&mdash;</option>#}
                             <option value="1">Есть</option>
-                            <option value="0" selected>Нету</option>
+                            <option value="0" selected>Нет</option>
                         </select>
                     </div>
                 </div>
@@ -351,25 +357,25 @@
                     <div class="step-column-33">
                         <label>Фен</label>
                         <select name="FacilityForm[hair-dryer]" class="custom-select">
-                            <option value="">&mdash;</option>
+{#                            <option value="">&mdash;</option>#}
                             <option value="1">Есть</option>
-                            <option value="0" selected>Нету</option>
+                            <option value="0" selected>Нет</option>
                         </select>
                     </div>
                     <div class="step-column-33">
                         <label>Wi-Fi</label>
                         <select name="FacilityForm[wi-fi]" class="custom-select">
-                            <option value="">&mdash;</option>
+{#                            <option value="">&mdash;</option>#}
                             <option value="1">Есть</option>
-                            <option value="0" selected>Нету</option>
+                            <option value="0" selected>Нет</option>
                         </select>
                     </div>
                     <div class="step-column-33">
                         <label>Микроволновка</label>
                         <select name="FacilityForm[microwave]" class="custom-select">
-                            <option value="">&mdash;</option>
+{#                            <option value="">&mdash;</option>#}
                             <option value="1">Есть</option>
-                            <option value="0" selected>Нету</option>
+                            <option value="0" selected>Нет</option>
                         </select>
                     </div>
                 </div>
@@ -377,25 +383,25 @@
                     <div class="step-column-33">
                         <label>TV</label>
                         <select name="FacilityForm[tv]" class="custom-select">
-                            <option value="">&mdash;</option>
+{#                            <option value="">&mdash;</option>#}
                             <option value="1">Есть</option>
-                            <option value="0" selected>Нету</option>
+                            <option value="0" selected>Нет</option>
                         </select>
                     </div>
                     <div class="step-column-33">
                         <label>Кондиционер</label>
                         <select name="FacilityForm[air-conditioner]" class="custom-select">
-                            <option value="">&mdash;</option>
+{#                            <option value="">&mdash;</option>#}
                             <option value="1">Есть</option>
-                            <option value="0" selected>Нету</option>
+                            <option value="0" selected>Нет</option>
                         </select>
                     </div>
                     <div class="step-column-33">
                         <label>Стиральная машина</label>
                         <select name="FacilityForm[washing-machine]" class="custom-select">
-                            <option value="">&mdash;</option>
+{#                            <option value="">&mdash;</option>#}
                             <option value="1">Есть</option>
-                            <option value="0" selected>Нету</option>
+                            <option value="0" selected>Нет</option>
                         </select>
                     </div>
                 </div>
@@ -403,25 +409,25 @@
                     <div class="step-column-33">
                         <label>Диван</label>
                         <select name="FacilityForm[sofa]" class="custom-select">
-                            <option value="">&mdash;</option>
+{#                            <option value="">&mdash;</option>#}
                             <option value="1">Есть</option>
-                            <option value="0" selected>Нету</option>
+                            <option value="0" selected>Нет</option>
                         </select>
                     </div>
                     <div class="step-column-33">
                         <label>Кровать</label>
                         <select name="FacilityForm[bed]" class="custom-select">
-                            <option value="">&mdash;</option>
+{#                            <option value="">&mdash;</option>#}
                             <option value="1">Есть</option>
-                            <option value="0" selected>Нету</option>
+                            <option value="0" selected>Нет</option>
                         </select>
                     </div>
                     <div class="step-column-33">
                         <label>Душ</label>
                         <select name="FacilityForm[shower]" class="custom-select">
-                            <option value="">&mdash;</option>
+{#                            <option value="">&mdash;</option>#}
                             <option value="1">Есть</option>
-                            <option value="0" selected>Нету</option>
+                            <option value="0" selected>Нет</option>
                         </select>
                     </div>
                 </div>
@@ -429,17 +435,17 @@
                     <div class="step-column-33">
                         <label>Ванна</label>
                         <select name="FacilityForm[bath]" class="custom-select">
-                            <option value="">&mdash;</option>
+{#                            <option value="">&mdash;</option>#}
                             <option value="1">Есть</option>
-                            <option value="0" selected>Нету</option>
+                            <option value="0" selected>Нет</option>
                         </select>
                     </div>
                     <div class="step-column-33">
                         <label>Джакузи</label>
                         <select name="FacilityForm[jacuzzi]" class="custom-select">
-                            <option value="">&mdash;</option>
+{#                            <option value="">&mdash;</option>#}
                             <option value="1">Есть</option>
-                            <option value="0" selected>Нету</option>
+                            <option value="0" selected>Нет</option>
                         </select>
                     </div>
                 </div>
@@ -449,85 +455,90 @@
                         <div class="step-column-33">
                             <label for="parking">Парковка</label>
                             <select id="parking" class="custom-select">
-                                <option value="">&mdash;</option>
-                                <option value="">Да</option>
-                                <option value="">Нет</option>
-                            </select>
-                        </div>
-                        <div class="step-column-33">
-                            <label for="safety">Безопасность</label>
-                            <select id="safety" class="custom-select">
-                                <option value="">&mdash;</option>
-                                <option value="">Да</option>
-                                <option value="">Нет</option>
+                                <option value="1">Есть</option>
+                                <option value="0" selected>Нет</option>
                             </select>
                         </div>
                         <div class="step-column-33">
                             <label for="balcony">Балкон</label>
                             <select id="balcony" class="custom-select">
-                                <option value="">&mdash;</option>
-                                <option value="">Да</option>
-                                <option value="">Нет</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="step-line">
-                        <div class="step-column-33">
-                            <label for="toilet">Санузел</label>
-                            <select id="toilet" class="custom-select">
-                                <option value="">&mdash;</option>
-                                <option value="">Да</option>
-                                <option value="">Нет</option>
+                                <option value="1">Есть</option>
+                                <option value="0" selected>Нет</option>
                             </select>
                         </div>
                         <div class="step-column-33">
                             <label for="heating">Отопление</label>
                             <select id="heating" class="custom-select">
-                                <option value="">&mdash;</option>
-                                <option value="">Да</option>
-                                <option value="">Нет</option>
+                                {% for id, value in heating %}
+                                    <option value="{{ id }}">{{ value }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="step-line">
+                        <div class="step-column-33">
+                            <label for="separate-toilet">Раздельные санузлы</label>
+                            <select id="separate-toilet" class="custom-select">
+                                {% for id, value in bathroom %}
+                                    <option value="{{ id }}">{{ value }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="step-column-33">
+                            <label for="toilet">Совмещённые санузлы</label>
+                            <select id="toilet" class="custom-select">
+                                {% for id, value in bathroom %}
+                                    <option value="{{ id }}">{{ value }}</option>
+                                {% endfor %}
                             </select>
                         </div>
                         <div class="step-column-33">
                             <label for="floor-covering">Покрытие пола</label>
                             <select id="floor-covering" class="custom-select">
-                                <option value="">&mdash;</option>
-                                <option value="">Да</option>
-                                <option value="">Нет</option>
+                                {% for id, value in floorCovering %}
+                                    <option value="{{ id }}">{{ value }}</option>
+                                {% endfor %}
                             </select>
                         </div>
                     </div>
-                </div>
+                    <div class="step-line">
+                        <div class="step-column-33">
+                            <label for="safety">Безопасность</label>
+                            <select id="safety" class="custom-select" multiple>
+                                {% for id, value in safety %}
+                                    <option value="{{ id }}">{{ value }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
                 <div class="step-block">
                     <div class="step-block-header">О доме</div>
                     <div class="step-line">
                         <div class="step-column-33">
-                            <select class="custom-select">
-                                <option value="">Тип здания</option>
-                                <option value="">Да</option>
-                                <option value="">Нет</option>
+                            <label for="building-type">Тип здания</label>
+                            <select id="building-type" class="custom-select">
+                                {% for id, value in buildingType %}
+                                    <option value="{{ id }}">{{ value }}</option>
+                                {% endfor %}
                             </select>
                         </div>
                         <div class="step-column-33">
-                            <input type="text" name="" class="step-input" placeholder="Год постройки">
+                            <label for="year-build">Год постройки</label>
+                            <input type="text" name="year-build" class="step-input" placeholder="Введите год">
                         </div>
                         <div class="step-column-33">
-                            <input type="text" name="" class="step-input" placeholder="Количество подъездов">
+                            <label for="number-entrances">Количество подъездов</label>
+                            <input type="text" name="number-entrances" class="step-input" placeholder="Введите количество">
                         </div>
                     </div>
                     <div class="step-line">
                         <div class="step-column-33">
-                            <select class="custom-select">
-                                <option value="">Серия здания</option>
-                                <option value="">Да</option>
-                                <option value="">Нет</option>
-                            </select>
-                        </div>
-                        <div class="step-column-33">
-                            <input type="text" name="" class="step-input" placeholder="Управляющая компания">
+                            <label for="management-company">Управляющая компания</label>
+                            <input type="text" name="management-company" class="step-input" placeholder="Введите название">
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
         </div>
 
