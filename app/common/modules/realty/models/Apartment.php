@@ -200,6 +200,7 @@ class Apartment extends ActiveRecord
             2 => 'Линолеум',
             3 => 'Паркет',
             4 => 'Ковролин',
+            5 => 'Другое',
         ];
     }
 

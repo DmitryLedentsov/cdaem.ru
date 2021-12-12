@@ -19,6 +19,30 @@ class City extends \yii\db\ActiveRecord
         return '{{%city}}';
     }
 
+    public static function getPopular()
+    {
+        $duration = 31556926;  // 1 год
+        $dependency = null;
+
+        return Yii::$app->db->cache(function (Connection $db) {
+            $rows = (new \yii\db\Query())
+                ->select(
+                    self::tableName() . '.name AS name, ' .
+                    self::tableName() . '.latitude AS lat, ' .
+                    self::tableName() . '.longitude AS lon '
+                )
+                ->from(self::tableName())
+                ->where([self::tableName() . '.is_popular' => 1])
+                ->orderBy([self::tableName() . '.name' => SORT_ASC])
+                ->all();
+
+            return $rows;
+        },
+            $duration,
+            $dependency
+        );
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */

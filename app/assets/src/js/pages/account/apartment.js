@@ -20,16 +20,22 @@
             iconColor: '#0095b6'
         }));
     }
+    // Интеграция с dadata.ru
+    const apiToken = "79b777f05108f902a4019130a57fe5e7db725cc5";
+    const addressField = $("#address");
+    const regionField = $("#region");
+    const cityField = $("#city");
 
     $('.maps-link-item').click(function () {
         // console.log();
         const point = $(this).data();
+        const cityName = $(this).html();
+        cityField.val(cityName);
+        cityField.suggestions().fixData();
+        addressField.val('');
+        addressField.suggestions().fixData();
         apartMap.setCenter([point.latitude, point.longitude]);
     });
-
-    // Интеграция с dadata.ru
-    const apiToken = "79b777f05108f902a4019130a57fe5e7db725cc5";
-    const addressField = $("#address");
 
     addressField.suggestions({
         token: apiToken,
@@ -80,6 +86,7 @@
         });
         addressField.prop('disabled', 'disabled');
         addressField.val('');
+        regionField.val('');
 
         $('.maps').css({display: 'none'});
         $('#address-wrapper').css({display: 'none'});
@@ -116,6 +123,11 @@
 
                 $('.maps').css({display: 'flex'});
                 $('#address-wrapper').css({display: 'block'});
+
+                // устанвливаем значение региона
+                const regionFullName = suggestion.data.region + (suggestion.data.region_type_full ? (' ' +  suggestion.data.region_type_full) : '');
+                console.log(regionFullName);
+                regionField.val(regionFullName);
             }
             else {
                 blockAddressField();

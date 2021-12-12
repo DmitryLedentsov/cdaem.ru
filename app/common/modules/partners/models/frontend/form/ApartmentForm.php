@@ -4,6 +4,7 @@ namespace common\modules\partners\models\frontend\form;
 
 use common\modules\geo\models\City;
 use common\modules\geo\models\Metro;
+use common\modules\geo\models\Region;
 use common\modules\partners\models\Facility;
 use common\modules\partners\models\frontend\Image;
 use common\modules\partners\models\frontend\Advert;
@@ -21,6 +22,8 @@ class ApartmentForm extends Apartment
     public $translit;
 
     public $city_name;
+
+    public $region_name;
 
     /**
      * @inheritdoc
@@ -74,8 +77,8 @@ class ApartmentForm extends Apartment
     public function scenarios()
     {
         return [
-            'user-create' => ['city_name', /*'city_id',*/ 'address', 'apartment', 'floor', 'total_rooms', 'total_area', 'beds', 'remont', 'metro_walk', 'description', 'visible', 'metro_array'],
-            'user-update' => ['city_name', /*'city_id',*/ 'address', 'apartment', 'floor', 'total_rooms', 'total_area', 'beds', 'remont', 'metro_walk', 'description', 'visible', 'metro_array'],
+            'user-create' => ['city_name', 'region_name', /*'city_id',*/ 'address', 'apartment', 'floor', 'total_rooms', 'total_area', 'beds', 'remont', 'metro_walk', 'description', 'visible', 'metro_array'],
+            'user-update' => ['city_name', 'region_name', /*'city_id',*/ 'address', 'apartment', 'floor', 'total_rooms', 'total_area', 'beds', 'remont', 'metro_walk', 'description', 'visible', 'metro_array'],
         ];
     }
 
@@ -102,6 +105,9 @@ class ApartmentForm extends Apartment
 
             ['city_name', 'required'],
             ['city_name', 'string'],
+
+            ['region_name', 'required'],
+            ['region_name', 'string'],
 
             ['address', 'required'],
             ['address', 'string'],
@@ -159,21 +165,45 @@ class ApartmentForm extends Apartment
             if ($this->scenario == 'user-create') {
                 $this->status = self::INACTIVE;
 
-                // $cityName = $this->city_name;
+                // dd($this);
+
+                $regionName = $this->region_name;
+                $region = Region::findOne(["name" => $regionName]);
+                $isNewRegion = false;
+
+                if (!$region) {
+                    $isNewRegion = true;
+                    $region = new Region([
+                        'country_id' => 3159, // Россия
+                        'name' => $regionName,
+                        'city_id' => 0 // Самый большой город?
+                    ]);
+
+                    $region->save(false);
+                }
 
                 $city = City::findByName($this->city_name);
 
                 if (!$city) {
                     $city = (new City([
                         'country_id' => 3159, // Россия
-                        'region_id' => 4042477, // Морокко TODO нужно ли пробрасывать из дадаты?
+                        // 'region_id' => 4042477, // Морокко TODO нужно ли пробрасывать из дадаты?
+                        'region_id' => $region->region_id, // Морокко TODO нужно ли пробрасывать из дадаты?
                         'name' => $this->city_name,
                         'is_popular' => 0
                     ]));
 
                     $city->save(false);
+                }
+                else {
+                    if ($isNewRegion) {
+                        $city->region_id = $region->region_id;
+                        $city->save(false);
+                    }
 
                 }
+
+
                 $this->city_id = $city->city_id;
             }
 
