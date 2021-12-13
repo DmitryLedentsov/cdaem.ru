@@ -2,6 +2,8 @@
 
 namespace common\modules\partners\models\frontend\form;
 
+use common\modules\realty\models\Apartment;
+use common\modules\realty\models\RentType;
 use Yii;
 use yii\validators\ExistValidator;
 use common\modules\partners\models\frontend\Advert;
@@ -34,8 +36,11 @@ class AdvertForm extends Advert
     public function scenarios()
     {
         return [
-            'user-create' => ['rent_type', 'price', 'currency'],
-            'user-update' => ['rent_type', 'price', 'currency'],
+            // 'user-create' => ['rent_type', 'price', 'currency'],
+            // 'user-update' => ['rent_type', 'price', 'currency'],
+
+            'user-create' => ['price'],
+            'user-update' => ['price'],
         ];
     }
 
@@ -45,7 +50,42 @@ class AdvertForm extends Advert
     public function beforeValidate()
     {
         if (parent::beforeValidate()) {
+            // Проверить и собрать все типы аренды, которые необходимо сохранить или обновить
+            // Заполненная цена означает, что тип аренды выбран
+            if ($this->price && is_array($this->price)) {
+                $result = [];
+                $rentTypes = RentType::rentTypeslist();
+                $rentTypesKeys = array_keys($rentTypes);
+                $rubleId = array_keys(Apartment::getCurrencyArray())[0];
 
+                foreach ($this->price as $index => $rentPrice) {
+                    if ($rentPrice) {
+                        $result[] = [
+                            'rent_type_id' => $rentTypesKeys[$index],
+                            'price' => $rentPrice,
+                            'currency' => $rubleId, // валюта всегда рубли
+                        ];
+                    }
+                }
+
+                foreach ($result as $advert) {
+                    if (!$this->validateAdvert($advert)) {
+                        $this->addError('type[price]', 'Данные заполнены некорректно');
+                    }
+                }
+
+                $this->newAdverts = $result;
+            }
+            else {
+                // $this->addError('rent_type', 'Укажите цену хотябы для одного типа типа аренды'); // Даём возможность создавать объявление без типов
+                return true;
+            }
+
+
+            /*
+             * Старый обработчик
+             */
+            /*
             // В случае, если пользователь при обновлении апартамента убрал все активные чекбоксы с объявлений
             // запрос не перезапишет свойство $this->rent_type и оно будет содержать предыдущие объявления.
             // В ходе этого будет небольшой баг, - при снятии активных чекбоксов не будет никаких ошибок и при этом
@@ -55,20 +95,17 @@ class AdvertForm extends Advert
 
             if (!isset(Yii::$app->request->post(self::formName())['rent_type']) || !is_array(Yii::$app->request->post(self::formName())['rent_type'])) {
                 $this->rent_type = null;
-            }
+            }*/
 
             // Проверить и собрать все типы аренды, которые необходимо сохранить или обновить
-            if ($this->rent_type && is_array($this->rent_type)) {
+            /*if ($this->rent_type && is_array($this->rent_type)) {
                 $result = [];
 
                 foreach ($this->rent_type as $rentTypeId) {
-                    // if (isset($this->price[$rentTypeId]) && isset($this->currency[$rentTypeId])) { // TODO пока оставляем одну цену для всех типов аренды
-                    if (isset($this->price) && isset($this->currency)) {
+                    if (isset($this->price[$rentTypeId]) && isset($this->currency[$rentTypeId])) {
                         $result[] = [
                             'rent_type_id' => $rentTypeId,
-                            // 'price' => $this->price[$rentTypeId], // TODO пока оставляем одну цену для всех типов аренды
                             'price' => $this->price,
-                            // 'currency' => $this->currency[$rentTypeId], // TODO пока оставляем одну цену для всех типов аренды
                             'currency' => $this->currency,
                         ];
                     }
@@ -84,6 +121,7 @@ class AdvertForm extends Advert
             } else {
                 $this->addError('rent_type', 'Укажите тип объявления для недвижимости');
             }
+            */
             return true;
         }
 

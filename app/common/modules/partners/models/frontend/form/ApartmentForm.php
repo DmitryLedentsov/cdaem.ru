@@ -117,9 +117,9 @@ class ApartmentForm extends Apartment
 
             ['apartment', 'integer', 'min' => 1],
 
-            ['floor', 'integer', 'min' => 1],
+            ['floor', 'integer', 'min' => -10, 'max' => 1000],
 
-            ['total_area', 'integer', 'min' => 1],
+            ['total_area', 'integer', 'min' => 1, 'max' => 1000 ],
 
             ['total_rooms', 'required'],
             ['total_rooms', 'in', 'range' => array_keys(TotalApartment::getRoomsArray())],

@@ -52,8 +52,8 @@ class AdvertForm extends \yii\base\Model
     public function scenarios()
     {
         return [
-            'create' => ['meta_title', 'meta_description', 'meta_keywords', 'apartment_id', 'rent_type', 'price', 'currency', 'text', 'main_page', 'info', 'rules'],
-            'update' => ['meta_title', 'meta_description', 'meta_keywords', 'apartment_id', 'price', 'currency', 'text', 'main_page', 'info', 'rules'],
+            'create' => ['meta_title', 'meta_description', 'meta_keywords', 'apartment_id', 'rent_type', 'price', /*'currency',*/ 'text', 'main_page', 'info', 'rules'],
+            'update' => ['meta_title', 'meta_description', 'meta_keywords', 'apartment_id', 'price', /*'currency',*/ 'text', 'main_page', 'info', 'rules'],
             'delete' => [],
         ];
     }

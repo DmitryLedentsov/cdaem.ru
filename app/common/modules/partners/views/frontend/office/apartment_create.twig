@@ -125,27 +125,37 @@
                 </div>
             </div>
             <div class="step">
+                {% for id, value in rentTypes %}
                 <div class="step-line">
+                    <div class="step-column-33" style="align-self: center;">
+                        {{ value.name }}
+                    </div>
                     <div class="step-column-33">
+                        {#<label for="AdvertForm[price_{{ id }}]">Цена</label>#}
+                        <input type="text" name="AdvertForm[price][]" class="step-input" placeholder="Введите цену">
+                    </div>
+                </div>
+                {% endfor %}
+
+                    {#<div class="step-column-33">
                         <select name="AdvertForm[rent_type][]" multiple class="custom-select">
                             {% for id, value in rentTypes %}
                                 <option value="{{ id }}">{{ value.name }}</option>
                             {% endfor %}
                         </select>
-                    </div>
-                    <div class="step-column-33">
+                    </div>#}
+                    {#<div class="step-column-33">
                         <label for="AdvertForm[currency]">Валюта <sup>*</sup></label>
                         <select name="AdvertForm[currency]" class="custom-select">
                             {% for id, value in currencies %}
                                 <option value="{{ id }}">{{ value }}</option>
                             {% endfor %}
                         </select>
-                    </div>
-                    <div class="step-column-33">
+                    </div>#}
+                    {#<div class="step-column-33">
                         <label for="AdvertForm[price]">Цена <sup>*</sup></label>
                         <input type="text" name="AdvertForm[price]" class="step-input" placeholder="Введите цену">
-                    </div>
-                </div>
+                    </div>#}
             </div>
         </div>
 
@@ -527,25 +537,25 @@
                                 {% endfor %}
                             </select>
                         </div>
-                        <div class="step-column-33">
+                        {#<div class="step-column-33">
                             <label for="year-build">Год постройки</label>
                             <input type="text" name="year-build" class="step-input" placeholder="Введите год">
-                        </div>
+                        </div>#}
                         <div class="step-column-33">
                             <label for="number-entrances">Количество подъездов</label>
                             <input type="text" name="number-entrances" class="step-input" placeholder="Введите количество">
                         </div>
-                    </div>
-                    <div class="step-line">
                         <div class="step-column-33">
                             <label for="number-entrances">Количество этажей <sup>*</sup></label>
                             <input type="text" name="number-floors" class="step-input" placeholder="Введите количество">
                         </div>
+                    </div>
+                    {#<div class="step-line">
                         <div class="step-column-33">
                             <label for="management-company">Управляющая компания</label>
                             <input type="text" name="management-company" class="step-input" placeholder="Введите название">
                         </div>
-                    </div>
+                    </div>#}
                 </div>
             </div>
             </div>
