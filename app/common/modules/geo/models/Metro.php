@@ -2,6 +2,7 @@
 
 namespace common\modules\geo\models;
 
+use common\modules\agency\models\form\SelectForm;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -10,6 +11,8 @@ use yii\helpers\ArrayHelper;
  */
 class Metro extends \yii\db\ActiveRecord
 {
+    const EARTH_RADIUS = 6371.0;
+
     /**
      * @inheritdoc
      */
@@ -249,5 +252,46 @@ class Metro extends \yii\db\ActiveRecord
         }
 
         return null;
+    }
+
+    /**
+     * @param int $cityId
+     * @param float $longitude
+     * @param float $latitude
+     * @param float $distance // в километрах
+     * @param int $limit
+     * @return array
+     */
+    public static function getNearestStationsByCoords($cityId, $latitude, $longitude, $distance = 1.5, $limit = 3) {
+        try {
+            $result = \Yii::$app->db->createCommand("
+                SELECT
+                    ACOS(COS(RADIANS(m.latitude)) * COS(RADIANS(:latitude)) * COS(RADIANS(:longitude) - RADIANS(m.longitude)) + SIN(RADIANS(m.latitude)) * SIN(radians(:latitude))) / :earth_radius as distance_km,
+                    m.city_id, m.name, m.latitude, m.longitude
+                FROM metro m
+                where 1
+                    and ACOS(COS(RADIANS(m.latitude)) * COS(RADIANS(:latitude)) * COS(RADIANS(:longitude) - RADIANS(m.longitude)) + SIN(RADIANS(m.latitude)) * SIN(radians(:latitude))) <= :distance / :earth_radius
+                    and m.city_id = :city_id        
+                order by 1
+                limit :limit
+            ", [
+                "latitude" => $latitude,
+                "longitude" => $longitude,
+                "city_id" => $cityId,
+                "earth_radius" => self::EARTH_RADIUS,
+                "distance" => $distance,
+                "limit" => $limit
+            ])
+                // ->rawSql;
+                ->queryAll();
+
+            // dd($result);
+
+            return $result;
+        }
+        catch (\Exception $e) {
+            return [];
+        }
+
     }
 }

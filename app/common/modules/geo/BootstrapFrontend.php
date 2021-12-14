@@ -20,6 +20,7 @@ class BootstrapFrontend implements \yii\base\BootstrapInterface
             Yii::$app->params['siteSubDomain'] . '/map' => '/geo/default/index',
             'geo/select-city' => '/geo/ajax/select-city',
             'geo/metro-msk' => '/geo/ajax/metro-msk',
+            'geo/nearest-stations' => '/geo/ajax/nearest-stations',
             'geo/map/<typeId:\w+>' => '/geo/ajax/apartment',
             'geo/map' => '/geo/ajax/map',
             'map' => '/geo/default/index',

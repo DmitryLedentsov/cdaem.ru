@@ -2,6 +2,7 @@
 
 namespace common\modules\geo\controllers\frontend;
 
+use common\modules\geo\models\Metro;
 use Yii;
 use yii\base\Model;
 use yii\helpers\Url;
@@ -253,5 +254,14 @@ class AjaxController extends \frontend\components\Controller
                 'preset' => ($model instanceof ApartmentAgency) ? 'islands#darkGreenIcon' : 'islands#blueDotIcon',
             ]
         ];
+    }
+
+    public function actionNearestStations($cityId, $latitude, $longitude): array {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        //dd($cityId);
+
+        return Metro::getNearestStationsByCoords($cityId, $latitude, $longitude);
+        // return Metro::getNearestStationsByCoords($cityId, 37.641872, 55.766456);
     }
 }

@@ -63,6 +63,32 @@
                     preset: 'islands#icon',
                     iconColor: '#0095b6'
                 }));
+
+
+                $.ajax({
+                    url: '/geo/nearest-stations',
+                    type: 'GET',
+                    data: {
+                        cityId: 4400,
+                        latitude: point.lat,
+                        longitude: point.lon
+                    },
+                    success: function (data) {
+                        console.log('success', data);
+
+                        const metroListSelect = $('#metro-list');
+                        metroListSelect.html('');
+
+                        data.forEach((station) => {
+                            metroListSelect.append(
+                                $('<option>', { text: station.name })
+                            );
+                        })
+                    },
+                    error: function (data) {
+                        console.log('error', data);
+                    }
+                });
             }
         }
     }).prop("disabled", "disabled");
@@ -106,6 +132,7 @@
         onSelect: function(suggestion) {
             console.log(suggestion);
             console.log(suggestion.data.city);
+
             if (suggestion.data && suggestion.data.kladr_id) {
                 addressField.removeAttr('disabled');
                 addressField.suggestions().setOptions({
