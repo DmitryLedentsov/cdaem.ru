@@ -8,4 +8,5 @@ docker/nginx/default.conf
 app/apps/frontend/web/_new/js
 app/apps/frontend/web/_new/css
 app/apps/frontend/web/_new/mix-manifest.json
+app/apps/frontend/web/yandex_bbbd434de303f656.html
 /**/node_modules
