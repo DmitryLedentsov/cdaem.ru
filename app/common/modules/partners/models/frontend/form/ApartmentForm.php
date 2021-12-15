@@ -120,7 +120,7 @@ class ApartmentForm extends Apartment
 
             ['metro_walk', 'in', 'range' => array_keys(TotalApartment::getMetroWalkArray())],
 
-            ['description', 'string', 'max' => 2000],
+            ['description', 'string', 'max' => 5000],
         ];
     }
 
