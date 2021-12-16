@@ -187,8 +187,7 @@ class ApartmentForm extends Apartment
                 if (!$city) {
                     $city = (new City([
                         'country_id' => 3159, // Россия
-                        // 'region_id' => 4042477, // Морокко TODO нужно ли пробрасывать из дадаты?
-                        'region_id' => $region->region_id, // Морокко TODO нужно ли пробрасывать из дадаты?
+                        'region_id' => $region->region_id,
                         'name' => $this->city_name,
                         'is_popular' => 0
                     ]));
@@ -196,6 +195,7 @@ class ApartmentForm extends Apartment
                     $city->save(false);
                 }
                 else {
+                    // Обновляем регион если создали его, а город уже есть.
                     if ($isNewRegion) {
                         $city->region_id = $region->region_id;
                         $city->save(false);
@@ -270,7 +270,7 @@ class ApartmentForm extends Apartment
         if ($this->scenario === 'user-update') {
             $currentAdvertsByRentType = [];
 
-            print_r($this->adverts->newAdverts);
+            // print_r($this->adverts->newAdverts);
 
             // Фиксируем новые изменения
             foreach ($this->adverts->newAdverts as $newAdvert) {
@@ -351,13 +351,11 @@ class ApartmentForm extends Apartment
             }
         }
 
-
         // Сохраняем удобства
         foreach ($this->facilities->facilities as $facility) {
             /** @var Facility $facility */
-            $facility->link('apartments', $this);
+            $facility->link('apartments', $this, ['value' => $facility->getValue()]);
         }
-
         return true;
     }
 }

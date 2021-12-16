@@ -46,15 +46,23 @@ class FacilityForm extends Facility
     public function beforeValidate()
     {
         if (parent::beforeValidate()) {
+            // Обрабатываем удобства
             $facilities = [];
-            foreach ($this->facilities as $alias => $active) {
-                if ($active === '1') {
+            foreach ($this->facilities as $alias => $value) {
+                if ($value !== '0' && $value !== []) {
+                    // Массив значений доп. удобств храним как строку
+                    if (is_array($value)) {
+                        $value = serialize($value);
+                    }
+
                     $facility = Facility::findOne(['alias' => $alias]);
+                    $facility->setValue($value);
                     $facilities[] = $facility;
                 }
             }
 
             $this->facilities = $facilities;
+            // dd($facilities);
             return true;
         }
 

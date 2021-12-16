@@ -469,21 +469,21 @@
                     <div class="step-line">
                         <div class="step-column-33">
                             <label for="parking">Парковка</label>
-                            <select id="parking" class="custom-select">
+                            <select name="FacilityForm[parking]" id="parking" class="custom-select">
                                 <option value="1">Есть</option>
                                 <option value="0" selected>Нет</option>
                             </select>
                         </div>
                         <div class="step-column-33">
                             <label for="balcony">Балкон</label>
-                            <select id="balcony" class="custom-select">
+                            <select name="FacilityForm[balcony]" id="balcony" class="custom-select">
                                 <option value="1">Есть</option>
                                 <option value="0" selected>Нет</option>
                             </select>
                         </div>
                         <div class="step-column-33">
                             <label for="heating">Отопление</label>
-                            <select id="heating" class="custom-select">
+                            <select name="FacilityForm[heating]" id="heating" class="custom-select">
                                 {% for id, value in heating %}
                                     <option value="{{ id }}">{{ value }}</option>
                                 {% endfor %}
@@ -493,7 +493,7 @@
                     <div class="step-line">
                         <div class="step-column-33">
                             <label for="separate-toilet">Раздельные санузлы</label>
-                            <select id="separate-toilet" class="custom-select">
+                            <select name="FacilityForm[separate-toilet]" id="separate-toilet" class="custom-select">
                                 {% for id, value in bathroom %}
                                     <option value="{{ id }}">{{ value }}</option>
                                 {% endfor %}
@@ -501,7 +501,7 @@
                         </div>
                         <div class="step-column-33">
                             <label for="toilet">Совмещённые санузлы</label>
-                            <select id="toilet" class="custom-select">
+                            <select name="FacilityForm[toilet]" id="toilet" class="custom-select">
                                 {% for id, value in bathroom %}
                                     <option value="{{ id }}">{{ value }}</option>
                                 {% endfor %}
@@ -509,7 +509,7 @@
                         </div>
                         <div class="step-column-33">
                             <label for="floor-covering">Покрытие пола</label>
-                            <select id="floor-covering" class="custom-select">
+                            <select name="FacilityForm[floor-covering]" id="floor-covering" class="custom-select">
                                 {% for id, value in floorCovering %}
                                     <option value="{{ id }}">{{ value }}</option>
                                 {% endfor %}
@@ -519,7 +519,7 @@
                     <div class="step-line">
                         <div class="step-column-33">
                             <label for="safety">Безопасность</label>
-                            <select id="safety" class="custom-select" multiple>
+                            <select name="FacilityForm[safety][]" id="safety" class="custom-select" multiple>
                                 {% for id, value in safety %}
                                     <option value="{{ id }}">{{ value }}</option>
                                 {% endfor %}

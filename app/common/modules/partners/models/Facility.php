@@ -12,6 +12,8 @@ class Facility extends \yii\db\ActiveRecord
 {
     use ModuleTrait;
 
+    private string $value; // Значение с которым удобство будет связано с апартом
+
     /**
      * @inheritdoc
      */
@@ -44,5 +46,18 @@ class Facility extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Apartment::class, ['apartment_id' => 'apartment_id'])
             ->viaTable('{{%partners_apartments_facilities}}', ['facility_id' => 'facility_id']);
+    }
+
+    public function setValue(string $value): void
+    {
+        $this->value = $value;
+    }
+
+    /**
+     * @return string
+     */
+    public function getValue(): string
+    {
+        return $this->value;
     }
 }

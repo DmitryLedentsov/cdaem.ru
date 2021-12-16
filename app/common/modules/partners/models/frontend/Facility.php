@@ -7,10 +7,7 @@ namespace common\modules\partners\models\frontend;
  */
 class Facility extends \common\modules\partners\models\Facility
 {
-    /**
-     * @var array
-     */
-    public $facilities;
+    public array $facilities = [];
 
     /**
      * @inheritdoc
@@ -22,4 +19,8 @@ class Facility extends \common\modules\partners\models\Facility
 
         return $labels;
     }
+
+    /**
+     * @param string $value
+     */
 }
