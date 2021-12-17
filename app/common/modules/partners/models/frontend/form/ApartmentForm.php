@@ -77,8 +77,8 @@ class ApartmentForm extends Apartment
     public function scenarios()
     {
         return [
-            'user-create' => ['city_name', 'region_name', /*'city_id',*/ 'address', 'apartment', 'floor', 'total_rooms', 'total_area', 'beds', 'remont', 'metro_walk', 'description', 'visible', 'metro_array'],
-            'user-update' => ['city_name', 'region_name', /*'city_id',*/ 'address', 'apartment', 'floor', 'total_rooms', 'total_area', 'beds', 'remont', 'metro_walk', 'description', 'visible', 'metro_array'],
+            'user-create' => ['city_name', 'region_name', /*'city_id',*/ 'address', 'apartment', 'floor', 'total_rooms', 'total_area', 'beds', 'remont', 'metro_walk', 'description', 'visible', 'metro_array', 'building_type', 'number_floors', 'number_entrances', 'latitude', 'longitude'],
+            'user-update' => ['city_name', 'region_name', /*'city_id',*/ 'address', 'apartment', 'floor', 'total_rooms', 'total_area', 'beds', 'remont', 'metro_walk', 'description', 'visible', 'metro_array', 'building_type', 'number_floors', 'number_entrances', 'latitude', 'longitude'],
         ];
     }
 
@@ -136,6 +136,16 @@ class ApartmentForm extends Apartment
             ['metro_walk', 'in', 'range' => array_keys(TotalApartment::getMetroWalkArray())],
 
             ['description', 'string', 'max' => 2000],
+
+            ['building_type', 'in', 'range' => array_keys(TotalApartment::getBuildingTypeArray())],
+
+            ['number_entrances', 'integer', 'min' => 0, 'max' => 65535],
+
+            ['number_floors', 'required'],
+            ['number_floors', 'integer', 'min' => 0, 'max' => 1000],
+
+            ['latitude', 'double'],
+            ['longitude', 'double'],
         ];
     }
 

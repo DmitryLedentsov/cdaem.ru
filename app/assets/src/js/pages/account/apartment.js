@@ -64,6 +64,8 @@
                     iconColor: '#0095b6'
                 }));
 
+                $('#latitude').val(point.lat);
+                $('#longitude').val(point.lon);
 
                 $.ajax({
                     url: '/geo/nearest-stations',
@@ -113,6 +115,8 @@
         addressField.prop('disabled', 'disabled');
         addressField.val('');
         regionField.val('');
+        $('#latitude').val('');
+        $('#longitude').val('');
 
         $('.maps').css({display: 'none'});
         $('#address-wrapper').css({display: 'none'});

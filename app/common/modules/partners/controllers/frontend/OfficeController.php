@@ -135,6 +135,9 @@ class OfficeController extends \frontend\components\Controller
             // dd(Yii::$app->request->post(), $apartment, $result, $apartment->city_id);
 
             $apartment->load(Yii::$app->request->post());
+
+            // dd(Yii::$app->request->post(), $apartment);
+
             $advert->load(Yii::$app->request->post());
             $image->load(Yii::$app->request->post());
 

@@ -96,7 +96,8 @@ class ApartmentForm extends \common\modules\partners\models\Apartment
     public function rules()
     {
         return [
-            [['user_id', /*'city_name', 'city_id', 'closest_city_id',*/ 'apartment', 'floor', 'total_rooms', 'total_area', 'visible', 'status', 'remont', 'metro_walk'], 'integer'],
+            [['user_id', /*'city_name', 'city_id', 'closest_city_id',*/ 'apartment', 'floor', 'total_rooms', 'total_area', 'visible',
+                'status', 'remont', 'metro_walk', 'building_type', 'number_entrances', 'number_floors'], 'integer'],
             ['user_id', 'exist', 'targetClass' => \common\modules\users\models\User::class, 'targetAttribute' => 'id'],
             // [['city_id', 'closest_city_id'], 'exist', 'targetClass' => \common\modules\geo\models\City::class, 'targetAttribute' => 'city_id'],
             [['city_name'], 'string'],
@@ -107,10 +108,10 @@ class ApartmentForm extends \common\modules\partners\models\Apartment
             [['files'], 'file', 'extensions' => 'jpg, png, jpeg', 'mimeTypes' => 'image/jpeg, image/png, image/JPG, ', 'maxFiles' => 10],
             // required on %scenarios%
             [['user_id', /*'city_id'*/ 'city_name', 'region_name', 'address', 'floor', 'total_rooms', 'total_area',
-                'visible', 'status', 'remont', 'metro_walk',
+                'visible', 'status', 'remont', 'metro_walk', 'number_floors'
             ], 'required', 'on' => 'create'],
             [['user_id', /*'city_id',*/ 'city_name', 'region_name', 'address',
-                'floor', 'total_rooms', 'total_area', 'visible', 'status', 'remont', 'metro_walk',
+                'floor', 'total_rooms', 'total_area', 'visible', 'status', 'remont', 'metro_walk', 'number_floors'
             ], 'required', 'on' => 'update'],
         ];
     }

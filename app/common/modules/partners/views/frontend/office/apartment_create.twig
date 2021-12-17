@@ -1,571 +1,563 @@
-{#
-    Создать
-    @var \yii\web\View this
-    @var common\modules\partners\models\frontend\form\ApartmentForm apartment
-    @var common\modules\partners\models\frontend\form\AdvertForm advert
-    @var common\modules\partners\models\frontend\form\ImageForm image
-    @var array cities
-    @var array rentTypes
-#}
+    {#
+        Создать
+        @var \yii\web\View this
+        @var common\modules\partners\models\frontend\form\ApartmentForm apartment
+        @var common\modules\partners\models\frontend\form\AdvertForm advert
+        @var common\modules\partners\models\frontend\form\ImageForm image
+        @var array cities
+        @var array rentTypes
+    #}
 
-{% extends "@common/modules/office/views/frontend/layouts/main.twig" %}
+    {% extends "@common/modules/office/views/frontend/layouts/main.twig" %}
 
-{% block title %}Создать объявления | Сдаём.ру{% endblock %}
+    {% block title %}Создать объявления | Сдаём.ру{% endblock %}
 
-{% block bodyClass %}l-account p-create-adv{% endblock %}
-{% block contentWrapperClass %}{% endblock %}
+    {% block bodyClass %}l-account p-create-adv{% endblock %}
+    {% block contentWrapperClass %}{% endblock %}
 
-{% block breadcrumbs %}
-    <div class="breadcrumbs">
-        {{ use('yii/widgets/Breadcrumbs') }}
-        {{ breadcrumbs_widget({
-            'itemTemplate' : "<li>{link}</li>\n",
-            'homeLink' :
-            {
-                'label' : 'Главная',
-                'url' : '/'
-            },
-            'links':  [
+    {% block breadcrumbs %}
+        <div class="breadcrumbs">
+            {{ use('yii/widgets/Breadcrumbs') }}
+            {{ breadcrumbs_widget({
+                'itemTemplate' : "<li>{link}</li>\n",
+                'homeLink' :
                 {
-                    'label': 'Личный кабинет',
-                    'url': ['/office/default/index'],
+                    'label' : 'Главная',
+                    'url' : '/'
                 },
-                {
-                    'label': 'Создать объявления',
-                    'url': ['/partners/office/create'],
-                },
-            ],
-        }) }}
-    </div>
-{% endblock %}
+                'links':  [
+                    {
+                        'label': 'Личный кабинет',
+                        'url': ['/office/default/index'],
+                    },
+                    {
+                        'label': 'Создать объявления',
+                        'url': ['/partners/office/create'],
+                    },
+                ],
+            }) }}
+        </div>
+    {% endblock %}
 
 
-{% block content %}
+    {% block content %}
 
-    {{ use('common/modules/partners/assets/frontend/OfficeAsset') }}
-    {{ register_office_asset() }}
+        {{ use('common/modules/partners/assets/frontend/OfficeAsset') }}
+        {{ register_office_asset() }}
 
-    <form method="post" action="{{ path('/partners/office/create') }}" id="form-apartment" enctype="multipart/form-data">
-        <div class="main-account-inner">
-            <div class="section-head section-head-between">
-                <h2 class="section-header">Добавить объявление</h2>
-                <div class="steps-list">
-                    <div class="steps-list-item steps-list-item-active">1</div>
-                    <div class="steps-list-item">2</div>
-                    <div class="steps-list-item">3</div>
-                    <div class="steps-list-item">4</div>
-                    <div class="steps-list-item">5</div>
+        <form method="post" action="{{ path('/partners/office/create') }}" id="form-apartment" enctype="multipart/form-data">
+            <div class="main-account-inner">
+                <div class="section-head section-head-between">
+                    <h2 class="section-header">Добавить объявление</h2>
+                    <div class="steps-list">
+                        <div class="steps-list-item steps-list-item-active">1</div>
+                        <div class="steps-list-item">2</div>
+                        <div class="steps-list-item">3</div>
+                        <div class="steps-list-item">4</div>
+                        <div class="steps-list-item">5</div>
+                    </div>
                 </div>
-            </div>
-            <div class="step">
-                <div class="step-line">
-                    <div class="step-column-33">
-                        <div class="form-group">
-                            <label for="ApartmentForm[city_name]">Город <sup>*</sup></label>
-                            <input type="text" id="city" name="ApartmentForm[city_name]" placeholder="Введите город" class="form-control" />
-                            <input type="hidden" id="region" name="ApartmentForm[region_name]"/>
-                            <div class="invalid-feedback"></div>
+                <div class="step">
+                    <div class="step-line">
+                        <div class="step-column-33">
+                            <div class="form-group">
+                                <label for="ApartmentForm[city_name]">Город <sup>*</sup></label>
+                                <input type="text" id="city" name="ApartmentForm[city_name]" placeholder="Введите город" class="form-control" />
+                                <input type="hidden" id="region" name="ApartmentForm[region_name]"/>
+                                <div class="invalid-feedback"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="step-column-66" id="address-wrapper" style="display: none">
-                        <div class="form-group">
-                            <label for="ApartmentForm[address]">Адрес <sup>*</sup></label>
-                            <input type="text" id="address" name="ApartmentForm[address]" class="form-control" placeholder="Введите адрес" autocomplete="new-password" autocorrect="off" autocapitalize="off" spellcheck="false">
-                            <div class="step-label-text">Адрес <sup>*</sup></div>
-                            <div class="invalid-feedback"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="step-line">
-                    <div class="step-column-33">
-                        <select id="metro-list" name="ApartmentForm[metro_array]" class="custom-select" multiple>
-                            <option value="">Метро</option>
-                            <option value="">Метро 1</option>
-                            <option value="">Метро 2</option>
-                        </select>
-                    </div>
-                    <div class="step-column-33">
-                        <label for="ApartmentForm[metro_walk]">Расстояние до метро</label>
-                        <select name="ApartmentForm[metro_walk]" class="custom-select">
-                            {% for id, value in metroWalks %}
-                                <option value="{{ id }}">{{ value }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                </div>
-                <div class="maps">
-                    <div class="maps-data">
-                        <div class="maps-data-item">
-                            <div class="maps-data-header">Популярные города</div>
-                            <div class="maps-link">
-                                {#<span class="maps-link-item" data-latitude="55.76" data-longitude="37.64">Москва</span>
-                                <span class="maps-link-item" data-latitude="59.96" data-longitude="30.16">Санкт-Петербург</span>#}
-
-                                {% for city in popularCities %}
-                                    <span class="maps-link-item" data-latitude="{{ city['lat'] }}" data-longitude="{{ city['lon'] }}">{{ city['name'] }}</span>
-                                {% endfor %}
+                        <div class="step-column-66" id="address-wrapper" style="display: none">
+                            <div class="form-group">
+                                <label for="ApartmentForm[address]">Адрес <sup>*</sup></label>
+                                <input type="text" id="address" name="ApartmentForm[address]" class="form-control" placeholder="Введите адрес" autocomplete="new-password" autocorrect="off" autocapitalize="off" spellcheck="false">
+                                <input type="hidden" id="latitude" name="ApartmentForm[latitude]"/>
+                                <input type="hidden" id="longitude" name="ApartmentForm[longitude]"/>
+                                <div class="step-label-text">Адрес <sup>*</sup></div>
+                                <div class="invalid-feedback"></div>
                             </div>
                         </div>
                     </div>
-                    <div id="map" class="maps-frame"></div>
-                </div>
-            </div>
-        </div>
 
-        <div class="main-account-inner mt-5">
-            <div class="section-head section-head-between">
-                <h2 class="section-header">Тип аренды</h2>
-                <div class="steps-list">
-                    <div class="steps-list-item steps-list-item-active">1</div>
-                    <div class="steps-list-item steps-list-item-active">2</div>
-                    <div class="steps-list-item">3</div>
-                    <div class="steps-list-item">4</div>
-                    <div class="steps-list-item">5</div>
-                </div>
-            </div>
-            <div class="step">
-                {% for id, value in rentTypes %}
-                <div class="step-line">
-                    <div class="step-column-33" style="align-self: center;">
-                        {{ value.name }}
-                    </div>
-                    <div class="step-column-33">
-                        {#<label for="AdvertForm[price_{{ id }}]">Цена</label>#}
-                        <input type="text" name="AdvertForm[price][]" class="step-input" placeholder="Введите цену">
-                    </div>
-                </div>
-                {% endfor %}
-
-                    {#<div class="step-column-33">
-                        <select name="AdvertForm[rent_type][]" multiple class="custom-select">
-                            {% for id, value in rentTypes %}
-                                <option value="{{ id }}">{{ value.name }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>#}
-                    {#<div class="step-column-33">
-                        <label for="AdvertForm[currency]">Валюта <sup>*</sup></label>
-                        <select name="AdvertForm[currency]" class="custom-select">
-                            {% for id, value in currencies %}
-                                <option value="{{ id }}">{{ value }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>#}
-                    {#<div class="step-column-33">
-                        <label for="AdvertForm[price]">Цена <sup>*</sup></label>
-                        <input type="text" name="AdvertForm[price]" class="step-input" placeholder="Введите цену">
-                    </div>#}
-            </div>
-        </div>
-
-        <div class="main-account-inner mt-5">
-            <div class="section-head section-head-between">
-                <h2 class="section-header">Параметры жилья</h2>
-                <div class="steps-list">
-                    <div class="steps-list-item steps-list-item-active">1</div>
-                    <div class="steps-list-item steps-list-item-active">2</div>
-                    <div class="steps-list-item steps-list-item-active">3</div>
-                    <div class="steps-list-item">4</div>
-                    <div class="steps-list-item">5</div>
-                </div>
-            </div>
-            <div class="step">
-                <div class="step-line">
-                    <div class="step-column-33">
-                        <div class="form-group">
-                            <label for="ApartmentForm[total_area]">Общая площадь м<sup>2</sup> *</label>
-                            <input type="text" name="ApartmentForm[total_area]" placeholder="Введите площадь" class="step-input" />
-                            <div class="invalid-feedback"></div>
-                        </div>
-                    </div>
-                    <div class="step-column-33">
-                        <div class="form-group">
-                            <label for="ApartmentForm[total_rooms]">Количество комнат <sup>*</sup></label>
-                            <select name="ApartmentForm[total_rooms]" class="custom-select">
-                                {% for id, value in rooms %}
-                                    <option value="{{ id }}">{{ value }}</option>
-                                {% endfor %}
-                            </select>
-                            <div class="invalid-feedback"></div>
-                        </div>
-                    </div>
-                    <div class="step-column-33">
-                        <div class="form-group">
-                            <label for="ApartmentForm[sleeping_place]">Количество спальных мест</label>
-                            <select name="ApartmentForm[sleeping_place]" class="custom-select">
-                                {% for id, value in sleepingPlaces %}
-                                    <option value="{{ id }}">{{ value }}</option>
-                                {% endfor %}
-                            </select>
-                            <div class="invalid-feedback"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="step-line">
-                    <div class="step-column-33">
-                        <div class="form-group">
-                            <label for="ApartmentForm[beds]">Количество кроватей</label>
-                            <select name="ApartmentForm[beds]" class="custom-select">
-                                {% for id, value in beds %}
-                                    <option value="{{ id }}">{{ value }}</option>
-                                {% endfor %}
-                            </select>
-                            <div class="invalid-feedback"></div>
-                        </div>
-                    </div>
-                    <div class="step-column-33">
-                        <div class="form-group">
-                            <label for="ApartmentForm[remont]">Ремонт <sup>*</sup></label>
-                            <select name="ApartmentForm[remont]" class="custom-select">
-                                {% for id, value in remont %}
-                                    <option value="{{ id }}">{{ value }}</option>
-                                {% endfor %}
-                            </select>
-                            <div class="invalid-feedback"></div>
-                        </div>
-                    </div>
-                    <div class="step-column-33">
-                        <div class="form-group">
-                            <label for="ApartmentForm[floor]">Этаж <sup>*</sup></label>
-                            <input type="text" name="ApartmentForm[floor]" placeholder="Введите этаж" class="step-input" />
-                            <div class="invalid-feedback"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="step-column-100">
-                    <div class="form-group">
-                        <label for="ApartmentForm[description]">Описание жилья</label>
-                        <textarea name="ApartmentForm[description]" class="step-textarea" placeholder="Введите описание"></textarea>
-                        <div class="invalid-feedback"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="main-account-inner mt-5">
-            <div class="section-head section-head-between">
-                <h2 class="section-header">Добавить фотографии</h2>
-                <div class="steps-list">
-                    <div class="steps-list-item steps-list-item-active">1</div>
-                    <div class="steps-list-item steps-list-item-active">2</div>
-                    <div class="steps-list-item steps-list-item-active">3</div>
-                    <div class="steps-list-item steps-list-item-active">4</div>
-                    <div class="steps-list-item">5</div>
-                </div>
-            </div>
-            <div class="step-photo">
-                <div class="step-photo-item">
-                    <label class="step-photo-label">
-                        <input type="file" name="ImageForm[files][]" accept=".gif, .jpg, .png" class="step-photo-input">
-                        <div class="step-photo-frame"></div>
-                        <span>Выбрать фото</span>
-                    </label>
-                </div>
-                <div class="step-photo-item">
-                    <label class="step-photo-label">
-                        <input type="file" name="ImageForm[files][]" accept=".gif, .jpg, .png" class="step-photo-input">
-                        <div class="step-photo-frame"></div>
-                        <span>Выбрать фото</span>
-                    </label>
-                </div>
-                <div class="step-photo-item">
-                    <label class="step-photo-label">
-                        <input type="file" name="ImageForm[files][]" accept=".gif, .jpg, .png" class="step-photo-input">
-                        <div class="step-photo-frame"></div>
-                        <span>Выбрать фото</span>
-                    </label>
-                </div>
-                <div class="step-photo-item">
-                    <label class="step-photo-label">
-                        <input type="file" name="ImageForm[files][]" accept=".gif, .jpg, .png" class="step-photo-input">
-                        <div class="step-photo-frame"></div>
-                        <span>Выбрать фото</span>
-                    </label>
-                </div>
-                <div class="step-photo-item">
-                    <label class="step-photo-label">
-                        <input type="file" name="ImageForm[files][]" accept=".gif, .jpg, .png" class="step-photo-input">
-                        <div class="step-photo-frame"></div>
-                        <span>Выбрать фото</span>
-                    </label>
-                </div>
-            </div>
-            <div class="step-photo">
-                <div class="step-photo-item">
-                    <label class="step-photo-label">
-                        <input type="file" name="ImageForm[files][]" accept=".gif, .jpg, .png" class="step-photo-input">
-                        <div class="step-photo-frame"></div>
-                        <span>Выбрать фото</span>
-                    </label>
-                </div>
-                <div class="step-photo-item">
-                    <label class="step-photo-label">
-                        <input type="file" name="ImageForm[files][]" accept=".gif, .jpg, .png" class="step-photo-input">
-                        <div class="step-photo-frame"></div>
-                        <span>Выбрать фото</span>
-                    </label>
-                </div>
-                <div class="step-photo-item">
-                    <label class="step-photo-label">
-                        <input type="file" name="ImageForm[files][]" accept=".gif, .jpg, .png" class="step-photo-input">
-                        <div class="step-photo-frame"></div>
-                        <span>Выбрать фото</span>
-                    </label>
-                </div>
-                <div class="step-photo-item">
-                    <label class="step-photo-label">
-                        <input type="file" name="ImageForm[files][]" accept=".gif, .jpg, .png" class="step-photo-input">
-                        <div class="step-photo-frame"></div>
-                        <span>Выбрать фото</span>
-                    </label>
-                </div>
-                <div class="step-photo-item">
-                    <label class="step-photo-label">
-                        <input type="file" name="ImageForm[files][]" accept=".gif, .jpg, .png" class="step-photo-input">
-                        <div class="step-photo-frame"></div>
-                        <span>Выбрать фото</span>
-                    </label>
-                </div>
-            </div>
-        </div>
-
-        <div class="main-account-inner mt-5">
-            <div class="section-head section-head-between">
-                <h2 class="section-header">Удобства</h2>
-                <div class="steps-list">
-                    <div class="steps-list-item steps-list-item-active">1</div>
-                    <div class="steps-list-item steps-list-item-active">2</div>
-                    <div class="steps-list-item steps-list-item-active">3</div>
-                    <div class="steps-list-item steps-list-item-active">4</div>
-                    <div class="steps-list-item steps-list-item-active">5</div>
-                </div>
-            </div>
-            <div class="step">
-                <div class="step-line">
-                    <div class="step-column-33">
-                        <label>Холодильник</label>
-                        <select name="FacilityForm[refrigerator]" class="custom-select">
-{#                            <option value="">&mdash;</option>#}
-                            <option value="1">Есть</option>
-                            <option value="0" selected>Нет</option>
-                        </select>
-                    </div>
-                    <div class="step-column-33">
-                        <label>Плита</label>
-                        <select name="FacilityForm[stove]" class="custom-select">
-{#                            <option value="">&mdash;</option>#}
-                            <option value="1">Есть</option>
-                            <option value="0" selected>Нет</option>
-                        </select>
-                    </div>
-                    <div class="step-column-33">
-                        <label>Утюг</label>
-                        <select name="FacilityForm[iron]" class="custom-select">
-{#                            <option value="">&mdash;</option>#}
-                            <option value="1">Есть</option>
-                            <option value="0" selected>Нет</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="step-line">
-                    <div class="step-column-33">
-                        <label>Фен</label>
-                        <select name="FacilityForm[hair-dryer]" class="custom-select">
-{#                            <option value="">&mdash;</option>#}
-                            <option value="1">Есть</option>
-                            <option value="0" selected>Нет</option>
-                        </select>
-                    </div>
-                    <div class="step-column-33">
-                        <label>Wi-Fi</label>
-                        <select name="FacilityForm[wi-fi]" class="custom-select">
-{#                            <option value="">&mdash;</option>#}
-                            <option value="1">Есть</option>
-                            <option value="0" selected>Нет</option>
-                        </select>
-                    </div>
-                    <div class="step-column-33">
-                        <label>Микроволновка</label>
-                        <select name="FacilityForm[microwave]" class="custom-select">
-{#                            <option value="">&mdash;</option>#}
-                            <option value="1">Есть</option>
-                            <option value="0" selected>Нет</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="step-line">
-                    <div class="step-column-33">
-                        <label>TV</label>
-                        <select name="FacilityForm[tv]" class="custom-select">
-{#                            <option value="">&mdash;</option>#}
-                            <option value="1">Есть</option>
-                            <option value="0" selected>Нет</option>
-                        </select>
-                    </div>
-                    <div class="step-column-33">
-                        <label>Кондиционер</label>
-                        <select name="FacilityForm[air-conditioner]" class="custom-select">
-{#                            <option value="">&mdash;</option>#}
-                            <option value="1">Есть</option>
-                            <option value="0" selected>Нет</option>
-                        </select>
-                    </div>
-                    <div class="step-column-33">
-                        <label>Стиральная машина</label>
-                        <select name="FacilityForm[washing-machine]" class="custom-select">
-{#                            <option value="">&mdash;</option>#}
-                            <option value="1">Есть</option>
-                            <option value="0" selected>Нет</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="step-line">
-                    <div class="step-column-33">
-                        <label>Диван</label>
-                        <select name="FacilityForm[sofa]" class="custom-select">
-{#                            <option value="">&mdash;</option>#}
-                            <option value="1">Есть</option>
-                            <option value="0" selected>Нет</option>
-                        </select>
-                    </div>
-                    <div class="step-column-33">
-                        <label>Кровать</label>
-                        <select name="FacilityForm[bed]" class="custom-select">
-{#                            <option value="">&mdash;</option>#}
-                            <option value="1">Есть</option>
-                            <option value="0" selected>Нет</option>
-                        </select>
-                    </div>
-                    <div class="step-column-33">
-                        <label>Душ</label>
-                        <select name="FacilityForm[shower]" class="custom-select">
-{#                            <option value="">&mdash;</option>#}
-                            <option value="1">Есть</option>
-                            <option value="0" selected>Нет</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="step-line">
-                    <div class="step-column-33">
-                        <label>Ванна</label>
-                        <select name="FacilityForm[bath]" class="custom-select">
-{#                            <option value="">&mdash;</option>#}
-                            <option value="1">Есть</option>
-                            <option value="0" selected>Нет</option>
-                        </select>
-                    </div>
-                    <div class="step-column-33">
-                        <label>Джакузи</label>
-                        <select name="FacilityForm[jacuzzi]" class="custom-select">
-{#                            <option value="">&mdash;</option>#}
-                            <option value="1">Есть</option>
-                            <option value="0" selected>Нет</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="step-block">
-                    <div class="step-block-header">Дополнительно</div>
                     <div class="step-line">
                         <div class="step-column-33">
-                            <label for="parking">Парковка</label>
-                            <select name="FacilityForm[parking]" id="parking" class="custom-select">
-                                <option value="1">Есть</option>
-                                <option value="0" selected>Нет</option>
+                            <select id="metro-list" name="ApartmentForm[metro_array]" class="custom-select" multiple>
+                                <option value="">Метро</option>
+                                <option value="">Метро 1</option>
+                                <option value="">Метро 2</option>
                             </select>
                         </div>
                         <div class="step-column-33">
-                            <label for="balcony">Балкон</label>
-                            <select name="FacilityForm[balcony]" id="balcony" class="custom-select">
-                                <option value="1">Есть</option>
-                                <option value="0" selected>Нет</option>
-                            </select>
-                        </div>
-                        <div class="step-column-33">
-                            <label for="heating">Отопление</label>
-                            <select name="FacilityForm[heating]" id="heating" class="custom-select">
-                                {% for id, value in heating %}
+                            <label for="ApartmentForm[metro_walk]">Расстояние до метро</label>
+                            <select name="ApartmentForm[metro_walk]" class="custom-select">
+                                {% for id, value in metroWalks %}
                                     <option value="{{ id }}">{{ value }}</option>
                                 {% endfor %}
                             </select>
                         </div>
                     </div>
+                    <div class="maps">
+                        <div class="maps-data">
+                            <div class="maps-data-item">
+                                <div class="maps-data-header">Популярные города</div>
+                                <div class="maps-link">
+                                    {#<span class="maps-link-item" data-latitude="55.76" data-longitude="37.64">Москва</span>
+                                    <span class="maps-link-item" data-latitude="59.96" data-longitude="30.16">Санкт-Петербург</span>#}
+
+                                    {% for city in popularCities %}
+                                        <span class="maps-link-item" data-latitude="{{ city['lat'] }}" data-longitude="{{ city['lon'] }}">{{ city['name'] }}</span>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        <div id="map" class="maps-frame"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main-account-inner mt-5">
+                <div class="section-head section-head-between">
+                    <h2 class="section-header">Тип аренды</h2>
+                    <div class="steps-list">
+                        <div class="steps-list-item steps-list-item-active">1</div>
+                        <div class="steps-list-item steps-list-item-active">2</div>
+                        <div class="steps-list-item">3</div>
+                        <div class="steps-list-item">4</div>
+                        <div class="steps-list-item">5</div>
+                    </div>
+                </div>
+                <div class="step">
+                    {% for id, value in rentTypes %}
                     <div class="step-line">
-                        <div class="step-column-33">
-                            <label for="separate-toilet">Раздельные санузлы</label>
-                            <select name="FacilityForm[separate-toilet]" id="separate-toilet" class="custom-select">
-                                {% for id, value in bathroom %}
-                                    <option value="{{ id }}">{{ value }}</option>
-                                {% endfor %}
-                            </select>
+                        <div class="step-column-33" style="align-self: center;">
+                            {{ value.name }}
                         </div>
                         <div class="step-column-33">
-                            <label for="toilet">Совмещённые санузлы</label>
-                            <select name="FacilityForm[toilet]" id="toilet" class="custom-select">
-                                {% for id, value in bathroom %}
-                                    <option value="{{ id }}">{{ value }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                        <div class="step-column-33">
-                            <label for="floor-covering">Покрытие пола</label>
-                            <select name="FacilityForm[floor-covering]" id="floor-covering" class="custom-select">
-                                {% for id, value in floorCovering %}
-                                    <option value="{{ id }}">{{ value }}</option>
-                                {% endfor %}
-                            </select>
+                            {#<label for="AdvertForm[price_{{ id }}]">Цена</label>#}
+                            <input type="text" name="AdvertForm[price][]" class="step-input" placeholder="Введите цену">
                         </div>
                     </div>
-                    <div class="step-line">
-                        <div class="step-column-33">
-                            <label for="safety">Безопасность</label>
-                            <select name="FacilityForm[safety][]" id="safety" class="custom-select" multiple>
-                                {% for id, value in safety %}
-                                    <option value="{{ id }}">{{ value }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                    </div>
-                <div class="step-block">
-                    <div class="step-block-header">О доме</div>
-                    <div class="step-line">
-                        <div class="step-column-33">
-                            <label for="building-type">Тип здания</label>
-                            <select id="building-type" class="custom-select">
-                                {% for id, value in buildingType %}
-                                    <option value="{{ id }}">{{ value }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
+                    {% endfor %}
+
                         {#<div class="step-column-33">
-                            <label for="year-build">Год постройки</label>
-                            <input type="text" name="year-build" class="step-input" placeholder="Введите год">
+                            <select name="AdvertForm[rent_type][]" multiple class="custom-select">
+                                {% for id, value in rentTypes %}
+                                    <option value="{{ id }}">{{ value.name }}</option>
+                                {% endfor %}
+                            </select>
                         </div>#}
-                        <div class="step-column-33">
-                            <label for="number-entrances">Количество подъездов</label>
-                            <input type="text" id="number-entrances" name="number-entrances" class="step-input" placeholder="Введите количество">
-                        </div>
-                        <div class="step-column-33">
-                            <label for="number-floors">Количество этажей <sup>*</sup></label>
-                            <input type="text" id="number-floors" name="number-floors" class="step-input" placeholder="Введите количество">
-                        </div>
-                    </div>
-                    {#<div class="step-line">
-                        <div class="step-column-33">
-                            <label for="management-company">Управляющая компания</label>
-                            <input type="text" name="management-company" class="step-input" placeholder="Введите название">
-                        </div>
-                    </div>#}
+                        {#<div class="step-column-33">
+                            <label for="AdvertForm[currency]">Валюта <sup>*</sup></label>
+                            <select name="AdvertForm[currency]" class="custom-select">
+                                {% for id, value in currencies %}
+                                    <option value="{{ id }}">{{ value }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>#}
+                        {#<div class="step-column-33">
+                            <label for="AdvertForm[price]">Цена <sup>*</sup></label>
+                            <input type="text" name="AdvertForm[price]" class="step-input" placeholder="Введите цену">
+                        </div>#}
                 </div>
             </div>
-            </div>
-        </div>
 
-        <div class="main-account-inner mt-5">
-            <div class="text-center">
-                <button type="submit" class="btn step-next">Опубликовать</button>
+            <div class="main-account-inner mt-5">
+                <div class="section-head section-head-between">
+                    <h2 class="section-header">Параметры жилья</h2>
+                    <div class="steps-list">
+                        <div class="steps-list-item steps-list-item-active">1</div>
+                        <div class="steps-list-item steps-list-item-active">2</div>
+                        <div class="steps-list-item steps-list-item-active">3</div>
+                        <div class="steps-list-item">4</div>
+                        <div class="steps-list-item">5</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-line">
+                        <div class="step-column-33">
+                            <div class="form-group">
+                                <label for="ApartmentForm[total_area]">Общая площадь м<sup>2</sup> *</label>
+                                <input type="text" name="ApartmentForm[total_area]" placeholder="Введите площадь" class="step-input" />
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+                        <div class="step-column-33">
+                            <div class="form-group">
+                                <label for="ApartmentForm[total_rooms]">Количество комнат <sup>*</sup></label>
+                                <select name="ApartmentForm[total_rooms]" class="custom-select">
+                                    {% for id, value in rooms %}
+                                        <option value="{{ id }}">{{ value }}</option>
+                                    {% endfor %}
+                                </select>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+                        <div class="step-column-33">
+                            <div class="form-group">
+                                <label for="ApartmentForm[sleeping_place]">Количество спальных мест</label>
+                                <select name="ApartmentForm[sleeping_place]" class="custom-select">
+                                    {% for id, value in sleepingPlaces %}
+                                        <option value="{{ id }}">{{ value }}</option>
+                                    {% endfor %}
+                                </select>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step-line">
+                        <div class="step-column-33">
+                            <div class="form-group">
+                                <label for="ApartmentForm[beds]">Количество кроватей</label>
+                                <select name="ApartmentForm[beds]" class="custom-select">
+                                    {% for id, value in beds %}
+                                        <option value="{{ id }}">{{ value }}</option>
+                                    {% endfor %}
+                                </select>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+                        <div class="step-column-33">
+                            <div class="form-group">
+                                <label for="ApartmentForm[remont]">Ремонт <sup>*</sup></label>
+                                <select name="ApartmentForm[remont]" class="custom-select">
+                                    {% for id, value in remont %}
+                                        <option value="{{ id }}">{{ value }}</option>
+                                    {% endfor %}
+                                </select>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+                        <div class="step-column-33">
+                            <div class="form-group">
+                                <label for="ApartmentForm[floor]">Этаж <sup>*</sup></label>
+                                <input type="text" name="ApartmentForm[floor]" placeholder="Введите этаж" class="step-input" />
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step-column-100">
+                        <div class="form-group">
+                            <label for="ApartmentForm[description]">Описание жилья</label>
+                            <textarea name="ApartmentForm[description]" class="step-textarea" placeholder="Введите описание"></textarea>
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </form>
 
-{% endblock content %}
+            <div class="main-account-inner mt-5">
+                <div class="section-head section-head-between">
+                    <h2 class="section-header">Добавить фотографии</h2>
+                    <div class="steps-list">
+                        <div class="steps-list-item steps-list-item-active">1</div>
+                        <div class="steps-list-item steps-list-item-active">2</div>
+                        <div class="steps-list-item steps-list-item-active">3</div>
+                        <div class="steps-list-item steps-list-item-active">4</div>
+                        <div class="steps-list-item">5</div>
+                    </div>
+                </div>
+                <div class="step-photo">
+                    <div class="step-photo-item">
+                        <label class="step-photo-label">
+                            <input type="file" name="ImageForm[files][]" accept=".gif, .jpg, .png" class="step-photo-input">
+                            <div class="step-photo-frame"></div>
+                            <span>Выбрать фото</span>
+                        </label>
+                    </div>
+                    <div class="step-photo-item">
+                        <label class="step-photo-label">
+                            <input type="file" name="ImageForm[files][]" accept=".gif, .jpg, .png" class="step-photo-input">
+                            <div class="step-photo-frame"></div>
+                            <span>Выбрать фото</span>
+                        </label>
+                    </div>
+                    <div class="step-photo-item">
+                        <label class="step-photo-label">
+                            <input type="file" name="ImageForm[files][]" accept=".gif, .jpg, .png" class="step-photo-input">
+                            <div class="step-photo-frame"></div>
+                            <span>Выбрать фото</span>
+                        </label>
+                    </div>
+                    <div class="step-photo-item">
+                        <label class="step-photo-label">
+                            <input type="file" name="ImageForm[files][]" accept=".gif, .jpg, .png" class="step-photo-input">
+                            <div class="step-photo-frame"></div>
+                            <span>Выбрать фото</span>
+                        </label>
+                    </div>
+                    <div class="step-photo-item">
+                        <label class="step-photo-label">
+                            <input type="file" name="ImageForm[files][]" accept=".gif, .jpg, .png" class="step-photo-input">
+                            <div class="step-photo-frame"></div>
+                            <span>Выбрать фото</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="step-photo">
+                    <div class="step-photo-item">
+                        <label class="step-photo-label">
+                            <input type="file" name="ImageForm[files][]" accept=".gif, .jpg, .png" class="step-photo-input">
+                            <div class="step-photo-frame"></div>
+                            <span>Выбрать фото</span>
+                        </label>
+                    </div>
+                    <div class="step-photo-item">
+                        <label class="step-photo-label">
+                            <input type="file" name="ImageForm[files][]" accept=".gif, .jpg, .png" class="step-photo-input">
+                            <div class="step-photo-frame"></div>
+                            <span>Выбрать фото</span>
+                        </label>
+                    </div>
+                    <div class="step-photo-item">
+                        <label class="step-photo-label">
+                            <input type="file" name="ImageForm[files][]" accept=".gif, .jpg, .png" class="step-photo-input">
+                            <div class="step-photo-frame"></div>
+                            <span>Выбрать фото</span>
+                        </label>
+                    </div>
+                    <div class="step-photo-item">
+                        <label class="step-photo-label">
+                            <input type="file" name="ImageForm[files][]" accept=".gif, .jpg, .png" class="step-photo-input">
+                            <div class="step-photo-frame"></div>
+                            <span>Выбрать фото</span>
+                        </label>
+                    </div>
+                    <div class="step-photo-item">
+                        <label class="step-photo-label">
+                            <input type="file" name="ImageForm[files][]" accept=".gif, .jpg, .png" class="step-photo-input">
+                            <div class="step-photo-frame"></div>
+                            <span>Выбрать фото</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main-account-inner mt-5">
+                <div class="section-head section-head-between">
+                    <h2 class="section-header">Удобства</h2>
+                    <div class="steps-list">
+                        <div class="steps-list-item steps-list-item-active">1</div>
+                        <div class="steps-list-item steps-list-item-active">2</div>
+                        <div class="steps-list-item steps-list-item-active">3</div>
+                        <div class="steps-list-item steps-list-item-active">4</div>
+                        <div class="steps-list-item steps-list-item-active">5</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-line">
+                        <div class="step-column-33">
+                            <label>Холодильник</label>
+                            <select name="FacilityForm[refrigerator]" class="custom-select">
+    {#                            <option value="">&mdash;</option>#}
+                                <option value="1">Есть</option>
+                                <option value="0" selected>Нет</option>
+                            </select>
+                        </div>
+                        <div class="step-column-33">
+                            <label>Плита</label>
+                            <select name="FacilityForm[stove]" class="custom-select">
+    {#                            <option value="">&mdash;</option>#}
+                                <option value="1">Есть</option>
+                                <option value="0" selected>Нет</option>
+                            </select>
+                        </div>
+                        <div class="step-column-33">
+                            <label>Утюг</label>
+                            <select name="FacilityForm[iron]" class="custom-select">
+    {#                            <option value="">&mdash;</option>#}
+                                <option value="1">Есть</option>
+                                <option value="0" selected>Нет</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="step-line">
+                        <div class="step-column-33">
+                            <label>Фен</label>
+                            <select name="FacilityForm[hair-dryer]" class="custom-select">
+    {#                            <option value="">&mdash;</option>#}
+                                <option value="1">Есть</option>
+                                <option value="0" selected>Нет</option>
+                            </select>
+                        </div>
+                        <div class="step-column-33">
+                            <label>Wi-Fi</label>
+                            <select name="FacilityForm[wi-fi]" class="custom-select">
+    {#                            <option value="">&mdash;</option>#}
+                                <option value="1">Есть</option>
+                                <option value="0" selected>Нет</option>
+                            </select>
+                        </div>
+                        <div class="step-column-33">
+                            <label>Микроволновка</label>
+                            <select name="FacilityForm[microwave]" class="custom-select">
+    {#                            <option value="">&mdash;</option>#}
+                                <option value="1">Есть</option>
+                                <option value="0" selected>Нет</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="step-line">
+                        <div class="step-column-33">
+                            <label>TV</label>
+                            <select name="FacilityForm[tv]" class="custom-select">
+    {#                            <option value="">&mdash;</option>#}
+                                <option value="1">Есть</option>
+                                <option value="0" selected>Нет</option>
+                            </select>
+                        </div>
+                        <div class="step-column-33">
+                            <label>Кондиционер</label>
+                            <select name="FacilityForm[air-conditioner]" class="custom-select">
+    {#                            <option value="">&mdash;</option>#}
+                                <option value="1">Есть</option>
+                                <option value="0" selected>Нет</option>
+                            </select>
+                        </div>
+                        <div class="step-column-33">
+                            <label>Стиральная машина</label>
+                            <select name="FacilityForm[washing-machine]" class="custom-select">
+    {#                            <option value="">&mdash;</option>#}
+                                <option value="1">Есть</option>
+                                <option value="0" selected>Нет</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="step-line">
+                        <div class="step-column-33">
+                            <label>Диван</label>
+                            <select name="FacilityForm[sofa]" class="custom-select">
+    {#                            <option value="">&mdash;</option>#}
+                                <option value="1">Есть</option>
+                                <option value="0" selected>Нет</option>
+                            </select>
+                        </div>
+                        <div class="step-column-33">
+                            <label>Кровать</label>
+                            <select name="FacilityForm[bed]" class="custom-select">
+    {#                            <option value="">&mdash;</option>#}
+                                <option value="1">Есть</option>
+                                <option value="0" selected>Нет</option>
+                            </select>
+                        </div>
+                        <div class="step-column-33">
+                            <label>Душ</label>
+                            <select name="FacilityForm[shower]" class="custom-select">
+    {#                            <option value="">&mdash;</option>#}
+                                <option value="1">Есть</option>
+                                <option value="0" selected>Нет</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="step-line">
+                        <div class="step-column-33">
+                            <label>Ванна</label>
+                            <select name="FacilityForm[bath]" class="custom-select">
+    {#                            <option value="">&mdash;</option>#}
+                                <option value="1">Есть</option>
+                                <option value="0" selected>Нет</option>
+                            </select>
+                        </div>
+                        <div class="step-column-33">
+                            <label>Джакузи</label>
+                            <select name="FacilityForm[jacuzzi]" class="custom-select">
+    {#                            <option value="">&mdash;</option>#}
+                                <option value="1">Есть</option>
+                                <option value="0" selected>Нет</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="step-block">
+                        <div class="step-block-header">Дополнительно</div>
+                        <div class="step-line">
+                            <div class="step-column-33">
+                                <label for="parking">Парковка</label>
+                                <select name="FacilityForm[parking]" id="parking" class="custom-select">
+                                    <option value="1">Есть</option>
+                                    <option value="0" selected>Нет</option>
+                                </select>
+                            </div>
+                            <div class="step-column-33">
+                                <label for="balcony">Балкон</label>
+                                <select name="FacilityForm[balcony]" id="balcony" class="custom-select">
+                                    <option value="1">Есть</option>
+                                    <option value="0" selected>Нет</option>
+                                </select>
+                            </div>
+                            <div class="step-column-33">
+                                <label for="heating">Отопление</label>
+                                <select name="FacilityForm[heating]" id="heating" class="custom-select">
+                                    {% for id, value in heating %}
+                                        <option value="{{ id }}">{{ value }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="step-line">
+                            <div class="step-column-33">
+                                <label for="separate-toilet">Раздельные санузлы</label>
+                                <select name="FacilityForm[separate-toilet]" id="separate-toilet" class="custom-select">
+                                    {% for id, value in bathroom %}
+                                        <option value="{{ id }}">{{ value }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="step-column-33">
+                                <label for="toilet">Совмещённые санузлы</label>
+                                <select name="FacilityForm[toilet]" id="toilet" class="custom-select">
+                                    {% for id, value in bathroom %}
+                                        <option value="{{ id }}">{{ value }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="step-column-33">
+                                <label for="floor-covering">Покрытие пола</label>
+                                <select name="FacilityForm[floor-covering]" id="floor-covering" class="custom-select">
+                                    {% for id, value in floorCovering %}
+                                        <option value="{{ id }}">{{ value }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="step-line">
+                            <div class="step-column-33">
+                                <label for="safety">Безопасность</label>
+                                <select name="FacilityForm[safety][]" id="safety" class="custom-select" multiple>
+                                    {% for id, value in safety %}
+                                        <option value="{{ id }}">{{ value }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step-block">
+                        <div class="step-block-header">О доме</div>
+                        <div class="step-line">
+                            <div class="step-column-33">
+                                <label for="building-type">Тип здания</label>
+                                <select name="ApartmentForm[building_type]" id="building-type" class="custom-select">
+                                    {% for id, value in buildingType %}
+                                        <option value="{{ id }}">{{ value }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="step-column-33">
+                                <label for="number-entrances">Количество подъездов</label>
+                                <input type="text" name="ApartmentForm[number_entrances]" id="number-entrances" class="step-input" placeholder="Введите количество">
+                            </div>
+                            <div class="step-column-33">
+                                <label for="number-floors">Количество этажей <sup>*</sup></label>
+                                <input type="text" name="ApartmentForm[number_floors]" id="number-floors" class="step-input" placeholder="Введите количество">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main-account-inner mt-5">
+                <div class="text-center">
+                    <button type="submit" class="btn step-next">Опубликовать</button>
+                </div>
+            </div>
+        </form>
+
+    {% endblock content %}
