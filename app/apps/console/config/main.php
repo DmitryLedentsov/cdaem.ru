@@ -46,6 +46,14 @@ return [
                 ],
             ],
         ],
+        'geo' => [
+            'class' => \common\modules\geo\Module::class,
+            'controllerMap' => [
+                'metroUpdate' => [
+                    'class' => \common\modules\geo\commands\MetroUpdateController::class,
+                ],
+            ],
+        ],
         'merchant' => [
             'class' => \common\modules\merchant\Module::class,
         ],
