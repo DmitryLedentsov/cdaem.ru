@@ -11,89 +11,113 @@
         }, {
             searchControlProvider: 'yandex#search'
         });
-
-        // todo тесовый маркер для обозначения адреса
-        apartMap.geoObjects.add(new ymaps.Placemark([55.684758, 37.738521], {
-            balloonContent: ''
-        }, {
-            preset: 'islands#icon',
-            iconColor: '#0095b6'
-        }));
     }
-    // Интеграция с dadata.ru
-    const apiToken = "79b777f05108f902a4019130a57fe5e7db725cc5";
-    const addressField = $("#address");
-    const regionField = $("#region");
-    const cityField = $("#city");
+
+    const searchCityURL = "/geo/ajax/select-city-by-api/",
+        searchAddressURL = "/geo/ajax/select-address-by-api/",
+        addressField = $("#address"),
+        regionField = $("#region"),
+        cityField = $("#city"),
+        kladrField = $('#city_kladr');
 
     $('.maps-link-item').click(function () {
-        // console.log();
         const point = $(this).data();
         const cityName = $(this).html();
         cityField.val(cityName);
-        cityField.suggestions().fixData();
         addressField.val('');
-        addressField.suggestions().fixData();
         apartMap.setCenter([point.latitude, point.longitude]);
     });
 
-    addressField.suggestions({
-        token: apiToken,
-        type: "ADDRESS",
-        /* Вызывается, когда пользователь выбирает одну из подсказок */
-        onSelect: function(suggestion) {
-            console.log(suggestion);
-            console.log(suggestion.value); // если убрать всё до первой запятой включительно, получим адрес без города, так хранится в БД.
-            console.log(suggestion.data.city); // название города (можно найти id)
-            console.log(suggestion.data.metro); // три ближайших станции // только для тарифа «максимальный» 36К в год
+    addressField.prop("disabled", "disabled");
 
-            // центрируем карту по адресу
-            const point = {
-                lat: suggestion.data.geo_lat,
-                lon: suggestion.data.geo_lon
+    addressField.autoComplete({
+        resolver: 'custom',
+        minLength: 2,
+        noResultsText: 'Адрес не найден',
+        formatResult: function (item) {
+            return {
+                value: item.value,
+                text: item.value,
+                html: '<div>' + item.value + '</div>',
             };
+        },
+        events: {
+            search: function (qry, callback) {
+                $.getJSON(searchAddressURL, {'query': qry, 'kladr': kladrField.val()}, function (data) {
+                    console.log(data);
+                    let result = [];
+                    data.forEach(item => {
+                        result.push({
+                            value: item.value,
+                            geo_lat: item.geo_lat,
+                            geo_lon: item.geo_lon,
+                        });
+                    });
 
-            if (point.lat && point.lon) {
-                apartMap.setCenter([point.lat, point.lon]);
-                apartMap.setZoom(15);
-
-                apartMap.geoObjects.add(new ymaps.Placemark([point.lat, point.lon], {
-                    balloonContent: ''
-                }, {
-                    preset: 'islands#icon',
-                    iconColor: '#0095b6'
-                }));
-
-                $('#latitude').val(point.lat);
-                $('#longitude').val(point.lon);
-
-                $.ajax({
-                    url: '/geo/nearest-stations',
-                    type: 'GET',
-                    data: {
-                        cityId: 4400,
-                        latitude: point.lat,
-                        longitude: point.lon
-                    },
-                    success: function (data) {
-                        console.log('success', data);
-
-                        const metroListSelect = $('#metro-list');
-                        metroListSelect.html('');
-
-                        data.forEach((station) => {
-                            metroListSelect.append(
-                                $('<option>', { text: station.name })
-                            );
-                        })
-                    },
-                    error: function (data) {
-                        console.log('error', data);
-                    }
+                    // console.log({result});
+                    callback(result);
                 });
-            }
+            },
         }
-    }).prop("disabled", "disabled");
+    });
+
+    addressField.on('autocomplete.select', function (evt, item) {
+        console.log(item);
+        // центрируем карту по адресу
+        const point = {
+            lat: item.geo_lat,
+            lon: item.geo_lon
+        };
+
+        if (point.lat && point.lon) {
+            apartMap.setCenter([point.lat, point.lon]);
+            apartMap.setZoom(15);
+
+            apartMap.geoObjects.add(new ymaps.Placemark([point.lat, point.lon], {
+                balloonContent: ''
+            }, {
+                preset: 'islands#icon',
+                iconColor: '#0095b6'
+            }));
+
+            $('#latitude').val(point.lat);
+            $('#longitude').val(point.lon);
+
+            $.ajax({
+                url: '/geo/nearest-stations',
+                type: 'GET',
+                data: {
+                    cityId: 4400,
+                    latitude: point.lat,
+                    longitude: point.lon
+                },
+                success: function (data) {
+                    // console.log('success', data);
+                    const metroBlock = $('.metro-block');
+
+                    if (!data.length) {
+                        metroBlock.hide();
+                        return;
+                    }
+
+                    metroBlock.show();
+                    const metroListSelect = $('#metro-list');
+                    metroListSelect.html('');
+
+                    data.forEach((station) => {
+                        metroListSelect.append(
+                            $('<option>', { text: station.name })
+                        );
+                    })
+                },
+                error: function (data) {
+                    console.log('error', data);
+                }
+            });
+        }
+    });
+
+
 
     // поиск только по городам
     var defaultFormatResult = $.Suggestions.prototype.formatResult;
@@ -109,12 +133,13 @@
     }
 
     function blockAddressField() {
-        addressField.suggestions().setOptions({
-            restrict_value: false
-        });
+        // addressField.suggestions().setOptions({
+        //     restrict_value: false
+        // });
         addressField.prop('disabled', 'disabled');
         addressField.val('');
         regionField.val('');
+        kladrField.val('');
         $('#latitude').val('');
         $('#longitude').val('');
 
@@ -122,6 +147,7 @@
         $('#address-wrapper').css({display: 'none'});
     }
 
+    /*
     $("#city").suggestions({
         token: apiToken,
         type: "ADDRESS",
@@ -132,7 +158,7 @@
         },
         formatResult: formatResult,
         formatSelected: formatSelected,
-        /* Вызывается, когда пользователь выбирает одну из подсказок */
+        //  Вызывается, когда пользователь выбирает одну из подсказок
         onSelect: function(suggestion) {
             console.log(suggestion);
             console.log(suggestion.data.city);
@@ -168,6 +194,110 @@
             blockAddressField();
         }
     });
+    */
+    cityField.autoComplete({
+        resolver: 'custom',
+        minLength: 2,
+        noResultsText: 'Город не найден',
+        formatResult: function (item) {
+            return {
+                value: item.text,
+                text: item.text,
+                html: '<div>' + item.text + '</div>',
+            };
+        },
+        change: function (event, ui) {
+            console.log("change");
+            if (ui.item === null) {
+                blockAddressField();
+            }
+        },
+
+        events: {
+            change: function (event, ui) {
+                console.log("events.change");
+                if (ui.item === null) {
+                    blockAddressField();
+                }
+            },
+            search: function (qry, callback) {
+                $.getJSON(searchCityURL, {'name': qry}, function (data) {
+                    // console.log(data);
+                    let result = [];
+                    data.forEach(item => {
+                        result.push({
+                            value: item.kladr_id,
+                            text: item.name,
+                            region: item.region,
+                            region_type_full: item.region_type_full,
+                            geo_lat: item.geo_lat,
+                            geo_lon: item.geo_lon,
+                        });
+                    });
+
+                    // console.log({result});
+                    callback(result);
+                });
+            },
+        }
+    });
+
+     cityField.on('autocomplete.change', function (evt, item) {
+        console.log("autocomplete.change", item);
+    });
+
+    cityField.on('autocomplete.Change', function (evt, item) {
+        console.log("autocomplete.Change", item);
+    });
+
+    cityField.on('autocompleteChange', function (evt, item) {
+        console.log("autocompleteChange", item);
+    });
+
+    cityField.bind('autocomplete.change', function (evt, item) {
+        console.log("bind autocomplete.change", item);
+    });
+
+    cityField.bind('autocomplete.Change', function (evt, item) {
+        console.log("bind autocomplete.Change", item);
+    });
+
+    cityField.bind('autocompleteChange', function (evt, item) {
+        console.log("bind autocompleteChange", item);
+    });
+
+    cityField.on('blur', function (e, item) {
+        // console.log(e, item, cityField);
+        // Работает только этот метод
+        if(!cityField.data("autoComplete")._isSelectElement) {
+            blockAddressField();
+        }
+    });
+
+
+    cityField.on('autocomplete.select', function (evt, item) {
+        // console.log(item);
+        if (!item.text) {
+            blockAddressField();
+            return;
+        }
+
+        // центрируем карту по городу
+        if (item.geo_lat && item.geo_lon) {
+            apartMap.setCenter([item.geo_lat, item.geo_lon]);
+            apartMap.setZoom(10);
+        }
+
+        const regionFullName = item.region + (item.region_type_full ? (' ' +  item.region_type_full) : '');
+        // console.log({regionFullName});
+        regionField.val(regionFullName);
+
+        kladrField.val(item.value);
+        addressField.removeAttr('disabled');
+        $('.maps').css({display: 'flex'});
+        $('#address-wrapper').css({display: 'block'});
+    });
+
 
     ///////////////////////////////////////////////////////////////////////////////////
     // Отправка формы          form-apartment

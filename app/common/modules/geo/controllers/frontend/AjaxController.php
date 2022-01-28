@@ -117,6 +117,81 @@ class AjaxController extends \frontend\components\Controller
     }
 
     /**
+     * Поиск городов по имени через API dadata.ru
+     * @return array|Response
+     */
+    public function actionSelectCityByApi()
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        $name = trim(Yii::$app->request->get('name'));
+
+        if (mb_strlen($name) < 2) {
+            return [];
+        }
+
+        $result = [];
+
+        $dadata = new \Dadata\DadataClient(Yii::$app->params['dadata']['token'], Yii::$app->params['dadata']['secret']);
+
+        $rowList = $dadata->suggest("address", $name, 5, [
+            "locations" => [ "city_type_full" => "город" ],
+            "from_bound"=> [ "value" => "city" ],
+            "to_bound"=> [ "value"=> "city" ],
+        ]);
+
+        foreach ($rowList as $row) {
+            $data = $row["data"];
+
+            $result[] = [
+                "name" => $data["city"],
+                "kladr_id" => $data["kladr_id"],
+                "region" => $data["region"],
+                "region_type_full" => $data["region_type_full"],
+                "geo_lat" => $data["geo_lat"],
+                "geo_lon" => $data["geo_lon"],
+            ];
+        }
+        return $result;
+    }
+
+    /**
+     * Поиск адреса через API dadata.ru
+     * @return array|Response
+     */
+    public function actionSelectAddressByApi()
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        $query = trim(Yii::$app->request->get('query'));
+        $kladr = trim(Yii::$app->request->get('kladr'));
+
+        if (mb_strlen($query) < 2) {
+            return [];
+        }
+
+        $result = [];
+        $dadata = new \Dadata\DadataClient(Yii::$app->params['dadata']['token'], Yii::$app->params['dadata']['secret']);
+
+        $rowList = $dadata->suggest("address", $query, 5, [
+            "locations" => [ "kladr_id" => "$kladr" ],
+            "restrict_value" => true // Адрес без района и города
+        ]);
+
+        foreach ($rowList as $row) {
+            $data = $row["data"];
+
+            $result[] = [
+                "value" => $row["value"],
+                "geo_lat" => $data["geo_lat"],
+                "geo_lon" => $data["geo_lon"],
+            ];
+        }
+
+        return $result;
+    }
+
+        /**
      * Данные объявления
      * @param $typeId
      * @return string

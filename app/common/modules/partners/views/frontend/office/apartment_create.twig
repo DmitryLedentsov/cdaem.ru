@@ -62,8 +62,9 @@
                         <div class="step-column-33">
                             <div class="form-group">
                                 <label for="ApartmentForm[city_name]">Город <sup>*</sup></label>
-                                <input type="text" id="city" name="ApartmentForm[city_name]" placeholder="Введите город" class="form-control" />
+                                <input type="text" id="city" name="ApartmentForm[city_name]" placeholder="Введите город" class="form-control" autocomplete="off"/>
                                 <input type="hidden" id="region" name="ApartmentForm[region_name]"/>
+                                <input type="hidden" id="city_kladr"/>
                                 <div class="invalid-feedback"></div>
                             </div>
                         </div>
@@ -79,8 +80,9 @@
                         </div>
                     </div>
 
-                    <div class="step-line">
+                    <div class="step-line metro-block" style="display: none;">
                         <div class="step-column-33">
+                            <label for="ApartmentForm[metro_array]">Ближайшие станции метро в радиусе 1,5 км</label>
                             <select id="metro-list" name="ApartmentForm[metro_array]" class="custom-select" multiple>
                                 <option value="">Метро</option>
                                 <option value="">Метро 1</option>

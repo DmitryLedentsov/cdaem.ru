@@ -21,7 +21,8 @@
     "ladamalina/yii2-smsc": "*",
     "giggsey/libphonenumber-for-php": "~6.0",
     "vitalik74/yii2-geocode-yandex": "*",
-    "execut/yii2-robots-txt": "dev-master"
+    "execut/yii2-robots-txt": "dev-master",
+    "hflabs/dadata": "dev-master"
   },
   "require-dev": {
     "yiisoft/yii2-codeception": "2.0.6",

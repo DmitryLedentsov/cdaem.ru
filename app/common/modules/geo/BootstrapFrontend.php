@@ -19,6 +19,8 @@ class BootstrapFrontend implements \yii\base\BootstrapInterface
         $app->urlManager->addRules([
             Yii::$app->params['siteSubDomain'] . '/map' => '/geo/default/index',
             'geo/select-city' => '/geo/ajax/select-city',
+            'geo/select-city-by-api' => '/geo/ajax/select-city-by-api',
+            'geo/select-address-by-api' => '/geo/ajax/select-address-by-api',
             'geo/metro-msk' => '/geo/ajax/metro-msk',
             'geo/nearest-stations' => '/geo/ajax/nearest-stations',
             'geo/map/<typeId:\w+>' => '/geo/ajax/apartment',
