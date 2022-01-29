@@ -331,12 +331,12 @@ class AjaxController extends \frontend\components\Controller
         ];
     }
 
-    public function actionNearestStations($cityId, $latitude, $longitude): array {
+    public function actionNearestStations($cityName, $latitude, $longitude): array {
         Yii::$app->response->format = Response::FORMAT_JSON;
 
-        //dd($cityId);
+        $city = City::findByName($cityName);
+        $cityId = $city ? $city->city_id : null;
 
-        return Metro::getNearestStationsByCoords($cityId, $latitude, $longitude);
-        // return Metro::getNearestStationsByCoords($cityId, 37.641872, 55.766456);
+        return $cityId ? Metro::getNearestStationsByCoords($cityId, $latitude, $longitude) : [];
     }
 }

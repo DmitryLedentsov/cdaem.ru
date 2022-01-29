@@ -44,7 +44,7 @@
         events: {
             search: function (qry, callback) {
                 $.getJSON(searchAddressURL, {'query': qry, 'kladr': kladrField.val()}, function (data) {
-                    console.log(data);
+                    // console.log(data);
                     let result = [];
                     data.forEach(item => {
                         result.push({
@@ -62,7 +62,9 @@
     });
 
     addressField.on('autocomplete.select', function (evt, item) {
-        console.log(item);
+        // console.log(item);
+        addressField.data('current-value', item.value);
+
         // центрируем карту по адресу
         const point = {
             lat: item.geo_lat,
@@ -87,7 +89,7 @@
                 url: '/geo/nearest-stations',
                 type: 'GET',
                 data: {
-                    cityId: 4400,
+                    cityName: cityField.val(),
                     latitude: point.lat,
                     longitude: point.lon
                 },
@@ -117,25 +119,16 @@
         }
     });
 
+    addressField.on('blur', function (e, item) {
+        let currentDataValue = addressField.data('current-value'),
+            isValueChanged = currentDataValue !== addressField.val();
 
-
-    // поиск только по городам
-    var defaultFormatResult = $.Suggestions.prototype.formatResult;
-
-    function formatResult(value, currentValue, suggestion, options) {
-        var newValue = suggestion.data.city;
-        suggestion.value = newValue;
-        return defaultFormatResult.call(this, newValue, currentValue, suggestion, options);
-    }
-
-    function formatSelected(suggestion) {
-        return suggestion.data.city;
-    }
+        if (currentDataValue && isValueChanged) {
+            addressField.val('');
+        }
+    });
 
     function blockAddressField() {
-        // addressField.suggestions().setOptions({
-        //     restrict_value: false
-        // });
         addressField.prop('disabled', 'disabled');
         addressField.val('');
         regionField.val('');
@@ -147,54 +140,6 @@
         $('#address-wrapper').css({display: 'none'});
     }
 
-    /*
-    $("#city").suggestions({
-        token: apiToken,
-        type: "ADDRESS",
-        hint: false,
-        bounds: "city",
-        constraints: {
-            locations: { city_type_full: "город" }
-        },
-        formatResult: formatResult,
-        formatSelected: formatSelected,
-        //  Вызывается, когда пользователь выбирает одну из подсказок
-        onSelect: function(suggestion) {
-            console.log(suggestion);
-            console.log(suggestion.data.city);
-
-            if (suggestion.data && suggestion.data.kladr_id) {
-                addressField.removeAttr('disabled');
-                addressField.suggestions().setOptions({
-                    constraints: {
-                        locations: { kladr_id: suggestion.data.kladr_id }
-                    },
-                    restrict_value: true
-                });
-
-                // центрируем карту по городу
-                if (suggestion.data.geo_lat && suggestion.data.geo_lon) {
-                    apartMap.setCenter([suggestion.data.geo_lat, suggestion.data.geo_lon]);
-                    apartMap.setZoom(10);
-                }
-
-                $('.maps').css({display: 'flex'});
-                $('#address-wrapper').css({display: 'block'});
-
-                // устанвливаем значение региона
-                const regionFullName = suggestion.data.region + (suggestion.data.region_type_full ? (' ' +  suggestion.data.region_type_full) : '');
-                console.log(regionFullName);
-                regionField.val(regionFullName);
-            }
-            else {
-                blockAddressField();
-            }
-        },
-        onSelectNothing: function () {
-            blockAddressField();
-        }
-    });
-    */
     cityField.autoComplete({
         resolver: 'custom',
         minLength: 2,
@@ -269,7 +214,11 @@
     cityField.on('blur', function (e, item) {
         // console.log(e, item, cityField);
         // Работает только этот метод
-        if(!cityField.data("autoComplete")._isSelectElement) {
+
+        let currentDataValue = cityField.data('current-value'),
+            isValueChanged = currentDataValue !== cityField.val();
+
+        if (currentDataValue && isValueChanged) {
             blockAddressField();
         }
     });
@@ -281,6 +230,8 @@
             blockAddressField();
             return;
         }
+
+        cityField.data('current-value', item.text);
 
         // центрируем карту по городу
         if (item.geo_lat && item.geo_lon) {
