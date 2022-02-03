@@ -84,8 +84,8 @@ class ApartmentForm extends \yii\base\Model
     public function scenarios()
     {
         return [
-            'create' => ['city_id', 'closest_city_id', 'address', 'apartment', 'district1', 'district2', 'floor', 'total_rooms', 'total_area', 'beds', 'visible', 'remont', 'metro_walk', 'description', 'files', 'metroStationsArray'],
-            'update' => ['user_id', 'city_id', 'closest_city_id', 'address', 'apartment', 'district1', 'district2', 'floor', 'total_rooms', 'total_area', 'beds', 'visible', 'remont', 'metro_walk', 'description', 'date_create', 'date_update', 'files', 'metroStationsArray']
+            'create' => ['city_id', 'closest_city_id', 'address', 'apartment', /*'district1', */'district2', 'floor', 'total_rooms', 'total_area', 'beds', 'visible', 'remont', 'metro_walk', 'description', 'files'/*, 'metroStationsArray'*/],
+            'update' => ['user_id', 'city_id', 'closest_city_id', 'address', 'apartment', /*'district1', */'district2', 'floor', 'total_rooms', 'total_area', 'beds', 'visible', 'remont', 'metro_walk', 'description', 'date_create', 'date_update', 'files'/*, 'metroStationsArray'*/]
         ];
     }
 
@@ -95,23 +95,21 @@ class ApartmentForm extends \yii\base\Model
     public function rules()
     {
         return [
-            [['user_id', 'city_id', 'closest_city_id', 'apartment', 'district1', 'district2', 'floor', 'total_rooms', 'total_area', 'visible', 'remont', 'metro_walk'], 'integer'],
+            [['user_id', 'city_id', 'closest_city_id', 'apartment', /*'district1', */ 'district2', 'floor', 'total_rooms', 'total_area', 'visible', 'remont', 'metro_walk'], 'integer'],
             ['user_id', 'exist', 'targetClass' => '\common\modules\users\models\User', 'targetAttribute' => 'id'],
             [['city_id', 'closest_city_id'], 'exist', 'targetClass' => '\common\modules\geo\models\City', 'targetAttribute' => 'city_id'],
-            [['district1', 'district2'], 'exist', 'targetClass' => '\common\modules\geo\models\Districts', 'targetAttribute' => 'id'],
+            [[/*'district1',*/ 'district2'], 'exist', 'targetClass' => '\common\modules\geo\models\Districts', 'targetAttribute' => 'id'],
             [['visible'], 'boolean'],
             ['remont', 'in', 'range' => array_keys(Apartment::getRemontList())],
             ['beds', 'integer'],
-            ['metroStationsArray', 'default', 'value' => []],
-            ['metroStationsArray', 'each', 'rule' => ['in', 'range' => array_keys(Apartment::getMetroList())]],
             [['address'], 'string', 'max' => 255],
             [['description'], 'string'],
 
             [['files'], 'file', 'extensions' => 'jpg, png', 'mimeTypes' => 'image/jpeg, image/png', 'maxFiles' => 10],
 
             // required on %scenarios%
-            [['city_id', 'address', 'district1', 'floor', 'total_rooms', 'total_area', 'visible', 'remont', 'metro_walk', 'description', 'images', 'metroStationsArray', 'beds'], 'required', 'on' => 'create'],
-            [['user_id', 'city_id', 'address', 'district1', 'floor', 'total_rooms', 'total_area', 'visible', 'remont', 'metro_walk', 'description', 'metroStationsArray', 'beds'], 'required', 'on' => 'update'],
+            [['city_id', 'address', /*'district1',*/ 'floor', 'total_rooms', 'total_area', 'visible', 'remont', 'metro_walk', 'description', 'images', /*'metroStationsArray',*/ 'beds'], 'required', 'on' => 'create'],
+            [['user_id', 'city_id', 'address', /*'district1',*/ 'floor', 'total_rooms', 'total_area', 'visible', 'remont', 'metro_walk', 'description', /*'metroStationsArray',*/ 'beds'], 'required', 'on' => 'update'],
         ];
     }
 
@@ -152,10 +150,6 @@ class ApartmentForm extends \yii\base\Model
 
             $this->apartment_id = $model->apartment_id;
 
-            if (!$this->updateMetroStations()) {
-                throw new \Exception('Apartment not update metro stations');
-            }
-
             if (!$this->createImages()) {
                 throw new \Exception('Apartment not create images');
             }
@@ -188,10 +182,6 @@ class ApartmentForm extends \yii\base\Model
 
             if (!$model->save(false)) {
                 throw new \Exception('Apartment not create images');
-            }
-
-            if (!$this->updateMetroStations()) {
-                throw new \Exception('Apartment not update metro stations');
             }
 
             if (!$this->createImages(false)) {

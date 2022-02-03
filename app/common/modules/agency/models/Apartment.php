@@ -47,7 +47,6 @@ class Apartment extends \yii\db\ActiveRecord
             'closest_city_id' => 'Ближайший город',
             'address' => 'Адрес',
             'apartment' => 'Номер квартиры',
-            'district1' => 'Округ',
             'district2' => 'Округ 2',
             'floor' => 'Этаж',
             'total_rooms' => 'Количество комнат',

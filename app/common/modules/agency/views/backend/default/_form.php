@@ -239,17 +239,11 @@ use yii\widgets\ActiveForm;
                 'class' => 'form-control select-city'
             ]) ?>
         </div>
-        <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-3"><?= $form->field($formModel, 'district1')->dropDownList($model->districtsList, ['prompt' => '']) ?></div>
         <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-3"><?= $form->field($formModel, 'district2')->dropDownList($model->districtsList, ['prompt' => '']) ?></div>
     </div>
 
     <div class="row">
         <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-3"><?= $form->field($formModel, 'address') ?></div>
-        <div class="col-md-3 col-md-4 col-sm-4 col-xs-12 col-lg-9">
-            <?= $form->field($formModel, 'metroStationsArray', [
-                'template' => '<br/><p>{label}</p><p>{error}</p><div style="max-height: 150px; overflow: auto; overflow-y: scroll">{input}</div>',
-            ])->checkBoxList($model->metroList) ?>
-        </div>
     </div>
 
     <br/>
