@@ -137,7 +137,7 @@ echo GridView::widget([
 
                 $address = 'Страна: ' . $model->city->country->name;
                 $address .= ', Город: ' . $model->city->name;
-                $address .= ', Район: ' . $model->mainDistrict->district_name;
+                // $address .= ', Район: ' . $model->mainDistrict->district_name;
                 $address .= '<br/>';
                 $address .= $model->address;
                 $address .= $model->apartment ? 'к. ' . $model->apartment : '';
