@@ -186,6 +186,10 @@ class ApartmentForm extends \yii\base\Model
             $model->setAttributes($this->getAttributes(), false);
             $model->date_update = date('Y-m-d H:i:s');
 
+            if (!$this->updateMetroStations()) {
+                throw new \Exception('Apartment not update metro stations');
+            }
+
             if (!$model->save(false)) {
                 throw new \Exception('Apartment not create images');
             }
