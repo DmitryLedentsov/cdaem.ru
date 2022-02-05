@@ -141,7 +141,7 @@ class ApartmentForm extends Apartment
 
             ['number_entrances', 'integer', 'min' => 0, 'max' => 65535],
 
-            ['number_floors', 'required'],
+            // ['number_floors', 'required'],
             ['number_floors', 'integer', 'min' => 0, 'max' => 1000],
 
             ['latitude', 'double'],

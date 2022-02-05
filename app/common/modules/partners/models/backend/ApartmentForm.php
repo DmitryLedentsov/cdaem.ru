@@ -108,10 +108,10 @@ class ApartmentForm extends \common\modules\partners\models\Apartment
             [['files'], 'file', 'extensions' => 'jpg, png, jpeg', 'mimeTypes' => 'image/jpeg, image/png, image/JPG, ', 'maxFiles' => 10],
             // required on %scenarios%
             [['user_id', /*'city_id'*/ 'city_name', 'region_name', 'address', 'floor', 'total_rooms', 'total_area',
-                'visible', 'status', 'remont', 'metro_walk', 'number_floors'
+                'visible', 'status', 'remont', 'metro_walk'/*, 'number_floors'*/
             ], 'required', 'on' => 'create'],
             [['user_id', /*'city_id',*/ 'city_name', 'region_name', 'address',
-                'floor', 'total_rooms', 'total_area', 'visible', 'status', 'remont', 'metro_walk', 'number_floors'
+                'floor', 'total_rooms', 'total_area', 'visible', 'status', 'remont', 'metro_walk', /*'number_floors'*/
             ], 'required', 'on' => 'update'],
         ];
     }
