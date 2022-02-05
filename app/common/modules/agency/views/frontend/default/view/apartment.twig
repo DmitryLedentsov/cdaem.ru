@@ -8,8 +8,7 @@
 <div class="apartment-view">
     <div class="container">
 
-        <div class="d-title"><h1 class="title-purpl">{{ model.apartment.city.name }}, {{ model.apartment.address }}
-                <span class="s-1">{{ model.apartment.mainDistrict.district_name }}{{ model.apartment.semiDistrict ? '('~model.apartment.semiDistrict.district_name~')' }}, м.{{ model.apartment.metroStation.metro.name }},</span>
+        <div class="d-title"><h1 class="title-purpl">{{ model.apartment.city.name }}, {{ model.apartment.address }}<span class="s-1">{{ model.apartment.mainDistrict.district_name ? ' '~model.apartment.mainDistrict.district_name }}{{ model.apartment.semiDistrict ? '('~model.apartment.semiDistrict.district_name~')'}}, м.{{ model.apartment.metroStation.metro.name }},</span>
                 <span class="s-2">{{ model.rentType.name }}.</span></h1></div>
 
         <div id="carousel">
