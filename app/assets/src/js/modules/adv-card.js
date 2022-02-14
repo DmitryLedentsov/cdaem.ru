@@ -15,6 +15,14 @@
         $this.closest('.adv-card-advs-price-item').find('.adv-card-advs-modal').toggleClass('adv-card-advs-modal-active');
     });
 
+    $(document).on('submit', '.adv-form', function (e) {
+        e.preventDefault();
+        window.ajaxRequest($(this), {
+            success: function (response) {
+                // console.log(111111, response);
+            }
+        });
+    });
 
     // content active
     $(document).on('click', '.adv-card .adv-content-change, .adv-card .adv-content-inner', function () {

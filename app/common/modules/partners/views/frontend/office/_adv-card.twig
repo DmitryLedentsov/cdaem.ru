@@ -150,14 +150,15 @@
                         </button>
                         <!-- hidden block -->
                         <div class="adv-card-advs-modal adv-card-advs-hidden">
-                            <form action="#" class="adv-form">
+                            <form action="/agency/ajax/update-price" method="post" class="adv-form">
                                 <div class="adv-form-line adv-form-line-between">
-                                    <input type="text" class="adv-form-input" value="{{ advert.price | number_format(0, '', '') }}">
+                                    <input type="text" name="rent-price" class="adv-form-input" value="{{ advert.price | number_format(0, '', '') }}">
+                                    <input type="hidden" name="advert-id" value="{{ advert.advert_id }}">
                                     <input type="submit" value="Готово" class="adv-form-submit">
                                 </div>
                                 <div class="adv-form-line">
                                     <label class="adv-form-label">
-                                        <input type="checkbox" class="adv-form-checkbox">
+                                        <input type="checkbox" name="apply-for-all" class="adv-form-checkbox">
                                         <span class="adv-form-label-text">Применить ко всем</span>
                                     </label>
                                 </div>

@@ -187,34 +187,7 @@
         }
     });
 
-     cityField.on('autocomplete.change', function (evt, item) {
-        console.log("autocomplete.change", item);
-    });
-
-    cityField.on('autocomplete.Change', function (evt, item) {
-        console.log("autocomplete.Change", item);
-    });
-
-    cityField.on('autocompleteChange', function (evt, item) {
-        console.log("autocompleteChange", item);
-    });
-
-    cityField.bind('autocomplete.change', function (evt, item) {
-        console.log("bind autocomplete.change", item);
-    });
-
-    cityField.bind('autocomplete.Change', function (evt, item) {
-        console.log("bind autocomplete.Change", item);
-    });
-
-    cityField.bind('autocompleteChange', function (evt, item) {
-        console.log("bind autocompleteChange", item);
-    });
-
     cityField.on('blur', function (e, item) {
-        // console.log(e, item, cityField);
-        // Работает только этот метод
-
         let currentDataValue = cityField.data('current-value'),
             isValueChanged = currentDataValue !== cityField.val();
 
@@ -225,7 +198,6 @@
 
 
     cityField.on('autocomplete.select', function (evt, item) {
-        // console.log(item);
         if (!item.text) {
             blockAddressField();
             return;
@@ -240,7 +212,6 @@
         }
 
         const regionFullName = item.region + (item.region_type_full ? (' ' +  item.region_type_full) : '');
-        // console.log({regionFullName});
         regionField.val(regionFullName);
 
         kladrField.val(item.value);
