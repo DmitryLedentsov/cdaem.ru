@@ -42,11 +42,19 @@
         let $window = $('#main-modal');
         type = type || 'bg-info';
 
-        // $window.find('.modal-header').addClass(type);
         $window.find('.modal-title').text(title);
-        // $window.find('.modal-body').text(description);
-        $window.find('.modal-body').html(description);
 
+        if (typeof description === 'string') {
+            $window.find('.modal-body').html(description);
+        } else if(typeof description === 'object') {
+            $window.find('.modal-body').html('');
+            $window.find('.modal-body').append(description);
+        }
+
+        if (type === 'large') {
+            const $modalDialog = $window.find('.modal-dialog');
+            $modalDialog.addClass('modal-lg');
+        }
         $window.modal('show');
     };
 

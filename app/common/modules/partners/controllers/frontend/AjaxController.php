@@ -4,6 +4,8 @@ namespace common\modules\partners\controllers\frontend;
 
 use Yii;
 use yii\helpers\Html;
+use yii\helpers\Json;
+use yii\web\ForbiddenHttpException;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
 use common\modules\realty\models\RentType;
@@ -11,6 +13,8 @@ use common\modules\partners\models\Service;
 use common\modules\partners\models\frontend as models;
 use common\modules\partners\models\frontend\form\ReservationFailureForm;
 use common\modules\partners\models\frontend\form\AdvertReservationConfirmForm;
+use common\modules\partners\models\frontend\Apartment;
+use common\modules\partners\models\Advert;
 
 /**
  * Class AjaxController
@@ -567,5 +571,58 @@ class AjaxController extends \frontend\components\Controller
                 'date' => $date,
             ]);
         }
+    }
+
+    /**
+     * Обновляем цены объявления по типу аренды
+     * @throws ForbiddenHttpException
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function actionUpdatePrice() {
+        // if (!Yii::$app->user->can('agency-advert-view')) { // TODO небоходимо проверять другое право (partners)
+        //     throw new ForbiddenHttpException(Yii::t('users.rbac', 'ACCESS_DENIED'));
+        // }
+
+        $paramList = Yii::$app->request->getBodyParams();
+
+        $advertId = $paramList['advert-id'];
+        $rentPrice = $paramList['rent-price'];
+        $isApplyForAll = isset($paramList['apply-for-all']) ? true : false;
+
+        $advert = Advert::findOne($advertId);
+
+        if (!$advert) {
+            \Yii::$app->response->statusCode = 404;
+            return $this->response(Json::encode(['message' => "Не найдено объявление с идентификатором {$advertId}"]));
+        }
+
+        /** @var Apartment $apartment */
+        $apartment = Apartment::findOne($advert->apartment_id);
+
+        if (!$apartment) {
+            \Yii::$app->response->statusCode = 404;
+            return $this->response(Json::encode(['message' => "Не найдены апартаменты с идентификатором {$advert->apartment_id}"]));
+        }
+
+        if (Yii::$app->user->id !== $apartment->user_id) {
+            \Yii::$app->response->statusCode = 404;
+            return $this->response(Json::encode(['message' => 'У вас нет прав на редактирование данного объявления']));
+
+        }
+
+        $advert->price = $rentPrice;
+        $advert->save(false);
+
+        if ($isApplyForAll) {
+            // Применяем цену для всех типов аренды
+            $advertList = Advert::findAll(['apartment_id' => $advert->apartment_id]);
+
+            foreach ($advertList as $advert) {
+                $advert->price = $rentPrice;
+                $advert->save(false);
+            }
+        }
+
+        $this->redirect('/office/apartments');
     }
 }

@@ -1,6 +1,8 @@
 (function ($) {
     "use strict";
 
+
+
     // tooltip info close contact
     $(document).on('click', '.adv-card .adv-card-safe-icon', function () {
         $(this).find('.adv-card-safe-tooltip').toggleClass('adv-card-safe-tooltip-active');
@@ -17,9 +19,21 @@
 
     $(document).on('submit', '.adv-form', function (e) {
         e.preventDefault();
+        console.log('submit');
+
+        // ни один метод не вызывается, если возвращаем не 200
         window.ajaxRequest($(this), {
             success: function (response) {
-                // console.log(111111, response);
+                console.log('success');
+                console.log(response);
+            },
+            error: function (data) {
+                console.log('error');
+                console.log(data);
+            },
+            fail: function (data) {
+                console.log('fail');
+                console.log(data);
             }
         });
     });
@@ -38,6 +52,38 @@
         let $this = $(this);
         $('.adv-card .adv-card-contact-change').toggleClass('adv-card-contact-change-active');
         $this.closest('.adv-card-contact-phone').find('.adv-card-phones').toggleClass('adv-card-phones-active');
+    });
+
+    // Посмотреть на карте
+    $(document).on('click', '.adv-card-metro-link', function (e) {
+        let $this = $(this),
+            data = $this.data();
+
+        const mapDiv = $('<div>', {class: 'adv-card'}).append(
+            $('<div>', {id: 'apart-map', class: 'maps-frame'})
+        );
+
+        ymaps.ready(init);
+        let apartMap;
+
+        function init() {
+            apartMap = new ymaps.Map("apart-map", {
+                center: [data.latitude, data.longitude],
+                zoom: 15
+            }, {
+                searchControlProvider: 'yandex#search'
+            });
+
+            apartMap.geoObjects.add(new ymaps.Placemark([data.latitude, data.longitude], {
+                balloonContent: ''
+            }, {
+                preset: 'islands#icon',
+                iconColor: '#0095b6'
+            }));
+
+        }
+
+        window.openWindow(data.address, mapDiv, 'large');
     });
 
 })(jQuery);
