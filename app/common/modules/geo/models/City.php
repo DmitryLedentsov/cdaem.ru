@@ -108,9 +108,14 @@ class City extends \yii\db\ActiveRecord
      */
     public function hasMetro()
     {
-        if ($this->city_id == 4400) {
+        if (in_array($this->name, ['Нижний Новгород', 'Москва', 'Самара', 'Санкт-Петербург', 'Екатеринбург', 'Казань', 'Новосибирск',], true)) {
             return true;
         }
+
+        /*
+        if ($this->city_id == 4400) {
+            return true;
+        }*/
 
         return false;
     }

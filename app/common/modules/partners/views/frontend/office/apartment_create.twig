@@ -82,8 +82,8 @@
 
                     <div class="step-line metro-block" style="display: none;">
                         <div class="step-column-33">
-                            <label for="ApartmentForm[metro_array]">Ближайшие станции метро в радиусе 1,5 км</label>
-                            <select id="metro-list" name="ApartmentForm[metro_array]" class="custom-select" multiple>
+                            <label for="ApartmentForm[metro_array][]">Ближайшие станции метро в радиусе 1,5 км</label>
+                            <select id="metro-list" name="ApartmentForm[metro_array][]" class="custom-select" multiple readonly>
                                 <option value="">Метро</option>
                                 <option value="">Метро 1</option>
                                 <option value="">Метро 2</option>
@@ -103,9 +103,6 @@
                             <div class="maps-data-item">
                                 <div class="maps-data-header">Популярные города</div>
                                 <div class="maps-link">
-                                    {#<span class="maps-link-item" data-latitude="55.76" data-longitude="37.64">Москва</span>
-                                    <span class="maps-link-item" data-latitude="59.96" data-longitude="30.16">Санкт-Петербург</span>#}
-
                                     {% for city in popularCities %}
                                         <span class="maps-link-item" data-latitude="{{ city['lat'] }}" data-longitude="{{ city['lon'] }}">{{ city['name'] }}</span>
                                     {% endfor %}

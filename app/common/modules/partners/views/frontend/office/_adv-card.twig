@@ -29,7 +29,13 @@
                             <span class="adv-card-metro-icon">
                                 <img src="/_new/images/account/icon-lk-metro.svg" alt="" />
                             </span>
-                            Метро: Юго-западная
+                            {#Метро: Юго-западная#}
+                            {% set firstMetroStation = apartment.getFirstMetroStations() %}
+                            {% if firstMetroStation %}
+                                {{ firstMetroStation.getMetro().one().name }}
+                            {% else %}
+                                Нет в радиусе 1.5 км
+                            {% endif %}
                         </span>
                         <a href="#" class="adv-card-metro-link" data-latitude="{{ apartment.latitude }}" data-longitude="{{ apartment.longitude }}" data-address="{{ ApartmentHelper.getAddress(apartment) }}" >
                             <span class="adv-card-metro-link-icon">

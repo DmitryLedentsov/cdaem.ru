@@ -108,7 +108,7 @@
 
                     data.forEach((station) => {
                         metroListSelect.append(
-                            $('<option>', { text: station.name })
+                            $('<option>', { text: station.name, value: station.name }).attr('selected','selected') // TODO передавать через скрытый элемент?
                         );
                     })
                 },

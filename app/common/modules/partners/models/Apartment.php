@@ -85,6 +85,17 @@ class Apartment extends \yii\db\ActiveRecord
         return $this->hasMany(MetroStations::class, ['apartment_id' => 'apartment_id']);
     }
 
+    public function getFirstMetroStations()
+    {
+        $metroList = $this->getMetroStations()->all();
+
+        if ($metroList) {
+            return array_values($metroList)[0];
+        }
+
+        return null;
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */

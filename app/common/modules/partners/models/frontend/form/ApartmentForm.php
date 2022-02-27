@@ -17,13 +17,13 @@ use common\modules\realty\models\Apartment as TotalApartment;
  */
 class ApartmentForm extends Apartment
 {
-    public $metro_array;
+    public array $metro_array = [];
 
-    public $translit;
+    public string $translit;
 
-    public $city_name;
+    public string $city_name;
 
-    public $region_name;
+    public string $region_name;
 
     /**
      * @inheritdoc
@@ -344,20 +344,19 @@ class ApartmentForm extends Apartment
             }
         }
 
-
         // Работа с метро
-        // [Москва]
-        if (City::findOne($this->city_id)->hasMetro()) {
+        if (City::findOne($this->city_id)->hasMetro() && $this->metro_array) {
             if ($this->scenario === 'user-update') {
                 MetroStations::deleteAll(['apartment_id' => $this->apartment_id]);
             }
-            if ($metroAll = Metro::findAll($this->metro_array)) {
-                foreach ($metroAll as $metro) {
-                    $metroStations = new MetroStations();
-                    $metroStations->apartment_id = $this->apartment_id;
-                    $metroStations->metro_id = $metro->metro_id;
-                    $metroStations->save(false);
-                }
+
+            $metroAll = Metro::findAll(['city_id' => $this->city_id, 'name' => $this->metro_array]);
+
+            foreach ($metroAll as $metro) {
+                $metroStations = new MetroStations();
+                $metroStations->apartment_id = $this->apartment_id;
+                $metroStations->metro_id = $metro->metro_id;
+                $metroStations->save(false);
             }
         }
 
