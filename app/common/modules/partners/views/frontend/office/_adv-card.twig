@@ -88,7 +88,7 @@
                             <div class="apartment-info-text">
                                 {{ t('app',
                                     '{n, plural, one{# сп. место} few{# сп. места} many{# сп. мест} other{# сп. мест}}',
-                                    {'n': apartment.beds}
+                                    {'n': apartment.sleeping_place}
                                 ) }}
                             </div>
                         </div>
@@ -115,7 +115,7 @@
                     </div>
                     <div class="adv-card-action">
                         <a href="{{ path({'0' : '/partners/office/preview', 'id' : apartment.apartment_id}) }}" class="adv-card-action-item">Просмотреть</a>
-                        <a href="#" class="adv-card-action-item">Удалить</a>
+                        <a href="{{ path({'0' : '/partners/office/delete', 'id' : apartment.apartment_id}) }}" class="adv-card-action-item">Удалить</a>
                         <a href="#" class="adv-card-action-date">
                             <span class="adv-card-action-icon">
                                 <img src="/_new/images/account/icon-date-day.svg" alt="">
@@ -184,10 +184,10 @@
     </div>
     <div class="adv-card-line adv-card-line-top">
         <div class="adv-content">
-            {% if apartments.description %}
+            {% if apartment.description %}
                 <div class="adv-content-change"></div>
                 <div class="adv-content-inner">
-                    {{ apartments.description }}
+                    {{ apartment.description }}
                 </div>
             {% else %}
                 <div class="adv-content-inner">Нет описания</div>

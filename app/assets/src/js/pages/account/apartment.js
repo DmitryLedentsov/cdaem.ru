@@ -196,7 +196,6 @@
         }
     });
 
-
     cityField.on('autocomplete.select', function (evt, item) {
         if (!item.text) {
             blockAddressField();
@@ -218,7 +217,47 @@
         addressField.removeAttr('disabled');
         $('.maps').css({display: 'flex'});
         $('#address-wrapper').css({display: 'block'});
+
+        // console.log(addressField.val());
+
+        if (addressField.val()) {
+            $.getJSON(searchAddressURL, {'query': addressField.val(), 'kladr': kladrField.val()}, function (data) {
+                // console.log(data);
+                let result = [];
+                data.forEach(item => {
+                    result.push({
+                        value: item.value,
+                        geo_lat: item.geo_lat,
+                        geo_lon: item.geo_lon,
+                    });
+                });
+
+                // console.log({result});
+                addressField.trigger('autocomplete.select', result);
+            });
+        }
+
     });
+
+    // Если город уже есть (редактирование) подтягиваем его параметры
+    if (cityField.val()) {
+        $.getJSON(searchCityURL, {'name': cityField.val()}, function (data) {
+            // console.log(data);
+            let result = [];
+            data.forEach(item => {
+                result.push({
+                    value: item.kladr_id,
+                    text: item.name,
+                    region: item.region,
+                    region_type_full: item.region_type_full,
+                    geo_lat: item.geo_lat,
+                    geo_lon: item.geo_lon,
+                });
+            });
+
+            cityField.trigger('autocomplete.select', result);
+        });
+    }
 
 
     ///////////////////////////////////////////////////////////////////////////////////

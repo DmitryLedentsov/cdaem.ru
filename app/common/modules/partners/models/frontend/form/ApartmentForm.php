@@ -77,8 +77,8 @@ class ApartmentForm extends Apartment
     public function scenarios()
     {
         return [
-            'user-create' => ['city_name', 'region_name', /*'city_id',*/ 'address', 'apartment', 'floor', 'total_rooms', 'total_area', 'beds', 'remont', 'metro_walk', 'description', 'visible', 'metro_array', 'building_type', 'number_floors', 'number_entrances', 'latitude', 'longitude'],
-            'user-update' => ['city_name', 'region_name', /*'city_id',*/ 'address', 'apartment', 'floor', 'total_rooms', 'total_area', 'beds', 'remont', 'metro_walk', 'description', 'visible', 'metro_array', 'building_type', 'number_floors', 'number_entrances', 'latitude', 'longitude'],
+            'user-create' => ['city_name', 'region_name', /*'city_id',*/ 'address', 'apartment', 'floor', 'total_rooms', 'total_area', 'sleeping_place', 'beds', 'remont', 'metro_walk', 'description', 'visible', 'metro_array', 'building_type', 'number_floors', 'number_entrances', 'latitude', 'longitude'],
+            'user-update' => ['city_name', 'region_name', /*'city_id',*/ 'address', 'apartment', 'floor', 'total_rooms', 'total_area', 'sleeping_place', 'beds', 'remont', 'metro_walk', 'description', 'visible', 'metro_array', 'building_type', 'number_floors', 'number_entrances', 'latitude', 'longitude'],
         ];
     }
 
@@ -278,6 +278,8 @@ class ApartmentForm extends Apartment
 
         // Создание объявлений для апартаментов при редактировании
         if ($this->scenario === 'user-update') {
+            // dd($this);
+
             $currentAdvertsByRentType = [];
 
             // print_r($this->adverts->newAdverts);

@@ -33,7 +33,7 @@ class OfficeController extends \frontend\components\Controller
 
         $this->module->viewPath = '@common/modules/partners/views/frontend';
 
-        $actions = ['apartments', 'preview', 'create', 'update'];
+        $actions = ['apartments', 'preview', 'create', 'update', 'delete '];
 
         if (in_array($action->id, $actions)) {
             if (!Yii::$app->user->isGuest && Yii::$app->user->identity->profile->user_type == Profile::WANT_RENT) {
@@ -203,10 +203,17 @@ class OfficeController extends \frontend\components\Controller
         if (!$apartment) {
             throw new HttpException(404, 'Вы ищете страницу, которой не существует');
         }
+
+        // dd($apartment);
+
         $apartment->scenario = 'user-update';
         $rentTypes = models\form\AdvertForm::getPreparedRentTypesAdvertsList(RentType::rentTypeslist(), $apartment->adverts);
         $advert = new models\form\AdvertForm(['scenario' => 'user-update']);
         $image = new models\form\ImageForm(['scenario' => 'user-update']);
+        $facility = new models\form\FacilityForm(['scenario' => 'user-update']);
+        $city = City::findById($apartment->city_id);
+
+        // dd($city);
 
         // Включаем активные чекбоксы объявлений
         $advert->rent_type = array_map(function ($n) {
@@ -245,12 +252,39 @@ class OfficeController extends \frontend\components\Controller
             return $errors;
         }
 
-        return $this->render('apartment_update.twig', [
+        /*return $this->render('apartment_update.twig', [
             'apartment' => $apartment,
             'advert' => $advert,
             'rentTypes' => $rentTypes,
             'image' => $image,
-        ]);
+        ]);*/
+
+        // dd($apartment);
+        // dd($apartment->adverts, $rentTypes);
+        // dd($advert);
+
+        return $this->response($this->render('apartment_create.twig', [
+            'isUpdate' => true,
+            'city' => $city,
+            'apartment' => $apartment,
+            'advert' => $advert,
+            'rentTypes' => $rentTypes,
+            'image' => $image,
+            // 'cities' => City::dropDownList(),
+            'popularCities' => City::getPopular(),
+            'metroWalks' => ApartmentModel::getMetroWalkArray(),
+            'currencies' => ApartmentModel::getCurrencyArray(),
+            'rooms' => ApartmentModel::getRoomsArray(),
+            'sleepingPlaces' => ApartmentModel::getSleepingPlacesArray(),
+            'beds' => ApartmentModel::getBedsArray(),
+            'remont' => ApartmentModel::getRemontArray(),
+            'safety' => ApartmentModel::getSafetyArray(),
+            'heating' => ApartmentModel::getHeatingArray(),
+            'floorCovering' => ApartmentModel::getFloorCoveringArray(),
+            'bathroom' => ApartmentModel::getBathroomArray(),
+            'buildingType' => ApartmentModel::getBuildingTypeArray(),
+        ]));
+
     }
 
     /**
