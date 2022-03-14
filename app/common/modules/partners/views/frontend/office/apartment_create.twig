@@ -45,7 +45,7 @@
         {{ use('common/modules/partners/assets/frontend/OfficeAsset') }}
         {{ register_office_asset() }}
 
-        <form method="post" action="{{ path('/partners/office/create') }}" id="form-apartment" enctype="multipart/form-data">
+        <form method="post" action="{% if isUpdate %}{{ path({ 0: '/partners/office/update', 'id' : apartment.apartment_id}) }}{% else %}{{ path('/partners/office/create') }}{% endif %}" id="form-apartment" enctype="multipart/form-data">
             <div class="main-account-inner">
                 <div class="section-head section-head-between">
                     <h2 class="section-header">{% if isUpdate %}Редактировать{% else %}Добавить{% endif %} объявление</h2>
@@ -347,25 +347,22 @@
                         <div class="step-column-33">
                             <label>Холодильник</label>
                             <select name="FacilityForm[refrigerator]" class="custom-select">
-    {#                            <option value="">&mdash;</option>#}
-                                <option value="1">Есть</option>
-                                <option value="0" selected>Нет</option>
+                                <option value="1" {% if apartment.isFacilityExist('refrigerator') %}selected{% endif %}>Есть</option>
+                                <option value="0" {% if not apartment.isFacilityExist('refrigerator') %}selected{% endif %}>Нет</option>
                             </select>
                         </div>
                         <div class="step-column-33">
                             <label>Плита</label>
                             <select name="FacilityForm[stove]" class="custom-select">
-    {#                            <option value="">&mdash;</option>#}
-                                <option value="1">Есть</option>
-                                <option value="0" selected>Нет</option>
+                                <option value="1" {% if apartment.isFacilityExist('stove') %}selected{% endif %}>Есть</option>
+                                <option value="0" {% if not apartment.isFacilityExist('stove') %}selected{% endif %}>Нет</option>
                             </select>
                         </div>
                         <div class="step-column-33">
                             <label>Утюг</label>
                             <select name="FacilityForm[iron]" class="custom-select">
-    {#                            <option value="">&mdash;</option>#}
-                                <option value="1">Есть</option>
-                                <option value="0" selected>Нет</option>
+                                <option value="1" {% if apartment.isFacilityExist('iron') %}selected{% endif %}>Есть</option>
+                                <option value="0" {% if not apartment.isFacilityExist('iron') %}selected{% endif %}>Нет</option>
                             </select>
                         </div>
                     </div>
@@ -373,25 +370,22 @@
                         <div class="step-column-33">
                             <label>Фен</label>
                             <select name="FacilityForm[hair-dryer]" class="custom-select">
-    {#                            <option value="">&mdash;</option>#}
-                                <option value="1">Есть</option>
-                                <option value="0" selected>Нет</option>
+                                <option value="1" {% if apartment.isFacilityExist('hair-dryer') %}selected{% endif %}>Есть</option>
+                                <option value="0" {% if not apartment.isFacilityExist('hair-dryer') %}selected{% endif %}>Нет</option>
                             </select>
                         </div>
                         <div class="step-column-33">
                             <label>Wi-Fi</label>
                             <select name="FacilityForm[wi-fi]" class="custom-select">
-    {#                            <option value="">&mdash;</option>#}
-                                <option value="1">Есть</option>
-                                <option value="0" selected>Нет</option>
+                                <option value="1" {% if apartment.isFacilityExist('wi-fi') %}selected{% endif %}>Есть</option>
+                                <option value="0" {% if not apartment.isFacilityExist('wi-fi') %}selected{% endif %}>Нет</option>
                             </select>
                         </div>
                         <div class="step-column-33">
                             <label>Микроволновка</label>
                             <select name="FacilityForm[microwave]" class="custom-select">
-    {#                            <option value="">&mdash;</option>#}
-                                <option value="1">Есть</option>
-                                <option value="0" selected>Нет</option>
+                                <option value="1" {% if apartment.isFacilityExist('microwave') %}selected{% endif %}>Есть</option>
+                                <option value="0" {% if not apartment.isFacilityExist('microwave') %}selected{% endif %}>Нет</option>
                             </select>
                         </div>
                     </div>
@@ -399,25 +393,22 @@
                         <div class="step-column-33">
                             <label>TV</label>
                             <select name="FacilityForm[tv]" class="custom-select">
-    {#                            <option value="">&mdash;</option>#}
-                                <option value="1">Есть</option>
-                                <option value="0" selected>Нет</option>
+                                <option value="1" {% if apartment.isFacilityExist('tv') %}selected{% endif %}>Есть</option>
+                                <option value="0" {% if not apartment.isFacilityExist('tv') %}selected{% endif %}>Нет</option>
                             </select>
                         </div>
                         <div class="step-column-33">
                             <label>Кондиционер</label>
                             <select name="FacilityForm[air-conditioner]" class="custom-select">
-    {#                            <option value="">&mdash;</option>#}
-                                <option value="1">Есть</option>
-                                <option value="0" selected>Нет</option>
+                                <option value="1" {% if apartment.isFacilityExist('air-conditioner') %}selected{% endif %}>Есть</option>
+                                <option value="0" {% if not apartment.isFacilityExist('air-conditioner') %}selected{% endif %}>Нет</option>
                             </select>
                         </div>
                         <div class="step-column-33">
                             <label>Стиральная машина</label>
                             <select name="FacilityForm[washing-machine]" class="custom-select">
-    {#                            <option value="">&mdash;</option>#}
-                                <option value="1">Есть</option>
-                                <option value="0" selected>Нет</option>
+                                <option value="1" {% if apartment.isFacilityExist('washing-machine') %}selected{% endif %}>Есть</option>
+                                <option value="0" {% if not apartment.isFacilityExist('washing-machine') %}selected{% endif %}>Нет</option>
                             </select>
                         </div>
                     </div>
@@ -425,25 +416,22 @@
                         <div class="step-column-33">
                             <label>Диван</label>
                             <select name="FacilityForm[sofa]" class="custom-select">
-    {#                            <option value="">&mdash;</option>#}
-                                <option value="1">Есть</option>
-                                <option value="0" selected>Нет</option>
+                                <option value="1" {% if apartment.isFacilityExist('sofa') %}selected{% endif %}>Есть</option>
+                                <option value="0" {% if not apartment.isFacilityExist('sofa') %}selected{% endif %}>Нет</option>
                             </select>
                         </div>
                         <div class="step-column-33">
                             <label>Кровать</label>
                             <select name="FacilityForm[bed]" class="custom-select">
-    {#                            <option value="">&mdash;</option>#}
-                                <option value="1">Есть</option>
-                                <option value="0" selected>Нет</option>
+                                <option value="1" {% if apartment.isFacilityExist('bed') %}selected{% endif %}>Есть</option>
+                                <option value="0" {% if not apartment.isFacilityExist('bed') %}selected{% endif %}>Нет</option>
                             </select>
                         </div>
                         <div class="step-column-33">
                             <label>Душ</label>
                             <select name="FacilityForm[shower]" class="custom-select">
-    {#                            <option value="">&mdash;</option>#}
-                                <option value="1">Есть</option>
-                                <option value="0" selected>Нет</option>
+                                <option value="1" {% if apartment.isFacilityExist('shower') %}selected{% endif %}>Есть</option>
+                                <option value="0" {% if not apartment.isFacilityExist('shower') %}selected{% endif %}>Нет</option>
                             </select>
                         </div>
                     </div>
@@ -451,17 +439,15 @@
                         <div class="step-column-33">
                             <label>Ванна</label>
                             <select name="FacilityForm[bath]" class="custom-select">
-    {#                            <option value="">&mdash;</option>#}
-                                <option value="1">Есть</option>
-                                <option value="0" selected>Нет</option>
+                                <option value="1" {% if apartment.isFacilityExist('bath') %}selected{% endif %}>Есть</option>
+                                <option value="0" {% if not apartment.isFacilityExist('bath') %}selected{% endif %}>Нет</option>
                             </select>
                         </div>
                         <div class="step-column-33">
                             <label>Джакузи</label>
                             <select name="FacilityForm[jacuzzi]" class="custom-select">
-    {#                            <option value="">&mdash;</option>#}
-                                <option value="1">Есть</option>
-                                <option value="0" selected>Нет</option>
+                                <option value="1" {% if apartment.isFacilityExist('jacuzzi') %}selected{% endif %}>Есть</option>
+                                <option value="0" {% if not apartment.isFacilityExist('jacuzzi') %}selected{% endif %}>Нет</option>
                             </select>
                         </div>
                     </div>
@@ -471,15 +457,15 @@
                             <div class="step-column-33">
                                 <label for="parking">Парковка</label>
                                 <select name="FacilityForm[parking]" id="parking" class="custom-select">
-                                    <option value="1">Есть</option>
-                                    <option value="0" selected>Нет</option>
+                                    <option value="1" {% if apartment.isFacilityExist('parking') %}selected{% endif %}>Есть</option>
+                                    <option value="0" {% if not apartment.isFacilityExist('parking') %}selected{% endif %}>Нет</option>
                                 </select>
                             </div>
                             <div class="step-column-33">
                                 <label for="balcony">Балкон</label>
                                 <select name="FacilityForm[balcony]" id="balcony" class="custom-select">
-                                    <option value="1">Есть</option>
-                                    <option value="0" selected>Нет</option>
+                                    <option value="1" {% if apartment.isFacilityExist('balcony') %}selected{% endif %}>Есть</option>
+                                    <option value="0" {% if not apartment.isFacilityExist('balcony') %}selected{% endif %}>Нет</option>
                                 </select>
                             </div>
                             <div class="step-column-33">

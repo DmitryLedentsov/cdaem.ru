@@ -125,9 +125,9 @@
                     </div>
                 </div>
             </div>
-            {% if apartment.facilities %}
+            {% if apartment.getFacilitiesByType() %}
                 <div class="adv-card-services">
-                    {% for facility in apartment.facilities %}
+                    {% for facility in apartment.getFacilitiesByType(false) %}
                         <span class="adv-card-service-icon">
                             <img src="/_new/images/account/services/{{ facility.alias }}.svg" title="{{ facility.name }}" alt="{{ facility.name }}" />
                         </span>

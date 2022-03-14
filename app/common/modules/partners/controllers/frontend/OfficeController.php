@@ -195,6 +195,7 @@ class OfficeController extends \frontend\components\Controller
     /**
      * Редактировать объявление
      * @param $id
+     * @return array|\common\components\Response|Response
      * @throws HttpException
      */
     public function actionUpdate($id)
@@ -205,6 +206,14 @@ class OfficeController extends \frontend\components\Controller
         }
 
         // dd($apartment);
+        // dd($apartment->getFacilitiesByType(true));
+        $facilityList = [];
+        foreach ($apartment->getFacilitiesByType(true) as $facility) {
+            // $facilityList[] = $facility->getValue();
+            // $facilityList[] = $facility->facility_id;
+            $facilityList[] = $facility->getValue($apartment->apartment_id);
+        }
+        // dd($facilityList);
 
         $apartment->scenario = 'user-update';
         $rentTypes = models\form\AdvertForm::getPreparedRentTypesAdvertsList(RentType::rentTypeslist(), $apartment->adverts);
@@ -216,9 +225,9 @@ class OfficeController extends \frontend\components\Controller
         // dd($city);
 
         // Включаем активные чекбоксы объявлений
-        $advert->rent_type = array_map(function ($n) {
+/*        $advert->rent_type = array_map(function ($n) {
             return $n->rent_type;
-        }, $apartment->adverts);
+        }, $apartment->adverts);*/
 
         if (Yii::$app->request->isAjax && Yii::$app->request->isPost) {
             Yii::$app->response->format = Response::FORMAT_JSON;
@@ -226,17 +235,37 @@ class OfficeController extends \frontend\components\Controller
             $apartment->load(Yii::$app->request->post());
             $advert->load(Yii::$app->request->post());
             $image->load(Yii::$app->request->post());
+            $facilities = ArrayHelper::getValue(Yii::$app->request->post(), 'FacilityForm');
 
-            $errors = array_merge(ActiveForm::validate($apartment), ActiveForm::validate($advert), ActiveForm::validate($image));
+            // dd($facilities);
+
+            // dd(Yii::$app->request->post(), $apartment);
+            // dd(Yii::$app->request->post(), $advert);
+
+            if ($facilities) {
+                $facility->load(['FacilityForm' => [
+                    'facilities' => $facilities,
+                ]]);
+            }
+
+            $errors = array_merge(
+                $this->validate($apartment),
+                $this->validate($advert),
+                $this->validate($image),
+                $this->validate($facility)
+            );
 
             if (!$errors) {
                 $apartment->populateRelation('adverts', $advert);
                 $apartment->populateRelation('images', $image);
+                $apartment->populateRelation('facilities', $facility);
 
-                if (Yii::$app->request->post('submit')) {
+                // dd(Yii::$app->request->post());
+
+                // if (Yii::$app->request->post('submit')) { // не работает при апдейте
                     if ($apartment->save(false)) {
                         Yii::$app->session->setFlash('success', 'Ваше объявление обновлено.');
-
+                        // dd($apartment);
                         return $this->redirect(['/partners/office/apartments']);
                     }
 
@@ -244,9 +273,7 @@ class OfficeController extends \frontend\components\Controller
                         'status' => 0,
                         'message' => 'При добавлении объявления возникла ошибка, пожалуйста попробуйте еще раз или обратитесь в техническую поддержку.',
                     ];
-                }
-
-                return [];
+                // }
             }
 
             return $errors;

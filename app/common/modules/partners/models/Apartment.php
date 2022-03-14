@@ -454,8 +454,18 @@ class Apartment extends \yii\db\ActiveRecord
      */
     public function getFacilities()
     {
+        // dd($this->hasMany(Facility::class, ['facility_id' => 'facility_id'])
+        //     // ->viaTable('{{%partners_apartments_facilities}}', ['apartment_id' => 'apartment_id'])
+        //     ->leftJoin('{{%partners_apartments_facilities}}', ['apartment_id' => 'apartment_id'])
+        //     ->select(Facility::tableName().'.*, {{%partners_apartments_facilities}}.value')
+        //
+        //     ->createCommand()->getRawSql()
+        // );
+
         return $this->hasMany(Facility::class, ['facility_id' => 'facility_id'])
             ->viaTable('{{%partners_apartments_facilities}}', ['apartment_id' => 'apartment_id']);
+            // ->join('{{%partners_apartments_facilities}}', ['apartment_id' => 'apartment_id'])
+            // ->select(Facility::tableName().'.*, {{%partners_apartments_facilities}}.value');
     }
 
     /**
@@ -505,5 +515,28 @@ class Apartment extends \yii\db\ActiveRecord
         */
 
         return true;
+    }
+
+    /**
+     * Проверка существования удобства по алиасу
+     * @param string $alias
+     * @return bool
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function isFacilityExist(string $alias): bool
+    {
+        foreach ($this->getFacilities()->all() as $facility) {
+            if ($facility->alias === $alias) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public function getFacilitiesByType(bool $isExtra = false)
+    {
+        // $this->getFacilities();
+        return $this->getFacilities()->andWhere(['is_extra' => $isExtra ? 1 : 0])->all();
     }
 }

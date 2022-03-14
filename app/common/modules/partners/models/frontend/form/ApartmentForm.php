@@ -363,6 +363,11 @@ class ApartmentForm extends Apartment
         }
 
         // Сохраняем удобства
+        // todo почему не работает?
+        // Facility::deleteAll(['apartment_id' => $this->apartment_id]);
+
+        \Yii::$app->db->createCommand('delete from {{%partners_apartments_facilities}} paf where paf.apartment_id = :apartment_id', ['apartment_id' => $this->apartment_id])->query();
+
         foreach ($this->facilities->facilities as $facility) {
             /** @var Facility $facility */
             $facility->link('apartments', $this, ['value' => $facility->getValue()]);

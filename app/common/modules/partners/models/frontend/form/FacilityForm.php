@@ -29,6 +29,7 @@ class FacilityForm extends Facility
     {
         return [
             'user-create' => ['facilities'],
+            'user-update' => ['facilities'],
         ];
     }
 

@@ -28,7 +28,7 @@ class ImageForm extends Image
     {
         return [
             'user-create' => ['files'],
-            'user-create' => ['files'],
+            'user-update' => ['files'],
         ];
     }
 
