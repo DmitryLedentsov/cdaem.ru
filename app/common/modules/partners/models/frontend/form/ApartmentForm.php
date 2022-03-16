@@ -370,7 +370,13 @@ class ApartmentForm extends Apartment
 
         foreach ($this->facilities->facilities as $facility) {
             /** @var Facility $facility */
-            $facility->link('apartments', $this, ['value' => $facility->getValue()]);
+            $value = $facility->getValue();
+
+            if (is_array($value)) {
+                $value = serialize($value);
+            }
+
+            $facility->link('apartments', $this, ['value' => $value]);
         }
         return true;
     }

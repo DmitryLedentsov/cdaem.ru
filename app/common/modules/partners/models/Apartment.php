@@ -454,18 +454,10 @@ class Apartment extends \yii\db\ActiveRecord
      */
     public function getFacilities()
     {
-        // dd($this->hasMany(Facility::class, ['facility_id' => 'facility_id'])
-        //     // ->viaTable('{{%partners_apartments_facilities}}', ['apartment_id' => 'apartment_id'])
-        //     ->leftJoin('{{%partners_apartments_facilities}}', ['apartment_id' => 'apartment_id'])
-        //     ->select(Facility::tableName().'.*, {{%partners_apartments_facilities}}.value')
-        //
-        //     ->createCommand()->getRawSql()
-        // );
-
         return $this->hasMany(Facility::class, ['facility_id' => 'facility_id'])
-            ->viaTable('{{%partners_apartments_facilities}}', ['apartment_id' => 'apartment_id']);
-            // ->join('{{%partners_apartments_facilities}}', ['apartment_id' => 'apartment_id'])
-            // ->select(Facility::tableName().'.*, {{%partners_apartments_facilities}}.value');
+            ->viaTable('{{%partners_apartments_facilities}}', ['apartment_id' => 'apartment_id'])
+            ->innerJoin('{{%partners_apartments_facilities}} paf', 'paf.facility_id = {{%partners_facilities%}}.facility_id and paf.apartment_id = ' . $this->apartment_id)
+            ->select('{{%partners_facilities%}}.*, paf.value');
     }
 
     /**
@@ -525,18 +517,21 @@ class Apartment extends \yii\db\ActiveRecord
      */
     public function isFacilityExist(string $alias): bool
     {
+        return $this->getFacility($alias) ? true : false;
+    }
+
+    public function getFacility(string $alias) {
         foreach ($this->getFacilities()->all() as $facility) {
             if ($facility->alias === $alias) {
-                return true;
+                return $facility;
             }
         }
 
-        return false;
+        return null;
     }
 
     public function getFacilitiesByType(bool $isExtra = false)
     {
-        // $this->getFacilities();
         return $this->getFacilities()->andWhere(['is_extra' => $isExtra ? 1 : 0])->all();
     }
 }

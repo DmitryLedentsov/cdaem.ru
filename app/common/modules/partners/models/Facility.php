@@ -12,7 +12,8 @@ class Facility extends \yii\db\ActiveRecord
 {
     use ModuleTrait;
 
-    private string $value; // Значение с которым удобство будет связано с апартом
+    private $value; // Значение с которым удобство будет связано с апартом
+    // public $value = ''; // Значение с которым удобство будет связано с апартом
 
     /**
      * @inheritdoc
@@ -38,7 +39,6 @@ class Facility extends \yii\db\ActiveRecord
         ];
     }
 
-
     /**
      * @return \yii\db\ActiveQuery
      * @throws \yii\base\InvalidConfigException
@@ -56,35 +56,33 @@ class Facility extends \yii\db\ActiveRecord
 
     /**
      * @return string|array
-     * @throws \yii\db\Exception
      */
-    public function getValue(int $apartmentId = 0)
+    public function getValue()
     {
-        if (!$apartmentId) {
-            return $this->value;
+        // Обрабатываем сохранённый множественный выбор
+        if (!is_numeric($this->value)) {
+            return unserialize($this->value);
         }
 
-        // TODO разобраться как брать extraColumns стандартно
-        $command = \Yii::$app->db->createCommand('select paf.value from {{%partners_apartments_facilities}} paf where paf.apartment_id = :apartment_id and paf.facility_id = :facility_id',
-            [
-                'apartment_id' => $apartmentId,
-                'facility_id' => $this->facility_id
-            ]);
+        return $this->value;
+    }
 
-        $result = $command->queryAll();
-        // dd($result);
-        if ($result) {
-            $value = $result[0]['value'];
+    /**
+     * @param string $idForSearch
+     * @return bool
+     */
+    public function isValueExist($idForSearch)
+    {
+        if (!is_array($this->getValue())) {
+            return $this->getValue() === (string)$idForSearch;
         }
 
-        if ($this->facility_id == '35') {
-            // dd($value, $apartmentId, $command->getRawSql());
+        foreach ($this->getValue() as $id) {
+            if ($id === (string)$idForSearch) {
+                return true;
+            }
         }
 
-        if (!is_numeric($value)) {
-            $value = unserialize($value);
-        }
-
-        return $value;
-     }
+        return false;
+    }
 }

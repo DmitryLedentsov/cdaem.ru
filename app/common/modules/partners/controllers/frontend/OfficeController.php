@@ -129,7 +129,6 @@ class OfficeController extends \frontend\components\Controller
         $facility = new models\form\FacilityForm(['scenario' => 'user-create']);
 
         if (Yii::$app->request->isAjax && Yii::$app->request->isPost) {
-
             // dd(self::class, $_POST, $_FILES);
             // dd(Yii::$app->request->post());
             // dd(Yii::$app->request->post(), $apartment, $result, $apartment->city_id);
@@ -205,29 +204,12 @@ class OfficeController extends \frontend\components\Controller
             throw new HttpException(404, 'Вы ищете страницу, которой не существует');
         }
 
-        // dd($apartment);
-        // dd($apartment->getFacilitiesByType(true));
-        $facilityList = [];
-        foreach ($apartment->getFacilitiesByType(true) as $facility) {
-            // $facilityList[] = $facility->getValue();
-            // $facilityList[] = $facility->facility_id;
-            $facilityList[] = $facility->getValue($apartment->apartment_id);
-        }
-        // dd($facilityList);
-
         $apartment->scenario = 'user-update';
         $rentTypes = models\form\AdvertForm::getPreparedRentTypesAdvertsList(RentType::rentTypeslist(), $apartment->adverts);
         $advert = new models\form\AdvertForm(['scenario' => 'user-update']);
         $image = new models\form\ImageForm(['scenario' => 'user-update']);
         $facility = new models\form\FacilityForm(['scenario' => 'user-update']);
         $city = City::findById($apartment->city_id);
-
-        // dd($city);
-
-        // Включаем активные чекбоксы объявлений
-/*        $advert->rent_type = array_map(function ($n) {
-            return $n->rent_type;
-        }, $apartment->adverts);*/
 
         if (Yii::$app->request->isAjax && Yii::$app->request->isPost) {
             Yii::$app->response->format = Response::FORMAT_JSON;
@@ -238,9 +220,6 @@ class OfficeController extends \frontend\components\Controller
             $facilities = ArrayHelper::getValue(Yii::$app->request->post(), 'FacilityForm');
 
             // dd($facilities);
-
-            // dd(Yii::$app->request->post(), $apartment);
-            // dd(Yii::$app->request->post(), $advert);
 
             if ($facilities) {
                 $facility->load(['FacilityForm' => [
@@ -260,8 +239,6 @@ class OfficeController extends \frontend\components\Controller
                 $apartment->populateRelation('images', $image);
                 $apartment->populateRelation('facilities', $facility);
 
-                // dd(Yii::$app->request->post());
-
                 // if (Yii::$app->request->post('submit')) { // не работает при апдейте
                     if ($apartment->save(false)) {
                         Yii::$app->session->setFlash('success', 'Ваше объявление обновлено.');
@@ -279,16 +256,13 @@ class OfficeController extends \frontend\components\Controller
             return $errors;
         }
 
+        // старый шаблон
         /*return $this->render('apartment_update.twig', [
             'apartment' => $apartment,
             'advert' => $advert,
             'rentTypes' => $rentTypes,
             'image' => $image,
         ]);*/
-
-        // dd($apartment);
-        // dd($apartment->adverts, $rentTypes);
-        // dd($advert);
 
         return $this->response($this->render('apartment_create.twig', [
             'isUpdate' => true,
@@ -311,7 +285,6 @@ class OfficeController extends \frontend\components\Controller
             'bathroom' => ApartmentModel::getBathroomArray(),
             'buildingType' => ApartmentModel::getBuildingTypeArray(),
         ]));
-
     }
 
     /**

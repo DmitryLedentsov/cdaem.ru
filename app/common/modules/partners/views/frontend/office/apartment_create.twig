@@ -472,7 +472,9 @@
                                 <label for="heating">Отопление</label>
                                 <select name="FacilityForm[heating]" id="heating" class="custom-select">
                                     {% for id, value in heating %}
-                                        <option value="{{ id }}">{{ value }}</option>
+                                        <option value="{{ id }}"
+                                            {% if apartment.getFacility('heating') and apartment.getFacility('heating').isValueExist(id) %}selected{% endif %}
+                                        >{{ value }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
@@ -482,7 +484,9 @@
                                 <label for="separate-toilet">Раздельные санузлы</label>
                                 <select name="FacilityForm[separate-toilet]" id="separate-toilet" class="custom-select">
                                     {% for id, value in bathroom %}
-                                        <option value="{{ id }}">{{ value }}</option>
+                                        <option value="{{ id }}"
+                                            {% if apartment.getFacility('separate-toilet') and apartment.getFacility('separate-toilet').isValueExist(id) %}selected{% endif %}
+                                        >{{ value }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
@@ -490,7 +494,9 @@
                                 <label for="toilet">Совмещённые санузлы</label>
                                 <select name="FacilityForm[toilet]" id="toilet" class="custom-select">
                                     {% for id, value in bathroom %}
-                                        <option value="{{ id }}">{{ value }}</option>
+                                        <option value="{{ id }}"
+                                            {% if apartment.getFacility('toilet') and apartment.getFacility('toilet').isValueExist(id) %}selected{% endif %}
+                                        >{{ value }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
@@ -498,7 +504,9 @@
                                 <label for="floor-covering">Покрытие пола</label>
                                 <select name="FacilityForm[floor-covering]" id="floor-covering" class="custom-select">
                                     {% for id, value in floorCovering %}
-                                        <option value="{{ id }}">{{ value }}</option>
+                                        <option value="{{ id }}"
+                                            {% if apartment.getFacility('floor-covering') and apartment.getFacility('floor-covering').isValueExist(id) %}selected{% endif %}
+                                        >{{ value }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
@@ -508,7 +516,9 @@
                                 <label for="safety">Безопасность</label>
                                 <select name="FacilityForm[safety][]" id="safety" class="custom-select" multiple>
                                     {% for id, value in safety %}
-                                        <option value="{{ id }}">{{ value }}</option>
+                                        <option value="{{ id }}"
+                                            {% if apartment.getFacility('safety') and apartment.getFacility('safety').isValueExist(id) %}selected{% endif %}
+                                        >{{ value }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
