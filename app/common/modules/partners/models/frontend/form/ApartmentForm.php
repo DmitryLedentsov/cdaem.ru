@@ -12,9 +12,6 @@ use common\modules\partners\models\frontend\Apartment;
 use common\modules\partners\models\frontend\MetroStations;
 use common\modules\realty\models\Apartment as TotalApartment;
 
-/**
- * @inheritdoc
- */
 class ApartmentForm extends Apartment
 {
     public array $metro_array = [];
@@ -25,6 +22,7 @@ class ApartmentForm extends Apartment
 
     public string $region_name;
 
+    public array $exist_image_ids = [];
     /**
      * @inheritdoc
      */
@@ -78,7 +76,7 @@ class ApartmentForm extends Apartment
     {
         return [
             'user-create' => ['city_name', 'region_name', /*'city_id',*/ 'address', 'apartment', 'floor', 'total_rooms', 'total_area', 'sleeping_place', 'beds', 'remont', 'metro_walk', 'description', 'visible', 'metro_array', 'building_type', 'number_floors', 'number_entrances', 'latitude', 'longitude'],
-            'user-update' => ['city_name', 'region_name', /*'city_id',*/ 'address', 'apartment', 'floor', 'total_rooms', 'total_area', 'sleeping_place', 'beds', 'remont', 'metro_walk', 'description', 'visible', 'metro_array', 'building_type', 'number_floors', 'number_entrances', 'latitude', 'longitude'],
+            'user-update' => ['city_name', 'region_name', /*'city_id',*/ 'address', 'apartment', 'floor', 'total_rooms', 'total_area', 'sleeping_place', 'beds', 'remont', 'metro_walk', 'description', 'visible', 'metro_array', 'building_type', 'number_floors', 'number_entrances', 'latitude', 'longitude', 'exist_image_ids'],
         ];
     }
 
@@ -175,8 +173,6 @@ class ApartmentForm extends Apartment
             if ($this->scenario == 'user-create') {
                 $this->status = self::INACTIVE;
 
-                // dd($this);
-
                 $regionName = $this->region_name;
                 $region = Region::findOne(["name" => $regionName]);
                 $isNewRegion = false;
@@ -212,7 +208,6 @@ class ApartmentForm extends Apartment
                     }
 
                 }
-
 
                 $this->city_id = $city->city_id;
             }
@@ -275,14 +270,9 @@ class ApartmentForm extends Apartment
             }
         }
 
-
         // Создание объявлений для апартаментов при редактировании
         if ($this->scenario === 'user-update') {
-            // dd($this);
-
             $currentAdvertsByRentType = [];
-
-            // print_r($this->adverts->newAdverts);
 
             // Фиксируем новые изменения
             foreach ($this->adverts->newAdverts as $newAdvert) {
@@ -320,30 +310,35 @@ class ApartmentForm extends Apartment
             }
         }
 
-        // Определяем необходимо ли установить изображение по умолчанию
-        $setDefaultImage = false;
-        if ($this->scenario === 'user-update') {
-            if (!Image::find()
-                ->andWhere(['apartment_id' => $this->apartment_id])
-                ->andWhere('default_img = 1')
-                ->count()) {
-                $setDefaultImage = true;
+        $apartment = \common\modules\partners\models\Apartment::findById($this->apartment_id);
+
+        // Очищаем удалённые и перезалитые изображнеия
+        foreach ($apartment->getOrderedImages()->all() as $image) {
+            if (!in_array($image->image_id, $this->exist_image_ids)) {
+                $image->deleteWithFiles();
             }
         }
 
+        // Сохраняем изображения
         $translit = $this->rus2translit($this->address);
 
-        // Сохраняем изображения
         foreach ($this->images->files as $key => $file) {
             if ($imageName = $this->images->upload($file, true, true, $translit)) {
                 $image = new Image();
                 $image->apartment_id = $this->apartment_id;
                 $image->preview = $imageName;
                 $image->review = $imageName;
-                $image->default_img = ($setDefaultImage && $key === 0) ? 1 : 0;
-                $image->sort = $key + 1;
                 $image->save(false);
             }
+        }
+
+        // Устанавливаем изображение по умолчанию и сортируем
+        $i = 0;
+        foreach ($apartment->getOrderedImages()->all() as $image) {
+            $image->default_img = $i === 0 ? 1 : 0;
+            $image->sort = $i + 1;
+            $image->save(false);
+            $i++;
         }
 
         // Работа с метро
@@ -363,9 +358,10 @@ class ApartmentForm extends Apartment
         }
 
         // Сохраняем удобства
+
+        // Удаляем все старые удобства
         // todo почему не работает?
         // Facility::deleteAll(['apartment_id' => $this->apartment_id]);
-
         \Yii::$app->db->createCommand('delete from {{%partners_apartments_facilities}} paf where paf.apartment_id = :apartment_id', ['apartment_id' => $this->apartment_id])->query();
 
         foreach ($this->facilities->facilities as $facility) {

@@ -4,6 +4,13 @@
     ymaps.ready(init);
     let apartMap;
 
+    const searchCityURL = "/geo/ajax/select-city-by-api/",
+        searchAddressURL = "/geo/ajax/select-address-by-api/",
+        addressField = $("#address"),
+        regionField = $("#region"),
+        cityField = $("#city"),
+        kladrField = $('#city_kladr');
+
     function init() {
         apartMap = new ymaps.Map("map", {
             center: [55.76, 37.64],
@@ -11,14 +18,28 @@
         }, {
             searchControlProvider: 'yandex#search'
         });
+
+        // Если город уже есть (редактирование) подтягиваем его параметры
+        if (cityField.val()) {
+            $.getJSON(searchCityURL, {'name': cityField.val()}, function (data) {
+                // console.log(data);
+                let result = [];
+                data.forEach(item => {
+                    result.push({
+                        value: item.kladr_id,
+                        text: item.name,
+                        region: item.region,
+                        region_type_full: item.region_type_full,
+                        geo_lat: item.geo_lat,
+                        geo_lon: item.geo_lon,
+                    });
+                });
+
+                cityField.trigger('autocomplete.select', result);
+            });
+        }
     }
 
-    const searchCityURL = "/geo/ajax/select-city-by-api/",
-        searchAddressURL = "/geo/ajax/select-address-by-api/",
-        addressField = $("#address"),
-        regionField = $("#region"),
-        cityField = $("#city"),
-        kladrField = $('#city_kladr');
 
     $('.maps-link-item').click(function () {
         const point = $(this).data();
@@ -238,27 +259,6 @@
         }
 
     });
-
-    // Если город уже есть (редактирование) подтягиваем его параметры
-    if (cityField.val()) {
-        $.getJSON(searchCityURL, {'name': cityField.val()}, function (data) {
-            // console.log(data);
-            let result = [];
-            data.forEach(item => {
-                result.push({
-                    value: item.kladr_id,
-                    text: item.name,
-                    region: item.region,
-                    region_type_full: item.region_type_full,
-                    geo_lat: item.geo_lat,
-                    geo_lon: item.geo_lon,
-                });
-            });
-
-            cityField.trigger('autocomplete.select', result);
-        });
-    }
-
 
     ///////////////////////////////////////////////////////////////////////////////////
     // Отправка формы          form-apartment

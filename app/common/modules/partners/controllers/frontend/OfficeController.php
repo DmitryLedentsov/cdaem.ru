@@ -3,6 +3,7 @@
 namespace common\modules\partners\controllers\frontend;
 
 use common\modules\geo\models\City;
+use common\modules\partners\models\frontend\Image;
 use common\modules\realty\models\Apartment as ApartmentModel;
 use common\modules\users\models\Profile;
 use Yii;
@@ -204,6 +205,9 @@ class OfficeController extends \frontend\components\Controller
             throw new HttpException(404, 'Вы ищете страницу, которой не существует');
         }
 
+        // dd($apartment);
+        // dd($apartment->images);
+
         $apartment->scenario = 'user-update';
         $rentTypes = models\form\AdvertForm::getPreparedRentTypesAdvertsList(RentType::rentTypeslist(), $apartment->adverts);
         $advert = new models\form\AdvertForm(['scenario' => 'user-update']);
@@ -242,7 +246,6 @@ class OfficeController extends \frontend\components\Controller
                 // if (Yii::$app->request->post('submit')) { // не работает при апдейте
                     if ($apartment->save(false)) {
                         Yii::$app->session->setFlash('success', 'Ваше объявление обновлено.');
-                        // dd($apartment);
                         return $this->redirect(['/partners/office/apartments']);
                     }
 

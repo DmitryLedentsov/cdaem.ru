@@ -147,7 +147,7 @@ class Apartment extends \yii\db\ActiveRecord
     public static function findById($id)
     {
         return static::find()
-            ->where('apartment_id = :apartment_id', [':apartment_id' => $id])
+            ->where('{{%partners_apartments}}.apartment_id = :apartment_id', [':apartment_id' => $id])
             ->joinWith(['metroStations' => function ($query) {
                 $query->joinWith('metro');
             }])

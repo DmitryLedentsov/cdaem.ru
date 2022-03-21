@@ -137,26 +137,25 @@
                         </div>
                     </div>
                     {% endfor %}
-
-                        {#<div class="step-column-33">
-                            <select name="AdvertForm[rent_type][]" multiple class="custom-select">
-                                {% for id, value in rentTypes %}
-                                    <option value="{{ id }}">{{ value.name }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>#}
-                        {#<div class="step-column-33">
-                            <label for="AdvertForm[currency]">Валюта <sup>*</sup></label>
-                            <select name="AdvertForm[currency]" class="custom-select">
-                                {% for id, value in currencies %}
-                                    <option value="{{ id }}">{{ value }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>#}
-                        {#<div class="step-column-33">
-                            <label for="AdvertForm[price]">Цена <sup>*</sup></label>
-                            <input type="text" name="AdvertForm[price]" class="step-input" placeholder="Введите цену">
-                        </div>#}
+                    {#<div class="step-column-33">
+                        <select name="AdvertForm[rent_type][]" multiple class="custom-select">
+                            {% for id, value in rentTypes %}
+                                <option value="{{ id }}">{{ value.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>#}
+                    {#<div class="step-column-33">
+                        <label for="AdvertForm[currency]">Валюта <sup>*</sup></label>
+                        <select name="AdvertForm[currency]" class="custom-select">
+                            {% for id, value in currencies %}
+                                <option value="{{ id }}">{{ value }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>#}
+                    {#<div class="step-column-33">
+                        <label for="AdvertForm[price]">Цена <sup>*</sup></label>
+                        <input type="text" name="AdvertForm[price]" class="step-input" placeholder="Введите цену">
+                    </div>#}
                 </div>
             </div>
 
@@ -237,7 +236,7 @@
                     <div class="step-column-100">
                         <div class="form-group">
                             <label for="ApartmentForm[description]">Описание жилья</label>
-                            <textarea name="ApartmentForm[description]" class="step-textarea" placeholder="Введите описание">{% if apartment.description %}{{ apartment.description }}{% endif %}</textarea>
+                            <textarea name="[description]" class="step-textarea" placeholder="Введите описание">{% if apartment.description %}{{ apartment.description }}{% endif %}</textarea>
                             <div class="invalid-feedback"></div>
                         </div>
                     </div>
@@ -258,35 +257,40 @@
                 <div class="step-photo">
                     <div class="step-photo-item">
                         <label class="step-photo-label">
-                            <input type="file" name="ImageForm[files][]" accept=".gif, .jpg, .png" class="step-photo-input">
+                            <input type="hidden" name="ApartmentForm[exist_image_ids][]" value="{% if apartment.images[0] is defined %}{{ apartment.images[0].image_id }}{% endif %}">
+                            <input type="file" name="ImageForm[files][]" accept=".gif, .jpg, .png" class="step-photo-input" data-preview-src="{% if apartment.images[0] is defined %}{{ apartment.images[0].getPreviewSrc() }}{% endif %}">
                             <div class="step-photo-frame"></div>
                             <span>Выбрать фото</span>
                         </label>
                     </div>
                     <div class="step-photo-item">
                         <label class="step-photo-label">
-                            <input type="file" name="ImageForm[files][]" accept=".gif, .jpg, .png" class="step-photo-input">
+                            <input type="hidden" name="ApartmentForm[exist_image_ids][]" value="{% if apartment.images[1] is defined %}{{ apartment.images[1].image_id }}{% endif %}">
+                            <input type="file" name="ImageForm[files][]" accept=".gif, .jpg, .png" class="step-photo-input" data-preview-src="{% if apartment.images[1] is defined %}{{ apartment.images[1].getPreviewSrc() }}{% endif %}">
                             <div class="step-photo-frame"></div>
                             <span>Выбрать фото</span>
                         </label>
                     </div>
                     <div class="step-photo-item">
                         <label class="step-photo-label">
-                            <input type="file" name="ImageForm[files][]" accept=".gif, .jpg, .png" class="step-photo-input">
+                            <input type="hidden" name="ApartmentForm[exist_image_ids][]" value="{% if apartment.images[2] is defined %}{{ apartment.images[2].image_id }}{% endif %}">
+                            <input type="file" name="ImageForm[files][]" accept=".gif, .jpg, .png" class="step-photo-input" data-preview-src="{% if apartment.images[2] is defined %}{{ apartment.images[2].getPreviewSrc() }}{% endif %}">
                             <div class="step-photo-frame"></div>
                             <span>Выбрать фото</span>
                         </label>
                     </div>
                     <div class="step-photo-item">
                         <label class="step-photo-label">
-                            <input type="file" name="ImageForm[files][]" accept=".gif, .jpg, .png" class="step-photo-input">
+                            <input type="hidden" name="ApartmentForm[exist_image_ids][]" value="{% if apartment.images[3] is defined %}{{ apartment.images[3].image_id }}{% endif %}">
+                            <input type="file" name="ImageForm[files][]" accept=".gif, .jpg, .png" class="step-photo-input" data-preview-src="{% if apartment.images[3] is defined %}{{ apartment.images[3].getPreviewSrc() }}{% endif %}">
                             <div class="step-photo-frame"></div>
                             <span>Выбрать фото</span>
                         </label>
                     </div>
                     <div class="step-photo-item">
                         <label class="step-photo-label">
-                            <input type="file" name="ImageForm[files][]" accept=".gif, .jpg, .png" class="step-photo-input">
+                            <input type="hidden" name="ApartmentForm[exist_image_ids][]" value="{% if apartment.images[4] is defined %}{{ apartment.images[4].image_id }}{% endif %}">
+                            <input type="file" name="ImageForm[files][]" accept=".gif, .jpg, .png" class="step-photo-input" data-preview-src="{% if apartment.images[4] is defined %}{{ apartment.images[4].getPreviewSrc() }}{% endif %}">
                             <div class="step-photo-frame"></div>
                             <span>Выбрать фото</span>
                         </label>
@@ -295,35 +299,40 @@
                 <div class="step-photo">
                     <div class="step-photo-item">
                         <label class="step-photo-label">
-                            <input type="file" name="ImageForm[files][]" accept=".gif, .jpg, .png" class="step-photo-input">
+                            <input type="hidden" name="ApartmentForm[exist_image_ids][]" value="{% if apartment.images[5] is defined %}{{ apartment.images[5].image_id }}{% endif %}">
+                            <input type="file" name="ImageForm[files][]" accept=".gif, .jpg, .png" class="step-photo-input" data-preview-src="{% if apartment.images[5] is defined %}{{ apartment.images[5].getPreviewSrc() }}{% endif %}">
                             <div class="step-photo-frame"></div>
                             <span>Выбрать фото</span>
                         </label>
                     </div>
                     <div class="step-photo-item">
                         <label class="step-photo-label">
-                            <input type="file" name="ImageForm[files][]" accept=".gif, .jpg, .png" class="step-photo-input">
+                            <input type="hidden" name="ApartmentForm[exist_image_ids][]" value="{% if apartment.images[6] is defined %}{{ apartment.images[6].image_id }}{% endif %}">
+                            <input type="file" name="ImageForm[files][]" accept=".gif, .jpg, .png" class="step-photo-input" data-preview-src="{% if apartment.images[6] is defined %}{{ apartment.images[6].getPreviewSrc() }}{% endif %}">
                             <div class="step-photo-frame"></div>
                             <span>Выбрать фото</span>
                         </label>
                     </div>
                     <div class="step-photo-item">
                         <label class="step-photo-label">
-                            <input type="file" name="ImageForm[files][]" accept=".gif, .jpg, .png" class="step-photo-input">
+                            <input type="hidden" name="ApartmentForm[exist_image_ids][]" value="{% if apartment.images[7] is defined %}{{ apartment.images[7].image_id }}{% endif %}">
+                            <input type="file" name="ImageForm[files][]" accept=".gif, .jpg, .png" class="step-photo-input" data-preview-src="{% if apartment.images[7] is defined %}{{ apartment.images[7].getPreviewSrc() }}{% endif %}">
                             <div class="step-photo-frame"></div>
                             <span>Выбрать фото</span>
                         </label>
                     </div>
                     <div class="step-photo-item">
                         <label class="step-photo-label">
-                            <input type="file" name="ImageForm[files][]" accept=".gif, .jpg, .png" class="step-photo-input">
+                            <input type="hidden" name="ApartmentForm[exist_image_ids][]" value="{% if apartment.images[8] is defined %}{{ apartment.images[8].image_id }}{% endif %}">
+                            <input type="file" name="ImageForm[files][]" accept=".gif, .jpg, .png" class="step-photo-input" data-preview-src="{% if apartment.images[8] is defined %}{{ apartment.images[8].getPreviewSrc() }}{% endif %}">
                             <div class="step-photo-frame"></div>
                             <span>Выбрать фото</span>
                         </label>
                     </div>
                     <div class="step-photo-item">
                         <label class="step-photo-label">
-                            <input type="file" name="ImageForm[files][]" accept=".gif, .jpg, .png" class="step-photo-input">
+                            <input type="hidden" name="ApartmentForm[exist_image_ids][]" value="{% if apartment.images[9] is defined %}{{ apartment.images[9].image_id }}{% endif %}">
+                            <input type="file" name="ImageForm[files][]" accept=".gif, .jpg, .png" class="step-photo-input" data-preview-src="{% if apartment.images[9] is defined %}{{ apartment.images[9].getPreviewSrc() }}{% endif %}">
                             <div class="step-photo-frame"></div>
                             <span>Выбрать фото</span>
                         </label>
@@ -531,17 +540,19 @@
                                 <label for="building-type">Тип здания</label>
                                 <select name="ApartmentForm[building_type]" id="building-type" class="custom-select">
                                     {% for id, value in buildingType %}
-                                        <option value="{{ id }}">{{ value }}</option>
+                                        <option value="{{ id }}"
+                                            {% if apartment.building_type == id %}selected{% endif %}
+                                        >{{ value }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
                             <div class="step-column-33">
                                 <label for="number-entrances">Количество подъездов</label>
-                                <input type="text" name="ApartmentForm[number_entrances]" id="number-entrances" class="step-input" placeholder="Введите количество">
+                                <input type="text" name="ApartmentForm[number_entrances]" id="number-entrances" class="step-input" placeholder="Введите количество" value="{{ apartment.number_entrances }}">
                             </div>
                             <div class="step-column-33">
                                 <label for="number-floors">Количество этажей</label>
-                                <input type="text" name="ApartmentForm[number_floors]" id="number-floors" class="step-input" placeholder="Введите количество">
+                                <input type="text" name="ApartmentForm[number_floors]" id="number-floors" class="step-input" placeholder="Введите количество" value="{{ apartment.number_floors }}">
                             </div>
                         </div>
                     </div>
