@@ -517,10 +517,18 @@ class Apartment extends \yii\db\ActiveRecord
      */
     public function isFacilityExist(string $alias): bool
     {
+        if (!$this->apartment_id) {
+            return false;
+        }
+
         return $this->getFacility($alias) ? true : false;
     }
 
     public function getFacility(string $alias) {
+        if (!$this->apartment_id) {
+            return null;
+        }
+
         foreach ($this->getFacilities()->all() as $facility) {
             if ($facility->alias === $alias) {
                 return $facility;
