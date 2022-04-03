@@ -75,7 +75,7 @@
                                 <input type="hidden" id="latitude" name="ApartmentForm[latitude]"/>
                                 <input type="hidden" id="longitude" name="ApartmentForm[longitude]"/>
                                 <div class="step-label-text">Адрес <sup>*</sup></div>
-                                <div class="invalid-feedback"></div>
+                                <div class="invalid-feedback" style="opacity:1"></div>
                             </div>
                         </div>
                     </div>
@@ -131,9 +131,10 @@
                         <div class="step-column-33" style="align-self: center;">
                             {{ value.name }}
                         </div>
+
                         <div class="step-column-33">
-                            {#<label for="AdvertForm[price_{{ id }}]">Цена</label>#}
-                            <input type="text" name="AdvertForm[price][]" class="step-input" placeholder="Введите цену" {% if value.advert %}value="{{ value.advert.price }}"{% endif %}>
+                            <input type="text" name="AdvertForm[price][]" class="step-input form-control" placeholder="Введите цену" {% if value.advert %}value="{{ value.advert.price }}"{% endif %}>
+                            <div class="invalid-feedback"></div>
                         </div>
                     </div>
                     {% endfor %}
@@ -175,7 +176,7 @@
                         <div class="step-column-33">
                             <div class="form-group">
                                 <label for="ApartmentForm[total_area]">Общая площадь м<sup>2</sup> *</label>
-                                <input type="text" name="ApartmentForm[total_area]" placeholder="Введите площадь" class="step-input" {% if apartment.total_area %}value="{{ apartment.total_area }}"{% endif %}/>
+                                <input type="text" name="ApartmentForm[total_area]" placeholder="Введите площадь" class="step-input form-control" {% if apartment.total_area %}value="{{ apartment.total_area }}"{% endif %}/>
                                 <div class="invalid-feedback"></div>
                             </div>
                         </div>
@@ -228,7 +229,7 @@
                         <div class="step-column-33">
                             <div class="form-group">
                                 <label for="ApartmentForm[floor]">Этаж <sup>*</sup></label>
-                                <input type="text" name="ApartmentForm[floor]" placeholder="Введите этаж" class="step-input" {% if apartment.floor %}value="{{ apartment.floor }}"{% endif %}/>
+                                <input type="text" name="ApartmentForm[floor]" placeholder="Введите этаж" class="step-input form-control" {% if apartment.floor %}value="{{ apartment.floor }}"{% endif %}/>
                                 <div class="invalid-feedback"></div>
                             </div>
                         </div>

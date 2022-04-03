@@ -29,7 +29,6 @@
                             <span class="adv-card-metro-icon">
                                 <img src="/_new/images/account/icon-lk-metro.svg" alt="" />
                             </span>
-                            {#Метро: Юго-западная#}
                             {% set firstMetroStation = apartment.getFirstMetroStations() %}
                             {% if firstMetroStation %}
                                 {{ firstMetroStation.getMetro().one().name }}
@@ -114,25 +113,11 @@
                         </div>
                     </div>
 
-                    <!-- Modal -->
-                    <div class="modal fade" id="accept-delete-apart-{{ apartment.apartment_id }}" tabindex="-1" role="dialog" aria-labelledby="Подтверждение удаления" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                            <div class="modal-content">
-                                <h3 class="modal-title text-left">Подтвердите удаление</h3>
-                                <button class="modal-close" data-dismiss="modal" aria-label="Close"></button>
-                                <div class="modal-body">Вы действительно хотите удалить данную квартиру?</div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Нет, я передумал!</button>
-                                    <button type="button" class="btn btn-primary" onclick="location.href='{{ path({'0' : '/partners/office/delete', 'id' : apartment.apartment_id}) }}'">Удалить квартиру</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="adv-card-action">
-                        <a href="{{ path({'0' : '/partners/office/preview', 'id' : apartment.apartment_id}) }}" class="adv-card-action-item">Просмотреть</a>
+{#                        <a href="{{ path({'0' : '/partners/office/preview', 'id' : apartment.apartment_id}) }}" class="adv-card-action-item">Просмотреть</a>#}
+                        <a href="{{ path({'0' : '/partners/default/view', 'id' : apartment.adverts[0].advert_id}) }}" target="_blank" class="adv-card-action-item">Просмотреть</a>
 {#                        <a href="{{ path({'0' : '/partners/office/delete', 'id' : apartment.apartment_id}) }}" class="adv-card-action-item">Удалить</a>#}
-                        <a href="#" class="adv-card-action-item" data-toggle="modal" data-target="#accept-delete-apart-{{ apartment.apartment_id }}">Удалить</a>
+                        <a href="#" class="adv-card-action-item" onclick="confirm('Вы действительно хотите удалить данную квартиру?') && (location.href ='{{ path({'0' : '/partners/office/delete', 'id' : apartment.apartment_id}) }}')">Удалить</a>
 
                         <a href="#" class="adv-card-action-date">
                             <span class="adv-card-action-icon">

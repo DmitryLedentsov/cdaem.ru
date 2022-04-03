@@ -198,7 +198,7 @@ class OfficeController extends \frontend\components\Controller
      * @return array|\common\components\Response|Response
      * @throws HttpException
      */
-    public function actionUpdate($id)
+    public function actionUpdate($id) : Response
     {
         $apartment = models\form\ApartmentForm::findByIdThisUser($id);
         if (!$apartment) {
@@ -256,7 +256,7 @@ class OfficeController extends \frontend\components\Controller
                 // }
             }
 
-            return $errors;
+            return $this->validationErrorsAjaxResponse($errors);
         }
 
         // старый шаблон

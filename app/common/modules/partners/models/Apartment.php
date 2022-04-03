@@ -59,6 +59,8 @@ class Apartment extends \yii\db\ActiveRecord
             'apartment_id' => '№',
             'user_id' => 'Пользователь',
             'city_id' => 'Город',
+            'city_name' => 'Город',
+            'region_name' => 'Город',
             'closest_city_id' => 'Ближайший город',
             'address' => 'Адрес',
             'apartment' => 'Номер квартиры',

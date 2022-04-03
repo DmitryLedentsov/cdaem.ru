@@ -34,8 +34,30 @@ $(function () {
             return;
         }
         if (response.status === 422) {
+            // Ошибка валидации
             //$form.displayValidation(response.responseJSON.errors);
-            $form.displayValidation(response.responseJSON);
+            //$form.displayValidation(response.responseJSON);
+            $form.displayValidation('init', response.responseJSON);
+
+            // Скролим до первого элемента с ошибкой
+            let doScroll = false;
+            $.each(response.responseJSON, (key, value) => {
+                // console.log(key, value);
+                if (key.split('-').length === 2 && !doScroll) {
+                    let fieldName = `${key.split('-')[0]}[${key.split('-')[1]}]`;
+                    let $element = $form.find("[name='" + fieldName + "']");
+
+                    if ($element.length) {
+                        $('html, body').animate({
+                            scrollTop: $element.offset().top - 48
+                        }, 1500);
+                        doScroll = true;
+                    }
+                    // console.log($element);
+                }
+            });
+
+
         } else {
             if (typeof response.responseJSON == 'undefined') {
                 window.openWindow(translations.error_title, translations.error_description);
@@ -122,7 +144,8 @@ $(function () {
                 let commonErrors = getCommonErrors(response);
 
                 if (commonErrors) {
-                    window.openWindow(translations.error_title, commonErrors[0]);
+                    // window.openWindow(translations.error_title, commonErrors[0]);
+                    window.openWindow(translations.error_title, commonErrors[Object.keys(commonErrors)[0]]);
                 }
             }
         });
@@ -146,7 +169,9 @@ $(function () {
 
     function getCommonErrors(response) {
         try {
-            return response.responseJSON.errors[''];
+            // console.log(response.responseJSON);
+            // return response.responseJSON.errors['']; // ошибка при валидации
+            return response.responseJSON;
         } catch (e) {
             return null;
         }

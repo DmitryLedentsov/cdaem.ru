@@ -44,6 +44,21 @@ class AdvertForm extends Advert
         ];
     }
 
+    public function rules()
+    {
+        return [
+            ['price', 'validatePrice'],
+        ];
+    }
+
+    public function validatePrice($attribute, $params, $validator) {
+        $priceArray = $validator->method[0]->price;
+
+        if (!array_filter($priceArray)) {
+            $this->addError($attribute, 'Нужно ввести цену хотя бы для одного типа аренды');
+        }
+    }
+
     /**
      * @inheritdoc
      */
