@@ -41,11 +41,13 @@ $(function () {
 
             // Скролим до первого элемента с ошибкой
             let doScroll = false;
-            $.each(response.responseJSON, (key, value) => {
-                // console.log(key, value);
+            $.each(response.responseJSON, (key) => {
                 if (key.split('-').length === 2 && !doScroll) {
                     let fieldName = `${key.split('-')[0]}[${key.split('-')[1]}]`;
                     let $element = $form.find("[name='" + fieldName + "']");
+
+                    // Скролим до полей, передающих массив
+                    !$element.length && ($element = $form.find("[name='" + fieldName + "[]']"));
 
                     if ($element.length) {
                         $('html, body').animate({
@@ -53,7 +55,6 @@ $(function () {
                         }, 1500);
                         doScroll = true;
                     }
-                    // console.log($element);
                 }
             });
 
