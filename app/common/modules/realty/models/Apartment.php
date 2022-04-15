@@ -28,6 +28,7 @@ class Apartment extends ActiveRecord
     public static function getRoomsArray(): array
     {
         return [
+            0 => 'Выбрать',
             1 => '1 комната',
             2 => '2 комнаты',
             3 => '3 комнаты',
@@ -43,6 +44,7 @@ class Apartment extends ActiveRecord
     public static function getRemontArray(): array
     {
         return [
+            0 => 'Выбрать',
             1 => 'Старый',
             2 => 'Косметический',
             3 => 'Евроремонт',
@@ -72,6 +74,7 @@ class Apartment extends ActiveRecord
     public static function getBedsArray(): array
     {
         return [
+            0 => 'Выбрать',
             1 => '1 кровать',
             2 => '2 кровати',
             3 => '3 кровати',
@@ -87,6 +90,7 @@ class Apartment extends ActiveRecord
     public static function getSleepingPlacesArray(): array
     {
         return [
+            0 => 'Выбрать',
             1 => '1 место',
             2 => '2 места',
             3 => '3 места',

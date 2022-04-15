@@ -127,16 +127,17 @@
                 </div>
                 <div class="step">
                     {% for id, value in rentTypes %}
+                        <div class="form-group">
                     <div class="step-line">
                         <div class="step-column-33" style="align-self: center;">
                             {{ value.name }}
                         </div>
-
                         <div class="step-column-33">
                             <input type="text" name="AdvertForm[price][]" class="step-input form-control" placeholder="Введите цену" {% if value.advert %}value="{{ value.advert.price }}"{% endif %}>
-                            <div class="invalid-feedback"></div>
+                            <div class="invalid-feedback" style="opacity:1"></div>
                         </div>
                     </div>
+                        </div>
                     {% endfor %}
                     {#<div class="step-column-33">
                         <select name="AdvertForm[rent_type][]" multiple class="custom-select">

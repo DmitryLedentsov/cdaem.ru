@@ -11,6 +11,7 @@ use common\modules\partners\models\frontend\Advert;
 use common\modules\partners\models\frontend\Apartment;
 use common\modules\partners\models\frontend\MetroStations;
 use common\modules\realty\models\Apartment as TotalApartment;
+use yii\helpers\ArrayHelper;
 
 class ApartmentForm extends Apartment
 {
@@ -122,7 +123,7 @@ class ApartmentForm extends Apartment
             ['floor', 'integer', 'min' => -10, 'max' => 1000],
 
             ['total_rooms', 'required'],
-            ['total_rooms', 'in', 'range' => array_keys(TotalApartment::getRoomsArray())],
+            ['total_rooms', 'in', 'range' => array_filter(array_keys(TotalApartment::getRoomsArray()))], // все кроме 0 => 'Выбрать'
 
             ['beds', 'required'],
             ['beds', 'in', 'range' => array_keys(TotalApartment::getBedsArray())],
@@ -131,7 +132,7 @@ class ApartmentForm extends Apartment
             ['sleeping_place', 'in', 'range' => array_keys(TotalApartment::getSleepingPlacesArray())],
 
             ['remont', 'required'],
-            ['remont', 'in', 'range' => array_keys($this->remontList)],
+            ['remont', 'in', 'range' => array_filter(array_keys($this->remontList))], // все кроме 0 => 'Выбрать'
 
             ['metro_walk', 'in', 'range' => array_keys(TotalApartment::getMetroWalkArray())],
 

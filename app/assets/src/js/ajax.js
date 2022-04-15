@@ -35,6 +35,23 @@ $(function () {
         }
         if (response.status === 422) {
             // Ошибка валидации
+
+            const getInputByName = (name) => $form.find("[name='" + fieldName + "']");
+            const getNameByKey = (key) => `${key.split('-')[0]}[${key.split('-')[1]}]`;
+
+            let key = Object.keys(response.responseJSON)[0];
+            let fieldName = getNameByKey(key);
+            let $element = getInputByName(fieldName);
+
+            if (!$element.length) {
+                fieldName += '[]'; // Если не найден контрол для валидации, возможно это массив
+                $element = getInputByName(fieldName);
+
+                if ($element) {
+                    delete Object.assign(response.responseJSON, {[fieldName]: response.responseJSON[key] })[key];
+                }
+            }
+
             //$form.displayValidation(response.responseJSON.errors);
             //$form.displayValidation(response.responseJSON);
             $form.displayValidation('init', response.responseJSON);
@@ -42,23 +59,21 @@ $(function () {
             // Скролим до первого элемента с ошибкой
             let doScroll = false;
             $.each(response.responseJSON, (key) => {
-                if (key.split('-').length === 2 && !doScroll) {
-                    let fieldName = `${key.split('-')[0]}[${key.split('-')[1]}]`;
-                    let $element = $form.find("[name='" + fieldName + "']");
+                if (doScroll) return;
 
-                    // Скролим до полей, передающих массив
-                    !$element.length && ($element = $form.find("[name='" + fieldName + "[]']"));
+                let fieldName = key.indexOf('-') !== -1 ? getNameByKey(key) : key;
+                let $element = getInputByName(fieldName);
 
-                    if ($element.length) {
-                        $('html, body').animate({
-                            scrollTop: $element.offset().top - 48
-                        }, 1500);
-                        doScroll = true;
-                    }
+                // Скролим до полей, передающих массив
+                !$element.length && ($element = getInputByName(fieldName + '[]'));
+
+                if ($element.length) {
+                    $('html, body').animate({
+                        scrollTop: $element.offset().top - 48
+                    }, 1500);
+                    doScroll = true;
                 }
             });
-
-
         } else {
             if (typeof response.responseJSON == 'undefined') {
                 window.openWindow(translations.error_title, translations.error_description);
@@ -145,8 +160,9 @@ $(function () {
                 let commonErrors = getCommonErrors(response);
 
                 if (commonErrors) {
-                    // window.openWindow(translations.error_title, commonErrors[0]);
-                    window.openWindow(translations.error_title, commonErrors[Object.keys(commonErrors)[0]]);
+                    console.log('commonErrors');
+                    window.openWindow(translations.error_title, commonErrors[0]);
+                    // window.openWindow(translations.error_title, commonErrors[Object.keys(commonErrors)[0]]);
                 }
             }
         });
@@ -171,8 +187,8 @@ $(function () {
     function getCommonErrors(response) {
         try {
             // console.log(response.responseJSON);
-            // return response.responseJSON.errors['']; // ошибка при валидации
-            return response.responseJSON;
+            return response.responseJSON.errors['']; // при валидации тут пусто, поэтому не выводим модальное окно
+            // return response.responseJSON;
         } catch (e) {
             return null;
         }

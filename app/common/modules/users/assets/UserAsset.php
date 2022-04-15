@@ -15,6 +15,7 @@ class UserAsset extends AssetBundle
 
     public $css = [
         '/_new/css/pages/account/profile.min.css',
+        '/_new/css/pages/auth.min.css',
     ];
 
     public $js = [
