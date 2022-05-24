@@ -9,12 +9,20 @@ use yii\helpers\Html;
 use common\modules\partners\models\Service;
 
 ?>
-<div id="modal-realty-objects-by-service" class="modal fade" data-title="Выберите объект">
+<!--<div id="modal-realty-objects-by-service" class="modal fade" data-title="Выберите объект">-->
+<div id="modal-realty-objects-by-service" class="" data-title="Выберите объект">
     <div class="office">
         <div class="load">
+            <!--
             <?php try {
-    $service = Yii::$app->service->load($service);
-    echo Html::tag('p', '<b>' . $service->getName() . '</b>', []); ?>
+                $service = Yii::$app->service->load($service);
+                echo Html::tag('p', '<b>' . $service->getName() . '</b>', []);
+            ?>
+            -->
+
+            <script>
+                $serviceData.serviceCaption = "<?php echo $service->getName(); ?>";
+            </script>
 
                 <?php if ($service->getId() != Service::SERVICE_ADVERTISING_TOP_SLIDER): ?>
                     <p>Выделено объектов: <b id="selected-advert-count">0</b></p>
@@ -70,7 +78,7 @@ use common\modules\partners\models\Service;
                 ?>
 
             <?php
-} catch (\Exception $e) { ?>
+            } catch (\Exception $e) { ?>
                 <div class="alert alert-danger">Возникла критическая ошибка</div>
             <?php } ?>
         </div>
@@ -79,12 +87,67 @@ use common\modules\partners\models\Service;
 
 
 <script>
+    function initSelectPicker() {
+        /**
+         * Кастомные селекты
+         */
+        $('.select-orange').selectpicker({ // TypeError: $(...).selectpicker is not a function
+            style: 'btn-orange',
+            liveSearch: false,
+            maxOptions: 1,
+            showIcon: false,
+            showContent: false,
+            iconBase: '',
+            tickIcon: ''
+        });
+
+        $('.select-pinkround').selectpicker({
+            style: 'btn-pinkround',
+            liveSearch: false,
+            maxOptions: 1,
+            showIcon: false,
+            showContent: false,
+            iconBase: '',
+            tickIcon: ''
+        });
+
+        $('.select-darkgray').selectpicker({
+            style: 'btn-darkgray',
+            liveSearch: false,
+            maxOptions: 1,
+            showIcon: false,
+            showContent: false,
+            iconBase: '',
+            tickIcon: ''
+        });
+
+        $('.select-primary').selectpicker({
+            style: 'btn-primary',
+            liveSearch: false,
+            maxOptions: 1,
+            showIcon: false,
+            showContent: false,
+            iconBase: '',
+            tickIcon: ''
+        });
+
+        $('.select-white').selectpicker({
+            style: 'btn-white',
+            liveSearch: false,
+            maxOptions: 1,
+            showIcon: false,
+            showContent: false,
+            iconBase: '',
+            tickIcon: ''
+        });
+    }
+
     function refreshScripts() {
 
         $('.modal .bootstrap-select').remove();
 
         if ($('.select-white').length) {
-            initSelectPicker();
+            // initSelectPicker(); //TypeError: $(...).selectpicker is not a function
         }
 
         if ($('.datepicker').length) {

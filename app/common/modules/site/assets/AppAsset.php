@@ -25,7 +25,7 @@ class AppAsset extends AssetBundle
         '/_new/css/base.min.css',
         '/_new/css/interfaces.min.css',
     ];
-    
+
     public $js = [
         '/_new/vendor/popper.min.js',
         '/_new/vendor/moment_ru.min.js',
@@ -37,6 +37,9 @@ class AppAsset extends AssetBundle
         '/_new/vendor/datetimepicker/bootstrap-datetimepicker.min.js',
         '/_new/vendor/bootstrap-autocomplete.min.js',
         '/_new/js/interface.min.js',
+        // '/_new/vendor/ui.js', // todo для функции initSelectPicker в окне настроки для покупки сервисов, взят из app/apps/frontend/themes/basic/assets/js_dev
+        // предназначен для работы с несовместимой версией jquery
+        '/_new/vendor/office.js', // todo для корректной работы сервисов, взят из app/apps/frontend/themes/basic/assets/js_dev
     ];
 
     public $depends = [

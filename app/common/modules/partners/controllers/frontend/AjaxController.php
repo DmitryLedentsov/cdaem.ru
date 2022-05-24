@@ -397,8 +397,8 @@ class AjaxController extends \frontend\components\Controller
             Yii::$app->session->remove('buy-service');
             $transaction->rollBack();
 
-            return Html::tag('div', 'Возникла ошибка, пожалуйста попробуйте еще раз или обратитесь в службу технической поддержки.', ['class' => 'alert alert-danger']);
-            // return Html::tag('div', $e->getMessage(), ['class' => 'alert alert-danger']);
+            // return Html::tag('div', 'Возникла ошибка, пожалуйста попробуйте еще раз или обратитесь в службу технической поддержки.', ['class' => 'alert alert-danger']);
+            return Html::tag('div', $e->getMessage(), ['class' => 'alert alert-danger']);
         }
     }
 
