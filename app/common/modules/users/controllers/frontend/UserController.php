@@ -84,6 +84,7 @@ class UserController extends Controller
 
         return $this->response($this->render('profile', [
             'profile' => $profile,
+            'avatarPath' => $this->module->avatarUrl
         ]));
     }
 

@@ -94,6 +94,10 @@ $link-color: #0b6cff;
         label {
             color: $link-color;
             cursor: pointer;
+
+            label {
+                height: 34px; // иначе валидация закрыает ссылку
+            }
         }
 
         label:hover{

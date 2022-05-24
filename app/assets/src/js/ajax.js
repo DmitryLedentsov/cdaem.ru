@@ -35,7 +35,6 @@ $(function () {
         }
         if (response.status === 422) {
             // Ошибка валидации
-
             const getInputByName = (name) => $form.find("[name='" + fieldName + "']");
             const getNameByKey = (key) => `${key.split('-')[0]}[${key.split('-')[1]}]`;
 
@@ -56,9 +55,11 @@ $(function () {
             //$form.displayValidation(response.responseJSON);
             $form.displayValidation('init', response.responseJSON);
 
-            // Скролим до первого элемента с ошибкой
-            let doScroll = false;
-            $.each(response.responseJSON, (key) => {
+            // Скролим до первого элемента с ошибкой, если она не в модальном окне
+            let doScroll = false,
+                isModal = $('.modal').css('display') !== 'none';
+
+            !isModal && $.each(response.responseJSON, (key) => {
                 if (doScroll) return;
 
                 let fieldName = key.indexOf('-') !== -1 ? getNameByKey(key) : key;

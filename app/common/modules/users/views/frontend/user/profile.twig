@@ -60,10 +60,15 @@
             </div>
             <div class="profile-section">
                 <div class="profile-section-header">Редактировать профиль</div>
-                <div class="avatar-wrapper">
-                    <div class="profile-avatar" style="background-image: url('/_new/images/account/img-avatar.png')"></div>
-                    <label for="profile-avatar-file">Изменить</label>
-                    <input type="file" id="profile-avatar-file">
+                <div class="avatar-wrapper" style="position: relative">
+                    <label class="step-photo-label file-ok">
+                    {% set avatar_url = profile.avatar_url ? (avatarPath ~ '/' ~ profile.avatar_url): '/_new/images/account/img-avatar.png' %}
+                    <div class="profile-avatar step-photo-frame" style="background-image: url('{{ avatar_url }}')"></div>
+                    <label for="profile-avatar-file"><span>Изменить</span></label>
+                    <input type="file" id="profile-avatar-file" name="Profile[image]" class="form-control" accept=".jpg, .png" data-preview-src="{{ avatar_url }}">
+                    <div class="invalid-feedback" style="opacity:1"></div>
+                    </label>
+
                 </div>
                 <div class="profile-section-line">
                     <div class="form-group">
