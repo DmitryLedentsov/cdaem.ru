@@ -73,16 +73,9 @@ $(function () {
         $.post($this.attr('action'), data, function (response) {
             if (jQuery.isPlainObject(response) && ('status' in response) === true) {
                 if (response.status === 1) {
-
-                    showStackInfo('Информация', response.message);
-
-                    if ($('#modal-realty-objects-by-service').length) {
-                        $('#modal-realty-objects-by-service').modal('hide');
-                    }
-
-                    if ($('#modal-payment-widget').length) {
-                        $('#modal-payment-widget').modal('hide');
-                    }
+                    // showStackInfo('Информация', response.message);
+                    window.toastSuccess(response.message, 'Информация');
+                    window.closeWindow();
 
                     if (response.funds) {
                         $('#funds-main').html(response.funds);
@@ -100,10 +93,12 @@ $(function () {
                     }
 
                 } else {
-                    showStackError('Ошибка', response.message);
+                    // showStackError('Ошибка', response.message);
+                    window.toastError(response.message, 'Ошибка');
                 }
             } else {
-                showStackError('Ошибка', messageError);
+                // showStackError('Ошибка', messageError);
+                window.toastError(messageError, 'Ошибка');
             }
         });
     });
