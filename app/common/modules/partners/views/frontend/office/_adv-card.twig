@@ -203,11 +203,11 @@
             {% endif %}
         </div>
         <div class="adv-card-change">
-            <button class="adv-card-change-item">Попасть в слайдер</button>
-            <button class="adv-card-change-item">Реклама в разделе</button>
-            <button class="adv-card-change-item">Выделить цветом</button>
-            <button class="adv-card-change-item">Поднять позицию</button>
-            <button class="adv-card-change-item" data-service-name="ADVERT_IN_TOP">Поднять в топ</button>
+            <button class="adv-card-change-item" data-service-name="ADVERTISING_TOP_SLIDER" data-apartment-id="{{ apartment.apartment_id }}">Попасть в слайдер</button>
+            <button class="adv-card-change-item" data-service-name="ADVERTISING_IN_SECTION" data-apartment-id="{{ apartment.apartment_id }}">Реклама в разделе</button>
+            <button class="adv-card-change-item" data-service-name="ADVERT_SELECTED" data-apartment-id="{{ apartment.apartment_id }}">Выделить цветом</button>
+            <button class="adv-card-change-item" data-service-name="ADVERT_TOP_POSITION" data-apartment-id="{{ apartment.apartment_id }}">Поднять позицию</button>
+            <button class="adv-card-change-item" data-service-name="ADVERT_IN_TOP" data-apartment-id="{{ apartment.apartment_id }}">Поднять в топ</button>
             <a href="{{ path({'0' : '/partners/office/update', 'id' : apartment.apartment_id}) }}" class="adv-card-change-edit">
                 <span class="adv-card-change-edit-icon">
                     <img src="/_new/images/account/icon-price-my-adv-change.svg" alt="">

@@ -301,10 +301,12 @@ class AjaxController extends \frontend\components\Controller
     {
         Yii::$app->response->format = Response::FORMAT_HTML;
         $service = trim(Yii::$app->request->get('service'));
+        $apartmentId = trim(Yii::$app->request->get('apartment_id'));
         $rentTypeslist = RentType::rentTypeslist();
 
         return $this->renderAjax('realty-objects-by-service.php', [
             'service' => $service,
+            'apartmentId' => $apartmentId,
             'rentTypeslist' => $rentTypeslist,
         ]);
     }

@@ -160,6 +160,28 @@ class Advert extends \yii\db\ActiveRecord
             ->all();
     }
 
+    public static function getAdvertsByUserAndApartmentId($user_id, $apartment_id, $limit = null) {
+        $query = static::find()
+            ->joinWith([
+                'apartment' => function ($query) {
+                    $query->permitted()
+                        ->with([
+                            'city',
+                            'titleImage',
+                        ]);
+                },
+            ])
+            ->with(['rentType'])
+            ->andWhere(['user_id' => $user_id])
+            ->andWhere(['partners_adverts.apartment_id' => $apartment_id]);
+
+        if ($limit && is_numeric($limit)) {
+            $query->limit($limit);
+        }
+
+        return $query->all();
+    }
+
     /**
      * Возвращает все обьявления пользователя
      * @param $limit

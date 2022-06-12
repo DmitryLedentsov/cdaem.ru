@@ -2,6 +2,7 @@
 
 namespace common\modules\partners\widgets\frontend\RealtyObjectsByService;
 
+use common\modules\merchant\models\frontend\Pay;
 use Yii;
 use yii\base\Widget;
 use yii\base\InvalidArgumentException;
@@ -31,6 +32,12 @@ class RealtyObjectsByService extends Widget
      * @var int
      */
     public $userId;
+
+    /**
+     * Идентификатор апарта для которого выводится список
+     * @var int
+     */
+    public $apartmentId;
 
     /**
      * @inheritdoc
@@ -73,7 +80,13 @@ class RealtyObjectsByService extends Widget
             case Service::SERVICE_ADVERT_IN_TOP:
             case Service::SERVICE_CONTACTS_OPEN_FOR_TOTAL_BID:
             case Service::SERVICE_CONTACTS_OPEN_FOR_RESERVATION:
-                $adverts = models\Advert::getAdvertsByUser($this->userId);
+                if ($this->apartmentId) {
+                    $adverts = models\Advert::getAdvertsByUserAndApartmentId($this->userId, $this->apartmentId);
+                }
+                else {
+                    $adverts = models\Advert::getAdvertsByUser($this->userId);
+                }
+
                 // Возвращает список всех объявлений в HTML формате
                 return $this->render('adverts', [
                     'models' => $adverts,

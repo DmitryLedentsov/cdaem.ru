@@ -3,6 +3,7 @@
     Объекты недвижимости для сервисов
     @var \yii\web\View this
     @var string $service
+    @var int $apartmentId
 */
 
 use yii\helpers\Html;
@@ -73,6 +74,7 @@ use common\modules\partners\models\Service;
 
                 <?php echo \common\modules\partners\widgets\frontend\RealtyObjectsByService\RealtyObjectsByService::widget([
                     'service' => $service->getId(),
+                    'apartmentId' => $apartmentId,
                     'userId' => Yii::$app->user->id,
                 ])
                 ?>

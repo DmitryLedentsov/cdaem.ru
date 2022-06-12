@@ -198,6 +198,9 @@ class Pay extends \yii\base\Model
 
             // Валидация данных для активации сервиса
             $this->_service = $this->_service->setProcess($this->_process);
+
+            //dd($this->_service->validate()); // todo false при покупки сервиса попасть в слайдер
+
             if (!$this->_service->validate()) {
                 $this->addError('', 'Возникла ошибка при проверке данных для активации сервиса, пожалуйста попробуйте еще раз или обратитесь в службу технической поддержки.');
 
