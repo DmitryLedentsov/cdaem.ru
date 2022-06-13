@@ -1,0 +1,18 @@
+#modal-realty-objects-by-service {
+    .apartment-list {
+        padding-bottom: 32px;
+    }
+
+    .pay-button {
+        padding-top: 24px;
+    }
+
+    .payment-way {
+        display: none;
+
+        .pay-button {
+            display: none;
+        }
+    }
+}
+

@@ -49,4 +49,8 @@
         $window.modal('show');
     };
 
+    window.closeWindow = function () {
+        let $window = $('#main-modal');
+        $window.modal('hide');
+    }
 })(jQuery);

@@ -86,4 +86,38 @@
         window.openWindow(data.address, mapDiv, 'large');
     });
 
+
+    // Показываем окно для приобретения сервиса
+    $(document).on('click', '.adv-card-change-item', function (e) {
+        console.log(e);
+        let serviceButton = $(e.target);
+        let serviceName = serviceButton.data('serviceName');
+        let apartmentId = serviceButton.data('apartmentId');
+        if (!serviceName) return;
+
+        console.log(serviceName);
+        // let winBody = $('<div>').html(serviceName);
+
+        let url = `/partners/ajax/realty-objects-by-service?service=${serviceName}&apartment_id=${apartmentId}`;
+        console.log(url);
+
+        $.get(url, function (response) {
+            // console.log(response);
+
+            /*
+            Старый способ вывести модал
+            $('#modal-realty-objects-by-service').remove();
+            $('body').append(response);
+            $('#modal-realty-objects-by-service').modal('show');
+             */
+
+            // console.log(winBody);
+            $serviceData.service = serviceName; // переменная из office.js
+
+            let winBody = $('<div>').append(response);
+            $('body').append(winBody); // чтобы подтянуть значение $serviceData.serviceCaption
+            window.openWindow($serviceData.serviceCaption, winBody, 'large');
+        });
+    });
+
 })(jQuery);

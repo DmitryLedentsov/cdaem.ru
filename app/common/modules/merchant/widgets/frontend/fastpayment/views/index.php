@@ -36,10 +36,12 @@ if (!empty($processService) && is_object($processService)) {
         <?php if (!Yii::$app->user->isGuest): ?>
             <div class="pay clearfix">
                 <div class="pay-account" data-type="pay-account">
-                    <h3>Оплата с личного счета</h3>
+<!--                    <h3>Оплата с личного счета</h3>-->
+                    <a href="#">Оплата с личного счета</a>
                 </div>
                 <div class="pay-system" data-type="pay-system">
-                    <h4>Все способы оплаты</h4>
+<!--                    <h4>Все способы оплаты</h4>-->
+                    <a href="#">Все способы оплаты</a>
                 </div>
             </div>
         <?php endif; ?>
@@ -81,7 +83,8 @@ if (!empty($processService) && is_object($processService)) {
         <div class="payment-way" <?php if (Yii::$app->user->isGuest): ?>style="display: block;"<?php endif; ?>
              data-target="pay-system">
 
-            <h3>Выберите способ оплаты:</h3>
+<!--            <h3>Выберите способ оплаты:</h3>-->
+            <p>Выберите способ оплаты:</p>
 
             <div class="method">
                 <span class="payments-method-logo visa" data-system="BANKOCEAN3R"></span>
@@ -96,7 +99,8 @@ if (!empty($processService) && is_object($processService)) {
                 <span class="payments-method-logo webmoney" data-system="WMRRM"></span>
             </div>
             <div class="extra clearfix">
-                <h4>Все способы оплаты:</h4>
+<!--                <h4>Все способы оплаты:</h4>-->
+                <p>Все способы оплаты:</p>
                 <?= PaymentSystemsList::widget([
                     'selectOptions' => [
                         'class' => 'form-control',

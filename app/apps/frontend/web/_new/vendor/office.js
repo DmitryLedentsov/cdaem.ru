@@ -49,7 +49,8 @@ $(function () {
                         showStackError('Ошибка', response.message);
                     }
                 }
-            }).complete(function () {
+            // }).complete(function () {
+            }).done(function () {
                 $preloadFlag = false;
             });
         }
@@ -76,7 +77,8 @@ $(function () {
                         showStackError('Ошибка', response.message);
                     }
                 }
-            }).complete(function () {
+            // }).complete(function () { // function complete not found
+            }).done(function () {
                 $preloadFlag = false;
             });
         }
@@ -150,6 +152,7 @@ $(function () {
      * Информация о покупке услуги
      */
     $(document).on("click", '#selected-advert-info', function (event) {
+        console.log("calc-price");
         event.preventDefault();
         var $this = $(this);
         var $targetModal = $('#modal-realty-objects-by-service');
@@ -159,17 +162,18 @@ $(function () {
         $serviceData.request = 'calc';
 
         if (!$preloadFlag) {
-            $preloadFlag = true;
+            // $preloadFlag = true;
 
             $.post("/partners/ajax/buy-service", $serviceData, function (response) {
                 $targetModal.find('.load').html(response);
-                $targetModal.find('.modal-title').html('Калькулятор');
+                // $targetModal.find('.modal-title').html('Калькулятор');
 
                 if (!$targetModal.find('.alert-danger').length) {
                     $targetModal.find('.load').append('<div class="text-center"><span class="btn btn-primary btn-special" id="selected-advert-ago">Назад</span> &nbsp; <span class="btn btn-orange btn-special" id="selected-advert-pay">Оплатить</span></div>');
                 }
-            }).complete(function () {
-                $preloadFlag = false;
+            // }).complete(function () { // function complete not found
+            }).done(function () {
+                // $preloadFlag = false;
             });
         }
     });
@@ -208,7 +212,8 @@ $(function () {
             $.post("/partners/ajax/buy-service", $serviceData, function (response) {
                 $targetModal.find('.load').html(response);
                 $targetModal.find('.modal-title').html('Оплата');
-            }).complete(function () {
+            // }).complete(function () {
+            }).done(function () {
                 $preloadFlag = false;
             });
         }
@@ -253,7 +258,8 @@ function openWindowByService($this) {
             $('#modal-realty-objects-by-service').find('.advert-preview').removeClass('selected');
             $('#modal-realty-objects-by-service').modal('show');
             $targetSelectedAdvertModalTitle = $('#modal-realty-objects-by-service').data('title');
-        }).complete(function () {
+        // }).complete(function () { //$.get(...).complete is not a function
+        }).done(function () {
             $preloadFlag = false;
         });
     }
