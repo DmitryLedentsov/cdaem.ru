@@ -302,12 +302,14 @@ class AjaxController extends \frontend\components\Controller
         Yii::$app->response->format = Response::FORMAT_HTML;
         $service = trim(Yii::$app->request->get('service'));
         $apartmentId = trim(Yii::$app->request->get('apartment_id'));
+        $advertisementId = trim(Yii::$app->request->get('advertisement_id'));
         $rentTypeslist = RentType::rentTypeslist();
 
         return $this->renderAjax('realty-objects-by-service.php', [
             'service' => $service,
             'apartmentId' => $apartmentId,
             'rentTypeslist' => $rentTypeslist,
+            'advertisementId' => $advertisementId
         ]);
     }
 
@@ -325,7 +327,6 @@ class AjaxController extends \frontend\components\Controller
 
             // Калькулятор стоимости выбранных бъектов
             if (Yii::$app->request->post('request') == 'calc') {
-
                 // Инициализация сервиса
                 $service = Yii::$app->service->load(Yii::$app->request->post('service'));
 
@@ -345,11 +346,14 @@ class AjaxController extends \frontend\components\Controller
                     $date = $currentDate;
                 }
 
+                $advertisementId = Yii::$app->request->post('advertisementId');
+
                 Yii::$app->session->set('buy-service', [
                     'service' => Yii::$app->request->post('service'),
                     'selected' => Yii::$app->request->post('selected'),
                     'calculation' => $calculation,
                     'date' => $date,
+                    'advertisementId' => $advertisementId
                 ]);
 
                 $transaction->commit();
@@ -370,6 +374,8 @@ class AjaxController extends \frontend\components\Controller
                 // Инициализация сервиса
                 $service = Yii::$app->service->load($data['service']);
 
+                // dd($data);
+
                 $days = $service->isTimeInterval() ? $data['calculation']['days'] : null;
 
                 // Добавить процесс в обработку
@@ -378,6 +384,7 @@ class AjaxController extends \frontend\components\Controller
                     'days' => $days,
                     'discount' => $data['calculation']['discount'],
                     'price' => Yii::$app->user->can('admin') ? 1 : $data['calculation']['price'],
+                    'advertisementId' => $data['advertisementId']
                 ]);
 
                 if (!$processId) {

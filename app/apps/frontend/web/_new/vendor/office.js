@@ -159,7 +159,11 @@ $(function () {
         $serviceData.days = $('#realty-objects-by-service-days').val();
         $serviceData.date = $('#realty-objects-by-service-date').val();
 
+        $serviceData.advertisementId = 124; // todo для теста
+
         $serviceData.request = 'calc';
+
+        console.log('serviceData', $serviceData);
 
         if (!$preloadFlag) {
             // $preloadFlag = true;

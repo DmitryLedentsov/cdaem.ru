@@ -29,6 +29,19 @@ class AdvertisementAsset extends AssetBundle
     {
         parent::init();
 
+        $this->js = [
+            'js_dev/add-in-slider.js',
+            'js_dev/formApi.js',
+            'js_dev/ui.js', // fast_payment_widget
+            'widgets/scroll/jquery-scrolltofixed-min.js',
+            'widgets/bootstrap-select/bootstrap-select.min.js'
+        ];
+
+        $this->css = [
+            'widgets/bootstrap-select/dist/css/bootstrap-select.css'
+        ];
+
+        /*
         if (YII_DEBUG) {
             $this->js = [
                 'js_dev/add-in-slider.js',
@@ -38,5 +51,6 @@ class AdvertisementAsset extends AssetBundle
                 'js/add-in-slider.js',
             ];
         }
+        */
     }
 }

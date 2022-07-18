@@ -203,7 +203,10 @@
             {% endif %}
         </div>
         <div class="adv-card-change">
-            <button class="adv-card-change-item" data-service-name="ADVERTISING_TOP_SLIDER" data-apartment-id="{{ apartment.apartment_id }}">Попасть в слайдер</button>
+            {% set advertisement_id = apartment.getActivePayedSliderAdvId() %}
+            {% if advertisement_id %}
+            <button class="adv-card-change-item" data-service-name="ADVERTISING_TOP_SLIDER" data-apartment-id="{{ apartment.apartment_id }}" data-advertisement-id="{{ advertisement_id }}">Попасть в слайдер</button>
+            {% endif %}
             <button class="adv-card-change-item" data-service-name="ADVERTISING_IN_SECTION" data-apartment-id="{{ apartment.apartment_id }}">Реклама в разделе</button>
             <button class="adv-card-change-item" data-service-name="ADVERT_SELECTED" data-apartment-id="{{ apartment.apartment_id }}">Выделить цветом</button>
             <button class="adv-card-change-item" data-service-name="ADVERT_TOP_POSITION" data-apartment-id="{{ apartment.apartment_id }}">Поднять позицию</button>

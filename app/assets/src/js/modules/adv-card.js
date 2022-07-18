@@ -93,12 +93,17 @@
         let serviceButton = $(e.target);
         let serviceName = serviceButton.data('serviceName');
         let apartmentId = serviceButton.data('apartmentId');
+        let advertisementId = serviceButton.data('advertisementId');
         if (!serviceName) return;
 
         console.log(serviceName);
         // let winBody = $('<div>').html(serviceName);
 
         let url = `/partners/ajax/realty-objects-by-service?service=${serviceName}&apartment_id=${apartmentId}`;
+        if (advertisementId) {
+            url += `&advertisement_id=${advertisementId}`
+        }
+
         console.log(url);
 
         $.get(url, function (response) {

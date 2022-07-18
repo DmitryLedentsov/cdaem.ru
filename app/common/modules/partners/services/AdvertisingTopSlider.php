@@ -104,8 +104,11 @@ final class AdvertisingTopSlider extends \yii\base\BaseObject implements Service
     public function validate()
     {
         $data = Json::decode($this->_process->data);
-        $advertisementId = isset($data['advertisement_id']) ? $data['advertisement_id'] : null;
+
+        $advertisementId = isset($data['advertisementId']) ? $data['advertisementId'] : null;
         $this->_email = $this->_process->user ? $this->_process->user->email : null;
+
+        // dd($data, $advertisementId, AdvertisementSlider::findOne($advertisementId), $this->_email);
 
         if (!$this->_advertisement = AdvertisementSlider::findOne($advertisementId)) {
             return false;

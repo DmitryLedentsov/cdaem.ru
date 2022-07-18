@@ -46,6 +46,13 @@
 
     {{ use('common/modules/partners/widgets/frontend/PreviewAdvertTmp') }}
 
+    {# подключаем для:
+        fast_payment_widget из старого файла ui.js
+        scrollToFixed
+    #}
+    {{ use('common/modules/partners/assets/frontend/AdvertisementAsset') }}
+    {{ register_advertisement_asset() }}
+
     <h4 style="text-align:center;border-bottom:2px solid orange;font-size:30px;">Мои рекламные объявления</h4>
     {% for advertisement in dataProvider.getModels() %}
 
@@ -80,7 +87,7 @@
                             <span class="{{ advert.top ? 'top color-success' : 'top color-danger' }}">{{ advertisement.advert.top ? 'В топе' : 'Не в топе' }}</span>
                         </span>
                                 <span class="color-info">
-                           
+
                             {% if advertisement.advert.real_position %}
                                 {{ advertisement.advert.real_position }}
                             {% else %}

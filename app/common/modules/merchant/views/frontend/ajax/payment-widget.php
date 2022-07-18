@@ -64,11 +64,15 @@ try {
     ]);*/
 }
 
-echo \yii\helpers\Html::tag('div', $result, [
+
+// для старого модала
+/*echo \yii\helpers\Html::tag('div', $result, [
     'class' => 'modal fade',
     'id' => 'modal-payment-widget',
     'data-title' => 'Оплата'
-]);
+]);*/
+
+echo $result;
 
 
 if ($customViewByServiceContactsOpenForReservation) : ?>
