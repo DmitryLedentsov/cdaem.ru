@@ -63,7 +63,6 @@ class RealtyObjectsByService extends Widget
         $rentTypeslist = RentType::rentTypeslist();
 
         switch ($this->service) {
-
             case Service::SERVICE_APARTMENT_CONTACTS_OPEN:
                 $apartments = models\Apartment::findApartmentsByUser($this->userId);
                 // Возвращает список всех апартаментов в HTML формате

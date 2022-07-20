@@ -1,13 +1,10 @@
 (function ($) {
     "use strict";
 
-
-
     // tooltip info close contact
     $(document).on('click', '.adv-card .adv-card-safe-icon', function () {
         $(this).find('.adv-card-safe-tooltip').toggleClass('adv-card-safe-tooltip-active');
     });
-
 
     // change price value
     $(document).on('click', '.adv-card .adv-card-advs-price-value', function (e) {
@@ -19,7 +16,7 @@
 
     $(document).on('submit', '.adv-form', function (e) {
         e.preventDefault();
-        console.log('submit');
+        // console.log('submit');
 
         // ни один метод не вызывается, если возвращаем не 200
         window.ajaxRequest($(this), {
@@ -96,7 +93,7 @@
         let advertisementId = serviceButton.data('advertisementId');
         if (!serviceName) return;
 
-        console.log(serviceName);
+        // console.log(serviceName);
         // let winBody = $('<div>').html(serviceName);
 
         let url = `/partners/ajax/realty-objects-by-service?service=${serviceName}&apartment_id=${apartmentId}`;
@@ -104,7 +101,7 @@
             url += `&advertisement_id=${advertisementId}`
         }
 
-        console.log(url);
+        // console.log(url);
 
         $.get(url, function (response) {
             // console.log(response);
