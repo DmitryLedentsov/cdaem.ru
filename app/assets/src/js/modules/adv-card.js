@@ -85,7 +85,7 @@
 
 
     // Показываем окно для приобретения сервиса
-    $(document).on('click', '.adv-card-change-item', function (e) {
+    $(document).on('click', '.adv-card-change-item, .service-item-link', function (e) {
         console.log(e);
         let serviceButton = $(e.target);
         let serviceName = serviceButton.data('serviceName');
@@ -96,7 +96,10 @@
         // console.log(serviceName);
         // let winBody = $('<div>').html(serviceName);
 
-        let url = `/partners/ajax/realty-objects-by-service?service=${serviceName}&apartment_id=${apartmentId}`;
+        let url = `/partners/ajax/realty-objects-by-service?service=${serviceName}`;
+        if (apartmentId) {
+            url += `&apartment_id=${apartmentId}`
+        }
         if (advertisementId) {
             url += `&advertisement_id=${advertisementId}`
         }
