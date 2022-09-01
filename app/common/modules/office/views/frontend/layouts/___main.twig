@@ -61,6 +61,7 @@
                             Мои объявления
                         </a>
                         <a href="{{ path(['/office/default/services']) }}" {{ app.request.pathInfo == 'office/services' ? 'class="active"' : '' }}>
+{#                        <a href="{{ path(['/office/layouts/services']) }}" {{ app.request.pathInfo == 'office/services' ? 'class="active"' : '' }}>#}
                             Услуги
                         </a>
                         <a href="{{ path({0 : '/partners/office/calendar'}) }}" {{ app.request.pathInfo == 'office/calendar' ? 'class="active"' : '' }}>

@@ -40,12 +40,25 @@
 
 
 {% block content %}
-
     {{ this.registerMetaTag({'name' : 'description', 'content' : ''}) }}
     {{ this.registerMetaTag({'name' : 'keywords', 'content' : ''}) }}
 
     {{ use('common/modules/partners/assets/frontend/AdvertisementAsset') }}
     {{ register_advertisement_asset() }}
+
+    {# Старые ассеты #}
+
+    {#{{ use('frontend/themes/basic/assets/AdvertisementAsset') }}
+    {{ register_Advertisement_asset() }}#}
+
+
+    {#{{ use('frontend/themes/basic/assets/SliderAsset') }}
+    {{ register_Slider_asset() }}#}
+
+    {#{{ use('frontend/themes/basic/assets/AppAsset') }}
+    {{ register_App_asset() }}#}
+
+
 
     <div class="container-certain primary text" style="width: 90%;">
 

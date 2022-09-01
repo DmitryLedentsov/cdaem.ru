@@ -98,4 +98,23 @@ class Apartment extends \common\modules\partners\models\Apartment
 
         return Yii::$app->getModule('partners')->defaultImageSrc;
     }
+
+    /**
+     * Возвращаем идентификатор активного оплаченного объяления в слайдере
+     * @return int|null
+     */
+    public function getActivePayedSliderAdvId() {
+        foreach ($this->adverts as $advert) {
+            $sliders = $advert->advertSliders;
+
+            foreach ($sliders as $slider) {
+                if ($slider->visible && $slider->payment) {
+                    return $slider->advertisement_id;
+                }
+            }
+        }
+
+        return null;
+    }
+
 }

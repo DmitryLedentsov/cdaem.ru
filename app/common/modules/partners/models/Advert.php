@@ -64,6 +64,15 @@ class Advert extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getAdvertSliders()
+    {
+        return $this->hasMany(AdvertisementSlider::class, ['advert_id' => 'advert_id']);
+    }
+
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getApartment()
     {
         return $this->hasOne(Apartment::class, ['apartment_id' => 'apartment_id']);

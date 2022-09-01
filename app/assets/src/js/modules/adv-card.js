@@ -1,13 +1,10 @@
 (function ($) {
     "use strict";
 
-
-
     // tooltip info close contact
     $(document).on('click', '.adv-card .adv-card-safe-icon', function () {
         $(this).find('.adv-card-safe-tooltip').toggleClass('adv-card-safe-tooltip-active');
     });
-
 
     // change price value
     $(document).on('click', '.adv-card .adv-card-advs-price-value', function (e) {
@@ -19,7 +16,7 @@
 
     $(document).on('submit', '.adv-form', function (e) {
         e.preventDefault();
-        console.log('submit');
+        // console.log('submit');
 
         // ни один метод не вызывается, если возвращаем не 200
         window.ajaxRequest($(this), {
@@ -88,18 +85,26 @@
 
 
     // Показываем окно для приобретения сервиса
-    $(document).on('click', '.adv-card-change-item', function (e) {
+    $(document).on('click', '.adv-card-change-item, .service-item-link', function (e) {
         console.log(e);
         let serviceButton = $(e.target);
         let serviceName = serviceButton.data('serviceName');
         let apartmentId = serviceButton.data('apartmentId');
+        let advertisementId = serviceButton.data('advertisementId');
         if (!serviceName) return;
 
-        console.log(serviceName);
+        // console.log(serviceName);
         // let winBody = $('<div>').html(serviceName);
 
-        let url = `/partners/ajax/realty-objects-by-service?service=${serviceName}&apartment_id=${apartmentId}`;
-        console.log(url);
+        let url = `/partners/ajax/realty-objects-by-service?service=${serviceName}`;
+        if (apartmentId) {
+            url += `&apartment_id=${apartmentId}`
+        }
+        if (advertisementId) {
+            url += `&advertisement_id=${advertisementId}`
+        }
+
+        // console.log(url);
 
         $.get(url, function (response) {
             // console.log(response);

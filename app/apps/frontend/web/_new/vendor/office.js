@@ -102,9 +102,11 @@ $(function () {
             location.href = '/office/services#' + $this.data('type');
             return false;
         }
+        // Это из старой части
         openWindowByService($this);
         return false;
     });
+
 
     // Открыть окно для оплаты сервиса
     var anchor = window.location.hash.replace("#", "");
@@ -159,7 +161,11 @@ $(function () {
         $serviceData.days = $('#realty-objects-by-service-days').val();
         $serviceData.date = $('#realty-objects-by-service-date').val();
 
+        // $serviceData.advertisementId = 124; // для теста
+
         $serviceData.request = 'calc';
+
+        console.log('serviceData', $serviceData);
 
         if (!$preloadFlag) {
             // $preloadFlag = true;
@@ -243,6 +249,7 @@ $(function () {
 
 /**
  * Окна для оплаты сервиса
+ * Это из старой части сайта
  * @param $this
  * @returns {boolean}
  */

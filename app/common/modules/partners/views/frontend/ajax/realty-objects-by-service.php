@@ -63,7 +63,7 @@ use common\modules\partners\models\Service;
                 <?php endif; ?>
 
 
-                <?php if ($service->getId() != Service::SERVICE_APARTMENT_CONTACTS_OPEN): ?>
+                <?php if ($service->getId() != Service::SERVICE_APARTMENT_CONTACTS_OPEN && !$apartmentId): ?>
                     <?php echo Html::dropDownList('rent-type', null, $rentTypeslist, [
                         'id' => 'realty-objects-by-service-rent-type-list',
                         'class' => 'form-control select-white',

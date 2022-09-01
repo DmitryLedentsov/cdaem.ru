@@ -370,13 +370,13 @@ jQuery(function () {
             var metroId = getMetroId($this.attr('id'));
 
             /*if (active) {
-             
+
              var key = selectMetroStations.indexOf(metroId));
-             
+
              if (key >= 0) {
              selectMetroStations.splice(key, 1);
              }
-             
+
              } else {
              selectMetroStations.push(metroId);
              }*/
@@ -621,9 +621,11 @@ function showStackError(title, text) {
  */
 function fast_payment_widget(service, data) {
     $.post('/merchant/payment-widget', $.extend({service: service}, {'data': data}), function (response) {
-        $('#modal-payment-widget').remove();
-        $('body').append(response);
-        $('#modal-payment-widget').modal('show');
+        // $('#modal-payment-widget').remove();
+        // $('body').append(response);
+        // $('#modal-payment-widget').modal('show');
+
+        window.openWindow('Оплата', response, 'large');
     });
 }
 
@@ -827,12 +829,13 @@ $("#service-btn").click(function () {
 /**
  * Заглушка для устаревших браузеров
  */
-$.reject({
+// не работает в текущей версии jquery
+/*$.reject({
     // Specifies which browsers/versions will be blocked
     reject: {
         all: false, // Covers Everything (Nothing blocked)
         msie: 10 // Covers MSIE <= 6 (Blocked by default)
-        /*
+        /!*
          * Many possible combinations.
          * You can specify browser (msie, chrome, firefox)
          * You can specify rendering engine (geko, trident)
@@ -846,7 +849,7 @@ $.reject({
          *
          * There is also "unknown" that covers what isn't detected
          * Example: unknown: true
-         */
+         *!/
     },
     display: [], // What browsers to display and their order (default set below)
     browserShow: true, // Should the browser options be shown?
@@ -923,7 +926,7 @@ $.reject({
     // Set to true to enable
     // Note: Analytics tracking code must be added separately
     analytics: false
-});
+});*/
 
 
 $("#item-br").click(function () {
@@ -940,4 +943,3 @@ $("#item-br").click(function () {
 
 
 
-	

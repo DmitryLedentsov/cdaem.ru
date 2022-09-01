@@ -1,4 +1,5 @@
 jQuery(function () {
+    console.log('add-in-slider.js - dev');
 
     /**
      * Выбор типа и метки рекламы
@@ -10,7 +11,6 @@ jQuery(function () {
     $('#advertisementsliderform-label').find('option[value=4]').remove();
     $('#advertisementsliderform-label').selectpicker('refresh');
 
-
     /**
      * Модальное окно с выбором объявления
      */
@@ -19,9 +19,13 @@ jQuery(function () {
         var $this = $(this);
         var service = $this.data('service');
         $.get("/partners/ajax/realty-objects-by-service?service=" + service, function (response) {
-            $('#modal-realty-objects-by-service').remove();
-            $('body').append(response);
-            $('#modal-realty-objects-by-service').modal('show');
+            // $('#modal-realty-objects-by-service').remove();
+            // $('body').append(response);
+            // $('#modal-realty-objects-by-service').modal('show');
+
+            console.log('new modal');
+
+            window.openWindow("Выбор объявления", response, 'large');
         });
     });
 

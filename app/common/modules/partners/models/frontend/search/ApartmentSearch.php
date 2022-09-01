@@ -68,6 +68,7 @@ class ApartmentSearch extends Apartment
             ->joinWith([
                 'adverts' => function ($query) {
                     $query->joinWith('rentType');
+                    $query->joinWith('advertSliders');
                 },
                 'city' => function ($query) {
                     $query->with('country');
@@ -77,7 +78,6 @@ class ApartmentSearch extends Apartment
                 'titleImage',
                 'reviews',
             ]);
-
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
