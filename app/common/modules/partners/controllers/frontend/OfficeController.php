@@ -111,40 +111,6 @@ class OfficeController extends \frontend\components\Controller
         $searchModel = new models\search\ApartmentSearch();
         $dataProvider = $searchModel->search($filterArray);
 
-        $aparts = $dataProvider->getModels();
-        $apart = $aparts[0];
-        $adverts = $apart->getAdverts()->all();
-
-        // dd($apart);
-        // dd($adverts);
-        // foreach ($aparts as $apart) {
-        // }
-
-        // dd($apart->adverts);
-
-        // $s = '';
-        // foreach ($aparts as $apart) {
-            // if ($apart->getActivePayedSliderAdvId()) {
-            //     dd($apart->getActivePayedSliderAdvId());
-            // }
-            /*foreach ($apart->adverts as $advert) {
-                $s .= ('' . $apart->apartment_id . ' ' . $advert->advert_id . '; ');
-                if ($advert->advert_id === 7440) {
-                    $sliders = $advert->advertSliders;
-
-                    foreach ($sliders as $slider) {
-                        if ($slider->visible && $slider->payment) {
-                            dd($slider);
-                        }
-                    }
-
-
-                }
-            }*/
-        // }
-
-        // dd($s);
-
         return $this->render('apartments.twig', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
