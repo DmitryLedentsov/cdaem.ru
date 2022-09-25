@@ -3,6 +3,7 @@
 namespace common\modules\users\controllers\frontend;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use yii\web\Response;
 use frontend\components\Controller;
@@ -85,9 +86,16 @@ class GuestController extends Controller
     {
         $user = new models\User(['scenario' => 'signup']);
         $profile = new models\Profile(['scenario' => 'create']);
+        $post = Yii::$app->request->post();
 
-        if ($user->load(Yii::$app->request->post()) && $profile->load(Yii::$app->request->post())) {
+        if ($rawPhone = ArrayHelper::getValue($post, 'User.phone')) {
+            // Убираем всё кроме цифрт из телефона, иначе он не сохдарнится в БД
+            $post['User']['phone'] = preg_replace('/[^\d]/iu', '', $rawPhone);
+        }
+
+        if ($user->load($post) && $profile->load($post)) {
             $errors = array_merge($this->validate($user), $this->validate($profile));
+
             if (empty($errors)) {
                 $user->populateRelation('profile', $profile);
                 $user->save(false);

@@ -46,7 +46,7 @@
                 <div class="profile-section-line">
                     <div class="form-group">
                         <label>
-                            <input type="tel" name="User[phone]" class="form-control" placeholder="Телефон" value="{{ profile.user.phone }}" disabled>
+                            <input type="tel" name="User[phone]" class="form-control" placeholder="Телефон" value="{{ profile.user.phone|slice(1) }}" disabled>
                         </label>
                         <div class="invalid-feedback"></div>
                     </div>

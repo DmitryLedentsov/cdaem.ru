@@ -11,6 +11,7 @@ use yii\helpers\Html;
 use common\modules\partners\widgets\frontend\PreviewAdvertTmp;
 
 ?>
+
 <?php if (!empty($apartments)): ?>
     <?= Html::beginForm('', 'post', ['id' => 'form-calendar']) ?>
     <?php foreach ($apartments as $apartment):
@@ -98,7 +99,7 @@ use common\modules\partners\widgets\frontend\PreviewAdvertTmp;
     <?= Html::endForm() ?>
 
 <?php else:
-    echo Html::tag('div', 'Вы еще не добавили ни одного объявления. ' . Html::a('Добавить', ['/partners/default/create']), [
+    echo Html::tag('div', 'Вы еще не добавили ни одного объявления. ' . Html::a('Добавить', ['/office/apartment/create']), [
         'class' => 'alert alert-info'
     ]);
 endif; ?>
