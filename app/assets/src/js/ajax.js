@@ -57,7 +57,12 @@ $(function () {
 
             // Скролим до первого элемента с ошибкой, если она не в модальном окне
             let doScroll = false,
-                isModal = $('.modal').css('display') !== 'none';
+                isModal = $('.modal').css('display') !== 'none',
+                pathName = window.location.pathname,
+                isApartPage = pathName.indexOf('apartment') !== -1,
+                isUpdateApart = isApartPage && pathName.indexOf('update') !== -1,
+                isCreateApart = isApartPage && pathName.indexOf('create') !== -1,
+                isApartUpdateOrCreatePage = isUpdateApart || isCreateApart;
 
             !isModal && $.each(response.responseJSON, (key) => {
                 if (doScroll) return;
@@ -68,7 +73,7 @@ $(function () {
                 // Скролим до полей, передающих массив
                 !$element.length && ($element = getInputByName(fieldName + '[]'));
 
-                if ($element.length) {
+                if ($element.length && isApartUpdateOrCreatePage) {
                     $('html, body').animate({
                         scrollTop: $element.offset().top - 48
                     }, 1500);

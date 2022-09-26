@@ -24,7 +24,7 @@ if ($models) {
         'class' => 'apartment-list clearfix'
     ]);
 } else {
-    echo Html::tag('div', 'Вы еще не добавили ни одного объявления. ' . Html::a('Добавить', ['/partners/default/create']), [
+    echo Html::tag('div', 'Вы еще не добавили ни одного объявления. ' . Html::a('Добавить', ['/office/apartment/create']), [
         'class' => 'alert alert-info'
     ]);
 }

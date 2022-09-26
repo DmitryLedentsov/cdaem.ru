@@ -35,6 +35,10 @@
 
 {% block content %}
 
+    <div class="section-head section-head-between">
+        <h2>Чёрный список</h2>
+    </div>
+
     <ul class="user-list clearfix">
         {% for userList in dataProvider.models %}
             <li>
@@ -76,8 +80,8 @@
     </ul>
 
     {% if dataProvider.models is empty %}
-        <div class="alert alert-info mb-0">
-            Список пуст
+        <div class="alert alert-info" style="margin-top: 25px;">
+            Вы не добавили ни одного объявления. <a href="{{ path(['/partners/office/create']) }}">Добавить</a>.
         </div>
     {% endif %}
 

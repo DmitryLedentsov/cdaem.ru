@@ -18,7 +18,8 @@
                 $label.addClass('file-ok');
                 $labelFrame.css('background-image', 'url(' + path + ')');
                 // $labelText.text(fileName);
-                $labelText.text('Удалить фото');
+                const isDefUserAvatar = path.indexOf('images/account/img-avatar.png') !== -1;
+                $labelText.text(isDefUserAvatar ? 'Загрузить фото' : 'Удалить фото');
             }
             else {
                 $label.removeClass('file-ok');
