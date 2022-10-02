@@ -46,13 +46,14 @@
                     <div class="adv-card-contact">
                         <span class="adv-card-contact-text">Контакты:</span>
                         <div class="adv-card-contact-phone">
-                            <span class="adv-card-contact-number">+7 900 000 00 00</span>
+                            <span class="adv-card-contact-number">+{{ apartment.user.phone }}</span>
+
+                            {% if apartment.user.profile.phone2 %}
                             <span class="adv-card-contact-change"></span>
                             <div class="adv-card-phones">
-                                <span class="adv-card-phone">+7 900 000 00 00</span>
-                                <span class="adv-card-phone">+7 900 000 00 00</span>
-                                <span class="adv-card-phone">+7 900 000 00 00</span>
+                                <span class="adv-card-phone">+{{ apartment.user.profile.phone2 }}</span>
                             </div>
+                            {% endif %}
                         </div>
                     </div>
                     <div class="adv-card-safe">
