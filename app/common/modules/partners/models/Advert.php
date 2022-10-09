@@ -111,10 +111,27 @@ class Advert extends \yii\db\ActiveRecord
      */
     public static function getFullData($id, $city_name_eng = null)
     {
+        /** @var Advert $advert */
+        $advert = Advert::findOne(['advert_id' => $id]);
+
+        if (!$advert) {
+            return null;
+        }
+
+        // Признак того, что просматривает автор
+        $isAuthor = Yii::$app->user->id === $advert->getApartment()->one()->user_id;
+
         return static::find()
             ->joinWith([
-                'apartment' => function ($query) {
-                    $query->permitted()
+                'apartment' => function ($query) use ($isAuthor) {
+                    $usedQuery = $query;
+
+                    if (!$isAuthor) {
+                        // Если просматривает не автор, показываем только те объявления которые прошли модерацию
+                        $usedQuery = $query->permitted();
+                    }
+
+                    $usedQuery
                         ->with([
                             'orderedImages',
                             'metroStations' => function ($query) {
@@ -211,6 +228,29 @@ class Advert extends \yii\db\ActiveRecord
             ])
             ->with(['rentType'])
             ->andWhere(['user_id' => $user_id]);
+
+        if ($limit && is_numeric($limit)) {
+            $query->limit($limit);
+        }
+
+        return $query->all();
+    }
+
+    public static function getAdvertsOnModerateByUser($user_id, $limit = null)
+    {
+        $query = static::find()
+            ->joinWith([
+                'apartment' => function ($query) {
+                    $query
+                        ->with([
+                            'city',
+                            'titleImage',
+                        ]);
+                },
+            ])
+            ->with(['rentType'])
+            ->andWhere(['user_id' => $user_id])
+            ->andWhere(['status' => 0]);
 
         if ($limit && is_numeric($limit)) {
             $query->limit($limit);

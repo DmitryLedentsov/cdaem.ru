@@ -512,13 +512,6 @@
         }
     }
 
-
-
-
-
-
-
-
     .adv-state {
         display: flex;
         align-items: center;
@@ -526,8 +519,18 @@
         &-text {
             font-size: 12px;
             font-weight: 500;
-            color: #03a800;
+
+            &-green {
+                color: #03a800;
+            }
+
+            &-red {
+                color: #fe2c2c;
+            }
+
         }
+
+
 
         &-message {
             margin-left: 10px;

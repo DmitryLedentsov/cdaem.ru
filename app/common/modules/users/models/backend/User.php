@@ -108,8 +108,4 @@ class User extends \common\modules\users\models\User
     {
         return $this->hasOne(Profile::class, ['user_id' => 'id']);
     }
-
-    public function getPhone() {
-        return "123";
-    }
 }

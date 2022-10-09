@@ -1,3 +1,10 @@
+{% if not model.apartment.status %}
+    <div class="container-fluid">
+        <div class="alert alert-warning">
+            Объявление находится на модерации
+        </div>
+    </div>
+{% endif %}
 <div class="container-fluid">
     <div id="map" style="width: 100%; height: 429px"></div>
 </div>

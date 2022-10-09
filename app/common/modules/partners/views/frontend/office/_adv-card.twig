@@ -7,7 +7,7 @@
                 </div>
                 <div class="adv-list-data">
                     <div class="adv-state adv-state-active">
-                        <div class="adv-state-text">Активно</div>
+                        <div class="adv-state-text-{% if apartment.status %}green{% else %}red{% endif %}">{% if apartment.status %}Активно{% else %}На модерации{% endif %}</div>
                         <a href="#" class="adv-state-message">
                             <span class="adv-state-icon">
                                 <img src="/_new/images/account/icon-lk-email-sm.svg" alt="" />
@@ -46,13 +46,14 @@
                     <div class="adv-card-contact">
                         <span class="adv-card-contact-text">Контакты:</span>
                         <div class="adv-card-contact-phone">
-                            <span class="adv-card-contact-number">+7 900 000 00 00</span>
+                            <span class="adv-card-contact-number">+{{ apartment.user.phone }}</span>
+
+                            {% if apartment.user.profile.phone2 %}
                             <span class="adv-card-contact-change"></span>
                             <div class="adv-card-phones">
-                                <span class="adv-card-phone">+7 900 000 00 00</span>
-                                <span class="adv-card-phone">+7 900 000 00 00</span>
-                                <span class="adv-card-phone">+7 900 000 00 00</span>
+                                <span class="adv-card-phone">+{{ apartment.user.profile.phone2 }}</span>
                             </div>
+                            {% endif %}
                         </div>
                     </div>
                     <div class="adv-card-safe">
