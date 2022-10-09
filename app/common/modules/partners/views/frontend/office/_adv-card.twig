@@ -7,7 +7,7 @@
                 </div>
                 <div class="adv-list-data">
                     <div class="adv-state adv-state-active">
-                        <div class="adv-state-text">Активно</div>
+                        <div class="adv-state-text-{% if apartment.status %}green{% else %}red{% endif %}">{% if apartment.status %}Активно{% else %}На модерации{% endif %}</div>
                         <a href="#" class="adv-state-message">
                             <span class="adv-state-icon">
                                 <img src="/_new/images/account/icon-lk-email-sm.svg" alt="" />

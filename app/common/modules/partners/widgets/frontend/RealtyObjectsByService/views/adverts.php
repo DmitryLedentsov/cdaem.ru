@@ -4,6 +4,7 @@
  * @var yii\base\View $this Представление
  * @var array $rentTypeslist Типы аренды
  * @var array $models common\modules\partners\models\Advert
+ * @var bool $isOnModerationExist Есть ли объявления на модерации
  */
 
 use yii\helpers\Html;
@@ -26,5 +27,6 @@ if ($models) {
 } else {
     echo Html::tag('div', 'Вы еще не добавили ни одного объявления. ' . Html::a('Добавить', ['/office/apartment/create']), [
         'class' => 'alert alert-info'
-    ]);
+    ]) . ($isOnModerationExist ? Html::tag('div', 'Есть объявления на модерации', ['class' => 'alert alert-warning'])
+            : '');
 }
