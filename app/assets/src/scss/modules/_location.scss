@@ -8,11 +8,13 @@
     border: none;
     padding: 1.25rem 0 0;
     margin: 0 auto;
-    width: 80px;
+    //width: 80px;
+    width: fit-content;
     cursor: pointer !important;
 
     @include tablet-land() {
-        width: 80px;
+        //width: 80px;
+        width: fit-content;
         margin: 0;
     }
 
@@ -44,7 +46,7 @@
             background-color: #FFA801;
         }
     }
-    
+
     &:active,
     &:focus {
         outline: none;

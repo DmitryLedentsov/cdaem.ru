@@ -5,6 +5,7 @@ namespace common\modules\geo\controllers\frontend;
 use common\modules\geo\models\Metro;
 use Yii;
 use yii\base\Model;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use yii\web\Response;
 use common\modules\geo\models\City;
@@ -159,7 +160,7 @@ class AjaxController extends \frontend\components\Controller
      * Поиск адреса через API dadata.ru
      * @return array|Response
      */
-    public function actionSelectAddressByApi()
+    public function actionSelectAddressByApiactionSelectAddressByApi()
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
 
@@ -191,7 +192,32 @@ class AjaxController extends \frontend\components\Controller
         return $result;
     }
 
-        /**
+    /**
+     * Поиск города по ip через API dadata.ru
+     * @return array|Response
+     */
+    public function actionGetCityByIp()
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        // $ip = Yii::$app->request->userIP; // todo верунть для прода
+        $ip = "46.226.227.20"; // todo для теста, убрать
+
+        $dadata = new \Dadata\DadataClient(Yii::$app->params['dadata']['token'], Yii::$app->params['dadata']['secret']);
+
+        $result = $dadata->iplocate($ip);
+        $cityName = is_array($result) ? ArrayHelper::getValue($result, 'data.city') : '';
+
+        $city = City::findByName($cityName);
+        $cityId = $city ? $city->city_id : null;
+
+        return [
+            'cityId' => $cityId,
+            'city' => $cityName
+        ];
+    }
+
+    /**
      * Данные объявления
      * @param $typeId
      * @return string
