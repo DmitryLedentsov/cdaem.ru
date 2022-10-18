@@ -4,6 +4,18 @@ var $serviceData = {}; // Данные сервиса
 var $responseCache = null; // Кэш ответа от сервера
 
 $(function () {
+    var getCityByIp = "/geo/ajax/get-city-by-ip/";
+
+    $.getJSON(getCityByIp, {}, function (data) {
+        var city = data.hasOwnProperty('city') ? data.city : '';
+        var cityId = data.hasOwnProperty('cityId') ? data.cityId : '';
+
+        console.log(city, cityId);
+
+        $('#locationSelection').text(city);
+        // $('#locationSelection').html(city);
+    });
+
 
     /**
      * Выбор способа оплаты из самых популярных

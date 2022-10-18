@@ -21,6 +21,7 @@ class BootstrapFrontend implements \yii\base\BootstrapInterface
             'geo/select-city' => '/geo/ajax/select-city',
             'geo/select-city-by-api' => '/geo/ajax/select-city-by-api',
             'geo/select-address-by-api' => '/geo/ajax/select-address-by-api',
+            'geo/get-city-by-ip' => '/geo/ajax/get-city-by-ip',
             'geo/metro-msk' => '/geo/ajax/metro-msk',
             'geo/nearest-stations' => '/geo/ajax/nearest-stations',
             'geo/map/<typeId:\w+>' => '/geo/ajax/apartment',
