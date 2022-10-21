@@ -39,9 +39,7 @@ $(function () {
         searchCityURL = "/geo/ajax/select-city-by-api/";
 
     $(document).on('click', '#locationSelection', function () {
-        // console.log(124);
         $.getJSON("/geo/ajax/get-popular-cities/", {}, function (cities) {
-            // console.log(cities);
             cityField.focus();
             var cityList = $('.modal-city-list');
             cityList.html('');
