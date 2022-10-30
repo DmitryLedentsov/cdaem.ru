@@ -230,6 +230,7 @@ class AjaxController extends \frontend\components\Controller
 
         // $ip = Yii::$app->request->userIP; // todo верунть для прода
         $ip = "46.226.227.20"; // todo для теста, убрать
+        // $ip = "1.1.1.1"; // todo для теста, убрать
 
         $cacheRecord = CityByIpCache::findOne(['ip' => $ip]);
 
@@ -243,7 +244,7 @@ class AjaxController extends \frontend\components\Controller
             $result = $dadata->iplocate($ip);
             $cityName = is_array($result) ? ArrayHelper::getValue($result, 'data.city') : '';
 
-            $city = City::findByName($cityName) ? City::findByName($cityName)->name : '';
+            $city = City::findByName($cityName) ?: null;
             $cityId = $city ? $city->city_id : null;
 
             $cacheRecord = new CityByIpCache();
@@ -255,7 +256,7 @@ class AjaxController extends \frontend\components\Controller
 
         return [
             'cityId' => $cityId,
-            'city' => $cityName
+            'city' => $cityName ?: 'Похоже вы не из России'
         ];
     }
 
