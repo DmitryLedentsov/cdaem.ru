@@ -36,12 +36,12 @@
                                 Нет в радиусе 1.5 км
                             {% endif %}
                         </span>
-                        <a href="#" class="adv-card-metro-link" data-latitude="{{ apartment.latitude }}" data-longitude="{{ apartment.longitude }}" data-address="{{ ApartmentHelper.getAddress(apartment) }}" >
+                        <button class="adv-card-change-item adv-card-metro-link" data-latitude="{{ apartment.latitude }}" data-longitude="{{ apartment.longitude }}" data-address="{{ ApartmentHelper.getAddress(apartment) }}">
                             <span class="adv-card-metro-link-icon">
                                 <img src="/_new/images/account/icon-lk-search-maps.svg" alt="" />
                             </span>
                             Показать на карте
-                        </a>
+                        </button>
                     </div>
                     <div class="adv-card-contact">
                         <span class="adv-card-contact-text">Контакты:</span>
@@ -51,7 +51,7 @@
                             {% if apartment.user.profile.phone2 %}
                             <span class="adv-card-contact-change"></span>
                             <div class="adv-card-phones">
-                                <span class="adv-card-phone">+{{ apartment.user.profile.phone2 }}</span>
+                                <span class="adv-card-phone">{{ apartment.user.profile.phone2 }}</span>
                             </div>
                             {% endif %}
                         </div>
@@ -121,10 +121,10 @@
                     </div>
 
                     <div class="adv-card-action">
-{#                        <a href="{{ path({'0' : '/partners/office/preview', 'id' : apartment.apartment_id}) }}" class="adv-card-action-item">Просмотреть</a>#}
-                            <a href="{{ path({'0' : '/partners/default/view', 'id' : apartment.adverts[0].advert_id}) }}" target="_blank" class="adv-card-action-item">Просмотреть</a>
-{#                        <a href="{{ path({'0' : '/partners/office/delete', 'id' : apartment.apartment_id}) }}" class="adv-card-action-item">Удалить</a>#}
-                        <a href="#" class="adv-card-action-item" onclick="confirm('Вы действительно хотите удалить данную квартиру?') && (location.href ='{{ path({'0' : '/partners/office/delete', 'id' : apartment.apartment_id}) }}')">Удалить</a>
+                        <a href="{{ path({'0' : '/partners/default/view', 'id' : apartment.adverts[0].advert_id}) }}" target="_blank" class="adv-card-action-item">Просмотреть</a>
+{#                        <a href="#" class="adv-card-action-item" onclick="confirm('Вы действительно хотите удалить данную квартиру?') && (location.href ='{{ path({'0' : '/partners/office/delete', 'id' : apartment.apartment_id}) }}')">Удалить</a>#}
+
+                        <button href="#" class="adv-card-action-item adv-card-change-item" style="display: inline" onclick="confirm('Вы действительно хотите удалить данную квартиру?') && (location.href ='{{ path({'0' : '/partners/office/delete', 'id' : apartment.apartment_id}) }}')">Удалить</button>
 
                         <a href="#" class="adv-card-action-date">
                             <span class="adv-card-action-icon">
