@@ -34,9 +34,9 @@
 
 
 {% block content %}
-    <div class="section-head section-head-between">
-        <h2>Избранное</h2>
-    </div>
+{#    <div class="section-head section-head-between">#}
+        <h4>Избранное</h4>
+{#    </div>#}
 
     <ul class="user-list clearfix">
         {% for userList in dataProvider.models %}
@@ -81,7 +81,7 @@
     </ul>
 
     {% if dataProvider.models is empty %}
-        <div class="alert alert-info" style="margin-top: 25px;">
+        <div class="alert alert-info">
             Вы не добавили ни одного объявления. <a href="{{ path(['/partners/office/create']) }}">Добавить</a>.
         </div>
     {% endif %}

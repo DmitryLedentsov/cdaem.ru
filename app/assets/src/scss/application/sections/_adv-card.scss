@@ -410,6 +410,17 @@
         &-item {
             color: #474747;
             position: relative;
+            // Для стилизации под ссылку
+            border: 0;
+            background-color: transparent;
+            cursor: pointer;
+            font-weight: 500;
+
+            &:hover {
+                color: #cd8700;
+                //text-decoration: underline;
+            }
+
 
             &:first-child {
                 border-right: 1px solid #474747;

@@ -228,9 +228,9 @@ class AjaxController extends \frontend\components\Controller
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
 
-        // $ip = Yii::$app->request->userIP; // todo верунть для прода
-        $ip = "46.226.227.20"; // todo для теста, убрать
-        // $ip = "1.1.1.1"; // todo для теста, убрать
+        $ip = Yii::$app->request->userIP;
+        // $ip = "46.226.227.20";
+        // $ip = "1.1.1.1";
 
         $cacheRecord = CityByIpCache::findOne(['ip' => $ip]);
 

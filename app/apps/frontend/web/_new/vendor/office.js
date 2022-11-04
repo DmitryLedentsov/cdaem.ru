@@ -4,13 +4,17 @@ var $serviceData = {}; // Данные сервиса
 var $responseCache = null; // Кэш ответа от сервера
 
 $(function () {
-
     /**
      * Получаем город по ip
      */
     var currentUserKey = 'currentUser',
         currentUserJson = localStorage.getItem(currentUserKey),
         city, cityId, currentUser;
+
+    var reloadUserInfo = function () {
+        currentUserJson = localStorage.getItem(currentUserKey);
+        currentUserJson && (currentUser = JSON.parse(currentUserJson));
+    };
 
     if (currentUserJson) {
         currentUser = JSON.parse(currentUserJson);
@@ -39,6 +43,9 @@ $(function () {
         searchCityURL = "/geo/ajax/select-city-by-api/";
 
     $(document).on('click', '#locationSelection', function () {
+        reloadUserInfo();
+        var currentCityId = currentUser ? currentUser.city.id : 0;
+
         $.getJSON("/geo/ajax/get-popular-cities/", {}, function (cities) {
             cityField.focus();
             var cityList = $('.modal-city-list');
@@ -46,7 +53,7 @@ $(function () {
             cities.forEach(function (city) {
                 cityList.append(
                     $('<li>', { class: 'modal-city-item' }).append(
-                        $('<a>', { class: 'modal-city-link' }).html(city.name)
+                        $('<a>', { class: 'modal-city-link', style: currentCityId === city.city_id ? 'color: #cd8700' : '' }).html(city.name)
                     ).click(function () {
                         $('#locationSelection').text(city.name);
 

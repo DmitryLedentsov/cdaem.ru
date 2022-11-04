@@ -10,6 +10,8 @@
 use yii\helpers\Html;
 use common\modules\partners\widgets\frontend\PreviewAdvertTmp;
 
+$isAdvertExist = $models || $isOnModerationExist;
+
 if ($models) {
     $result = '';
     foreach ($models as $advert) {
@@ -23,10 +25,16 @@ if ($models) {
 
     echo Html::tag('div', $result, [
         'class' => 'apartment-list clearfix'
-    ]);
-} else {
-    echo Html::tag('div', 'Вы еще не добавили ни одного объявления. ' . Html::a('Добавить', ['/office/apartment/create']), [
-        'class' => 'alert alert-info'
-    ]) . ($isOnModerationExist ? Html::tag('div', 'Есть объявления на модерации', ['class' => 'alert alert-warning'])
-            : '');
+    ]) . ($isOnModerationExist ? Html::tag('div', 'Есть объявления на модерации', ['class' => 'alert alert-warning']) : '');
+}
+else {
+    if ($isAdvertExist) {
+        // Все объявления находятся на моредации
+        echo Html::tag('div', 'Есть объявления на модерации', ['class' => 'alert alert-warning']);
+    }
+    else {
+        echo Html::tag('div', 'Вы еще не добавили ни одного объявления. ' . Html::a('Добавить', ['/office/apartment/create']), [
+            'class' => 'alert alert-info'
+        ]);
+    }
 }
