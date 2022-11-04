@@ -4,6 +4,121 @@ var $serviceData = {}; // Данные сервиса
 var $responseCache = null; // Кэш ответа от сервера
 
 $(function () {
+    /**
+     * Получаем город по ip
+     */
+    var currentUserKey = 'currentUser',
+        currentUserJson = localStorage.getItem(currentUserKey),
+        city, cityId, currentUser;
+
+    var reloadUserInfo = function () {
+        currentUserJson = localStorage.getItem(currentUserKey);
+        currentUserJson && (currentUser = JSON.parse(currentUserJson));
+    };
+
+    if (currentUserJson) {
+        currentUser = JSON.parse(currentUserJson);
+        $('#locationSelection').text(currentUser.city.name);
+    }
+    else {
+        $.getJSON("/geo/ajax/get-city-by-ip/", {}, function (data) {
+            city = data.hasOwnProperty('city') ? data.city : '';
+            cityId = data.hasOwnProperty('cityId') ? data.cityId : '';
+
+            // console.log(city, cityId);
+            localStorage.setItem(currentUserKey, JSON.stringify({ 'city': {
+                'id': cityId,
+                'name': city
+            }}));
+
+            $('#locationSelection').text(city);
+        });
+    }
+
+    /**
+     * Готовымим окно выбора города
+     */
+
+    var cityField = $(".modal-location-city"),
+        searchCityURL = "/geo/ajax/select-city-by-api/";
+
+    $(document).on('click', '#locationSelection', function () {
+        reloadUserInfo();
+        var currentCityId = currentUser ? currentUser.city.id : 0;
+
+        $.getJSON("/geo/ajax/get-popular-cities/", {}, function (cities) {
+            cityField.focus();
+            var cityList = $('.modal-city-list');
+            cityList.html('');
+            cities.forEach(function (city) {
+                cityList.append(
+                    $('<li>', { class: 'modal-city-item' }).append(
+                        $('<a>', { class: 'modal-city-link', style: currentCityId === city.city_id ? 'color: #cd8700' : '' }).html(city.name)
+                    ).click(function () {
+                        $('#locationSelection').text(city.name);
+
+                        localStorage.setItem(currentUserKey, JSON.stringify({ 'city': {
+                            'id': city.city_id,
+                            'name': city.name
+                        }}));
+
+                        $('#modalLocation').modal('hide');
+                    })
+                );
+            })
+        });
+    });
+
+    cityField.autoComplete({
+        resolver: 'custom',
+        minLength: 2,
+        noResultsText: 'Город не найден',
+        formatResult: function (item) {
+            return {
+                value: item.text,
+                text: item.text,
+                html: '<div>' + item.text + '</div>',
+            };
+        },
+        change: function (event, ui) {
+            // console.log("change");
+        },
+
+        events: {
+            change: function (event, ui) {
+            },
+            search: function (qry, callback) {
+                $.getJSON(searchCityURL, {'name': qry}, function (data) {
+                    // console.log(data);
+                    let result = [];
+                    data.forEach(item => {
+                        result.push({
+                            text: item.name,
+                            city_id: item.city_id
+                        });
+                    });
+
+                    console.log({result});
+                    callback(result);
+                });
+            },
+        }
+    });
+
+    cityField.on('autocomplete.select', function (evt, item) {
+        // console.log(item);
+        if (item.text) {
+            $('#locationSelection').text(item.text);
+            localStorage.setItem(currentUserKey, JSON.stringify({ 'city': {
+                'id': item.city_id,
+                'name': item.text
+            }}));
+        }
+    });
+
+
+
+
 
     /**
      * Выбор способа оплаты из самых популярных

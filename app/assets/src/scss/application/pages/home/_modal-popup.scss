@@ -209,7 +209,7 @@
 
     &-location-content {
         margin-bottom: 1.2rem;
-        
+
         @include phone() {
             display: flex;
             justify-content: flex-start;
@@ -243,13 +243,14 @@
 
     &-city-list {
         list-style-type: none;
+        column-count: 2;
     }
 
     &-city-item {
         margin-bottom: 1rem;
 
         @include tablet() {
-            margin-bottom: 1.2rem;  
+            margin-bottom: 1.2rem;
         }
 
         &:last-of-type {

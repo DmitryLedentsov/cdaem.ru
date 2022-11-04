@@ -2,9 +2,11 @@
 
 namespace common\modules\geo\controllers\frontend;
 
+use common\modules\geo\models\CityByIpCache;
 use common\modules\geo\models\Metro;
 use Yii;
 use yii\base\Model;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use yii\web\Response;
 use common\modules\geo\models\City;
@@ -82,6 +84,29 @@ class AjaxController extends \frontend\components\Controller
     }
 
     /**
+     * Список популярных городов
+     * @return array|Response
+     */
+    public function actionGetPopularCities()
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        $cities = City::find()
+            ->innerJoinWith('country')
+            ->andWhere(['is_popular' => 1])
+            ->orderBy(['name' => SORT_ASC])
+            ->all();
+
+        return array_reduce($cities, function ($result, $city) {
+            $result[] = [
+                'city_id' => $city['city_id'],
+                'name' => $city['name'],
+            ];
+            return $result;
+        }, []);
+    }
+
+    /**
      * Поиск городов по имени
      * @return array|Response
      */
@@ -143,6 +168,9 @@ class AjaxController extends \frontend\components\Controller
         foreach ($rowList as $row) {
             $data = $row["data"];
 
+            $city = City::findOne(['name' => $data["city"]]);
+            $cityId = $city ? $city->city_id : '';
+
             $result[] = [
                 "name" => $data["city"],
                 "kladr_id" => $data["kladr_id"],
@@ -150,6 +178,7 @@ class AjaxController extends \frontend\components\Controller
                 "region_type_full" => $data["region_type_full"],
                 "geo_lat" => $data["geo_lat"],
                 "geo_lon" => $data["geo_lon"],
+                "city_id" => $cityId
             ];
         }
         return $result;
@@ -191,7 +220,47 @@ class AjaxController extends \frontend\components\Controller
         return $result;
     }
 
-        /**
+    /**
+     * Поиск города по ip через API dadata.ru
+     * @return array|Response
+     */
+    public function actionGetCityByIp()
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        $ip = Yii::$app->request->userIP;
+        // $ip = "46.226.227.20";
+        // $ip = "1.1.1.1";
+
+        $cacheRecord = CityByIpCache::findOne(['ip' => $ip]);
+
+        if ($cacheRecord) {
+            $cityId = $cacheRecord->city_id;
+            $cityName = City::findOne(['city_id' => $cityId])->name;
+        }
+        else {
+            $dadata = new \Dadata\DadataClient(Yii::$app->params['dadata']['token'], Yii::$app->params['dadata']['secret']);
+
+            $result = $dadata->iplocate($ip);
+            $cityName = is_array($result) ? ArrayHelper::getValue($result, 'data.city') : '';
+
+            $city = City::findByName($cityName) ?: null;
+            $cityId = $city ? $city->city_id : null;
+
+            $cacheRecord = new CityByIpCache();
+            $cacheRecord->ip = $ip;
+            $cacheRecord->city_id = $cityId;
+            $cacheRecord->save(false);
+        }
+
+
+        return [
+            'cityId' => $cityId,
+            'city' => $cityName ?: 'Похоже вы не из России'
+        ];
+    }
+
+    /**
      * Данные объявления
      * @param $typeId
      * @return string

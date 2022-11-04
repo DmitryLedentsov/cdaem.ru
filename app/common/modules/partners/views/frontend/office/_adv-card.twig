@@ -7,7 +7,7 @@
                 </div>
                 <div class="adv-list-data">
                     <div class="adv-state adv-state-active">
-                        <div class="adv-state-text">Активно</div>
+                        <div class="adv-state-text-{% if apartment.status %}green{% else %}red{% endif %}">{% if apartment.status %}Активно{% else %}На модерации{% endif %}</div>
                         <a href="#" class="adv-state-message">
                             <span class="adv-state-icon">
                                 <img src="/_new/images/account/icon-lk-email-sm.svg" alt="" />
@@ -36,23 +36,24 @@
                                 Нет в радиусе 1.5 км
                             {% endif %}
                         </span>
-                        <a href="#" class="adv-card-metro-link" data-latitude="{{ apartment.latitude }}" data-longitude="{{ apartment.longitude }}" data-address="{{ ApartmentHelper.getAddress(apartment) }}" >
+                        <button class="adv-card-metro-link adv-card-action-item" data-latitude="{{ apartment.latitude }}" data-longitude="{{ apartment.longitude }}" data-address="{{ ApartmentHelper.getAddress(apartment) }}">
                             <span class="adv-card-metro-link-icon">
                                 <img src="/_new/images/account/icon-lk-search-maps.svg" alt="" />
                             </span>
                             Показать на карте
-                        </a>
+                        </button>
                     </div>
                     <div class="adv-card-contact">
                         <span class="adv-card-contact-text">Контакты:</span>
                         <div class="adv-card-contact-phone">
-                            <span class="adv-card-contact-number">+7 900 000 00 00</span>
+                            <span class="adv-card-contact-number">+{{ apartment.user.phone }}</span>
+
+                            {% if apartment.user.profile.phone2 %}
                             <span class="adv-card-contact-change"></span>
                             <div class="adv-card-phones">
-                                <span class="adv-card-phone">+7 900 000 00 00</span>
-                                <span class="adv-card-phone">+7 900 000 00 00</span>
-                                <span class="adv-card-phone">+7 900 000 00 00</span>
+                                <span class="adv-card-phone">{{ apartment.user.profile.phone2 }}</span>
                             </div>
+                            {% endif %}
                         </div>
                     </div>
                     <div class="adv-card-safe">
@@ -120,10 +121,10 @@
                     </div>
 
                     <div class="adv-card-action">
-{#                        <a href="{{ path({'0' : '/partners/office/preview', 'id' : apartment.apartment_id}) }}" class="adv-card-action-item">Просмотреть</a>#}
-                            <a href="{{ path({'0' : '/partners/default/view', 'id' : apartment.adverts[0].advert_id}) }}" target="_blank" class="adv-card-action-item">Просмотреть</a>
-{#                        <a href="{{ path({'0' : '/partners/office/delete', 'id' : apartment.apartment_id}) }}" class="adv-card-action-item">Удалить</a>#}
-                        <a href="#" class="adv-card-action-item" onclick="confirm('Вы действительно хотите удалить данную квартиру?') && (location.href ='{{ path({'0' : '/partners/office/delete', 'id' : apartment.apartment_id}) }}')">Удалить</a>
+                        <a href="{{ path({'0' : '/partners/default/view', 'id' : apartment.adverts[0].advert_id}) }}" target="_blank" class="adv-card-action-item">Просмотреть</a>
+{#                        <a href="#" class="adv-card-action-item" onclick="confirm('Вы действительно хотите удалить данную квартиру?') && (location.href ='{{ path({'0' : '/partners/office/delete', 'id' : apartment.apartment_id}) }}')">Удалить</a>#}
+
+                        <button href="#" class="adv-card-action-item" style="display: inline" onclick="confirm('Вы действительно хотите удалить данную квартиру?') && (location.href ='{{ path({'0' : '/partners/office/delete', 'id' : apartment.apartment_id}) }}')">Удалить</button>
 
                         <a href="#" class="adv-card-action-date">
                             <span class="adv-card-action-icon">

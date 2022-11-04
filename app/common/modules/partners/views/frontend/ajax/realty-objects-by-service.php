@@ -26,7 +26,7 @@ use common\modules\partners\models\Service;
             </script>
 
                 <?php if ($service->getId() != Service::SERVICE_ADVERTISING_TOP_SLIDER): ?>
-                    <p>Выделено объектов: <b id="selected-advert-count">0</b></p>
+                    <p style="margin-bottom: 1rem;">Выделено объектов: <b id="selected-advert-count">0</b></p>
                 <?php endif; ?>
 
                 <?php if ($service->isTimeInterval()): ?>

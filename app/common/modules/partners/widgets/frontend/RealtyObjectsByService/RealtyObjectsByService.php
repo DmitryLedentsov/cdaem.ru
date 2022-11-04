@@ -86,9 +86,12 @@ class RealtyObjectsByService extends Widget
                     $adverts = models\Advert::getAdvertsByUser($this->userId);
                 }
 
+                $isOnModerationExist = count(models\Advert::getAdvertsOnModerateByUser($this->userId)) > 0;
+
                 // Возвращает список всех объявлений в HTML формате
                 return $this->render('adverts', [
                     'models' => $adverts,
+                    'isOnModerationExist' => $isOnModerationExist,
                     'rentTypeslist' => $rentTypeslist,
                 ]);
                 break;
