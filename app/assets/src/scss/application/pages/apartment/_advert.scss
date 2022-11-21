@@ -38,7 +38,7 @@
         width: 47%;
         margin: 0 auto 0 0;
         order: 0;
-      }  
+      }
     }
 
     &:nth-of-type(2) {
@@ -98,7 +98,7 @@
         font-weight: 400;
         color: $color-base-link;
         display: table;
-  
+
         @include phone() {
           display: inline-block;
         }
@@ -151,13 +151,21 @@
       padding: 1.2rem 1.4rem;
     }
 
+    img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 1px solid #dfdfdf;
+    }
 
     &-logo {
+      /*
       background: url("../../images/apartment/author-logo.png") center no-repeat;
       width: 70px;
       height: 70px;
       border: 0.125rem solid #FFA900;
       border-radius: 50%;
+      */
 
       @include phone() {
         width: 87px;
@@ -178,7 +186,7 @@
     display: flex;
     flex-direction: column;
     margin-top: 1rem;
-    
+
     @include phone() {
       flex-direction: row;
       justify-content: space-between;
@@ -201,7 +209,7 @@
         margin-bottom: 0;
         padding: 1rem 0.5rem;
       }
-  
+
       @include desktop() {
         padding: 1rem 1.3rem;
       }
@@ -225,7 +233,7 @@
 
         img {
           width: 100%;
-          height: 297px;  
+          height: 297px;
 
           @include tablet() {
             width: 532px;
@@ -244,7 +252,7 @@
       @include desktop() {
         margin: 0 -0.4rem 0 0;
       }
-  
+
       &-item {
         width: auto;
         margin: 0 0.6rem 0 0;
@@ -264,7 +272,7 @@
           width: 124px;
           margin-right: 0;
         }
-  
+
         img {
           width: auto;
           height: 75px;
@@ -279,9 +287,9 @@
 
   .slick {
     &-track {
-     display: flex; 
+     display: flex;
     }
-    
+
     &-list {
       overflow: hidden;
     }
