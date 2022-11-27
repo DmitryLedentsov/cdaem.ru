@@ -139,6 +139,10 @@ class Profile extends \nepster\users\models\Profile
             // Контакты
             [['phone2', 'email', 'skype', 'ok', 'vk', 'phones', 'fb', 'twitter'], 'string'],
 
+            [['phone2', 'email'], 'unique'],
+            ['phone2', \common\validators\PhoneValidator::class, 'message' => 'Некорректный формат номера'],
+            ['phone2', 'filter', 'filter' => 'intval'],
+
             // Фотография
             [
                 'image',

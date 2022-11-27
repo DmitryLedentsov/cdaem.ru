@@ -234,16 +234,29 @@
         img {
           width: 100%;
           height: 297px;
+          //height: 126px;
 
           @include tablet() {
             width: 532px;
           }
         }
       }
+
+
+      &-nav:not(:last-child) {
+        margin-right: 14px;
+        //padding-bottom: 18px;
+        //border: green solid 10px;
+
+      }
     }
 
     &-nav {
       margin: 0 -0.5rem 0 0;
+      width: 519px;
+      .slick-track {
+        justify-content: space-between;
+      }
 
       @include phone() {
         margin: 0 -0.85rem 0 0;
@@ -251,6 +264,17 @@
 
       @include desktop() {
         margin: 0 -0.4rem 0 0;
+      }
+
+      img {
+        width: 100%;
+        //height: 297px;
+        //height: 126px;
+        height: 113px;
+
+        @include tablet() {
+          width: 532px;
+        }
       }
 
       &-item {
@@ -292,6 +316,12 @@
 
     &-list {
       overflow: hidden;
+    }
+
+    &-current {
+      img {
+        border: solid 3px $color-base-border;
+      }
     }
   }
 }
