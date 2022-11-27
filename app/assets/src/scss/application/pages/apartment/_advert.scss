@@ -234,7 +234,6 @@
         img {
           width: 100%;
           height: 297px;
-          //height: 126px;
 
           @include tablet() {
             width: 532px;
@@ -242,12 +241,8 @@
         }
       }
 
-
       &-nav:not(:last-child) {
         margin-right: 14px;
-        //padding-bottom: 18px;
-        //border: green solid 10px;
-
       }
     }
 
