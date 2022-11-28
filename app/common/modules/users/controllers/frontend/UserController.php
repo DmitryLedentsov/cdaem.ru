@@ -3,6 +3,7 @@
 namespace common\modules\users\controllers\frontend;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 use yii\web\Response;
 use frontend\components\Controller;
 use common\modules\users\models as models;
@@ -68,7 +69,14 @@ class UserController extends Controller
         $profile = models\Profile::findByUserId(Yii::$app->user->id);
         $profile->setScenario('update');
 
-        if ($profile->load(Yii::$app->request->post())) {
+        $post = Yii::$app->request->post();
+
+        if ($rawPhone = ArrayHelper::getValue($post, 'Profile.phone2')) {
+            // Убираем всё кроме цифрт из телефона, иначе он не сохдарнится в БД
+            $post['Profile']['phone2'] = preg_replace('/[^\d]/iu', '', $rawPhone);
+        }
+
+        if ($profile->load($post)) {
             $errors = $this->validate($profile);
             if (empty($errors)) {
                 $profile->save(false);

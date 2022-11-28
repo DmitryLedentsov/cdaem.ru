@@ -159,9 +159,9 @@
                     </div>
                     <div class="form-group">
                         <label>
-                            <input type="tel" name="Profile[phone2]" class="form-control" value="{{ profile.phone2 }}" placeholder="Доп телефон">
+                            <input type="tel" name="Profile[phone2]" class="form-control" value="{{ profile.phone2|slice(1) }}" placeholder="Доп телефон">
+                            <div class="invalid-feedback"></div>
                         </label>
-                        <div class="invalid-feedback"></div>
                     </div>
                 </div>
             </div>
