@@ -400,3 +400,14 @@ $("#opendescription2").click(function () {
 
     });
 });
+
+const getToken = async function () {
+    let response = await fetch('/users/user/get-csrf-token');
+    return response.ok ? await response.text() : false;
+};
+
+setInterval(async () => {
+    console.log('token update');
+    let token = await getToken();
+    token && ($("head > meta[name='csrf-token']").prop('content', token));
+}, 1000 * 60 * 60 * 15);

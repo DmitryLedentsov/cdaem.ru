@@ -151,4 +151,12 @@ class UserController extends Controller
             'model' => $model
         ]));
     }
+
+    /**
+     * Вернуть токен пользователя, для обновления
+     * @return string
+     */
+    public function actionGetCsrfToken() {
+        return Yii::$app->request->getCsrfToken();
+    }
 }
