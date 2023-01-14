@@ -233,6 +233,7 @@ class AjaxController extends \frontend\components\Controller
         // $ip = "1.1.1.1";
 
         $cacheRecord = CityByIpCache::findOne(['ip' => $ip]);
+        // $cacheRecord = null;
 
         if ($cacheRecord) {
             $cityId = $cacheRecord->city_id;

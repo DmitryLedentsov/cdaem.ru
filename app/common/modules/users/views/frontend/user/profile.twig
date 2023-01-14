@@ -73,29 +73,29 @@
                 <div class="profile-section-line">
                     <div class="form-group">
                         <label>
-                            <input type="text" name="Profile[name]" class="form-control" placeholder="Фамилия" value="{{ profile.name }}">
+                            <input type="text" name="Profile[name]" class="form-control" placeholder="Имя" value="{{ profile.name }}">
+                            <div class="invalid-feedback"></div>
                         </label>
-                        <div class="invalid-feedback"></div>
                     </div>
                     <div class="form-group">
                         <label>
-                            <input type="text" name="Profile[surname]" class="form-control" placeholder="Имя" value="{{ profile.surname }}">
+                            <input type="text" name="Profile[surname]" class="form-control" placeholder="Фамилия" value="{{ profile.surname }}">
+                            <div class="invalid-feedback"></div>
                         </label>
-                        <div class="invalid-feedback"></div>
                     </div>
                     <div class="form-group">
                         <label>
                             <input type="text" name="Profile[patronymic]" class="form-control" placeholder="Отчество">
+                            <div class="invalid-feedback"></div>
                         </label>
-                        <div class="invalid-feedback"></div>
                     </div>
                 </div>
                 <div class="profile-section-line">
                     <div class="form-group form-group-100">
                         <label>
                             <textarea name="Profile[about_me]" class="form-control" placeholder="О себе">{{ profile.about_me }}</textarea>
+                            <div class="invalid-feedback"></div>
                         </label>
-                        <div class="invalid-feedback"></div>
                     </div>
                 </div>
             </div>
@@ -117,8 +117,8 @@
                                     <option value="{{ key }}"{{ profile.user_type == key ? ' selected' : ''}}>{{ userType.label }}</option>
                                 {% endfor %}
                             </select>
+                            <div class="invalid-feedback"></div>
                         </label>
-                        <div class="invalid-feedback"></div>
                     </div>
                 </div>
             </div>
@@ -128,34 +128,34 @@
                     <div class="form-group">
                         <label>
                             <input type="text" name="Profile[vk]" class="form-control" value="{{ profile.vk }}" placeholder="Вконтакте">
+                            <div class="invalid-feedback"></div>
                         </label>
-                        <div class="invalid-feedback"></div>
                     </div>
                     <div class="form-group">
                         <label>
                             <input type="text" name="Profile[fb]" class="form-control" value="{{ profile.fb }}" placeholder="Facebook">
+                            <div class="invalid-feedback"></div>
                         </label>
-                        <div class="invalid-feedback"></div>
                     </div>
                     <div class="form-group">
                         <label>
                             <input type="text" name="Profile[twitter]" class="form-control" value="{{ profile.twitter }}" placeholder="Twitter">
+                            <div class="invalid-feedback"></div>
                         </label>
-                        <div class="invalid-feedback"></div>
                     </div>
                 </div>
                 <div class="profile-section-line">
                     <div class="form-group">
                         <label>
                             <input type="text" name="Profile[skype]" class="form-control" value="{{ profile.skype }}" placeholder="Skype">
+                            <div class="invalid-feedback"></div>
                         </label>
-                        <div class="invalid-feedback"></div>
                     </div>
                     <div class="form-group">
                         <label>
                             <input type="email" name="Profile[email]" class="form-control" value="{{ profile.email }}" placeholder="Доп e-mail">
+                            <div class="invalid-feedback"></div>
                         </label>
-                        <div class="invalid-feedback"></div>
                     </div>
                     <div class="form-group">
                         <label>
@@ -171,20 +171,20 @@
                     <div class="form-group">
                         <label>
                             <input type="password" name="Password[current]" class="form-control" placeholder="Текущий пароль">
+                            <div class="invalid-feedback"></div>
                         </label>
-                        <div class="invalid-feedback"></div>
                     </div>
                     <div class="form-group">
                         <label>
                             <input type="password" name="Password[new]" class="form-control" placeholder="Новый пароль">
+                            <div class="invalid-feedback"></div>
                         </label>
-                        <div class="invalid-feedback"></div>
                     </div>
                     <div class="form-group">
                         <label>
                             <input type="password" name="Password[repeat]" class="form-control" placeholder="Повторите пароль">
+                            <div class="invalid-feedback"></div>
                         </label>
-                        <div class="invalid-feedback"></div>
                     </div>
                 </div>
             </div>

@@ -236,21 +236,36 @@
           height: 297px;
 
           @include tablet() {
-            width: 532px;
+            //width: 532px;
+            width: 533px;
           }
         }
       }
 
       &-nav:not(:last-child) {
-        margin-right: 14px;
+        margin-right: 16px;
+        //margin-right: 25px;
+        //margin-right: 33px;
+        //padding-right: 33px;
+      }
+      &-nav {
+        //margin-right: 16px;
+        //margin-right: 25px;
+        //margin-right: 33px;
       }
     }
 
     &-nav {
       margin: 0 -0.5rem 0 0;
-      width: 519px;
+      //width: 519px;
+      //width: 520px;
+      width: 533px;
       .slick-track {
-        justify-content: space-between;
+        //justify-content: space-between;
+        justify-content: flex-start;
+        //justify-content: start;
+        //justify-content: left;
+        //margin-top: 9px;
       }
 
       @include phone() {
