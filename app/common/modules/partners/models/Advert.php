@@ -78,6 +78,10 @@ class Advert extends \yii\db\ActiveRecord
         return $this->hasOne(Apartment::class, ['apartment_id' => 'apartment_id']);
     }
 
+    public static function getPreparedRentTypesAdvertsListByApartment(Apartment $apartment) {
+        return self::getPreparedRentTypesAdvertsList(RentType::rentTypeslist(), $apartment->adverts);
+    }
+
     /**
      * Возвращает подготовленный список типов аренды включая объявления
      * @param array $rentTypesList
