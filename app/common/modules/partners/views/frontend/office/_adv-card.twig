@@ -57,8 +57,39 @@
                         </div>
                     </div>
                     <div class="adv-card-safe">
+                        <!-- Modal -->
+                        <div class="modal fade" id="closeContact" tabindex="-1" role="dialog" aria-labelledby="Закрыть контакты" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                <div class="modal-content">
+                                    <h3 class="modal-title text-left">Закрыть контакты</h3>
+                                    <button class="modal-close" data-dismiss="modal" aria-label="Close"></button>
+                                    <div class="modal-body">Вы действительно хотите закрыть контакты?</div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Нет, я передумал!</button>
+                                        <button id="close-contact-button" type="button" class="btn btn-primary" data-dismiss="modal" data-apartment-id="{{ apartment.apartment_id }}">Закрыть контакты</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="openContact" tabindex="-1" role="dialog" aria-labelledby="Открыть контакты" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                <div class="modal-content">
+                                    <h3 class="modal-title text-left">Открыть контакты</h3>
+                                    <button class="modal-close" data-dismiss="modal" aria-label="Close"></button>
+                                    <div class="modal-body">Вы действительно хотите открыть контакты?</div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Нет, я передумал!</button>
+                                        <button id="open-contact-button" type="button" class="btn btn-primary" data-dismiss="modal" data-apartment-id="{{ apartment.apartment_id }}">Открыть контакты</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         {% if apartment.open_contacts %}
-                        <span class="adv-card-safe-name">Безопасная сделка</span>
+{#                        <span class="adv-card-safe-name">Безопасная сделка</span>#}
+                        <a href="#" class="adv-card-safe-link" data-toggle="modal" data-target="#closeContact">
+                        Безопасная сделка
+                        </a>
                         {% else %}
                         <a href="#" class="adv-card-safe-link" data-toggle="modal" data-target="#openContact">
                             Открыть контакты

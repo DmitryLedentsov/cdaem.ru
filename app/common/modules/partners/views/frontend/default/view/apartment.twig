@@ -132,7 +132,9 @@
             {% endif %}
 
             <div class="advert-button">
+                {% if not model.apartment.open_contacts %}
                 <button class="btn btn-warning" data-toggle="modal" data-target="#modalBook">Забронировать</button>
+                {% endif %}
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModalLong">Написать</button>
                 <button class="btn btn-warning" data-toggle="modal" data-target="#modalAppeal">Пожаловаться</button>

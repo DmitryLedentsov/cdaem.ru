@@ -237,7 +237,8 @@ class AjaxController extends \frontend\components\Controller
 
         if ($cacheRecord) {
             $cityId = $cacheRecord->city_id;
-            $cityName = City::findOne(['city_id' => $cityId])->name;
+            $city = City::findOne(['city_id' => $cityId]);
+            $cityName = $city ? $city->name : null;
         }
         else {
             $dadata = new \Dadata\DadataClient(Yii::$app->params['dadata']['token'], Yii::$app->params['dadata']['secret']);
