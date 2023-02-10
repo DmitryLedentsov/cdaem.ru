@@ -41,8 +41,11 @@
 
     {{ use('common/modules/partners/widgets/frontend/PreviewAdvertTmp') }}
 
+    <div class="section-head section-head-between">
+        <h2>Бронь объявлений</h2>
+    </div>
 
-    <h4>Бронь объявлений</h4>
+{#    <h4>Бронь объявлений</h4>#}
     <div class="visible-xs multiple-items-7">
         {% for reservation in dataProvider.getModels() %}
 
@@ -110,8 +113,6 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-
-
                     <div class="present">
                         {% if reservation.confirm == 3 and reservation.closed == 0 %}
                             <h4>Связаться с клиентом</h4>
@@ -201,13 +202,12 @@
                     </div>
                 </div>
             </div>
-
-
-
         {% else %}
+{#
             <div class="alert alert-info">
                 Нет заявок
             </div>
+#}
         {% endfor %}
 
     </div>
@@ -368,11 +368,8 @@
                     </div>
                 </div>
             </div>
-
-
-
         {% else %}
-            <div class="alert alert-info">
+            <div class="alert alert-info" style="margin-top: 25px;">
                 Нет заявок
             </div>
         {% endfor %}

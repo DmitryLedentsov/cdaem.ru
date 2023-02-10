@@ -125,4 +125,20 @@
         });
     });
 
+    function updateContactStatusAndReturn(apartmentId, status) {
+        $.get(`/partners/office/update-contact-status?id=${apartmentId}&status=${status}`, function () {
+            location.href = '/office/apartments';
+        });
+    }
+
+    $(document).on('click', '#close-contact-button', function (e) {
+        const apartmentId = $(this).data('apartmentId');
+        updateContactStatusAndReturn(apartmentId, 0);
+    });
+
+    $(document).on('click', '#open-contact-button', function (e) {
+        const apartmentId = $(this).data('apartmentId');
+        updateContactStatusAndReturn(apartmentId, 1);
+    });
+
 })(jQuery);

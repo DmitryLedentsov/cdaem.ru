@@ -34,7 +34,7 @@ class OfficeController extends \frontend\components\Controller
 
         $this->module->viewPath = '@common/modules/partners/views/frontend';
 
-        $actions = ['apartments', 'preview', 'create', 'update', 'delete '];
+        $actions = ['apartments', 'preview', 'create', 'update', 'delete', 'update-contact-status'];
 
         if (in_array($action->id, $actions)) {
             if (!Yii::$app->user->isGuest && Yii::$app->user->identity->profile->user_type == Profile::WANT_RENT) {
@@ -76,7 +76,7 @@ class OfficeController extends \frontend\components\Controller
                         'roles' => ['?', '@']
                     ],
                     [
-                        'actions' => ['apartments', 'create', 'update', 'calendar', 'buy-ads', 'preview', 'delete'],
+                        'actions' => ['apartments', 'create', 'update', 'calendar', 'buy-ads', 'preview', 'delete', 'update-contact-status'],
                         'allow' => true,
                         'roles' => ['@']
                     ],
@@ -288,6 +288,18 @@ class OfficeController extends \frontend\components\Controller
             'bathroom' => ApartmentModel::getBathroomArray(),
             'buildingType' => ApartmentModel::getBuildingTypeArray(),
         ]));
+    }
+
+    public function actionUpdateContactStatus($id, $status = true)
+    {
+        $apartment = models\form\ApartmentForm::findByIdThisUser($id);
+        if (!$apartment) {
+            throw new HttpException(404, 'Апартоментов с таким id несуществует');
+        }
+
+        $apartment->open_contacts = $status ? 1 : 0;
+        $apartment->scenario = 'user-update-contact-status';
+        $apartment->save(false);
     }
 
     /**

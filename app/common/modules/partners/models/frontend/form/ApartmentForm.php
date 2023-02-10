@@ -257,6 +257,10 @@ class ApartmentForm extends Apartment
     {
         parent::afterSave($insert, $changedAttributes);
 
+        if ($this->scenario === 'user-update-contact-status') {
+            return true;
+        }
+
         // Создание объявлений для апартаментов при создании
         if ($this->scenario === 'user-create') {
             // Сохраняем объявления

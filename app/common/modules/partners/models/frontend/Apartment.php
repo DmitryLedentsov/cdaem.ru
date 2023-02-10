@@ -3,6 +3,7 @@
 namespace common\modules\partners\models\frontend;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * @inheritdoc
@@ -117,4 +118,11 @@ class Apartment extends \common\modules\partners\models\Apartment
         return null;
     }
 
+    public function getRentTypesPrices() {
+        $rentTypes = \common\modules\partners\models\Advert::getPreparedRentTypesAdvertsListByApartment($this);
+
+        return array_map(function ($item) {
+            return $item['advert'] ? $item['advert']['price'] . ' ₽' : '-';
+        }, ArrayHelper::index($rentTypes, 'name'));
+    }
 }
