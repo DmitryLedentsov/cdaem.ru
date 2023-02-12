@@ -1,7 +1,7 @@
 {{ use('common/modules/partners/widgets/frontend/RentTypePriceInfo') }}
-
 {#<div class="advert-author-logo" style="background: url({{ model.apartment.user.profile.vip ? model.apartment.user.profile.avatar_url : '/basic-images/no-avatar.png' }}) center no-repeat;"></div>#}
 
+{{ use('nepster/faceviewer/Widget') }}
 {{ widget_widget({
     'template' : '<div class="advert-author">{face}</div>',
     'data' : {

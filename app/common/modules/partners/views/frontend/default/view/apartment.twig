@@ -19,33 +19,30 @@
             </h2>
             <div class="advert-cost">
                 {% set rentTypes = model.apartment.getRentTypesPrices() %}
-                <div class="advert-cost-info">
+                <div class="advert-cost-info" {% if(rentTypes['Квартира на час'] == '-') %}style="display: none"{% endif %}>
                     <object class="advert-icon">
                         <img src="/_new/images/icons/apartment/hour.svg" alt="hour">
                     </object>
                     <p>Час: <span>{{ rentTypes['Квартира на час'] }}</span></p>
                 </div>
-                <div class="advert-cost-info">
+                <div class="advert-cost-info" {% if(rentTypes['Квартира на ночь'] == '-') %}style="display: none"{% endif %}>
                     <object class="advert-icon">
                         <img src="/_new/images/icons/apartment/night.svg" alt="night">
                     </object>
                     <p>Ночь: <span>{{ rentTypes['Квартира на ночь'] }}</span></p>
                 </div>
-                <div class="advert-cost-info">
+                <div class="advert-cost-info" {% if(rentTypes['Квартира на сутки'] == '-') %}style="display: none"{% endif %}>
                     <object class="advert-icon">
                         <img src="/_new/images/icons/apartment/day.svg" alt="day">
                     </object>
                     <p>Сутки: <span>{{ rentTypes['Квартира на сутки'] }}</span></p>
                 </div>
-                <div class="advert-cost-info">
+                <div class="advert-cost-info" {% if(rentTypes['Квартира на месяц'] == '-') %}style="display: none"{% endif %}>
                     <object class="advert-icon">
                         <img src="/_new/images/icons/apartment/months.svg" alt="months">
                     </object>
                     <p>Месяц: <span>{{ rentTypes['Квартира на месяц'] }}</span></p>
                 </div>
-
-                {# ???????? #}
-
             </div>
             <div class="advert-list">
                 <ul>
@@ -71,21 +68,17 @@
                     <li><b>Ремонт:</b> {{ model.apartment.remontName }}</li>
 
                     <li class="repairs-icons">
-                        <img src="/_new/images/apartment/repairs/freezer.svg" alt="freezer">
-                        <img src="/_new/images/apartment/repairs/cooker.svg" alt="cooker">
-                        <img src="/_new/images/apartment/repairs/iron.svg" alt="iron">
-                        <img src="/_new/images/apartment/repairs/hair-dryer.svg" alt="hair-dryer">
-                        <img src="/_new/images/apartment/repairs/wifi.svg" alt="wifi">
-                        <img src="/_new/images/apartment/repairs/microwave.svg" alt="microwave">
-                        <img src="/_new/images/apartment/repairs/smart-tv.svg" alt="smart-tv">
-                        <img src="/_new/images/apartment/repairs/air-conditioner.svg" alt="air-conditioner">
-                        <img src="/_new/images/apartment/repairs/washing-machine.svg" alt="washing-machine">
-                        <img src="/_new/images/apartment/repairs/couch.svg" alt="couch">
-                        <img src="/_new/images/apartment/repairs/bed.svg" alt="bed">
-                        <img src="/_new/images/apartment/repairs/shower.svg" alt="shower">
-                        <img class="bath" src="/_new/images/apartment/repairs/bath.svg" alt="bath">
-                        <img src="/_new/images/apartment/repairs/jacuzzi.svg" alt="jacuzzi">
+                    {% if model.apartment.getFacilitiesByType() %}
+                        <div class="adv-card-services">
+                            {% for facility in model.apartment.getFacilitiesByType(false) %}
+                                <span class="adv-card-service-icon">
+                            <img src="/_new/images/account/services/{{ facility.alias }}.svg" title="{{ facility.name }}" alt="{{ facility.name }}" />
+                        </span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
                     </li>
+
                     <li>
                         <b>Информация от владельца:</b>
                         <div>
@@ -132,9 +125,9 @@
             {% endif %}
 
             <div class="advert-button">
-                {% if not model.apartment.open_contacts %}
+{#                {% if not model.apartment.open_contacts %}#}
                 <button class="btn btn-warning" data-toggle="modal" data-target="#modalBook">Забронировать</button>
-                {% endif %}
+{#                {% endif %}#}
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModalLong">Написать</button>
                 <button class="btn btn-warning" data-toggle="modal" data-target="#modalAppeal">Пожаловаться</button>

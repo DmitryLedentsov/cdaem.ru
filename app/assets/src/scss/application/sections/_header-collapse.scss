@@ -446,6 +446,10 @@
         margin: 0;
         cursor: pointer;
 
+        &-zero {
+            background-color: #39a939 !important;
+        }
+
         &-icon {
             width: 36px;
             height: 34px;
@@ -529,6 +533,10 @@
         flex-direction: column;
         align-items: flex-start;
         margin-top: 18px;
+
+        &-zero {
+            background-color: #39a939 !important;
+        }
 
         &-item {
             position: relative;
