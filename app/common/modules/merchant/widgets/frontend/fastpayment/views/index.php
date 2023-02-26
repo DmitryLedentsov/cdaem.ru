@@ -31,20 +31,38 @@ if (!empty($processService) && is_object($processService)) {
     echo $description;
 } ?>
 
-        <p>Стоимость услуги: <strong><?= Yii::$app->formatter->asCurrency($price, 'RUB') ?></strong></p>
+        <p style="margin-bottom: 19px;">Стоимость услуги: <strong><?= Yii::$app->formatter->asCurrency($price, 'RUB') ?></strong></p>
 
-        <?php if (!Yii::$app->user->isGuest): ?>
-            <div class="pay clearfix">
-                <div class="pay-account" data-type="pay-account">
-<!--                    <h3>Оплата с личного счета</h3>-->
-                    <a href="#">Оплата с личного счета</a>
-                </div>
-                <div class="pay-system" data-type="pay-system">
-<!--                    <h4>Все способы оплаты</h4>-->
-                    <a href="#">Все способы оплаты</a>
-                </div>
+        <?php if (Yii::$app->user->isGuest): ?>
+            <div class="form-group">
+                <?= Html::textInput('data[email]', null, [
+                    'class' => 'form-control',
+                    'placeholder' => 'Укажите Ваш E-mail',
+                    'style' => 'margin: 14px 0px;'
+                ]); ?>
             </div>
         <?php endif; ?>
+
+<!--        <p style="font-weight: bold; font-size: large;padding-bottom: 26px;">-->
+<!--            Выберите способ оплаты</p>-->
+        <h5 class="modal-pay-subtitle">Выберите способ оплаты</h5>
+
+        <div class="modal-pay-logo">
+            <label class="qiwi">
+                <img src="/_new/images/apartment/qiwi-logo.png" class="qiwi-logo" alt="qiwi-logo">
+                <input type="radio" class="logo-pay qiwi-pay" name="pay-way-logo">
+            </label>
+            <label class="yandex">
+                <img src="/_new/images/apartment/yandex-logo.png" class="yandex-logo" alt="yandex-logo">
+                <input type="radio" class="logo-pay yandex-pay" name="pay-way-logo">
+            </label>
+            <label class="visa">
+                <img src="/_new/images/apartment/visa-logo.png" class="visa-logo" alt="visa-logo">
+                <input type="radio" class="logo-pay visa-pay" name="pay-way-logo">
+            </label>
+        </div>
+
+        <h5 class="modal-pay-subtitle">Все способы оплаты</h5>
 
         <?php
         if (!empty($processService) && is_object($processService)) {
@@ -66,25 +84,18 @@ if (!empty($processService) && is_object($processService)) {
         ?>
 
         <div class="payment-way" data-target="pay-account">
-            <p><?= 'У Вас должна быть необходимая сумма на внутреннем счете.'; ?></p>
+            <!--<p><?/*= 'У Вас должна быть необходимая сумма на внутреннем счете.'; */?></p>
 
             <div class="text-center pay-button">
                 <input type="submit" value="Оплатить" class="btn btn-orange"/>
-            </div>
+            </div>-->
         </div>
-
-        <?php if (Yii::$app->user->isGuest): ?>
-            <div class="form-group">
-                <label class="control-label"><b>Укажите Ваш EMAIL:</b></label>
-                <?= Html::textInput('data[email]', null, ['class' => 'form-control']); ?>
-            </div>
-        <?php endif; ?>
 
         <div class="payment-way" <?php if (Yii::$app->user->isGuest): ?>style="display: block;"<?php endif; ?>
              data-target="pay-system">
 
 <!--            <h3>Выберите способ оплаты:</h3>-->
-            <p>Выберите способ оплаты:</p>
+<!--            <p>Выберите способ оплаты:</p>-->
 
             <div class="method">
                 <span class="payments-method-logo visa" data-system="BANKOCEAN3R"></span>
@@ -100,7 +111,7 @@ if (!empty($processService) && is_object($processService)) {
             </div>
             <div class="extra clearfix">
 <!--                <h4>Все способы оплаты:</h4>-->
-                <p>Все способы оплаты:</p>
+<!--                <p>Все способы оплаты:</p>-->
                 <?= PaymentSystemsList::widget([
                     'selectOptions' => [
                         'class' => 'form-control',
@@ -110,10 +121,37 @@ if (!empty($processService) && is_object($processService)) {
             </div>
             <br/>
 
-            <div class="text-center pay-button"
-                 <?php if (Yii::$app->user->isGuest): ?>style="display: block;"<?php endif; ?>>
-                <input type="submit" value="Оплатить" class="btn btn-orange"/>
+            <?php if (!Yii::$app->user->isGuest): ?>
+                <div class="pay clearfix">
+                    <div class="pay-account" data-type="pay-account">
+                        <a href="#">Оплата с личного счета</a>
+                    </div>
+                    <!--                <div class="pay-system" data-type="pay-system">
+                                        <a href="#">Все способы оплаты</a>
+                                    </div>-->
+                </div>
+            <?php endif; ?>
+
+
+            <div class="modal-footer modal-bottom">
+                <div class="modal-submit">
+                    <label>
+                        <input type="checkbox" class="submit" name="submit">
+                        <span class="modal-submit-text">
+                           Оплачивая вы соглашаетесь с правилами <br>
+                            <a href="">политики конфиденциальности</a>
+                        </span>
+                    </label>
+                </div>
+<!--                <button type="button" class="btn btn-warning btn-special">оплатить</button>-->
+
+                <div class="text-center pay-button"
+                     <?php if (Yii::$app->user->isGuest): ?>style="display: block;"<?php endif; ?>>
+                    <input type="submit" value="Оплатить" class="btn btn-orange"/>
+                </div>
+
             </div>
+
         </div>
 
     </div>
