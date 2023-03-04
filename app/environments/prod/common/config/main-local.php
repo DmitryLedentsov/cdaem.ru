@@ -12,6 +12,11 @@ return [
         'session' => [
             'cookieParams' => ['domain' => '.cdaem.ru'],
         ],
+        'robokassa' => [
+            'mrchLogin' => 'cdaemru',
+            'mrchPassword1' => '*******',
+            'mrchPassword2' => '*******',
+        ],
     ],
     'params' => [
         'siteDomain' => 'https://cdaem.ru',

@@ -24,6 +24,11 @@ return [
         'cache' => [
             'class' => \yii\caching\DummyCache::class,
         ],
+        'robokassa' => [
+            'mrchLogin' => 'cdaemru',
+            'mrchPassword1' => '*******',
+            'mrchPassword2' => '*******',
+        ],
     ],
     'params' => [
         'siteDomain' => 'http://cdaem.loc:84',
