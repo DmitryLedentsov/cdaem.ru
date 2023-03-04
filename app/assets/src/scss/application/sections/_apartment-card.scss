@@ -2,7 +2,8 @@
 
     &-card {
         overflow: hidden;
-        max-width: 215px;
+        //max-width: 215px;
+        max-width: 394px;
     }
 
     &-list {
@@ -35,6 +36,7 @@
         //border-bottom: none;
         padding: 0.8rem;
         margin: 4px;
+        min-height: 393px;
     }
 
     &-image-block {

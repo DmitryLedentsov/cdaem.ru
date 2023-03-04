@@ -509,6 +509,8 @@ class Apartment extends \yii\db\ActiveRecord
         ---------------------------------------------------------------------------------------------
         */
 
+        $this->open_contacts = 1;
+
         return true;
     }
 
@@ -544,5 +546,15 @@ class Apartment extends \yii\db\ActiveRecord
     public function getFacilitiesByType(bool $isExtra = false)
     {
         return $this->getFacilities()->andWhere(['is_extra' => $isExtra ? 1 : 0])->all();
+    }
+
+    public function getTimeToMetroInMinutes($transportType = 0) {
+        $transportSpeed = [ // км/ч
+            0 => 4,  // пешеход
+            1 => 30, // такси
+            2 => 20, // общественный
+        ];
+
+        return !$this->metro_walk ? '-' : round($this->metro_walk  / $transportSpeed[$transportType] * 60) . ' МИН.' ;
     }
 }

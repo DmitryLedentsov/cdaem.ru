@@ -6,8 +6,9 @@ $(function () {
 
     // Устанавливаем по умолчанию данные для оплаты с карт
     $(".payment-service select[name=system] option[value='BANKOCEAN2R']").prop('selected', true);
-    $('.payments-method-logo[data-system="BANKOCEAN2R"]').addClass('active');
+    // $('.payments-method-logo[data-system="BANKOCEAN2R"]').addClass('active');
 
+    $('.modal-pay-logo label.visa input')[0].checked = true;
 
     /**
      * Выбор способа оплаты
@@ -54,7 +55,7 @@ $(function () {
 
 
     /**
-     * Связь списка и основных значков
+     * Связь списка и основных значков (todo переделать но новые лого)
      */
     $(".payment-service select[name=system]").change(function () {
         var $this = $(this);

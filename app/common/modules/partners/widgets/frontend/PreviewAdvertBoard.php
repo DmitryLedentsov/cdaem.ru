@@ -111,19 +111,19 @@ class PreviewAdvertBoard extends Widget
                             <object class="apartment-metro-icon">
                                 <img src="/_new/images/apartment-card/pedestrian.svg" alt="pedestrian">
                             </object>
-                            <span>?? минут</span>
+                            <span>'. $this->advert->apartment->getTimeToMetroInMinutes(0).'</span>
                         </div>
                         <div class="apartment-metro-item">
                             <object class="apartment-metro-icon">
                                 <img src="/_new/images/apartment-card/car.svg" alt="car">
                             </object>
-                            <span>?? минут</span>
+                            <span>'. $this->advert->apartment->getTimeToMetroInMinutes(1).'</span>
                         </div>
                         <div class="apartment-metro-item">
                             <object class="apartment-metro-icon">
                                 <img src="/_new/images/apartment-card/bus.svg" alt="bus">
                             </object>
-                            <span>?? минут</span>
+                            <span>'. $this->advert->apartment->getTimeToMetroInMinutes(2).'</span>
                         </div>
                     </div>
                     <div class="apartment-location">'.$this->advert->apartment->city->name.', '.$this->advert->apartment->address.'</div>

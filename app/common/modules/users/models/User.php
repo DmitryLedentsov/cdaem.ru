@@ -3,7 +3,9 @@
 namespace common\modules\users\models;
 
 use Yii;
-
+use common\modules\partners\models\frontend\Reservation;
+use common\modules\partners\models\frontend\search\AdvertReservationSearch;
+use common\modules\messages\models\frontend\MailboxSearch;
 /**
  * @inheritdoc
  */
@@ -202,4 +204,34 @@ class User extends \nepster\users\models\User
 
         return false;
     }
+
+    /**
+     * Количество непрочитанных сообщений
+     * @return int
+     */
+    public function getUnreadMessageCount() {
+        $searchModel = new MailboxSearch();
+        $dataProvider = $searchModel->conversationsSearch("");
+        return count($dataProvider->models); // todo убирать прочитанные
+    }
+
+    /**
+     * Количество активных бронирований
+     * @return int
+     */
+    public function getActiveReservationCount() {
+        $searchModel = new AdvertReservationSearch(['scenario' => 'landlord']);
+        $dataProvider = $searchModel->landlordSearch();
+
+        return count($dataProvider->getModels());
+    }
+
+    /**
+     * Количество открытых заявок
+     * @return int
+     */
+    public function getActiveBidCount() {
+        return Reservation::globalOpenCount();
+    }
+
 }

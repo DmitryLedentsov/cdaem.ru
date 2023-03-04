@@ -8,10 +8,102 @@
     }
 
     .payment-way {
-        display: none;
+        //display: none;
 
         .pay-button {
-            display: none;
+            //display: none;
+        }
+    }
+
+    .payment-form {
+        .modal {
+            &-pay-logo {
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                flex-wrap: wrap;
+                margin-bottom: 1.5rem;
+
+                @include phone() {
+                    flex-direction: row;
+                }
+
+                @include tablet() {
+                    justify-content: space-between;
+                }
+
+                label {
+                    position: relative;
+                }
+            }
+
+            &-pay-subtitle {
+                font-weight: 600;
+                font-size: 1rem;
+                color: #000000;
+                margin-bottom: 1.2rem;
+
+                .modal-subtitle-contact {
+                    margin-bottom: 0.4rem;
+                }
+            }
+
+            &-bottom {
+                border: none;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+
+                @include tablet() {
+                    flex-direction: row;
+                    justify-content: space-between;
+                }
+
+                .btn {
+                    width: 178px;
+                    height: 47px;
+                }
+            }
+
+            &-submit {
+                display: flex;
+                margin-bottom: 1rem;
+
+                @include tablet() {
+                    margin: 0 1rem 0 0;
+                }
+
+                &-text {
+                    font-size: 0.8rem;
+                }
+
+                br {
+                    display: none;
+
+                    @include tablet() {
+                        display: block;
+                    }
+                }
+            }
+        }
+
+        .submit {
+            width: 17px;
+            height: 17px;
+            margin-right: 0.4rem;
+        }
+
+        .logo-pay {
+            //position: absolute;
+            //top: 0;
+            //right: 0;
+            cursor: pointer;
+            vertical-align: top;
+        }
+
+        .btn-orange {
+            background: #FFA801;
+            border-radius: 5px;
         }
     }
 }
