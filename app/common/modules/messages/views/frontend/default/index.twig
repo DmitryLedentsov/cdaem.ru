@@ -39,15 +39,12 @@
     {{ use ('chat/assets/ChatAsset') }}
     {{ register_chat_asset() }}
 
+    <div class="section-head section-head-between">
+        <div>Диалоги с пользователями</div>
+    </div>
+
     {% if dataProvider.models %}
         <div class="chat">
-
-            <div class="title">
-                <div class="clearfix text right">
-                    <div>Диалоги с пользователями</div>
-                </div>
-            </div>
-
             <div id="dialogs" class="no-border">
                 {% for model in dataProvider.models %}
                     <table class="message {{ this.renderDynamic('return \\common\\modules\\messages\\models\\Mailbox::find()->select("read")->where(["id" => '~model.id~'])->scalar() == 0 ? "unread" : "";') | raw }}"
