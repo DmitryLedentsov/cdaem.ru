@@ -205,8 +205,8 @@ class PreviewAdvertTmp extends Widget
                 </div>
             ';*/
         return '
-                <div class="apartment-card">
-                    <div class="apartment-item">
+                <div class="apartment-card-for-service">
+                    <div class="apartment-item-for-service">
                         <div class="apartment-image-block">
                             <div class="apartment-price apartment-prices">'.$this->advert->priceText.' / 24ч</div>
                             <img class="apartment-image" src="'.$this->advert->apartment->titleImageSrc.'" alt="advert-image">
