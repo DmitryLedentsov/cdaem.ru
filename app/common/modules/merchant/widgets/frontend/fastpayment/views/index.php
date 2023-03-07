@@ -27,7 +27,7 @@ if (!empty($processService) && is_object($processService)) {
 
     <div class="payment-service">
 
-        <?php if ($description) {
+<?php if ($description) {
     echo $description;
 } ?>
 
@@ -48,16 +48,23 @@ if (!empty($processService) && is_object($processService)) {
         <h5 class="modal-pay-subtitle">Выберите способ оплаты</h5>
 
         <div class="modal-pay-logo">
+            <?php if (!Yii::$app->user->isGuest): ?>
+                <label class="personal_account">
+                    <img src="/_new/images/apartment/personal-account-logo.png" class="personal-account-logo" alt="Личный счёт">
+                    <input type="radio" class="logo-pay qiwi-pay" name="pay-way-logo">
+                </label>
+            <?php endif; ?>
+
             <label class="qiwi">
-                <img src="/_new/images/apartment/qiwi-logo.png" class="qiwi-logo" alt="qiwi-logo">
+                <img src="/_new/images/apartment/qiwi-logo.png" class="qiwi-logo" alt="Qiwi">
                 <input type="radio" class="logo-pay qiwi-pay" name="pay-way-logo">
             </label>
             <label class="yandex">
-                <img src="/_new/images/apartment/yandex-logo.png" class="yandex-logo" alt="yandex-logo">
+                <img src="/_new/images/apartment/yandex-logo.png" class="yandex-logo" alt="YandexPay">
                 <input type="radio" class="logo-pay yandex-pay" name="pay-way-logo">
             </label>
             <label class="visa">
-                <img src="/_new/images/apartment/visa-logo.png" class="visa-logo" alt="visa-logo">
+                <img src="/_new/images/apartment/visa-logo.png" class="visa-logo" alt="Visa">
                 <input type="radio" class="logo-pay visa-pay" name="pay-way-logo">
             </label>
         </div>
@@ -91,12 +98,9 @@ if (!empty($processService) && is_object($processService)) {
             </div>-->
         </div>
 
+<!--        todo проверить этот блок. он похоже не для авторизованных, они тоже покупают сервисы? Где? -->
         <div class="payment-way" <?php if (Yii::$app->user->isGuest): ?>style="display: block;"<?php endif; ?>
              data-target="pay-system">
-
-<!--            <h3>Выберите способ оплаты:</h3>-->
-<!--            <p>Выберите способ оплаты:</p>-->
-
             <div class="method">
                 <span class="payments-method-logo visa" data-system="BANKOCEAN3R"></span>
                 <span class="payments-method-logo mastercard" data-system="BANKOCEAN3R"></span>
@@ -121,16 +125,15 @@ if (!empty($processService) && is_object($processService)) {
             </div>
             <br/>
 
+            <!--
             <?php if (!Yii::$app->user->isGuest): ?>
                 <div class="pay clearfix">
                     <div class="pay-account" data-type="pay-account">
                         <a href="#">Оплата с личного счета</a>
                     </div>
-                    <!--                <div class="pay-system" data-type="pay-system">
-                                        <a href="#">Все способы оплаты</a>
-                                    </div>-->
                 </div>
             <?php endif; ?>
+            -->
 
 
             <div class="modal-footer modal-bottom">
@@ -145,11 +148,14 @@ if (!empty($processService) && is_object($processService)) {
                 </div>
 <!--                <button type="button" class="btn btn-warning btn-special">оплатить</button>-->
 
-                <div class="text-center pay-button"
-                     <?php if (Yii::$app->user->isGuest): ?>style="display: block;"<?php endif; ?>>
+<!--                <div class="text-center pay-button"
+                     <?php /*if (Yii::$app->user->isGuest): */?>style="display: block;"<?php /*endif; */?>>
                     <input type="submit" value="Оплатить" class="btn btn-orange"/>
                 </div>
-
+-->
+                <div class="text-center pay-button" style="display: block;">
+                    <input type="submit" value="Оплатить" class="btn btn-orange"/>
+                </div>
             </div>
 
         </div>

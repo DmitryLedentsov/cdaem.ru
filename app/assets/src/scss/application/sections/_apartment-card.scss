@@ -1,9 +1,12 @@
 .apartment {
-
     &-card {
+        width: 381px !important;
+    }
+
+    &-card-for-service {
         overflow: hidden;
-        //max-width: 215px;
-        max-width: 394px;
+        max-width: 322px;
+        min-width: 323px;
     }
 
     &-list {
@@ -24,8 +27,16 @@
             }
         }
     }
-
     &-item {
+        background: #FFFFFF;
+        border: 0.13rem solid #E1E1E1;
+        border-radius: 0.3rem;
+        padding: 0.8rem;
+        margin: 4px 4px 0 4px;
+        height: 364px;
+    }
+
+    &-item-for-service {
         background: #FFFFFF;
         //background: #FF0000;
         //border: 0.065rem solid #E1E1E1;
@@ -35,8 +46,10 @@
         border-radius: 0.3rem;
         //border-bottom: none;
         padding: 0.8rem;
-        margin: 4px;
-        min-height: 393px;
+        //margin: 4px;
+        margin: 4px 4px 0 4px;
+        //min-height: 393px;
+        min-height: 257px;
     }
 
     &-image-block {
@@ -169,6 +182,9 @@
 
     &-buttons {
         display: flex;
+        width: 364px;
+        padding: 4px;
+        margin-top: -11px
     }
 
     &-button {

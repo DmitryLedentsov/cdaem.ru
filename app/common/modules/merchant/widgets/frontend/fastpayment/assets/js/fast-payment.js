@@ -15,13 +15,15 @@ $(function () {
      * Внутренний счет или платежная система
      */
     $(document).on('click', '.pay-account, .pay-system', function (event) {
+        console.log("on('click', '.pay-account, .pay-system'");
+
         event.preventDefault();
         var $this = $(this);
         var isActive = $this.hasClass('active');
         var type = $this.data('type');
 
-        $('.pay-button').hide();
-        $('.payment-way').hide();
+        // $('.pay-button').hide();
+        // $('.payment-way').hide();
         $('.pay-account, .pay-system').removeClass('active');
 
         $this.addClass('active');

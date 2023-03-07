@@ -101,7 +101,8 @@ class PreviewAdvertBoard extends Widget
         return ('<div class="apartment-card">
                 <div class="apartment-item">
                     <div class="apartment-image-block">
-                        <div class="apartment-price"><span class="apartment-price-value">'.$this->advert->priceText.'</span> / сут</div>
+                        <!--<div class="apartment-price"><span class="apartment-price-value">'.$this->advert->priceText.'</span> / сут</div>-->
+                        <div class="apartment-price apartment-price apartment-prices">'.$this->advert->priceText.' / 24ч</div>
                         '. $this->getPreviewTitleImage().'
                         <button class="apartment-phone"></button>
                     </div>
