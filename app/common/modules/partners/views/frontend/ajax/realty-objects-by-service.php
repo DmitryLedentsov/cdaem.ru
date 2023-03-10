@@ -87,7 +87,6 @@ use common\modules\partners\models\Service;
     </div>
 </div>
 
-
 <script>
     function initSelectPicker() {
         /**
@@ -145,12 +144,11 @@ use common\modules\partners\models\Service;
     }
 
     function refreshScripts() {
-
         $('.modal .bootstrap-select').remove();
 
-        if ($('.select-white').length) {
+        // if ($('.select-white').length) {
             // initSelectPicker(); //TypeError: $(...).selectpicker is not a function
-        }
+        // }
 
         if ($('.datepicker').length) {
             $('.datepicker').datetimepicker({
@@ -179,5 +177,4 @@ use common\modules\partners\models\Service;
     }
 
     refreshScripts();
-
 </script>

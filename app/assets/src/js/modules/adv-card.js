@@ -86,6 +86,7 @@
 
     // Показываем окно для приобретения сервиса
     $(document).on('click', '.adv-card-change-item, .service-item-link', function (e) {
+        console.log('.adv-card-change-item, .service-item-link');
         console.log(e);
         let serviceButton = $(e.target);
         let serviceName = serviceButton.data('serviceName');
@@ -119,7 +120,11 @@
             // console.log(winBody);
             $serviceData.service = serviceName; // переменная из office.js
 
-            let winBody = $('<div>').append(response);
+            let winBody = $('#service-modal-body');
+
+            winBody.length && winBody.remove();
+            winBody = $('<div>', { id: 'service-modal-body'}).append(response);
+
             $('body').append(winBody); // чтобы подтянуть значение $serviceData.serviceCaption
             window.openWindow($serviceData.serviceCaption, winBody, 'large');
         });
