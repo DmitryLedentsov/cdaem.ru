@@ -181,7 +181,8 @@ $(function () {
         }
 
         var $this = $(this);
-        if (!$preloadFlag) {
+        // if (!$preloadFlag) {
+        if (1) {
             $preloadFlag = true;
             $.post("/office/ajax/delete-top-slider/" + $this.data('advertisement_id'), function (response) {
                 if ($.isPlainObject(response) && 'status' in response) {
@@ -282,8 +283,13 @@ $(function () {
 
         console.log('serviceData', $serviceData);
 
-        if (!$preloadFlag) {
+        // if (!$preloadFlag) {
+        if (1) {
             // $preloadFlag = true;
+            console.log('post-запрос данных с расчётом цены');
+
+            console.log('токен перед отправкой', $("head > meta[name='csrf-token']").prop('content'));
+            $serviceData._csrf = $("head > meta[name='csrf-token']").prop('content');
 
             $.post("/partners/ajax/buy-service", $serviceData, function (response) {
                 $targetModal.find('.load').html(response);
@@ -292,9 +298,6 @@ $(function () {
                 if (!$targetModal.find('.alert-danger').length) {
                     $targetModal.find('.load').append('<div class="text-center"><span class="btn btn-primary btn-special" id="selected-advert-ago">Назад</span> &nbsp; <span class="btn btn-orange btn-special" id="selected-advert-pay">Оплатить</span></div>');
                 }
-            // }).complete(function () { // function complete not found
-            }).done(function () {
-                // $preloadFlag = false;
             });
         }
     });
@@ -322,20 +325,22 @@ $(function () {
      * Оплата услуги
      */
     $(document).on("click", '#selected-advert-pay', function (event) {
+        console.log('Нажали кнопку «Оплатить» на первой форме');
         event.preventDefault();
         var $this = $(this);
         var $targetModal = $('#modal-realty-objects-by-service');
 
         $serviceData.request = 'payment';
 
-        if (!$preloadFlag) {
-            $preloadFlag = true;
+        // if (!$preloadFlag) {
+        if (1) {
+            // $preloadFlag = true;
             $.post("/partners/ajax/buy-service", $serviceData, function (response) {
                 $targetModal.find('.load').html(response);
                 $targetModal.find('.modal-title').html('Оплата');
-            // }).complete(function () {
+                // }).complete(function () {
             }).done(function () {
-                $preloadFlag = false;
+                // $preloadFlag = false;
             });
         }
     });
@@ -369,6 +374,7 @@ $(function () {
  * @returns {boolean}
  */
 function openWindowByService($this) {
+    console.log('openWindowByService', $preloadFlag);
     if (!$preloadFlag) {
         $preloadFlag = true;
         $('#services .service').not($this).removeClass('active');
@@ -406,8 +412,31 @@ const getToken = async function () {
     return response.ok ? await response.text() : false;
 };
 
+function setCookie(name,value,days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days*24*60*60*1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+}
+const updateToken = async function() {
+    let token = await getToken();
+    // console.log({token}); // todo убрать
+
+    token && ($("head > meta[name='csrf-token']").prop('content', token));
+    // setCookie('_csrf', token, 1)
+
+    /*
+    console.log('ищем инпут для токена');
+    if ($('input[name=_csrf]').length) {
+        $('input[name=_csrf]').val(token);
+        console.log('установили токен');
+    }*/
+};
+
 setInterval(async () => {
     console.log('token update');
-    let token = await getToken();
-    token && ($("head > meta[name='csrf-token']").prop('content', token));
+    updateToken();
 }, 1000 * 60 * 60 * 15);

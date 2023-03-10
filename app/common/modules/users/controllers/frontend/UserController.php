@@ -157,6 +157,24 @@ class UserController extends Controller
      * @return string
      */
     public function actionGetCsrfToken() {
-        return Yii::$app->request->getCsrfToken();
+        $csrfToken = Yii::$app->request->getCsrfToken();
+        // $cookies = Yii::$app->response->cookies;
+
+        /*
+        $cookies->add(new \yii\web\Cookie([
+            'name' => '_csrf',
+            'value' => $csrfToken,
+        ]));
+        */
+        // Yii::$app->response->headers->add('Set-Cookie', '_csrf=' . $csrfToken . '; path=/');
+        // Yii::$app->response->headers->add('X-CSRF-Token', $csrfToken);
+        Yii::$app->response->headers->set('X-CSRF-Token', $csrfToken);
+
+        // $cookie = $cookies->get('_csrf');
+        // $val = \Yii::$app->getRequest()->getCookies()->getValue('_csrf');
+        // dd($csrfToken, $cookie);
+        // dd($csrfToken, $val);
+
+        return $csrfToken;
     }
 }
