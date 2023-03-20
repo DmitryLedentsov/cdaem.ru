@@ -412,31 +412,12 @@ const getToken = async function () {
     return response.ok ? await response.text() : false;
 };
 
-function setCookie(name,value,days) {
-    var expires = "";
-    if (days) {
-        var date = new Date();
-        date.setTime(date.getTime() + (days*24*60*60*1000));
-        expires = "; expires=" + date.toUTCString();
-    }
-    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
-}
 const updateToken = async function() {
     let token = await getToken();
-    // console.log({token}); // todo убрать
-
     token && ($("head > meta[name='csrf-token']").prop('content', token));
-    // setCookie('_csrf', token, 1)
-
-    /*
-    console.log('ищем инпут для токена');
-    if ($('input[name=_csrf]').length) {
-        $('input[name=_csrf]').val(token);
-        console.log('установили токен');
-    }*/
 };
 
 setInterval(async () => {
-    console.log('token update');
+    console.log('token update by timeout');
     updateToken();
 }, 1000 * 60 * 60 * 15);

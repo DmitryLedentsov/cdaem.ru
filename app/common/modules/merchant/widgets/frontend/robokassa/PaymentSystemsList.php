@@ -72,6 +72,17 @@ class PaymentSystemsList extends Widget
                 }
             }
         }
+
+        $this->_list[] = [
+            'code' => "pa-group",
+            'description' => "Другие способы оплаты",
+            'items' => [[
+                'label' => "PersonalAccount",
+                'name' => "Личный счёт",
+                'maxValue' => 40000,
+            ]],
+        ];
+
     }
 
     /**

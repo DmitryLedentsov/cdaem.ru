@@ -50,22 +50,22 @@ if (!empty($processService) && is_object($processService)) {
         <div class="modal-pay-logo">
             <?php if (!Yii::$app->user->isGuest): ?>
                 <label class="personal_account">
-                    <img src="/_new/images/apartment/personal-account-logo.png" class="personal-account-logo" alt="Личный счёт">
-                    <input type="radio" class="logo-pay qiwi-pay" name="pay-way-logo">
+                    <img src="/_new/images/apartment/personal-account-logo.png" class="personal-account-logo" alt="Личный счёт" style="width: 50px;">
+                    <input type="radio" class="logo-pay personal-account-pay" name="pay-way-logo" data-system="PersonalAccount">
                 </label>
             <?php endif; ?>
 
-            <label class="qiwi">
-                <img src="/_new/images/apartment/qiwi-logo.png" class="qiwi-logo" alt="Qiwi">
-                <input type="radio" class="logo-pay qiwi-pay" name="pay-way-logo">
+            <label class="visa">
+                <img src="/_new/images/apartment/mir-logo.png" class="visa-logo" alt="Visa" style="width: 180px;">
+                <input type="radio" class="logo-pay visa-pay" name="pay-way-logo" data-system="BankCardPSBR">
             </label>
             <label class="yandex">
                 <img src="/_new/images/apartment/yandex-logo.png" class="yandex-logo" alt="YandexPay">
-                <input type="radio" class="logo-pay yandex-pay" name="pay-way-logo">
+                <input type="radio" class="logo-pay yandex-pay" name="pay-way-logo" data-system="YandexPayPSBR">
             </label>
-            <label class="visa">
-                <img src="/_new/images/apartment/visa-logo.png" class="visa-logo" alt="Visa">
-                <input type="radio" class="logo-pay visa-pay" name="pay-way-logo">
+            <label class="qiwi">
+                <img src="/_new/images/apartment/qiwi-logo.png" class="qiwi-logo" alt="Qiwi">
+                <input type="radio" class="logo-pay qiwi-pay" name="pay-way-logo" data-system="">
             </label>
         </div>
 

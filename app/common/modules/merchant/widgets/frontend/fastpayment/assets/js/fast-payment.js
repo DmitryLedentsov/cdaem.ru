@@ -1,16 +1,20 @@
+var setFormDefaults;
+
 if (typeof $fast_payment_loaded !== 'undefined') {
     // console.log('not load app/common/modules/merchant/widgets/frontend/fastpayment/assets/js/fast-payment.js:9');
-
-    // todo дубль, выделить в отдельную часть
-    $(".payment-service select[name=system] option[value='BANKOCEAN2R']").prop('selected', true);
-    // $('.payments-method-logo[data-system="BANKOCEAN2R"]').addClass('active');
-
-    $('.modal-pay-logo label.visa input')[0].checked = true;
-
+    setFormDefaults();
 }
 else {
     // console.log('load  app/common/modules/merchant/widgets/frontend/fastpayment/assets/js/fast-payment.js:9');
     $fast_payment_loaded = true;
+
+    setFormDefaults = function () {
+        $(".payment-service select[name=system] option[value='BANKOCEAN2R']").prop('selected', true);
+        // $('.payments-method-logo[data-system="BANKOCEAN2R"]').addClass('active');
+
+        $('.modal-pay-logo label.visa input')[0].checked = true;
+
+    };
 
     $(function () {
 
@@ -19,15 +23,13 @@ else {
         // $('#modal-fast-payment').modal('show');
 
         // Устанавливаем по умолчанию данные для оплаты с карт
-        $(".payment-service select[name=system] option[value='BANKOCEAN2R']").prop('selected', true);
-        // $('.payments-method-logo[data-system="BANKOCEAN2R"]').addClass('active');
-
-        $('.modal-pay-logo label.visa input')[0].checked = true;
+        setFormDefaults();
 
         /**
          * Выбор способа оплаты
          * Внутренний счет или платежная система
          */
+        /*
         $(document).on('click', '.pay-account, .pay-system', function (event) {
             console.log("on('click', '.pay-account, .pay-system'");
 
@@ -53,14 +55,17 @@ else {
 
             $this.parents('.payment-service').find('input[name="system"]').val('');
         });
-
+        */
 
         /**
          * Выбор способа оплаты из самых популярных
          */
-        $(document).on('click', '.payments-method-logo', function (event) {
-            event.preventDefault();
+        // $(document).on('click', '.payments-method-logo', function (event) {
+        $(document).on('click', '.logo-pay', function (event) {
+            // event.preventDefault(); // не переключаются радиобатоны todo может вернуть индикацию классами?
             var $this = $(this);
+
+            console.log($this);
 
             $('.payments-method-logo').removeClass('active');
             $this.addClass('active');
@@ -71,12 +76,15 @@ else {
 
 
         /**
-         * Связь списка и основных значков (todo переделать но новые лого)
+         * Связь списка и основных значков
          */
         $(".payment-service select[name=system]").change(function () {
             var $this = $(this);
-            $('.payments-method-logo').removeClass('active');
-            $('.payments-method-logo[data-system="' + $this.val() + '"]').addClass('active');
+            console.log('select on change', $('.logo-pay[data-system="' + $this.val() + '"]'));
+            // $('.payments-method-logo').removeClass('active');
+            $('.logo-pay').removeClass('active');
+            // $('.payments-method-logo[data-system="' + $this.val() + '"]').addClass('active');
+            $('.logo-pay[data-system="' + $this.val() + '"]').prop('checked', true);
         });
 
 
