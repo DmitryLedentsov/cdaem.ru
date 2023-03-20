@@ -13,7 +13,8 @@ return [
             'cookieParams' => ['domain' => '.cdaem.ru'],
         ],
         'robokassa' => [
-            'mrchLogin' => 'cdaemru',
+            // 'mrchLogin' => 'cdaemru',
+            'mrchLogin' => 'devcdaem',
             'mrchPassword1' => '*******',
             'mrchPassword2' => '*******',
         ],

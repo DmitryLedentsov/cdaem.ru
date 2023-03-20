@@ -9,7 +9,7 @@ else {
     $fast_payment_loaded = true;
 
     setFormDefaults = function () {
-        $(".payment-service select[name=system] option[value='BANKOCEAN2R']").prop('selected', true);
+        $(".payment-service select[name=system] option[value='BankCardPSR']").prop('selected', true);
         // $('.payments-method-logo[data-system="BANKOCEAN2R"]').addClass('active');
 
         $('.modal-pay-logo label.visa input')[0].checked = true;

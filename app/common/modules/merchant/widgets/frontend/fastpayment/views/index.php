@@ -57,15 +57,15 @@ if (!empty($processService) && is_object($processService)) {
 
             <label class="visa">
                 <img src="/_new/images/apartment/mir-logo.png" class="visa-logo" alt="Visa" style="width: 180px;">
-                <input type="radio" class="logo-pay visa-pay" name="pay-way-logo" data-system="BankCardPSBR">
+                <input type="radio" class="logo-pay visa-pay" name="pay-way-logo" data-system="BankCardPSR">
             </label>
             <label class="yandex">
                 <img src="/_new/images/apartment/yandex-logo.png" class="yandex-logo" alt="YandexPay">
-                <input type="radio" class="logo-pay yandex-pay" name="pay-way-logo" data-system="YandexPayPSBR">
+                <input type="radio" class="logo-pay yandex-pay" name="pay-way-logo" data-system="YandexPayPSR">
             </label>
             <label class="qiwi">
                 <img src="/_new/images/apartment/qiwi-logo.png" class="qiwi-logo" alt="Qiwi">
-                <input type="radio" class="logo-pay qiwi-pay" name="pay-way-logo" data-system="">
+                <input type="radio" class="logo-pay qiwi-pay" name="pay-way-logo" data-system="Qiwi40PS">
             </label>
         </div>
 
