@@ -25,7 +25,8 @@ return [
             'class' => \yii\caching\DummyCache::class,
         ],
         'robokassa' => [
-            'mrchLogin' => 'cdaemru',
+            // 'mrchLogin' => 'cdaemru',
+            'mrchLogin' => 'devcdaem',
             'mrchPassword1' => '*******',
             'mrchPassword2' => '*******',
         ],
