@@ -87,6 +87,9 @@ use common\modules\partners\models\Service;
     </div>
 </div>
 
+<!-- todo придумать, где это подключить. без явного указания, эта функция слетает после первой оплаты -->
+<script src="/_new/vendor/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+
 <script>
     function initSelectPicker() {
         /**
