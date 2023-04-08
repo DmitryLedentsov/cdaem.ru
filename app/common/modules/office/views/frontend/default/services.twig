@@ -42,85 +42,134 @@
     </div>
     <!-- services list -->
     <div class="p-services">
-    <div class="services-list">
-        <div class="service-item">
-            <div class="service-item-wrapper">
-                <div class="service-item-head">
-                                <span class="service-item-head-icon">
-                                    <img src="/_new/images/account/icon-increase.svg" alt="">
-                                </span>
-                    <span class="service-item-name">{{ app.service.load(constant('SERVICE_ADVERT_IN_TOP', Service)).getName() }}</span>
+        <div class="services-list">
+            <div class="service-item">
+                <div class="service-item-img">
+                    <img src="/_new/images/account/raise-top.svg" alt="">
                 </div>
-                <div class="service-item-content">Увеличение просмотра вашего объявления в верхней части,
-                    специально отведенном месте для «ТОП»! Большое преимущество и экономия финансов.
+                <div class="service-item-base">
+                    <div class="service-item-head">
+                        <span class="service-item-name">{{ app.service.load(constant('SERVICE_ADVERT_IN_TOP', Service)).getName() }}</span>
+                    </div>
+                    <div class="service-item-content">
+                        Захватите внимание аудитории, разместив ваше объявление на эксклюзивном месте в ТОПе! 
+                        Получите колоссальное преимущество, увеличение просмотров и приток потенциальных клиентов. Это мощный инструмент для роста вашего бизнеса и выгодная экономия финансов. Не упустите возможность подняться на вершину рынка - действуйте прямо сейчас!
+                    </div>
+                    <div class="service-item-wrapper">
+                        <a class="service-item-link" data-service-name="{{ constant('SERVICE_ADVERT_IN_TOP', Service) }}">Выбрать объявления</a>
+                        <div class="service-item-status">
+                            <img src="/_new/images/account/service-paid.svg" alt="">
+                            Услуга оплачена
+                        </div>
+                    </div>
                 </div>
-                <a class="service-item-link" data-service-name="{{ constant('SERVICE_ADVERT_IN_TOP', Service) }}">Оплатить</a>
+            </div>        
+            <div class="service-item">
+                <div class="service-item-img">
+                    <img src="/_new/images/account/raise-position.svg" alt="">
+                </div>
+                <div class="service-item-base">
+                    <div class="service-item-head">
+                        <span class="service-item-name">{{ app.service.load(constant('SERVICE_ADVERT_TOP_POSITION', Service)).getName() }}</span>
+                    </div>
+                    <div class="service-item-content">
+                        Обеспечьте вашему объявлению лидирующую позицию, поднимая его на первое место! 
+                        Это гарантирует заметное увеличение посещаемости и привлечение целевой аудитории. 
+                        Используйте этот эффективный метод для расширения клиентской базы и ускорения роста вашего бизнеса. Не упустите шанс стать лидером среди конкурентов - действуйте смело и решительно!
+                    </div>
+                    <div class="service-item-wrapper">
+                        <a class="service-item-link" data-service-name="{{ constant('SERVICE_ADVERT_TOP_POSITION', Service) }}">Выбрать объявления</a>
+                        <div class="service-item-status">
+                            <img src="/_new/images/account/service-not-paid.svg" alt="">
+                            Услуга не оплачена
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="service-item">
+                <div class="service-item-img">
+                    <img src="/_new/images/account/safe-deal.svg" alt="">
+                </div>
+                <div class="service-item-base">
+                    <div class="service-item-head">
+                        <span class="service-item-name">{{ app.service.load(constant('SERVICE_APARTMENT_CONTACTS_OPEN', Service)).getName() }}</span>
+                    </div>
+                    <div class="service-item-content">
+                        Пользователь предпочитает сохранить анонимность, получая результативные бронирования через заявки или ожидая звонка. Уважаем приватность наших клиентов и гарантируем эффективное взаимодействие для вашего успеха. Обеспечиваем комфорт и уверенность в каждой сделке – присоединяйтесь к нам!
+                    </div>
+                    <div class="service-item-wrapper">
+                        <a class="service-item-link" data-service-name="{{ constant('SERVICE_APARTMENT_CONTACTS_OPEN', Service) }}">Выбрать объявления</a>
+                        <div class="service-item-status">
+                            <img src="/_new/images/account/service-not-paid.svg" alt="">
+                            Услуга не оплачена
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="service-item">
+                <div class="service-item-img">
+                    <img src="/_new/images/account/highlight-color.svg" alt="">
+                </div>
+                <div class="service-item-base">
+                    <div class="service-item-head">
+                        <span class="service-item-name">{{ app.service.load(constant('SERVICE_ADVERT_SELECTED', Service)).getName() }}</span>
+                    </div>
+                    <div class="service-item-content">
+                        Пользователь предпочитает сохранить анонимность, получая результативные бронирования через заявки или ожидая звонка. Уважаем приватность наших клиентов и гарантируем эффективное взаимодействие для вашего успеха. Обеспечиваем комфорт и уверенность в каждой сделке – присоединяйтесь к нам!
+                    </div>
+                    <div class="service-item-wrapper">
+                        <a class="service-item-link" data-service-name="{{ constant('SERVICE_ADVERT_SELECTED', Service) }}">Выбрать объявления</a>
+                        <div class="service-item-status">
+                            <img src="/_new/images/account/service-not-paid.svg" alt="">
+                            Услуга не оплачена
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="service-item">
+                <div class="service-item-img">
+                    <img src="/_new/images/account/service-section.svg" alt="">
+                </div>
+                <div class="service-item-base">
+                    <div class="service-item-head">
+                        <span class="service-item-name">{{ app.service.load(constant('SERVICE_ADVERTISING_IN_SECTION', Service)).getName() }}</span>
+                    </div>
+                    <div class="service-item-content">
+                        Размещайте рекламу ваших объектов по разделам для максимальной эффективности! 
+                        Получите огромное преимущество, сократив затраты и увеличив охват целевой аудитории. 
+                        Это идеальное решение для успешного продвижения и экономии бюджета. 
+                        Насладитесь преимуществами стратегического размещения и развивайте бизнес вместе с нами!
+                    </div>
+                    <div class="service-item-wrapper">
+                        <a class="service-item-link" data-service-name="{{ constant('SERVICE_ADVERTISING_IN_SECTION', Service) }}">Выбрать объявления</a>
+                        <div class="service-item-status">
+                            <img src="/_new/images/account/service-not-paid.svg" alt="">
+                            Услуга не оплачена
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="service-item">
+                <div class="service-item-img">
+                    <img src="/_new/images/account/service-slider.svg" alt="">
+                </div>
+                <div class="service-item-base">
+                    <div class="service-item-head">
+                        <span class="service-item-name">{{ app.service.load(constant('SERVICE_ADVERTISING_TOP_SLIDER', Service)).getName() }}</span>
+                    </div>
+                    <div class="service-item-content">
+                        Добейтесь мгновенных результатов, размещая объект на верхней бегущей строке! Уникальная возможность привлечь внимание и повысить интерес к вашему предложению. Расширьте клиентскую базу и настройте стабильный поток дохода. Начните действовать сегодня – присоединяйтесь к нам и покоряйте вершины успеха!
+                    </div>
+                    <div class="service-item-wrapper">
+                        <a class="service-item-link" data-service-name="{{ constant('SERVICE_ADVERTISING_TOP_SLIDER', Service) }}">Выбрать объявления</a>
+                        <div class="service-item-status">
+                            <img src="/_new/images/account/service-not-paid.svg" alt="">
+                            Услуга не оплачена
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="service-item">
-            <div class="service-item-wrapper">
-                <div class="service-item-head">
-                                    <span class="service-item-head-icon">
-                                        <img src="/_new/images/account/icon-increase.svg" alt="">
-                                    </span>
-                    <span class="service-item-name">{{ app.service.load(constant('SERVICE_ADVERT_TOP_POSITION', Service)).getName() }}</span>
-                </div>
-                <div class="service-item-content">
-                    Увеличение посещаемости объявления при поднятии на первое место.
-                </div>
-                <a class="service-item-link" data-service-name="{{ constant('SERVICE_ADVERT_TOP_POSITION', Service) }}">Оплатить</a>
-            </div>
-        </div>
-        <div class="service-item">
-            <div class="service-item-wrapper">
-                <div class="service-item-head">
-                    <span class="service-item-head-icon"><img src="/_new/images/account/icon-increase.svg" alt=""></span>
-                    <span class="service-item-name">{{ app.service.load(constant('SERVICE_APARTMENT_CONTACTS_OPEN', Service)).getName() }}</span>
-                </div>
-                <div class="service-item-content">Пользователь изъявил желание не открывать контакты, а
-                    получать результативные брони с помощью заявок или дождаться звонка!
-                </div>
-                <a class="service-item-link" data-service-name="{{ constant('SERVICE_APARTMENT_CONTACTS_OPEN', Service) }}">Оплатить</a>
-            </div>
-        </div>
-        <div class="service-item">
-            <div class="service-item-wrapper">
-                <div class="service-item-head">
-                    <span class="service-item-head-icon"><img src="/_new/images/account/icon-increase.svg" alt=""></span>
-                    <span class="service-item-name">{{ app.service.load(constant('SERVICE_ADVERT_SELECTED', Service)).getName() }}</span>
-                </div>
-                <div class="service-item-content">Дает возможность сильно выделяться и завлекать
-                    пользователей!
-                </div>
-                <a class="service-item-link" data-service-name="{{ constant('SERVICE_ADVERT_SELECTED', Service) }}">Оплатить</a>
-            </div>
-        </div>
-        <div class="service-item">
-            <div class="service-item-wrapper">
-                <div class="service-item-head">
-                    <span class="service-item-head-icon"><img src="/_new/images/account/icon-increase.svg" alt=""></span>
-                    <span class="service-item-name">{{ app.service.load(constant('SERVICE_ADVERTISING_IN_SECTION', Service)).getName() }}</span>
-                </div>
-                <div class="service-item-content">Возможность рекламировать свои объекты по разделам,
-                    огромное преимущество и экономия финансов
-                </div>
-                <a class="service-item-link" data-service-name="{{ constant('SERVICE_ADVERTISING_IN_SECTION', Service) }}">Оплатить</a>
-            </div>
-        </div>
-        <div class="service-item">
-            <div class="service-item-wrapper">
-                <div class="service-item-head">
-                    <span class="service-item-head-icon"><img src="/_new/images/account/icon-increase.svg" alt=""></span>
-                    <span class="service-item-name">{{ app.service.load(constant('SERVICE_ADVERTISING_TOP_SLIDER', Service)).getName() }}</span>
-                </div>
-                <div class="service-item-content">
-                    Быстрый результат размещения своего объекта, попасть
-                    верхнюю бегущею строку.
-                </div>
-                <a class="service-item-link" data-service-name="{{ constant('SERVICE_ADVERTISING_TOP_SLIDER', Service) }}">Оплатить</a>
-            </div>
-        </div>
-    </div>
     </div>
 
 {#
