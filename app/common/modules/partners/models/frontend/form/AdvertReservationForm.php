@@ -14,7 +14,7 @@ use common\modules\partners\models\frontend\AdvertReservation;
 class AdvertReservationForm extends AdvertReservation
 {
     /**
-     * Тата вьезда
+     * Дата вьезда
      * @var string
      */
     public $arrived_date;

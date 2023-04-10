@@ -23,4 +23,8 @@
         rows: 0,
     });
 
+    $('.book-button').click(() => {
+        console.log('book-button click');
+    });
+
 })(jQuery);
