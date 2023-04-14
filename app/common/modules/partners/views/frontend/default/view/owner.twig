@@ -69,14 +69,17 @@
                 </div>
             {% endif %}
             </div>
-            <div class="advert-author-contact">
+
+            <button class="advert-author-contact" data-toggle="modal" data-target="#modalOwnerContacts" type="button">
                 <img src="/_new/images/icons/apartment/contact.svg" alt="contact">
                 Связаться
-            </div>
+            </button>
+
         <div>
             
         </div>
-    </div>
+    </div> 
+    
 </div>
 
 
@@ -106,21 +109,75 @@
 {#{% endif %}#}
 
 
-<button data-toggle="modal" data-target="#modalOwnerContacts" type="button">
-    МОДАЛКА
-</button>
 
-
-<div class="modal modal-search fade" id="modalOwnerContacts" tabindex="-1" role="dialog" aria-labelledby="modalOwnerContactsLabel" aria-hidden="true">
+<div class="contact-popup modal modal-search fade show" id="modalOwnerContacts" tabindex="-1" role="dialog" aria-labelledby="modalOwnerContactsLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-window" role="document">
         <div class="modal-content modal-item">
             <div class="modal-header modal-top">
-                <h4 class="modal-title modal-header-title" id="modalOwnerContactsLabel">------</h4>
+                <h4 class="modal-title modal-header-title" id="modalOwnerContactsLabel">
+                    Выбрать удобный способ связи
+                </h4>
                 <button type="button" class="close btn-close" data-dismiss="modal" aria-label="Close">
                 </button>
             </div>
-            <div class="modal-body">
-              -------
+            <div class="modal-body contact-popup-body">
+                <div class="contact-popup-info">
+                    <div class="contact-popup-tels">
+                        <p class="contact-popup-name">
+                            Телефон для связи
+                        </p>
+                        <div class="contact-popup-list">
+                            <a class="contact-popup-link" href="+79009000000">
+                                <img src="/_new/images/icons/apartment/phone-orange.svg" alt="phone">
+                                +7 900 900 00 00
+                            </a>
+                            <a class="contact-popup-link" href="+79009000001">
+                                <img src="/_new/images/icons/apartment/phone-orange.svg" alt="phone">
+                                +7 900 900 00 01
+                            </a>
+                            <a class="contact-popup-link" href="+79009000002">
+                                <img src="/_new/images/icons/apartment/phone-orange.svg" alt="phone">
+                                +7 900 900 00 02
+                            </a>
+                        </div>
+                    </div>
+                    <div class="contact-popup-socials">
+                        <p class="contact-popup-name">
+                            Наши социальные сети
+                        </p>
+                        <div class="contact-popup-wrapper">
+                            <div class="contact-popup-list">
+                                <a class="contact-popup-link" href="">
+                                    <img src="/_new/images/icons/apartment/facebook.svg" alt="facebook">
+                                    cdaem.ru
+                                </a>
+                                <a class="contact-popup-link" href="">
+                                    <img src="/_new/images/icons/apartment/instagram.svg" alt="instagram">
+                                    cdaem.ru
+                                </a>
+                                <a class="contact-popup-link" href="">
+                                    <img src="/_new/images/icons/apartment/classmates.svg" alt="classmates">
+                                    cdaem.ru
+                                </a>
+                            </div>
+                            <div class="contact-popup-list">
+                                <a class="contact-popup-link" href="">
+                                    <img src="/_new/images/icons/apartment/vkontakte.svg" alt="vkontakte">
+                                    cdaem.ru
+                                </a>
+                                <a class="contact-popup-link" href="">
+                                    <img src="/_new/images/icons/apartment/telegram.svg" alt="telegram">
+                                    cdaem.ru
+                                </a>
+                                <a class="contact-popup-link" href="">
+                                    <img src="/_new/images/icons/apartment/whatsapp.svg" alt="whatsapp">
+                                    cdaem.ru
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a class="contact-popup-btn" href="#">Написать сообщение</a>
             </div>
         </div>
     </div>
