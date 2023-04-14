@@ -136,6 +136,91 @@
     </div>
 </section>
 
+<!-- Modal -->
+<div class="modal modal-book fade" id="modalBook" tabindex="-1" role="dialog" aria-labelledby="modalBookLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-window" role="document">
+        <div class="modal-content modal-item">
+            <div class="modal-header modal-top">
+                <h4 class="modal-title modal-header-title" id="modalBookLabel">Забронировать</h4>
+                <button type="button" class="close btn-close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <label class="modal-book-author-label">
+                    <input type="text" class="modal-book-author input-field" placeholder="Ф.И.О *">
+                </label>
+                <div class="modal-book-container">
+                    <div class="modal-select-container">
+                        <label>
+                            <input name="book_email" type="email" class="modal-book-email input-field" placeholder="E-mail *">
+                        </label>
+                        <label>
+                            <input name="phone" type="tel" class="modal-book-tel input-field" placeholder="Телефон *">
+                        </label>
+                        <label>
+                            <select name="advert_source" class="custom-select">
+                                <option value="" selected>Откуда узнали о нас</option>
+                                <option value="1">Поисковая система</option>
+                                <option value="2">Реклама в интернете</option>
+                                <option value="3">Газета или журнал</option>
+                                <option value="4">Порекомендовали знакомые</option>
+                                <option value="5">Другое</option>
+                            </select>
+                        </label>
+                        <label>
+                            <select name="people_count" class="custom-select">
+                                <option value="" selected>Количество человек *</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6+</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="modal-select-container">
+                        <div class="search-form-group" data-daterangepicker>
+                            <div class="search-form-filter search-form-filter-calendar daterangepicker-from">
+                                <span class="daterangepicker-text">
+                                    <span class="daterangepicker-month">2 января</span>,
+                                    <span class="daterangepicker-day">суббота</span>
+                                </span>
+                                <input name="book_date_from" type="hidden" value="">
+                            </div>
+                            <div class="search-form-filter search-form-filter-calendar daterangepicker-to">
+                                <span class="daterangepicker-text">
+                                    <span class="daterangepicker-month">15 января</span>,
+                                    <span class="daterangepicker-day">суббота</span>
+                                </span>
+                                <input name="book_date_to" type="hidden" value="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h5 class="modal-subtitle">Дополнительная информация</h5>
+                <label class="modal-book-label">
+                    <textarea class="modal-textarea" placeholder="Текст"></textarea>
+                </label>
+            </div>
+            <div class="modal-footer modal-bottom">
+                <div class="modal-submit">
+                    <label>
+                        <input type="checkbox" class="submit" name="submit">
+                    </label>
+                    <p class="modal-submit-text">
+                        Нажимая “готово” вы соглашаетесь <br> с правилами политики
+                        <a href="">конфиденциальности</a>.
+                    </p>
+                </div>
+                <button type="button" class="btn btn-warning btn-special book-button">Забронировать</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 {% include('@common/modules/partners/views/frontend/default/view/offers.twig') %}
 
 {{ use('common/modules/reviews/widgets/frontend/ShowReviews') }}

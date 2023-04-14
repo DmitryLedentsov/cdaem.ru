@@ -10,7 +10,7 @@ class LegalPerson extends \common\modules\users\models\LegalPerson
     /**
      * @inheritdoc
      */
-    public function rules()
+    public function rules() : array
     {
         return [
             ['name', 'trim'],
