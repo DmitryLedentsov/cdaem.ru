@@ -3,32 +3,51 @@
 
 {{ use('nepster/faceviewer/Widget') }}
 {{ widget_widget({
-    'template' : '<div class="advert-author">{face}</div>',
+    'template' : '<div class="advert-avatar">{face}</div>',
     'data' : {
         avatar_url: app.user.identity.avatar_url
     }
 }) }}
 
 <div class="advert-author-info">
-    <div class="advert-author-info-item"><b>Владелец:</b>
-        <span class="advert-info-price">
+    <div class="advert-author-info-item">
+        <div class="advert-author-name">
+            Валерий Губин Алексеевич
+        </div>
+        <div class="advert-author-ad-number">
+            Объявление №1488
+        </div>
+    </div>
+    <div class="advert-author-info-item">
+        <div class="advert-author-info-owner">Владелец |</div>
+        <span class="advert-info-online">
+            {% if model.apartment.user.isOnline() %}
+                Сейчас онлайн
+            {% else %}
+                <span style="color: #333333">
+                    Последний визит {{ DateTimeHelper.diffAgoPeriodRound(model.apartment.user.time_activity) }}
+                </span>
+            {% endif %}
+        </span>
+        {# <span class="advert-info-price">
             {{ rent_type_price_info_widget({
                 'adverts' : model.apartment.adverts,
                 'advert' : model,
                 'isText': true
             }) }}
-        </span>
+        </span> #}
     </div>
-    <div class="advert-author-info-item">
-{#        {% if model.apartment.user.profile.vip %}#}
+    {# <div class="advert-author-info-item">
+       {% if model.apartment.user.profile.vip %}
             {{ UserHelper.getUserName(model.apartment.user) }}
-{#        {% endif %}#}
-    </div>
+       {% endif %}
+    </div> #}
     <div class="advert-author-info-item">
-        <div>
             {# if model.apartment.open_contacts #}
+            <div class="advert-author-info-phone">
             {% if true %}
-                <b>{{ UserHelper.formatPhone(model.apartment.user.phone) }}</b>
+                <img src="/_new/images/icons/apartment/phone-orange.svg" alt="phone">
+                <span>{{ UserHelper.formatPhone(model.apartment.user.phone) }}</span>
                 {#            <div class="text-center">#}
                 {#                <span class="btn btn-primary btn-special" onclick="writeMessage({{ model.apartment.user.id }})">#}
                 {#                    Сообщение#}
@@ -49,17 +68,13 @@
                     </a>
                 </div>
             {% endif %}
-        </div>
+            </div>
+            <div class="advert-author-contact">
+                <img src="/_new/images/icons/apartment/contact.svg" alt="contact">
+                Связаться
+            </div>
         <div>
-            <span class="advert-info-online">
-                {% if model.apartment.user.isOnline() %}
-                    Сейчас онлайн
-                {% else %}
-                    <span style="color: silver">
-                        Последний визит {{ DateTimeHelper.diffAgoPeriodRound(model.apartment.user.time_activity) }}
-                    </span>
-                {% endif %}
-            </span>
+            
         </div>
     </div>
 </div>

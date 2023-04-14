@@ -33,8 +33,22 @@ class AdvertisingAdvert extends \yii\base\Widget
             foreach ($advertisement as $advert) {
                 $result .= '
                 <div class="advertisement-card">
-                    <a href="' . Url::toRoute(['/partners/default/view', 'id' => $advert->advert_id, 'city' => $advert->advert->apartment->city->name_eng]) . '">
+                    <div class="advertisement-price">
+                        <span>1500₽</span> / сут
+                    </div>
+                    <a class="advertisement-img" href="' . Url::toRoute(['/partners/default/view', 'id' => $advert->advert_id, 'city' => $advert->advert->apartment->city->name_eng]) . '">
                         <img src="' . $advert->advert->apartment->titleImageSrc . '" alt="advertisement-image">
+                    </a>
+                    
+                    <div class="advertisement-address">
+                        Москва, Большая полянка 28
+                    </div>   
+                        <div class="advertisement-metro">
+                        Метро: Юго-Западная
+                    </div>    
+                    
+                    <a class="advertisement-link" href="' . Url::toRoute(['/partners/default/view', 'id' => $advert->advert_id, 'city' => $advert->advert->apartment->city->name_eng]) . '">
+                        Посмотреть предложение
                     </a>
                 </div>
                 ';
