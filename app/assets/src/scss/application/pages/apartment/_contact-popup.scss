@@ -55,9 +55,15 @@
         gap: 5px;
 
         font-weight: 500;
-        font-size: 14px;
-        line-height: 17px;
+        font-size: 1rem;
+        line-height: 1.1;
         color: #171717;
+
+        transition: color 200ms ease-in;
+        
+        &:hover {
+            color: #FFA801;
+        }
 
         img {
             display: block;
