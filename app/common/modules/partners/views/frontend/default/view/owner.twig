@@ -89,3 +89,24 @@
 {#        <p><b>Twitter:</b> {{ model.apartment.user.profile.twitter ?: 'Нет данных' }}</p>#}
 {#    </div>#}
 {#{% endif %}#}
+
+
+<button data-toggle="modal" data-target="#modalOwnerContacts" type="button">
+    МОДАЛКА
+</button>
+
+
+<div class="modal modal-search fade" id="modalOwnerContacts" tabindex="-1" role="dialog" aria-labelledby="modalOwnerContactsLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-window" role="document">
+        <div class="modal-content modal-item">
+            <div class="modal-header modal-top">
+                <h4 class="modal-title modal-header-title" id="modalOwnerContactsLabel">------</h4>
+                <button type="button" class="close btn-close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+              -------
+            </div>
+        </div>
+    </div>
+</div>
