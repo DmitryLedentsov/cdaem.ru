@@ -48,20 +48,6 @@
     {{ use('common/modules/partners/assets/frontend/AdvertisementAsset') }}
     {{ register_advertisement_asset() }}
 
-    {# Старые ассеты #}
-
-    {#{{ use('frontend/themes/basic/assets/AdvertisementAsset') }}
-    {{ register_Advertisement_asset() }}#}
-
-
-    {#{{ use('frontend/themes/basic/assets/SliderAsset') }}
-    {{ register_Slider_asset() }}#}
-
-    {#{{ use('frontend/themes/basic/assets/AppAsset') }}
-    {{ register_App_asset() }}#}
-
-
-
     <div class="buy-ads container-certain primary text">
 
         <h3 class="buy-ads-title">Разместить рекламное объявление</h3>
@@ -70,7 +56,7 @@
             Для того, чтобы разместить рекламное объявление, Вам необходимо заполнить данную форму и оплатить
             <b>{{ app.getModule('partners').priceAdvertisement }} рублей</b>. <br/>
             Всего в рекламном блоке доступно <b>{{ app.getModule('partners').amountAdvertisements }} объявлений</b>, Вы
-            становитесь на первое место и каждый следеющий блок будет смещать 
+            становитесь на первое место и каждый следующий блок будет смещать
             <br/><br/>
             Ваше объявление на одну позицию,
             пока оно полностью не исчезнет. Вы можете приобретать неограниченное кол-во рекламных объявлений.
@@ -117,7 +103,7 @@
                     <p>
                         После заполнения формы Вам необходимо оплатить необходимую сумму, это можно сделать мгновенно
                         списав средства со своего внутреннего счета или оплатить через платежную систему.
-                        После оплаты рекламное объявление будет добавленно в течении нескольких секунд.
+                        После оплаты рекламное объявление будет добавлено в течение нескольких секунд.
                     </p>
                 </div>
 

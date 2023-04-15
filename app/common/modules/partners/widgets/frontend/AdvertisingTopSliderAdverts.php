@@ -8,16 +8,9 @@ use yii\helpers\Html;
 use common\modules\users\models\Profile;
 use common\modules\partners\models\frontend\AdvertisementSlider;
 
-/**
- * Class AdvertisingTopSliderAdverts
- * @package common\modules\partners\widgets\frontend
- */
 class AdvertisingTopSliderAdverts extends Widget
 {
-    /**
-     * @var array
-     */
-    private $_advertisements;
+    private array $_advertisements = [];
 
     /**
      * @inheritdoc

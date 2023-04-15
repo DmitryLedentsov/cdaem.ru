@@ -4,18 +4,14 @@ namespace common\modules\partners\widgets\frontend;
 
 use Yii;
 use yii\helpers\Url;
-use yii\helpers\ArrayHelper;
 use common\modules\partners\models\frontend\Advertisement;
 
-/**
- * Class AdvertisingAdvert
- */
 class AdvertisingAdvert extends \yii\base\Widget
 {
     /**
      * @inheritdoc
      */
-    public function init()
+    public function init(): void
     {
         parent::init();
     }
@@ -23,31 +19,29 @@ class AdvertisingAdvert extends \yii\base\Widget
     /**
      * @inheritdoc
      */
-    public function run()
+    public function run(): string
     {
-        $advertisement = Advertisement::getRelevantAds(Yii::$app->request->cityId);
+        $advertisements = Advertisement::getRelevantAds(Yii::$app->request->cityId);
 
-        if ($advertisement) {
+        if ($advertisements) {
             $result = '';
 
-            foreach ($advertisement as $advert) {
+            foreach ($advertisements as $advertisement) {
                 $result .= '
                 <div class="advertisement-card">
                     <div class="advertisement-price">
-                        <span>1500₽</span> / сут
+                        <span>'. $advertisement->advert->priceText .'</span> / '. $advertisement->advert->rentType->short_name .'
                     </div>
-                    <a class="advertisement-img" href="' . Url::toRoute(['/partners/default/view', 'id' => $advert->advert_id, 'city' => $advert->advert->apartment->city->name_eng]) . '">
-                        <img src="' . $advert->advert->apartment->titleImageSrc . '" alt="advertisement-image">
+                    <a class="advertisement-img" href="' . Url::toRoute(['/partners/default/view', 'id' => $advertisement->advert_id, 'city' => $advertisement->advert->apartment->city->name_eng]) . '">
+                        <img src="' . $advertisement->advert->apartment->titleImageSrc . '" alt="advertisement-image">
                     </a>
-                    
                     <div class="advertisement-address">
-                        Москва, Большая полянка 28
+                        '.$advertisement->advert->apartment->city->name.', '.$advertisement->advert->apartment->address.'
                     </div>   
-                        <div class="advertisement-metro">
-                        Метро: Юго-Западная
-                    </div>    
-                    
-                    <a class="advertisement-link" href="' . Url::toRoute(['/partners/default/view', 'id' => $advert->advert_id, 'city' => $advert->advert->apartment->city->name_eng]) . '">
+                    <!--<div class="advertisement-metro">
+                        Метро: ---
+                    </div>-->
+                    <a class="advertisement-link" href="' . Url::toRoute(['/partners/default/view', 'id' => $advertisement->advert_id, 'city' => $advertisement->advert->apartment->city->name_eng]) . '">
                         Посмотреть предложение
                     </a>
                 </div>
@@ -57,15 +51,15 @@ class AdvertisingAdvert extends \yii\base\Widget
             return ('
             <section class="advertisement">
                 <div class="container-fluid">
-                    <h2 class="section-title">Реклама от владельца</h2>
+                    <h2 class="section-title">Реклама от владельцев</h2>
                     <div class="advertisement-list">
-            
-                    ' . $result . '
-                     
+                        ' . $result . '
                     </div>
                 </div>
             </section>
             ');
         }
+
+        return '';
     }
 }

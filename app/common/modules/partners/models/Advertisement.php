@@ -51,6 +51,7 @@ class Advertisement extends \yii\db\ActiveRecord
             ->joinWith([
                 'advert' => function ($query) {
                     $query->joinWith([
+                        'rentType',
                         'apartment' => function ($query) {
                             $query
                                 ->permitted()

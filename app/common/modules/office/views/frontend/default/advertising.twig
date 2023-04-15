@@ -57,10 +57,7 @@
         <h2>Мои рекламные объявления</h2>
     </div>
 
-
-{#    <h4>Мои рекламные объявления</h4>#}
     {% for advertisement in dataProvider.getModels() %}
-
 
         <div class="apartment-item clearfix {% if (advertisement.visible == 0) %}invisible{% endif %}">
             <div class="apartment-description">

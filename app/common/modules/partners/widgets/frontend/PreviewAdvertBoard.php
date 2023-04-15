@@ -8,7 +8,6 @@ use yii\helpers\Html;
 
 /**
  * Виджет отображает блок объявления на доске объявлений
- * @package common\modules\partners\widgets\frontend
  */
 class PreviewAdvertBoard extends Widget
 {
@@ -50,7 +49,7 @@ class PreviewAdvertBoard extends Widget
             }
 
             $active = '';
-            if ($this->advert['rent_type'] == $advert['rent_type']) {
+            if (mb_strtolower($this->advert['rent_type']) === mb_strtolower($advert['rent_type'])) {
                 $active = ' active';
             }
 

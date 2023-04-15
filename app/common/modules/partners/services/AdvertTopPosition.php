@@ -61,7 +61,7 @@ final class AdvertTopPosition extends \yii\base\BaseObject implements ServiceInt
      */
     public function getName()
     {
-        return 'Поднять позицию объявления';
+        return 'Поднять объявления вверх';
     }
 
     /**

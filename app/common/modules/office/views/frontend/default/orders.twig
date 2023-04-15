@@ -43,9 +43,6 @@
 
 {% block content %}
 
-    {{ use('common/modules/office/assets/frontend/OrdersAsset') }}
-    {{ register_orders_asset() }}
-
     {% if app.session.hasFlash('info') %}
         <div class="alert alert-info" role="alert">
             {{ app.session.getFlash('info') | raw }}
