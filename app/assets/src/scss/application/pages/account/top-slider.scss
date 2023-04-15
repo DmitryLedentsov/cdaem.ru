@@ -1,29 +1,6 @@
-.p-buy-ads {
-    .main-account {
-        background: #FFFFFF;
+.p-top-slider {
 
-        &-inner {
-            padding: 0;
-            background-color: transparent;
-        }
-    }
-
-    .buy-ads { 
-        &-title {
-            color: #151515;
-            font-size: 25px;
-            line-height: 30px;
-
-            @include tablet() {
-                font-size: 32px;
-                line-height: 41px;
-            }
-
-            @include tablet-land() {
-                font-size: 42px;
-                line-height: 51px;
-            }
-        }
+    .top-slider {
 
         &-descr {
             margin-bottom: 23px;

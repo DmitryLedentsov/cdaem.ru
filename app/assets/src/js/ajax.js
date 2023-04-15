@@ -82,7 +82,7 @@ $(function () {
                 }
             });
         } else {
-            if (typeof response.responseJSON == 'undefined') {
+            if (typeof response.responseJSON === 'undefined') {
                 window.openWindow(translations.error_title, translations.error_description);
             } else {
                 window.openWindow(translations.error_title, response.responseJSON.message);

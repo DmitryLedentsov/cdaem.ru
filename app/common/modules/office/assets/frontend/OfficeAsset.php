@@ -12,7 +12,6 @@ class OfficeAsset extends AssetBundle
 
     public $css = [
         '/_new/css/interfaces.min.css',
-        '/_new/css/account/home.min.css',
         '/_new/css/pages/account/purchases.min.css',
         '/_new/css/pages/account/services.min.css',
     ];

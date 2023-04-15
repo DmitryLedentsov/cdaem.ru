@@ -76,7 +76,7 @@ class OfficeController extends \frontend\components\Controller
                         'roles' => ['?', '@']
                     ],
                     [
-                        'actions' => ['apartments', 'create', 'update', 'calendar', 'buy-ads', 'preview', 'delete', 'update-contact-status'],
+                        'actions' => ['apartments', 'create', 'update', 'calendar', 'top-slider', 'preview', 'delete', 'update-contact-status'],
                         'allow' => true,
                         'roles' => ['@']
                     ],

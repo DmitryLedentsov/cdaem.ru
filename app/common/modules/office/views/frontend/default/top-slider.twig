@@ -46,10 +46,6 @@
 
     {{ use('common/modules/partners/widgets/frontend/PreviewAdvertTmp') }}
 
-    {# подключаем для:
-        fast_payment_widget из старого файла ui.js
-        scrollToFixed
-    #}
     {{ use('common/modules/partners/assets/frontend/AdvertisementAsset') }}
     {{ register_advertisement_asset() }}
 
@@ -74,7 +70,9 @@
                             <p class="color-danger">Не оплачено</p>
                             <br/>
                             <p><span class="fast_payment_button"
-                                     onclick="fast_payment_widget('{{ constant('SERVICE_ADVERTISING_TOP_SLIDER', Service) }}', {'advertisement_id' : {{ advertisement.advertisement_id }} })">Оплатить</span>
+                                     onclick="fast_payment_widget('{{ constant('SERVICE_ADVERTISING_TOP_SLIDER', Service) }}', {'advertisement_id' : {{ advertisement.advertisement_id }} })">
+                                    Оплатить
+                                </span>
                             </p>
                         {% else %}
                             <p class="color-success">Оплачено</p>
@@ -84,19 +82,22 @@
                     <div class="adverts-list">
                         {% if advertisement.type == constant('TYPE_RENT', advertisement) %}
                             <p>
-                        <span class="advert-name">
-                            <a href="{{ path({0:'/partners/default/view', 'id' : advertisement.advert.advert_id, 'city' : advertisement.advert.apartment.city.name_eng}) }}">{{ advertisement.advert.rentType.name }}</a>
-                            <span class="{{ advert.top ? 'top color-success' : 'top color-danger' }}">{{ advertisement.advert.top ? 'В топе' : 'Не в топе' }}</span>
-                        </span>
+                                <span class="advert-name">
+                                    <a href="{{ path({0:'/partners/default/view', 'id' : advertisement.advert.advert_id, 'city' : advertisement.advert.apartment.city.name_eng}) }}">
+                                        {{ advertisement.advert.rentType.name }}
+                                    </a>
+                                    <span class="{{ advert.top ? 'top color-success' : 'top color-danger' }}">
+                                        {{ advertisement.advert.top ? 'В топе' : 'Не в топе' }}
+                                    </span>
+                                </span>
                                 <span class="color-info">
-
-                            {% if advertisement.advert.real_position %}
-                                {{ advertisement.advert.real_position }}
-                            {% else %}
-                                <span title="Расчет позиции">Р</span>
-                            {% endif %}
-                            позиция
-                        </span>
+                                    {% if advertisement.advert.real_position %}
+                                        {{ advertisement.advert.real_position }}
+                                    {% else %}
+                                        <span title="Расчет позиции">Р</span>
+                                    {% endif %}
+                                    позиция
+                                </span>
                             </p>
                         {% endif %}
 
@@ -106,7 +107,11 @@
                         </p>
 
                         <p>
-                            {% if advertisement.more_info %}{{ advertisement.more_info }}{% else %}Нет дополнительной информации{% endif %}
+                            {% if advertisement.more_info %}
+                                {{ advertisement.more_info }}
+                            {% else %}
+                                Нет дополнительной информации
+                            {% endif %}
                         </p>
 
                         <p>
@@ -144,7 +149,7 @@
     {% else %}
         <div class="alert alert-info mt-4">
             Вы не рекламировали ни одного объявления.
-            <a href="{{ path(['/office/default/buy-ads']) }}">Добавить рекламное объявление</a>.
+            <a href="{{ path(['/office/default/top-slider-buy']) }}">Добавить рекламное объявление</a>.
         </div>
     {% endfor %}
 

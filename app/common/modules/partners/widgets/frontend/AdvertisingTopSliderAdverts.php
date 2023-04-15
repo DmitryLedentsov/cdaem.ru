@@ -77,7 +77,7 @@ class AdvertisingTopSliderAdverts extends Widget
                 <section class="recommendation">
                     <div class="container-fluid">
                         <h2 class="section-title">
-                            ' . Html::a('Попасть сюда', ['/office/default/buy-ads']) . '
+                            ' . Html::a('Попасть сюда', ['/office/default/top-slider']) . '
                         </h2>
                         <div class="recommendation-list">
                             ' . $advertisements . '

@@ -88,8 +88,8 @@ module.exports = function (grunt) {
                         '../apps/frontend/themes/basic/assets/js_dev/partners.js'
                     ],
 
-                    '../apps/frontend/themes/basic/assets/js/add-in-slider.js': [
-                        '../apps/frontend/themes/basic/assets/js_dev/add-in-slider.js'
+                    '../apps/frontend/themes/basic/assets/js/top-slider.js': [
+                        '../apps/frontend/themes/basic/assets/js_dev/top-slider.js'
                     ],
 
                     '../apps/frontend/themes/basic/assets/js/reviews.js': [

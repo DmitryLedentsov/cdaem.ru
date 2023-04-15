@@ -34,7 +34,7 @@
                             покупки<i class="fa fa-shopping-cart"
                                       style="color: #f4ad49;position: absolute;right: 25px;top: 7px;"></i></a>
                         <a style="width:100%;position: relative;"
-                           href="{{ path(['/office/default/top-slider']) }}" {{ app.request.pathInfo == 'office/top-slider-history' ? 'class="active"' : '' }}>Бегущая
+                           href="{{ path(['/office/default/top-slider']) }}" {{ app.request.pathInfo == 'office/top-slider' ? 'class="active"' : '' }}>Бегущая
                             строка<i class="fa fa-image"
                                      style="color: #f4ad49;position: absolute;right: 25px;top: 7px;"></i></a>
                         <a style="width:100%;position: relative;" href="{{ path(['/partners/default/apartments']) }}"
@@ -68,7 +68,7 @@
             {% endif %}
         {% else %}
             <!--<li><a href="{{ url.previous('region') }}" class="no-board">Вернуться к поиску</a></li>-->
-            <!-- <li {{ app.request.pathInfo == 'office/top-slider-history' ? 'class="active"' : '' }}><a href="{{ path(['/office/default/top-slider']) }}">Моя реклама</a></li>-->
+            <!-- <li {{ app.request.pathInfo == 'office/top-slider' ? 'class="active"' : '' }}><a href="{{ path(['/office/default/top-slider']) }}">Моя реклама</a></li>-->
         {% endif %}
         <a style="width:100%;position: relative;display:block;padding-left: 20px;font-size: 20px;color: white;text-decoration: none;"
            href="{{ path(['/partners/reservation/index']) }}" class="no-board">Быстро снять<i class="fa fa-bed"
@@ -184,7 +184,7 @@
                     {% endif %}
                 {% else %}
                     <!--<li><a href="{{ url.previous('region') }}" class="no-board">Вернуться к поиску</a></li>-->
-                    <!-- <li {{ app.request.pathInfo == 'office/top-slider-history' ? 'class="active"' : '' }}><a href="{{ path(['/office/default/top-slider']) }}">Моя реклама</a></li>-->
+                    <!-- <li {{ app.request.pathInfo == 'office/top-slider' ? 'class="active"' : '' }}><a href="{{ path(['/office/default/top-slider']) }}">Моя реклама</a></li>-->
                 {% endif %}
                 <li {{ app.request.pathInfo == 'reservation' ? 'class="active"' : '' }}><a
                             href="{{ path(['/partners/reservation/index']) }}" class="no-board">Быстро снять</a></li>
@@ -215,7 +215,7 @@
                             {% endif %}
                         {% else %}
                             <!--<li><a href="{{ url.previous('region') }}" class="no-board">Вернуться к поиску</a></li>-->
-                            <!-- <li {{ app.request.pathInfo == 'office/top-slider-history' ? 'class="active"' : '' }}><a href="{{ path(['/office/default/top-slider']) }}">Моя реклама</a></li>-->
+                            <!-- <li {{ app.request.pathInfo == 'office/top-slider' ? 'class="active"' : '' }}><a href="{{ path(['/office/default/top-slider']) }}">Моя реклама</a></li>-->
                         {% endif %}
                         <li {{ app.request.pathInfo == 'reservation' ? 'class="active"' : '' }}><a
                                     href="{{ path(['/partners/reservation/index']) }}" class="no-board">Быстро снять</a>

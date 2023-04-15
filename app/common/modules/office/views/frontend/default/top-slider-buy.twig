@@ -8,7 +8,7 @@
 
 {% block title %}Реклама | Сдаём.ру{% endblock %}
 
-{% block bodyClass %}p-buy-ads{% endblock %}
+{% block bodyClass %}p-top-slider{% endblock %}
 
 {% block breadcrumbs %}
     <div class="breadcrumbs">
@@ -48,11 +48,14 @@
     {{ use('common/modules/partners/assets/frontend/AdvertisementAsset') }}
     {{ register_advertisement_asset() }}
 
-    <div class="buy-ads container-certain primary text">
 
-        <h3 class="buy-ads-title">Разместить рекламное объявление</h3>
+    <div class="section-head section-head-between">
+        <h2>Разместить рекламное объявление</h2>
+    </div>
 
-        <div class="buy-ads-descr">
+    <div class="top-slider container-certain primary text mt-4">
+
+        <div class="top-slider-descr">
             Для того, чтобы разместить рекламное объявление, Вам необходимо заполнить данную форму и оплатить
             <b>{{ app.getModule('partners').priceAdvertisement }} рублей</b>. <br/>
             Всего в рекламном блоке доступно <b>{{ app.getModule('partners').amountAdvertisements }} объявлений</b>, Вы
@@ -63,43 +66,53 @@
         </div>       
 
         {% set form = active_form_begin({
-            'id' : 'form-buy-ads',
+            'id' : 'form-top-slider',
             'options' : {'class' : 'horizontal'},
             'enableClientScript': false,
         }) %}
 
         <div class="general-form clearfix">
 
-            <div class="buy-ads-wrapper">
+            <div class="top-slider-wrapper">
 
                 {{ form.field(advertisementForm, 'type', {
                     'options' : {'class' : 'form-group'},
-                    'inputOptions' : {'class' : 'select-white'},
+                    'inputOptions' : {'class' : 'custom-select'},
                     'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'
                 }).dropDownList(advertisementForm.typeArray) | raw }}
 
                 {{ form.field(advertisementForm, 'label', {
                     'options' : {'class' : 'form-group'},
-                    'inputOptions' : {'class' : 'select-white'},
+                    'inputOptions' : {'class' : 'custom-select'},
                     'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>'
                 }).dropDownList(advertisementForm.labelArray) | raw }}
 
-                {{ form.field(advertisementForm, 'advert_id', {
-                    'options' : {'class' : 'form-group', 'id' : 'group-add-in-top'},
-                    'template' : '<div class="col-l">{label}</div> <div class="col-i"><span class="buy-ads-link link" id="add-in-slider" data-service="'~constant('SERVICE_ADVERTISING_TOP_SLIDER', Service)~'">Выбрать</span>{input}{error}</div>',
-                }).hiddenInput() | raw }}
+
+
+                <div id="group-add-in-top" class="form-group field-advertisementsliderform-advert_id required">
+                    <div class="col-l">
+                        <label class="control-label" for="advertisementsliderform-advert_id">Объявление</label>
+                    </div>
+                    <div class="col-i">
+                        <span class="top-slider-link link" id="add-in-slider" data-service="ADVERTISING_TOP_SLIDER">Выбрать</span>
+                        <input type="hidden" id="advertisementsliderform-advert_id" class="form-control" name="AdvertisementSliderForm[advert_id]">
+                        <div class="invalid-feedback"></div>
+                    </div>
+                </div>
+
+
 
             </div>
 
-            <div class="buy-ads-textarea">
+            <div class="top-slider-textarea">
                 {{ form.field(advertisementForm, 'more_info', {
                     'template' : '<div class="col-l">{label}</div> <div class="col-i">{input}{error}</div>',
                     'options' : {'class' : 'form-group'}
                 }).textarea() | raw }}
             </div>
 
-            <div class="buy-ads-footer">
-                <div class="buy-ads-info">
+            <div class="top-slider-footer">
+                <div class="top-slider-info">
                     <p>
                         После заполнения формы Вам необходимо оплатить необходимую сумму, это можно сделать мгновенно
                         списав средства со своего внутреннего счета или оплатить через платежную систему.
@@ -110,7 +123,7 @@
                 <div class="clearfix"></div>
 
                 <div class="form-group">
-                    <input type="submit" value="Отправить" class="btn buy-ads-submit"/>
+                    <input type="submit" value="Отправить" class="btn top-slider-submit"/>
                 </div>
             </div>
 

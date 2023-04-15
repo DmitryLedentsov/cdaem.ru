@@ -13,14 +13,13 @@ use common\modules\users\models\frontend\UsersListSearch;
 
 /**
  * Главный контроллер офиса
- * @package common\modules\office\controllers\frontend
  */
 class DefaultController extends \frontend\components\Controller
 {
     /**
      * @inheritdoc
      */
-    public function behaviors()
+    public function behaviors(): array
     {
         $behaviors = [
             'access' => [
@@ -52,7 +51,7 @@ class DefaultController extends \frontend\components\Controller
         $this->module->viewPath = '@common/modules/office/views/frontend';
 
         if (in_array($action->id, $actions)) {
-            if (!Yii::$app->user->isGuest && Yii::$app->user->identity->profile->user_type == Profile::WANT_RENT) {
+            if (!Yii::$app->user->isGuest && Yii::$app->user->identity->profile->user_type === Profile::WANT_RENT) {
                 $userType = Yii::$app->BasisFormat->helper('Status')->getItem(Profile::getUserTypeArray(), Yii::$app->user->identity->profile->user_type);
                 //Yii::$app->session->setFlash('danger', '<b>Внимание:</b> <br/> Ваш тип аккаунта: "'. $userType . '" и Вы не можете производить данное действие. ');
                 return $this->redirect(['/office/default/index']);
@@ -107,7 +106,7 @@ class DefaultController extends \frontend\components\Controller
         $searchModel = new models\search\AdvertisementSliderSearch();
         $dataProvider = $searchModel->search();
 
-        return $this->render('advertising.twig', [
+        return $this->render('top-slider.twig', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
@@ -118,7 +117,7 @@ class DefaultController extends \frontend\components\Controller
      * @return array|string|Response
      * @throws \Exception
      */
-    public function actionBuyAds()
+    public function actionTopSliderBuy()
     {
         $advertisementForm = new models\form\AdvertisementSliderForm();
         $advertisementForm->defineScenario();
@@ -141,7 +140,7 @@ class DefaultController extends \frontend\components\Controller
             return $errors;
         }
 
-        return $this->render('buy-ads.twig', [
+        return $this->render('top-slider-buy.twig', [
             'advertisementForm' => $advertisementForm,
         ]);
     }
