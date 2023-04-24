@@ -35,6 +35,7 @@ class User extends \nepster\users\models\User
     {
         return [
             'signup' => ['phone', 'email', 'password', 'agreement'],
+            'update' => ['phone', 'email']
         ];
     }
 
