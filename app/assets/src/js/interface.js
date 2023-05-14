@@ -47,4 +47,41 @@
     });
 
 
+    /*
+        Форма оплаты для пополнения личного счёта из профиля
+     */
+    const fastPayModalContent = $(document).find('#modalProfileFastPay .modal-content');
+
+    console.log({fastPayModalContent});
+
+    if (fastPayModalContent.length > 0) {
+        // закгружаем форму оплаты
+        // var $this = $(this);
+        // var $targetModal = $('#modal-realty-objects-by-service');
+        // todo тут будет загрузка когда пройдёт отладка по кнопке
+    }
+
+    $(document).on('click', '#modalProfileFastPay', function () {
+        let $serviceData = {};
+
+        $serviceData.date = "";
+        $serviceData.days = "1";
+        $serviceData.request = "payment";
+        $serviceData.selected = [7449];
+        $serviceData.service = "ADVERT_IN_TOP";
+        $serviceData.serviceCaption = "Поднять объявление в ТОП";
+        $serviceData._csrf = $("head > meta[name='csrf-token']").prop('content');
+
+        console.log($serviceData);
+
+        $.post("/partners/ajax/buy-service", $serviceData, function (response) {
+            // $targetModal.find('.load').html(response);
+            // $targetModal.find('.load').html(response);
+            fastPayModalContent.html(response)
+        }).done(function () {
+
+        });
+
+    });
+
 })(jQuery);
