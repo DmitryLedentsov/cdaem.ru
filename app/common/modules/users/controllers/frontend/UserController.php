@@ -71,10 +71,34 @@ class UserController extends Controller
 
         $post = Yii::$app->request->post();
 
-        if ($rawPhone = ArrayHelper::getValue($post, 'Profile.phone2')) {
+        $clearPhone = function ($rawPhone) {
             // Убираем всё кроме цифрт из телефона, иначе он не сохдарнится в БД
-            $post['Profile']['phone2'] = preg_replace('/[^\d]/iu', '', $rawPhone);
+            return preg_replace('/[^\d]/iu', '', $rawPhone);
+        };
+
+        if ($rawPhone = ArrayHelper::getValue($post, 'Profile.phone2')) {
+            $post['Profile']['phone2'] = $clearPhone($rawPhone);
         }
+
+        if ($rawUserPhone = ArrayHelper::getValue($post, 'User.phone')) {
+            $post['User']['phone'] = $clearPhone($rawUserPhone);
+        }
+
+        $user = models\User::findOne(['id' => Yii::$app->user->id]);
+        $user->setScenario('update');
+
+        if ($user->load($post)) {
+            $errors = $this->validate($user);
+
+            if (empty($errors)) {
+                $user->save(false);
+
+                return $this->successAjaxResponse(Yii::t('users', 'SUCCESS_UPDATE'));
+            }
+
+            return $this->validationErrorsAjaxResponse($errors);
+        }
+
 
         if ($profile->load($post)) {
             $errors = $this->validate($profile);
