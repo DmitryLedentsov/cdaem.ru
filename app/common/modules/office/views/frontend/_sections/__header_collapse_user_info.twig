@@ -20,6 +20,9 @@
     <div class="user-settings">
         <div class="user-settings-header">Мой профиль</div>
         <div class="user-settings-list">
+            <button class="user-settings-item" data-toggle="modal" data-target="#modalProfileFastPay">
+                Пополнить баланс
+            </button>
             <a href="{{ path(['/partners/reservation/reservations']) }}" class="user-settings-item{{ app.request.pathInfo == 'office/reservations' ? ' active' : '' }}">
                 Безопасная сделка
             </a>

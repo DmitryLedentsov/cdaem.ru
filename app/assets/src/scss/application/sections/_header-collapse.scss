@@ -1,3 +1,5 @@
+@import '../../application/pages/home/modal-popup';
+
 .header-collapse {
     width: 100%;
     position: relative;
@@ -354,7 +356,8 @@
             border-radius: 6px;
             box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease-out;
-            z-index: 2;
+            //z-index: 2;
+            z-index: 1;
             text-align: left;
 
             @include tablet() {
@@ -366,7 +369,7 @@
 
             &-active {
                 padding: 28px 0 0;
-                max-height: 500px;
+                max-height: 533px;
             }
 
             &-header {
@@ -384,7 +387,9 @@
                 align-items: flex-start;
                 border-bottom: 1px solid #eaeaea;
             }
-
+            &-item:focus {
+                outline: none;
+            }
             &-item {
                 font-size: 16px;
                 font-weight: 400;
@@ -392,6 +397,10 @@
                 display: block;
                 margin: 10px 0;
                 width: 100%;
+                border: 0;
+                background-color: transparent;
+                text-align: left;
+                cursor: pointer;
 
                 &.active, &:hover {
                     font-weight: 500;

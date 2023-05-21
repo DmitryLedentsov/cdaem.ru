@@ -332,6 +332,8 @@ $(function () {
 
         $serviceData.request = 'payment';
 
+        // console.log($serviceData);
+
         // if (!$preloadFlag) {
         if (1) {
             // $preloadFlag = true;

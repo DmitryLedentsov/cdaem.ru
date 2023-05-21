@@ -64,3 +64,20 @@
     </header>
 
 {% endif %}
+
+{# Форма оплаты для пополнения личного счёта. Должна быть ближе к BODY иначе перекрывается модальным затемнением бутстрапа #}
+<div class="modal modal-fast-pay fade" id="modalProfileFastPay" tabindex="-1" role="dialog" aria-labelledby="modalProfileFastPay" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-window" role="document">
+        <div class="modal-content modal-item">
+            <div class="modal-header modal-top">
+                <h4 class="modal-title modal-header-title" id="modalProfileFastPay">Пополнить личный счёт</h4>
+                <button type="button" class="close btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer modal-bottom">
+                <div class="modal-submit"></div>
+                <button type="button" class="btn btn-warning btn-special book-button">Забронировать</button>
+            </div>
+        </div>
+    </div>
+</div>
