@@ -34,6 +34,12 @@
 
 
 {% block content %}
+    {{ use('common/modules/merchant/widgets/frontend/fastpayment/assets/FastPaymentAsset') }}
+    {{ register_fast_payment_asset() }}
+
+    <div class="section-head section-head-between">
+        <h2>Пополнить счёт</h2>
+    </div>
 
     <ul class="extra-menu">
         <li><a href="{{ path(['/merchant/default/index']) }}">История денежного оборота</a></li>
@@ -47,12 +53,44 @@
             'enableClientScript' : false
         }) %}
 
-        <div class="payment-way">
+{#        <div class="payment-way">#}
+        <div class="payment-service">
+            <h5 class="modal-pay-subtitle">Выберите способ оплаты</h5>
 
-            <h3>Выберите подходящий способ оплаты:</h3>
+{#            todo блок дублирует app/common/modules/merchant/widgets/frontend/fastpayment/views/index.php:50
+                выделить отдельно?
+ #}
 
-            <div class="payment-service">
-                <div class="method">
+            <div class="modal-pay-logo">
+                <label class="visa">
+                    <img src="/_new/images/apartment/mir-logo.png" class="visa-logo" alt="Visa" style="width: 180px;">
+                    <input type="radio" class="logo-pay visa-pay" name="pay-way-logo" data-system="BankCardPSR">
+                </label>
+                <label class="yandex">
+                    <img src="/_new/images/apartment/yandex-logo.png" class="yandex-logo" alt="YandexPay">
+                    <input type="radio" class="logo-pay yandex-pay" name="pay-way-logo" data-system="YandexPayPSR">
+                </label>
+                <label class="qiwi">
+                    <img src="/_new/images/apartment/qiwi-logo.png" class="qiwi-logo" alt="Qiwi">
+                    <input type="radio" class="logo-pay qiwi-pay" name="pay-way-logo" data-system="Qiwi40PS">
+                </label>
+            </div>
+
+            <br>
+            <label>Все способы оплаты</label>
+
+            {{ use('common/modules/merchant/widgets/frontend/robokassa/PaymentSystemsList') }}
+            {{ payment_systems_list_widget({
+                'selectOptions' : {
+                    'class' : 'form-control',
+                    'name' : model.formName() ~ '[system]',
+                    'style' : 'width:200px',
+                }
+            }) }}
+
+
+            {#            <div class="payment-service">#}
+                {#<div class="method">
                     <span class="payments-method-logo visa" data-system="BANKOCEAN3R"></span>
                     <span class="payments-method-logo mastercard" data-system="BANKOCEAN3R"></span>
                     <span class="payments-method-logo mts" data-system="MixplatMTSRIBR"></span>
@@ -65,8 +103,6 @@
                     <span class="payments-method-logo webmoney" data-system="WMRRM"></span>
                 </div>
 
-                <br/>
-
                 <div class="extra clearfix form-group required">
                     <h4><label>Все способы оплаты:</label></h4>
                     {{ use('common/modules/merchant/widgets/frontend/robokassa/PaymentSystemsList') }}
@@ -78,13 +114,14 @@
                         }
                     }) }}
                 </div>
-            </div>
+#}
+{#            </div>#}
 
             <br/>
 
             {% set field = form.field(model, 'amount') %}
             {{ field.begin() | raw }}
-            <label>Сумма пополнения в рублях:</label>
+            <label>Сумма пополнения в рублях</label>
             {{ html.activeTextInput(model, 'amount', {'class' : 'form-control', 'style' : 'max-width: 100px;', 'value' : 100}) | raw }}
             {{ field.end() | raw }}
 
