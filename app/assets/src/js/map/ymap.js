@@ -20,4 +20,5 @@
 
         myMap.geoObjects.add(myPlacemark);
     }
+
 })(jQuery);
