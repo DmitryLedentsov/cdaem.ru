@@ -1,5 +1,4 @@
-(function ($) {
-    "use strict";
+$(document).ready(function() {
 
     $('.advert-slider-for').slick({
         slidesToShow: 1,
@@ -29,7 +28,6 @@
 
 
     var advertCoords = [55.76, 37.64];
-
     ymaps.ready(init);
     function init(){
         var myMap = new ymaps.Map("map", {
@@ -109,4 +107,4 @@
 
         myMap.controls.add(zoomControl);
     }
-})(jQuery);
+});

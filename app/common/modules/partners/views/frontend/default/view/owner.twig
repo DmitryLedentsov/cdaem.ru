@@ -12,10 +12,10 @@
 <div class="advert-author-info">
     <div class="advert-author-info-item">
         <div class="advert-author-name">
-            Валерий Губин Алексеевич
+            {{ UserHelper.getUserName(model.apartment.user)}}
         </div>
         <div class="advert-author-ad-number">
-            Объявление №1488
+            Объявление № {{ model.advert_id }}
         </div>
     </div>
     <div class="advert-author-info-item">
