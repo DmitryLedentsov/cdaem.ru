@@ -12,10 +12,10 @@
 <div class="advert-author-info">
     <div class="advert-author-info-item">
         <div class="advert-author-name">
-            {{ UserHelper.getUserName(model.apartment.user)}}
+            Валерий Губин Алексеевич
         </div>
         <div class="advert-author-ad-number">
-            Объявление № 1488
+            Объявление №1488
         </div>
     </div>
     <div class="advert-author-info-item">
@@ -143,10 +143,10 @@
                             {% if (not model.apartment.user.phone) and (not model.apartment.user.profile.phone2)%}
                                 Нет данных
                             {% endif %}
-                            <!--<a class="contact-popup-link" href="+79009000002">
+                            {# <a class="contact-popup-link" href="+79009000002">
                                 <img src="/_new/images/icons/apartment/phone-orange.svg" alt="phone">
                                 +7 900 900 00 02
-                            </a>-->
+                            </a> #}
                         </div>
                     </div>
                     <div class="contact-popup-socials">
@@ -158,19 +158,19 @@
                                 {% if model.apartment.user.profile.fb %}
                                 <a class="contact-popup-link" href={{model.apartment.user.profile.fb}}>
                                     <img src="/_new/images/icons/apartment/facebook.svg" alt="facebook">
-                                    facebook
+                                    Facebook
                                 </a>
                                 {% endif %}
                                 {% if model.apartment.user.profile.skype %}
                                 <a class="contact-popup-link" href={{ model.apartment.user.profile.skype }}>
                                     <img src="/_new/images/icons/apartment/skype.svg" alt="skype">
-                                    skype
+                                    Skype
                                 </a>
                                 {% endif %}
                                 {% if model.apartment.user.profile.ok %}
                                 <a class="contact-popup-link" href={{ model.apartment.user.profile.ok  }}>
                                     <img src="/_new/images/icons/apartment/classmates.svg" alt="classmates">
-                                    одноклассники
+                                    Одноклассники
                                 </a>
                                 {% endif %}
                             </div>
@@ -184,13 +184,13 @@
                                 {% if model.apartment.user.profile.telegram %}
                                 <a class="contact-popup-link" href={{ model.apartment.user.profile.telegram }}>
                                     <img src="/_new/images/icons/apartment/telegram.svg" alt="telegram">
-                                    telegram
+                                    Telegram
                                 </a>
                                 {% endif %}
                                 {% if model.apartment.user.profile.twitter %}
                                 <a class="contact-popup-link" href={{ model.apartment.user.profile.twitter }}>
                                     <img src="/_new/images/icons/apartment/twitter.svg" alt="twitter">
-                                    twitter
+                                    Twitter
                                 </a>
                                 {% endif %}
                             </div>

@@ -27,9 +27,7 @@
         console.log('book-button click');
     });
 
-})(jQuery);
 
-$(document).ready(function() {
     var advertCoords = [55.76, 37.64];
 
     ymaps.ready(init);
@@ -40,8 +38,8 @@ $(document).ready(function() {
             controls: []
         });
 
-        createMarker(myMap)
-        createZoomControls(myMap)
+        createMarker(myMap);
+        createZoomControls(myMap);
         myMap.behaviors.disable('scrollZoom');
 
         let keyPressed = false;
@@ -96,6 +94,7 @@ $(document).ready(function() {
 
         myMap.geoObjects.add(myPlacemark);
     }
+
     function createZoomControls(myMap){
         const zoomControl = new ymaps.control.ZoomControl({
             options: {
@@ -107,6 +106,7 @@ $(document).ready(function() {
                 }
             }
         });
+
         myMap.controls.add(zoomControl);
     }
-});
+})(jQuery);
