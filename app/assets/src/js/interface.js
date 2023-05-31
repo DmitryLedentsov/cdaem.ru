@@ -45,4 +45,18 @@
         $this.next('.user-info').find('.user-settings').removeClass('user-settings-active');
         $this.find('.message-info').toggleClass('message-info-active');
     });
+
+    // Убираем элемент раскрывающий описание если оно занимает одну строку
+    $('.adv-content').each((i, item) => {
+        const $item = $(item),
+            $toggleLink = $item.find('.adv-content-change'),
+            $description = $item.find('.adv-content-inner'),
+            description = $description[0],
+            height = description.offsetHeight,
+            scrollHeight = description.scrollHeight;
+
+        if (scrollHeight - height <= 1) {
+            $toggleLink.hide();
+        }
+    });
 })(jQuery);
