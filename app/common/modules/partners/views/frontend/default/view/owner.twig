@@ -12,10 +12,10 @@
 <div class="advert-author-info">
     <div class="advert-author-info-item">
         <div class="advert-author-name">
-            Валерий Губин Алексеевич
+            {{ UserHelper.getUserName(model.apartment.user)}}
         </div>
         <div class="advert-author-ad-number">
-            Объявление №1488
+            Объявление № {{ model.advert_id }}
         </div>
     </div>
     <div class="advert-author-info-item">
@@ -127,18 +127,26 @@
                             Телефон для связи
                         </p>
                         <div class="contact-popup-list">
-                            <a class="contact-popup-link" href="+79009000000">
-                                <img src="/_new/images/icons/apartment/phone-orange.svg" alt="phone">
-                                +7 900 900 00 00
-                            </a>
-                            <a class="contact-popup-link" href="+79009000001">
-                                <img src="/_new/images/icons/apartment/phone-orange.svg" alt="phone">
-                                +7 900 900 00 01
-                            </a>
-                            <a class="contact-popup-link" href="+79009000002">
+
+                            {% if model.apartment.user.phone %}
+                                <a class="contact-popup-link" href="tel:{{model.apartment.user.phone}}">
+                                    <img src="/_new/images/icons/apartment/phone-orange.svg" alt="phone">
+                                    {{ UserHelper.formatPhone(model.apartment.user.phone) }}
+                                </a>
+                            {% endif %}
+                            {% if model.apartment.user.profile.phone2 %}
+                                <a class="contact-popup-link" href="tel:{{model.apartment.user.profile.phone2}}">
+                                    <img src="/_new/images/icons/apartment/phone-orange.svg" alt="phone">
+                                    {{ UserHelper.formatPhone(model.apartment.user.profile.phone2) }}
+                                </a>
+                            {% endif %}
+                            {% if (not model.apartment.user.phone) and (not model.apartment.user.profile.phone2)%}
+                                Нет данных
+                            {% endif %}
+                            {# <a class="contact-popup-link" href="+79009000002">
                                 <img src="/_new/images/icons/apartment/phone-orange.svg" alt="phone">
                                 +7 900 900 00 02
-                            </a>
+                            </a> #}
                         </div>
                     </div>
                     <div class="contact-popup-socials">
@@ -147,32 +155,44 @@
                         </p>
                         <div class="contact-popup-wrapper">
                             <div class="contact-popup-list">
-                                <a class="contact-popup-link" href="">
+                                {% if model.apartment.user.profile.fb %}
+                                <a class="contact-popup-link" href={{model.apartment.user.profile.fb}}>
                                     <img src="/_new/images/icons/apartment/facebook.svg" alt="facebook">
-                                    cdaem.ru
+                                    Facebook
                                 </a>
-                                <a class="contact-popup-link" href="">
-                                    <img src="/_new/images/icons/apartment/instagram.svg" alt="instagram">
-                                    cdaem.ru
+                                {% endif %}
+                                {% if model.apartment.user.profile.skype %}
+                                <a class="contact-popup-link" href={{ model.apartment.user.profile.skype }}>
+                                    <img src="/_new/images/icons/apartment/skype.svg" alt="skype">
+                                    Skype
                                 </a>
-                                <a class="contact-popup-link" href="">
+                                {% endif %}
+                                {% if model.apartment.user.profile.ok %}
+                                <a class="contact-popup-link" href={{ model.apartment.user.profile.ok  }}>
                                     <img src="/_new/images/icons/apartment/classmates.svg" alt="classmates">
-                                    cdaem.ru
+                                    Одноклассники
                                 </a>
+                                {% endif %}
                             </div>
                             <div class="contact-popup-list">
-                                <a class="contact-popup-link" href="">
+                                {% if model.apartment.user.profile.vk %}
+                                <a class="contact-popup-link" href="{{ model.apartment.user.profile.vk}}">
                                     <img src="/_new/images/icons/apartment/vkontakte.svg" alt="vkontakte">
-                                    cdaem.ru
+                                    Вконтакте
                                 </a>
-                                <a class="contact-popup-link" href="">
+                                {% endif %}
+                                {% if model.apartment.user.profile.telegram %}
+                                <a class="contact-popup-link" href={{ model.apartment.user.profile.telegram }}>
                                     <img src="/_new/images/icons/apartment/telegram.svg" alt="telegram">
-                                    cdaem.ru
+                                    Telegram
                                 </a>
-                                <a class="contact-popup-link" href="">
-                                    <img src="/_new/images/icons/apartment/whatsapp.svg" alt="whatsapp">
-                                    cdaem.ru
+                                {% endif %}
+                                {% if model.apartment.user.profile.twitter %}
+                                <a class="contact-popup-link" href={{ model.apartment.user.profile.twitter }}>
+                                    <img src="/_new/images/icons/apartment/twitter.svg" alt="twitter">
+                                    Twitter
                                 </a>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
