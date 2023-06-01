@@ -1,6 +1,21 @@
+let currentNotify, currentNotifyDiv, previousNotifyText;
+
+toastr.subscribe(item => {
+    currentNotify = item;
+});
+
+// Удаляем повторяющиеся сообщения
+const removeCopies = () => {
+    if (currentNotify && currentNotify.map.message === previousNotifyText && currentNotifyDiv.length > 0) {
+        toastr.remove();
+    }
+};
 
 window.toastSuccess = function (message, title) {
-    toastr.success(message, title || null, {
+    removeCopies();
+
+    previousNotifyText = message;
+    currentNotifyDiv = toastr.success(message, title || null, {
         "closeButton": false,
         "debug": false,
         "newestOnTop": false,
@@ -20,7 +35,10 @@ window.toastSuccess = function (message, title) {
 };
 
 window.toastError = function (message, title) {
-    toastr.error(message, title || null, {
+    removeCopies();
+
+    previousNotifyText = message;
+    currentNotifyDiv = toastr.error(message, title || null, {
         "closeButton": false,
         "debug": false,
         "newestOnTop": false,
@@ -29,12 +47,17 @@ window.toastError = function (message, title) {
         "preventDuplicates": false,
         "onclick": null,
         "showDuration": "300",
+        // "showDuration": "300000",
         "hideDuration": "1000",
+        // "hideDuration": "10000000",
         "timeOut": "5000",
+        // "timeOut": "500000000",
+        // "timeOut": "30000000",
         "extendedTimeOut": "1000",
+        // "extendedTimeOut": "100000000000000",
         "showEasing": "swing",
         "hideEasing": "linear",
         "showMethod": "fadeIn",
         "hideMethod": "fadeOut"
     });
-}
+};
