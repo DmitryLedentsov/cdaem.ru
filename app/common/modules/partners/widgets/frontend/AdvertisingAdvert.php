@@ -41,9 +41,9 @@ class AdvertisingAdvert extends \yii\base\Widget
                     <!--<div class="advertisement-metro">
                         Метро: ---
                     </div>-->
-                    <a class="advertisement-link" href="' . Url::toRoute(['/partners/default/view', 'id' => $advertisement->advert_id, 'city' => $advertisement->advert->apartment->city->name_eng]) . '">
+                    <!--<a class="advertisement-link" href="' . Url::toRoute(['/partners/default/view', 'id' => $advertisement->advert_id, 'city' => $advertisement->advert->apartment->city->name_eng]) . '">
                         Посмотреть предложение
-                    </a>
+                    </a>-->
                 </div>
                 ';
             }

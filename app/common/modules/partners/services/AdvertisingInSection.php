@@ -166,7 +166,8 @@ final class AdvertisingInSection extends \yii\base\BaseObject implements Service
             }
 
             //Проверка объявления на уникальность, то есть что его реклама не была уже куплена.
-            $advertisementExistValidator = new ExistValidator();
+            //TODO: проверить работу
+            /*$advertisementExistValidator = new ExistValidator();
             $advertisementExistValidator->targetClass = \common\modules\partners\models\Advertisement::class;
             $advertisementExistValidator->targetAttribute = $advertIdColumn;
 
@@ -176,7 +177,7 @@ final class AdvertisingInSection extends \yii\base\BaseObject implements Service
 
             if ($advertisementExistValidator->validate($advertId) && (!$advertisementUniqueValidator->validate($advertId))) {
                 return false;
-            }
+            }*/
         }
 
         return true;
