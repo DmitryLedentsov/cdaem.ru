@@ -8,6 +8,7 @@ use yii\validators\EmailValidator;
 use yii\validators\ExistValidator;
 use common\modules\partners\models\Service;
 use common\modules\partners\interfaces\ServiceInterface;
+use yii\validators\UniqueValidator;
 
 /**
  * Сервис [Advertising In Section]
@@ -148,20 +149,35 @@ final class AdvertisingInSection extends \yii\base\BaseObject implements Service
 
 
         // Проверяем почтовый адрес
-        $EmailValidator = new EmailValidator();
-        if (!$EmailValidator->validate($this->_email)) {
+        $emailValidator = new EmailValidator();
+        if (!$emailValidator->validate($this->_email)) {
             return false;
         }
 
         // Проверяем объявления
+        $advertIdColumn = 'advert_id';
         foreach ($this->_selected as $advertId) {
-            $ExistValidator = new ExistValidator();
-            $ExistValidator->targetClass = \common\modules\partners\models\Advert::class;
-            $ExistValidator->targetAttribute = 'advert_id';
+            $advertExistValidator = new ExistValidator();
+            $advertExistValidator->targetClass = \common\modules\partners\models\Advert::class;
+            $advertExistValidator->targetAttribute = $advertIdColumn;
 
-            if (!$ExistValidator->validate($advertId)) {
+            if (!$advertExistValidator->validate($advertId)) {
                 return false;
             }
+
+            //Проверка объявления на уникальность, то есть что его реклама не была уже куплена.
+            //TODO: проверить работу
+            /*$advertisementExistValidator = new ExistValidator();
+            $advertisementExistValidator->targetClass = \common\modules\partners\models\Advertisement::class;
+            $advertisementExistValidator->targetAttribute = $advertIdColumn;
+
+            $advertisementUniqueValidator = new UniqueValidator();
+            $advertisementUniqueValidator->targetClass = \common\modules\partners\models\Advertisement::class;
+            $advertisementUniqueValidator->targetAttribute = $advertIdColumn;
+
+            if ($advertisementExistValidator->validate($advertId) && (!$advertisementUniqueValidator->validate($advertId))) {
+                return false;
+            }*/
         }
 
         return true;
