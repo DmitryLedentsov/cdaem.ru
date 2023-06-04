@@ -35,6 +35,15 @@ make restart
 Тестовый домен: **http://cdaem.loc** и **http://control.cdaem.loc**.
 
 
+Database (local access)
+=======================
+
+ - MYSQL_ROOT_PASSWORD=cdaemru
+ - MYSQL_DATABASE=cdaem.ru
+ - MYSQL_USER=cdaemru
+ - MYSQL_PASSWORD=cdaemru
+
+
 Composer
 ========
 
@@ -55,7 +64,8 @@ Yii
 ```make php-yii cmd=migrate```
 
 
-# Сron-задания
+# CRON-задания
+
 Стартую автоматически и прописываются в файле `docker/cron`.
 После добавления новых команд необходимо выполнить рестарт.
 
@@ -99,6 +109,7 @@ Yii
 
     ЗАПУСК РАЗ В 10 МИНУТ
     Осуществляет поиск необходимых записей в календаре и устанавливает или снимает флаг "Сейчас свободно"
+
 
 
 # Резервное копирование базы данных
