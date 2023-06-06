@@ -42,6 +42,12 @@ final class AdvertisingInSection extends \yii\base\BaseObject implements Service
     private $_process;
 
     /**
+     * флаг проверки на уникальность рекламы
+     * @var bool
+     */
+    private $_uniqueCheck;
+
+    /**
      * @inheritdoc
      */
     public function getId()
@@ -156,6 +162,7 @@ final class AdvertisingInSection extends \yii\base\BaseObject implements Service
 
         // Проверяем объявления
         $advertIdColumn = 'advert_id';
+        $this->_uniqueCheck ??= true; //по умолчанию проверяем на уникальность
         foreach ($this->_selected as $advertId) {
             $advertExistValidator = new ExistValidator();
             $advertExistValidator->targetClass = \common\modules\partners\models\Advert::class;
@@ -167,17 +174,15 @@ final class AdvertisingInSection extends \yii\base\BaseObject implements Service
 
             //Проверка объявления на уникальность, то есть что его реклама не была уже куплена.
             //TODO: проверить работу
-            /*$advertisementExistValidator = new ExistValidator();
+            $advertisementExistValidator = new ExistValidator();
             $advertisementExistValidator->targetClass = \common\modules\partners\models\Advertisement::class;
             $advertisementExistValidator->targetAttribute = $advertIdColumn;
 
-            $advertisementUniqueValidator = new UniqueValidator();
-            $advertisementUniqueValidator->targetClass = \common\modules\partners\models\Advertisement::class;
-            $advertisementUniqueValidator->targetAttribute = $advertIdColumn;
+            Yii::error($this->_uniqueCheck,'temp');
 
-            if ($advertisementExistValidator->validate($advertId) && (!$advertisementUniqueValidator->validate($advertId))) {
+            if ($this->_uniqueCheck===true && $advertisementExistValidator->validate($advertId)) {
                 return false;
-            }*/
+            }
         }
 
         return true;
@@ -225,6 +230,7 @@ final class AdvertisingInSection extends \yii\base\BaseObject implements Service
      */
     public function disable()
     {
+        $this->_uniqueCheck = false;
         if (!$this->validate()) {
             return false;
         }
