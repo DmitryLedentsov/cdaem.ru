@@ -153,63 +153,89 @@
                         <p class="contact-popup-name">
                             Через соцсети
                         </p>
-
-                        <div class="contact-popup-wrapper">
-                            {% set firstColumn %}
-                            {% if model.apartment.user.profile.fb or model.apartment.user.profile.skype or model.apartment.user.profile.ok%}
-                            <div class="contact-popup-list">
-                                {% if model.apartment.user.profile.fb %}
+                        {% if model.apartment.user.profile.fb %}
+                            {% set fb %}
                                 <a class="contact-popup-link" href={{model.apartment.user.profile.fb}}>
                                     <img src="/_new/images/icons/apartment/facebook.svg" alt="facebook">
                                     Facebook
                                 </a>
-                                {% endif %}
-                                {% if model.apartment.user.profile.skype %}
+                            {% endset %}
+                        {% endif %}
+
+                        {% if model.apartment.user.profile.skype %}
+                            {% set skype %}
                                 <a class="contact-popup-link" href={{ model.apartment.user.profile.skype }}>
                                     <img src="/_new/images/icons/apartment/skype.svg" alt="skype">
                                     Skype
                                 </a>
-                                {% endif %}
-                                {% if model.apartment.user.profile.ok %}
+                            {% endset %}
+                        {% endif %}
+
+                        {% if model.apartment.user.profile.ok %}
+                            {% set ok %}
                                 <a class="contact-popup-link" href={{ model.apartment.user.profile.ok  }}>
                                     <img src="/_new/images/icons/apartment/classmates.svg" alt="classmates">
                                     Одноклассники
                                 </a>
-                                {% endif %}
-                            </div>
-                            {% endif %}
                             {% endset %}
+                        {% endif %}
 
-                            {% set secondColumn %}
-                            {% if model.apartment.user.profile.vk or model.apartment.user.profile.telegram or model.apartment.user.profile.twitter%}
-                            <div class="contact-popup-list">
-                                {% if model.apartment.user.profile.vk %}
+                        {% if model.apartment.user.profile.vk %}
+                            {% set vk %}
                                 <a class="contact-popup-link" href="{{ model.apartment.user.profile.vk}}">
                                     <img src="/_new/images/icons/apartment/vkontakte.svg" alt="vkontakte">
                                     Вконтакте
                                 </a>
-                                {% endif %}
-                                {% if model.apartment.user.email %}
+                            {% endset %}
+                        {% endif %}
+
+                        {% if model.apartment.user.email %}
+                            {% set email %}
                                 <a class="contact-popup-link" href={{ model.apartment.user.email }}>
                                     <img src="/_new/images/icons/apartment/email.svg" alt="email">
                                     Email
                                 </a>
-                                {% endif %}
-                                {% if model.apartment.user.profile.twitter %}
+                            {% endset %}
+                        {% endif %}
+
+                        {% if model.apartment.user.profile.twitter %}
+                            {% set twitter %}
                                 <a class="contact-popup-link" href={{ model.apartment.user.profile.twitter }}>
                                     <img src="/_new/images/icons/apartment/twitter.svg" alt="twitter">
                                     Twitter
                                 </a>
-                                {% endif %}
-                            </div>
-                            {% endif %}
                             {% endset %}
+                        {% endif %}
 
-                            {% if firstColumn|length > secondColumn|length %}
-                                {{ firstColumn }} {{ secondColumn }}
-                            {% else %}
-                                {{ secondColumn }} {{ firstColumn }}
+
+                        {% set allAvaibleContacts = [email, ok, vk, skype, twitter, fb]%}
+                        {% set userContacts = [] %}
+                        {% for contact in allAvaibleContacts %}
+                            {% if contact %}
+                                {% set userContacts = userContacts|merge([contact]) %}
                             {% endif %}
+                        {% endfor %}
+
+
+                        {% set firstColumn = []%}
+                        {% set secondColumn = []%}
+
+                        {% for contact in userContacts %}
+                            {% if loop.index is odd %}
+                                {% set firstColumn = firstColumn|merge([contact]) %}
+                            {% else %}
+                                {% set secondColumn = secondColumn|merge([contact]) %}
+                            {% endif %}
+                        {% endfor %}
+
+                        <div class="contact-popup-wrapper">
+                            {% for column in [firstColumn,secondColumn] %}
+                                <div class="contact-popup-list">
+                                    {% for contact in column %}
+                                        {{ contact }}
+                                    {% endfor %}
+                                </div>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
