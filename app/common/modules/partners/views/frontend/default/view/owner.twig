@@ -207,7 +207,6 @@
                             {% endset %}
                         {% endif %}
 
-
                         {% set allAvaibleContacts = [email, ok, vk, skype, twitter, fb]%}
                         {% set userContacts = [] %}
                         {% for contact in allAvaibleContacts %}
@@ -215,7 +214,6 @@
                                 {% set userContacts = userContacts|merge([contact]) %}
                             {% endif %}
                         {% endfor %}
-
 
                         {% set firstColumn = []%}
                         {% set secondColumn = []%}
