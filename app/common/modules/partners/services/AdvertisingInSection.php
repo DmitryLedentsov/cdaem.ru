@@ -27,30 +27,24 @@ final class AdvertisingInSection extends \yii\base\BaseObject implements Service
      * EMAIL пользователя
      * @var string
      */
-    private $_email;
+    private string $email;
 
     /**
      * Выбранные объявления
      * @var array
      */
-    private $_selected;
+    private array $selected;
 
     /**
      * Инстанс процесса сервиса
      * @var \common\modules\partners\models\Service
      */
-    private $_process;
-
-    /**
-     * флаг проверки на уникальность рекламы
-     * @var bool
-     */
-    private $_uniqueCheck;
+    private Service $process;
 
     /**
      * @inheritdoc
      */
-    public function getId()
+    public function getId(): string
     {
         return self::NAME;
     }
@@ -121,7 +115,7 @@ final class AdvertisingInSection extends \yii\base\BaseObject implements Service
     /**
      * @inheritdoc
      */
-    public function isTimeInterval()
+    public function isTimeInterval(): bool
     {
         return true;
     }
@@ -129,7 +123,7 @@ final class AdvertisingInSection extends \yii\base\BaseObject implements Service
     /**
      * @inheritdoc
      */
-    public function isInstant()
+    public function isInstant(): bool
     {
         return false;
     }
@@ -139,7 +133,7 @@ final class AdvertisingInSection extends \yii\base\BaseObject implements Service
      */
     public function setProcess(Service $process)
     {
-        $this->_process = $process;
+        $this->process = $process;
 
         return $this;
     }
@@ -147,23 +141,22 @@ final class AdvertisingInSection extends \yii\base\BaseObject implements Service
     /**
      * @inheritdoc
      */
-    public function validate()
+    public function validate(): bool
     {
-        $data = Json::decode($this->_process->data);
-        $this->_selected = isset($data['selected']) ? (array)$data['selected'] : [];
-        $this->_email = $this->_process->user ? $this->_process->user->email : null;
+        $data = Json::decode($this->process->data);
+        $this->selected = isset($data['selected']) ? (array)$data['selected'] : [];
+        $this->email = $this->process->user ? $this->process->user->email : null;
 
 
         // Проверяем почтовый адрес
         $emailValidator = new EmailValidator();
-        if (!$emailValidator->validate($this->_email)) {
+        if (!$emailValidator->validate($this->email)) {
             return false;
         }
 
         // Проверяем объявления
         $advertIdColumn = 'advert_id';
-        $this->_uniqueCheck ??= true; //по умолчанию проверяем на уникальность
-        foreach ($this->_selected as $advertId) {
+        foreach ($this->selected as $advertId) {
             $advertExistValidator = new ExistValidator();
             $advertExistValidator->targetClass = \common\modules\partners\models\Advert::class;
             $advertExistValidator->targetAttribute = $advertIdColumn;
@@ -173,24 +166,26 @@ final class AdvertisingInSection extends \yii\base\BaseObject implements Service
             }
 
             //Проверка объявления на уникальность, то есть что его реклама не была уже куплена.
-            $advertisementExistValidator = new ExistValidator();
+            //TODO: поменять логику проверки рекламы, чтобы до оплаты
+
+            /* $advertisementExistValidator = new ExistValidator();
             $advertisementExistValidator->targetClass = \common\modules\partners\models\Advertisement::class;
             $advertisementExistValidator->targetAttribute = $advertIdColumn;
 
-            if ($this->_uniqueCheck===true && $advertisementExistValidator->validate($advertId)) {
+            if ($this->uniqueCheck===true && $advertisementExistValidator->validate($advertId)) {
                 return false;
-            }
+            }*/
         }
 
         return true;
     }
 
-    public function validateContact()
+    public function validateContact(): bool
     {
         return true;
     }
 
-    public function validateContactOpen()
+    public function validateContactOpen(): bool
     {
         return true;
     }
@@ -198,17 +193,17 @@ final class AdvertisingInSection extends \yii\base\BaseObject implements Service
     /**
      * @inheritdoc
      */
-    public function enable()
+    public function enable(): bool
     {
         if (!$this->validate()) {
             return false;
         }
 
-        $data = Json::decode($this->_process->data);
+        $data = Json::decode($this->process->data);
         $advertisementIds = [];
 
         // Создаем рекламное объявление
-        foreach ($this->_selected as $advertId) {
+        foreach ($this->selected as $advertId) {
             $advertisement = new \common\modules\partners\models\Advertisement();
             $advertisement->advert_id = $advertId;
             $advertisement->save(false);
@@ -216,8 +211,8 @@ final class AdvertisingInSection extends \yii\base\BaseObject implements Service
         }
 
         $data['advertisements'] = $advertisementIds;
-        $this->_process->data = Json::encode($data);
-        $this->_process->save(false);
+        $this->process->data = Json::encode($data);
+        $this->process->save(false);
 
         return true;
     }
@@ -225,14 +220,13 @@ final class AdvertisingInSection extends \yii\base\BaseObject implements Service
     /**
      * @inheritdoc
      */
-    public function disable()
+    public function disable(): bool
     {
-        $this->_uniqueCheck = false;
         if (!$this->validate()) {
             return false;
         }
 
-        $data = Json::decode($this->_process->data);
+        $data = Json::decode($this->process->data);
         if (isset($data['advertisements'])) {
             foreach ($data['advertisements'] as $advertisementId) {
                 $advertisement = \common\modules\partners\models\Advertisement::findOne($advertisementId);
@@ -242,7 +236,7 @@ final class AdvertisingInSection extends \yii\base\BaseObject implements Service
             }
         } else {
             // Удаляем рекламное объявление
-            foreach ($this->_selected as $advertId) {
+            foreach ($this->selected as $advertId) {
                 $advertisement = \common\modules\partners\models\Advertisement::findOne(['advert_id' => $advertId]);
                 if ($advertisement && strtotime(date('Y-m-d H:i:s')) >= strtotime($advertisement->date_expire)) {
                     $advertisement->delete();
@@ -256,7 +250,7 @@ final class AdvertisingInSection extends \yii\base\BaseObject implements Service
     /**
      * @inheritdoc
      */
-    public function getMailData()
+    public function getMailData(): array
     {
         return [
             'subject' => null,
@@ -264,14 +258,14 @@ final class AdvertisingInSection extends \yii\base\BaseObject implements Service
             'data' => [
 
             ],
-            'email' => $this->_email,
+            'email' => $this->email,
         ];
     }
 
     /**
      * @inheritdoc
      */
-    public function getSmsString()
+    public function getSmsString(): ?string
     {
         return null;
     }
@@ -279,7 +273,7 @@ final class AdvertisingInSection extends \yii\base\BaseObject implements Service
     /**
      * @inheritdoc
      */
-    public function isNeedRollBackProcess()
+    public function isNeedRollBackProcess(): bool
     {
         return true;
     }
@@ -289,6 +283,6 @@ final class AdvertisingInSection extends \yii\base\BaseObject implements Service
      */
     public function runBackgroundProcess()
     {
-        Yii::$app->consoleRunner->run('service/execute-instant-process ' . $this->_process->id);
+        Yii::$app->consoleRunner->run('service/execute-instant-process ' . $this->process->id);
     }
 }

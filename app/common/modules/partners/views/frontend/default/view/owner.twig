@@ -154,6 +154,7 @@
                             Через соцсети
                         </p>
                         <div class="contact-popup-wrapper">
+                            {% if model.apartment.user.profile.fb or model.apartment.user.profile.skype or model.apartment.user.profile.ok%}
                             <div class="contact-popup-list">
                                 {% if model.apartment.user.profile.fb %}
                                 <a class="contact-popup-link" href={{model.apartment.user.profile.fb}}>
@@ -174,6 +175,8 @@
                                 </a>
                                 {% endif %}
                             </div>
+                            {% endif %}
+                            {% if model.apartment.user.profile.vk or model.apartment.user.profile.telegram or model.apartment.user.profile.twitter%}
                             <div class="contact-popup-list">
                                 {% if model.apartment.user.profile.vk %}
                                 <a class="contact-popup-link" href="{{ model.apartment.user.profile.vk}}">
@@ -194,6 +197,7 @@
                                 </a>
                                 {% endif %}
                             </div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
