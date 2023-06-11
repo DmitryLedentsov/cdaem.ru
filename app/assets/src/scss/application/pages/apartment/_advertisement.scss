@@ -74,22 +74,18 @@
     }
 
     &-address {
-        //margin-bottom: 1rem;
         position: absolute;
         bottom: 0;
         left: 0;
         z-index: 2;
         font-weight: 600;
-        font-size: 1rem;
-        line-height: 1.1;
-        //color: #000000;
-        color: #FFFFFF;
-        padding: 1rem;
-        background: rgba(41, 41, 41, 0.9);
-        border-top-left-radius: 10px;
-        border-bottom-right-radius: 10px;
+        font-size: 0.8rem;
+        line-height: 1;
+        color: #EFEFEF;
+        padding: 0.7rem;
+        background: rgba(41, 41, 41, 0.7);
+        width: 100%;
     }
-
     &-metro {
         margin-bottom: 1rem;
 
