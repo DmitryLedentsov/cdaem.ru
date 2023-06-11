@@ -3,6 +3,7 @@ var $targetSelectedAdvertModalTitle;
 var $serviceData = {}; // Данные сервиса
 var $responseCache = null; // Кэш ответа от сервера
 
+
 $(function () {
     /**
      * Получаем город по ip

@@ -5,13 +5,10 @@ namespace common\modules\site\assets;
 use yii\web\AssetBundle;
 
 /**
- * Class AppAsset
  * Менеджер ресурсов
- * @package common\modules\site\assets
  */
 class AppAsset extends AssetBundle
 {
-    //public $sourcePath = '@common/modules/site/assets';
     public $basePath = '@webroot';
 
     public $baseUrl = '@web';
@@ -39,7 +36,7 @@ class AppAsset extends AssetBundle
         '/_new/js/interface.min.js',
         // '/_new/vendor/ui.js', // todo для функции initSelectPicker в окне настроки для покупки сервисов, взят из app/apps/frontend/themes/basic/assets/js_dev
         // предназначен для работы с несовместимой версией jquery
-        '/_new/vendor/office.js', // todo для корректной работы сервисов, взят из app/apps/frontend/themes/basic/assets/js_dev
+        '/_new/js/pages/account/office.min.js',
     ];
 
     public $depends = [
@@ -49,7 +46,7 @@ class AppAsset extends AssetBundle
     /**
      * @inheritdoc
      */
-    public function init()
+    public function init(): void
     {
         parent::init();
 
@@ -60,7 +57,7 @@ class AppAsset extends AssetBundle
      * Получить url адрес папки с ресурсами
      * @return string
      */
-    public static function getAssetUrl()
+    public static function getAssetUrl(): string
     {
         $obj = new self();
 
