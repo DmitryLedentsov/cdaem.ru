@@ -20,11 +20,6 @@ use common\modules\partners\models\Service;
                 echo Html::tag('p', '<b>' . $service->getName() . '</b>', []);
             ?>
             -->
-
-            <script>
-                $serviceData.serviceCaption = "<?php echo $service->getName(); ?>";
-            </script>
-
                 <?php if ($service->getId() != Service::SERVICE_ADVERTISING_TOP_SLIDER): ?>
                     <p style="margin-bottom: 1rem;">Выделено объектов: <b id="selected-advert-count">0</b></p>
                 <?php endif; ?>

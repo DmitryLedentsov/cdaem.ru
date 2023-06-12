@@ -1,5 +1,4 @@
-(function ($) {
-    "use strict";
+window.initializeAdvertCard = function (serviceData){
 
     // tooltip info close contact
     $(document).on('click', '.adv-card .adv-card-safe-icon', function () {
@@ -90,6 +89,7 @@
         console.log(e);
         let serviceButton = $(e.target);
         let serviceName = serviceButton.data('serviceName');
+        let serviceCaption = serviceButton.text();
         let apartmentId = serviceButton.data('apartmentId');
         let advertisementId = serviceButton.data('advertisementId');
         if (!serviceName) return;
@@ -118,15 +118,15 @@
              */
 
             // console.log(winBody);
-            $serviceData.service = serviceName; // переменная из office.js
+            serviceData.service = serviceName;
 
             let winBody = $('#service-modal-body');
 
             winBody.length && winBody.remove();
             winBody = $('<div>', { id: 'service-modal-body'}).append(response);
 
-            $('body').append(winBody); // чтобы подтянуть значение $serviceData.serviceCaption
-            window.openWindow($serviceData.serviceCaption, winBody, 'large');
+            $('body').append(winBody);
+            window.openWindow(serviceCaption, winBody, 'large');
         });
     });
 
@@ -146,4 +146,4 @@
         updateContactStatusAndReturn(apartmentId, 1);
     });
 
-})(jQuery);
+}
