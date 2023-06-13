@@ -4,7 +4,6 @@ $(document).ready(function() {
     var serviceData = {}; // Данные сервиса
     var responseCache = null; // Кэш ответа от сервера
 
-    initializeAdvertCard(serviceData);
     /**
      * Получаем город по ip
      */

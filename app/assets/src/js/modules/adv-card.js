@@ -1,4 +1,4 @@
-window.initializeAdvertCard = function (serviceData){
+$(document).ready(function(){
 
     // tooltip info close contact
     $(document).on('click', '.adv-card .adv-card-safe-icon', function () {
@@ -118,7 +118,7 @@ window.initializeAdvertCard = function (serviceData){
              */
 
             // console.log(winBody);
-            serviceData.service = serviceName;
+            //serviceData.service = serviceName;
 
             let winBody = $('#service-modal-body');
 
@@ -146,4 +146,4 @@ window.initializeAdvertCard = function (serviceData){
         updateContactStatusAndReturn(apartmentId, 1);
     });
 
-}
+});
