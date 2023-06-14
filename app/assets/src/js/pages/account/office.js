@@ -238,11 +238,11 @@ $(document).ready(function() {
     $(document).on('click', '.adv-card-change-item, .service-item-link', function (e) {
         console.log('.adv-card-change-item, .service-item-link');
         console.log(e);
-        let serviceButton = $(e.target);
-        let serviceName = serviceButton.data('serviceName');
-        let serviceCaption = serviceButton.text();
-        let apartmentId = serviceButton.data('apartmentId');
-        let advertisementId = serviceButton.data('advertisementId');
+        let $serviceButton = $(e.target);
+        let serviceName = $serviceButton.data('serviceName');
+        let serviceCaption = $serviceButton.text();
+        let apartmentId = $serviceButton.data('apartmentId');
+        let advertisementId = $serviceButton.data('advertisementId');
         if (!serviceName) return;
 
         // console.log(serviceName);
