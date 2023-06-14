@@ -1,4 +1,4 @@
-$(document).ready(function(){
+(function ($)  {
 
     // tooltip info close contact
     $(document).on('click', '.adv-card .adv-card-safe-icon', function () {
@@ -99,4 +99,4 @@ $(document).ready(function(){
         updateContactStatusAndReturn(apartmentId, 1);
     });
 
-});
+})(jQuery);

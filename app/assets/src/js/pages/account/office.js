@@ -1,4 +1,4 @@
-$(document).ready(function() {
+(function ($)  {
     var preloadFlag = false; // Флаг загрузки, чтобы избежать повторных запросов
     var targetSelectedAdvertModalTitle;
     var serviceData = {}; // Данные сервиса
@@ -243,7 +243,9 @@ $(document).ready(function() {
         let serviceCaption = $serviceButton.text();
         let apartmentId = $serviceButton.data('apartmentId');
         let advertisementId = $serviceButton.data('advertisementId');
-        if (!serviceName) return;
+        if (!serviceName) {
+            return;
+        }
 
         // console.log(serviceName);
         // let winBody = $('<div>').html(serviceName);
@@ -472,4 +474,4 @@ $(document).ready(function() {
     }, 1000 * 60 * 60 * 15);
 
 
-});
+})(jQuery);
