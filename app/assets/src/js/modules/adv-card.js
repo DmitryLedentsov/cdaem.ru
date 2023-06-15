@@ -1,5 +1,4 @@
-(function ($) {
-    "use strict";
+(function ($)  {
 
     // tooltip info close contact
     $(document).on('click', '.adv-card .adv-card-safe-icon', function () {
@@ -83,52 +82,6 @@
         window.openWindow(data.address, mapDiv, 'large');
     });
 
-
-    // Показываем окно для приобретения сервиса
-    $(document).on('click', '.adv-card-change-item, .service-item-link', function (e) {
-        console.log('.adv-card-change-item, .service-item-link');
-        console.log(e);
-        let serviceButton = $(e.target);
-        let serviceName = serviceButton.data('serviceName');
-        let apartmentId = serviceButton.data('apartmentId');
-        let advertisementId = serviceButton.data('advertisementId');
-        if (!serviceName) return;
-
-        // console.log(serviceName);
-        // let winBody = $('<div>').html(serviceName);
-
-        let url = `/partners/ajax/realty-objects-by-service?service=${serviceName}`;
-        if (apartmentId) {
-            url += `&apartment_id=${apartmentId}`
-        }
-        if (advertisementId) {
-            url += `&advertisement_id=${advertisementId}`
-        }
-
-        // console.log(url);
-
-        $.get(url, function (response) {
-            // console.log(response);
-
-            /*
-            Старый способ вывести модал
-            $('#modal-realty-objects-by-service').remove();
-            $('body').append(response);
-            $('#modal-realty-objects-by-service').modal('show');
-             */
-
-            // console.log(winBody);
-            $serviceData.service = serviceName; // переменная из office.js
-
-            let winBody = $('#service-modal-body');
-
-            winBody.length && winBody.remove();
-            winBody = $('<div>', { id: 'service-modal-body'}).append(response);
-
-            $('body').append(winBody); // чтобы подтянуть значение $serviceData.serviceCaption
-            window.openWindow($serviceData.serviceCaption, winBody, 'large');
-        });
-    });
 
     function updateContactStatusAndReturn(apartmentId, status) {
         $.get(`/partners/office/update-contact-status?id=${apartmentId}&status=${status}`, function () {

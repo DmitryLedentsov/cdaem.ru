@@ -1,10 +1,9 @@
-var $preloadFlag = false; // Флаг загрузки, чтобы избежать повторных запросов
-var $targetSelectedAdvertModalTitle;
-var $serviceData = {}; // Данные сервиса
-var $responseCache = null; // Кэш ответа от сервера
+(function ($)  {
+    var preloadFlag = false; // Флаг загрузки, чтобы избежать повторных запросов
+    var targetSelectedAdvertModalTitle;
+    var serviceData = {}; // Данные сервиса
+    var responseCache = null; // Кэш ответа от сервера
 
-
-$(function () {
     /**
      * Получаем город по ip
      */
@@ -151,8 +150,8 @@ $(function () {
      */
     $('.settings-nav .settings').on('click', function (event) {
         var $this = $(this);
-        if (!$preloadFlag) {
-            $preloadFlag = true;
+        if (!preloadFlag) {
+            preloadFlag = true;
             $.post("/office/ajax/social", {
                 type: $this.data('type'),
                 interlocutor: $this.data('interlocutor')
@@ -167,7 +166,7 @@ $(function () {
                 }
             // }).complete(function () {
             }).done(function () {
-                $preloadFlag = false;
+                preloadFlag = false;
             });
         }
     });
@@ -184,7 +183,7 @@ $(function () {
         var $this = $(this);
         // if (!$preloadFlag) {
         if (1) {
-            $preloadFlag = true;
+            preloadFlag = true;
             $.post("/office/ajax/delete-top-slider/" + $this.data('advertisement_id'), function (response) {
                 if ($.isPlainObject(response) && 'status' in response) {
                     if (response.status == 1) {
@@ -196,7 +195,7 @@ $(function () {
                 }
             // }).complete(function () { // function complete not found
             }).done(function () {
-                $preloadFlag = false;
+                preloadFlag = false;
             });
         }
     });
@@ -235,6 +234,55 @@ $(function () {
     }
 
 
+    // Показываем окно для приобретения сервиса
+    $(document).on('click', '.adv-card-change-item, .service-item-link', function (e) {
+        console.log('.adv-card-change-item, .service-item-link');
+        console.log(e);
+        let $serviceButton = $(e.target);
+        let serviceName = $serviceButton.data('serviceName');
+        let serviceCaption = $serviceButton.text();
+        let apartmentId = $serviceButton.data('apartmentId');
+        let advertisementId = $serviceButton.data('advertisementId');
+        if (!serviceName) {
+            return;
+        }
+
+        // console.log(serviceName);
+        // let winBody = $('<div>').html(serviceName);
+
+        let url = `/partners/ajax/realty-objects-by-service?service=${serviceName}`;
+        if (apartmentId) {
+            url += `&apartment_id=${apartmentId}`
+        }
+        if (advertisementId) {
+            url += `&advertisement_id=${advertisementId}`
+        }
+
+        // console.log(url);
+
+        $.get(url, function (response) {
+            // console.log(response);
+
+            /*
+            Старый способ вывести модал
+            $('#modal-realty-objects-by-service').remove();
+            $('body').append(response);
+            $('#modal-realty-objects-by-service').modal('show');
+             */
+
+            // console.log(winBody);
+            serviceData.service = serviceName;
+
+            let winBody = $('#service-modal-body');
+
+            winBody.length && winBody.remove();
+            winBody = $('<div>', { id: 'service-modal-body'}).append(response);
+
+            $('body').append(winBody);
+            window.openWindow(serviceCaption, winBody, 'large');
+        });
+    });
+
     /**
      * Выбор объектов
      */
@@ -242,18 +290,18 @@ $(function () {
         event.preventDefault();
         var $this = $(this);
         $this.toggleClass('selected');
-        $serviceData.selected = [];
+        serviceData.selected = [];
         $('#modal-realty-objects-by-service').find('.advert-preview.selected').each(function (index) {
             if ($(this).data('advert')) {
-                $serviceData.selected.push($(this).data('advert'));
+                serviceData.selected.push($(this).data('advert'));
             } else if ($(this).data('apartment')) {
-                $serviceData.selected.push($(this).data('apartment'));
+                serviceData.selected.push($(this).data('apartment'));
             }
         });
-        $('#selected-advert-count').html($serviceData.selected.length);
+        $('#selected-advert-count').html(serviceData.selected.length);
 
         var $selectedAdvertInfo = $('#selected-advert-info');
-        if ($serviceData.selected.length > 0) {
+        if (serviceData.selected.length > 0) {
             if (!$selectedAdvertInfo.length) {
                 $('#modal-realty-objects-by-service').find('.load').append('<div class="text-center"><span class="btn btn-primary btn-special" id="selected-advert-info">Рассчитать стоимость</span></div>');
             }
@@ -263,7 +311,7 @@ $(function () {
             }
         }
 
-        $responseCache = $('#modal-realty-objects-by-service').find('.load').html();
+        responseCache = $('#modal-realty-objects-by-service').find('.load').html();
     });
 
 
@@ -275,14 +323,14 @@ $(function () {
         event.preventDefault();
         var $this = $(this);
         var $targetModal = $('#modal-realty-objects-by-service');
-        $serviceData.days = $('#realty-objects-by-service-days').val();
-        $serviceData.date = $('#realty-objects-by-service-date').val();
+        serviceData.days = $('#realty-objects-by-service-days').val();
+        serviceData.date = $('#realty-objects-by-service-date').val();
 
         // $serviceData.advertisementId = 124; // для теста
 
-        $serviceData.request = 'calc';
+        serviceData.request = 'calc';
 
-        console.log('serviceData', $serviceData);
+        console.log('serviceData', serviceData);
 
         // if (!$preloadFlag) {
         if (1) {
@@ -290,9 +338,9 @@ $(function () {
             console.log('post-запрос данных с расчётом цены');
 
             console.log('токен перед отправкой', $("head > meta[name='csrf-token']").prop('content'));
-            $serviceData._csrf = $("head > meta[name='csrf-token']").prop('content');
+            serviceData._csrf = $("head > meta[name='csrf-token']").prop('content');
 
-            $.post("/partners/ajax/buy-service", $serviceData, function (response) {
+            $.post("/partners/ajax/buy-service", serviceData, function (response) {
                 $targetModal.find('.load').html(response);
                 // $targetModal.find('.modal-title').html('Калькулятор');
 
@@ -312,13 +360,13 @@ $(function () {
 
         var $this = $(this);
         var $targetModal = $('#modal-realty-objects-by-service');
-        $targetModal.find('.modal-title').html($targetSelectedAdvertModalTitle);
-        $targetModal.find('.load').html($responseCache);
+        $targetModal.find('.modal-title').html(targetSelectedAdvertModalTitle);
+        $targetModal.find('.load').html(responseCache);
 
         refreshScripts();
 
-        $('#realty-objects-by-service-days').val($serviceData.days);
-        $('#realty-objects-by-service-date').val($serviceData.date);
+        $('#realty-objects-by-service-days').val(serviceData.days);
+        $('#realty-objects-by-service-date').val(serviceData.date);
     });
 
 
@@ -331,14 +379,14 @@ $(function () {
         var $this = $(this);
         var $targetModal = $('#modal-realty-objects-by-service');
 
-        $serviceData.request = 'payment';
+        serviceData.request = 'payment';
 
         // console.log($serviceData);
 
         // if (!$preloadFlag) {
         if (1) {
             // $preloadFlag = true;
-            $.post("/partners/ajax/buy-service", $serviceData, function (response) {
+            $.post("/partners/ajax/buy-service", serviceData, function (response) {
                 $targetModal.find('.load').html(response);
                 $targetModal.find('.modal-title').html('Оплата');
                 // }).complete(function () {
@@ -368,59 +416,62 @@ $(function () {
         }
     });
 
-});
 
-/**
- * Окна для оплаты сервиса
- * Это из старой части сайта
- * @param $this
- * @returns {boolean}
- */
-function openWindowByService($this) {
-    console.log('openWindowByService', $preloadFlag);
-    if (!$preloadFlag) {
-        $preloadFlag = true;
-        $('#services .service').not($this).removeClass('active');
-        $this.toggleClass('active');
-        $serviceData.service = $this.data('type');
-        $.get("/partners/ajax/realty-objects-by-service", {service: $serviceData.service}, function (response) {
-            $('#modal-realty-objects-by-service').remove();
-            $('body').append(response);
-            $('#modal-realty-objects-by-service').find('.advert-preview').removeClass('selected');
-            $('#modal-realty-objects-by-service').modal('show');
-            $targetSelectedAdvertModalTitle = $('#modal-realty-objects-by-service').data('title');
-        // }).complete(function () { //$.get(...).complete is not a function
-        }).done(function () {
-            $preloadFlag = false;
-        });
+    /**
+     * Окна для оплаты сервиса
+     * Это из старой части сайта
+     * @param $this
+     * @returns {boolean}
+     */
+    function openWindowByService($this) {
+        console.log('openWindowByService', $preloadFlag);
+        if (!$preloadFlag) {
+            $preloadFlag = true;
+            $('#services .service').not($this).removeClass('active');
+            $this.toggleClass('active');
+            serviceData.service = $this.data('type');
+            console.log(serviceData);
+            $.get("/partners/ajax/realty-objects-by-service", {service: serviceData.service}, function (response) {
+                $('#modal-realty-objects-by-service').remove();
+                $('body').append(response);
+                $('#modal-realty-objects-by-service').find('.advert-preview').removeClass('selected');
+                $('#modal-realty-objects-by-service').modal('show');
+                $targetSelectedAdvertModalTitle = $('#modal-realty-objects-by-service').data('title');
+                // }).complete(function () { //$.get(...).complete is not a function
+            }).done(function () {
+                $preloadFlag = false;
+            });
+        }
     }
-}
 
-$(window).scroll(function () {
-    if ($(this).scrollTop() > 62) {
-        $('#navigatio').addClass('fixed');
-    } else if ($(this).scrollTop() < 62) {
-        $('#navigatio').removeClass('fixed');
-    }
-});
-
-$("#opendescription2").click(function () {
-    $("#information-advert2").slideToggle("slow", function () {
-
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 62) {
+            $('#navigatio').addClass('fixed');
+        } else if ($(this).scrollTop() < 62) {
+            $('#navigatio').removeClass('fixed');
+        }
     });
-});
 
-const getToken = async function () {
-    let response = await fetch('/users/user/get-csrf-token');
-    return response.ok ? await response.text() : false;
-};
+    $("#opendescription2").click(function () {
+        $("#information-advert2").slideToggle("slow", function () {
 
-const updateToken = async function() {
-    let token = await getToken();
-    token && ($("head > meta[name='csrf-token']").prop('content', token));
-};
+        });
+    });
 
-setInterval(async () => {
-    console.log('token update by timeout');
-    updateToken();
-}, 1000 * 60 * 60 * 15);
+    const getToken = async function () {
+        let response = await fetch('/users/user/get-csrf-token');
+        return response.ok ? await response.text() : false;
+    };
+
+    const updateToken = async function() {
+        let token = await getToken();
+        token && ($("head > meta[name='csrf-token']").prop('content', token));
+    };
+
+    setInterval(async () => {
+        console.log('token update by timeout');
+        updateToken();
+    }, 1000 * 60 * 60 * 15);
+
+
+})(jQuery);
