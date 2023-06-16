@@ -45,7 +45,7 @@ class AdvertisingAdvert extends \yii\base\Widget
             return ('
             <section class="advertisement">
                 <div class="container-fluid">
-                    <h2 class="section-title">Реклама от владельцев</h2>
+                    <h2 class="section-title">Другие предложения/h2>
                     <div class="advertisement-list">
                         ' . $result . '
                     </div>
