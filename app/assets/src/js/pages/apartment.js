@@ -87,7 +87,7 @@ $(document).ready(function() {
         var myPlacemark = new ymaps.Placemark(advertCoords, {}, {
             iconLayout: 'default#image',
             iconImageHref: '/_new/images/icons/apartment/Map-Pin.svg',
-            iconImageSize: [32, 30]
+            iconImageSize: [80, 80]
         });
 
         myMap.geoObjects.add(myPlacemark);
