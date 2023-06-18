@@ -153,6 +153,9 @@ if (!empty($processService) && is_object($processService)) {
                     <input type="submit" value="Оплатить" class="btn btn-orange"/>
                 </div>
 -->
+                <div class="text-center pay-button">
+                    <span class="btn btn-primary btn-special" id="selected-advert-ago">Назад</span>
+                </div>
                 <div class="text-center pay-button" style="display: block;">
                     <input type="submit" value="Оплатить" class="btn btn-orange"/>
                 </div>

@@ -82,9 +82,6 @@ use common\modules\partners\models\Service;
     </div>
 </div>
 
-<!-- todo придумать, где это подключить. без явного указания, эта функция слетает после первой оплаты -->
-<script src="/_new/vendor/datetimepicker/bootstrap-datetimepicker.min.js"></script>
-
 <script>
     function initSelectPicker() {
         /**
@@ -141,7 +138,8 @@ use common\modules\partners\models\Service;
         });
     }
 
-    function refreshScripts() {
+    // Если не пробрасывать $, то слетает фукнция $('.datepicker').datetimepicker
+    function refreshScripts($) {
         $('.modal .bootstrap-select').remove();
 
         // if ($('.select-white').length) {
@@ -174,5 +172,5 @@ use common\modules\partners\models\Service;
 
     }
 
-    refreshScripts();
+    refreshScripts($);
 </script>
