@@ -345,7 +345,8 @@
 
 .modal-feedback,
 .modal-appeal,
-.modal-book {
+.modal-book
+.modal-complain {
     .modal {        
         &-item {
             @include tablet() {

@@ -26,6 +26,35 @@ $(document).ready(function() {
         console.log('book-button click');
     });
 
+    $(document).on('submit', '#modalComplain', function (e) {
+        e.preventDefault();
+        console.log($(this).attr("action"));
+        /*window.ajaxRequest($(this), {
+            success: function (response) {
+                console.log('success');
+                console.log(response);
+            },
+            error: function (data) {
+                console.log('error');
+                console.log(data);
+            },
+            fail: function (data) {
+                console.log('fail');
+                console.log(data);
+            }
+        });*/
+        //TODO: Приделать к бэкенду, отправить на /complaint/{advert_id} поля формы
+        $.ajax({
+            method:"POST",
+            url:$(this).attr("action"),
+            success: function(data) {
+                console.log(data);
+            },
+            error: function() {
+                console.log(data);
+            }
+        });
+    });
 
     var advertCoords = [55.76, 37.64];
     ymaps.ready(init);
