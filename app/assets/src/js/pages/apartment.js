@@ -26,9 +26,46 @@ $(document).ready(function() {
         console.log('book-button click');
     });
 
+    function convertFormToJSON(form) {
+        return form
+            .serializeArray()
+            .reduce(function (json, { name, value }) {
+                json[name] = value;
+                return json;
+            }, {});
+    }
+    function getFirstError(message){
+        return message[Object.keys(message)[0]][0];
+    }
     $(document).on('submit', '#modalComplain', function (e) {
+        $form = $(this);
         e.preventDefault();
-        console.log($(this).attr("action"));
+
+        //TODO: Приделать к бэкенду, отправить на /complaint/{advert_id} поля формы
+        const complainStatus={OK:1,ERROR:0};
+
+        $.post({
+            url:$form.attr("action"),
+            dataType: 'json',
+            contentType: false,
+            data:JSON.stringify(convertFormToJSON($form)),
+
+            success: function(data) {
+                console.log(data);
+                if(data.status==complainStatus.OK) {
+                    window.toastSuccess(data.message);
+                    $form.modal('hide');
+                } else {
+                    window.openWindow("Ошибка", getFirstError(data.message));
+                }
+            },
+
+            error: function(data) {
+                console.log("error" + data);
+                window.openWindow("Ошибка", data.message);
+            }
+        });
+        //TODO: Переделать с использованием ajax.js
         /*window.ajaxRequest($(this), {
             success: function (response) {
                 console.log('success');
@@ -43,17 +80,6 @@ $(document).ready(function() {
                 console.log(data);
             }
         });*/
-        //TODO: Приделать к бэкенду, отправить на /complaint/{advert_id} поля формы
-        $.ajax({
-            method:"POST",
-            url:$(this).attr("action"),
-            success: function(data) {
-                console.log(data);
-            },
-            error: function() {
-                console.log(data);
-            }
-        });
     });
 
     var advertCoords = [55.76, 37.64];

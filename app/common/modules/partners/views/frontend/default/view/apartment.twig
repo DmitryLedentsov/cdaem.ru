@@ -222,7 +222,7 @@
 
 <!-- Modal Complain -->
 
-<form class="modal modal-complain fade" id="modalComplain" tabindex="-1" role="dialog" aria-labelledby="modalComplainLabel" aria-hidden="true" action="{{ path({'0' : '/helpdesk/ajax/complaint', 'advert_id' : model.advert_id}) }}" method="POST" enctype="multipart/form-data">
+<form class="modal modal-complain fade" id="modalComplain" tabindex="-1" role="dialog" aria-labelledby="modalComplainLabel" aria-hidden="true" action="{{ path({'0' : '/helpdesk/ajax/complaint', 'advert_id' : model.advert_id}) }}" method="POST" >
     <div class="modal-dialog modal-dialog-window" role="document">
         <div class="modal-content modal-item">
             <div class="modal-header modal-top">
@@ -233,25 +233,25 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label for="complain-name">Тема обращения:</label>
-                    <input type="text" class="form-control" id="complain-name" placeholder="Введите тему обращения">
+                    <input type="text" name="theme" class="form-control" id="complain-theme" placeholder="Введите тему обращения">
                 </div>
                 <div class="form-group">
                     <label for="complain-name">Ваше имя:</label>
-                    <input type="text" class="form-control" id="complain-name" placeholder="Введите ваше имя" value={{ app.user.identity.profile.name | raw}}>
+                    <input type="text" name = "user_name" class="form-control" id="complain-name" placeholder="Введите ваше имя" value={{ app.user.identity.profile.name | raw}}>
                 </div>
                 <div class="form-group">
                     <label for="complain-email">Ваш email:</label>
-                    <input type="email" class="form-control" id="complain-email" placeholder="Введите ваш email" value={{ app.user.identity.email | raw}}>
+                    <input type="email" name="email" class="form-control" id="complain-email" placeholder="Введите ваш email" value={{ app.user.identity.email | raw}}>
                 </div>
                 <div class="form-group">
                     <label for="complain-text">Обращение:</label>
-                    <textarea class="form-control" id="complain-text" rows="5" placeholder="Введите текст обращения"></textarea>
+                    <textarea class="form-control" name="text" id="complain-text" rows="5" placeholder="Введите текст обращения"></textarea>
                 </div>
 
                 <div class="form-group">
                     <label for="complain-text">Приоритет:</label>
                     <label for="helpdesk-priority" class="d-none"></label>
-                    <select class="custom-select" name="Helpdesk[priority]" id="helpdesk-priority">
+                    <select class="custom-select" name="priority" id="helpdesk-priority">
                         <option value="0">Не срочно</option>
                         <option value="1">Срочно</option>
                         <option value="2">Очень срочно</option>
@@ -275,9 +275,6 @@
 </form>
 
 {% include('@common/modules/partners/views/frontend/default/view/offers.twig') %}
-
-{{ use('common/modules/users/assets/UserAsset') }}
-{{ register_user_asset() }}
 
 {{ use('common/modules/reviews/widgets/frontend/ShowReviews') }}
 {{ show_reviews_widget({

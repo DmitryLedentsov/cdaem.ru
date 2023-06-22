@@ -72,7 +72,7 @@ class AjaxController extends \frontend\components\Controller
         if (Yii::$app->request->isPost) {
             Yii::$app->response->format = Response::FORMAT_JSON;
 
-            $formModel->load(Yii::$app->request->getBodyParams());
+            $formModel->load(\yii\helpers\Json::decode(YII::$app->request->getRawBody()),'');
             $errors = ActiveForm::validate($formModel);
             if (!$errors) {
                 if ($formModel->complaint()) {
@@ -88,7 +88,10 @@ class AjaxController extends \frontend\components\Controller
                 ];
             }
 
-            return $errors;
+            return [
+                'status' => 0,
+                'message' => $errors
+            ];
         }
 
         return $this->renderAjax('complaint.twig', [
