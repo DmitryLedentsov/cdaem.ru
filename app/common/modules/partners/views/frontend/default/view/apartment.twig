@@ -130,7 +130,7 @@
 {#                {% endif %}#}
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModalLong">Написать</button>
-                <button class="btn btn-warning" data-toggle="modal" data-target="#modalComplain" >Пожаловаться</button>
+                <button class="btn btn-warning" data-toggle="modal" data-target="#complainModal" >Пожаловаться</button>
             </div>
         </div>
     </div>
@@ -222,12 +222,12 @@
 
 <!-- Modal Complain -->
 
-<div class="modal modal-complain fade" id="modalComplain" tabindex="-1" role="dialog" aria-labelledby="modalComplainLabel" aria-hidden="true"  >
+<div class="modal modal-complain fade" id="complainModal" tabindex="-1" role="dialog" aria-labelledby="complainModalLabel" aria-hidden="true"  >
     <div class="modal-dialog modal-dialog-window" role="document">
         <div class="modal-content modal-item">
             <form id="complainForm" action="{{ path({'0' : '/helpdesk/ajax/complaint', 'advert_id' : model.advert_id}) }}" method="POST"  enctype="multipart/form-data">
             <div class="modal-header modal-top">
-                <h4 class="modal-title modal-header-title" id="modalComplainLabel">Оставить жалобу на владельца</h4>
+                <h4 class="modal-title modal-header-title" id="complainModalLabel">Оставить жалобу на владельца</h4>
                 <button type="button" class="close btn-close" data-dismiss="modal" aria-label="Close">
                 </button>
             </div>

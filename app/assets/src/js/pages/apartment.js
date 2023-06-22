@@ -52,7 +52,7 @@ $(document).ready(function() {
                 console.log("received: ", data.message);
                 if(data.status==complainStatus.OK) {
                     window.toastSuccess(data.message);
-                    $("#modalComplain").modal('hide');
+                    $("#complainModal").modal('hide');
                 } else {
                     window.openWindow("Ошибка", getFirstError(data.message));
                 }
