@@ -276,9 +276,6 @@
 
 {% include('@common/modules/partners/views/frontend/default/view/offers.twig') %}
 
-{{ use('common/modules/users/assets/UserAsset') }}
-{{ register_user_asset() }}
-
 {{ use('common/modules/reviews/widgets/frontend/ShowReviews') }}
 {{ show_reviews_widget({
     'apartmentId' :  model.apartment.apartment_id,
