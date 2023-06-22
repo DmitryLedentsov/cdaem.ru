@@ -37,24 +37,24 @@ $(document).ready(function() {
     function getFirstError(message){
         return message[Object.keys(message)[0]][0];
     }
-    $(document).on('submit', '#modalComplain', function (e) {
+    $(document).on('submit', '#complainForm', function (e) {
         $form = $(this);
         e.preventDefault();
 
         //TODO: Приделать к бэкенду, отправить на /complaint/{advert_id} поля формы
         const complainStatus={OK:1,ERROR:0};
-
+        console.log("sent: " +JSON.stringify(convertFormToJSON($form)));
         $.post({
             url:$form.attr("action"),
-            dataType: 'json',
-            contentType: false,
-            data:JSON.stringify(convertFormToJSON($form)),
+            /*dataType: 'json',*/
+            /*contentType: false,*/
+            data:convertFormToJSON($form),
 
             success: function(data) {
-                console.log(data);
+                console.log("received: ", data.message);
                 if(data.status==complainStatus.OK) {
                     window.toastSuccess(data.message);
-                    $form.modal('hide');
+
                 } else {
                     window.openWindow("Ошибка", getFirstError(data.message));
                 }

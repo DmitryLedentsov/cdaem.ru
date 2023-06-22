@@ -3,6 +3,7 @@
 namespace common\modules\helpdesk\controllers\frontend;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
 use yii\filters\AccessControl;
@@ -72,7 +73,7 @@ class AjaxController extends \frontend\components\Controller
         if (Yii::$app->request->isPost) {
             Yii::$app->response->format = Response::FORMAT_JSON;
 
-            $formModel->load(\yii\helpers\Json::decode(YII::$app->request->getRawBody()),'');
+            $formModel->load(YII::$app->request->getBodyParams());
             $errors = ActiveForm::validate($formModel);
             if (!$errors) {
                 if ($formModel->complaint()) {
