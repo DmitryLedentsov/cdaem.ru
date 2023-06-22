@@ -46,8 +46,6 @@ $(document).ready(function() {
         console.log("sent: " +JSON.stringify(convertFormToJSON($form)));
         $.post({
             url:$form.attr("action"),
-            /*dataType: 'json',*/
-            /*contentType: false,*/
             data:convertFormToJSON($form),
 
             success: function(data) {
