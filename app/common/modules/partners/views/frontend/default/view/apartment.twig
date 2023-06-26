@@ -130,13 +130,13 @@
 {#                {% endif %}#}
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModalLong">Написать</button>
-                <button class="btn btn-warning" data-toggle="modal" data-target="#modalAppeal">Пожаловаться</button>
+                <button class="btn btn-warning" data-toggle="modal" data-target="#complainModal" >Пожаловаться</button>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Modal -->
+<!-- Modal Book -->
 <div class="modal modal-book fade" id="modalBook" tabindex="-1" role="dialog" aria-labelledby="modalBookLabel"
      aria-hidden="true">
     <div class="modal-dialog modal-dialog-window" role="document">
@@ -220,8 +220,8 @@
     </div>
 </div>
 
-
 {% include('@common/modules/partners/views/frontend/default/view/offers.twig') %}
+{% include('@common/modules/partners/views/frontend/default/_modal_complain.twig') %}
 
 {{ use('common/modules/reviews/widgets/frontend/ShowReviews') }}
 {{ show_reviews_widget({
