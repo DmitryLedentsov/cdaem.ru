@@ -73,7 +73,7 @@ class AjaxController extends \frontend\components\Controller
         if (Yii::$app->request->isPost) {
             Yii::$app->response->format = Response::FORMAT_JSON;
 
-            $formModel->load(YII::$app->request->getBodyParams());
+            $formModel->load(Yii::$app->request->getBodyParams());
             $errors = ActiveForm::validate($formModel);
             if (!$errors) {
                 if ($formModel->complaint()) {
