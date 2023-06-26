@@ -56,7 +56,7 @@ class AjaxController extends \frontend\components\Controller
     /**
      * Отправить жалобу на владельца апартаментов
      * @param $advert_id
-     * @return array|bool
+     * @return Response|array
      */
     public function actionComplaint($advert_id)
     {
@@ -74,25 +74,18 @@ class AjaxController extends \frontend\components\Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
 
             $formModel->load(Yii::$app->request->getBodyParams());
-            $errors = ActiveForm::validate($formModel);
+            $errors = $this::validate($formModel);
+
             if (!$errors) {
                 if ($formModel->complaint()) {
-                    return [
-                        'status' => 1,
-                        'message' => 'Ваша заявка успешно остановлена, пожалуйста ожидайте звонка от диспетчера.'
-                    ];
+                    $this->successAjaxResponse('Ваша заявка успешно остановлена, пожалуйста ожидайте звонка от диспетчера.');
                 }
-
                 return [
                     'status' => 0,
                     'message' => 'Возникла критическая ошибка.'
                 ];
             }
-
-            return [
-                'status' => 0,
-                'message' => $errors
-            ];
+            return $this->validationErrorsAjaxResponse($errors);
         }
 
         return $this->renderAjax('complaint.twig', [

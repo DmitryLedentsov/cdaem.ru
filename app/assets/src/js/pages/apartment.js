@@ -26,58 +26,9 @@ $(document).ready(function() {
         console.log('book-button click');
     });
 
-    function convertFormToJSON(form) {
-        return form
-            .serializeArray()
-            .reduce(function (json, { name, value }) {
-                json[name] = value;
-                return json;
-            }, {});
-    }
-    function getFirstError(message){
-        return message[Object.keys(message)[0]][0];
-    }
     $(document).on('submit', '#complainForm', function (e) {
-        $form = $(this);
         e.preventDefault();
-
-        //TODO: Приделать к бэкенду, отправить на /complaint/{advert_id} поля формы
-        const complainStatus={OK:1,ERROR:0};
-        console.log("sent: " +JSON.stringify(convertFormToJSON($form)));
-        $.post({
-            url:$form.attr("action"),
-            data:convertFormToJSON($form),
-
-            success: function(data) {
-                console.log("received: ", data.message);
-                if(data.status==complainStatus.OK) {
-                    window.toastSuccess(data.message);
-                    $("#complainModal").modal('hide');
-                } else {
-                    window.openWindow("Ошибка", getFirstError(data.message));
-                }
-            },
-
-            error: function(data) {
-                console.log("error" + data);
-                window.openWindow("Ошибка", data.message);
-            }
-        });
-        //TODO: Переделать с использованием ajax.js
-        /*window.ajaxRequest($(this), {
-            success: function (response) {
-                console.log('success');
-                console.log(response);
-            },
-            error: function (data) {
-                console.log('error');
-                console.log(data);
-            },
-            fail: function (data) {
-                console.log('fail');
-                console.log(data);
-            }
-        });*/
+        window.ajaxRequest($(this));
     });
 
     var advertCoords = [55.76, 37.64];
