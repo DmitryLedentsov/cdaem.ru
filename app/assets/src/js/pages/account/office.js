@@ -363,7 +363,7 @@
         $targetModal.find('.modal-title').html(targetSelectedAdvertModalTitle);
         $targetModal.find('.load').html(responseCache);
 
-        refreshScripts();
+        refreshScripts($);
 
         $('#realty-objects-by-service-days').val(serviceData.days);
         $('#realty-objects-by-service-date').val(serviceData.date);

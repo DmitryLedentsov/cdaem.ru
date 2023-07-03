@@ -112,17 +112,15 @@ else {
                         $responseCache = '';
 
                         if (response.redirect) {
-                            // todo вернуть
-                            /*if (response.redirect === 'reload') {
+                            if (response.redirect === 'reload') {
                                 // Иногда сервис не успевает активироваться сразу
                                 setTimeout(function () {
                                     document.location.reload();
                                 }, 1500);
                             } else {
                                 window.location.href = response.redirect;
-                            }*/
+                            }
                         }
-
                     } else {
                         // showStackError('Ошибка', response.message);
                         window.toastError(response.message, 'Ошибка');

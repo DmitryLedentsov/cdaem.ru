@@ -68,7 +68,6 @@ class UserController extends Controller
     {
         $profile = models\Profile::findByUserId(Yii::$app->user->id);
         $profile->setScenario('update');
-
         $post = Yii::$app->request->post();
 
         $clearPhone = function ($rawPhone) {
@@ -87,31 +86,61 @@ class UserController extends Controller
         $user = models\User::findOne(['id' => Yii::$app->user->id]);
         $user->setScenario('update');
 
+        $errors = [];
+        $isSuccess = true;
+        $isUpdate = false;
+
         if ($user->load($post)) {
+            $isUpdate = true;
             $errors = $this->validate($user);
 
             if (empty($errors)) {
                 $user->save(false);
+            }
+            else {
+                $isSuccess = false;
+            }
+        }
 
-                return $this->successAjaxResponse(Yii::t('users', 'SUCCESS_UPDATE'));
+        // Проверяем только если пользователь решил поменять пароль
+        $newPassword = ArrayHelper::getValue($post, "PasswordForm.password");
+
+        if (!empty($newPassword)) {
+            $isUpdate = true;
+            $passwordForm = new models\frontend\PasswordForm();
+
+            if ($passwordForm->load($post)) {
+                $errors = array_merge($errors, $this->validate($passwordForm));
+
+                if (empty($errors)) {
+                    $user->setPassword($newPassword);
+                    $user->save(false);
+                }
+                else {
+                    $isSuccess = false;
+                }
+            }
+        }
+
+        if ($profile->load($post)) {
+            $isUpdate = true;
+            $errors = array_merge($errors, $this->validate($profile));
+            if (empty($errors)) {
+                $profile->save(false);
+            }
+            else {
+                $isSuccess = false;
             }
 
+        }
+
+        // Ошибки со всех трёх моделей
+        if ($errors) {
             return $this->validationErrorsAjaxResponse($errors);
         }
 
-
-        if ($profile->load($post)) {
-            $errors = $this->validate($profile);
-            if (empty($errors)) {
-                $profile->save(false);
-
-                return $this->successAjaxResponse(Yii::t('users', 'SUCCESS_UPDATE'));
-            }
-
-            // TODO:
-            // dd(self::class, Yii::$app->request->post());
-
-            return $this->validationErrorsAjaxResponse($errors);
+        if ($isUpdate && $isSuccess) {
+            return $this->successAjaxResponse(Yii::t('users', 'SUCCESS_UPDATE'));
         }
 
         return $this->response($this->render('profile', [
@@ -182,23 +211,7 @@ class UserController extends Controller
      */
     public function actionGetCsrfToken() {
         $csrfToken = Yii::$app->request->getCsrfToken();
-        // $cookies = Yii::$app->response->cookies;
-
-        /*
-        $cookies->add(new \yii\web\Cookie([
-            'name' => '_csrf',
-            'value' => $csrfToken,
-        ]));
-        */
-        // Yii::$app->response->headers->add('Set-Cookie', '_csrf=' . $csrfToken . '; path=/');
-        // Yii::$app->response->headers->add('X-CSRF-Token', $csrfToken);
         Yii::$app->response->headers->set('X-CSRF-Token', $csrfToken);
-
-        // $cookie = $cookies->get('_csrf');
-        // $val = \Yii::$app->getRequest()->getCookies()->getValue('_csrf');
-        // dd($csrfToken, $cookie);
-        // dd($csrfToken, $val);
-
         return $csrfToken;
     }
 }
