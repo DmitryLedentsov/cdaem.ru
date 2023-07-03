@@ -12,7 +12,7 @@ class m230703_201745_remove_advertisement_duplicates extends Migration
      */
     public function safeUp()
     {
-        Yii::$app->consoleRunner->run('partners/collector/remove-advertisement-dublicates');
+        Yii::$app->consoleRunner->run('partners/collector/remove-advertisement-duplicates');
     }
 
     /**
