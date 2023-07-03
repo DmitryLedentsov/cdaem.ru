@@ -241,6 +241,32 @@ class CollectorController extends \yii\console\Controller
         $this->stdout('Процесс выполнен. Обработано объявлений: ' . ($count) . PHP_EOL, Console::FG_GREEN);
         Yii::info('Процесс выполнен. Обработано объявлений: ' . ($count), 'apartments-watcher');
     }
+    /**
+     * Remove Duplicates
+     * Удаление дубликатов Рекламы
+     * @param $tableName string нужная таблица
+     * @return int количество удаленных реклам
+     * Сценарий ищет дубликаты и удаляет
+     *
+     * Вызов команды: php yii partners/collector/remove-advertisement-duplicates
+     *
+     */
+    public function actionRemoveAdvertisementDuplicates(string $tableName='partners_advertisement') : int
+    {
+        $query = "
+        DELETE first_advertisement FROM $tableName first_advertisement
+            INNER JOIN $tableName second_advertisement
+        WHERE
+            first_advertisement.advertisement_id > second_advertisement.advertisement_id AND
+            first_advertisement.advert_id = second_advertisement.advert_id;
+        ";
+
+        $count = Yii::$app->db->createCommand($query)->execute();
+        $msg = 'Процесс выполнен. Удалено рекламных объявлений: ';
+        $this->stdout($msg . ($count) . PHP_EOL, Console::FG_GREEN);
+        Yii::info($msg . ($count), 'remove-advertisement-duplicates');
+        return $count;
+    }
 
     /**
      * Проверят прошло ли количество секунд с даты
