@@ -244,13 +244,13 @@ class CollectorController extends \yii\console\Controller
     /**
      * Remove Dublicates
      * Удаление дубликатов Рекламы
-     * @param $tableName 'нужная таблица'
+     * @param $tableName string нужная таблица
      * Сценарий ищет дубликаты и удаляет
      *
-     * Вызов команды: php yii partners/collector/remove-dublicates
-     *
+     * Вызов команды: php yii partners/collector/remove-advertisement-dublicates
+     * make php-yii cmd='partners/collector/remove-advertisement-dublicates'
      */
-    public function actionRemoveAdvertisementDublicates($tableName='partners_advertisement')
+    public function actionRemoveAdvertisementDublicates(string $tableName='partners_advertisement') : int
     {
         $query = "
         DELETE first_advertisement FROM $tableName first_advertisement
@@ -260,7 +260,11 @@ class CollectorController extends \yii\console\Controller
             first_advertisement.advert_id = second_advertisement.advert_id;
         ";
 
-        Yii::$app->db->createCommand($query)->execute();
+        $count = Yii::$app->db->createCommand($query)->execute();
+        $msg = 'Процесс выполнен. Удалено рекламных объявлений: ';
+        $this->stdout($msg . ($count) . PHP_EOL, Console::FG_GREEN);
+        Yii::info($msg . ($count), 'remove-advertisement-dublicates');
+        return $count;
     }
 
     /**
