@@ -241,6 +241,31 @@ class CollectorController extends \yii\console\Controller
         $this->stdout('Процесс выполнен. Обработано объявлений: ' . ($count) . PHP_EOL, Console::FG_GREEN);
         Yii::info('Процесс выполнен. Обработано объявлений: ' . ($count), 'apartments-watcher');
     }
+    /**
+     * Remove Dublicates
+     * Удаление дубликатов Рекламы
+     *
+     * Сценарий ищет дубликаты и удаляет
+     *
+     * Вызов команды: php yii partners/collector/remove-dublicates
+     * TODO: сделать
+     */
+    public function actionRemoveDublicates()
+    {
+        $advertisements = models\Advertisement::find()->distinct()->all();
+        //$processes = models\Service::find()->all();
+        $result = [];
+
+        foreach ($advertisements as $advertisement){
+            /*if(!in_array($process, $processes))
+                $result[]=$process;*/
+            if(models\Service::deleteAll(['AND',
+                ['advert_id'=>$advertisement->getAdvert()],
+                ['NOT',[]]){
+
+            }
+        }
+    }
 
     /**
      * Проверят прошло ли количество секунд с даты
