@@ -24,19 +24,4 @@ class m230703_201745_remove_advertisement_duplicates extends Migration
 
         return false;
     }
-
-    /*
-    // Use up()/down() to run migration code without a transaction.
-    public function up()
-    {
-
-    }
-
-    public function down()
-    {
-        echo "m230703_201745_remove_advertisement_duplicates cannot be reverted.\n";
-
-        return false;
-    }
-    */
 }
