@@ -248,7 +248,7 @@ class CollectorController extends \yii\console\Controller
      * Сценарий ищет дубликаты и удаляет
      *
      * Вызов команды: php yii partners/collector/remove-advertisement-dublicates
-     * make php-yii cmd='partners/collector/remove-advertisement-dublicates'
+     *
      */
     public function actionRemoveAdvertisementDublicates(string $tableName='partners_advertisement') : int
     {
