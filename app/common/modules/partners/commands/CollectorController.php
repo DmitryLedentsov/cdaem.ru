@@ -275,13 +275,13 @@ class CollectorController extends \yii\console\Controller
         }*/
         $query = '
         DELETE t1 FROM :table t1
-            INNER JOIN partners_advertisement_no_dup t2
+            INNER JOIN :table t2
         WHERE
             t1.advertisement_id != t2.advertisement_id AND
             t1.advert_id = t2.advert_id;
         ';
         $tableName = 'partners_advertisement_no_dup';
-        $list= Yii::app()->db->createCommand($query)->bindValue('table',$tableName)->queryAll();
+        Yii::app()->db->createCommand($query)->bindValue('table',$tableName)->query();
     }
 
     /**
