@@ -259,10 +259,18 @@ class CollectorController extends \yii\console\Controller
         foreach ($advertisements as $advertisement){
             /*if(!in_array($process, $processes))
                 $result[]=$process;*/
-            if(models\Service::deleteAll(['AND',
+            if(models\Advertisement::deleteAll(['AND',
                 ['advert_id'=>$advertisement->getAdvert()],
-                ['NOT',[]]){
+                ['NOT',['advertisement_id'=>$advertisement->getAttribute('advertisement_id')]]
+            ])){
 
+            }
+            /*
+             * ['AND',
+                ['advert_id'=>$advertisement->getAdvert()],
+                ['NOT',['advertisement_id'=>$advertisement->getAttribute('advertisement_id')]
+
+             */
             }
         }
     }
