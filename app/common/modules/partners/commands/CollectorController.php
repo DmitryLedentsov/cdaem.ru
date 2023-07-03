@@ -242,16 +242,16 @@ class CollectorController extends \yii\console\Controller
         Yii::info('Процесс выполнен. Обработано объявлений: ' . ($count), 'apartments-watcher');
     }
     /**
-     * Remove Dublicates
+     * Remove Duplicates
      * Удаление дубликатов Рекламы
      * @param $tableName string нужная таблица
      * @return int количество удаленных реклам
      * Сценарий ищет дубликаты и удаляет
      *
-     * Вызов команды: php yii partners/collector/remove-advertisement-dublicates
+     * Вызов команды: php yii partners/collector/remove-advertisement-duplicates
      *
      */
-    public function actionRemoveAdvertisementDublicates(string $tableName='partners_advertisement') : int
+    public function actionRemoveAdvertisementDuplicates(string $tableName='partners_advertisement') : int
     {
         $query = "
         DELETE first_advertisement FROM $tableName first_advertisement
@@ -264,7 +264,7 @@ class CollectorController extends \yii\console\Controller
         $count = Yii::$app->db->createCommand($query)->execute();
         $msg = 'Процесс выполнен. Удалено рекламных объявлений: ';
         $this->stdout($msg . ($count) . PHP_EOL, Console::FG_GREEN);
-        Yii::info($msg . ($count), 'remove-advertisement-dublicates');
+        Yii::info($msg . ($count), 'remove-advertisement-duplicates');
         return $count;
     }
 
