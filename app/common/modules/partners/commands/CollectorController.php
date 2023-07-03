@@ -245,6 +245,7 @@ class CollectorController extends \yii\console\Controller
      * Remove Dublicates
      * Удаление дубликатов Рекламы
      * @param $tableName string нужная таблица
+     * @return int количество удаленных реклам
      * Сценарий ищет дубликаты и удаляет
      *
      * Вызов команды: php yii partners/collector/remove-advertisement-dublicates
