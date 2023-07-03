@@ -252,14 +252,14 @@ class CollectorController extends \yii\console\Controller
      */
     public function actionRemoveDublicates()
     {
-        $advertisements = models\Advertisement::find()->distinct()->all();
+        /*$uniqueAdvertisements= models\Advertisement::find()->select(['advertisement_id','advert_id'])->distinct()->all();
         //$processes = models\Service::find()->all();
         $result = [];
 
-        foreach ($advertisements as $advertisement){
+        foreach ($advertIds as $advertId){
             /*if(!in_array($process, $processes))
                 $result[]=$process;*/
-            if(models\Advertisement::deleteAll(['AND',
+            /*if(models\Advertisement::deleteAll(['AND',
                 ['advert_id'=>$advertisement->getAdvert()],
                 ['NOT',['advertisement_id'=>$advertisement->getAttribute('advertisement_id')]]
             ])){
@@ -270,9 +270,18 @@ class CollectorController extends \yii\console\Controller
                 ['advert_id'=>$advertisement->getAdvert()],
                 ['NOT',['advertisement_id'=>$advertisement->getAttribute('advertisement_id')]
 
-             */
+             *//*
             }
-        }
+        }*/
+        $query = '
+        DELETE t1 FROM :table t1
+            INNER JOIN partners_advertisement_no_dup t2
+        WHERE
+            t1.advertisement_id != t2.advertisement_id AND
+            t1.advert_id = t2.advert_id;
+        ';
+        $tableName = 'partners_advertisement_no_dup';
+        $list= Yii::app()->db->createCommand($query)->bindValue('table',$tableName)->queryAll();
     }
 
     /**
