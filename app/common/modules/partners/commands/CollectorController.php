@@ -244,44 +244,23 @@ class CollectorController extends \yii\console\Controller
     /**
      * Remove Dublicates
      * Удаление дубликатов Рекламы
-     *
+     * @param $tableName 'нужная таблица'
      * Сценарий ищет дубликаты и удаляет
      *
      * Вызов команды: php yii partners/collector/remove-dublicates
-     * TODO: сделать
+     *
      */
-    public function actionRemoveDublicates()
+    public function actionRemoveAdvertisementDublicates($tableName='partners_advertisement')
     {
-        /*$uniqueAdvertisements= models\Advertisement::find()->select(['advertisement_id','advert_id'])->distinct()->all();
-        //$processes = models\Service::find()->all();
-        $result = [];
-
-        foreach ($advertIds as $advertId){
-            /*if(!in_array($process, $processes))
-                $result[]=$process;*/
-            /*if(models\Advertisement::deleteAll(['AND',
-                ['advert_id'=>$advertisement->getAdvert()],
-                ['NOT',['advertisement_id'=>$advertisement->getAttribute('advertisement_id')]]
-            ])){
-
-            }
-            /*
-             * ['AND',
-                ['advert_id'=>$advertisement->getAdvert()],
-                ['NOT',['advertisement_id'=>$advertisement->getAttribute('advertisement_id')]
-
-             *//*
-            }
-        }*/
-        $query = '
-        DELETE t1 FROM :table t1
-            INNER JOIN :table t2
+        $query = "
+        DELETE first_advertisement FROM $tableName first_advertisement
+            INNER JOIN $tableName second_advertisement
         WHERE
-            t1.advertisement_id != t2.advertisement_id AND
-            t1.advert_id = t2.advert_id;
-        ';
-        $tableName = 'partners_advertisement_no_dup';
-        Yii::app()->db->createCommand($query)->bindValue('table',$tableName)->query();
+            first_advertisement.advertisement_id > second_advertisement.advertisement_id AND
+            first_advertisement.advert_id = second_advertisement.advert_id;
+        ";
+
+        Yii::$app->db->createCommand($query)->execute();
     }
 
     /**
