@@ -31,6 +31,10 @@ $(document).ready(function() {
         window.ajaxRequest($(this));
     });
 
+    $("#complainFormCloseButton").click(()=>{
+        $("#complainForm").trigger('reset');
+    });
+
     var advertCoords = [55.76, 37.64];
     ymaps.ready(init);
     function init(){
