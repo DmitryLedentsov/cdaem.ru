@@ -7,7 +7,10 @@
     $modal.on('hidden.bs.modal', function (e) {
         if ($('.modal.show').length) {
             $('body').addClass('modal-open').css('paddingRight', paddingScroll + 'px');
-            $modal.find("form").trigger('reset');
+            let $form = $modal.find("form");
+            if($form.length){
+                $form.trigger('reset');
+            }
         }
     });
     $modal.on('show.bs.modal', function (e) {
