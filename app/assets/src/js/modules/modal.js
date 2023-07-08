@@ -7,6 +7,10 @@
     $modal.on('hidden.bs.modal', function (e) {
         if ($('.modal.show').length) {
             $('body').addClass('modal-open').css('paddingRight', paddingScroll + 'px');
+            let $form = $modal.find("form");
+            if($form.length){
+                $form.trigger('reset');
+            }
         }
     });
     $modal.on('show.bs.modal', function (e) {
@@ -61,5 +65,5 @@
     window.closeWindow = function () {
         let $window = $('#main-modal');
         $window.modal('hide');
-    }
+    };
 })(jQuery);
