@@ -41,7 +41,7 @@ input[type="submit"]:focus, input[type="button"]:focus
     border: 1px solid #D7D7D7;
     height: calc(2.5rem + 2px);
 
-    &:not(input):hover {
+    &:not(input, textarea):hover {
         cursor: pointer;
     }
 
