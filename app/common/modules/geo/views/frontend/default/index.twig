@@ -130,14 +130,15 @@
 
         <div id="map" class="mb-5"></div>
 
-        <script src="//api-maps.yandex.ru/2.1/?lang=ru-RU" type="text/javascript"></script>
+        <script src="https://api-maps.yandex.ru/2.1/?apikey=3dd27c27-e51a-4660-a191-5c0413af0c03&lang=ru_RU"></script>
+
         <script type="text/javascript">
 
             ymaps.ready(init);
 
             function init() {
                 var myMap = new ymaps.Map('map', {
-                        center: [{{ city.longitude }}, {{ city.latitude }}],
+                        center: [{{ city.latitude }}, {{ city.longitude }}],
                         zoom: 10
                     }),
                     objectManager = new ymaps.ObjectManager({
