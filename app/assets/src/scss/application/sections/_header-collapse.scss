@@ -275,7 +275,6 @@
         display: none;
         margin-top: -0.5rem;
         margin-bottom: 0.5rem;
-        cursor: pointer;
 
         &:before {
             content: "";
@@ -367,8 +366,7 @@
 
             &-active {
                 padding: 28px 0 0;
-                //max-height: 533px;
-                max-height: 500px;
+                max-height: none;
             }
 
             &-header {
@@ -445,7 +443,6 @@
     .header-message {
         position: relative;
         margin: 0;
-        cursor: pointer;
 
         &-zero {
             background-color: #39a939 !important;
