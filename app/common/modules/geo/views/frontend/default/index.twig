@@ -44,9 +44,10 @@
 {% endblock %}
 
 {% block content %}
+    {{ use('common/modules/geo/assets/frontend/YMapAsset') }}
+    {{ register_y_map_asset() }}
 
     <div class="container">
-
         <style type="text/css">
             #map {
                 margin-top: 20px;
@@ -129,123 +130,116 @@
         </style>
 
         <div id="map" class="mb-5"></div>
+    </div>
+{% endblock %}
 
-        <script src="//api-maps.yandex.ru/2.1/?lang=ru-RU" type="text/javascript"></script>
-        <script type="text/javascript">
+{% block additional_scripts %}
+    <script type="text/javascript">
 
-            ymaps.ready(init);
+        ymaps.ready(init);
 
-            function init() {
-                var myMap = new ymaps.Map('map', {
-                        center: [{{ city.longitude }}, {{ city.latitude }}],
-                        zoom: 10
-                    }),
-                    objectManager = new ymaps.ObjectManager({
-                        clusterize: true,
-                        gridSize: 32
-                    });
-
-                // Задаём опции кластеров
-                objectManager.clusters.options.set({
-                    preset: 'islands#blueClusterIcons',
-                    //balloonContentLayout: 'cluster#balloonCarousel',
-                    //clusterBalloonPagerSize: 5,
-                    //clusterBalloonPanelMaxMapArea: 0,
-                    balloonContentLayoutWidth: 400,
-                    balloonContentLayoutHeight: 300
+        function init() {
+            var myMap = new ymaps.Map('map', {
+                    center: [{{ city.latitude }}, {{ city.longitude }}],
+                    zoom: 10
+                }),
+                objectManager = new ymaps.ObjectManager({
+                    clusterize: true,
+                    gridSize: 32
                 });
 
-                var activeObjectMonitor = new ymaps.Monitor(objectManager.clusters.state);
+            // Задаём опции кластеров
+            objectManager.clusters.options.set({
+                preset: 'islands#blueClusterIcons',
+                //balloonContentLayout: 'cluster#balloonCarousel',
+                //clusterBalloonPagerSize: 5,
+                //clusterBalloonPanelMaxMapArea: 0,
+                balloonContentLayoutWidth: 400,
+                balloonContentLayoutHeight: 300
+            });
 
-                // При клике на некластеризованные объекты получаем содержимое балуна
-                objectManager.objects.events.add('click', function (e) {
-                    var objectId = e.get('objectId');
-                    getBalloonData(objectId, function (data) {
-                        render(data, objectId);
-                    });
+            var activeObjectMonitor = new ymaps.Monitor(objectManager.clusters.state);
+
+            // При клике на некластеризованные объекты получаем содержимое балуна
+            objectManager.objects.events.add('click', function (e) {
+                var objectId = e.get('objectId');
+                getBalloonData(objectId, function (data) {
+                    render(data, objectId);
+                });
+            });
+
+            // В кластеризованных объектах отслеживаем изменение выбранного объекта
+            activeObjectMonitor.add('activeObject', function () {
+                var objectId = activeObjectMonitor.get('activeObject').id;
+                getBalloonData(objectId, function (data) {
+                    render(data, objectId);
+                });
+            });
+
+            // Проверяем, есть ли у выбранного объекта содержимое балуна
+            /*function hasBalloonData(objectId) {
+             return objectManager.objects.getById(objectId).properties.balloonContent;
+             }*/
+
+
+            // Получаем данные и устанавливаем содержимое балуна
+            /*function setBalloonData(objectId) {
+             if (!hasBalloonData(objectId)) {
+             getBalloonData(objectId).done(function (data) {
+             var object = objectManager.objects.getById(objectId);
+             object.properties.balloonContent = data;
+             var objectState = objectManager.getObjectState(objectId);
+             if (objectState.isClustered) {
+             objectManager.clusters.balloon.open(objectState.cluster.id);
+             }
+             else {
+             objectManager.objects.balloon.open(objectId);
+             }
+             });
+             }
+             }*/
+
+
+            myMap.geoObjects.add(objectManager);
+            $.ajax({
+                url: '/geo/map',
+                dataType: 'json'
+            })
+                .done(function (data) {
+                    objectManager.add(data);
                 });
 
-                // В кластеризованных объектах отслеживаем изменение выбранного объекта
-                activeObjectMonitor.add('activeObject', function () {
-                    var objectId = activeObjectMonitor.get('activeObject').id;
-                    getBalloonData(objectId, function (data) {
-                        render(data, objectId);
-                    });
-                });
 
-                // Проверяем, есть ли у выбранного объекта содержимое балуна
-                /*function hasBalloonData(objectId) {
-                 return objectManager.objects.getById(objectId).properties.balloonContent;
-                 }*/
-
-
-                // Получаем данные и устанавливаем содержимое балуна
-                /*function setBalloonData(objectId) {
-                 if (!hasBalloonData(objectId)) {
-                 getBalloonData(objectId).done(function (data) {
-                 var object = objectManager.objects.getById(objectId);
-                 object.properties.balloonContent = data;
-                 var objectState = objectManager.getObjectState(objectId);
-                 if (objectState.isClustered) {
-                 objectManager.clusters.balloon.open(objectState.cluster.id);
-                 }
-                 else {
-                 objectManager.objects.balloon.open(objectId);
-                 }
-                 });
-                 }
-                 }*/
-
-
-                myMap.geoObjects.add(objectManager);
+            // Функция, осуществляющая запрос за данными балуна на сервер.
+            function getBalloonData(objectId, done) {
+                var dataDeferred = ymaps.vow.defer();
                 $.ajax({
-                    url: '/geo/map',
-                    dataType: 'json'
+                    url: '/geo/map/' + objectId,
+                    type: 'GET',
+                    dataType: 'html'
                 })
                     .done(function (data) {
-                        objectManager.add(data);
+                        done(data);
+                        dataDeferred.resolve(data);
                     })
                     .fail(function () {
-                        console.log("error");
+                        dataDeferred.resolve('error');
                     });
-
-
-                // Функция, осуществляющая запрос за данными балуна на сервер.
-                function getBalloonData(objectId, done) {
-                    var dataDeferred = ymaps.vow.defer();
-                    $.ajax({
-                        url: '/geo/map/' + objectId,
-                        type: 'GET',
-                        dataType: 'html'
-                    })
-                        .done(function (data) {
-                            done(data);
-                            dataDeferred.resolve(data);
-                        })
-                        .fail(function () {
-                            console.log("full-story error");
-                            dataDeferred.resolve('error');
-                        });
-                }
-
-
-                function render(data, objectId) {
-                    var object = objectManager.objects.getById(objectId);
-                    object.properties.balloonContent = data;
-                    var objectState = objectManager.getObjectState(objectId);
-                    if (objectState.isClustered) {
-                        objectManager.clusters.balloon.open(objectState.cluster.id);
-                    } else {
-                        objectManager.objects.balloon.open(objectId);
-                    }
-                }
             }
 
 
-        </script>
+            function render(data, objectId) {
+                var object = objectManager.objects.getById(objectId);
+                object.properties.balloonContent = data;
+                var objectState = objectManager.getObjectState(objectId);
+                if (objectState.isClustered) {
+                    objectManager.clusters.balloon.open(objectState.cluster.id);
+                } else {
+                    objectManager.objects.balloon.open(objectId);
+                }
+            }
+        }
 
-    </div>
 
-
+    </script>
 {% endblock %}
-
