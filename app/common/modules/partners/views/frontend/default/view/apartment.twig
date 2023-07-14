@@ -101,11 +101,15 @@
 
             {% if model.apartment.orderedImages|length > 0 %}
             <div class="advert-slider-for">
+                {{ use('frontend/themes/basic/assets/LightBoxAsset') }}
+                {{ register_light_box_asset() }}
 
                 {% for image in model.apartment.orderedImages %}
 
                     <div class="advert-slider-for-item">
-                        <img src="{{ image.reviewSrc }}" alt="slider-image">
+                        <a href="{{ image.reviewSrc }}" data-lightbox="data-lightbox" >
+                            <img src="{{ image.reviewSrc }}">
+                        </a>
                     </div>
 
                 {% endfor %}
