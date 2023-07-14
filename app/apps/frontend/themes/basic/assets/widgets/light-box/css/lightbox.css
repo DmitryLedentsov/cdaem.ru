@@ -188,7 +188,6 @@ body:after {
 }
 
 .lb-data .lb-close {
-    display: block;
     float: right;
     width: 30px;
     height: 30px;
