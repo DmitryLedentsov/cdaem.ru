@@ -10,15 +10,15 @@
         <div class="message-info-header">Уведомления</div>
         <div class="list-message-info">
             <a href="{{ path(['/partners/reservation/total-bid']) }}" class="list-message-info-item">
-                <span class="list-message-info-name">Заявки</span>
+                <span class="list-message-info-name{{ app.request.pathInfo == 'office/total-bid' ? ' active' : '' }}">Заявки</span>
                 <span class="list-message-info-value {% if (not bidCount) %}list-message-info-zero{% endif %}">{{ bidCount }}</span>
             </a>
             <a href="{{ path(['/partners/reservation/reservations']) }}" class="list-message-info-item">
-                <span class="list-message-info-name">Бронь</span>
+                <span class="list-message-info-name{{ app.request.pathInfo == 'office/reservations' ? ' active' : '' }}">Бронь</span>
                 <span class="list-message-info-value {% if (not reservationCount) %}list-message-info-zero{% endif %}">{{ reservationCount }}</span>
             </a>
             <a href="{{ path(['/messages/default/index']) }}" class="list-message-info-item">
-                <span class="list-message-info-name">Сообщения</span>
+                <span class="list-message-info-name{{ app.request.pathInfo == 'office/dialogs' ? ' active' : '' }}">Сообщения</span>
                 <span class="list-message-info-value {% if (not messageCount) %}list-message-info-zero{% endif %}">{{ messageCount }}</span>
             </a>
         </div>

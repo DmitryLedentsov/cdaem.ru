@@ -551,7 +551,7 @@
             color: #5b5b5b;
             transition: all 0.3s ease-out;
 
-            &:hover {
+            &.active, &:hover {
                 font-weight: 500;
                 color: #ffa801;
                 display: block;
