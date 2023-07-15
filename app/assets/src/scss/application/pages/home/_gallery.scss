@@ -91,6 +91,7 @@
                 top: 0;
                 transition: background-color 0.2s ease-out;
                 margin: 0.5rem;
+                pointer-events: none;
             }
 
             &:hover {
