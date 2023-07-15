@@ -115,6 +115,7 @@
                 & .link-to {
                     opacity: 1;
                     cursor: pointer;
+                    pointer-events: none;
                 }
             }
         }
