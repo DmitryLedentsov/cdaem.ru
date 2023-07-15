@@ -543,12 +543,6 @@
             &:last-child {
                 margin-bottom: 0;
             }
-
-            &:hover {
-                #{$lmi}__name {
-                    color: #ffa801;
-                }
-            }
         }
 
         &-name {
@@ -556,6 +550,12 @@
             font-weight: 400;
             color: #5b5b5b;
             transition: all 0.3s ease-out;
+
+            &:hover {
+                font-weight: 500;
+                color: #ffa801;
+                display: block;
+            }
         }
 
         &-value {
