@@ -20,16 +20,19 @@
     <div class="user-settings">
         <div class="user-settings-header">Мой профиль</div>
         <div class="user-settings-list">
+            {% set userWantRent = app.user.identity.profile.user_type == constant('\\common\\modules\\users\\models\\Profile::WANT_RENT') %}
             <a href="{{ path(['/merchant/pay']) }}" class="user-settings-item{{ app.request.pathInfo == 'merchant/pay' ? ' active' : '' }}">
                 Пополнить баланс
             </a>
+            {% if not userWantRent %}
+            <a class="user-settings-item{{ app.request.pathInfo == 'office/apartments' and strpos(app.request.pathInfo, 'type=available') == 0 ? ' active' : ''}}"
+               href="{{ path(['/partners/office/apartments']) }}">Мои объявления
+            </a>
+            {% endif %}
             <a href="{{ path(['/partners/reservation/reservations']) }}" class="user-settings-item{{ app.request.pathInfo == 'office/reservations' ? ' active' : '' }}">
                 Безопасная сделка
             </a>
-            {% if app.user.identity.profile.user_type != constant('\\common\\modules\\users\\models\\Profile::WANT_RENT') %}
-                <a class="user-settings-item{{ app.request.pathInfo == 'office/apartments' and strpos(app.request.pathInfo, 'type=available') == 0 ? ' active' : ''}}"
-                   href="{{ path(['/partners/office/apartments']) }}">Мои объявления
-                </a>
+            {% if not userWantRent %}
                 <a class="user-settings-item{{ app.request.pathInfo == 'office/services' ? ' active' : '' }}" href="{{ path(['/office/default/services']) }}">
                     Услуги
                 </a>
