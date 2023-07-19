@@ -10,6 +10,7 @@
             let $form = $modal.find("form");
             if($form.length){
                 $form.trigger('reset');
+                $form.displayValidation('clear');
             }
         }
     });
