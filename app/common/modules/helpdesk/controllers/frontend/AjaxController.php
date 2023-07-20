@@ -68,6 +68,7 @@ class AjaxController extends \frontend\components\Controller
             $formModel = new HelpdeskForm(['scenario' => 'user-complaint']);
         }
 
+        $formModel->theme = "Жалоба на владельца жилья";
         $formModel->partners_advert_id = (int)$advert_id;
 
         if (Yii::$app->request->isPost) {
