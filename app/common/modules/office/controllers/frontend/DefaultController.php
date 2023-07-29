@@ -190,6 +190,11 @@ class DefaultController extends \frontend\components\Controller
      */
     public function actionServices()
     {
-        return $this->render('services.twig');
+        $searchModel = new models\search\ServiceSearch();
+        $dataProvider = $searchModel->search();
+
+        return $this->render('services.twig', [
+            'dataProvider' => $dataProvider,
+        ]);
     }
 }

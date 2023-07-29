@@ -40,6 +40,7 @@
     </div>
 
     <!-- services list -->
+    {% set services = dataProvider.getModels() | map (item => item.service) %}
     <div class="p-services">
         <div class="services-list">
             <div class="service-item">
@@ -57,8 +58,13 @@
                     <div class="service-item-wrapper">
                         <a class="service-item-link" data-service-name="{{ constant('SERVICE_ADVERT_IN_TOP', Service) }}">Выбрать объявления</a>
                         <div class="service-item-status">
-                            <img src="/_new/images/account/service-paid.svg" alt="">
-                            Услуга оплачена
+                            {% if constant('SERVICE_ADVERT_IN_TOP', Service) in services %}
+                                <img src="/_new/images/account/service-paid.svg" alt="">
+                                Услуга оплачена
+                            {% else %}
+                                <img src="/_new/images/account/service-not-paid.svg" alt="">
+                                Услуга не оплачена
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -79,8 +85,13 @@
                     <div class="service-item-wrapper">
                         <a class="service-item-link" data-service-name="{{ constant('SERVICE_ADVERT_TOP_POSITION', Service) }}">Выбрать объявления</a>
                         <div class="service-item-status">
-                            <img src="/_new/images/account/service-not-paid.svg" alt="">
-                            Услуга не оплачена
+                            {% if constant('SERVICE_ADVERT_TOP_POSITION', Service) in services %}
+                                <img src="/_new/images/account/service-paid.svg" alt="">
+                                Услуга оплачена
+                            {% else %}
+                                <img src="/_new/images/account/service-not-paid.svg" alt="">
+                                Услуга не оплачена
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -99,8 +110,13 @@
                     <div class="service-item-wrapper">
                         <a class="service-item-link" data-service-name="{{ constant('SERVICE_APARTMENT_CONTACTS_OPEN', Service) }}">Выбрать объявления</a>
                         <div class="service-item-status">
-                            <img src="/_new/images/account/service-not-paid.svg" alt="">
-                            Услуга не оплачена
+                            {% if constant('SERVICE_APARTMENT_CONTACTS_OPEN', Service) in services %}
+                                <img src="/_new/images/account/service-paid.svg" alt="">
+                                Услуга оплачена
+                            {% else %}
+                                <img src="/_new/images/account/service-not-paid.svg" alt="">
+                                Услуга не оплачена
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -119,8 +135,13 @@
                     <div class="service-item-wrapper">
                         <a class="service-item-link" data-service-name="{{ constant('SERVICE_ADVERT_SELECTED', Service) }}">Выбрать объявления</a>
                         <div class="service-item-status">
-                            <img src="/_new/images/account/service-not-paid.svg" alt="">
-                            Услуга не оплачена
+                            {% if constant('SERVICE_ADVERT_SELECTED', Service) in services %}
+                                <img src="/_new/images/account/service-paid.svg" alt="">
+                                Услуга оплачена
+                            {% else %}
+                                <img src="/_new/images/account/service-not-paid.svg" alt="">
+                                Услуга не оплачена
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -142,8 +163,13 @@
                     <div class="service-item-wrapper">
                         <a class="service-item-link" data-service-name="{{ constant('SERVICE_ADVERTISING_IN_SECTION', Service) }}">Выбрать объявления</a>
                         <div class="service-item-status">
-                            <img src="/_new/images/account/service-not-paid.svg" alt="">
-                            Услуга не оплачена
+                            {% if constant('SERVICE_ADVERTISING_IN_SECTION', Service) in services %}
+                                <img src="/_new/images/account/service-paid.svg" alt="">
+                                Услуга оплачена
+                            {% else %}
+                                <img src="/_new/images/account/service-not-paid.svg" alt="">
+                                Услуга не оплачена
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -162,8 +188,13 @@
                     <div class="service-item-wrapper">
                         <a class="service-item-link" data-service-name="{{ constant('SERVICE_ADVERTISING_TOP_SLIDER', Service) }}">Выбрать объявления</a>
                         <div class="service-item-status">
-                            <img src="/_new/images/account/service-not-paid.svg" alt="">
-                            Услуга не оплачена
+                            {% if constant('SERVICE_ADVERTISING_TOP_SLIDER', Service) in services %}
+                                <img src="/_new/images/account/service-paid.svg" alt="">
+                                Услуга оплачена
+                            {% else %}
+                                <img src="/_new/images/account/service-not-paid.svg" alt="">
+                                Услуга не оплачена
+                            {% endif %}
                         </div>
                     </div>
                 </div>
