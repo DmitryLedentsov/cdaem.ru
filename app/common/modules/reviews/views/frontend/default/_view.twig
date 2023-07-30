@@ -4,9 +4,9 @@
     @var common\modules\reviews\models\Review model
     @var bool user
 #}
-
+{% set defaultAvatarUrl = "/_new/images/apartment/author-logo.png" %}
 <div class="review-card" data-toggle="modal" data-target="#modalReviewText">
-    <div class="review-logo" style="background: url('{{ model.user.profile.avatar_url }}') center no-repeat;"></div>
+    <div class="review-logo" style="background: url('{{ model.user.profile.avatar_url | default(defaultAvatarUrl)}}') center no-repeat;"></div>
     <div class="review-info-container">
         <div class="review-info">
             <div class="review-date">{{ model.created_at|date('d.m.Y') }}</div>
