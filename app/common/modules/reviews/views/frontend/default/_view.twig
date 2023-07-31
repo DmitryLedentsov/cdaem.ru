@@ -4,9 +4,17 @@
     @var common\modules\reviews\models\Review model
     @var bool user
 #}
+
 {% set defaultAvatarUrl = "/_new/images/apartment/author-logo.png" %}
 <div class="review-card" data-toggle="modal" data-target="#modalReviewText">
-    <div class="review-logo" style="background: url('{{ model.user.profile.avatar_url | default(defaultAvatarUrl)}}') center no-repeat;"></div>
+    {{ use('nepster/faceviewer/Widget') }}
+    {{ widget_widget({
+        'template' : '<div class="advert-avatar">{face}</div>',
+        'data' : {
+            avatar_url: app.user.identity.avatar_url
+        }
+    }) }}
+
     <div class="review-info-container">
         <div class="review-info">
             <div class="review-date">{{ model.created_at|date('d.m.Y') }}</div>
