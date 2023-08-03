@@ -17,6 +17,7 @@
         padding-bottom: 1rem;
         margin-bottom: 1rem;
         border-bottom: 1px solid #E0E0E0;
+        flex-shrink: 0;
 
         @include tablet() {
             padding-bottom: 0;
