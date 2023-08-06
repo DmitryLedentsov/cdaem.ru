@@ -22,12 +22,11 @@
 
     &.show-calendar {
         & .drp-buttons {
-            position: absolute;
-            left: 0;
-
-            & .drp-selected,
-            & .btn {
+            .drp-selected {
                 display: none;
+            }
+            & .btn {
+
             }
         }
     }
