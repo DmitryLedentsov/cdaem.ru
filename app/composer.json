@@ -23,7 +23,7 @@
     "vitalik74/yii2-geocode-yandex": "*",
     "execut/yii2-robots-txt": "dev-master",
     "hflabs/dadata": "dev-master",
-    "wapmorgan/yii2-inflection" : "*"
+    "wapmorgan/yii2-inflection" : "1.0.4"
   },
   "require-dev": {
     "yiisoft/yii2-codeception": "2.0.6",
