@@ -135,7 +135,7 @@
     <section class="apartment-list mt-4">
         <div class="container-fluid">
             <div class="apartment-container">
-                <h2 class="section-title">{{ currentRentType }} в городе {{city.name}}</h2>
+                <h2 class="section-title">{{ currentRentType }} в {{CityHelper.formatInPrepositionalCase(city.name)}}</h2>
                 <a href="{{ path(['/partners/reservation/index']) }}" class="btn btn-warning" target="_blank">БЫСТРО СНЯТЬ</a>
             </div>
             <div class="apartment-card-container">
