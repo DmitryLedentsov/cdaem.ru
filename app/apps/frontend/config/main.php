@@ -129,6 +129,11 @@ return [
             ],
 
         ],*/
+        'inflection' => [
+            'class' => 'wapmorgan\yii2inflection\Inflection'
+        ],
+        'language' => 'ru_RU',
+
         'request' => [
             'enableCsrfValidation' => true,
             'enableCookieValidation' => true,
@@ -164,6 +169,7 @@ return [
                         'UserHelper' => ['class' => \common\modules\users\helpers\UserHelper::class],
                         'ArrayHelper' => ['class' => \yii\helpers\ArrayHelper::class],
                         'ApartmentHelper' => ['class' => \common\modules\partners\helpers\ApartmentHelper::class],
+                        'CityHelper' => ['class' => \common\modules\partners\helpers\CityHelper::class],
                         'TotalApartment' => ['class' => \common\modules\realty\models\Apartment::class],
                         'html' => ['class' => \yii\helpers\Html::class],
                         'url' => ['class' => \yii\helpers\Url::class],
