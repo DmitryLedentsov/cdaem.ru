@@ -2,10 +2,12 @@
     "use strict";
 
     let daterangepickerTranslations = {
-        format: "YYYY-MM-DD",
+        format: 'YYYY-MM-DD H:mm',
+        // todayHighlight: true,
+        language: "ru",
         separator: "-",
-        applyLabel: "Apply",
-        cancelLabel: "Cancel",
+        applyLabel: "Выбрать",
+        cancelLabel: "Отмена",
         fromLabel: "From",
         toLabel: "To",
         customRangeLabel: "Custom",
@@ -43,7 +45,10 @@
         minYear: parseInt(moment().format('YYYY')),
         maxYear: parseInt(moment().format('YYYY')) + 1,
         showDropdowns: true,
-        autoApply: true,
+        // autoApply: true,
+        timePicker: true,
+        timePicker24Hour: true,
+        timePickerIncrement: 15,
         minDate: moment().format('YYYY-MM-DD'),
         maxDate: moment().add(1, 'year').format('YYYY-MM-DD'),
         locale: daterangepickerTranslations,
@@ -51,13 +56,16 @@
 
     $daterangepicker.on('apply.daterangepicker', function(ev, picker) {
         let $this = $(this);
-        $this.find('.daterangepicker-from .daterangepicker-month').text(picker.startDate.format('D MMMM'));
-        $this.find('.daterangepicker-from .daterangepicker-day').text(picker.startDate.format('dddd'));
-        $this.find('.daterangepicker-to .daterangepicker-month').text(picker.endDate.format('D MMMM'));
-        $this.find('.daterangepicker-to .daterangepicker-day').text(picker.endDate.format('dddd'));
 
-        $this.find('.daterangepicker-from input[type=hidden]').val(picker.startDate.format('YYYY-MM-DD'));
-        $this.find('.daterangepicker-to input[type=hidden]').val(picker.endDate.format('YYYY-MM-DD'));
+        $this.find('.daterangepicker-from .daterangepicker-month').text(picker.startDate.format('D MMMM'));
+        $this.find('.daterangepicker-from .daterangepicker-day').text(`, ${picker.startDate.format('dddd')} ${picker.startDate.format('HH:mm')}`);
+        $this.find('.daterangepicker-to .daterangepicker-month').text(picker.endDate.format('D MMMM'));
+        $this.find('.daterangepicker-to .daterangepicker-day').text(`, ${picker.endDate.format('dddd')} ${picker.endDate.format('HH:mm')}`);
+
+        $this.find('.daterangepicker-from input[type=hidden].date').val(picker.startDate.format('YYYY-MM-DD'));
+        $this.find('.daterangepicker-from input[type=hidden].time').val(picker.startDate.format('HH:mm'));
+        $this.find('.daterangepicker-to input[type=hidden].date').val(picker.endDate.format('YYYY-MM-DD'));
+        $this.find('.daterangepicker-to input[type=hidden].time').val(picker.endDate.format('HH:mm'));
     });
 
     $daterangepicker.on('show.daterangepicker', function(ev, picker) {
