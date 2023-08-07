@@ -39,6 +39,12 @@
     {{ use ('chat/assets/ChatAsset') }}
     {{ register_chat_asset() }}
 
+    <a href="{{ path(['/office/default/bookmark']) }}" class="control-link user-settings-item{{ app.request.pathInfo == 'office/bookmark' ? ' active' : '' }}">
+        Избранное
+    </a>
+    <a href="{{ path(['/office/default/blacklist']) }}" class="control-link user-settings-item{{ app.request.pathInfo == 'office/blacklist' ? ' active' : '' }}">
+        Черный список
+    </a>
     <div class="section-head section-head-between">
         <h2>Диалоги с пользователями</h2>
     </div>
