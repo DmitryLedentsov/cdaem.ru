@@ -26,11 +26,6 @@ class Module extends \yii\base\Module
     /**
      * @var string
      */
-    public $imagesWantPassPath = '@frontend/web/uploads/agency/wantpass';
-
-    /**
-     * @var string
-     */
     public $imagesUrl = '/images';
 
     /**

@@ -22,7 +22,6 @@ class BootstrapFrontend implements \yii\base\BootstrapInterface
                     'route' => '/agency/default/index',
                 ],
                 'podberem_kvartiry' => 'agency/default/select',
-                'hochy_sdat_kvartiry' => 'agency/default/want-pass',
                 'advert/<id:\d+>' => '/agency/default/view',
                 [
                     'pattern' => '/<rentType:\w+>/komnat/<rooms:\w+>/okrug/<district:\w+>',
