@@ -32,7 +32,6 @@
     </div>
 {% endblock %}
 
-
 {% block content %}
 
     {{ use('nepster/faceviewer/Widget') }}
@@ -46,11 +45,13 @@
     {{ link_pager_widget({'pagination' : dataProvider.pagination}) }}
 
     <div class="chat">
-
+        <div class="control">
+            <span id="delete-all" class= "control-link" data-interlocutor_id="{{ interlocutor.id }}">Удалить все сообщения</span>
+        </div>
         <div class="title">
-            <div class="settings-nav clearfix text right">
-                <div id="dialog">Диалог с пользователем
-                    <b>{{ interlocutor.profile.name ~' '~  interlocutor.profile.surname }}</b></div>
+            <div class="section-head section-head-between">
+                <h2 id="dialog">Диалог с пользователем
+                    <b>{{ interlocutor.profile.name ~' '~  interlocutor.profile.surname }}</b></h2>
                 <ul>
                     {% if (usersList and usersList.type == 0) or not usersList %}
                         <li><span class="settings bookmark" data-interlocutor="{{ interlocutor.id }}"
@@ -62,12 +63,9 @@
                     {% endif %}
                 </ul>
             </div>
-            <div class="control">
-                <span id="delete-all" data-interlocutor_id="{{ interlocutor.id }}">Удалить все сообщения</span>
-            </div>
         </div>
 
-        <div id="dialogs" data-interlocutor_id="{{ interlocutor.id }}" style="margin: 0 -2px;">
+        <form id="dialogs" data-interlocutor_id="{{ interlocutor.id }}" style="margin: 0 -2px;">
             {# Рендер #}
             {% for model in dataProvider.models|reverse %}
                 <table class="message">
@@ -98,16 +96,17 @@
                             <div class="text">
                                 {{ model.message.text }}
                             </div>
-                            <span class="delete" data-message_id="{{ model.message.id }}">Удалить</span>
                         </td>
                     </tr>
                 </table>
             {% endfor %}
-        </div>
-        <div class="form clearfix">
-            <textarea id="message-text" placeholder="Введите Ваше сообщение..."></textarea>
-            <button id="message-send">Отправить</button>
-        </div>
+
+            <div class="form-group">
+                <textarea id="message-text" class="form-control" placeholder="Введите Ваше сообщение..."></textarea>
+                <button  class= "btn btn-warning" id="message-send">Отправить</button>
+                <button class="btn btn-default" id="message-delete" data-message_id="{{ model.message.id }}">Удалить</button>
+            </div>
+        </form>
     </div>
 
 {% endblock content %}
