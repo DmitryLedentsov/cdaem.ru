@@ -217,9 +217,9 @@
 
                         {% set firstColumn = []%}
                         {% set secondColumn = []%}
-
+                        {% set maxElementsInOneColumn = 3 %}
                         {% for contact in userContacts %}
-                            {% if loop.index is odd %}
+                            {% if loop.index is odd or userContacts | length <= maxElementsInOneColumn%}
                                 {% set firstColumn = firstColumn|merge([contact]) %}
                             {% else %}
                                 {% set secondColumn = secondColumn|merge([contact]) %}
