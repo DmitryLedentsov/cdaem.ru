@@ -2,9 +2,9 @@
 
 namespace common\modules\geo\controllers\frontend;
 
+use yii\web\Response;
 use yii\web\NotFoundHttpException;
 use common\modules\geo\models\City;
-use yii\web\Response;
 
 /**
  * Главный гео контроллер

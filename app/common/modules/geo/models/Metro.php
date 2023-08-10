@@ -2,8 +2,8 @@
 
 namespace common\modules\geo\models;
 
-use common\modules\agency\models\form\SelectForm;
 use yii\helpers\ArrayHelper;
+use common\modules\agency\models\form\SelectForm;
 
 /**
  * Class Metro
@@ -262,7 +262,8 @@ class Metro extends \yii\db\ActiveRecord
      * @param int $limit
      * @return array
      */
-    public static function getNearestStationsByCoords($cityId, $latitude, $longitude, $distance = 1.5, $limit = 3) {
+    public static function getNearestStationsByCoords($cityId, $latitude, $longitude, $distance = 1.5, $limit = 3)
+    {
         try {
             $result = \Yii::$app->db->createCommand("
                 SELECT
@@ -288,10 +289,8 @@ class Metro extends \yii\db\ActiveRecord
             // dd($result);
 
             return $result;
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             return [];
         }
-
     }
 }

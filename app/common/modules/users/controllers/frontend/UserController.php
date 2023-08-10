@@ -3,8 +3,8 @@
 namespace common\modules\users\controllers\frontend;
 
 use Yii;
-use yii\helpers\ArrayHelper;
 use yii\web\Response;
+use yii\helpers\ArrayHelper;
 use frontend\components\Controller;
 use common\modules\users\models as models;
 
@@ -96,8 +96,7 @@ class UserController extends Controller
 
             if (empty($errors)) {
                 $user->save(false);
-            }
-            else {
+            } else {
                 $isSuccess = false;
             }
         }
@@ -115,8 +114,7 @@ class UserController extends Controller
                 if (empty($errors)) {
                     $user->setPassword($newPassword);
                     $user->save(false);
-                }
-                else {
+                } else {
                     $isSuccess = false;
                 }
             }
@@ -127,11 +125,9 @@ class UserController extends Controller
             $errors = array_merge($errors, $this->validate($profile));
             if (empty($errors)) {
                 $profile->save(false);
-            }
-            else {
+            } else {
                 $isSuccess = false;
             }
-
         }
 
         // Ошибки со всех трёх моделей
@@ -209,9 +205,11 @@ class UserController extends Controller
      * Вернуть токен пользователя, для обновления
      * @return string
      */
-    public function actionGetCsrfToken() {
+    public function actionGetCsrfToken()
+    {
         $csrfToken = Yii::$app->request->getCsrfToken();
         Yii::$app->response->headers->set('X-CSRF-Token', $csrfToken);
+
         return $csrfToken;
     }
 }

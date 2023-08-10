@@ -68,8 +68,7 @@ class MetroUpdateController extends \yii\console\Controller
                             "longitude" => $lon,
                         ]);
                         echo "$cityName ($cityId): создана станция '$name'" . PHP_EOL;
-                    }
-                    else {
+                    } else {
                         $existStation->latitude = $lat;
                         $existStation->longitude = $lon;
                         echo "$cityName ($cityId): обновляем координаты станции '$name'" . PHP_EOL;

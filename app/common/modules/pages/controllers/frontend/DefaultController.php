@@ -3,9 +3,9 @@
 namespace common\modules\pages\controllers\frontend;
 
 use Yii;
+use yii\web\Response;
 use yii\web\HttpException;
 use common\modules\pages\models\Page;
-use yii\web\Response;
 
 /**
  * Default controller

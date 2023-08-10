@@ -2,12 +2,12 @@
 
 namespace common\modules\partners\widgets\frontend\RealtyObjectsByService;
 
-use common\modules\merchant\models\frontend\Pay;
 use Yii;
 use yii\base\Widget;
 use yii\base\InvalidArgumentException;
 use common\modules\realty\models\RentType;
 use common\modules\partners\models\Service;
+use common\modules\merchant\models\frontend\Pay;
 use common\modules\partners\models\frontend as models;
 
 /**
@@ -81,8 +81,7 @@ class RealtyObjectsByService extends Widget
             case Service::SERVICE_CONTACTS_OPEN_FOR_RESERVATION:
                 if ($this->apartmentId) {
                     $adverts = models\Advert::getAdvertsByUserAndApartmentId($this->userId, $this->apartmentId);
-                }
-                else {
+                } else {
                     $adverts = models\Advert::getAdvertsByUser($this->userId);
                 }
 

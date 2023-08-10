@@ -24,7 +24,8 @@ class City extends \yii\db\ActiveRecord
         $duration = 31556926;  // 1 год
         $dependency = null;
 
-        return Yii::$app->db->cache(function (Connection $db) {
+        return Yii::$app->db->cache(
+            function (Connection $db) {
             $rows = (new \yii\db\Query())
                 ->select(
                     self::tableName() . '.name AS name, ' .

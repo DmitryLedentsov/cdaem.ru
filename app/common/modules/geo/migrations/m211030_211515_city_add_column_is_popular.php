@@ -7,7 +7,7 @@ use yii\db\Migration;
  */
 class m211030_211515_city_add_column_is_popular extends Migration
 {
-    static string $columnName = 'is_popular';
+    public static string $columnName = 'is_popular';
 
     /**
      * {@inheritdoc}
@@ -29,7 +29,6 @@ class m211030_211515_city_add_column_is_popular extends Migration
                         'Самара']
             ]
         )->execute();
-
     }
 
     /**

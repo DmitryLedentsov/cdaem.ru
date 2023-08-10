@@ -45,6 +45,7 @@ class m230406_204811_delete_users_with_incorrect_phone extends Migration
     public function safeDown()
     {
         echo "m230406_204811_delete_users_with_incorrect_phone cannot be reverted.\n";
+
         return false;
     }
 

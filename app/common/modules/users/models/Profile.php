@@ -188,7 +188,7 @@ class Profile extends \nepster\users\models\Profile
             // $this->birthday
 
             // if ($this->image) { // todo зачем тут эта проверка?
-                $this->image = UploadedFile::getInstance($this, 'image');
+            $this->image = UploadedFile::getInstance($this, 'image');
             // }
 
             return true;

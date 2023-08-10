@@ -22,6 +22,5 @@ class CityByIpCache extends \yii\db\ActiveRecord
     public function getCity()
     {
         return $this->hasOne(City::class, ['city_id' => 'city_id']);
-
     }
 }
