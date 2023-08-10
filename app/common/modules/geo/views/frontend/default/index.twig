@@ -201,9 +201,14 @@
 
 
             myMap.geoObjects.add(objectManager);
+            //console.log('{{ city.city_id }}');
             $.ajax({
                 url: '/geo/map',
-                dataType: 'json'
+                dataType: 'json',
+                method: 'GET',
+                data: {
+                    city_id: '{{ city.city_id }}'
+                }
             })
                 .done(function (data) {
                     objectManager.add(data);

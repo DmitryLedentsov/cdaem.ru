@@ -340,9 +340,13 @@ class AjaxController extends \frontend\components\Controller
      */
     public function actionMap()
     {
-        $apartmentsAgency = ApartmentAgency::find()
-            ->joinWith(['titleImage', 'adverts' => function ($query) {
-                $query->select(['advert_id', 'apartment_id', 'rent_type', 'price']);
+        $city_id=null;
+        if (Yii::$app->request->isGet) {
+            $city_id = Yii::$app->request->get('city_id');
+        }
+        $apartmentsAgency = ApartmentAgency::find()->filterWhere(['city_id' => $city_id])
+            ->joinWith(['titleImage', 'adverts' => function ($query){
+                $query->select(['advert_id', 'apartment_id', 'rent_type', 'price' ]);
                 $query->andWhere(['rent_type' => 1]);
                 $query->orWhere(['rent_type' => 2]);
                 $query->orWhere(['rent_type' => 3]);
@@ -351,9 +355,9 @@ class AjaxController extends \frontend\components\Controller
             ->visible()
             ->all();
 
-        $apartmentsPartners = ApartmentPartners::find()
+        $apartmentsPartners = ApartmentPartners::find()->filterWhere(['city_id' => $city_id])
             ->joinWith(['titleImage', 'user', 'adverts' => function ($query) {
-                $query->select(['advert_id', 'apartment_id', 'rent_type', 'price', 'currency']);
+                $query->select(['advert_id', 'apartment_id', 'rent_type', 'price', 'currency' ]);
                 $query->andWhere(['rent_type' => 1]);
                 $query->orWhere(['rent_type' => 2]);
                 $query->orWhere(['rent_type' => 3]);
@@ -365,6 +369,7 @@ class AjaxController extends \frontend\components\Controller
         $result = [
             'type' => 'FeatureCollection',
             'features' => [],
+            'city' =>$city_id
         ];
 
         foreach ($apartmentsAgency as $apartmentAgency) {
@@ -374,7 +379,6 @@ class AjaxController extends \frontend\components\Controller
         foreach ($apartmentsPartners as $apartmentPartners) {
             $result['features'][] = $this->getFeatureInfo($apartmentPartners);
         }
-
         Yii::$app->response->format = Response::FORMAT_JSON;
 
         return $result;
