@@ -341,9 +341,7 @@ class AjaxController extends \frontend\components\Controller
      */
     public function actionMap(): array
     {
-        if (Yii::$app->request->isGet) {
-            $city_id = Yii::$app->request->get('city_id');
-        }
+        $city_id = Yii::$app->request->get('city_id');
         $apartmentsAgency = ApartmentAgency::find()->filterWhere(['city_id' => $city_id])
             ->joinWith(['titleImage', 'adverts' => function ($query) {
                 $query->select(['advert_id', 'apartment_id', 'rent_type', 'price' ]);
@@ -385,28 +383,28 @@ class AjaxController extends \frontend\components\Controller
     }
 
     /**
-     * @param Model $model
+     * @param Model $apartment
      * @return array
      */
-    private function getFeatureInfo(Model $model): array
+    private function getFeatureInfo(Model $apartment): array
     {
         return [
-            'id' => (($model instanceof ApartmentAgency) ? 'a' : 'p') . '_' . $model->apartment_id,
+            'id' => (($apartment instanceof ApartmentAgency) ? 'a' : 'p') . '_' . $apartment->apartment_id,
             'geometry' => [
                 'type' => 'Point',
-                'coordinates' => [$model->latitude, $model->longitude],
+                'coordinates' => [$apartment->latitude, $apartment->longitude],
             ],
             'properties' => [
-                'clusterCaption' => $model->address,
-                'hintContent' => $model->address,
+                'clusterCaption' => $apartment->address,
+                'hintContent' => $apartment->address,
             ],
             'options' => [
-                'preset' => ($model instanceof ApartmentAgency) ? 'islands#darkGreenIcon' : 'islands#blueDotIcon',
+                'preset' => ($apartment instanceof ApartmentAgency) ? 'islands#darkGreenIcon' : 'islands#blueDotIcon',
             ]
         ];
     }
 
-    public function actionNearestStations($cityName, $latitude, $longitude): array
+    public function actionNearestStations(string $cityName, float $latitude, float $longitude): array
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
 
