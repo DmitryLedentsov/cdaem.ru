@@ -159,13 +159,18 @@
                             <input name="phone" type="tel" class="modal-book-tel input-field" placeholder="Телефон *">
                         </label>
                         <label>
-                            <select name="advert_source" class="custom-select">
-                                <option value="" selected>Откуда узнали о нас</option>
-                                <option value="1">Поисковая система</option>
-                                <option value="2">Реклама в интернете</option>
-                                <option value="3">Газета или журнал</option>
-                                <option value="4">Порекомендовали знакомые</option>
-                                <option value="5">Другое</option>
+                            <select name="pets" class="custom-select">
+                                <option value="" selected>Наличие животных *</option>
+                                <option value="0">Без животных</option>
+                                <option value="1">С животными</option>
+
+                            </select>
+                        </label>
+                        <label>
+                            <select name="children" class="custom-select">
+                                <option value="" selected>Дети *</option>
+                                <option value="0">Без детей</option>
+                                <option value="1">С детьми</option>
                             </select>
                         </label>
                         <label>
@@ -177,6 +182,16 @@
                                 <option value="4">4</option>
                                 <option value="5">5</option>
                                 <option value="6">6+</option>
+                            </select>
+                        </label>
+                        <label>
+                            <select name="advert_source" class="custom-select">
+                                <option value="" selected>Откуда узнали о нас</option>
+                                <option value="1">Поисковая система</option>
+                                <option value="2">Реклама в интернете</option>
+                                <option value="3">Газета или журнал</option>
+                                <option value="4">Порекомендовали знакомые</option>
+                                <option value="5">Другое</option>
                             </select>
                         </label>
                     </div>
@@ -199,6 +214,54 @@
                                 <input name="book_time_to" class="time" type="hidden" value="">
                             </div>
                         </div>
+
+                        <label>
+                            <select name="rent_type" class="custom-select">
+                                <option value="" selected>Тип аренты *</option>
+                                <option value="0">Без детей</option>
+                                <option value="1">С детьми</option>
+                            </select>
+                        </label>
+                        <div class="rent-two-container">
+                            <label>
+                                Бюджет
+                            </label>
+                            <label>
+                                <input type="number" class="rent-price input-field" placeholder="От">
+                            </label>
+                            <label>
+                                <input type="number" class="rent-price input-field" placeholder="До">
+                            </label>
+                        </div>
+                        <label>
+                            {#\common\modules\partners\models\Reservation::getFloorArray#}
+                            <select name="floor" class="custom-select">
+                                <option value="" selected>Этаж *</option>
+                                <option value="0">Без детей</option>
+                                <option value="1">С детьми</option>
+                            </select>
+                        </label>
+                        <label>
+                            <select name="rooms" class="custom-select">
+                                <option value="" selected>Количество комнат *</option>
+                                <option value="0">Без детей</option>
+                                <option value="1">С детьми</option>
+                            </select>
+                        </label>
+                        <label>
+                            <select name="beds" class="custom-select">
+                                <option value="" selected>Количество спальных мест *</option>
+                                <option value="0">Без детей</option>
+                                <option value="1">С детьми</option>
+                            </select>
+                        </label>
+                        <label>
+                            <select name="metro_distance" class="custom-select">
+                                <option value="" selected>Расстояние до метро *</option>
+                                <option value="0">Без детей</option>
+                                <option value="1">С детьми</option>
+                            </select>
+                        </label>
                     </div>
                 </div>
                 <h5 class="modal-subtitle">Дополнительная информация</h5>
