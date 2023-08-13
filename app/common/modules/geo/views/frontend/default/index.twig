@@ -209,8 +209,8 @@
                     city_id: '{{ city.city_id }}'
                 }
             })
-                .done(function (data) {
-                    objectManager.add(data);
+                .done(function (response) {
+                    objectManager.add(response.data);
                 });
 
 

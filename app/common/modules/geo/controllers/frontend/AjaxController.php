@@ -337,9 +337,9 @@ class AjaxController extends \frontend\components\Controller
 
     /**
      * Карта московского метро
-     * @return array
+     * @return Response
      */
-    public function actionMap(): array
+    public function actionMap(): Response
     {
         $city_id = Yii::$app->request->get('city_id');
         $apartmentsAgency = ApartmentAgency::find()->filterWhere(['city_id' => $city_id])
@@ -367,7 +367,6 @@ class AjaxController extends \frontend\components\Controller
         $result = [
             'type' => 'FeatureCollection',
             'features' => [],
-            'city' =>$city_id
         ];
 
         foreach ($apartmentsAgency as $apartmentAgency) {
@@ -378,8 +377,7 @@ class AjaxController extends \frontend\components\Controller
             $result['features'][] = $this->getFeatureInfo($apartmentPartners);
         }
         Yii::$app->response->format = Response::FORMAT_JSON;
-
-        return $result;
+        return $this->successAjaxResponse('ok', $result);
     }
 
     /**
