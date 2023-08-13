@@ -16,9 +16,8 @@ use common\modules\partners\models\Service;
         <div class="load">
             <!--
             <?php try {
-                $service = Yii::$app->service->load($service);
-                echo Html::tag('p', '<b>' . $service->getName() . '</b>', []);
-            ?>
+    $service = Yii::$app->service->load($service);
+    echo Html::tag('p', '<b>' . $service->getName() . '</b>', []); ?>
             -->
                 <?php if ($service->getId() != Service::SERVICE_ADVERTISING_TOP_SLIDER): ?>
                     <p style="margin-bottom: 1rem;">Выделено объектов: <b id="selected-advert-count">0</b></p>
@@ -75,7 +74,7 @@ use common\modules\partners\models\Service;
                 ?>
 
             <?php
-            } catch (\Exception $e) { ?>
+} catch (\Exception $e) { ?>
                 <div class="alert alert-danger">Возникла критическая ошибка</div>
             <?php } ?>
         </div>

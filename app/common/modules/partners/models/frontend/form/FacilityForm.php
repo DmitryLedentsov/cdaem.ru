@@ -2,9 +2,9 @@
 
 namespace common\modules\partners\models\frontend\form;
 
-use common\modules\partners\models\frontend\Facility;
-use yii\debug\models\search\Db;
 use yii\web\UploadedFile;
+use yii\debug\models\search\Db;
+use common\modules\partners\models\frontend\Facility;
 
 /**
  * @inheritdoc

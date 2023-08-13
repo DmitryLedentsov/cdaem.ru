@@ -104,7 +104,8 @@ class Apartment extends \common\modules\partners\models\Apartment
      * Возвращаем идентификатор активного оплаченного объяления в слайдере
      * @return int|null
      */
-    public function getActivePayedSliderAdvId() {
+    public function getActivePayedSliderAdvId()
+    {
         foreach ($this->adverts as $advert) {
             $sliders = $advert->advertSliders;
 
@@ -118,7 +119,8 @@ class Apartment extends \common\modules\partners\models\Apartment
         return null;
     }
 
-    public function getRentTypesPrices() {
+    public function getRentTypesPrices()
+    {
         $rentTypes = \common\modules\partners\models\Advert::getPreparedRentTypesAdvertsListByApartment($this);
 
         return array_map(function ($item) {

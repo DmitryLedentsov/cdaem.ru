@@ -2,6 +2,7 @@
 
 namespace common\modules\partners\models\frontend\form;
 
+use yii\helpers\ArrayHelper;
 use common\modules\geo\models\City;
 use common\modules\geo\models\Metro;
 use common\modules\geo\models\Region;
@@ -11,7 +12,6 @@ use common\modules\partners\models\frontend\Advert;
 use common\modules\partners\models\frontend\Apartment;
 use common\modules\partners\models\frontend\MetroStations;
 use common\modules\realty\models\Apartment as TotalApartment;
-use yii\helpers\ArrayHelper;
 
 class ApartmentForm extends Apartment
 {
@@ -24,6 +24,7 @@ class ApartmentForm extends Apartment
     public string $region_name;
 
     public array $exist_image_ids = [];
+
     /**
      * @inheritdoc
      */
@@ -172,7 +173,6 @@ class ApartmentForm extends Apartment
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {
-
             if ($this->scenario == 'user-create') {
                 $this->status = self::INACTIVE;
 
@@ -202,14 +202,12 @@ class ApartmentForm extends Apartment
                     ]));
 
                     $city->save(false);
-                }
-                else {
+                } else {
                     // Обновляем регион если создали его, а город уже есть.
                     if ($isNewRegion) {
                         $city->region_id = $region->region_id;
                         $city->save(false);
                     }
-
                 }
 
                 $this->city_id = $city->city_id;
@@ -381,6 +379,7 @@ class ApartmentForm extends Apartment
 
             $facility->link('apartments', $this, ['value' => $value]);
         }
+
         return true;
     }
 }

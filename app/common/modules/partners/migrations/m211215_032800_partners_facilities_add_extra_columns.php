@@ -8,6 +8,7 @@ use yii\db\Migration;
 class m211215_032800_partners_facilities_add_extra_columns extends Migration
 {
     public static string $columnName = "is_extra";
+
     /**
      * {@inheritdoc}
      */
@@ -19,11 +20,15 @@ class m211215_032800_partners_facilities_add_extra_columns extends Migration
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
         }
 
-        $this->addColumn('{{%partners_facilities}}', self::$columnName,
+        $this->addColumn(
+            '{{%partners_facilities}}',
+            self::$columnName,
             $this->boolean()->notNull()->defaultValue(0)->comment('Дополнительное удобство')
         );
 
-        $this->addColumn('{{%partners_apartments_facilities}}', 'value',
+        $this->addColumn(
+            '{{%partners_apartments_facilities}}',
+            'value',
             $this->string(1500)->null()->comment('Значение с которым указано доп. удосбство (например, id покрытия пола или id типа отопления)')
         );
 
@@ -53,5 +58,4 @@ class m211215_032800_partners_facilities_add_extra_columns extends Migration
         $this->dropColumn('{{%partners_facilities}}', self::$columnName);
         $this->dropColumn('{{%partners_apartments_facilities}}', 'value');
     }
-
 }

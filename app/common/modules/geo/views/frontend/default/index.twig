@@ -203,10 +203,14 @@
             myMap.geoObjects.add(objectManager);
             $.ajax({
                 url: '/geo/map',
-                dataType: 'json'
+                dataType: 'json',
+                method: 'GET',
+                data: {
+                    city_id: '{{ city.city_id }}'
+                }
             })
-                .done(function (data) {
-                    objectManager.add(data);
+                .done(function (response) {
+                    objectManager.add(response.data);
                 });
 
 

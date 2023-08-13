@@ -2,10 +2,10 @@
 
 namespace common\modules\partners\models\frontend\form;
 
-use common\modules\realty\models\Apartment;
-use common\modules\realty\models\RentType;
 use Yii;
 use yii\validators\ExistValidator;
+use common\modules\realty\models\RentType;
+use common\modules\realty\models\Apartment;
 use common\modules\partners\models\frontend\Advert;
 
 /**
@@ -51,7 +51,8 @@ class AdvertForm extends Advert
         ];
     }
 
-    public function validatePrice($attribute, $params, $validator) {
+    public function validatePrice($attribute, $params, $validator)
+    {
         $priceArray = $validator->method[0]->price;
 
         if (!array_filter($priceArray)) {
@@ -90,8 +91,7 @@ class AdvertForm extends Advert
                 }
 
                 $this->newAdverts = $result;
-            }
-            else {
+            } else {
                 // $this->addError('rent_type', 'Укажите цену хотябы для одного типа типа аренды'); // Даём возможность создавать объявление без типов
                 return true;
             }

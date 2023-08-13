@@ -6,9 +6,9 @@ use Yii;
 use yii\helpers\Json;
 use yii\validators\EmailValidator;
 use yii\validators\ExistValidator;
+use yii\validators\UniqueValidator;
 use common\modules\partners\models\Service;
 use common\modules\partners\interfaces\ServiceInterface;
-use yii\validators\UniqueValidator;
 
 /**
  * Сервис [Advertising In Section]

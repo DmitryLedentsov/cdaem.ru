@@ -2,15 +2,15 @@
 
 namespace common\modules\agency\controllers\frontend;
 
-use common\modules\partners\models\Advert as AdvertPartners;
-use common\modules\agency\models\Advert;
-use common\modules\geo\models\Metro;
 use Yii;
 use yii\base\Model;
-use yii\db\Exception;
 use yii\helpers\Url;
+use yii\db\Exception;
 use yii\web\Response;
 use common\modules\geo\models\City;
+use common\modules\geo\models\Metro;
+use common\modules\agency\models\Advert;
+use common\modules\partners\models\Advert as AdvertPartners;
 use common\modules\agency\models\Apartment as ApartmentAgency;
 use common\modules\partners\models\frontend\Apartment as ApartmentPartners;
 

@@ -7,17 +7,20 @@ use yii\db\Migration;
  */
 class m211030_191818_partners_apartments_add_sleeping_place extends Migration
 {
-    static string $columnName = 'sleeping_place';
+    public static string $columnName = 'sleeping_place';
 
     /**
      * {@inheritdoc}
      */
     public function safeUp()
     {
-        $this->addColumn('{{%partners_apartments}}', self::$columnName,
+        $this->addColumn(
+            '{{%partners_apartments}}',
+            self::$columnName,
             $this->tinyInteger()
                 ->after('beds')
-                ->comment('Кол-во спальных мест'));
+                ->comment('Кол-во спальных мест')
+        );
 
         $this->addCommentOnColumn('{{%partners_apartments}}', 'beds', 'Кол-во кроватей');
 

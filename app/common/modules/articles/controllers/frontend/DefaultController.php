@@ -4,10 +4,10 @@ namespace common\modules\articles\controllers\frontend;
 
 use yii\helpers\Url;
 use yii\helpers\Html;
+use yii\web\Response;
 use yii\data\Pagination;
 use yii\web\HttpException;
 use common\modules\articles\models\Article;
-use yii\web\Response;
 
 /**
  * Статьи

@@ -12,7 +12,8 @@ class Facility extends \yii\db\ActiveRecord
 {
     use ModuleTrait;
 
-    private $value; // Значение с которым удобство будет связано с апартом
+    private $value;
+    // Значение с которым удобство будет связано с апартом
     // public $value = ''; // Значение с которым удобство будет связано с апартом
 
     /**

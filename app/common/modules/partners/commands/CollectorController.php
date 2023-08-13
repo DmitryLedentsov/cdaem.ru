@@ -241,6 +241,7 @@ class CollectorController extends \yii\console\Controller
         $this->stdout('Процесс выполнен. Обработано объявлений: ' . ($count) . PHP_EOL, Console::FG_GREEN);
         Yii::info('Процесс выполнен. Обработано объявлений: ' . ($count), 'apartments-watcher');
     }
+
     /**
      * Remove Duplicates
      * Удаление дубликатов Рекламы
@@ -265,6 +266,7 @@ class CollectorController extends \yii\console\Controller
         $msg = 'Процесс выполнен. Удалено рекламных объявлений: ';
         $this->stdout($msg . ($count) . PHP_EOL, Console::FG_GREEN);
         Yii::info($msg . ($count), 'remove-advertisement-duplicates');
+
         return $count;
     }
 

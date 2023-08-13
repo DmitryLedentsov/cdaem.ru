@@ -7,7 +7,8 @@ use yii\db\Migration;
  */
 class m221021_203958_city_by_ip_cache extends Migration
 {
-    static string $tableName = '{{%city_by_ip_cache}}';
+    public static string $tableName = '{{%city_by_ip_cache}}';
+
     /**
      * {@inheritdoc}
      */
