@@ -341,8 +341,8 @@ class AjaxController extends \frontend\components\Controller
      */
     public function actionMap(): Response
     {
-        $city_id = Yii::$app->request->get('city_id');
-        $apartmentsAgency = ApartmentAgency::find()->filterWhere(['city_id' => $city_id])
+        $cityId = Yii::$app->request->get('city_id');
+        $apartmentsAgency = ApartmentAgency::find()->filterWhere(['city_id' => $cityId])
             ->joinWith(['titleImage', 'adverts' => function ($query) {
                 $query->select(['advert_id', 'apartment_id', 'rent_type', 'price' ]);
                 $query->andWhere(['rent_type' => 1]);
@@ -353,7 +353,7 @@ class AjaxController extends \frontend\components\Controller
             ->visible()
             ->all();
 
-        $apartmentsPartners = ApartmentPartners::find()->filterWhere(['city_id' => $city_id])
+        $apartmentsPartners = ApartmentPartners::find()->filterWhere(['city_id' => $cityId])
             ->joinWith(['titleImage', 'user', 'adverts' => function ($query) {
                 $query->select(['advert_id', 'apartment_id', 'rent_type', 'price', 'currency' ]);
                 $query->andWhere(['rent_type' => 1]);
