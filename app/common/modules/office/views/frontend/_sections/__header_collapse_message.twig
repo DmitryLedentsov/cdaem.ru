@@ -4,9 +4,9 @@
 {% set totalUnreadCount = messageCount + bidCount + reservationCount %}
 
 <div class="header-message">
-    <i class="header-message-icon"></i>
+    <a href="{{ path(['/messages/default/index']) }}" ><i class="header-message-icon"> </i></a>
     <span class="header-message-value {% if (not totalUnreadCount) %}header-message-zero{% endif %}">{{ totalUnreadCount }}</span>
-    <div class="message-info">
+    <div class="message-info" hidden="hidden">
         <div class="message-info-header">Уведомления</div>
         <div class="list-message-info">
             <a href="{{ path(['/partners/reservation/total-bid']) }}" class="list-message-info-item">

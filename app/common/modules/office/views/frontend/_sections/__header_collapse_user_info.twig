@@ -29,7 +29,7 @@
                href="{{ path(['/partners/office/apartments']) }}">Мои объявления
             </a>
             {% endif %}
-            <a href="{{ path(['/partners/reservation/reservations']) }}" class="user-settings-item{{ app.request.pathInfo == 'office/reservations' ? ' active' : '' }}">
+            <a hidden="hidden" href="{{ path(['/partners/reservation/reservations']) }}" class="user-settings-item{{ app.request.pathInfo == 'office/reservations' ? ' active' : '' }}">
                 Безопасная сделка
             </a>
             {% if not userWantRent %}
