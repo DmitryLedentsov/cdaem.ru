@@ -15,39 +15,12 @@
 
 {% block bodyClass %}l-base{% endblock %}
 
-{% block breadcrumbs %}
-    <div class="container-fluid">
-        {{ use('yii/widgets/Breadcrumbs') }}
-        {{ breadcrumbs_widget({
-            'tag':  'div',
-            'options': {
-                'class': 'breadcrumbs'
-            },
-            'itemTemplate' : "{link}\n",
-            'homeLink' :
-            {
-                'label' : 'Главная',
-                'url' : '/'
-            },
-            'links':  [
-                {
-                    'label': 'Поиск',
-                    'url': ['/partners/default/index'],
-                },
-                {
-                    'label': 'Карта города - ' ~ city.name,
-                    'url': ['/geo/default/index'],
-                },
-            ],
-        }) }}
-    </div>
-{% endblock %}
 
 {% block content %}
     {{ use('common/modules/geo/assets/frontend/YMapAsset') }}
     {{ register_y_map_asset() }}
 
-    <div class="container">
+    <div class="container" id="map-container">
         <style type="text/css">
             #map {
                 margin-top: 20px;
@@ -126,6 +99,9 @@
                 text-overflow: ellipsis;
             }
 
+            #map-container{
+                max-width: none;
+            }
 
         </style>
 
