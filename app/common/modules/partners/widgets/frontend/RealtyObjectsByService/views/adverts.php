@@ -26,13 +26,11 @@ if ($models) {
     echo Html::tag('div', $result, [
         'class' => 'apartment-list clearfix'
     ]) . ($isOnModerationExist ? Html::tag('div', 'Есть объявления на модерации', ['class' => 'alert alert-warning']) : '');
-}
-else {
+} else {
     if ($isAdvertExist) {
         // Все объявления находятся на моредации
         echo Html::tag('div', 'Есть объявления на модерации', ['class' => 'alert alert-warning']);
-    }
-    else {
+    } else {
         echo Html::tag('div', 'Вы еще не добавили ни одного объявления. ' . Html::a('Добавить', ['/office/apartment/create']), [
             'class' => 'alert alert-info'
         ]);

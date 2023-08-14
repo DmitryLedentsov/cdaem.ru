@@ -5,6 +5,7 @@ namespace common\modules\helpdesk\controllers\frontend;
 use Yii;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
 use common\modules\helpdesk\models\Helpdesk;
 use common\modules\helpdesk\models\form\HelpdeskForm;
@@ -55,7 +56,7 @@ class AjaxController extends \frontend\components\Controller
     /**
      * Отправить жалобу на владельца апартаментов
      * @param $advert_id
-     * @return array|bool
+     * @return Response|array
      */
     public function actionComplaint($advert_id)
     {
@@ -67,19 +68,18 @@ class AjaxController extends \frontend\components\Controller
             $formModel = new HelpdeskForm(['scenario' => 'user-complaint']);
         }
 
+        $formModel->theme = "Жалоба на владельца жилья";
         $formModel->partners_advert_id = (int)$advert_id;
 
         if (Yii::$app->request->isPost) {
             Yii::$app->response->format = Response::FORMAT_JSON;
 
             $formModel->load(Yii::$app->request->getBodyParams());
-            $errors = ActiveForm::validate($formModel);
+            $errors = $this::validate($formModel);
+
             if (!$errors) {
                 if ($formModel->complaint()) {
-                    return [
-                        'status' => 1,
-                        'message' => 'Ваша заявка успешно остановлена, пожалуйста ожидайте звонка от диспетчера.'
-                    ];
+                    $this->successAjaxResponse('Ваша заявка успешно остановлена, пожалуйста ожидайте звонка от диспетчера.');
                 }
 
                 return [
@@ -88,7 +88,7 @@ class AjaxController extends \frontend\components\Controller
                 ];
             }
 
-            return $errors;
+            return $this->validationErrorsAjaxResponse($errors);
         }
 
         return $this->renderAjax('complaint.twig', [

@@ -1,0 +1,55 @@
+<!-- Modal Complain -->
+
+<div class="modal modal-complain fade" id="complainModal" tabindex="-1" role="dialog"
+     aria-labelledby="complainModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-window" role="document">
+        <div class="modal-content modal-item">
+            <form id="complainForm"
+                  action="{{ path({'0' : '/helpdesk/ajax/complaint', 'advert_id' : model.advert_id}) }}" method="POST">
+                <div class="modal-header modal-top">
+                    <h4 class="modal-title modal-header-title" id="complainModalLabel">Оставить жалобу на владельца</h4>
+                    <button type="button" id="complainFormCloseButton" class="close btn-close" data-dismiss="modal" aria-label="Close">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input type="text" name="Helpdesk[user_name]" class="form-control" id="complain-name"
+                               placeholder="Введите ваше имя" value={{ app.user.identity.profile.name | raw }}>
+                        <div class="invalid-feedback"></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="Helpdesk[email]" class="form-control" id="complain-email"
+                               placeholder="Введите ваш email" value={{ app.user.identity.email | raw }}>
+                        <div class="invalid-feedback"></div>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" name="Helpdesk[text]" id="complain-text" rows="5"
+                                  placeholder="Введите текст обращения"></textarea>
+                        <div class="invalid-feedback"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="helpdesk-priority" class="d-none"></label>
+                        <select class="custom-select" name="Helpdesk[priority]" id="helpdesk-priority">
+                            <option value="0">Не срочно</option>
+                            <option value="1">Срочно</option>
+                            <option value="2">Очень срочно</option>
+                            <option value="3">Критично</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <p class="submit-text">Нажимая "Отправить" вы соглашаетесь c правилами
+                        <a href="{{ path('/pages/default/index', {'url' : 'privacy'}) }}" target="_blank">
+                            политики конфиденицальности.
+                        </a>
+                    </p>
+                </div>
+                <div class="modal-footer modal-bottom">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+                    <button type="submit" class="btn btn-warning" id="complain-submit">Отправить жалобу</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

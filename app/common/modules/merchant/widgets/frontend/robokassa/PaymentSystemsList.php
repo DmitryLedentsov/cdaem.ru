@@ -82,7 +82,6 @@ class PaymentSystemsList extends Widget
                 'maxValue' => 40000,
             ]],
         ];
-
     }
 
     /**

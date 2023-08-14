@@ -220,40 +220,6 @@ class DefaultController extends \frontend\components\Controller
     }
 
     /**
-     * Хочу сдать квартиру
-     * @return array|string|Response
-     */
-    public function actionWantPass()
-    {
-        $formModel = new models\form\WantPassForm();
-
-        if ($formModel->load(Yii::$app->request->post())) {
-            Yii::$app->response->format = Response::FORMAT_JSON;
-            $errors = ActiveForm::validate($formModel);
-            if (!$errors) {
-                if ($formModel->create()) {
-                    $status = 1;
-                    $msg = 'Ваша заявка принята. Пожалуйста ожидайте ответа.';
-                } else {
-                    $status = 1;
-                    $msg = 'Возникла критическая ошибка. Пожалуйста обратитесь в техническую поддержку.';
-                }
-
-                return [
-                    'status' => $status,
-                    'message' => $msg,
-                ];
-            }
-
-            return $errors;
-        }
-
-        return $this->render('want-pass.twig', [
-            'formModel' => $formModel,
-        ]);
-    }
-
-    /**
      * Заявка на отправку реквизитов
      * @return array|Response
      */

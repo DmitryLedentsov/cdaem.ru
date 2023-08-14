@@ -3,9 +3,9 @@
 namespace common\modules\users\controllers\frontend;
 
 use Yii;
-use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use yii\web\Response;
+use yii\helpers\ArrayHelper;
 use frontend\components\Controller;
 use common\modules\users\models as models;
 

@@ -24,7 +24,6 @@ class BootstrapBackend implements \yii\base\BootstrapInterface
             && !\Yii::$app->user->can('agency-special-advert-view')
             && !\Yii::$app->user->can('agency-advertisement-view')
             && !\Yii::$app->user->can('agency-select-view')
-            && !\Yii::$app->user->can('agency-want-pass-view')
             && !\Yii::$app->user->can('agency-details-history-view')
         ) {
             $agencyAccess = 0;
@@ -94,18 +93,6 @@ class BootstrapBackend implements \yii\base\BootstrapInterface
                     'access' => \Yii::$app->user->can('agency-select-view'),
                     'callback' => function ($params, $content) {
                         return Html::tag('li', Html::a($params['name'] . $params['icon'] . '<span class="label label-success">' . models\Select::find()->where(['status' => 0])->count() . '</span>', $params['url']) . $content, $params['options']);
-                    }
-                ],
-
-                [
-                    'controller' => 'want-pass',
-                    'action' => 'index',
-                    'name' => 'Хочу сдать квартиру',
-                    'url' => \yii\helpers\Url::toRoute(['/agency/want-pass/index']),
-                    'options' => [],
-                    'access' => \Yii::$app->user->can('agency-want-pass-view'),
-                    'callback' => function ($params, $content) {
-                        return Html::tag('li', Html::a($params['name'] . $params['icon'] . '<span class="label label-success">' . models\WantPass::find()->where(['status' => 0])->count() . '</span>', $params['url']) . $content, $params['options']);
                     }
                 ],
 

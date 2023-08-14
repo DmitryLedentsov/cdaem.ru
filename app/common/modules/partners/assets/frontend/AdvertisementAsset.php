@@ -35,8 +35,8 @@ class AdvertisementAsset extends AssetBundle
 
         $this->css = [
             'widgets/bootstrap-select/dist/css/bootstrap-select.css',
-            '/_new/css/pages/account/top-slider.min.css' 
-        ]; 
+            '/_new/css/pages/account/top-slider.min.css'
+        ];
 
         /*
         if (YII_DEBUG) {

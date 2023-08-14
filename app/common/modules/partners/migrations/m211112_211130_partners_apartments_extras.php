@@ -7,9 +7,9 @@ use yii\db\Migration;
  */
 class m211112_211130_partners_apartments_extras extends Migration
 {
-/**
-     * {@inheritdoc}
-     */
+    /**
+         * {@inheritdoc}
+         */
     public function safeUp()
     {
         $tableOptions = null;
@@ -59,5 +59,4 @@ class m211112_211130_partners_apartments_extras extends Migration
         $this->dropTable('{{%partners_apartments_extras}}');
         $this->dropTable('{{%partners_extras}}');
     }
-
 }

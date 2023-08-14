@@ -29,7 +29,6 @@ class ApartmentHelper
         return Yii::$app->params['siteDomain'] . Yii::$app->getModule('partners')->defaultImageSrc;
     }
 
-
     /**
      * Возвращает адресс апартамента
      * @param Apartment $model

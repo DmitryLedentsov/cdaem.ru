@@ -5,16 +5,16 @@ namespace common\modules\partners\controllers\frontend;
 use Yii;
 use yii\helpers\Html;
 use yii\helpers\Json;
-use yii\web\ForbiddenHttpException;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
+use yii\web\ForbiddenHttpException;
+use common\modules\partners\models\Advert;
 use common\modules\realty\models\RentType;
 use common\modules\partners\models\Service;
 use common\modules\partners\models\frontend as models;
+use common\modules\partners\models\frontend\Apartment;
 use common\modules\partners\models\frontend\form\ReservationFailureForm;
 use common\modules\partners\models\frontend\form\AdvertReservationConfirmForm;
-use common\modules\partners\models\frontend\Apartment;
-use common\modules\partners\models\Advert;
 
 /**
  * Class AjaxController
@@ -587,7 +587,8 @@ class AjaxController extends \frontend\components\Controller
      * @throws ForbiddenHttpException
      * @throws \yii\base\InvalidConfigException
      */
-    public function actionUpdatePrice() {
+    public function actionUpdatePrice()
+    {
         // if (!Yii::$app->user->can('agency-advert-view')) { // TODO небоходимо проверять другое право (partners)
         //     throw new ForbiddenHttpException(Yii::t('users.rbac', 'ACCESS_DENIED'));
         // }
@@ -602,6 +603,7 @@ class AjaxController extends \frontend\components\Controller
 
         if (!$advert) {
             \Yii::$app->response->statusCode = 404;
+
             return $this->response(Json::encode(['message' => "Не найдено объявление с идентификатором {$advertId}"]));
         }
 
@@ -610,13 +612,14 @@ class AjaxController extends \frontend\components\Controller
 
         if (!$apartment) {
             \Yii::$app->response->statusCode = 404;
+
             return $this->response(Json::encode(['message' => "Не найдены апартаменты с идентификатором {$advert->apartment_id}"]));
         }
 
         if (Yii::$app->user->id !== $apartment->user_id) {
             \Yii::$app->response->statusCode = 404;
-            return $this->response(Json::encode(['message' => 'У вас нет прав на редактирование данного объявления']));
 
+            return $this->response(Json::encode(['message' => 'У вас нет прав на редактирование данного объявления']));
         }
 
         $advert->price = $rentPrice;

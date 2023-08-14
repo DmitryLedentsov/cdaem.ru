@@ -163,6 +163,7 @@ class DefaultController extends \frontend\components\Controller
 
                 return Yii::$app->controller->redirect(['/users/user/profile']);
             }
+
             return $this->validationErrorsAjaxResponse($errors);
         }
 

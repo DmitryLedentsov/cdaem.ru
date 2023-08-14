@@ -7,7 +7,7 @@
 {% endif %}
 <div class="container-fluid">
     <div id="map" style="width: 100%; height: 429px">
-        <div id="ymap_key_display" style="position: relative; top: 10%; left: 0; right: 0; color: black; text-align: center; font-size: 1.8em; pointer-events: none; z-index: 1; text-shadow: 0px 0px 20px;">Чтобы изменить масштаб, прокручивайте карту, удерживая клавишу Shift</div>
+        <div id="ymap_key_display" style="position: relative; top: 0; left: 0; right: 0; color: black; text-align: center; font-size: 1.8em; pointer-events: none; z-index: 1; text-shadow: 0px 0px 20px; float: left;">Чтобы изменить масштаб, прокручивайте карту, удерживая клавишу Shift</div>
     </div>
 </div>
 
@@ -101,11 +101,15 @@
 
             {% if model.apartment.orderedImages|length > 0 %}
             <div class="advert-slider-for">
+                {{ use('frontend/themes/basic/assets/LightBoxAsset') }}
+                {{ register_light_box_asset() }}
 
                 {% for image in model.apartment.orderedImages %}
 
                     <div class="advert-slider-for-item">
-                        <img src="{{ image.reviewSrc }}" alt="slider-image">
+                        <a href="{{ image.reviewSrc }}" data-lightbox="data-lightbox" >
+                            <img src="{{ image.reviewSrc }}">
+                        </a>
                     </div>
 
                 {% endfor %}
@@ -130,13 +134,13 @@
 {#                {% endif %}#}
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModalLong">Написать</button>
-                <button class="btn btn-warning" data-toggle="modal" data-target="#modalAppeal">Пожаловаться</button>
+                <button class="btn btn-warning" data-toggle="modal" data-target="#complainModal" >Пожаловаться</button>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Modal -->
+<!-- Modal Book -->
 <div class="modal modal-book fade" id="modalBook" tabindex="-1" role="dialog" aria-labelledby="modalBookLabel"
      aria-hidden="true">
     <div class="modal-dialog modal-dialog-window" role="document">
@@ -285,8 +289,8 @@
     </div>
 </div>
 
-
 {% include('@common/modules/partners/views/frontend/default/view/offers.twig') %}
+{% include('@common/modules/partners/views/frontend/default/_modal_complain.twig') %}
 
 {{ use('common/modules/reviews/widgets/frontend/ShowReviews') }}
 {{ show_reviews_widget({

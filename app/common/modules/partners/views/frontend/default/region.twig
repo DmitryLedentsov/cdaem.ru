@@ -8,10 +8,10 @@
 #}
 
 {% extends "@common/modules/site/views/layouts/main.twig" %}
-
+{% set currentRentType = searchModel.rentTypesList[app.request.get("sect")]%}
 {% block seo %}
     {% include '@common/modules/site/views/_modules/_seo.twig' with {
-        'title': 'Квартира посуточно в ' ~ city.name ~ '. Снять квартиру  на сутки без посредников | Сдаём.ру',
+        'title': currentRentType ~ ' в ' ~ CityHelper.formatInPrepositionalCase(city.name) ~ '. Снять квартиру  на сутки без посредников | Сдаём.ру',
         'description':  '',
         'keywords': '',
     } %}
@@ -37,10 +37,11 @@
                                    name="city"
                                    type="text"
                                    class="form-control input-search city-drop-down-list"
+                                   autocomplete="off"
                                    data-url="{{ path(['/geo/ajax/select-city']) }}"
                                    value="{{city.name}}"
                                    placeholder="Город" />
-                            <input type="hidden" name="city_code" id="search-form-autocomplete-selected" value="msk">
+                            <input type="hidden" name="city_code" id="search-form-autocomplete-selected" value="{{ city.name_eng }}">
                         </label>
                     </div>
                     <div class="lookup-board-filter lookup-board-filter-type">
@@ -48,7 +49,7 @@
                         <label>
                             <select class="custom-select" name="sect">
                                 {% for key, rentType in searchModel.rentTypesList %}
-                                    <option value="{{ key }}" {{ key == 2 ? 'selected="selected"' : '' }}>{{ rentType }}</option>
+                                    <option value="{{ key }}" {{ key == app.request.get("sect") ? 'selected="selected"' : '' }}>{{rentType}}</option>
                                 {% endfor %}
                             </select>
                         </label>
@@ -135,7 +136,7 @@
     <section class="apartment-list mt-4">
         <div class="container-fluid">
             <div class="apartment-container">
-                <h2 class="section-title">Снять квартиру на сутки в Москве</h2>
+                <h2 class="section-title">{{ currentRentType }} в {{CityHelper.formatInPrepositionalCase(city.name)}}</h2>
                 <a href="{{ path(['/partners/reservation/index']) }}" class="btn btn-warning" target="_blank">БЫСТРО СНЯТЬ</a>
             </div>
             <div class="apartment-card-container">

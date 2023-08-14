@@ -8,7 +8,9 @@ use yii\db\Migration;
 class m211217_033439_partners_apartments_add_home_column extends Migration
 {
     public static string $buildingType = 'building_type';
+
     public static string $numberEntrances = 'number_entrances';
+
     public static string $numberFloors = 'number_floors';
 
     /**

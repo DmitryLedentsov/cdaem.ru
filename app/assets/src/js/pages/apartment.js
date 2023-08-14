@@ -26,6 +26,10 @@ $(document).ready(function() {
         console.log('book-button click');
     });
 
+    $(document).on('submit', '#complainForm', function (e) {
+        e.preventDefault();
+        window.ajaxRequest($(this));
+    });
 
     var advertCoords = [55.76, 37.64];
     ymaps.ready(init);
