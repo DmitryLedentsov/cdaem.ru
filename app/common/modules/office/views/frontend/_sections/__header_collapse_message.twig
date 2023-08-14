@@ -6,7 +6,7 @@
 <div class="header-message">
     <a href="{{ path(['/messages/default/index']) }}" ><i class="header-message-icon"> </i></a>
     <span class="header-message-value {% if (not totalUnreadCount) %}header-message-zero{% endif %}">{{ totalUnreadCount }}</span>
-    <div class="message-info" hidden="hidden">
+    {# <div class="message-info">
         <div class="message-info-header">Уведомления</div>
         <div class="list-message-info">
             <a href="{{ path(['/partners/reservation/total-bid']) }}" class="list-message-info-item">
@@ -22,5 +22,5 @@
                 <span class="list-message-info-value {% if (not messageCount) %}list-message-info-zero{% endif %}">{{ messageCount }}</span>
             </a>
         </div>
-    </div>
+    </div> #}
 </div>
