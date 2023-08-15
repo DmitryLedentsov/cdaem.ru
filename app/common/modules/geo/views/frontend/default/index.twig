@@ -136,7 +136,7 @@
 
             // Отслеживаем скролл мыши на карте, чтобы показывать уведомление
             myMap.events.add(['wheel', 'mousedown'], function(e) {
-                if (e.get('type') == 'wheel') {
+                if (e.get('type') === 'wheel') {
                     if (!keyPressed) { // Ctrl не нажат, показываем уведомление
                         $(keyMessageSelector).fadeIn(300);
                         keyMessageVisible = true;
@@ -150,7 +150,7 @@
                         $(keyMessageSelector).fadeOut(100);
                     }
                 }
-                if (e.get('type') == 'mousedown' && keyMessageVisible) { // Скрываем уведомление при клике на карте
+                if (e.get('type') === 'mousedown' && keyMessageVisible) { // Скрываем уведомление при клике на карте
                     $(keyMessageSelector).fadeOut(100);
                 }
             });
