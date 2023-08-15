@@ -4,6 +4,7 @@
 
 .chat {
     position: relative;
+    margin-top: 31px;
 }
 .control-link{
     float: right;
