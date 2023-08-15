@@ -101,11 +101,12 @@
 
             #map-container{
                 max-width: none;
+                padding: 0;
             }
 
         </style>
 
-        <div id="map" class="mb-5"></div>
+        <div id="map" class="mb-5" > <div id="ymap_key_display" style="position: relative; top: 50%; left: 0; right: 0; color: black; text-align: center; font-size: 1.8em; pointer-events: none; z-index: 1; text-shadow: 0px 0px 20px; ">Чтобы изменить масштаб, прокручивайте карту, удерживая клавишу Shift</div></div>
     </div>
 {% endblock %}
 
@@ -123,6 +124,49 @@
                     clusterize: true,
                     gridSize: 32
                 });
+            myMap.behaviors.disable('scrollZoom');
+
+            let keyPressed = false;
+            let keyMessageVisible = false;
+            let timer;
+            const keyMessageSelector = '#ymap_key_display';
+
+            // Отслеживаем скролл мыши на карте, чтобы показывать уведомление
+            myMap.events.add(['wheel', 'mousedown'], function(e) {
+                if (e.get('type') == 'wheel') {
+                    if (!keyPressed) { // Ctrl не нажат, показываем уведомление
+                        $(keyMessageSelector).fadeIn(300);
+                        keyMessageVisible = true;
+                        clearTimeout(timer); // Очищаем таймер, чтобы продолжать показывать уведомление
+                        timer = setTimeout(function() {
+                            $(keyMessageSelector).fadeOut(300);
+                            keyMessageVisible = false;
+                        }, 1500);
+                    }
+                    else { // Ctrl нажат, скрываем сообщение
+                        $(keyMessageSelector).fadeOut(100);
+                    }
+                }
+                if (e.get('type') == 'mousedown' && keyMessageVisible) { // Скрываем уведомление при клике на карте
+                    $(keyMessageSelector).fadeOut(100);
+                }
+            });
+
+            // Обрабатываем нажатие на Клавиши
+            $(document).keydown(function(e) {
+                // if (e.which === 17 && !ctrlKey) { // Ctrl нажат: включаем масштабирование мышью
+                if (e.which === 16 && !keyPressed) { // Shift нажат: включаем масштабирование мышью
+                    keyPressed = true;
+                    myMap.behaviors.enable('scrollZoom');
+                }
+            });
+            $(document).keyup(function(e) {
+                // if (e.which === 17) { // Ctrl не нажат: выключаем масштабирование мышью
+                if (e.which === 16) { // Shift не нажат: выключаем масштабирование мышью
+                    keyPressed = false;
+                    myMap.behaviors.disable('scrollZoom');
+                }
+            });
 
             // Задаём опции кластеров
             objectManager.clusters.options.set({
