@@ -23,7 +23,7 @@ class SearchAsset extends AssetBundle
     ];
 
     public $js = [
-
+        '/_new/js/pages/geo.min.js',
     ];
 
     public $depends = [
