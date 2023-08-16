@@ -22,26 +22,31 @@
 
             .header-message {
                 display: none !important;
+
                 @include tablet-land() {
                     display: flex !important;
                 }
             }
+
             .user-info {
                 &:before {
                     @media (max-width: 1023px) {
                         display: none !important;
                     }
                 }
+
                 &-name {
                     @include tablet-land() {
                         color: white !important;
                     }
                 }
+
                 &-balance {
                     @include tablet-land() {
                         color: #aaa6a6 !important;
                     }
                 }
+
                 &-value {
                     @include tablet-land() {
                         color: #a79c9c !important;
@@ -168,7 +173,8 @@
             flex-wrap: nowrap;
 
             @media (min-width: 1024px) and (max-width: 1080px) {
-                a {padding: 0.8rem 0.5rem !important;
+                a {
+                    padding: 0.8rem 0.5rem !important;
                     font-size: 0.85rem !important;
                 }
             }
@@ -195,7 +201,8 @@
             border: none;
         }
 
-        &.show, &.collapsing {
+        &.show,
+        &.collapsing {
             .user-info {
                 display: flex;
             }
@@ -286,6 +293,13 @@
             background-color: #dfdfdf;
         }
 
+        &.active {
+            .user-change img {
+                transform: rotate(180deg);
+                transform-origin: center center;
+            }
+        }
+
         @include phone() {
             &:before {
                 left: -15px;
@@ -343,20 +357,20 @@
         }
 
         .user-settings {
-            max-height: 0;
+            display: none;
+            padding: 28px 0 0;
+
+            text-align: left;
+            background-color: #fff;
+            border-radius: 6px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
             overflow: hidden;
+
             position: absolute;
             left: 0;
             right: 0;
             top: 55px;
-            padding: 0;
-            background-color: #fff;
-            border-radius: 6px;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease-out;
             z-index: 2;
-            //z-index: 1;
-            text-align: left;
 
             @include tablet() {
                 left: -23px;
@@ -385,6 +399,7 @@
                 align-items: flex-start;
                 border-bottom: 1px solid #eaeaea;
             }
+
             &-item {
                 font-size: 16px;
                 font-weight: 400;
@@ -393,7 +408,8 @@
                 margin: 10px 0;
                 width: 100%;
 
-                &.active, &:hover {
+                &.active,
+                &:hover {
                     font-weight: 500;
                     color: #ffa801;
                     display: block;
@@ -435,6 +451,7 @@
 
         @include tablet-land() {
             width: auto;
+
             .header-message {
                 display: none;
             }
@@ -458,6 +475,7 @@
             vertical-align: middle;
             cursor: pointer;
             transition: 200ms;
+
             &:hover {
                 filter: invert(88%) sepia(5%) saturate(150%) hue-rotate(314deg) brightness(81%) contrast(10%);
             }
@@ -496,26 +514,22 @@
     }
 
     .message-info {
-        max-height: 0;
-        overflow: hidden;
-        position: absolute;
+        display: none;
         width: 274px;
-        right: 0;
-        top: 55px;
-        padding: 0 30px 0;
+        padding: 28px 30px 33px;
+        
+        overflow: hidden;
         border-radius: 6px;
         background-color: #fff;
         box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+
+        position: absolute;
+        right: 0;
+        top: 55px;
         z-index: 2;
-        transition: all 0.3s ease-out;
 
         @include tablet() {
             top: 75px;
-        }
-
-        &-active {
-            max-height: 300px;
-            padding: 28px 30px 33px;
         }
 
         &-header {
@@ -552,7 +566,8 @@
             color: #5b5b5b;
             transition: all 0.3s ease-out;
 
-            &.active, &:hover {
+            &.active,
+            &:hover {
                 font-weight: 500;
                 color: #ffa801;
                 display: block;
@@ -583,14 +598,6 @@
         img {
             transition: all 0.3s ease-out;
         }
-
-        &-active {
-            img {
-                transform: rotate(180deg);
-                transform-origin: center center;
-            }
-        }
     }
 
 }
-

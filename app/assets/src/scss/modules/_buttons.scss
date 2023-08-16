@@ -13,7 +13,50 @@
         outline: none;
         text-transform: uppercase;
     }
+
+    &-orange {
+        display: inline-block;
+        padding: 12px 25px;
+        
+        border: 1px solid #ffa801;
+        border-radius: 5px;
+        background-color: #FFA801;
+        cursor: pointer;
+
+        font-size: 15px;
+        font-weight: 600;
+        color: #000;
+        text-decoration: none;
+        text-transform: uppercase;
+
+        transition:background-color 300ms linear;
+
+        &:hover {
+            background-color: transparent;
+            color: #000;
+        }
+    }
+
+    &-gray {
+        display: inline-block;
+        padding: 12px 25px;
+        
+        border: 1px solid #E7E7E7;
+        border-radius: 5px;
+        background-color: #E7E7E7;
+        cursor: pointer;
+
+        font-size: 15px;
+        font-weight: 600;
+        color: #000;
+        text-decoration: none;
+        text-transform: uppercase;
+
+        transition: background-color 300ms linear;
+
+        &:hover {
+            background-color: #FFA801;
+            color: #000;
+        }
+    }
 }
-
-
-

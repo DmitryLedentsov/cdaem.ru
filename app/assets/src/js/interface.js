@@ -32,18 +32,43 @@
     /*=========================================================================
         Header collapse
     =========================================================================*/
-    $(document).on('click', '.header-collapse .user-change, .header-collapse .user-info-avatar, .header-collapse .user-info-data', function () {
-        let $header = $('.header-collapse');
-        $header.find('.user-info').prev('.header-message').find('.message-info').removeClass('message-info-active');
-        $header.find('.user-change').toggleClass('user-change-active');
-        $header.find('.user-info').find('.user-settings').toggleClass('user-settings-active');
+    const userInfoSelector = '.header-collapse .user-info';
+    const headerMessageSelector = '.header-message';
+    const $userInfo = $(userInfoSelector);
+    const $headerMessage = $(headerMessageSelector);
+
+    $(document).on('click', userInfoSelector, function (event) {
+        const $target = $(event.target);
+
+        if ($target.hasClass('user-settings') || $target.parents('.user-settings').length > 0) {
+            return;
+        }
+        $(this).toggleClass('active');
+        $(this).find('.user-settings').slideToggle();
     });
 
-    $(document).on('click', '.header-message', function () {
-        let $this = $(this);
-        $this.next('.user-info').find('.user-change').removeClass('user-change-active');
-        $this.next('.user-info').find('.user-settings').removeClass('user-settings-active');
-        $this.find('.message-info').toggleClass('message-info-active');
+    $(document).on('click', headerMessageSelector, function (event) {
+        const $target = $(event.target);
+    
+        if ($target.hasClass('message-info') || $target.parents('.message-info').length > 0) {
+            return;
+        }
+    
+        $(this).toggleClass('active');
+        $(this).find('.message-info').slideToggle();
+    });
+
+    // Обработчик для кликов вне области user-info и header-message
+    $(document).on('click', function (event) {
+        if (!$userInfo.is(event.target) && $userInfo.has(event.target).length === 0 && $userInfo.hasClass('active')) {
+            $userInfo.removeClass('active');
+            $userInfo.find('.user-settings').slideUp();
+        }
+
+        if (!$headerMessage.is(event.target) && $headerMessage.has(event.target).length === 0 && $headerMessage.hasClass('active')) {
+            $headerMessage.removeClass('active');
+            $headerMessage.find('.message-info').slideUp();
+        }
     });
 
     // Убираем элемент раскрывающий описание если оно занимает одну строку
