@@ -41,6 +41,6 @@ class DefaultController extends \frontend\components\Controller
             throw new NotFoundHttpException();
         }
 
-        return $this->response($this->render('index.twig', ['city' => $city]));
+        return $this->response($this->render('map.twig', ['city' => $city]));
     }
 }
