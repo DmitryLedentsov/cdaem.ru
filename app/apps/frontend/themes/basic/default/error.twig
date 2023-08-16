@@ -9,42 +9,20 @@
 
 {% extends "@common/modules/site/views/layouts/main.twig" %}
 
-{% block bodyClass %}l-base p-error{% endblock %}
+{% block bodyClass %}p-error{% endblock %}
 
 
 {% block content %}
     <div class="container-fluid">
         <div class="error">
-
-            {% if exception.statusCode == 404 %}
-
-            <div class="error-wrapper">
-                <div class="error-img">
-                    <img src="/_new/images/404.svg" alt="404">
-                </div> 
-                <a class="btn-orange" href="/">На главную</a>
-                
-                <div class="error-text">
-                    Извините данной страницы не есуществует
-                </div>
+            <div class="error-img">
+                <img src="/_new/images/404.svg" alt="404">
             </div> 
-
-            {% else %}
-
-                <div class="container pages">
-                    <div class="container-certain primary text">
-                        <h2> {{ name }} </h2>
-                        <p> {{ message|raw }} </p>
-                        <br/>
-                        <div class="text-center">
-                            {% set url = app.request.refferer ? app.request.refferer : '/' %}
-                            <a href="{{ url }}" class="btn btn-primary btn-special">Вернуться назад</a>
-                        </div>
-                    </div>
-                </div>
-
-            {% endif %}
-
+            <a class="btn-orange" href="/">На главную</a>
+            
+            <div class="error-text">
+                Извините данной страницы не существует
+            </div>
         </div>
     </div>
 {% endblock %}
