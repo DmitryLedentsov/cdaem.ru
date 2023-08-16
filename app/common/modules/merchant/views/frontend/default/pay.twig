@@ -7,7 +7,7 @@
 
 {% block title %}{{ this.registerTitle('Пополнение счета - Личный кабинет | Сдаём.ру') }}{% endblock %}
 
-{% block bodyClass %}p-payment{% endblock %}
+{% block bodyClass %}p-pay{% endblock %}
 
 {% block header %}{% endblock %}
 
@@ -36,8 +36,9 @@
 
 
 {% block content %}
-    {{ use('common/modules/merchant/widgets/frontend/fastpayment/assets/FastPaymentAsset') }}
-    {{ register_fast_payment_asset() }}
+
+    {{ use('common/modules/merchant/assets/PayPageAsset') }}
+    {{ register_pay_page_asset() }}
 
     <div class="section-head section-head-between">
         <h2>Пополнить счёт</h2>
@@ -54,7 +55,7 @@
             {% set field = form.field(model, 'amount') %}
             {{ field.begin() | raw }}
             <label class="payment-label" for="paymentSum">Сумма пополнения в рублях</label>
-            {{ html.activeTextInput(model, 'amount', {'class' : 'form-control', 'id' : 'paymentSum', 'value' : 999999.99}) | raw }}
+            {{ html.activeTextInput(model, 'amount', {'class' : 'form-control', 'id' : 'paymentSum', 'value' : 500}) | raw }}
             {{ field.end() | raw }}
 
             <p class="payment-title">Выберите способ оплаты:</p>

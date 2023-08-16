@@ -57,20 +57,20 @@ class DefaultController extends \frontend\components\Controller
     /**
      * Все
      *
-     * @param null $city
+     * @param string|null $city
      * @return Response
      */
-    public function actionIndex($city = null): Response
+    public function actionIndex(?string $city = null): Response
     {
         $model = new Article;
 
         $query = Article::find()
             ->orderBy(['date_create' => SORT_DESC]);
 
-        if (!is_null($city)) {
-            $query->where(['city' => $city]);
-        } else {
+        if (is_null($city)) {
             $query->where('city IS NULL');
+        } else {
+            $query->where(['city' => $city]);
         }
 
         $countQuery = clone $query;

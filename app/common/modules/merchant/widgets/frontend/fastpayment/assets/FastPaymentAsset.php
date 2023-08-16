@@ -4,10 +4,6 @@ namespace common\modules\merchant\widgets\frontend\fastpayment\assets;
 
 use yii\web\AssetBundle;
 
-/**
- * Class FastPaymentAsset
- * @package common\modules\merchant\widgets\frontend\fastpayment\assets
- */
 class FastPaymentAsset extends AssetBundle
 {
     public $sourcePath = '@common/modules/merchant/widgets/frontend/fastpayment/assets';

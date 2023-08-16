@@ -3,6 +3,7 @@
 namespace common\modules\merchant\controllers\frontend;
 
 use Yii;
+use yii\db\Transaction;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
 use common\modules\merchant\models\Invoice;
@@ -12,14 +13,13 @@ use common\modules\merchant\models\frontend\PaymentSearch;
 
 /**
  * Платежный контроллер
- * @package common\modules\merchant\controllers\frontend
  */
 class DefaultController extends \frontend\components\Controller
 {
     /**
      * @inheritdoc
      */
-    public function beforeAction($action)
+    public function beforeAction($action): bool
     {
         if (!parent::beforeAction($action)) {
             return false;
@@ -33,7 +33,7 @@ class DefaultController extends \frontend\components\Controller
     /**
      * @inheritdoc
      */
-    public function behaviors()
+    public function behaviors(): array
     {
         $behaviors = [
             'access' => [
@@ -62,44 +62,44 @@ class DefaultController extends \frontend\components\Controller
 
     /**
      * История денежного оборота
-     * @return string
+     * @return Response
      */
-    public function actionIndex()
+    public function actionIndex(): Response
     {
         $model = new Payment();
         $searchModel = new PaymentSearch();
         $dataProvider = $searchModel->search();
 
-        return $this->render('index.twig', [
+        return $this->response($this->render('index.twig', [
             'model' => $model,
             'dataProvider' => $dataProvider,
             'systemArray' => $this->module->systems
-        ]);
+        ]));
     }
 
     /**
      * История денежного оборота
-     * @return array|string
+     * @return Response
      */
-    public function actionPay()
+    public function actionPay(): Response
     {
         $model = new Pay(['scenario' => 'payment']);
 
         if ($model->load(Yii::$app->request->post())) {
-            if ($model->validate()) {
-
+            $errors = $this->validate($model);
+            if (empty($errors)) {
                 // Создаем счет-фактуру
                 $invoice = new Invoice();
-                $invoice->hash = md5(uniqid(true));
+                $invoice->hash = md5(uniqid(true, true));
                 $invoice->user_id = Yii::$app->user->id;
                 $invoice->system = $model->system;
                 $invoice->funds = $model->amount;
                 $invoice->save(false);
 
-                // Редирект на робокассу
                 $title = 'Пополнение счета';
                 $email = Yii::$app->user->identity->email;
 
+                // Редирект на робокассу
                 return Yii::$app->robokassa->payment(
                     $invoice->funds,
                     $invoice->invoice_id,
@@ -108,75 +108,69 @@ class DefaultController extends \frontend\components\Controller
                     $email,
                     'ru'
                 );
-            } elseif (Yii::$app->request->isAjax) {
-                Yii::$app->response->format = Response::FORMAT_JSON;
-
-                return ActiveForm::validate($model);
             }
+
+            return $this->validationErrorsAjaxResponse($errors);
         }
 
-        return $this->render('pay.twig', [
+        return $this->response($this->render('pay.twig', [
             'model' => $model
-        ]);
+        ]));
     }
 
     /**
      * Оплата сервиса
-     * @return array|Response
+     * @return Response
      */
-    public function actionService()
+    public function actionService(): Response
     {
         if (!Yii::$app->request->isAjax) {
             return $this->goBack();
         }
 
+        /** @var Transaction $transaction */
         $transaction = Yii::$app->db->beginTransaction();
 
         try {
-            Yii::$app->response->format = Response::FORMAT_JSON;
-
             $model = new Pay();
-            $model->scenario = Yii::$app->request->post('type', null);
-            $model->service = Yii::$app->request->post('service', null);
-            $model->system = Yii::$app->request->post('system', null);
+            $model->scenario = Yii::$app->request->post('type');
+            $model->service = Yii::$app->request->post('service');
+            $model->system = Yii::$app->request->post('system');
             $model->data = Yii::$app->request->post('data', []);
-            $model->processId = Yii::$app->request->post('processId', null);
+            $model->processId = Yii::$app->request->post('processId');
 
             if ($model->validate()) {
                 return $model->process($transaction);
             }
 
+            $transaction->rollBack();
+
             // Возникла ошибка
             foreach ($model->getErrors() as $error) {
-                return [
-                    'status' => 0,
-                    'message' => $error[0]
-                ];
+                return $this->validationErrorsAjaxResponse($error[0]);
             }
         } catch (\Exception $e) {
             $transaction->rollBack();
 
-            return [
-                'status' => 0,
-                //'message' => $e->getMessage() . ' ' . $e->getCode(),
-                'message' => 'Возникла критическая ошибка, пожалуйста обратитесь в техническую поддержку.',
-            ];
+            return $this->criticalErrorsAjaxResponse($e);
         }
+
+        return $this->successAjaxResponse('');
     }
 
     /**
      * Генерирует платежный виджет для выбора оплаты
-     * @return string|Response
+     * @return Response
      */
-    public function actionPaymentWidget()
+    public function actionPaymentWidget(): Response
     {
         if (!Yii::$app->request->isAjax) {
             return $this->goBack();
         }
 
-        return $this->renderAjax('../ajax/payment-widget.php', [
+        return $this->response($this->renderAjax('../ajax/payment-widget.php', [
             'service' => Yii::$app->request->post('service'),
             'data' => Yii::$app->request->post('data', []),
-        ]);
+        ]));
     }
 }

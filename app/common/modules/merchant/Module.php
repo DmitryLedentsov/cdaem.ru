@@ -12,24 +12,24 @@ use yii\helpers\ArrayHelper;
 class Module extends \yii\base\Module
 {
     /**
-     * @var array Типы денежного оборота
+     * Типы денежного оборота
      */
-    public $systems;
+    public array $systems = [];
 
     /**
-     * @var integer Количество записей на главной странице модуля.
+     * Количество записей на главной странице модуля.
      */
-    public $recordsPerPage = 18;
+    public int $recordsPerPage = 18;
 
     /**
-     * @var string Вид текущей валюты
+     * Вид текущей валюты
      */
-    public $viewMainCurrency = 'RUB';
+    public string $viewMainCurrency = 'RUB';
 
     /**
      * @inheritdoc
      */
-    public function init()
+    public function init(): void
     {
         parent::init();
 

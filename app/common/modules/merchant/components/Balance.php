@@ -21,7 +21,7 @@ class Balance
     /**
      * @var string
      */
-    private $_model = 'common\modules\merchant\models\Payment';
+    private $_model = \common\modules\merchant\models\Payment::class;
 
     /**
      * @var string
@@ -150,10 +150,10 @@ class Balance
             throw new InvalidArgumentException(get_class($this) . ': System "' . $system . '" not founds in systems list');
         }
 
-        $account = $account ? $account : $this->accounts[0];
+        $account = $account ?: $this->accounts[0];
 
         if ($account === null) {
-            $account = isset($this->accounts[0]) ? $this->accounts[0] : null;
+            $account = $this->accounts[0] ?? null;
         }
 
         if (!isset($this->_user->$account)) {
@@ -165,7 +165,7 @@ class Balance
 
         $model = $this->_model;
 
-        if ($type == $model::DEPOSIT || $type == $model::BILLING) {
+        if ($type === $model::DEPOSIT || $type === $model::BILLING) {
             $this->_user->$account += $amount;
         } else {
             $this->_user->$account -= $amount;
