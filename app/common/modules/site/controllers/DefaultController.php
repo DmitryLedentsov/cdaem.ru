@@ -5,22 +5,15 @@ namespace common\modules\site\controllers;
 use Yii;
 use yii\helpers\Url;
 use yii\web\Response;
-use yii\widgets\ActiveForm;
 use yii\web\NotFoundHttpException;
 use common\modules\geo\models\City;
-use common\modules\pages\models\Page;
 use common\modules\site\models\Sitemap;
 use common\modules\realty\models\RentType;
 use common\modules\articles\models\Article;
 use common\modules\agency\models\SpecialAdvert;
-use common\modules\agency\models\form\WantPassForm;
 use common\modules\agency\models\search\AdvertSearch as AgencyAdvertSearch;
 use common\modules\partners\models\frontend\search\AdvertSearch as PartnersAdvertSearch;
 
-/**
- * Главный контроллер сайта
- * @package common\modules\site\controllers
- */
 class DefaultController extends \frontend\components\Controller
 {
     /**
@@ -31,7 +24,7 @@ class DefaultController extends \frontend\components\Controller
         return [
             'error' => [
                 'class' => \yii\web\ErrorAction::class,
-                'view' => '@frontend/themes/basic/default/error.twig',
+                'view' => '@common/modules/site/views/default/error.twig',
             ],
         ];
     }
@@ -47,7 +40,7 @@ class DefaultController extends \frontend\components\Controller
       } */
 
     /**
-     * Фильтр апартаментов
+     * Фильтр апартаментов.
      * Показывает апартаменты агенства и апартаменты доски объявлений
      * по указанным фильтрам.
      *
@@ -126,48 +119,6 @@ class DefaultController extends \frontend\components\Controller
     }
 
     /**
-     * @return array|string
-     * @throws NotFoundHttpException
-     * @throws \yii\web\HttpException
-     */
-    public function actionPartnership()
-    {
-        $model = Page::getPageByUrl('partnership');
-
-        if (!$model) {
-            throw new NotFoundHttpException;
-        }
-
-        $formModel = new WantPassForm(['scenario' => 'partnership']);
-
-        if ($formModel->load(Yii::$app->request->post())) {
-            Yii::$app->response->format = Response::FORMAT_JSON;
-            $errors = ActiveForm::validate($formModel);
-            if (!$errors) {
-                if ($formModel->create()) {
-                    $status = 1;
-                    $msg = 'Ваша заявка принята. Пожалуйста ожидайте ответа.';
-                } else {
-                    $status = 1;
-                    $msg = 'Возникла критическая ошибка. Пожалуйста обратитесь в техническую поддержку.';
-                }
-
-                return [
-                    'status' => $status,
-                    'message' => $msg,
-                ];
-            }
-
-            return $errors;
-        }
-
-        return $this->render('partnership.twig', [
-            'model' => $model,
-            'formModel' => $formModel,
-        ]);
-    }
-
-    /**
      * Генерация карты сайта
      *
      * @param string|null $city
@@ -187,7 +138,7 @@ class DefaultController extends \frontend\components\Controller
             return $this->response($sitemap->renderCommon());
         }
 
-        $city = (substr($city, 0, 1) == '_') ? str_replace('_', '', $city) : $city;
+        $city = ($city[0] === '_') ? str_replace('_', '', $city) : $city;
 
         /** @var City|null $city */
         $cityModel = City::find()->where(['name_eng' => trim($city ?? '')])->one();
