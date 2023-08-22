@@ -4,6 +4,7 @@
 
     function init() {
         var $map = $("#map");
+        var $searchForm = $("#search");
         var myMap = new ymaps.Map('map', {
                 center: [$map.data("latitude") , $map.data("longitude")],
                 zoom: 10
@@ -109,17 +110,26 @@
 
 
         myMap.geoObjects.add(objectManager);
-        $.ajax({
-            url: '/geo/map',
-            dataType: 'json',
-            method: 'GET',
-            data: {
-                city_id: $map.data("city_id")
-            }
-        })
-            .done(function (response) {
-                objectManager.add(response.data);
-            });
+        function queryMapObjects(){
+            $.ajax({
+                url: '/geo/map',
+                dataType: 'json',
+                method: 'GET',
+                data: Object.fromEntries(new FormData($searchForm[0])),
+            })
+                .done(function (response) {
+                    objectManager.add(response.data);
+                });
+        }
+        //let $formData = new FormData($searchForm[0]);
+        /*$searchForm.submit(function(e){
+            e.preventDefault();
+            console.log(new FormData($searchForm[0]));
+            queryMapObjects();
+            window.location.href=$searchForm.attr("action");
+        });*/
+        //console.log($formData);
+        queryMapObjects();
 
 
         // Функция, осуществляющая запрос за данными балуна на сервер.
