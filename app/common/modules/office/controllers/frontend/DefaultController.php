@@ -44,7 +44,7 @@ class DefaultController extends \frontend\components\Controller
     /**
      * @inheritdoc
      */
-    public function beforeAction($action)
+    public function beforeAction($action): bool
     {
         $actions = ['apartments', 'services', 'send-offer', 'services', 'services'];
 
@@ -54,7 +54,8 @@ class DefaultController extends \frontend\components\Controller
             if (!Yii::$app->user->isGuest && Yii::$app->user->identity->profile->user_type === Profile::WANT_RENT) {
                 $userType = Yii::$app->BasisFormat->helper('Status')->getItem(Profile::getUserTypeArray(), Yii::$app->user->identity->profile->user_type);
                 //Yii::$app->session->setFlash('danger', '<b>Внимание:</b> <br/> Ваш тип аккаунта: "'. $userType . '" и Вы не можете производить данное действие. ');
-                return $this->redirect(['/office/default/index']);
+                $this->redirect(['/office/default/index']);
+                return true;
             }
         }
 

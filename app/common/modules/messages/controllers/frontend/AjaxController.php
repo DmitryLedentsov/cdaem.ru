@@ -35,7 +35,7 @@ class AjaxController extends \frontend\components\Controller
     /**
      * @inheritdoc
      */
-    public function beforeAction($action)
+    public function beforeAction($action): bool
     {
         if (parent::beforeAction($action)) {
             if (!Yii::$app->request->isAjax) {
