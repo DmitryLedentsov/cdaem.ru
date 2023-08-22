@@ -92,7 +92,7 @@
             lon: item.geo_lon
         };
 
-        if (point.lat && point.lon) {
+        if (apartMap && point.lat && point.lon) {
             apartMap.setCenter([point.lat, point.lon]);
             apartMap.setZoom(15);
 
@@ -226,7 +226,7 @@
         cityField.data('current-value', item.text);
 
         // центрируем карту по городу
-        if (item.geo_lat && item.geo_lon) {
+        if (apartMap && item.geo_lat && item.geo_lon) {
             apartMap.setCenter([item.geo_lat, item.geo_lon]);
             apartMap.setZoom(10);
         }

@@ -75,6 +75,8 @@
         display: flex;
         flex-wrap: wrap;
         margin-bottom: 17px;
+        height: 42px;
+        justify-content: space-around;
 
         &:last-child {
             //margin-bottom: 0;
@@ -460,8 +462,48 @@
             }
         }
     }
-}
 
+    // Поля для выбора периода аренды
+    .search-form {
+        &-group {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;
+
+            .daterangepicker-text {
+                font-weight: 400;
+                font-size: 1rem;
+                color: #4C4C4C;
+            }
+        }
+
+        &-filter-calendar {
+            height: 42px;
+            border: 1px solid #D7D7D7;
+            max-width: 49.5%;
+            min-width: auto;
+            //margin: 0;
+            margin: 0 -0.8% 0 0;
+        }
+
+        &-filter-calendar span:first-of-type {
+            font-weight: inherit;
+        }
+    }
+
+    .price-range {
+        display: flex;
+        &-input {
+            //width: 120px;
+        }
+
+        &-input:not(:last-child) {
+            margin-right: 3.5%;
+        }
+    }
+
+}
 
 /*
 .rent {
