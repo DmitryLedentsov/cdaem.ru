@@ -3,9 +3,9 @@
 namespace common\modules\helpdesk\controllers\frontend;
 
 use Yii;
-use yii\helpers\ArrayHelper;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
 use common\modules\helpdesk\models\Helpdesk;
 use common\modules\helpdesk\models\form\HelpdeskForm;
@@ -81,11 +81,13 @@ class AjaxController extends \frontend\components\Controller
                 if ($formModel->complaint()) {
                     $this->successAjaxResponse('Ваша заявка успешно остановлена, пожалуйста ожидайте звонка от диспетчера.');
                 }
+
                 return [
                     'status' => 0,
                     'message' => 'Возникла критическая ошибка.'
                 ];
             }
+
             return $this->validationErrorsAjaxResponse($errors);
         }
 

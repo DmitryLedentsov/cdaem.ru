@@ -228,7 +228,7 @@
                 margin-bottom: 2.2rem;
 
                 @include phone() {
-                    font-size: 1.5rem; 
+                    font-size: 1.5rem;
                 }
             }
         }
@@ -278,7 +278,7 @@
         cursor: pointer;
 
         @include phone() {
-            margin: 0 3rem 1rem 0;       
+            margin: 0 3rem 1rem 0;
         }
 
         @include tablet() {
@@ -324,7 +324,7 @@
         cursor: pointer;
 
         @include phone() {
-            margin: 0 1.2rem 1rem; 
+            margin: 0 1.2rem 1rem;
         }
 
         @include tablet() {
@@ -347,7 +347,7 @@
 .modal-appeal,
 .modal-book
 .modal-complain {
-    .modal {        
+    .modal {
         &-item {
             @include tablet() {
                 padding-bottom: 2.9rem;
@@ -357,7 +357,8 @@
         &-select-container {
             @include tablet() {
                 display: flex;
-                justify-content: space-between;
+                //justify-content: space-between;
+                justify-content: flex-start;
                 flex-wrap: wrap;
             }
 
@@ -427,6 +428,19 @@
                 width: 49%;
             }
 
+            .rent-two-container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                position: relative;
+
+                .input-field {
+                    width: 102px;
+                    padding-right: 10px;
+                    margin-left: 10px;
+                }
+            }
+
             label {
                 width: 100%;
                 margin-bottom: 0.6rem;
@@ -473,7 +487,7 @@
         &-dialog-window {
             max-width: 750px;
         }
-    
+
         &-item {
             max-width: 710px;
             padding: 1.5rem 1rem;

@@ -2,20 +2,20 @@
 
 namespace common\modules\partners\controllers\frontend;
 
-use common\modules\geo\models\City;
-use common\modules\partners\models\frontend\Image;
-use common\modules\realty\models\Apartment as ApartmentModel;
-use common\modules\users\models\Profile;
 use Yii;
-use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use yii\web\Response;
 use yii\web\HttpException;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use common\modules\geo\models\City;
+use common\modules\users\models\Profile;
 use common\modules\realty\models\RentType;
+use common\modules\partners\models\frontend\Image;
 use common\modules\partners\models\frontend\Advert;
 use common\modules\partners\models\frontend as models;
 use common\modules\partners\models\frontend\Apartment;
+use common\modules\realty\models\Apartment as ApartmentModel;
 
 /**
  * Class OfficeController
@@ -38,7 +38,6 @@ class OfficeController extends \frontend\components\Controller
 
         if (in_array($action->id, $actions)) {
             if (!Yii::$app->user->isGuest && Yii::$app->user->identity->profile->user_type == Profile::WANT_RENT) {
-
                 $userType = Yii::$app->BasisFormat->helper('Status')->getItem(Profile::getUserTypeArray(), Yii::$app->user->identity->profile->user_type);
 
                 Yii::$app->session->setFlash('danger', '<b>Внимание:</b> <br/> Ваш тип аккаунта: "' . $userType . '" и Вы не можете производить данное действие. ');
@@ -244,12 +243,13 @@ class OfficeController extends \frontend\components\Controller
                 $apartment->populateRelation('facilities', $facility);
 
                 // if (Yii::$app->request->post('submit')) { // не работает при апдейте
-                    if ($apartment->save(false)) {
-                        Yii::$app->session->setFlash('success', 'Ваше объявление обновлено.');
-                        return $this->redirect(['/partners/office/apartments']);
-                    }
+                if ($apartment->save(false)) {
+                    Yii::$app->session->setFlash('success', 'Ваше объявление обновлено.');
 
-                    return [
+                    return $this->redirect(['/partners/office/apartments']);
+                }
+
+                return [
                         'status' => 0,
                         'message' => 'При добавлении объявления возникла ошибка, пожалуйста попробуйте еще раз или обратитесь в техническую поддержку.',
                     ];
@@ -337,5 +337,4 @@ class OfficeController extends \frontend\components\Controller
             'apartments' => $apartments
         ]);
     }
-
 }

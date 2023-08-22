@@ -2,9 +2,9 @@
 
 namespace common\modules\geo\controllers\frontend;
 
+use yii\web\Response;
 use yii\web\NotFoundHttpException;
 use common\modules\geo\models\City;
-use yii\web\Response;
 
 /**
  * Главный гео контроллер
@@ -41,6 +41,6 @@ class DefaultController extends \frontend\components\Controller
             throw new NotFoundHttpException();
         }
 
-        return $this->response($this->render('index.twig', ['city' => $city]));
+        return $this->response($this->render('map.twig', ['city' => $city]));
     }
 }

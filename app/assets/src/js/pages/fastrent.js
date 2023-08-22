@@ -1,9 +1,13 @@
+
+
+
+/*
 const next = document.querySelector('.btn-fast-next');
 const back = document.querySelector('.btn-fast-back');
 const submit = document.querySelector('.btn-fast-submit');
 const steps = document.querySelectorAll('.steps');
 const activeClass = 'active';
-const hiddenClass = 'd-none'
+const hiddenClass = 'd-none';
 let currentStep = 1;
 
 const buttonsAvaliable = () => {
@@ -15,7 +19,7 @@ const buttonsAvaliable = () => {
     } else {
         next.classList.remove(hiddenClass);
         submit.classList.add(hiddenClass)
-    }  
+    }
 }
 
 const changeStep = () => {
@@ -33,3 +37,4 @@ back.addEventListener('click', () => {
     --currentStep;
     changeStep();
 })
+*/

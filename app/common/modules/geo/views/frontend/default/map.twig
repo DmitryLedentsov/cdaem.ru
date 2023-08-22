@@ -1,0 +1,28 @@
+{#
+   Карта
+   @var \yii\web\View this
+#}
+
+{% extends "@common/modules/site/views/layouts/main.twig" %}
+
+{% block seo %}
+    {% include '@common/modules/site/views/_modules/_seo.twig' with {
+        'title': 'Карта города - ' ~ city.name ~ ' | Сдаём.ру',
+        'description':  '',
+        'keywords': '',
+    } %}
+{% endblock %}
+
+{% block bodyClass %}l-base{% endblock %}
+
+
+{% block content %}
+    {{ use('common/modules/geo/assets/frontend/YMapAsset') }}
+    {{ register_y_map_asset() }}
+    {# TODO: add search functionality #}
+    {{ use('common/modules/partners/assets/frontend/SearchAsset') }}
+    {{ register_search_asset() }}
+    <div class="container" id="map-container">
+        <div id="map" data-city_id="{{ city.city_id }}" data-latitude="{{ city.latitude }}" data-longitude="{{ city.longitude }}"> <div id="ymap_key_display" style="position: relative; top: 50%; left: 0; right: 0; color: black; text-align: center; font-size: 1.8em; pointer-events: none; z-index: 1; text-shadow: 0px 0px 20px; ">Чтобы изменить масштаб, прокручивайте карту, удерживая клавишу Shift</div></div>
+    </div>
+{% endblock %}

@@ -57,6 +57,7 @@ class ImageForm extends Image
     {
         if (parent::beforeValidate()) {
             $this->files = UploadedFile::getInstances($this, 'files');
+
             return true;
         }
 

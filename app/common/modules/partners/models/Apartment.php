@@ -386,6 +386,7 @@ class Apartment extends \yii\db\ActiveRecord
     {
         if ($this->remont) {
             $name = ArrayHelper::getValue($this->remontList, $this->remont);
+
             return trim(sprintf('%s %s', $name, $this->remont === 3 ? '' : 'ремонт'));
         }
 
@@ -529,7 +530,8 @@ class Apartment extends \yii\db\ActiveRecord
         return $this->getFacility($alias) ? true : false;
     }
 
-    public function getFacility(string $alias) {
+    public function getFacility(string $alias)
+    {
         if (!$this->apartment_id) {
             return null;
         }
@@ -548,7 +550,8 @@ class Apartment extends \yii\db\ActiveRecord
         return $this->getFacilities()->andWhere(['is_extra' => $isExtra ? 1 : 0])->all();
     }
 
-    public function getTimeToMetroInMinutes($transportType = 0) {
+    public function getTimeToMetroInMinutes($transportType = 0)
+    {
         $transportSpeed = [ // км/ч
             0 => 4,  // пешеход
             1 => 30, // такси

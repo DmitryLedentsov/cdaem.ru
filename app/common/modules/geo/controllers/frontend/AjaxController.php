@@ -2,14 +2,14 @@
 
 namespace common\modules\geo\controllers\frontend;
 
-use common\modules\geo\models\CityByIpCache;
-use common\modules\geo\models\Metro;
 use Yii;
 use yii\base\Model;
-use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use yii\web\Response;
+use yii\helpers\ArrayHelper;
 use common\modules\geo\models\City;
+use common\modules\geo\models\Metro;
+use common\modules\geo\models\CityByIpCache;
 use common\modules\agency\models\Apartment as ApartmentAgency;
 use common\modules\partners\models\frontend\Apartment as ApartmentPartners;
 
@@ -78,7 +78,7 @@ class AjaxController extends \frontend\components\Controller
      * Карта московского метро
      * @return string
      */
-    public function actionMetroMsk()
+    public function actionMetroMsk(): string
     {
         return $this->renderAjax('metro-msk.html');
     }
@@ -102,6 +102,7 @@ class AjaxController extends \frontend\components\Controller
                 'city_id' => $city['city_id'],
                 'name' => $city['name'],
             ];
+
             return $result;
         }, []);
     }
@@ -181,6 +182,7 @@ class AjaxController extends \frontend\components\Controller
                 "city_id" => $cityId
             ];
         }
+
         return $result;
     }
 
@@ -239,8 +241,7 @@ class AjaxController extends \frontend\components\Controller
             $cityId = $cacheRecord->city_id;
             $city = City::findOne(['city_id' => $cityId]);
             $cityName = $city ? $city->name : null;
-        }
-        else {
+        } else {
             $dadata = new \Dadata\DadataClient(Yii::$app->params['dadata']['token'], Yii::$app->params['dadata']['secret']);
 
             $result = $dadata->iplocate($ip);
@@ -267,7 +268,7 @@ class AjaxController extends \frontend\components\Controller
      * @param $typeId
      * @return string
      */
-    public function actionApartment($typeId)
+    public function actionApartment($typeId): string
     {
         $type = mb_substr($typeId, 0, 1, 'utf-8');
         $id = explode('_', $typeId);
@@ -336,13 +337,14 @@ class AjaxController extends \frontend\components\Controller
 
     /**
      * Карта московского метро
-     * @return array
+     * @return Response
      */
-    public function actionMap()
+    public function actionMap(): Response
     {
-        $apartmentsAgency = ApartmentAgency::find()
+        $cityId = Yii::$app->request->get('city_id');
+        $apartmentsAgency = ApartmentAgency::find()->filterWhere(['city_id' => $cityId])
             ->joinWith(['titleImage', 'adverts' => function ($query) {
-                $query->select(['advert_id', 'apartment_id', 'rent_type', 'price']);
+                $query->select(['advert_id', 'apartment_id', 'rent_type', 'price' ]);
                 $query->andWhere(['rent_type' => 1]);
                 $query->orWhere(['rent_type' => 2]);
                 $query->orWhere(['rent_type' => 3]);
@@ -351,9 +353,9 @@ class AjaxController extends \frontend\components\Controller
             ->visible()
             ->all();
 
-        $apartmentsPartners = ApartmentPartners::find()
+        $apartmentsPartners = ApartmentPartners::find()->filterWhere(['city_id' => $cityId])
             ->joinWith(['titleImage', 'user', 'adverts' => function ($query) {
-                $query->select(['advert_id', 'apartment_id', 'rent_type', 'price', 'currency']);
+                $query->select(['advert_id', 'apartment_id', 'rent_type', 'price', 'currency' ]);
                 $query->andWhere(['rent_type' => 1]);
                 $query->orWhere(['rent_type' => 2]);
                 $query->orWhere(['rent_type' => 3]);
@@ -374,35 +376,34 @@ class AjaxController extends \frontend\components\Controller
         foreach ($apartmentsPartners as $apartmentPartners) {
             $result['features'][] = $this->getFeatureInfo($apartmentPartners);
         }
-
         Yii::$app->response->format = Response::FORMAT_JSON;
-
-        return $result;
+        return $this->successAjaxResponse('ok', $result);
     }
 
     /**
-     * @param Model $model
+     * @param Model $apartment
      * @return array
      */
-    private function getFeatureInfo(Model $model): array
+    private function getFeatureInfo(Model $apartment): array
     {
         return [
-            'id' => (($model instanceof ApartmentAgency) ? 'a' : 'p') . '_' . $model->apartment_id,
+            'id' => (($apartment instanceof ApartmentAgency) ? 'a' : 'p') . '_' . $apartment->apartment_id,
             'geometry' => [
                 'type' => 'Point',
-                'coordinates' => [$model->latitude, $model->longitude],
+                'coordinates' => [$apartment->latitude, $apartment->longitude],
             ],
             'properties' => [
-                'clusterCaption' => $model->address,
-                'hintContent' => $model->address,
+                'clusterCaption' => $apartment->address,
+                'hintContent' => $apartment->address,
             ],
             'options' => [
-                'preset' => ($model instanceof ApartmentAgency) ? 'islands#darkGreenIcon' : 'islands#blueDotIcon',
+                'preset' => ($apartment instanceof ApartmentAgency) ? 'islands#darkGreenIcon' : 'islands#blueDotIcon',
             ]
         ];
     }
 
-    public function actionNearestStations($cityName, $latitude, $longitude): array {
+    public function actionNearestStations(string $cityName, float $latitude, float $longitude): array
+    {
         Yii::$app->response->format = Response::FORMAT_JSON;
 
         $city = City::findByName($cityName);

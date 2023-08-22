@@ -37,7 +37,7 @@ switch ($service::NAME) {
 <div class='calculate clearfix'>
     <div class='service-logo'>
         <?= $serviceLogo ?>
-<!--        <p class='name'>--><?//= $service->getName() ?><!--</p>-->
+<!--        <p class='name'>--><?//= $service->getName()?><!--</p>-->
         <p class='selected'>
             Объектов выбрано: <b><?= $calculation['countSelected'] ?></b>
         </p>

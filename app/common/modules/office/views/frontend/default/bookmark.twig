@@ -35,6 +35,12 @@
 
 {% block content %}
 
+    {{ use ('chat/assets/ChatAsset') }}
+    {{ register_chat_asset() }}
+    <a href="{{ path(['/office/dialogs']) }}" class="control-link user-settings-item">
+        Все сообщения
+    </a>
+
     <div class="section-head section-head-between">
         <h2>Избранное</h2>
     </div>

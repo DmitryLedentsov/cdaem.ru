@@ -69,7 +69,6 @@ class Advert extends \yii\db\ActiveRecord
         return $this->hasMany(AdvertisementSlider::class, ['advert_id' => 'advert_id']);
     }
 
-
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -78,7 +77,8 @@ class Advert extends \yii\db\ActiveRecord
         return $this->hasOne(Apartment::class, ['apartment_id' => 'apartment_id']);
     }
 
-    public static function getPreparedRentTypesAdvertsListByApartment(Apartment $apartment) {
+    public static function getPreparedRentTypesAdvertsListByApartment(Apartment $apartment)
+    {
         return self::getPreparedRentTypesAdvertsList(RentType::rentTypeslist(), $apartment->adverts);
     }
 
@@ -190,7 +190,8 @@ class Advert extends \yii\db\ActiveRecord
             ->all();
     }
 
-    public static function getAdvertsByUserAndApartmentId($user_id, $apartment_id, $limit = null) {
+    public static function getAdvertsByUserAndApartmentId($user_id, $apartment_id, $limit = null)
+    {
         $query = static::find()
             ->joinWith([
                 'apartment' => function ($query) {
@@ -384,5 +385,4 @@ class Advert extends \yii\db\ActiveRecord
     {
         return Yii::$app->formatter->asCurrency($this->price, ArrayHelper::getValue($this->currencyList, $this->currency));
     }
-
 }

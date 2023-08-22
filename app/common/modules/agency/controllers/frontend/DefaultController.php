@@ -219,7 +219,6 @@ class DefaultController extends \frontend\components\Controller
         ]);
     }
 
-
     /**
      * Заявка на отправку реквизитов
      * @return array|Response

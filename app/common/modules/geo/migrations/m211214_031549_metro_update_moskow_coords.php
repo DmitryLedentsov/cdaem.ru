@@ -32,8 +32,7 @@ class m211214_031549_metro_update_moskow_coords extends Migration
                         "latitude" => $lat,
                         "longitude" => $lon,
                     ]);
-                }
-                else {
+                } else {
                     $existStation->latitude = $lat;
                     $existStation->longitude = $lon;
                 }

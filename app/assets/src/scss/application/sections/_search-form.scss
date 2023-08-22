@@ -330,7 +330,7 @@
             > span {
                 width: 100%;
                 pointer-events: none;
-                
+
                 &:first-of-type {
                     order: 1;
                     width: 32px;
@@ -364,7 +364,7 @@
 
             &.is-open {
                 border-color: $color-form-focus;
-                box-shadow: 0 0 0 0.2rem rgba($color-form-focus, .25);  
+                box-shadow: 0 0 0 0.2rem rgba($color-form-focus, .25);
 
                 .search-form-filter-options {
                     display: block;
@@ -374,7 +374,7 @@
 
         .bootstrap-autocomplete,
         .dropdown-menu {
-            overflow-y: scroll; 
+            overflow-y: scroll;
             max-height: 320px;
             width: auto;
 
@@ -384,7 +384,7 @@
                 &.active {
                     background: #ececec;
                 }
-            }    
+            }
         }
 
         &-options {
@@ -402,13 +402,13 @@
             color: #4C4C4C;
             cursor: default;
 
-            &::before, 
+            &::before,
             &::after {
                 content: '';
                 position: absolute;
                 border-bottom-color: rgba(0, 0, 0, 0.2);
             }
-              
+
             &::before {
                 top: -7px;
                 right: 24px;
@@ -416,7 +416,7 @@
                 border-left: 7px solid transparent;
                 border-bottom: 7px solid #ccc;
             }
-              
+
             &::after {
                 top: -6px;
                 right: 25px;
@@ -424,7 +424,7 @@
                 border-bottom: 6px solid #fff;
                 border-left: 6px solid transparent;
             }
-            
+
             input {
                 width: auto;
                 height: 17px;
