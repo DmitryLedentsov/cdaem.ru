@@ -76,7 +76,7 @@
             }
 
             &:hover {
-                .payment-img img {
+                .pay-img img {
                     opacity: 1;
                 }
             }
@@ -85,8 +85,8 @@
         &-input {
             display: none;
 
-            &:checked+.payment-method {
-                .payment-img {
+            &:checked+.pay-method {
+                .pay-img {
                     border-color: #FFA801;
 
                     img {
@@ -94,7 +94,7 @@
                     }
                 }
 
-                .payment-name {
+                .pay-name {
                     color: #000;
                 }
             }
