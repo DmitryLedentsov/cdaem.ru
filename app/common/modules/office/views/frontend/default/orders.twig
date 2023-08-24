@@ -92,7 +92,7 @@
                     </div>
                 {% endfor %}
             </div> #}
-            <table class="purchases-tabel">
+            <table class="purchases-table">
                 <thead class="purchases-head">
                     <tr>
                         <th>Услуга</th>
@@ -161,7 +161,7 @@
 
         {% else %}
 
-            <div class="alert alert-info mt-4">
+            <div class="alert alert-info">
                 {% if app.user.identity.profile.user_type == constant('\\common\\modules\\users\\models\\Profile::WANT_RENT') %}
                     У Вас нет ни одного заказа.
                 {% else %}
