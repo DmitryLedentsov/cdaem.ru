@@ -10,7 +10,6 @@ use common\components\Response;
 
 /**
  * Общий контроллер
- * @package frontend\components
  */
 class Controller extends \yii\web\Controller
 {
@@ -22,7 +21,7 @@ class Controller extends \yii\web\Controller
     /**
      * @inheritdoc
      */
-    public function beforeAction($action)
+    public function beforeAction($action): bool
     {
         if (!parent::beforeAction($action)) {
             return false;
@@ -73,6 +72,23 @@ class Controller extends \yii\web\Controller
         Yii::$app->response->statusCode = 422;
 
         return $this->response(Json::encode($errors));
+    }
+
+    /**
+     * @param \Throwable $throwable
+     * @return Response
+     */
+    public function criticalErrorsAjaxResponse(\Throwable  $throwable): Response
+    {
+        Yii::$app->response->statusCode = 500;
+
+        $result = [
+            'status' => 'failure',
+            'message' => 'Возникла критическая ошибка, пожалуйста обратитесь в техническую поддержку.',
+            'data' => [],
+        ];
+
+        return $this->response(Json::encode($result));
     }
 
     /**

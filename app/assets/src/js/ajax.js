@@ -66,7 +66,9 @@ $(function () {
                 isPageToDoScroll = isUpdateApart || isCreateApart || isProfilePage;
 
             !isModal && $.each(response.responseJSON, (key) => {
-                if (doScroll) return;
+                if (doScroll) {
+                    return;
+                }
 
                 let fieldName = key.indexOf('-') !== -1 ? getNameByKey(key) : key;
                 let $element = getInputByName(fieldName);
@@ -167,7 +169,6 @@ $(function () {
                 let commonErrors = getCommonErrors(response);
 
                 if (commonErrors) {
-                    console.log('commonErrors');
                     window.openWindow(translations.error_title, commonErrors[0]);
                     // window.openWindow(translations.error_title, commonErrors[Object.keys(commonErrors)[0]]);
                 }
@@ -178,14 +179,12 @@ $(function () {
     };
 
     function formBeforeSend($form) {
-
         $form.prop('disabled', true);
         $form.find('button').attr('disabled', 'disabled');
         $form.find('button span').css('display', 'inherit');
     }
 
     function formComplete($form) {
-
         $form.prop('disabled', false);
         $form.find('button').removeAttr('disabled');
         $form.find('button span').css('display', 'none');
@@ -214,8 +213,7 @@ $(function () {
         try {
             callback(response);
         } catch (e) {
-            console.log('checkResponse exception');
-            console.log(e);
+            console.error(e);
             window.openWindow(translations.error_title, translations.error_description);
         }
     }

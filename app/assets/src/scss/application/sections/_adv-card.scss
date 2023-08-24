@@ -4,6 +4,12 @@
     border: 1px solid #dddddd;
     border-radius: 6px;
 
+    .adv-list-img {
+        @include phone() {
+            margin-right: 15px;
+        }
+    }
+
     &:last-child {
         margin-bottom: 0;
     }
@@ -434,6 +440,8 @@
             align-items: center;
             margin-left: 5px;
             color: #0b6cff;
+            position: relative;
+            top: 4px;
 
             &:hover {
                 color: #0345a9;
@@ -456,7 +464,7 @@
             }
 
             &-date {
-                margin-left: 10px;
+                margin-left: 15px;
             }
         }
     }

@@ -1,0 +1,34 @@
+{% extends "@common/modules/site/views/layouts/main.twig" %}
+
+{% block bodyClass %}p-error{% endblock %}
+
+{% block seo %}
+    {% include '@common/modules/site/views/_modules/_seo.twig' with {
+        'title': '404 - Страница не найдена',
+        'description': '',
+        'keywords': ''
+    } %}
+{% endblock %}
+
+{% block header %}{% endblock %}
+
+{% block footer %} {% endblock %}
+
+{% block content %}
+
+    {{ use('common/modules/site/assets/ErrorAsset') }}
+    {{ register_error_asset() }}
+
+    <div class="container-fluid">
+        <div class="error">
+            <div class="error-img">
+                <img src="/_new/images/404.svg" alt="404" />
+            </div> 
+            <a class="btn-orange" href="/">На главную</a>
+            <div class="error-text">
+                Извините данной страницы не существует
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

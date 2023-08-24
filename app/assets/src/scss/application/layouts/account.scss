@@ -42,15 +42,16 @@
         }
     }
 
-
     .section-head {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+        margin-bottom: 15px;
 
         @include tablet() {
             flex-direction: row;
             align-items: center;
+            margin-bottom: 30px;
         }
 
         &-between {

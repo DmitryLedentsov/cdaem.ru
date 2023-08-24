@@ -7,6 +7,14 @@ use common\modules\merchant\traits\ModuleTrait;
 
 /**
  * Модель счет-фактура
+ *
+ * @property int $invoice_id
+ * @property int $process_id
+ * @property string $hash
+ * @property int $user_id
+ * @property string $system
+ * @property float $funds
+ *
  */
 class Invoice extends ActiveRecord
 {
@@ -14,14 +22,14 @@ class Invoice extends ActiveRecord
 
     /**
      * Типы
-     * - roobokassa
+     * - robokassa
      */
-    const ROBOKASSA = 'roobokassa';
+    public const ROBOKASSA = 'robokassa';
 
     /**
      * @inheritdoc
      */
-    public static function tableName()
+    public static function tableName(): string
     {
         return '{{%merchant_invoice}}';
     }
@@ -29,7 +37,7 @@ class Invoice extends ActiveRecord
     /**
      * @inheritdoc
      */
-    public function behaviors()
+    public function behaviors(): array
     {
         return [
             'TimestampBehavior' => [
@@ -47,7 +55,7 @@ class Invoice extends ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'user_id' => 'Пользователь',
@@ -75,7 +83,7 @@ class Invoice extends ActiveRecord
     /**
      * @return array Массив доступных данных
      */
-    public static function getTypesArray()
+    public static function getTypesArray(): array
     {
         return [
             self::ROBOKASSA => [

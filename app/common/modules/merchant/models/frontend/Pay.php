@@ -12,7 +12,6 @@ use common\modules\partners\interfaces\ServiceInterface;
 
 /**
  * Оплата счета
- * @package common\modules\merchant\models\frontend
  */
 class Pay extends \yii\base\Model
 {
@@ -302,7 +301,7 @@ class Pay extends \yii\base\Model
     {
         // Создаем счет-фактуру
         $invoice = new Invoice();
-        $invoice->hash = md5(uniqid(true));
+        $invoice->hash = md5(uniqid(true, true));
         $invoice->user_id = Yii::$app->user->id;
         $invoice->system = 'ROBOKASSA: ' . $this->system;
         $invoice->funds = $this->_price;

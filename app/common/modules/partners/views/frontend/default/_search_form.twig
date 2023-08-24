@@ -1,0 +1,76 @@
+<div class="lookup-board-form">
+    <div class="lookup-board-filter lookup-board-filter-city">
+        <span class="lookup-board-filter-text">Город</span>
+        <label>
+            <input id="search-form-autocomplete"
+                   name="city"
+                   type="text"
+                   class="form-control input-search city-drop-down-list"
+                   autocomplete="off"
+                   data-url="{{ path(['/geo/ajax/select-city']) }}"
+                   value="{{city.name}}"
+                   placeholder="Город" />
+            <input type="hidden" name="city_code" id="search-form-autocomplete-selected" value="{{ city.name_eng }}">
+        </label>
+    </div>
+    <div class="lookup-board-filter lookup-board-filter-type">
+        <span class="lookup-board-filter-text">Выберите тип аренды</span>
+        <label>
+            <select class="custom-select" name="sect">
+                {% for key, rentType in searchModel.rentTypesList %}
+                    <option value="{{ key }}" {{ key == app.request.get("sect") ? 'selected="selected"' : '' }}>{{rentType}}</option>
+                {% endfor %}
+            </select>
+        </label>
+    </div>
+    <div class="lookup-board-filter lookup-board-filter-rooms">
+        <span class="lookup-board-filter-text">Количество комнат</span>
+        <label>
+            <select class="custom-select" name="room">
+                {% for key, room in searchModel.roomsList %}
+                    <option value="{{ key }}" {{ loop.index == 1 ? 'selected' : '' }}>{{ room }}</option>
+                {% endfor %}
+            </select>
+        </label>
+    </div>
+    <div class="lookup-board-filter lookup-board-filter-adress">
+        <span class="lookup-board-filter-text">Сортировать</span>
+        <label>
+            <select class="custom-select" name="sort">
+                <option value="0">По дате</option>
+                <option value="1">От дешёвых к дорогим</option>
+                <option value="2">От дорогих к дешёвым</option>
+            </select>
+        </label>
+    </div>
+    <div class="lookup-board-filter lookup-board-filter-price">
+        <span class="lookup-board-filter-text">Цена</span>
+        <div class="lookup-board-filter-price-container">
+            <label>
+                <input
+                        name="price_start"
+                        class="form-control lookup-board-price lookup-board-price-min"
+                        type="number"
+                        value="{{ app.request.get("price_start") }}"
+                        placeholder="Цена от">
+            </label>
+            <label>
+                <input
+                        name="price_end"
+                        class="form-control lookup-board-price lookup-board-price-max"
+                        type="number"
+                        value="{{ app.request.get("price_end") }}"
+                        placeholder="Цена до">
+            </label>
+        </div>
+    </div>
+    <div class="lookup-board-filter lookup-board-filter-search">
+        <button
+                data-toggle="modal"
+                data-target="#modalSearchFilters"
+                type="button"
+                class="form-control lookup-board-search">
+            РАСШИРЕННЫЙ ПОИСК
+        </button>
+    </div>
+</div>

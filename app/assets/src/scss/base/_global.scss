@@ -10,10 +10,13 @@
     outline: 0;
 }
 
-:focus {outline:none;}
+:focus {
+    outline: none;
+}
 
 
-html, body {
+html,
+body {
     width: 100%;
     height: 100%;
     min-width: 375px;
@@ -68,7 +71,8 @@ a {
     }
 }
 
-strong, b {
+strong,
+b {
     font-family: $font-base;
     font-weight: 600;
 }
@@ -82,7 +86,8 @@ p {
     }
 }
 
-.has-overflow, .no-scroll {
+.has-overflow,
+.no-scroll {
     overflow: hidden;
 }
 

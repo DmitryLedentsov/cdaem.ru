@@ -7,6 +7,8 @@
 
 {% block title %}{{ this.registerTitle('Пополнение счета - Личный кабинет | Сдаём.ру') }}{% endblock %}
 
+{% block bodyClass %}p-pay{% endblock %}
+
 {% block header %}{% endblock %}
 
 {% block breadcrumbs %}
@@ -34,102 +36,102 @@
 
 
 {% block content %}
-    {{ use('common/modules/merchant/widgets/frontend/fastpayment/assets/FastPaymentAsset') }}
-    {{ register_fast_payment_asset() }}
+
+    {{ use('common/modules/merchant/assets/PayPageAsset') }}
+    {{ register_pay_page_asset() }}
 
     <div class="section-head section-head-between">
-        <h2>Пополнить счёт</h2>
+        <h2>Пополнить баланс</h2>
     </div>
 
-    <ul class="extra-menu">
-        <li><a href="{{ path(['/merchant/default/index']) }}">История денежного оборота</a></li>
-    </ul>
-
-    <div class="container-certain primary text">
+    <div class="pay">
 
         {% set form = active_form_begin({
             'id' : 'form-pay',
-            'options' : {'class' : 'form-horizontal'},
+            'options' : {'class' : 'pay-form'},
             'enableClientScript' : false
         }) %}
 
-{#        <div class="payment-way">#}
-        <div class="payment-service">
-            <h5 class="modal-pay-subtitle">Выберите способ оплаты</h5>
-
-{#            todo блок дублирует app/common/modules/merchant/widgets/frontend/fastpayment/views/index.php:50
-                выделить отдельно?
- #}
-
-            <div class="modal-pay-logo">
-                <label class="visa">
-                    <img src="/_new/images/apartment/mir-logo.png" class="visa-logo" alt="Visa" style="width: 180px;">
-                    <input type="radio" class="logo-pay visa-pay" name="pay-way-logo" data-system="BankCardPSR">
-                </label>
-                <label class="yandex">
-                    <img src="/_new/images/apartment/yandex-logo.png" class="yandex-logo" alt="YandexPay">
-                    <input type="radio" class="logo-pay yandex-pay" name="pay-way-logo" data-system="YandexPayPSR">
-                </label>
-                <label class="qiwi">
-                    <img src="/_new/images/apartment/qiwi-logo.png" class="qiwi-logo" alt="Qiwi">
-                    <input type="radio" class="logo-pay qiwi-pay" name="pay-way-logo" data-system="Qiwi40PS">
-                </label>
-            </div>
-
-            <br>
-            <label>Все способы оплаты</label>
-
-            {{ use('common/modules/merchant/widgets/frontend/robokassa/PaymentSystemsList') }}
-            {{ payment_systems_list_widget({
-                'selectOptions' : {
-                    'class' : 'form-control',
-                    'name' : model.formName() ~ '[system]',
-                    'style' : 'width:200px',
-                }
-            }) }}
-
-
-            {#            <div class="payment-service">#}
-                {#<div class="method">
-                    <span class="payments-method-logo visa" data-system="BANKOCEAN3R"></span>
-                    <span class="payments-method-logo mastercard" data-system="BANKOCEAN3R"></span>
-                    <span class="payments-method-logo mts" data-system="MixplatMTSRIBR"></span>
-                    <!--<span class="payments-method-logo megafon" data-system="MegafonR"></span>-->
-                    <span class="payments-method-logo beeline" data-system="MixplatBeelineRIBR"></span>
-                </div>
-                <div class="method">
-                    <span class="payments-method-logo qiwi" data-system="Qiwi50RIBRM"></span>
-                    <span class="payments-method-logo yamoney" data-system="YandexMerchantRIBR"></span>
-                    <span class="payments-method-logo webmoney" data-system="WMRRM"></span>
-                </div>
-
-                <div class="extra clearfix form-group required">
-                    <h4><label>Все способы оплаты:</label></h4>
-                    {{ use('common/modules/merchant/widgets/frontend/robokassa/PaymentSystemsList') }}
-                    {{ payment_systems_list_widget({
-                        'selectOptions' : {
-                            'class' : 'form-control',
-                            'name' : model.formName() ~ '[system]',
-                            'style' : 'width:200px',
-                        }
-                    }) }}
-                </div>
-#}
-{#            </div>#}
-
-            <br/>
-
             {% set field = form.field(model, 'amount') %}
             {{ field.begin() | raw }}
-            <label>Сумма пополнения в рублях</label>
-            {{ html.activeTextInput(model, 'amount', {'class' : 'form-control', 'style' : 'max-width: 100px;', 'value' : 100}) | raw }}
+            <label class="pay-label" for="paySum">Сумма пополнения в рублях</label>
+            {{ html.activeTextInput(model, 'amount', {'class' : 'form-control', 'id' : 'paySum', 'value' : 500}) | raw }}
             {{ field.end() | raw }}
 
+            <p class="pay-title">Выберите способ оплаты:</p>
 
-            <div class="text-center pay-button">
-                <input type="submit" value="Пополнить" class="btn btn-primary btn-special"/>
-            </div>
-        </div>
+            <ul class="pay-list">
+                <li class="pay-item">
+                    <input type="radio" class="pay-input" id="banksRF" name="pay-way-logo" data-system="BankCardPSR">
+                    <label class="pay-method" for="banksRF">
+                        <span class="pay-img">
+                            <img src="/_new/images/pay/bank-cards.png" class="visa-logo" alt="Bank Cards RF">
+                        </span>
+                        <span class="pay-name">
+                            Карты РФ
+                        </span>
+                    </label>
+                </li>  
+                <li class="pay-item">
+                    <input type="radio" class="pay-input" id="yMoney" name="pay-way-logo" data-system="">
+                    <label class="pay-method" for="yMoney">
+                        <span class="pay-img">
+                            <img src="/_new/images/pay/ymoney.png" class="visa-logo" alt="Юmoney">
+                        </span>
+                        <span class="pay-name">
+                            Юmoney
+                        </span>
+                    </label>
+                </li>                   
+                <li class="pay-item">
+                    <input type="radio" class="pay-input" id="qiwi" name="pay-way-logo" data-system="Qiwi40PS">
+                    <label class="pay-method" for="qiwi">
+                        <span class="pay-img">
+                            <img src="/_new/images/pay/qiwi.png" class="visa-logo" alt="Qiwi">
+                        </span>
+                        <span class="pay-name">
+                            Qiwi
+                        </span>
+                    </label>
+                </li>                  
+                <li class="pay-item">
+                    <input type="radio" class="pay-input" id="unionPay" name="pay-way-logo" data-system="">
+                    <label class="pay-method" for="unionPay">
+                        <span class="pay-img">
+                            <img src="/_new/images/pay/unionPay.png" class="visa-logo" alt="UnionPay">
+                        </span>
+                        <span class="pay-name">
+                            UnionPay
+                        </span>
+                    </label>
+                </li>                  
+                <li class="pay-item">
+                    <input type="radio" class="pay-input" id="withoutData" name="pay-way-logo" data-system="">
+                    <label class="pay-method" for="withoutData">
+                        <span class="pay-img">
+                            <img src="/_new/images/pay/without-data-pay.png" class="visa-logo" alt="Without data entry">
+                        </span>
+                        <span class="pay-name">
+                            Без ввода данных
+                        </span>
+                    </label>
+                </li>  
+                <li class="pay-item">
+                    <input type="radio" class="pay-input" id="otherMethods" name="pay-way-logo" data-system="">
+                    <label class="pay-method" for="otherMethods">
+                        <span class="pay-img">
+                            <img src="/_new/images/pay/cards.png" class="visa-logo" alt="Other methods">
+                        </span>
+                        <span class="pay-name">
+                            Другие способы
+                        </span>
+                    </label>
+                </li>              
+            </ul>
+
+            <button class="btn-orange" type="submit">
+                Пополнить
+            </button>
 
         {{ active_form_end() | raw }}
 
