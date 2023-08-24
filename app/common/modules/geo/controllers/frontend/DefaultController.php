@@ -2,6 +2,8 @@
 
 namespace common\modules\geo\controllers\frontend;
 
+use common\modules\partners\models\frontend\search\AdvertSearch;
+use Yii;
 use yii\web\Response;
 use yii\web\NotFoundHttpException;
 use common\modules\geo\models\City;
@@ -26,6 +28,33 @@ class DefaultController extends \frontend\components\Controller
         return true;
     }
 
+
+    /**
+     * Перенаправление на поддомен города
+     * @return Response
+     */
+    public function actionPreIndex(): Response
+    {
+        $city = City::findByNameEng(Yii::$app->request->get('city_code'));
+
+        if (!$city) {
+            $city = City::findById(Yii::$app->getModule('geo')->mskCityId);
+        }
+
+        $redirect = [
+            '/geo/default/index',
+            'city' => $city->name_eng,
+        ];
+
+        $queryParams = Yii::$app->request->queryParams;
+        $queryParams['city'] = $city->name_eng;
+
+        unset($queryParams['city_name'], $queryParams['city_code']);
+
+        // dd(self::class, $queryParams);
+
+        return $this->redirect(array_merge($redirect, $queryParams), 302);
+    }
     /**
      * Общая карта
      *
@@ -40,7 +69,11 @@ class DefaultController extends \frontend\components\Controller
         if (!$city) {
             throw new NotFoundHttpException();
         }
+        $params = Yii::$app->request->get();
+        $params['city_id'] = $city->city_id;
+        $searchModel = new AdvertSearch();
+        $dataProvider = $searchModel->search($params);
 
-        return $this->response($this->render('map.twig', ['city' => $city]));
+        return $this->response($this->render('map.twig', ['city' => $city, 'searchModel' => $searchModel]));
     }
 }

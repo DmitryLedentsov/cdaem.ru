@@ -27,6 +27,7 @@ class BootstrapFrontend implements \yii\base\BootstrapInterface
             'geo/map/<typeId:\w+>' => '/geo/ajax/apartment',
             'geo/map' => '/geo/ajax/map',
             'map' => '/geo/default/index',
+            'pre-map' => '/geo/default/pre-index',
         ]);
     }
 }

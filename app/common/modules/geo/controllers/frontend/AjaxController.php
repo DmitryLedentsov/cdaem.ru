@@ -106,6 +106,7 @@ class AjaxController extends \frontend\components\Controller
             return $result;
         }, []);
     }
+    
 
     /**
      * Поиск городов по имени
@@ -341,24 +342,40 @@ class AjaxController extends \frontend\components\Controller
      */
     public function actionMap(): Response
     {
-        $cityId = Yii::$app->request->get('city_id');
+        $city = City::findByNameEng(Yii::$app->request->get('city_code') ?: 'msk');
+        $cityId = $city->city_id;
+        $rentType = Yii::$app->request->get('sect');
+        $priceStart = Yii::$app->request->get('price_start');
+        $priceEnd = Yii::$app->request->get('price_end');
         $apartmentsAgency = ApartmentAgency::find()->filterWhere(['city_id' => $cityId])
-            ->joinWith(['titleImage', 'adverts' => function ($query) {
+            ->joinWith(['titleImage', 'adverts' => function ($query) use ($priceEnd, $priceStart, $rentType) {
                 $query->select(['advert_id', 'apartment_id', 'rent_type', 'price' ]);
-                $query->andWhere(['rent_type' => 1]);
-                $query->orWhere(['rent_type' => 2]);
-                $query->orWhere(['rent_type' => 3]);
+                if($rentType) {
+                    $query->andWhere(['rent_type' => $rentType]);
+                }
+                if($priceStart) {
+                    $query->andWhere(['>=','price', $priceStart]);
+                }
+                if($priceEnd) {
+                    $query->andWhere(['<=', 'price', $priceEnd]);
+                }
                 $query->joinWith(['rentType']);
             }])
             ->visible()
             ->all();
 
         $apartmentsPartners = ApartmentPartners::find()->filterWhere(['city_id' => $cityId])
-            ->joinWith(['titleImage', 'user', 'adverts' => function ($query) {
+            ->joinWith(['titleImage', 'user', 'adverts' => function ($query) use ($priceEnd, $priceStart, $rentType) {
                 $query->select(['advert_id', 'apartment_id', 'rent_type', 'price', 'currency' ]);
-                $query->andWhere(['rent_type' => 1]);
-                $query->orWhere(['rent_type' => 2]);
-                $query->orWhere(['rent_type' => 3]);
+                if($rentType) {
+                    $query->andWhere(['rent_type' => $rentType]);
+                }
+                if($priceStart) {
+                    $query->andWhere(['>=','price', $priceStart]);
+                }
+                if($priceEnd) {
+                    $query->andWhere(['<=', 'price', $priceEnd]);
+                }
                 $query->joinWith(['rentType']);
             }])
             ->permitted()
@@ -367,6 +384,7 @@ class AjaxController extends \frontend\components\Controller
         $result = [
             'type' => 'FeatureCollection',
             'features' => [],
+            'request'=>Yii::$app->request->get(),
         ];
 
         foreach ($apartmentsAgency as $apartmentAgency) {

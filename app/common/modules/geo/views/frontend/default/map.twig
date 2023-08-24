@@ -3,6 +3,7 @@
    @var \yii\web\View this
 #}
 
+{% set currentRentType = searchModel.rentTypesList[app.request.get("sect")]%}
 {% extends "@common/modules/site/views/layouts/main.twig" %}
 
 {% block seo %}
@@ -13,7 +14,7 @@
     } %}
 {% endblock %}
 
-{% block bodyClass %}l-base{% endblock %}
+{% block bodyClass %}l-base  p-board{% endblock %}
 
 
 {% block content %}
@@ -22,7 +23,25 @@
     {# TODO: add search functionality #}
     {{ use('common/modules/partners/assets/frontend/SearchAsset') }}
     {{ register_search_asset() }}
+
+    {{ use('common/modules/partners/assets/frontend/RegionAsset') }}
+    {{ register_region_asset() }}
+    <section class="intro">
+        <div class="lookup-board">
+            <form action="{{ path(['/geo/default/pre-index'])}}"  method="get" id="search" class="container-fluid">
+                {% include "@common/modules/partners/views/frontend/default/_search_form.twig" %}
+                <div class="lookup-board-buttons">
+                    <a href="{{ path(['/partners/pre-region'])}}" class="btn btn-special button-map">
+                        Доска объявлений
+                    </a>
+                    <button type="submit" class="btn btn-warning btn-special">НАЙТИ</button>
+                </div>
+                {% include "@common/modules/partners/views/frontend/default/_modal_search_filters.twig" with {} %}
+            </form>
+        </div>
+    </section>
+
     <div class="container" id="map-container">
-        <div id="map" data-city_id="{{ city.city_id }}" data-latitude="{{ city.latitude }}" data-longitude="{{ city.longitude }}"> <div id="ymap_key_display" style="position: relative; top: 50%; left: 0; right: 0; color: black; text-align: center; font-size: 1.8em; pointer-events: none; z-index: 1; text-shadow: 0px 0px 20px; ">Чтобы изменить масштаб, прокручивайте карту, удерживая клавишу Shift</div></div>
+        <div id="map" data-city="{{ city.name_eng }}" data-latitude="{{ city.latitude }}" data-longitude="{{ city.longitude }}"> <div id="ymap_key_display" style="position: relative; top: 50%; left: 0; right: 0; color: black; text-align: center; font-size: 1.8em; pointer-events: none; z-index: 1; text-shadow: 0px 0px 20px; ">Чтобы изменить масштаб, прокручивайте карту, удерживая клавишу Shift</div></div>
     </div>
 {% endblock %}
