@@ -23,11 +23,12 @@ class Apartment extends ActiveRecord
     }
 
     /**
-     * @return array Список кол-во квартир
+     * @param bool $skipFirst
+     * @return array Список кол-во комнат
      */
-    public static function getRoomsArray(): array
+    public static function getRoomsArray(bool $skipFirst = false): array
     {
-        return [
+        $result = [
             0 => 'Выбрать',
             1 => '1 комната',
             2 => '2 комнаты',
@@ -36,6 +37,12 @@ class Apartment extends ActiveRecord
             5 => '5 комнат',
             6 => '6 и более',
         ];
+
+        if ($skipFirst) {
+            unset($result[0]);
+        }
+
+        return $result;
     }
 
     /**
@@ -85,11 +92,12 @@ class Apartment extends ActiveRecord
     }
 
     /**
+     * @param bool $skipFirst
      * @return array Список кол-во спальных мест
      */
-    public static function getSleepingPlacesArray(): array
+    public static function getSleepingPlacesArray(bool $skipFirst = false): array
     {
-        return [
+        $result = [
             0 => 'Выбрать',
             1 => '1 место',
             2 => '2 места',
@@ -98,6 +106,13 @@ class Apartment extends ActiveRecord
             5 => '5 мест',
             6 => '6 и более',
         ];
+
+        if ($skipFirst) {
+            unset($result[0]);
+        }
+
+        return $result;
+
     }
 
     /**

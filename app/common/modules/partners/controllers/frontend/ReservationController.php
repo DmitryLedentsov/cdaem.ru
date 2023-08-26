@@ -2,6 +2,8 @@
 
 namespace common\modules\partners\controllers\frontend;
 
+use common\modules\realty\models\Apartment;
+use common\modules\realty\models\RentType;
 use Yii;
 use yii\web\Response;
 use yii\web\HttpException;
@@ -23,9 +25,11 @@ class ReservationController extends \frontend\components\Controller
      */
     public function beforeAction($action): bool
     {
-        if (!parent::beforeAction($action)) {
+        // todo ошибка проверки данных
+        // yii\web\BadRequestHttpException: Не удалось проверить переданные данные. in /app/vendor/yiisoft/yii2/web/Controller.php:202
+        /*if (!parent::beforeAction($action)) {
             return false;
-        }
+        }*/
 
         $this->module->viewPath = '@common/modules/partners/views/frontend';
 
@@ -44,12 +48,12 @@ class ReservationController extends \frontend\components\Controller
                     [
                         'actions' => ['index', 'advert-reservation'],
                         'allow' => true,
-                        'roles' => ['?', '@']
+                        'roles' => ['?', '@'],
                     ],
                     [
                         'actions' => ['reservations', 'total-bid', 'total-bid-want-rent', 'reservations-want-rent'],
                         'allow' => true,
-                        'roles' => ['@']
+                        'roles' => ['@'],
                     ],
                 ]
             ],
@@ -75,13 +79,14 @@ class ReservationController extends \frontend\components\Controller
             $model->scenario = 'unauthorized';
         }
 
-        // TODO:
         if (Yii::$app->request->isPost) {
-            dd(Yii::$app->request->post());
+            // dd(Yii::$app->request->post());
         }
 
         if ($model->load(Yii::$app->request->post())) {
+            // dd($model);
             $errors = ActiveForm::validate($model);
+            dd($errors);
             if (!$errors) {
                 if ($model->process()) {
                     $msg = '<p><strong>№ заявки: ' . $model->id . '</strong></p>';
@@ -102,6 +107,11 @@ class ReservationController extends \frontend\components\Controller
 
         return $this->render('reservation.twig', [
             'reservationsForm' => $model,
+            'rentTypes' => RentType::rentTypeslist(),
+            'rooms' => Apartment::getRoomsArray(true),
+            'floor' => Apartment::getFloorArray(),
+            'sleepingPlaces' => Apartment::getSleepingPlacesArray(true),
+            'metroWalkList' => Apartment::getMetroWalkArray(),
         ]);
     }
 

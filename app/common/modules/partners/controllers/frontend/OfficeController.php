@@ -120,7 +120,7 @@ class OfficeController extends \frontend\components\Controller
      * Добавить объявление
      * @return Response
      */
-    public function actionCreate(): Response
+        public function actionCreate(): Response
     {
         $apartment = new models\form\ApartmentForm(['scenario' => 'user-create']);
         $rentTypes = models\form\AdvertForm::getPreparedRentTypesAdvertsList(RentType::rentTypeslist(), $apartment->adverts);
