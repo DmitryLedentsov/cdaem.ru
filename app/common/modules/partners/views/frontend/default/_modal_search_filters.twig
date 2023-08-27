@@ -22,7 +22,7 @@
                         <select class="custom-select" name="metro_walk">
                             <option value="">Расстояние до метро</option>
                             {% for value,name in TotalApartment.getMetroWalkBaseArray() %}
-                                <option value="{{ value }}">{{ name }}</option>
+                                <option value="{{ value }}"  {{ value == app.request.get("metro_walk") ? 'selected="selected"' : '' }}>{{ name }}</option>
                             {% endfor %}
                         </select>
                     </label>
@@ -91,7 +91,7 @@
                         <select class="custom-select" name="remont">
                             <option value="">Любой ремонт</option>
                             {% for value,name in TotalApartment.getRemontArray() %}
-                                <option value="{{ value }}">{{ name }}</option>
+                                <option value="{{ value }}" {{ value == app.request.get("remont") ? 'selected="selected"' : '' }}>{{ name }}</option>
                             {% endfor %}
                         </select>
                     </label>
@@ -99,7 +99,7 @@
                         <select class="custom-select" name="floor">
                             <option value="">Любой этаж</option>
                             {% for value,name in TotalApartment.getFloorArray() %}
-                                <option value="{{ value }}">{{ name }}</option>
+                                <option value="{{ value }}" {{ value == app.request.get("floor") ? 'selected="selected"' : '' }}>{{ name }}</option>
                             {% endfor %}
                         </select>
                     </label>

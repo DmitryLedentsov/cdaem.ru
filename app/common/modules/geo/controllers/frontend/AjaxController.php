@@ -347,40 +347,40 @@ class AjaxController extends \frontend\components\Controller
         $rentType = Yii::$app->request->get('sect');
         $priceStart = Yii::$app->request->get('price_start');
         $priceEnd = Yii::$app->request->get('price_end');
-        $apartmentsAgency = ApartmentAgency::find()->filterWhere(['city_id' => $cityId])
-            ->joinWith(['titleImage', 'adverts' => function ($query) use ($priceEnd, $priceStart, $rentType) {
-                $query->select(['advert_id', 'apartment_id', 'rent_type', 'price' ]);
-                if($rentType) {
-                    $query->andWhere(['rent_type' => $rentType]);
-                }
-                if($priceStart) {
-                    $query->andWhere(['>=','price', $priceStart]);
-                }
-                if($priceEnd) {
-                    $query->andWhere(['<=', 'price', $priceEnd]);
-                }
-                $query->joinWith(['rentType']);
-            }])
-            ->visible()
-            ->all();
+        $rooms = Yii::$app->request->get('room');
+        $metroWalk = Yii::$app->request->get('metro_walk');
+        $remont = Yii::$app->request->get('remont');
+        $floor = Yii::$app->request->get('floor');
+        $floorCondition='';
+        if($floor === 1){
+            $floorCondition = 'floor = 1';
+        } else if ($floor === 2){
+            $floorCondition = 'floor > 1';
+        } else if ($floor === 3){
+            $floorCondition = 'floor < number_floors';
+        }
 
-        $apartmentsPartners = ApartmentPartners::find()->filterWhere(['city_id' => $cityId])
-            ->joinWith(['titleImage', 'user', 'adverts' => function ($query) use ($priceEnd, $priceStart, $rentType) {
-                $query->select(['advert_id', 'apartment_id', 'rent_type', 'price', 'currency' ]);
-                if($rentType) {
-                    $query->andWhere(['rent_type' => $rentType]);
-                }
-                if($priceStart) {
-                    $query->andWhere(['>=','price', $priceStart]);
-                }
-                if($priceEnd) {
-                    $query->andWhere(['<=', 'price', $priceEnd]);
-                }
-                $query->joinWith(['rentType']);
-            }])
-            ->permitted()
-            ->all();
-
+        $search = function($apartmentModel) use ($floorCondition, $floor, $remont, $metroWalk, $rooms, $rentType, $priceStart, $priceEnd, $cityId){
+            return $apartmentModel::find()->filterWhere(['city_id' => $cityId,'total_rooms'=> $rooms>0 ?: '', 'metro_walk'=>$metroWalk, 'remont'=>$remont])
+                ->andWhere($floorCondition)
+                ->joinWith(['titleImage', 'adverts' => function ($query) use ($priceEnd, $priceStart, $rentType) {
+                    $query->select(['advert_id', 'apartment_id', 'rent_type', 'price' ]);
+                    if($rentType) {
+                        $query->andWhere(['rent_type' => $rentType]);
+                    }
+                    if($priceStart) {
+                        $query->andWhere(['>=','price', $priceStart]);
+                    }
+                    if($priceEnd) {
+                        $query->andWhere(['<=', 'price', $priceEnd]);
+                    }
+                    $query->joinWith(['rentType']);
+                }])
+                ->visible()
+                ->all();
+        };
+        $apartmentsAgency = $search(ApartmentAgency::class);
+        $apartmentsPartners = $search(ApartmentPartners::class);
         $result = [
             'type' => 'FeatureCollection',
             'features' => [],
