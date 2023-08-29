@@ -67,7 +67,7 @@ class WantPassForm extends Model
         return [
             [['rent_types_array', 'address', 'rooms', 'phone', 'metro_array'], 'required'],
 
-            [['files'], 'file', 'skipOnEmpty' => false, 'extensions' => 'jpg, png', 'mimeTypes' => 'image/jpeg, image/png', 'maxFiles' => 10],
+            [['files'], 'file', 'skipOnEmpty' => false, 'extensions' => 'jpg, png', 'mimeTypes' => 'image/jpeg, image/png', 'maxFiles' => 60],
 
             ['phone', '\common\validators\PhoneValidator', 'message' => 'Некорректный формат номера'],
             ['rent_types_array', 'default', 'value' => []],

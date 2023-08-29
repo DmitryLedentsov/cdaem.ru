@@ -304,13 +304,14 @@ jQuery(function () {
      */
     $("#wantpassform-files").bind("change", function (event) {
         if (window.FileReader) {
+            var maxFiles = 60;
             var formApi = $('#form-want-pass').data('formApi');
             var files = document.getElementById("wantpassform-files").files;
-            if (files.length > 10 || (($("#images-preview img").length + files.length) > 10)) {
-                showStackError('Внимание', 'Вы можете загрузить до 10 изображений Вашего объекта. Остальные изображения будут проигнорированы.');
+            if (files.length > maxFiles || (($("#images-preview img").length + files.length) > maxFiles)) {
+                showStackError('Внимание', 'Вы можете загрузить до ' + maxFiles + ' изображений Вашего объекта. Остальные изображения будут проигнорированы.');
             } else {
                 for (var i = 0, m = files.length; i < m; i++) {
-                    if (i >= 10) {
+                    if (i >= maxFiles) {
                         continue;
                     }
                     var file = {};
