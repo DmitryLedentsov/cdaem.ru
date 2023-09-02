@@ -143,7 +143,7 @@ class AjaxController extends \frontend\components\Controller
             ];
         }
 
-        return $this->successAjaxResponse('ok',$result);
+        return $this->successAjaxResponse('ok', $result);
     }
 
     /**
@@ -157,7 +157,7 @@ class AjaxController extends \frontend\components\Controller
         $name = trim(Yii::$app->request->get('name'));
 
         if (mb_strlen($name) < 2) {
-            return $this->successAjaxResponse('empty',[]);
+            return $this->successAjaxResponse('empty', []);
         }
 
         $result = [];
@@ -187,7 +187,7 @@ class AjaxController extends \frontend\components\Controller
             ];
         }
 
-        return $this->successAjaxResponse('ok',$result);
+        return $this->successAjaxResponse('ok', $result);
     }
 
     /**
@@ -202,7 +202,7 @@ class AjaxController extends \frontend\components\Controller
         $kladr = trim(Yii::$app->request->get('kladr'));
 
         if (mb_strlen($query) < 2) {
-            return $this->successAjaxResponse('empty' , []);
+            return $this->successAjaxResponse('empty', []);
         }
 
         $result = [];
