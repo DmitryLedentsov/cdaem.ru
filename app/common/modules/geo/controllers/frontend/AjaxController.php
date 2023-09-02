@@ -3,12 +3,16 @@
 namespace common\modules\geo\controllers\frontend;
 
 use Yii;
+use yii\db\Query;
 use yii\base\Model;
+use yii\base\Action;
 use yii\helpers\Url;
 use yii\web\Response;
+use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
 use common\modules\geo\models\City;
 use common\modules\geo\models\Metro;
+use yii\base\InvalidConfigException;
 use common\modules\geo\models\CityByIpCache;
 use common\modules\agency\models\Apartment as ApartmentAgency;
 use common\modules\partners\models\frontend\Apartment as ApartmentPartners;
@@ -106,13 +110,12 @@ class AjaxController extends \frontend\components\Controller
             return $result;
         }, []);
     }
-    
 
     /**
      * Поиск городов по имени
-     * @return array|Response
+     * @return array
      */
-    public function actionSelectCity()
+    public function actionSelectCity() : array
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
 
@@ -145,9 +148,9 @@ class AjaxController extends \frontend\components\Controller
 
     /**
      * Поиск городов по имени через API dadata.ru
-     * @return array|Response
+     * @return array
      */
-    public function actionSelectCityByApi()
+    public function actionSelectCityByApi() : array
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
 
@@ -189,9 +192,9 @@ class AjaxController extends \frontend\components\Controller
 
     /**
      * Поиск адреса через API dadata.ru
-     * @return array|Response
+     * @return array
      */
-    public function actionSelectAddressByApi()
+    public function actionSelectAddressByApi() : array
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
 
@@ -225,9 +228,9 @@ class AjaxController extends \frontend\components\Controller
 
     /**
      * Поиск города по ip через API dadata.ru
-     * @return array|Response
+     * @return array
      */
-    public function actionGetCityByIp()
+    public function actionGetCityByIp() : array
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
 
@@ -266,10 +269,11 @@ class AjaxController extends \frontend\components\Controller
 
     /**
      * Данные объявления
-     * @param $typeId
+     * @param string $typeId
      * @return string
+     * @throws InvalidConfigException
      */
-    public function actionApartment($typeId): string
+    public function actionApartment(string $typeId): string
     {
         $type = mb_substr($typeId, 0, 1, 'utf-8');
         $id = explode('_', $typeId);
@@ -351,27 +355,21 @@ class AjaxController extends \frontend\components\Controller
         $metroWalk = Yii::$app->request->get('metro_walk');
         $remont = Yii::$app->request->get('remont');
         $floor = Yii::$app->request->get('floor');
-        $floorCondition='';
-        if($floor === 1){
-            $floorCondition = 'floor = 1';
-        } else if ($floor === 2){
-            $floorCondition = 'floor > 1';
-        } else if ($floor === 3){
-            $floorCondition = 'floor < number_floors';
-        }
+        $floor = isset($floor) ? (int)$floor : null;
+        $floorCondition = 'floor '.($floor === 1 ? '= 1' : ($floor === 2 ? '> 1' : ($floor === 3 ? '< number_floors' : '')));
 
-        $search = function($apartmentModel) use ($floorCondition, $floor, $remont, $metroWalk, $rooms, $rentType, $priceStart, $priceEnd, $cityId){
+        $search = function ($apartmentModel) use ($floorCondition, $floor, $remont, $metroWalk, $rooms, $rentType, $priceStart, $priceEnd, $cityId): array {
             return $apartmentModel::find()->filterWhere(['city_id' => $cityId,'total_rooms'=> $rooms>0 ?: '', 'metro_walk'=>$metroWalk, 'remont'=>$remont])
                 ->andWhere($floorCondition)
-                ->joinWith(['titleImage', 'adverts' => function ($query) use ($priceEnd, $priceStart, $rentType) {
+                ->joinWith(['titleImage', 'adverts' => function (Query $query) use ($priceEnd, $priceStart, $rentType) : void {
                     $query->select(['advert_id', 'apartment_id', 'rent_type', 'price' ]);
-                    if($rentType) {
+                    if ($rentType) {
                         $query->andWhere(['rent_type' => $rentType]);
                     }
-                    if($priceStart) {
+                    if ($priceStart) {
                         $query->andWhere(['>=','price', $priceStart]);
                     }
-                    if($priceEnd) {
+                    if ($priceEnd) {
                         $query->andWhere(['<=', 'price', $priceEnd]);
                     }
                     $query->joinWith(['rentType']);
@@ -395,6 +393,7 @@ class AjaxController extends \frontend\components\Controller
             $result['features'][] = $this->getFeatureInfo($apartmentPartners);
         }
         Yii::$app->response->format = Response::FORMAT_JSON;
+
         return $this->successAjaxResponse('ok', $result);
     }
 
