@@ -21,8 +21,8 @@
 
         // Если город уже есть (редактирование) подтягиваем его параметры
         if (cityField.val()) {
-            $.getJSON(searchCityURL, {'name': cityField.val()}, function (data) {
-                // console.log(data);
+            $.getJSON(searchCityURL, {'name': cityField.val()}, function (response) {
+                let data = response.data;
                 let result = [];
                 data.forEach(item => {
                     result.push({
@@ -64,8 +64,8 @@
         },
         events: {
             search: function (qry, callback) {
-                $.getJSON(searchAddressURL, {'query': qry, 'kladr': kladrField.val()}, function (data) {
-                    // console.log(data);
+                $.getJSON(searchAddressURL, {'query': qry, 'kladr': kladrField.val()}, function (response) {
+                    let data = response.data;
                     let result = [];
                     data.forEach(item => {
                         result.push({
@@ -114,7 +114,8 @@
                     latitude: point.lat,
                     longitude: point.lon
                 },
-                success: function (data) {
+                success: function (response) {
+                    let data = response.data;
                     // console.log('success', data);
                     const metroBlock = $('.metro-block');
 
@@ -133,8 +134,8 @@
                         );
                     })
                 },
-                error: function (data) {
-                    console.log('error', data);
+                error: function (response) {
+                    console.log('error', response.data);
                 }
             });
         }
@@ -187,8 +188,8 @@
                 }
             },
             search: function (qry, callback) {
-                $.getJSON(searchCityURL, {'name': qry}, function (data) {
-                    // console.log(data);
+                $.getJSON(searchCityURL, {'name': qry}, function (response) {
+                    let data = response.data;
                     let result = [];
                     data.forEach(item => {
                         result.push({
@@ -242,8 +243,9 @@
         // console.log(addressField.val());
 
         if (addressField.val()) {
-            $.getJSON(searchAddressURL, {'query': addressField.val(), 'kladr': kladrField.val()}, function (data) {
+            $.getJSON(searchAddressURL, {'query': addressField.val(), 'kladr': kladrField.val()}, function (response) {
                 // console.log(data);
+                let data = response.data;
                 let result = [];
                 data.forEach(item => {
                     result.push({

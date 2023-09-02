@@ -89,9 +89,9 @@ class AjaxController extends \frontend\components\Controller
 
     /**
      * Список популярных городов
-     * @return array|Response
+     * @return Response
      */
-    public function actionGetPopularCities()
+    public function actionGetPopularCities() : Response
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
 
@@ -101,28 +101,28 @@ class AjaxController extends \frontend\components\Controller
             ->orderBy(['name' => SORT_ASC])
             ->all();
 
-        return array_reduce($cities, function ($result, $city) {
+        return $this->successAjaxResponse('ok', array_reduce($cities, function ($result, $city) {
             $result[] = [
                 'city_id' => $city['city_id'],
                 'name' => $city['name'],
             ];
 
             return $result;
-        }, []);
+        }, []));
     }
 
     /**
      * Поиск городов по имени
-     * @return array
+     * @return Response
      */
-    public function actionSelectCity() : array
+    public function actionSelectCity() : Response
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
 
         $name = trim(Yii::$app->request->get('name'));
 
         if (mb_strlen($name) < 2) {
-            return [];
+            return $this->successAjaxResponse('empty', []);
         }
 
         $cities = City::find()
@@ -143,21 +143,21 @@ class AjaxController extends \frontend\components\Controller
             ];
         }
 
-        return $result;
+        return $this->successAjaxResponse('ok',$result);
     }
 
     /**
      * Поиск городов по имени через API dadata.ru
-     * @return array
+     * @return Response
      */
-    public function actionSelectCityByApi() : array
+    public function actionSelectCityByApi() : Response
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
 
         $name = trim(Yii::$app->request->get('name'));
 
         if (mb_strlen($name) < 2) {
-            return [];
+            return $this->successAjaxResponse('empty',[]);
         }
 
         $result = [];
@@ -187,14 +187,14 @@ class AjaxController extends \frontend\components\Controller
             ];
         }
 
-        return $result;
+        return $this->successAjaxResponse('ok',$result);
     }
 
     /**
      * Поиск адреса через API dadata.ru
-     * @return array
+     * @return Response
      */
-    public function actionSelectAddressByApi() : array
+    public function actionSelectAddressByApi() : Response
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
 
@@ -202,7 +202,7 @@ class AjaxController extends \frontend\components\Controller
         $kladr = trim(Yii::$app->request->get('kladr'));
 
         if (mb_strlen($query) < 2) {
-            return [];
+            return $this->successAjaxResponse('empty' , []);
         }
 
         $result = [];
@@ -223,14 +223,14 @@ class AjaxController extends \frontend\components\Controller
             ];
         }
 
-        return $result;
+        return $this->successAjaxResponse('ok', $result);
     }
 
     /**
      * Поиск города по ip через API dadata.ru
-     * @return array
+     * @return Response
      */
-    public function actionGetCityByIp() : array
+    public function actionGetCityByIp() : Response
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
 
@@ -261,10 +261,10 @@ class AjaxController extends \frontend\components\Controller
         }
 
 
-        return [
+        return $this->successAjaxResponse('ok', [
             'cityId' => $cityId,
             'city' => $cityName ?: 'Похоже вы не из России'
-        ];
+        ]);
     }
 
     /**
@@ -356,11 +356,10 @@ class AjaxController extends \frontend\components\Controller
         $remont = Yii::$app->request->get('remont');
         $floor = Yii::$app->request->get('floor');
         $floor = isset($floor) ? (int)$floor : null;
-        $floorCondition = 'floor '.($floor === 1 ? '= 1' : ($floor === 2 ? '> 1' : ($floor === 3 ? '< number_floors' : '')));
 
-        $search = function ($apartmentModel) use ($floorCondition, $floor, $remont, $metroWalk, $rooms, $rentType, $priceStart, $priceEnd, $cityId): array {
+        $search = function ($apartmentModel) use ($floor, $remont, $metroWalk, $rooms, $rentType, $priceStart, $priceEnd, $cityId): array {
             return $apartmentModel::find()->filterWhere(['city_id' => $cityId,'total_rooms'=> $rooms>0 ?: '', 'metro_walk'=>$metroWalk, 'remont'=>$remont])
-                ->andWhere($floorCondition)
+                ->andWhere('floor '.($floor === 1 ? '= 1' : ($floor === 2 ? '> 1' : ($floor === 3 ? '< number_floors' : ''))))
                 ->joinWith(['titleImage', 'adverts' => function (Query $query) use ($priceEnd, $priceStart, $rentType) : void {
                     $query->select(['advert_id', 'apartment_id', 'rent_type', 'price' ]);
                     if ($rentType) {
