@@ -62,8 +62,19 @@ restart:
 status:
 	$(docker_compose_dev) ps
 
-build:
-	$(docker_compose_dev) build --build-arg LOCAL_ENV=dev --build-arg USER_ID=${USER_ID} --build-arg GROUP_ID=${GROUP_ID} --no-cache
+build: ## build all containers
+    ifneq ($(cmd),)
+	    $(docker_compose_dev) build --build-arg USER_ID=${USER_ID} --build-arg GROUP_ID=${GROUP_ID} --build-arg LOCAL_ENV=local $(cmd)
+    else
+	    $(docker_compose_dev) build --build-arg USER_ID=${USER_ID} --build-arg GROUP_ID=${GROUP_ID} --build-arg LOCAL_ENV=local
+    endif
+
+rebuild: ## rebuild all containers without cache
+    ifneq ($(cmd),)
+	    $(docker_compose_dev) build --no-cache --build-arg USER_ID=${USER_ID} --build-arg GROUP_ID=${GROUP_ID} --build-arg LOCAL_ENV=local $(cmd)
+    else
+	    $(docker_compose_dev) build --no-cache --build-arg USER_ID=${USER_ID} --build-arg GROUP_ID=${GROUP_ID} --build-arg LOCAL_ENV=local
+    endif
 
 composer:
     ifneq ($(cmd),)
