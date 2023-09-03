@@ -93,15 +93,13 @@ class AjaxController extends \frontend\components\Controller
      */
     public function actionGetPopularCities() : Response
     {
-        Yii::$app->response->format = Response::FORMAT_JSON;
-
         $cities = City::find()
             ->innerJoinWith('country')
             ->andWhere(['is_popular' => 1])
             ->orderBy(['name' => SORT_ASC])
             ->all();
 
-        return $this->successAjaxResponse('ok', array_reduce($cities, function ($result, $city) {
+        return $this->successAjaxResponse('', array_reduce($cities, function ($result, $city) {
             $result[] = [
                 'city_id' => $city['city_id'],
                 'name' => $city['name'],
@@ -117,12 +115,10 @@ class AjaxController extends \frontend\components\Controller
      */
     public function actionSelectCity() : Response
     {
-        Yii::$app->response->format = Response::FORMAT_JSON;
-
         $name = trim(Yii::$app->request->get('name'));
 
         if (mb_strlen($name) < 2) {
-            return $this->successAjaxResponse('empty', []);
+            return $this->successAjaxResponse('', []);
         }
 
         $cities = City::find()
@@ -143,7 +139,7 @@ class AjaxController extends \frontend\components\Controller
             ];
         }
 
-        return $this->successAjaxResponse('ok', $result);
+        return $this->successAjaxResponse('', $result);
     }
 
     /**
@@ -152,8 +148,6 @@ class AjaxController extends \frontend\components\Controller
      */
     public function actionSelectCityByApi() : Response
     {
-        Yii::$app->response->format = Response::FORMAT_JSON;
-
         $name = trim(Yii::$app->request->get('name'));
 
         if (mb_strlen($name) < 2) {
@@ -187,7 +181,7 @@ class AjaxController extends \frontend\components\Controller
             ];
         }
 
-        return $this->successAjaxResponse('ok', $result);
+        return $this->successAjaxResponse('', $result);
     }
 
     /**
@@ -196,8 +190,6 @@ class AjaxController extends \frontend\components\Controller
      */
     public function actionSelectAddressByApi() : Response
     {
-        Yii::$app->response->format = Response::FORMAT_JSON;
-
         $query = trim(Yii::$app->request->get('query'));
         $kladr = trim(Yii::$app->request->get('kladr'));
 
@@ -223,7 +215,7 @@ class AjaxController extends \frontend\components\Controller
             ];
         }
 
-        return $this->successAjaxResponse('ok', $result);
+        return $this->successAjaxResponse('', $result);
     }
 
     /**
@@ -232,8 +224,6 @@ class AjaxController extends \frontend\components\Controller
      */
     public function actionGetCityByIp() : Response
     {
-        Yii::$app->response->format = Response::FORMAT_JSON;
-
         $ip = Yii::$app->request->userIP;
         // $ip = "46.226.227.20";
         // $ip = "1.1.1.1";
@@ -261,7 +251,7 @@ class AjaxController extends \frontend\components\Controller
         }
 
 
-        return $this->successAjaxResponse('ok', [
+        return $this->successAjaxResponse('', [
             'cityId' => $cityId,
             'city' => $cityName ?: 'Похоже вы не из России'
         ]);
@@ -281,7 +271,7 @@ class AjaxController extends \frontend\components\Controller
 
         if ($type === 'a') {
             $model = ApartmentAgency::find()
-                ->joinWith(['titleImage', 'adverts' => function ($query) {
+                ->joinWith(['titleImage', 'adverts' => function (Query $query) {
                     $query->select(['advert_id', 'apartment_id', 'rent_type', 'price']);
                     $query->andWhere(['rent_type' => 1]);
                     $query->orWhere(['rent_type' => 2]);
@@ -293,7 +283,7 @@ class AjaxController extends \frontend\components\Controller
                 ->one();
         } else {
             $model = ApartmentPartners::find()
-                ->joinWith(['titleImage', 'user', 'adverts' => function ($query) {
+                ->joinWith(['titleImage', 'user', 'adverts' => function (Query $query) {
                     $query->select(['advert_id', 'apartment_id', 'rent_type', 'price', 'currency']);
                     $query->andWhere(['rent_type' => 1]);
                     $query->orWhere(['rent_type' => 2]);
@@ -347,7 +337,6 @@ class AjaxController extends \frontend\components\Controller
     public function actionMap(): Response
     {
         $city = City::findByNameEng(Yii::$app->request->get('city_code') ?: 'msk');
-        $cityId = $city->city_id;
         $rentType = Yii::$app->request->get('sect');
         $priceStart = Yii::$app->request->get('price_start');
         $priceEnd = Yii::$app->request->get('price_end');
@@ -355,11 +344,10 @@ class AjaxController extends \frontend\components\Controller
         $metroWalk = Yii::$app->request->get('metro_walk');
         $remont = Yii::$app->request->get('remont');
         $floor = Yii::$app->request->get('floor');
-        $floor = isset($floor) ? (int)$floor : null;
 
-        $search = function ($apartmentModel) use ($floor, $remont, $metroWalk, $rooms, $rentType, $priceStart, $priceEnd, $cityId): array {
-            return $apartmentModel::find()->filterWhere(['city_id' => $cityId,'total_rooms'=> $rooms>0 ?: '', 'metro_walk'=>$metroWalk, 'remont'=>$remont])
-                ->andWhere('floor '.($floor === 1 ? '= 1' : ($floor === 2 ? '> 1' : ($floor === 3 ? '< number_floors' : ''))))
+        $search = function ($apartmentModel) use ($city, $floor, $remont, $metroWalk, $rooms, $rentType, $priceStart, $priceEnd): array {
+            return $apartmentModel::find()->filterWhere(['city_id' => $city->city_id,'total_rooms'=> $rooms>0 ?: '', 'metro_walk'=>$metroWalk, 'remont'=>$remont])
+                ->andWhere('floor '.($floor === '1' ? '= 1' : ($floor === '2' ? '> 1' : ($floor === '3' ? '< number_floors' : ''))))
                 ->joinWith(['titleImage', 'adverts' => function (Query $query) use ($priceEnd, $priceStart, $rentType) : void {
                     $query->select(['advert_id', 'apartment_id', 'rent_type', 'price' ]);
                     if ($rentType) {
@@ -391,9 +379,8 @@ class AjaxController extends \frontend\components\Controller
         foreach ($apartmentsPartners as $apartmentPartners) {
             $result['features'][] = $this->getFeatureInfo($apartmentPartners);
         }
-        Yii::$app->response->format = Response::FORMAT_JSON;
 
-        return $this->successAjaxResponse('ok', $result);
+        return $this->successAjaxResponse('', $result);
     }
 
     /**
