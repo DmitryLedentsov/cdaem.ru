@@ -12,6 +12,8 @@
         kladrField = $('#city_kladr');
 
     function init() {
+        if ($('#map').length === 0) return;
+
         apartMap = new ymaps.Map("map", {
             center: [55.76, 37.64],
             zoom: 10

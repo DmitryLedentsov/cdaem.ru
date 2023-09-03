@@ -25,11 +25,13 @@ class ReservationController extends \frontend\components\Controller
      */
     public function beforeAction($action): bool
     {
-        // todo ошибка проверки данных
         // yii\web\BadRequestHttpException: Не удалось проверить переданные данные. in /app/vendor/yiisoft/yii2/web/Controller.php:202
-        /*if (!parent::beforeAction($action)) {
+        // $this->enableCsrfValidation = true;
+        $this->enableCsrfValidation = false; // todo почему-то не подхватывается токен из куков
+
+        if (!parent::beforeAction($action)) {
             return false;
-        }*/
+        }
 
         $this->module->viewPath = '@common/modules/partners/views/frontend';
 
@@ -85,8 +87,10 @@ class ReservationController extends \frontend\components\Controller
 
         if ($model->load(Yii::$app->request->post())) {
             // dd($model);
-            $errors = ActiveForm::validate($model);
-            dd($errors);
+            // $errors = ActiveForm::validate($model); // возвращает название полей в нижнем регистре, из-за чего не работает валидация
+            $errors = $this->validate($model);
+
+            // dd($errors);
             if (!$errors) {
                 if ($model->process()) {
                     $msg = '<p><strong>№ заявки: ' . $model->id . '</strong></p>';
@@ -99,9 +103,9 @@ class ReservationController extends \frontend\components\Controller
 
                 return $this->refresh();
             } elseif (Yii::$app->request->isAjax) {
-                Yii::$app->response->format = Response::FORMAT_JSON;
-
-                return $errors;
+                // Yii::$app->response->format = Response::FORMAT_JSON;
+                // return $errors;
+                return $this->validationErrorsAjaxResponse($errors);
             }
         }
 

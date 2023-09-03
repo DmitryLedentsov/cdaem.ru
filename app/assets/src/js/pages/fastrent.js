@@ -1,3 +1,14 @@
+$(document).on('submit', '#form-reservation', function (e) {
+    e.preventDefault();
+    let $form = $(this);
+    console.log($form);
+
+    window.ajaxRequest($form, {
+        success: function (response) {
+
+        }
+    });
+});
 
 
 
