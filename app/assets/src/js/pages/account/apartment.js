@@ -108,6 +108,7 @@
 
             $.ajax({
                 url: '/geo/nearest-stations',
+                dataType: 'json',
                 type: 'GET',
                 data: {
                     cityName: cityField.val(),
