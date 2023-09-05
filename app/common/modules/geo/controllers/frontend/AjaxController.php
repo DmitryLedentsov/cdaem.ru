@@ -99,7 +99,7 @@ class AjaxController extends \frontend\components\Controller
             ->orderBy(['name' => SORT_ASC])
             ->all();
 
-        return $this->successAjaxResponse('', array_reduce($cities, function (array $result, City $city) {
+        return $this->successAjaxResponse(null, array_reduce($cities, function (array $result, City $city) {
             $result[] = [
                 'city_id' => $city['city_id'],
                 'name' => $city['name'],
@@ -118,7 +118,7 @@ class AjaxController extends \frontend\components\Controller
         $name = trim(Yii::$app->request->get('name'));
 
         if (mb_strlen($name) < 2) {
-            return $this->successAjaxResponse('', []);
+            return $this->successAjaxResponse(null, []);
         }
 
         $cities = City::find()
@@ -139,7 +139,7 @@ class AjaxController extends \frontend\components\Controller
             ];
         }
 
-        return $this->successAjaxResponse('', $result);
+        return $this->successAjaxResponse(null, $result);
     }
 
     /**
@@ -151,7 +151,7 @@ class AjaxController extends \frontend\components\Controller
         $name = trim(Yii::$app->request->get('name'));
 
         if (mb_strlen($name) < 2) {
-            return $this->successAjaxResponse('empty', []);
+            return $this->successAjaxResponse(null, []);
         }
 
         $result = [];
@@ -181,7 +181,7 @@ class AjaxController extends \frontend\components\Controller
             ];
         }
 
-        return $this->successAjaxResponse('', $result);
+        return $this->successAjaxResponse(null, $result);
     }
 
     /**
@@ -194,7 +194,7 @@ class AjaxController extends \frontend\components\Controller
         $kladr = trim(Yii::$app->request->get('kladr'));
 
         if (mb_strlen($query) < 2) {
-            return $this->successAjaxResponse('empty', []);
+            return $this->successAjaxResponse(null, []);
         }
 
         $result = [];
@@ -215,7 +215,7 @@ class AjaxController extends \frontend\components\Controller
             ];
         }
 
-        return $this->successAjaxResponse('', $result);
+        return $this->successAjaxResponse(null, $result);
     }
 
     /**
@@ -251,7 +251,7 @@ class AjaxController extends \frontend\components\Controller
         }
 
 
-        return $this->successAjaxResponse('', [
+        return $this->successAjaxResponse(null, [
             'cityId' => $cityId,
             'city' => $cityName ?: 'Похоже вы не из России'
         ]);
@@ -380,7 +380,7 @@ class AjaxController extends \frontend\components\Controller
             $result['features'][] = $this->getFeatureInfo($apartmentPartners);
         }
 
-        return $this->successAjaxResponse('', $result);
+        return $this->successAjaxResponse(null, $result);
     }
 
     /**
@@ -411,6 +411,6 @@ class AjaxController extends \frontend\components\Controller
         $cityId = $city ? $city->city_id : null;
         $nearestStations = $cityId ? Metro::getNearestStationsByCoords($cityId, $latitude, $longitude) : [];
 
-        return $this->successAjaxResponse('', $nearestStations);
+        return $this->successAjaxResponse(null, $nearestStations);
     }
 }
