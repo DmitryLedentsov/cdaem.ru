@@ -55,6 +55,7 @@ class DefaultController extends \frontend\components\Controller
                 $userType = Yii::$app->BasisFormat->helper('Status')->getItem(Profile::getUserTypeArray(), Yii::$app->user->identity->profile->user_type);
                 //Yii::$app->session->setFlash('danger', '<b>Внимание:</b> <br/> Ваш тип аккаунта: "'. $userType . '" и Вы не можете производить данное действие. ');
                 $this->redirect(['/office/default/index']);
+
                 return true;
             }
         }

@@ -2,11 +2,11 @@
 
 namespace common\modules\geo\controllers\frontend;
 
-use common\modules\partners\models\frontend\search\AdvertSearch;
 use Yii;
 use yii\web\Response;
 use yii\web\NotFoundHttpException;
 use common\modules\geo\models\City;
+use common\modules\partners\models\frontend\search\AdvertSearch;
 
 /**
  * Главный гео контроллер
@@ -27,7 +27,6 @@ class DefaultController extends \frontend\components\Controller
 
         return true;
     }
-
 
     /**
      * Перенаправление на поддомен города
@@ -55,6 +54,7 @@ class DefaultController extends \frontend\components\Controller
 
         return $this->redirect(array_merge($redirect, $queryParams), 302);
     }
+
     /**
      * Общая карта
      *

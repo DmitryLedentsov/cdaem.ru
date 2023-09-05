@@ -19,8 +19,9 @@
             },
             events: {
                 search: function (qry, callback) {
-                    $.getJSON($('#search-form-autocomplete').data('url'), {'name': qry}, function (data) {
+                    $.getJSON($('#search-form-autocomplete').data('url'), {'name': qry}, function (response) {
                         let result = [];
+                        let data = response.data;
                         for (let i in data) {
                             result.push({
                                 value: data[i].name_eng,

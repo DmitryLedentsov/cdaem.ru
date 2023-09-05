@@ -28,7 +28,7 @@
         <label>
             <select class="custom-select" name="room">
                 {% for key, room in searchModel.roomsList %}
-                    <option value="{{ key }}" {{ loop.index == 1 ? 'selected' : '' }}>{{ room }}</option>
+                    <option value="{{ key }}" {{ key == app.request.get("room") ? 'selected' : '' }}>{{ room }}</option>
                 {% endfor %}
             </select>
         </label>
