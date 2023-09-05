@@ -266,17 +266,17 @@
                             <div class="step-column-33">
                                 <div class="form-group">
                                     <input type="text" id="city" name="ReservationForm[city_name]" placeholder="Введите город *" class="form-control" autocomplete="off" value="">
-                                    <input type="hidden" id="region" name="ReservationForm[region_name]" value="">
-                                    <input type="hidden" id="city_kladr" value="">
                                     <div class="invalid-feedback"></div>
+                                    <input type="hidden" id="region" name="ReservationForm[region_name]" value="">
+                                    <input type="hidden" id="city_kladr" name="ReservationForm[city_kladr]" value="">
                                 </div>
                             </div>
                             <div class="step-column-66" id="address-wrapper">
                                 <div class="form-group">
                                     <input type="text" id="address" name="ReservationForm[address]" class="form-control" placeholder="Введите адрес *" autocomplete="new-password" autocorrect="off" autocapitalize="off" spellcheck="false" value="">
+                                    <div class="invalid-feedback"></div>
                                     <input type="hidden" id="latitude" name="ReservationForm[latitude]" value="">
                                     <input type="hidden" id="longitude" name="ReservationForm[longitude]" value="">
-                                    <div class="invalid-feedback"></div>
                                 </div>
                             </div>
                         </div>
@@ -292,24 +292,30 @@
                             <div class="step-column-66">
                                 <div class="search-form-group" data-daterangepicker>
                                     <div class="search-form-filter search-form-filter-calendar daterangepicker-from">
-                                    <span class="daterangepicker-text">
-                                        <span class="daterangepicker-month">Дата заезда *</span><span class="daterangepicker-day"></span>
-                                    </span>
-                                        <input name="ReservationForm[book_date_from]" class="date" type="hidden" value="">
-                                        <input name="ReservationForm[book_time_from]" class="time" type="hidden" value="">
+                                        <span class="daterangepicker-text">
+                                            <span class="daterangepicker-month">Дата заезда *</span><span class="daterangepicker-day"></span>
+                                        </span>
+                                        <div class="form-group">
+                                            <input name="ReservationForm[arrived_date]" class="date form-control" type="hidden" value="">
+                                            <input name="ReservationForm[arrived_time]" class="time" type="hidden" value="">
+                                            <div class="invalid-feedback"></div>
+                                        </div>
                                     </div>
                                     <div class="search-form-filter search-form-filter-calendar daterangepicker-to">
-                                    <span class="daterangepicker-text">
-                                        <span class="daterangepicker-month">Дата выезда *</span><span class="daterangepicker-day"></span>
-                                    </span>
-                                        <input name="ReservationForm[book_date_to]" class="date" type="hidden" value="">
-                                        <input name="ReservationForm[book_time_to]" class="time" type="hidden" value="">
+                                        <span class="daterangepicker-text">
+                                            <span class="daterangepicker-month">Дата выезда *</span><span class="daterangepicker-day"></span>
+                                        </span>
+                                        <div class="form-group">
+                                            <input name="ReservationForm[out_date]" class="date form-control" type="hidden" value="">
+                                            <input name="ReservationForm[out_time]" class="time" type="hidden" value="">
+                                            <div class="invalid-feedback"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="step-column-33">
                                 <div class="form-group">
-                                    <select name="ReservationForm[beds]" class="custom-select">
+                                    <select name="ReservationForm[actuality_duration]" class="custom-select form-control">
                                         <option value="0">Заявка актуальна *</option>
                                         <option value="1">15</option>
                                         <option value="2">30</option>
@@ -331,8 +337,8 @@
                         <div class="step-line">
                             <div class="step-column-33">
                                 <div class="form-group">
-                                    <select name="ReservationForm[beds]" class="custom-select">
-                                        <option value="0">Животные *</option>
+                                    <select name="ReservationForm[pets]" class="custom-select">
+                                        <option value="-1">Животные *</option>
                                         <option value="1">Без животных</option>
                                         <option value="2">С животными</option>
                                     </select>
@@ -341,8 +347,8 @@
                             </div>
                             <div class="step-column-33">
                                 <div class="form-group">
-                                    <select name="ReservationForm[beds]" class="custom-select">
-                                        <option value="0">Дети *</option>
+                                    <select name="ReservationForm[children]" class="custom-select">
+                                        <option value="-1">Дети *</option>
                                         <option value="1">Без детей</option>
                                         <option value="2">С детьми</option>
                                     </select>
@@ -351,8 +357,8 @@
                             </div>
                             <div class="step-column-33">
                                 <div class="form-group">
-                                    <select name="ReservationForm[beds]" class="custom-select">
-                                        <option value="0">Количество человек *</option>
+                                    <select name="ReservationForm[clients_count]" class="custom-select">
+                                        <option value="-1">Количество человек *</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -374,45 +380,59 @@
                     <div class="step">
                         <div class="step-line">
                             <div class="step-column-33">
-                                <select name="ReservationForm[rent_type]" id="rent_type" class="custom-select">
-                                    <option value="0">Тип аренды *</option>
-                                    {% for value, name in rentTypes %}
-                                        <option value="{{ value }}">{{ name }}</option>
-                                    {% endfor %}
-                                </select>
+                                <div>
+                                    <select name="ReservationForm[rent_type]" id="rent_type" class="custom-select form-control">
+                                        <option value="0">Тип аренды *</option>
+                                        {% for value, name in rentTypes %}
+                                            <option value="{{ value }}">{{ name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <div class="invalid-feedback"></div>
+                                </div>
                             </div>
                             <div class="step-column-33">
-                                <select name="ReservationForm[floor]" id="floor" class="custom-select">
-                                    <option value="">Этаж *</option>
-                                    <option value="0">Любой этаж</option>
-                                    {% for value, name in floor %}
-                                        <option value="{{ value }}">{{ name }}</option>
-                                    {% endfor %}
-                                </select>
+                                <div>
+                                    <select name="ReservationForm[floor]" id="floor" class="custom-select">
+                                        <option value="">Этаж *</option>
+                                        <option value="0">Любой этаж</option>
+                                        {% for value, name in floor %}
+                                            <option value="{{ value }}">{{ name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <div class="invalid-feedback"></div>
+                                </div>
                             </div>
                             <div class="step-column-33">
                                 <div class="price-range">
-                                    <input type="number" id="price_from" name="ReservationForm[price_from]" placeholder="от 3000₽ *" class="form-control price-range-input" autocomplete="off" value="">
-                                    <input type="number" id="price_to" name="ReservationForm[price_to]" placeholder="от 5000₽ *" class="form-control price-range-input" autocomplete="off" value="">
+{#                                    <div>#}
+                                        <input type="number" id="price_from" name="ReservationForm[money_from]" placeholder="от 3000₽ *" class="form-control price-range-input" autocomplete="off" value="">
+                                        <div class="invalid-feedback"></div>
+{#                                    </div>#}
+{#                                    <div>#}
+                                        <input type="number" id="price_to" name="ReservationForm[money_to]" placeholder="до 5000₽ *" class="form-control price-range-input" autocomplete="off" value="">
+                                        <div class="invalid-feedback"></div>
+{#                                    </div>#}
                                 </div>
                             </div>
                         </div>
                         <div class="step-line">
                             <div class="step-column-33">
                                 <select name="ReservationForm[rooms]" id="rooms" class="custom-select">
-                                    <option value="0">Количество комнат *</option>
+                                    <option value="-1">Количество комнат *</option>
                                     {% for id, value in rooms %}
                                         <option value="{{ id }}">{{ value }}</option>
                                     {% endfor %}
                                 </select>
+                                <div class="invalid-feedback"></div>
                             </div>
                             <div class="step-column-33">
                                 <select name="ReservationForm[beds]" id="beds" class="custom-select">
-                                    <option value="0">Количество спальных мест *</option>
+                                    <option value="-1">Количество спальных мест *</option>
                                     {% for id, value in sleepingPlaces %}
                                         <option value="{{ id }}">{{ value }}</option>
                                     {% endfor %}
                                 </select>
+                                <div class="invalid-feedback"></div>
                             </div>
                             <div class="step-column-33">
                                 <select name="ReservationForm[metro_walk]" id="metro_walk" class="custom-select">
@@ -421,6 +441,7 @@
                                         <option value="{{ id }}">{{ value }}</option>
                                     {% endfor %}
                                 </select>
+                                <div class="invalid-feedback"></div>
                             </div>
                         </div>
                     </div>
@@ -457,7 +478,7 @@
                     <div class="step">
                         <div class="step-column-100">
                             <div class="form-group">
-                                <textarea name="ReservationForm[wishes]" class="step-textarea" placeholder="Введите пожелания"></textarea>
+                                <textarea name="ReservationForm[more_info]" class="step-textarea" placeholder="Введите пожелания"></textarea>
                                 <div class="invalid-feedback"></div>
                             </div>
                         </div>

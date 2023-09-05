@@ -19,6 +19,18 @@ class ReservationForm extends Reservation
     public $arrived_date;
 
     /**
+     * Название города
+     * @var string
+     */
+    public $city_name;
+
+    /**
+     * КЛАДР-код города
+     * @var string
+     */
+    public $city_kladr;
+
+    /**
      * Время вьезда
      * @var string
      */
@@ -114,18 +126,25 @@ class ReservationForm extends Reservation
             'verifyCode' => 'Защитный код',
 
             'city' => 'Город',
+            'city_name' => 'Город',
+            'city_kladr' => 'Город',
+
+            'address' => 'Адрес',
 
             'arrived_date' => 'Дата заезда',
-            'arrived_time' => 'Время',
+            'arrived_time' => 'Время заезда',
 
             'out_date' => 'Дата выезда',
-            'out_time' => 'Время',
+            'out_time' => 'Время выезда',
+
+            'rent_type' => 'Тип аренды',
+            'rooms' => 'Количество комнат',
 
             'actuality_duration' => 'Заявка актуальна',
 
             'budget' => 'Планируемый бюджет',
 
-            'email' => 'EMAIL',
+            'email' => 'Почта',
             'phone' => 'Телефон',
             'password' => 'Пароль',
         ]);
@@ -147,56 +166,37 @@ class ReservationForm extends Reservation
      */
     public function scenarios()
     {
-        return [
-            'unauthorized' => [
-                'city_id',
-                'address',
-                'beds',
-                'pets',
-                'children',
-                'floor',
-                'clients_count',
-                'arrived_date',
-                'arrived_time',
-                'metro_walk',
-                'out_date',
-                'out_time',
-                'rent_type',
-                'rooms',
-                'more_info',
-                'verifyCode',
-                'actuality_duration',
-                'money_from',
-                'money_to',
-                'currency',
+        $defaultFieldList = [
+            'city_name',
+            'city_kladr',
+            'address',
+            'beds',
+            'pets',
+            'children',
+            'floor',
+            'clients_count',
+            'arrived_date',
+            'arrived_time',
+            'metro_walk',
+            'out_date',
+            'out_time',
+            'rent_type',
+            'rooms',
+            'more_info',
+            'actuality_duration',
+            'money_from',
+            'money_to',
+            'currency',
+        ];
 
+        return [
+            'unauthorized' => array_merge($defaultFieldList, [
                 'email',
                 'phone',
                 'password',
                 'agreement',
-            ],
-
-            'default' => [
-                'city_id',
-                'address',
-                'beds',
-                'pets',
-                'children',
-                'floor',
-                'clients_count',
-                'arrived_date',
-                'arrived_time',
-                'metro_walk',
-                'out_date',
-                'out_time',
-                'rent_type',
-                'rooms',
-                'more_info',
-                'actuality_duration',
-                'money_from',
-                'money_to',
-                'currency',
-            ],
+            ]),
+            'default' => $defaultFieldList,
         ];
     }
 
@@ -206,7 +206,7 @@ class ReservationForm extends Reservation
     public function rules()
     {
         return array_merge([
-            [['beds', 'pets', 'children', 'floor', 'clients_count', 'phone', 'email', 'rent_type', 'rooms', 'city_id', 'address', 'arrived_date', 'arrived_time', 'out_date', 'out_time', 'actuality_duration'], 'required'],
+            [['beds', 'pets', 'children', 'floor', 'clients_count', 'phone', 'email', 'rent_type', 'rooms', 'city_name', 'city_kladr', 'address', 'arrived_date', 'arrived_time', 'out_date', 'out_time', 'actuality_duration'], 'required'],
             [['money_from', 'money_to'], 'required', 'message' => 'Некорректно указан диапазон значений суммы'],
             [['email', 'phone', 'password', 'agreement'], 'required', 'on' => 'unauthorized'],
 
@@ -215,6 +215,7 @@ class ReservationForm extends Reservation
             ['arrived_date', 'validateAllDates'],
 
             [['address', 'more_info'], 'string', 'max' => 255],
+            // [['address'], 'required', 'message' => 'Не должно быть пустым'],
 
             ['email', 'email'],
             ['password', '\nepster\users\validators\PasswordValidator'],
@@ -222,7 +223,7 @@ class ReservationForm extends Reservation
             ['phone', 'unique', 'targetClass' => '\common\modules\users\models\User', 'targetAttribute' => 'phone'],
             ['phone', '\common\validators\PhoneValidator', 'message' => 'Некорректный формат номера'],
 
-            ['city_id', 'exist', 'targetClass' => '\common\modules\geo\models\City', 'targetAttribute' => 'city_id'],
+            // ['city_id', 'exist', 'targetClass' => '\common\modules\geo\models\City', 'targetAttribute' => 'city_id'],
 
             [['money_from', 'money_to'], 'integer', 'min' => 1, 'max' => 1000000,
                 'tooBig' => 'Диапазон значений слишком большой',
@@ -232,6 +233,8 @@ class ReservationForm extends Reservation
                 'message' => 'Некорректно указан диапазон значений суммы'],
             ['money_from', 'validateBudget', 'skipOnEmpty' => false, 'skipOnError' => false],
 
+
+            //* todo поставить ссылки на нужные массивы
             ['currency', 'in', 'range' => array_keys($this->currencyArray), 'message' => 'Некорректно указана валюта'],
             ['rent_type', 'in', 'range' => array_keys($this->rentTypesList)],
             ['rooms', 'in', 'range' => array_keys($this->roomsList)],
@@ -331,7 +334,7 @@ class ReservationForm extends Reservation
         $model->more_info = $this->more_info;
         $model->money_from = $this->money_from;
         $model->money_to = $this->money_to;
-        $model->currency = $this->currency;
+        $model->currency = $this->currency; // todo поставить рубли
         $model->rooms = $this->rooms;
         $model->beds = $this->beds;
         $model->floor = $this->floor;

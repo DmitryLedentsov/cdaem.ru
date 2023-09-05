@@ -12,6 +12,10 @@
             font-size: 20px;
             line-height: normal;
         }
+
+        .form-group {
+            margin: 0;
+        }
     }
 
     .container-fluid {
@@ -72,6 +76,7 @@
     }
 
     .step-line {
+        position: relative;
         display: flex;
         flex-wrap: wrap;
         margin-bottom: 17px;
