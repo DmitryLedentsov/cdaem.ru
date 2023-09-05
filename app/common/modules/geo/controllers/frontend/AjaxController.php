@@ -99,7 +99,7 @@ class AjaxController extends \frontend\components\Controller
             ->orderBy(['name' => SORT_ASC])
             ->all();
 
-        return $this->successAjaxResponse('', array_reduce($cities, function ($result, $city) {
+        return $this->successAjaxResponse('', array_reduce($cities, function (array $result, City $city) {
             $result[] = [
                 'city_id' => $city['city_id'],
                 'name' => $city['name'],
@@ -260,10 +260,10 @@ class AjaxController extends \frontend\components\Controller
     /**
      * Данные объявления
      * @param string $typeId
-     * @return string
+     * @return Response
      * @throws InvalidConfigException
      */
-    public function actionApartment(string $typeId): string
+    public function actionApartment(string $typeId): Response
     {
         $type = mb_substr($typeId, 0, 1, 'utf-8');
         $id = explode('_', $typeId);
@@ -271,7 +271,7 @@ class AjaxController extends \frontend\components\Controller
 
         if ($type === 'a') {
             $model = ApartmentAgency::find()
-                ->joinWith(['titleImage', 'adverts' => function (Query $query) {
+                ->joinWith(['titleImage', 'adverts' => function (Query $query):void {
                     $query->select(['advert_id', 'apartment_id', 'rent_type', 'price']);
                     $query->andWhere(['rent_type' => 1]);
                     $query->orWhere(['rent_type' => 2]);
@@ -283,7 +283,7 @@ class AjaxController extends \frontend\components\Controller
                 ->one();
         } else {
             $model = ApartmentPartners::find()
-                ->joinWith(['titleImage', 'user', 'adverts' => function (Query $query) {
+                ->joinWith(['titleImage', 'user', 'adverts' => function (Query $query):void {
                     $query->select(['advert_id', 'apartment_id', 'rent_type', 'price', 'currency']);
                     $query->andWhere(['rent_type' => 1]);
                     $query->orWhere(['rent_type' => 2]);
@@ -298,7 +298,7 @@ class AjaxController extends \frontend\components\Controller
         }
 
         if (!$model instanceof ApartmentAgency && !$model instanceof ApartmentPartners) {
-            return 'Нет данных';
+            return $this->response('Нет данных');
         }
 
         $advertsHtml = '';
@@ -321,13 +321,13 @@ class AjaxController extends \frontend\components\Controller
             $advertsHtml .= '<p><a href="' . $url . '" target="_blank"><span>' . $name . ':</span> ' . $price . '</a></p>';
         }
 
-        return '<div class="balloon-info"><div class="clearfix">' .
+        return $this->response('<div class="balloon-info"><div class="clearfix">' .
             '<div class="balloon-view">' .
             '<div class="balloon-image" style="background-image: url(' . $model->getTitleImageSrc() . ')"></div>' .
             '</div>' .
             '<div class="balloon-desc">' . $advertsHtml . '</div></div>' .
             '<p class="balloon-property">Этаж: ' . $model->floor . ', ' . $model->roomsName . ', Ремонт: ' . $model->remontName . '</p>' .
-            '</div>';
+            '</div>');
     }
 
     /**
@@ -405,13 +405,11 @@ class AjaxController extends \frontend\components\Controller
         ];
     }
 
-    public function actionNearestStations(string $cityName, float $latitude, float $longitude): array
+    public function actionNearestStations(string $cityName, float $latitude, float $longitude): Response
     {
-        Yii::$app->response->format = Response::FORMAT_JSON;
-
         $city = City::findByName($cityName);
         $cityId = $city ? $city->city_id : null;
-
-        return $cityId ? Metro::getNearestStationsByCoords($cityId, $latitude, $longitude) : [];
+        $nearestStations = $cityId ? Metro::getNearestStationsByCoords($cityId, $latitude, $longitude) : [];
+        return $this->successAjaxResponse('', $nearestStations);
     }
 }
