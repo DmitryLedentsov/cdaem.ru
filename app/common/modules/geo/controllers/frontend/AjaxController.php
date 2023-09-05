@@ -410,6 +410,7 @@ class AjaxController extends \frontend\components\Controller
         $city = City::findByName($cityName);
         $cityId = $city ? $city->city_id : null;
         $nearestStations = $cityId ? Metro::getNearestStationsByCoords($cityId, $latitude, $longitude) : [];
+
         return $this->successAjaxResponse('', $nearestStations);
     }
 }
