@@ -346,7 +346,7 @@ class AjaxController extends \frontend\components\Controller
         $floor = Yii::$app->request->get('floor');
 
         $search = function ($apartmentModel) use ($city, $floor, $remont, $metroWalk, $rooms, $rentType, $priceStart, $priceEnd): array {
-            return $apartmentModel::find()->filterWhere(['city_id' => $city->city_id,'total_rooms'=> $rooms>0 ?: '', 'metro_walk'=>$metroWalk, 'remont'=>$remont])
+            return $apartmentModel::find()->filterWhere(['city_id' => $city->city_id,'total_rooms'=> $rooms>0 ?: '', 'metro_walk'=>$metroWalk, 'remont'=>$remont>0 ?: ''])
                 ->andWhere('floor '.($floor === '1' ? '= 1' : ($floor === '2' ? '> 1' : ($floor === '3' ? '< number_floors' : ''))))
                 ->joinWith(['titleImage', 'adverts' => function (Query $query) use ($priceEnd, $priceStart, $rentType) : void {
                     $query->select(['advert_id', 'apartment_id', 'rent_type', 'price' ]);
