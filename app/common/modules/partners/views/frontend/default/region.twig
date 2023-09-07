@@ -31,9 +31,9 @@
             <form action="{{ path(['/partners/pre-region']) }}" method="get" class="container-fluid">
                 {% include "@common/modules/partners/views/frontend/default/_search_form.twig" %}
                 <div class="lookup-board-buttons">
-                    <a href="{{ path({ 0: '/geo/default/index', 'city': city.name_eng}) }}" class="btn btn-special button-map">
+                    <button type="submit" formaction="{{ path(['/geo/default/pre-index']) }}" class="btn btn-special button-map">
                         НА КАРТЕ
-                    </a>
+                    </button>
                     <button type="submit" class="btn btn-warning btn-special">НАЙТИ</button>
                 </div>
                 {% include "@common/modules/partners/views/frontend/default/_modal_search_filters.twig" with {} %}
