@@ -47,6 +47,10 @@ class DefaultController extends \frontend\components\Controller
             return false;
         }
 
+        if (Yii::$app->request->getCurrentCitySubDomain() !== null) {
+            $this->redirect(Yii::$app->request->getCurrentUrlWithoutSubDomain());
+        }
+
         $this->module->viewPath = '@common/modules/pages/views/frontend';
 
         return true;
@@ -65,9 +69,6 @@ class DefaultController extends \frontend\components\Controller
 
         if (Yii::$app->request->isAjax) {
             return $model->text;
-        }
-        if (Yii::$app->request->getCurrentCitySubDomain() !== null) {
-            $this->redirect(Yii::$app->request->getCurrentUrlWithoutSubDomain());
         }
 
         return $this->response($this->render('index.twig', [
