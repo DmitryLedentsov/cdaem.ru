@@ -2,6 +2,7 @@
 
 namespace common\modules\articles\controllers\frontend;
 
+use Yii;
 use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\web\Response;
@@ -47,6 +48,9 @@ class DefaultController extends \frontend\components\Controller
     {
         if (!parent::beforeAction($action)) {
             return false;
+        }
+        if (Yii::$app->request->getCurrentCitySubDomain() !== null) {
+            $this->redirect(Yii::$app->request->getCurrentUrlWithoutSubDomain());
         }
 
         $this->module->viewPath = '@common/modules/articles/views/frontend';
