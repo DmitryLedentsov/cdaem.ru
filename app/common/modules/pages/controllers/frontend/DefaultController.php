@@ -66,6 +66,9 @@ class DefaultController extends \frontend\components\Controller
         if (Yii::$app->request->isAjax) {
             return $model->text;
         }
+        if (Yii::$app->request->getCurrentCitySubDomain() !== null) {
+            $this->redirect(Yii::$app->request->getCurrentUrlWithoutSubDomain());
+        }
 
         return $this->response($this->render('index.twig', [
             'model' => $model,
