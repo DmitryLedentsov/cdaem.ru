@@ -205,10 +205,12 @@ return [
             'class' => \nepster\basis\components\BasisFormat::class,
         ],
         'urlManager' => [
+            'class'=>\common\components\UrlManager::class,
             'enablePrettyUrl' => true,
             'enableStrictParsing' => false,
             'showScriptName' => false,
             'suffix' => '',
+
             'rules' => [
                 ['pattern' => 'robots', 'route' => 'robotsTxt/web/index', 'suffix' => '.txt'],
             ]

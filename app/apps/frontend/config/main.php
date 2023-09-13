@@ -172,7 +172,7 @@ return [
                         'CityHelper' => ['class' => \common\modules\partners\helpers\CityHelper::class],
                         'TotalApartment' => ['class' => \common\modules\realty\models\Apartment::class],
                         'html' => ['class' => \yii\helpers\Html::class],
-                        'url' => ['class' => \yii\helpers\Url::class],
+                        'url' => ['class' => \common\components\UrlHelper::class],
                         //'pos_begin' => \yii\web\View::POS_BEGIN,
                         'callback' => new \common\modules\callback\models\Callback(),
                         'Service' => new \common\modules\partners\models\Service(),
@@ -184,6 +184,7 @@ return [
                         'getAssetUrl' => '\frontend\themes\basic\assets\AppAsset::getAssetUrl',
                         'getPartOfTheDay' => '\common\modules\site\models\Total::getNamePartOfTheDay',
                         'strpos' => 'strpos',
+                        'path'=>'\common\components\UrlHelper::path'
                     ],
                 ],
             ],

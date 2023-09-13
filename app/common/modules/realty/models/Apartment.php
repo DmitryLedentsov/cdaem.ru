@@ -112,7 +112,6 @@ class Apartment extends ActiveRecord
         }
 
         return $result;
-
     }
 
     /**
