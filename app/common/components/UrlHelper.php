@@ -7,7 +7,7 @@ use yii\helpers\BaseUrl;
 
 class UrlHelper extends BaseUrl
 {
-    public static function path($path, $args = [])
+    public static function path($path, array $args = []) : string
     {
         if (is_array($path)) {
             $path = array_merge($path, $args);
@@ -18,7 +18,7 @@ class UrlHelper extends BaseUrl
         return self::to($path);
     }
 
-    public static function getSiteDomain()
+    public static function getSiteDomain() : string
     {
         return Yii::$app->params['siteDomain'];
     }

@@ -20,10 +20,9 @@ class UrlManager extends \yii\web\UrlManager
 
     private function checkUrlForRedirect(array $params):bool
     {
-        $keyWords = ['geo', 'flats', 'na_noch', 'kvartira_na_sutki', 'kvartira_na_chas', 'agency'];
         foreach ($params as $param) {
-            foreach ($keyWords as $keyWord) {
-                if (str_starts_with($param, $keyWord)) {
+            foreach (Yii::$app->params['redirectablePaths'] as $path) {
+                if (str_starts_with($param, $path)) {
                     return true;
                 }
             }

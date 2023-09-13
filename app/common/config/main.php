@@ -244,6 +244,7 @@ return [
         'dadata' => [
             'token' => '79b777f05108f902a4019130a57fe5e7db725cc5',
             'secret' => 'b67ea1e4b91d9cc7af9a5f7be74f7c6d4803882a',
-        ]
+        ],
+        'redirectablePaths' => ['geo', 'flats', 'na_noch', 'kvartira_na_sutki', 'kvartira_na_chas', 'agency']
     ]
 ];
