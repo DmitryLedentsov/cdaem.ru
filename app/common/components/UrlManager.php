@@ -31,7 +31,7 @@ class UrlManager extends \yii\web\UrlManager
         return false;
     }
 
-    public function getBaseUrl()
+    public function getBaseUrl() : string
     {
         if ($this->needRedirect) {
             return Yii::$app->request->hostInfo;
