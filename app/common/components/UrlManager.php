@@ -20,9 +20,9 @@ class UrlManager extends \yii\web\UrlManager
 
     private function checkParamsForRedirect(array $params):bool
     {
-        $controller = $params[0];
-        foreach (Yii::$app->params['redirectableActions'] as $controllerRule) {
-            if (str_starts_with($controller, $controllerRule)) {
+        $action = $params[0];
+        foreach (Yii::$app->params['redirectableActions'] as $actionRule) {
+            if (str_starts_with($action, $actionRule)) {
                 return true;
             }
         }
