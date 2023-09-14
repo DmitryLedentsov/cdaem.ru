@@ -13,18 +13,17 @@ class UrlManager extends \yii\web\UrlManager
 
     public function createUrl($params): string
     {
-        $this->needRedirect = $this->checkUrlForRedirect($params);
+        $this->needRedirect = $this->checkParamsForRedirect($params);
 
         return parent::createUrl($params);
     }
 
-    private function checkUrlForRedirect(array $params):bool
+    private function checkParamsForRedirect(array $params):bool
     {
-        foreach ($params as $param) {
-            foreach (Yii::$app->params['redirectablePaths'] as $path) {
-                if (str_starts_with($param, $path)) {
-                    return true;
-                }
+        $controller = $params[0];
+        foreach (Yii::$app->params['redirectableActions'] as $controllerRule) {
+            if (str_starts_with($controller, $controllerRule)) {
+                return true;
             }
         }
 
