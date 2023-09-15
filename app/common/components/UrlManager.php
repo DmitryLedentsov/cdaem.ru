@@ -21,7 +21,7 @@ class UrlManager extends \yii\web\UrlManager
     private function checkParamsForRedirect(array $params):bool
     {
         $action = $params[0];
-        foreach (Yii::$app->params['redirectableActions'] as $actionRule) {
+        foreach (Yii::$app->params['actionsWithSubdomain'] as $actionRule) {
             if (str_starts_with($action, $actionRule)) {
                 return true;
             }
