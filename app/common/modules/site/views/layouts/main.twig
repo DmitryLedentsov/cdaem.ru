@@ -5,6 +5,7 @@
     {{ html.csrfMetaTags() | raw }}
     {{ this.serviceHead() | raw }}
     {{ this.head() }}
+    <base href="{{ url.getSiteDomain()}}" />
 </head>
 <body class="{% block bodyClass %}{% endblock %}">
 {{ this.beginBody() }}
