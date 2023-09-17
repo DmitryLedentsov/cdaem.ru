@@ -2,13 +2,13 @@
 
 namespace common\modules\partners\controllers\frontend;
 
-use common\modules\realty\models\Apartment;
-use common\modules\realty\models\RentType;
 use Yii;
 use yii\web\Response;
 use yii\web\HttpException;
 use yii\widgets\ActiveForm;
 use common\modules\users\models\Profile;
+use common\modules\realty\models\RentType;
+use common\modules\realty\models\Apartment;
 use common\modules\partners\models\UserSeen;
 use common\modules\partners\models\frontend\Advert;
 use common\modules\partners\models\frontend as models;

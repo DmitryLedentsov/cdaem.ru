@@ -21,7 +21,8 @@
         $('#locationSelection').text(currentUser.city.name);
     }
     else {
-        $.getJSON("/geo/ajax/get-city-by-ip/", {}, function (data) {
+        $.getJSON("/geo/ajax/get-city-by-ip/", {}, function (response) {
+            let data = response.data;
             city = data.hasOwnProperty('city') ? data.city : '';
             cityId = data.hasOwnProperty('cityId') ? data.cityId : '';
 
@@ -46,7 +47,8 @@
         reloadUserInfo();
         var currentCityId = currentUser ? currentUser.city.id : 0;
 
-        $.getJSON("/geo/ajax/get-popular-cities/", {}, function (cities) {
+        $.getJSON("/geo/ajax/get-popular-cities/", {}, function (response) {
+            var cities = response.data;
             cityField.focus();
             var cityList = $('.modal-city-list');
             cityList.html('');
@@ -65,7 +67,7 @@
                         $('#modalLocation').modal('hide');
                     })
                 );
-            })
+            });
         });
     });
 
@@ -88,8 +90,9 @@
             change: function (event, ui) {
             },
             search: function (qry, callback) {
-                $.getJSON(searchCityURL, {'name': qry}, function (data) {
+                $.getJSON(searchCityURL, {'name': qry}, function (response) {
                     // console.log(data);
+                    let data = response.data;
                     let result = [];
                     data.forEach(item => {
                         result.push({

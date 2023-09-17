@@ -3,8 +3,8 @@
 namespace common\modules\merchant\controllers\frontend;
 
 use Yii;
-use yii\db\Transaction;
 use yii\web\Response;
+use yii\db\Transaction;
 use yii\widgets\ActiveForm;
 use common\modules\merchant\models\Invoice;
 use common\modules\merchant\models\Payment;

@@ -31,6 +31,9 @@ class OfficeController extends \frontend\components\Controller
         if (!parent::beforeAction($action)) {
             return false;
         }
+        if (Yii::$app->request->getCurrentCitySubDomain() !== null) {
+            $this->redirect(Yii::$app->request->getCurrentUrlWithoutSubDomain());
+        }
 
         $this->module->viewPath = '@common/modules/partners/views/frontend';
 
@@ -120,7 +123,7 @@ class OfficeController extends \frontend\components\Controller
      * Добавить объявление
      * @return Response
      */
-        public function actionCreate(): Response
+    public function actionCreate(): Response
     {
         $apartment = new models\form\ApartmentForm(['scenario' => 'user-create']);
         $rentTypes = models\form\AdvertForm::getPreparedRentTypesAdvertsList(RentType::rentTypeslist(), $apartment->adverts);

@@ -50,7 +50,7 @@ class Controller extends \yii\web\Controller
      * @param array $data
      * @return Response
      */
-    public function successAjaxResponse(string $message, array $data = []): Response
+    public function successAjaxResponse(?string $message, array $data = []): Response
     {
         Yii::$app->response->statusCode = 200;
 
