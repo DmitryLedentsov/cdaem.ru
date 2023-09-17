@@ -2,6 +2,7 @@
 
 namespace common\modules\partners\models\frontend\form;
 
+use common\modules\geo\models\City;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use common\modules\users\models\User;
@@ -210,7 +211,8 @@ class ReservationForm extends Reservation
             [['money_from', 'money_to'], 'required', 'message' => 'Некорректно указан диапазон значений суммы'],
             [['email', 'phone', 'password', 'agreement'], 'required', 'on' => 'unauthorized'],
 
-            [['arrived_date', 'out_date'], 'date', 'format' => 'php:d.m.Y'],
+            // [['arrived_date', 'out_date'], 'date', 'format' => 'php:d.m.Y'],
+            [['arrived_date', 'out_date'], 'date', 'format' => 'php:Y-m-d'],
             [['arrived_time', 'out_time'], 'date', 'format' => 'php:H:i'],
             ['arrived_date', 'validateAllDates'],
 
@@ -233,8 +235,6 @@ class ReservationForm extends Reservation
                 'message' => 'Некорректно указан диапазон значений суммы'],
             ['money_from', 'validateBudget', 'skipOnEmpty' => false, 'skipOnError' => false],
 
-
-            //* todo поставить ссылки на нужные массивы
             ['currency', 'in', 'range' => array_keys($this->currencyArray), 'message' => 'Некорректно указана валюта'],
             ['rent_type', 'in', 'range' => array_keys($this->rentTypesList)],
             ['rooms', 'in', 'range' => array_keys($this->roomsList)],
@@ -305,10 +305,10 @@ class ReservationForm extends Reservation
     public function validateBudget($attribute, $params)
     {
         if ($this->getErrors('money_from')) {
-            $this->addError('budget', $this->getFirstError('money_from'));
+            $this->addError('money_from', $this->getFirstError('money_from'));
             $this->clearErrors('money_from');
         } elseif ($this->getErrors('money_to')) {
-            $this->addError('budget', $this->getFirstError('money_to'));
+            $this->addError('money_to', $this->getFirstError('money_to'));
             $this->clearErrors('money_to');
         }
     }
@@ -326,7 +326,13 @@ class ReservationForm extends Reservation
             'phone' => $this->phone,
         ]);
         $model->rent_type = $this->rent_type;
-        $model->city_id = $this->city_id;
+
+        $city = City::findByName(trim($this->city_name));
+
+        if ($city) {
+            $model->city_id = $city->city_id;
+        }
+
         $model->address = $this->address;
         $model->children = $this->children;
         $model->pets = $this->pets;
@@ -334,7 +340,8 @@ class ReservationForm extends Reservation
         $model->more_info = $this->more_info;
         $model->money_from = $this->money_from;
         $model->money_to = $this->money_to;
-        $model->currency = $this->currency; // todo поставить рубли
+        // $model->currency = $this->currency;
+        $model->currency = Yii::$app->getModule('merchant')->viewMainCurrency;
         $model->rooms = $this->rooms;
         $model->beds = $this->beds;
         $model->floor = $this->floor;
@@ -342,8 +349,9 @@ class ReservationForm extends Reservation
 
         $date_arrived = $this->arrived_date . ' ' . $this->arrived_time;
         $date_out = $this->out_date . ' ' . $this->out_time;
-        $model->date_arrived = \DateTime::createFromFormat('d.m.Y H:i', $date_arrived)->format('Y-m-d H:i:s');
-        $model->date_out = \DateTime::createFromFormat('d.m.Y H:i', $date_out)->format('Y-m-d H:i:s');
+
+        $model->date_arrived = \DateTime::createFromFormat('Y-m-d H:i', $date_arrived)->format('Y-m-d H:i:s');
+        $model->date_out = \DateTime::createFromFormat('Y-m-d H:i', $date_out)->format('Y-m-d H:i:s');
 
         $now = new \DateTime('now');
         $model->date_create = $now->format('Y-m-d H:i:s');
