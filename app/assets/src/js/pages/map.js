@@ -112,7 +112,7 @@
         myMap.geoObjects.add(objectManager);
         function queryMapObjects(){
             $.ajax({
-                url: '/geo/map',
+                url: $searchForm.data('url'),
                 dataType: 'json',
                 method: 'GET',
                 data: Object.fromEntries(new FormData($searchForm[0])),

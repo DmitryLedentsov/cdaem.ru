@@ -28,7 +28,7 @@
     {{ register_region_asset() }}
     <section class="intro">
         <div class="lookup-board">
-            <form action="{{ path(['/geo/default/pre-index'])}}"  method="get" id="search" class="container-fluid">
+            <form action="{{ path(['/geo/default/pre-index'])}}" data-url="{{ path(['/geo/map'])}}" method="get" id="search" class="container-fluid">
                 {% include "@common/modules/partners/views/frontend/default/_search_form.twig" %}
                 <div class="lookup-board-buttons">
                     <a href="{{ path({ 0: '/partners/default/region', 'city': city.name_eng}) }}" class="btn btn-special button-map">
