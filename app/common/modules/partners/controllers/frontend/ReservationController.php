@@ -25,16 +25,11 @@ class ReservationController extends \frontend\components\Controller
      */
     public function beforeAction($action): bool
     {
-        // yii\web\BadRequestHttpException: Не удалось проверить переданные данные. in /app/vendor/yiisoft/yii2/web/Controller.php:202
-        // $this->enableCsrfValidation = true;
-        $this->enableCsrfValidation = false; // todo почему-то не подхватывается токен из куков
-
+        $this->enableCsrfValidation = true;
         if (!parent::beforeAction($action)) {
             return false;
         }
-
         $this->module->viewPath = '@common/modules/partners/views/frontend';
-
         return true;
     }
 
@@ -93,9 +88,11 @@ class ReservationController extends \frontend\components\Controller
             // dd($errors);
             if (!$errors) {
                 if ($model->process()) {
-                    $msg = '<p><strong>№ заявки: ' . $model->id . '</strong></p>';
-                    $msg .= '<p>Заявка на бронирование успешно отправлена владельцу. Пожалуйста ожидайте подтверждения.</p>';
-                    $msg .= '<p style="padding:20px; font-size:20px; border:1px solid darkblue;">Если вы еще не зарегистрированы, обязательно подтвердите регистрацию у себя на e-mail</p>';
+                    $msg = "
+                    <p><strong>№ заявки: {$model->id}</strong></p>
+                    <p>Заявка на бронирование успешно отправлена владельцу. Пожалуйста ожидайте подтверждения.</p>
+                    <p style=\"padding:20px; font-size:20px; border:1px solid darkblue;\">Если вы еще не зарегистрированы, обязательно подтвердите регистрацию у себя на e-mail</p>
+                    ";
                     Yii::$app->session->setFlash('success', $msg);
                 } else {
                     Yii::$app->session->setFlash('danger', 'Возникла критическая ошибка. Пожалуйста обратитесь в техническую поддержку.');

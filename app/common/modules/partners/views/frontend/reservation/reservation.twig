@@ -64,17 +64,18 @@
         </div> <br/>
     {% endif %}
 
-
     {% if app.session.hasFlash('success') %}
-        <div class="alert alert-success" role="alert">
-            {{ app.session.getFlash('success') | raw }}
-        </div> <br/>
+        <div class="container-fluid">
+            <div class="alert alert-success" role="alert">
+                {{ app.session.getFlash('success') | raw }}
+            </div> <br/>
 
-        Ваша заявка будет доступна всем владельцам апартаментов на сайте {{ app.params.siteDomain }}. После того,
-        как кто-нибудь откроет ваши контакты, в
-        <a href="{{ path(['/partners/reservation/total-bid']) }}" target="_blank">личном кабинете</a> вы увидите,
-        что заявка закрыта.
-        <br/>
+            Ваша заявка будет доступна всем владельцам апартаментов на сайте {{ app.params.siteDomain }}. После того,
+            как кто-нибудь откроет ваши контакты, в
+            <a href="{{ path(['/partners/reservation/total-bid']) }}" target="_blank">личном кабинете</a> вы увидите,
+            что заявка закрыта.
+            <br/><br/><br/>
+        </div>
     {% endif %}
 
     <section class="rent">
@@ -256,7 +257,7 @@
             </div>
 #}
 
-            <form method="post" action="{{ path('/reservation') }}" id="form-reservation" {#enctype="multipart/form-data"#}>
+            {{ html.beginForm(['/reservation'], 'post', {'id': 'form-reservation'}) |raw }}
                 <div class="section">
                     <div class="section-head section-head-between">
                         <h2 class="section-header">Место аренды</h2>
@@ -317,9 +318,11 @@
                                 <div class="form-group">
                                     <select name="ReservationForm[actuality_duration]" class="custom-select form-control">
                                         <option value="0">Заявка актуальна *</option>
-                                        <option value="1">15</option>
-                                        <option value="2">30</option>
-                                        <option value="3">До даты выезда</option>
+                                        <option value="1">15 минут</option>
+                                        <option value="2">30 минут</option>
+                                        <option value="3">60 минут</option>
+                                        <option value="4">24 часа</option>
+                                        <option value="5">До даты заезда</option>
                                     </select>
                                     <div class="invalid-feedback"></div>
                                 </div>
@@ -339,8 +342,8 @@
                                 <div class="form-group">
                                     <select name="ReservationForm[pets]" class="custom-select">
                                         <option value="-1">Животные *</option>
-                                        <option value="1">Без животных</option>
-                                        <option value="2">С животными</option>
+                                        <option value="0">Без животных</option>
+                                        <option value="1">С животными</option>
                                     </select>
                                     <div class="invalid-feedback"></div>
                                 </div>
@@ -349,8 +352,8 @@
                                 <div class="form-group">
                                     <select name="ReservationForm[children]" class="custom-select">
                                         <option value="-1">Дети *</option>
-                                        <option value="1">Без детей</option>
-                                        <option value="2">С детьми</option>
+                                        <option value="0">Без детей</option>
+                                        <option value="1">С детьми</option>
                                     </select>
                                     <div class="invalid-feedback"></div>
                                 </div>
@@ -405,11 +408,11 @@
                             <div class="step-column-33">
                                 <div class="price-range">
 {#                                    <div>#}
-                                        <input type="number" id="price_from" name="ReservationForm[money_from]" placeholder="от 3000₽ *" class="form-control price-range-input" autocomplete="off" value="">
+                                        <input type="number" id="money_from" name="ReservationForm[money_from]" placeholder="от 3000₽ *" class="form-control price-range-input" autocomplete="off" value="">
                                         <div class="invalid-feedback"></div>
 {#                                    </div>#}
 {#                                    <div>#}
-                                        <input type="number" id="price_to" name="ReservationForm[money_to]" placeholder="до 5000₽ *" class="form-control price-range-input" autocomplete="off" value="">
+                                        <input type="number" id="money_to" name="ReservationForm[money_to]" placeholder="до 5000₽ *" class="form-control price-range-input" autocomplete="off" value="">
                                         <div class="invalid-feedback"></div>
 {#                                    </div>#}
                                 </div>
@@ -427,7 +430,7 @@
                             </div>
                             <div class="step-column-33">
                                 <select name="ReservationForm[beds]" id="beds" class="custom-select">
-                                    <option value="-1">Количество спальных мест *</option>
+                                    <option value="0">Количество спальных мест *</option>
                                     {% for id, value in sleepingPlaces %}
                                         <option value="{{ id }}">{{ value }}</option>
                                     {% endfor %}
@@ -455,16 +458,29 @@
                         <div class="step">
                             <div class="step-line">
                                 <div class="step-column-33">
-                                    <input type="text" name="AdvertForm[price][]" class="step-input form-control" placeholder="Почта *">
+                                    <input type="text" name="ReservationForm[email]" class="step-input form-control" placeholder="Почта *">
                                     <div class="invalid-feedback" style="opacity:1"></div>
                                 </div>
                                 <div class="step-column-33">
-                                    <input type="text" name="AdvertForm[price][]" class="step-input form-control" placeholder="Телефон *">
+                                    <input type="tel" name="ReservationForm[phone]" class="step-input form-control" placeholder="Телефон *">
                                     <div class="invalid-feedback" style="opacity:1"></div>
                                 </div>
                                 <div class="step-column-33">
-                                    <input type="text" name="AdvertForm[price][]" class="step-input form-control" placeholder="Пароль *">
+                                    <input type="password" name="ReservationForm[password]" class="step-input form-control" placeholder="Пароль *">
                                     <div class="invalid-feedback" style="opacity:1"></div>
+                                </div>
+                            </div>
+                            <div class="step-line">
+                                <div class="step-column-100">
+                                    <input type="checkbox" class="form-check-input" name="ReservationForm[agreement]" value="1"
+                                           id="signUp-agreement">
+                                    <label class="form-check-label" for="signUp-agreement">
+                                        Регистрируясь на сайте, Вы соглашаетесь с <a href="https://cdaem.ru/page/agreement" target="_blank">пользовательским
+                                            соглашением</a>, с расценками на размещение платных объявлений, а также получать СМС-оповещения при использовании
+                                        определенных
+                                        сервисов на этом сайте.
+                                    </label>
+                                    <div class="invalid-feedback"></div>
                                 </div>
                             </div>
                         </div>
@@ -492,7 +508,7 @@
     #}
                     <button type="submit" class="btn btn-warning btn-special btn-fast-submite">Отправить</button>
                 </div>
-            </form>
+            {{ html.endForm() |raw }}
         </div>
     </section>
 
