@@ -41,8 +41,6 @@ class BootstrapFrontend implements \yii\base\BootstrapInterface
                 Yii::$app->params['siteSubDomain'] . '/reservation' => '/partners/reservation/index',
                 'reservation' => '/partners/reservation/index',
 
-                Yii::$app->params['siteSubDomain'] . '/flats/<id:\d+>' => '/partners/default/view',
-                Yii::$app->params['siteSubDomain'] . '/flats/<id:\d+>/others' => '/partners/default/others',
 
                 //'partner_thumb/<path:.*>' => '/partners/default/thumbs',
                 'partners/pre-region' => '/partners/default/pre-region',

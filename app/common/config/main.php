@@ -249,7 +249,7 @@ return [
             'partners/default/view',
             'partners/default/others',
             'site/default/index',
-            'geo'
+            'geo',
         ]
     ]
 ];
