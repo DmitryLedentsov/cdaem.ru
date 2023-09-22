@@ -1,11 +1,13 @@
 {#
-   Карта
-   @var \yii\web\View this
+Карта
+@var \yii\web\View this
 #}
 
 {% set currentRentType = searchModel.rentTypesList[app.request.get("sect")]%}
 {% extends "@common/modules/site/views/layouts/main.twig" %}
-
+{% set currentCityName = app.request.getCurrentCitySubDomain() %}
+{% set currentCity = CityHelper.findCityByName(currentCityName | default('msk')) %}
+{% set city = city | merge(currentCity) %}
 {% block seo %}
     {% include '@common/modules/site/views/_modules/_seo.twig' with {
         'title': 'Карта города - ' ~ city.name ~ ' | Сдаём.ру',

@@ -2,6 +2,7 @@
 
 namespace common\modules\partners\helpers;
 
+use common\modules\geo\models\City;
 use Yii;
 use wapmorgan\yii2inflection\Inflector;
 
@@ -10,5 +11,8 @@ class CityHelper
     public static function formatInPrepositionalCase(string $name) :string
     {
         return Yii::$app->inflection->inflectGeoName($name, Inflector::PREPOSITIONAL);
+    }
+    public static function findCityByName(string $name) :City{
+        return City::findByNameEng($name);
     }
 }
