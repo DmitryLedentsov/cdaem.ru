@@ -247,13 +247,15 @@ return [
         ],
         'actionsWithSubdomain' => [
             'site/default/index',
-            /*'geo/ajax',
+            'geo/ajax',
             'geo/get',
             'geo/select',
+            'geo/metro-msk',
             'map',
             'geo/map',
-            'geo/nearest-stations'*/
-            'geo'
+            'geo/nearest-stations',
+            'geo/default/index',
+            //TODO: 'geo/default/pre-index'
         ]
     ]
 ];

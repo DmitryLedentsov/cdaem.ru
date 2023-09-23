@@ -8,7 +8,7 @@
 #}
 
 {% extends "@common/modules/site/views/layouts/main.twig" %}
-{% set currentRentType = searchModel.rentTypesList[app.request.get("sect")]%}
+{% set currentRentType = searchModel.rentTypesList[app.request.get("sect") | default(1)]%}
 {% set currentCityName = app.request.getCurrentCitySubDomain() %}
 {% set currentCity = CityHelper.findCityByName(currentCityName | default('msk')) %}
 {% set city = city | merge(currentCity) %}
