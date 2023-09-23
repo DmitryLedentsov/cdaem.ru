@@ -253,9 +253,7 @@ return [
             'geo/metro-msk',
             'map',
             'geo/map',
-            'geo/nearest-stations',
-            //'geo/default/index',
-            //TODO: 'geo/default/pre-index'
+            'geo/nearest-stations'
         ]
     ]
 ];
