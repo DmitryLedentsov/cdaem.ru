@@ -254,7 +254,7 @@ return [
             'map',
             'geo/map',
             'geo/nearest-stations',
-            'geo/default/index',
+            //'geo/default/index',
             //TODO: 'geo/default/pre-index'
         ]
     ]
