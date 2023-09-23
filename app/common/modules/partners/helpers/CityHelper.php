@@ -2,8 +2,8 @@
 
 namespace common\modules\partners\helpers;
 
-use common\modules\geo\models\City;
 use Yii;
+use common\modules\geo\models\City;
 use wapmorgan\yii2inflection\Inflector;
 
 class CityHelper
@@ -12,7 +12,9 @@ class CityHelper
     {
         return Yii::$app->inflection->inflectGeoName($name, Inflector::PREPOSITIONAL);
     }
-    public static function findCityByName(string $name) :City{
+
+    public static function findCityByName(string $name) :City
+    {
         return City::findByNameEng($name);
     }
 }
