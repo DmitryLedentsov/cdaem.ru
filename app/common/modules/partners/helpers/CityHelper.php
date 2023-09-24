@@ -12,9 +12,4 @@ class CityHelper
     {
         return Yii::$app->inflection->inflectGeoName($name, Inflector::PREPOSITIONAL);
     }
-
-    public static function findCityByName(string $name) :City
-    {
-        return City::findByNameEng($name);
-    }
 }
