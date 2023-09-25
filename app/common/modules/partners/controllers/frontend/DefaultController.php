@@ -130,12 +130,15 @@ class DefaultController extends \frontend\components\Controller
         $topAdverts = models\Advert::findAdvertsByCity($city->city_id, true, Yii::$app->request->get('sect'));
 
         Yii::$app->view->registerLinkTag(['rel' => 'canonical', 'href' => URL::to('https://' . $city->name_eng . '.cdaem.ru')]);
+        $cityName = Yii::$app->request->getCurrentCitySubDomain();
+        $currentCity = City::findByNameEng($cityName ?: 'msk');
 
         return $this->render('region.twig', [
             'city' => $city,
             'searchModel' => $searchModel,
             'topAdverts' => $topAdverts,
             'dataProvider' => $dataProvider,
+            'currentCity' => $currentCity,
         ]);
     }
 

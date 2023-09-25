@@ -136,7 +136,7 @@
         function getBalloonData(objectId, done) {
             var dataDeferred = ymaps.vow.defer();
             $.ajax({
-                url: '/geo/map/' + objectId,
+                url: $searchForm.data('url') + objectId,
                 type: 'GET',
                 dataType: 'html'
             })
