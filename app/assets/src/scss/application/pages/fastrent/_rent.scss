@@ -503,7 +503,8 @@
             //width: 120px;
         }
 
-        &-input:not(:last-child) {
+        // исключаем препоследний, т.к. последним элементом будет валидация
+        &-input:not(:nth-last-child(2)) {
             margin-right: 3.5%;
         }
     }

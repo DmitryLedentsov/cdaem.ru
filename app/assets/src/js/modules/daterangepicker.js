@@ -57,6 +57,14 @@
     $daterangepicker.on('apply.daterangepicker', function(ev, picker) {
         let $this = $(this);
 
+        const parentsForm = $($this).parents("form");
+        const formId = parentsForm.length > 0 ? parentsForm[0].id : false;
+
+        // Отчистка валидации
+        formId && $($this).find('.form-group .invalid-feedback').prev().each((i, input) => {
+            $('#' + formId).displayValidation('clearElement', `[name='${input.name}']`);
+        });
+
         $this.find('.daterangepicker-from .daterangepicker-month').text(picker.startDate.format('D MMMM'));
         $this.find('.daterangepicker-from .daterangepicker-day').text(`, ${picker.startDate.format('dddd')} ${picker.startDate.format('HH:mm')}`);
         $this.find('.daterangepicker-to .daterangepicker-month').text(picker.endDate.format('D MMMM'));
