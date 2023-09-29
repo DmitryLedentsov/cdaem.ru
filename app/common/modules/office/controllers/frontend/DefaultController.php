@@ -50,10 +50,6 @@ class DefaultController extends \frontend\components\Controller
 
         $this->module->viewPath = '@common/modules/office/views/frontend';
 
-        if (Yii::$app->request->getCurrentCitySubDomain() !== null) {
-            $this->redirect(Yii::$app->request->getCurrentUrlWithoutSubDomain());
-        }
-
         if (in_array($action->id, $actions)) {
             if (!Yii::$app->user->isGuest && Yii::$app->user->identity->profile->user_type === Profile::WANT_RENT) {
                 $userType = Yii::$app->BasisFormat->helper('Status')->getItem(Profile::getUserTypeArray(), Yii::$app->user->identity->profile->user_type);

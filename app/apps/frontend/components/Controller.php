@@ -26,9 +26,21 @@ class Controller extends \yii\web\Controller
         if (!parent::beforeAction($action)) {
             return false;
         }
+        if ($this->checkActionForRedirect($action->id) && Yii::$app->request->getCurrentCitySubDomain() !== null) {
+            $this->redirect(Yii::$app->request->getCurrentUrlWithoutSubDomain());
+        }
 
         include_once(Yii::getAlias('@common/config/clickfrogru_udp_tcp.php'));
 
+        return true;
+    }
+
+    private  function checkActionForRedirect($action){
+        foreach (Yii::$app->params['actionsWithSubdomain'] as $actionRule) {
+            if (str_starts_with($action, $actionRule)) {
+                return false;
+            }
+        }
         return true;
     }
 

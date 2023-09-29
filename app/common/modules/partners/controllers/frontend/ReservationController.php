@@ -29,9 +29,7 @@ class ReservationController extends \frontend\components\Controller
         if (!parent::beforeAction($action)) {
             return false;
         }
-        if (Yii::$app->request->getCurrentCitySubDomain() !== null) {
-            $this->redirect(Yii::$app->request->getCurrentUrlWithoutSubDomain());
-        }
+
         $this->module->viewPath = '@common/modules/partners/views/frontend';
         return true;
     }
