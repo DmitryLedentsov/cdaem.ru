@@ -35,7 +35,8 @@ class Controller extends \yii\web\Controller
         return true;
     }
 
-    private  function checkActionForRedirect($action){
+    private  function checkActionForRedirect(string $action): bool
+    {
         foreach (Yii::$app->params['actionsWithSubdomain'] as $actionRule) {
             if (str_starts_with($action, $actionRule)) {
                 return false;
