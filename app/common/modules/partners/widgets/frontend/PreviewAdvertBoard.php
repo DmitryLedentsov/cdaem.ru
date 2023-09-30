@@ -71,11 +71,6 @@ class PreviewAdvertBoard extends Widget
      */
     public function run()
     {
-        $href = Yii::$app->urlManager->createUrl([
-            '/partners/default/view',
-            'id' => $this->advert->advert_id,
-            'city' => $this->advert->apartment->city->name_eng
-        ]);
 
         $totalRoomsString = Yii::t(
             'app',
@@ -180,10 +175,15 @@ class PreviewAdvertBoard extends Widget
         $alt = $this->advert->rentType->name;
         $alt .= ' ' . $title;
 
+        $href = Yii::$app->urlManager->createRawUrl([
+            '/partners/default/view',
+            'id' => $this->advert->advert_id,
+            'city' => $this->advert->apartment->city->name_eng
+        ]);
         return Html::a(Html::img($this->advert->apartment->titleImageSrc, [
             'alt' => $alt,
             'title' => $title,
             'class' => 'apartment-image',
-        ]), ['/partners/default/view', 'city' => $this->advert->apartment->city->name_eng, 'id' => $this->advert->advert_id]);
+        ]), $href);
     }
 }

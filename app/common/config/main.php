@@ -253,7 +253,9 @@ return [
             'geo/metro-msk',
             'map',
             'geo/map',
-            'geo/nearest-stations'
+            'geo/nearest-stations',
+            'partners/region',
+            'partners/default/view'
         ]
     ]
 ];
