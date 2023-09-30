@@ -39,7 +39,7 @@ class Controller extends \yii\web\Controller
     {
         foreach (Yii::$app->params['actionsWithSubdomain'] as $actionRule) {
             $array = explode("/", $actionRule);
-            if (str_starts_with($action, end($array)) && str_starts_with($this->uniqueId, prev($array))) {
+            if (str_starts_with($action, end($array)) && str_starts_with($this->uniqueId, $array[0])) {
                 return false;
             }
         }

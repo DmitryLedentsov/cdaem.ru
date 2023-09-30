@@ -70,9 +70,6 @@ class DefaultController extends \frontend\components\Controller
      */
     public function actionIndex(): Response
     {
-        if (Yii::$app->request->getCurrentCitySubDomain() !== null) {
-            return $this->redirect(Yii::$app->request->getCurrentUrlWithoutSubDomain());
-        }
 
         $cities = models\Apartment::alphCities();
 

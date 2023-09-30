@@ -252,6 +252,7 @@ return [
             'geo/select',
             'geo/metro-msk',
             'map',
+            'geo/default/index',
             'geo/map',
             'geo/nearest-stations',
             'partners/region',
