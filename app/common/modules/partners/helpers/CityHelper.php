@@ -3,6 +3,7 @@
 namespace common\modules\partners\helpers;
 
 use Yii;
+use common\modules\geo\models\City;
 use wapmorgan\yii2inflection\Inflector;
 
 class CityHelper

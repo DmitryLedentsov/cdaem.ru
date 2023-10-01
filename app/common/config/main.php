@@ -246,10 +246,14 @@ return [
             'secret' => 'b67ea1e4b91d9cc7af9a5f7be74f7c6d4803882a',
         ],
         'actionsWithSubdomain' => [
-            'partners/default/view',
-            'partners/default/others',
             'site/default/index',
-            'geo'
+            'geo/ajax',
+            'geo/get',
+            'geo/select',
+            'geo/metro-msk',
+            'map',
+            'geo/map',
+            'geo/nearest-stations'
         ]
     ]
 ];

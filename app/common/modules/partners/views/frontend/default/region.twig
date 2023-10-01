@@ -8,7 +8,8 @@
 #}
 
 {% extends "@common/modules/site/views/layouts/main.twig" %}
-{% set currentRentType = searchModel.rentTypesList[app.request.get("sect")]%}
+{% set currentRentType = searchModel.rentTypesList[app.request.get("sect") | default(1)]%}
+{% set city = city | merge(currentCity) %}
 {% block seo %}
     {% include '@common/modules/site/views/_modules/_seo.twig' with {
         'title': currentRentType ~ ' в ' ~ CityHelper.formatInPrepositionalCase(city.name) ~ '. Снять квартиру  на сутки без посредников | Сдаём.ру',
@@ -28,10 +29,10 @@
 
     <section class="intro">
         <div class="lookup-board">
-            <form action="{{ path(['/partners/pre-region']) }}" method="get" class="container-fluid">
+            <form action="{{ path(['/partners/default/pre-region']) }}" method="get" class="container-fluid">
                 {% include "@common/modules/partners/views/frontend/default/_search_form.twig" %}
                 <div class="lookup-board-buttons">
-                    <a href="{{ path({ 0: '/geo/default/index', 'city': city.name_eng}) }}" class="btn btn-special button-map">
+                    <a href="{{ path('/geo/default/index', {'city': city.name_eng}) }}" class="btn btn-special button-map">
                         НА КАРТЕ
                     </a>
                     <button type="submit" class="btn btn-warning btn-special">НАЙТИ</button>

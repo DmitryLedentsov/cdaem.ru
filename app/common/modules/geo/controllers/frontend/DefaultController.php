@@ -73,7 +73,9 @@ class DefaultController extends \frontend\components\Controller
         $params['city_id'] = $city->city_id;
         $searchModel = new AdvertSearch();
         $dataProvider = $searchModel->search($params);
+        $cityName = Yii::$app->request->getCurrentCitySubDomain();
+        $currentCity = City::findByNameEng($cityName ?: 'msk');
 
-        return $this->response($this->render('map.twig', ['city' => $city, 'searchModel' => $searchModel]));
+        return $this->response($this->render('map.twig', ['city' => $city, 'currentCity'=>$currentCity, 'searchModel' => $searchModel]));
     }
 }
