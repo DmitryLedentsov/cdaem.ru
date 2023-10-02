@@ -71,7 +71,6 @@ class PreviewAdvertBoard extends Widget
      */
     public function run()
     {
-
         $totalRoomsString = Yii::t(
             'app',
             '{n, plural, =0{нет комнат} one{# комната} =5{# комнат}  few{# комнаты} many{# комнат} other{# комнаты} }',
@@ -175,15 +174,10 @@ class PreviewAdvertBoard extends Widget
         $alt = $this->advert->rentType->name;
         $alt .= ' ' . $title;
 
-        $href = Yii::$app->urlManager->createRawUrl([
-            '/partners/default/view',
-            'id' => $this->advert->advert_id,
-            'city' => $this->advert->apartment->city->name_eng
-        ]);
         return Html::a(Html::img($this->advert->apartment->titleImageSrc, [
             'alt' => $alt,
             'title' => $title,
             'class' => 'apartment-image',
-        ]), $href);
+        ]), ['/partners/default/view', 'city' => $this->advert->apartment->city->name_eng, 'id' => $this->advert->advert_id]);
     }
 }
