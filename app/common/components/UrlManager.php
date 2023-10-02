@@ -17,10 +17,16 @@ class UrlManager extends \yii\web\UrlManager
 
         return parent::createUrl($params);
     }
-
     private function checkParamsForRedirect(array $params):bool
     {
         $action = $params[0];
+
+        //Проверка что редирект не конфликтует с заданным вручную правилом
+        foreach ($this->rules as $rule) {
+            if (strcmp($rule->route, $action)===0 && str_starts_with($rule->name, Yii::$app->params['siteSubDomain'])) {
+                return false;
+            }
+        }
         foreach (Yii::$app->params['actionsWithSubdomain'] as $actionRule) {
             if (str_starts_with($action, $actionRule)) {
                 return true;
