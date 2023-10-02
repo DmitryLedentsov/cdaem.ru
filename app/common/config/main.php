@@ -255,7 +255,7 @@ return [
             'geo/default/index',
             'geo/map',
             'geo/nearest-stations',
-            'partners/region',
+            'partners/default/region',
             'partners/default/view'
         ]
     ]
