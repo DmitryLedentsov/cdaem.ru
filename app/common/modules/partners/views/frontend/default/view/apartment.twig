@@ -143,17 +143,15 @@
 <!-- Modal Book -->
 <div class="modal modal-book fade" id="modalBook" tabindex="-1" role="dialog" aria-labelledby="modalBookLabel"
      aria-hidden="true">
-{#    <div class="modal-dialog modal-dialog-window" role="document" style="margin: 0;width: 1000px !important;">#}
-{#    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-fullscreen" role="document" style="">#}
-{#    <div class="modal-dialog modal-fullscreen" #}{#role="document"#}{# style="">#}
     <div class="modal-dialog modal-lg" role="document" style="">
-        <div class="modal-content {#modal-item#}">
+        <div class="modal-content">
             <div class="modal-header modal-top">
                 <h4 class="modal-title modal-header-title" id="modalBookLabel">Забронировать</h4>
                 <button type="button" class="close btn-close" data-dismiss="modal" aria-label="Close">
                 </button>
             </div>
             <div class="modal-body">
+                {% set isFromAraptmentPage = true %}
                 {% include('@common/modules/partners/views/frontend/reservation/reservation-form.twig') %}
 
                 {#<label class="modal-book-author-label">
@@ -172,7 +170,6 @@
                                 <option value="" selected>Наличие животных *</option>
                                 <option value="0">Без животных</option>
                                 <option value="1">С животными</option>
-
                             </select>
                         </label>
                         <label>
@@ -243,7 +240,6 @@
                             </label>
                         </div>
                         <label>
-                            #}{#\common\modules\partners\models\Reservation::getFloorArray#}{#
                             <select name="floor" class="custom-select">
                                 <option value="" selected>Этаж *</option>
                                 <option value="0">Без детей</option>
@@ -278,7 +274,7 @@
                     <textarea class="modal-textarea" placeholder="Текст"></textarea>
                 </label>#}
             </div>
-            <div class="modal-footer modal-bottom">
+            {#<div class="modal-footer modal-bottom">
                 <div class="modal-submit">
                     <label>
                         <input type="checkbox" class="submit" name="submit">
@@ -289,7 +285,7 @@
                     </p>
                 </div>
                 <button type="button" class="btn btn-warning btn-special book-button">Забронировать</button>
-            </div>
+            </div>#}
         </div>
     </div>
 </div>
