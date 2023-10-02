@@ -17,12 +17,6 @@ class UrlManager extends \yii\web\UrlManager
 
         return parent::createUrl($params);
     }
-
-    public function createRawUrl($params): string
-    {
-        return parent::createUrl($params);
-    }
-
     private function checkParamsForRedirect(array $params):bool
     {
         $action = $params[0];
