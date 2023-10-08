@@ -152,6 +152,7 @@
             </div>
             <div class="modal-body">
                 {% set isFromAraptmentPage = true %}
+                {% set advert_id = model.advert_id %}
                 {% include('@common/modules/partners/views/frontend/reservation/reservation-form.twig') %}
 
                 {#<label class="modal-book-author-label">
@@ -274,8 +275,8 @@
                     <textarea class="modal-textarea" placeholder="Текст"></textarea>
                 </label>#}
             </div>
-            {#<div class="modal-footer modal-bottom">
-                <div class="modal-submit">
+            <div class="modal-footer modal-bottom">
+                {#<div class="modal-submit">
                     <label>
                         <input type="checkbox" class="submit" name="submit">
                     </label>
@@ -283,9 +284,10 @@
                         Нажимая “готово” вы соглашаетесь <br> с правилами политики
                         <a href="">конфиденциальности</a>.
                     </p>
-                </div>
-                <button type="button" class="btn btn-warning btn-special book-button">Забронировать</button>
-            </div>#}
+                </div>#}
+                <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+                <button type="button" class="btn btn-warning btn-special book-button" id="reservation-submit">Забронировать</button>
+            </div>
         </div>
     </div>
 </div>

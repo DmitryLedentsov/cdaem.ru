@@ -133,6 +133,7 @@ class DefaultController extends \frontend\components\Controller
         $cityName = Yii::$app->request->getCurrentCitySubDomain();
         $currentCity = City::findByNameEng($cityName ?: 'msk');
 
+        // throw new \Exception("Чтобы не вернул контроллер, будет редирект");
         return $this->render('region.twig', [
             'city' => $city,
             'searchModel' => $searchModel,

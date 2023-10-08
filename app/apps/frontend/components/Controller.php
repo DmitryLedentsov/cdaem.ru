@@ -89,15 +89,16 @@ class Controller extends \yii\web\Controller
 
     /**
      * @param \Throwable $throwable
+     * @param string $message
      * @return Response
      */
-    public function criticalErrorsAjaxResponse(\Throwable  $throwable): Response
+    public function criticalErrorsAjaxResponse(\Throwable  $throwable, $message = 'Возникла критическая ошибка, пожалуйста обратитесь в техническую поддержку.'): Response
     {
         Yii::$app->response->statusCode = 500;
 
         $result = [
             'status' => 'failure',
-            'message' => 'Возникла критическая ошибка, пожалуйста обратитесь в техническую поддержку.',
+            'message' => $message,
             'data' => [],
         ];
 

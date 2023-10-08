@@ -127,10 +127,19 @@ class ReservationController extends \frontend\components\Controller
         $reservationtakewidth = AdvertReservation::find()
             ->where(['confirm' => 2])->andWhere(['user_id' => Yii::$app->user->id])
             ->all();
-        if (!empty($reservationtakewidth)) {
-            Yii::$app->session->setFlash('danger', 'У вас есть неподтвержденная бронь! Пожалуйста подтвердите свою заявку, или отмените прежде чем сделать новую ');
 
-            return $this->redirect(['/office/reservations']);
+        // dd($reservationtakewidth);
+
+        if (!empty($reservationtakewidth)) {
+            $errorMessage = 'У вас есть неподтвержденная бронь! Пожалуйста подтвердите свою заявку, или отмените прежде чем сделать новую';
+
+            if (Yii::$app->request->isAjax) {
+                return $this->criticalErrorsAjaxResponse(new \Exception(),$errorMessage);
+            }
+            else {
+                Yii::$app->session->setFlash('danger', $errorMessage);
+                return $this->redirect(['/office/reservations']);
+            }
         }
 
         $advert = $this->findAdvert($advert_id);
@@ -141,40 +150,74 @@ class ReservationController extends \frontend\components\Controller
         }
         $form->advert_id = $advert_id;
         $form->landlord_id = $advert->apartment->user_id;
+
         if ($form->load(Yii::$app->request->post())) {
-            $errors = ActiveForm::validate($form);
+            $errors = $this->validate($form);
+
             if (!$errors) {
+                if (!Yii::$app->user->isGuest && $form->landlord_id === Yii::$app->user->id) {
+                    return $this->criticalErrorsAjaxResponse(new \Exception(),"Вы не можете оставить заявку на бронь к своим апартаментам.");
+                }
+
                 $transaction = Yii::$app->db->beginTransaction();
                 try {
                     if ($form->process()) {
-
                         // Отправить уведомление
                         Yii::$app->consoleRunner->run('partners/reservation/send-mail ' . $form->id . ' reservation');
 
-                        $msg = '<h4>№ заявки: ' . $form->id . '</h4>';
-                        $msg .= '<p>Заявка на бронирование успешно отправлена владельцу. Пожалуйста ожидайте подтверждения.</p>';
-                        $msg .= '<p style="padding:20px; font-size:20px; border:1px solid darkblue;">Если вы еще не зарегистрированы, обязательно подтвердите регистрацию у себя на e-mail</p>';
+                        $msg = "<h4>№ заявки: {$form->id}</h4>
+
+                             <p>Заявка на бронирование успешно отправлена владельцу. Пожалуйста ожидайте подтверждения.</p>
+                             
+                             <p style=\"padding:20px; font-size:20px; border:1px solid darkblue;\">
+                             Если вы еще не зарегистрированы, обязательно подтвердите регистрацию у себя на e-mail</p>
+                        ";
                         Yii::$app->session->setFlash('success', $msg);
+
+                        if (Yii::$app->request->isAjax) {
+                            return $this->successAjaxResponse(strip_tags($msg));
+                        }
                     } else {
                         Yii::$app->session->setFlash('danger', 'Возникла критическая ошибка. Пожалуйста обратитесь в техническую поддержку.');
+                        if (Yii::$app->request->isAjax) {
+                            return $this->criticalErrorsAjaxResponse(new \Exception());
+                        }
+
                     }
                 } catch (\Exception $e) {
                     $transaction->rollBack();
                     Yii::$app->session->setFlash('danger', 'Возникла критическая ошибка. Пожалуйста обратитесь в техническую поддержку.');
+                    if (Yii::$app->request->isAjax) {
+                        return $this->criticalErrorsAjaxResponse(new \Exception());
+                    }
+
                 }
                 $transaction->commit();
 
-                return $this->refresh();
-            } elseif (Yii::$app->request->isAjax) {
-                Yii::$app->response->format = Response::FORMAT_JSON;
+                if (Yii::$app->request->isAjax) {
+                    return $this->successAjaxResponse("                        
+                        Заявка успешно отправлена, вы можете увидеть её
+                        в личном кабинете. Далее, при подтверждении брони Владельцем и Вами, 
+                        контакты обеих сторон станут доступными."
+                    );
+                }
+                else {
+                    return $this->refresh();
+                }
 
-                return $errors;
+            } elseif (Yii::$app->request->isAjax) {
+                return $this->validationErrorsAjaxResponse($errors);
             }
         }
 
-        return $this->render('_advert_reservation_form.twig', [
-            'reservationsForm' => $form, 'otheradvert' => $otheradvert,
-        ]);
+        if (Yii::$app->request->isAjax) {
+            return $this->criticalErrorsAjaxResponse(new \Exception());
+        }
+        else {
+            return $this->render('_advert_reservation_form.twig', [
+                'reservationsForm' => $form, 'otheradvert' => $otheradvert,
+            ]);
+        }
     }
 
     /**
