@@ -252,8 +252,11 @@ return [
             'geo/select',
             'geo/metro-msk',
             'map',
+            'geo/default/index',
             'geo/map',
-            'geo/nearest-stations'
+            'geo/nearest-stations',
+            'partners/default/region',
+            'partners/default/view'
         ]
     ]
 ];

@@ -71,12 +71,6 @@ class PreviewAdvertBoard extends Widget
      */
     public function run()
     {
-        $href = Yii::$app->urlManager->createUrl([
-            '/partners/default/view',
-            'id' => $this->advert->advert_id,
-            'city' => $this->advert->apartment->city->name_eng
-        ]);
-
         $totalRoomsString = Yii::t(
             'app',
             '{n, plural, =0{нет комнат} one{# комната} =5{# комнат}  few{# комнаты} many{# комнат} other{# комнаты} }',
