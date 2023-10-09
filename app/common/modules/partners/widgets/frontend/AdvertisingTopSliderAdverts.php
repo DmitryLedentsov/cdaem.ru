@@ -86,13 +86,13 @@ class AdvertisingTopSliderAdverts extends Widget
                     </div>
                 </section>
                 ';
-            } else {
+            } else if(!empty($advertisements)){
                 $cachedData = '
                 <section class="recommendation">
                     <div class="container-fluid">
-                        '. ($advertisements !=='' ?'<h2 class="section-title">
+                        <h2 class="section-title">
                             Рекомендуемые объявления
-                        </h2>' :'') . '
+                        </h2>
                         <div class="recommendation-list">
                             ' . $advertisements . '
                         </div>
