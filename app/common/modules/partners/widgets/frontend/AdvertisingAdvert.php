@@ -23,29 +23,30 @@ class AdvertisingAdvert extends \yii\base\Widget
     public function run(): string
     {
         $pathArray = explode('/',Yii::$app->request->pathInfo);
-        $currentAdvertId = (int)end($pathArray);
+        $currentAdvertId = $pathArray[count($pathArray)-1];
+        $currentAdvertId = isset($currentAdvertId) ? (int) $currentAdvertId : null;
         $cityId = City::findByNameEng(Yii::$app->request->getCurrentCitySubDomain() ?: 'msk')->city_id;
-        $advertisements = array_filter(Advertisement::getRelevantAds($cityId), static function (Advertisement $advertisement) use ($currentAdvertId) {
-            return $advertisement->advert_id !== $currentAdvertId;
-        });
+        $advertisements = Advertisement::getRelevantAds($cityId);
 
         if ($advertisements) {
             $result = '';
 
             foreach ($advertisements as $advertisement) {
-                $result .= '
+                if ($currentAdvertId && $advertisement->advert_id !== $currentAdvertId) {
+                    $result .= '
                 <div class="advertisement-card">
                     <div class="advertisement-price">
-                        <span>'. $advertisement->advert->priceText .'</span> / '. $advertisement->advert->rentType->short_name .'
+                        <span>' . $advertisement->advert->priceText . '</span> / ' . $advertisement->advert->rentType->short_name . '
                     </div>
                     <a class="advertisement-img" href="' . Url::toRoute(['/partners/default/view', 'id' => $advertisement->advert_id, 'city' => $advertisement->advert->apartment->city->name_eng]) . '">
                         <img src="' . $advertisement->advert->apartment->titleImageSrc . '" alt="advertisement-image">
                     </a>
                     <div class="advertisement-address">
-                        '.$advertisement->advert->apartment->city->name.', '.$advertisement->advert->apartment->address.'
+                        ' . $advertisement->advert->apartment->city->name . ', ' . $advertisement->advert->apartment->address . '
                     </div>   
                 </div>
                 ';
+                }
             }
 
             return ('
