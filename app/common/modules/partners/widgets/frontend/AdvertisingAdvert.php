@@ -2,6 +2,7 @@
 
 namespace common\modules\partners\widgets\frontend;
 
+use common\modules\geo\models\City;
 use Yii;
 use yii\helpers\Url;
 use common\modules\partners\models\frontend\Advertisement;
@@ -21,7 +22,12 @@ class AdvertisingAdvert extends \yii\base\Widget
      */
     public function run(): string
     {
-        $advertisements = Advertisement::getRelevantAds(Yii::$app->request->cityId);
+        $pathArray = explode('/',Yii::$app->request->pathInfo);
+        $currentAdvertId = (int)end($pathArray);
+        $cityId = City::findByNameEng(Yii::$app->request->getCurrentCitySubDomain() ?: 'msk')->city_id;
+        $advertisements = array_filter(Advertisement::getRelevantAds($cityId), static function (Advertisement $advertisement) use ($currentAdvertId) {
+            return $advertisement->advert_id !== $currentAdvertId;
+        });
 
         if ($advertisements) {
             $result = '';
