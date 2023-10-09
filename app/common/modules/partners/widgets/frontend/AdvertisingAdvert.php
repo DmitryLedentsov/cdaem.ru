@@ -2,9 +2,9 @@
 
 namespace common\modules\partners\widgets\frontend;
 
-use common\modules\geo\models\City;
 use Yii;
 use yii\helpers\Url;
+use common\modules\geo\models\City;
 use common\modules\partners\models\frontend\Advertisement;
 
 class AdvertisingAdvert extends \yii\base\Widget
@@ -22,7 +22,7 @@ class AdvertisingAdvert extends \yii\base\Widget
      */
     public function run(): string
     {
-        $pathArray = explode('/',Yii::$app->request->pathInfo);
+        $pathArray = explode('/', Yii::$app->request->pathInfo);
         $currentAdvertId = $pathArray[count($pathArray)-1];
         $currentAdvertId = isset($currentAdvertId) ? (int) $currentAdvertId : null;
         $cityId = City::findByNameEng(Yii::$app->request->getCurrentCitySubDomain() ?: 'msk')->city_id;

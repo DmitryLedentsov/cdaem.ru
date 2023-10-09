@@ -70,7 +70,6 @@ class DefaultController extends \frontend\components\Controller
      */
     public function actionIndex(): Response
     {
-
         $cities = models\Apartment::alphCities();
 
         $searchModel = new models\search\AdvertSearch();

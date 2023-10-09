@@ -2,8 +2,8 @@
 
 namespace common\modules\partners\models\frontend\form;
 
-use common\modules\geo\models\City;
 use Yii;
+use common\modules\geo\models\City;
 use yii\behaviors\TimestampBehavior;
 use common\modules\users\models\User;
 use common\modules\partners\models\Reservation;

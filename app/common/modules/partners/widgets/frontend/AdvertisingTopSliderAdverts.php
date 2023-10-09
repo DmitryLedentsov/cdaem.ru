@@ -2,10 +2,10 @@
 
 namespace common\modules\partners\widgets\frontend;
 
-use common\modules\geo\models\City;
 use Yii;
 use yii\base\Widget;
 use yii\helpers\Html;
+use common\modules\geo\models\City;
 use common\modules\users\models\Profile;
 use common\modules\partners\models\frontend\AdvertisementSlider;
 
@@ -86,7 +86,7 @@ class AdvertisingTopSliderAdverts extends Widget
                     </div>
                 </section>
                 ';
-            } else if(!empty($advertisements)){
+            } elseif (!empty($advertisements)) {
                 $cachedData = '
                 <section class="recommendation">
                     <div class="container-fluid">
