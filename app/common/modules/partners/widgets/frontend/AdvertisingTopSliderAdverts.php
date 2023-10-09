@@ -90,9 +90,9 @@ class AdvertisingTopSliderAdverts extends Widget
                 $cachedData = '
                 <section class="recommendation">
                     <div class="container-fluid">
-                        <h2 class="section-title">
+                        '. ($advertisements !=='' ?'<h2 class="section-title">
                             Рекомендуемые объявления
-                        </h2>
+                        </h2>' :'') . '
                         <div class="recommendation-list">
                             ' . $advertisements . '
                         </div>
