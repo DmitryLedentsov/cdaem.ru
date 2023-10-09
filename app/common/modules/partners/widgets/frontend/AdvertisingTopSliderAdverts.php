@@ -2,6 +2,7 @@
 
 namespace common\modules\partners\widgets\frontend;
 
+use common\modules\geo\models\City;
 use Yii;
 use yii\base\Widget;
 use yii\helpers\Html;
@@ -26,11 +27,11 @@ class AdvertisingTopSliderAdverts extends Widget
     public function run()
     {
         // Взять id Города
-        $city_id = Yii::$app->request->cityId;
+        $cityId = City::findByNameEng(Yii::$app->request->getCurrentCitySubDomain() ?: 'msk')->city_id;
 
         // Ключ кэша, в вариациях города
         $cacheKey = 'TopSliderWidget';
-        $cacheKey .= '_' . $city_id;
+        $cacheKey .= '_' . $cityId;
 
         // Зависимость кэша
         $cacheDependency1 = new \yii\caching\DbDependency([
@@ -55,7 +56,7 @@ class AdvertisingTopSliderAdverts extends Widget
 
         // Если нет, то сгенерируем
         if ($cachedData === false) {
-            $this->_advertisements = AdvertisementSlider::getAdvertisementList(Yii::$app->getModule('partners')->amountAdvertisements, $city_id);
+            $this->_advertisements = AdvertisementSlider::getAdvertisementList(Yii::$app->getModule('partners')->amountAdvertisements, $cityId);
 
             $advertisements = '';
             foreach ($this->_advertisements as $adv) {
