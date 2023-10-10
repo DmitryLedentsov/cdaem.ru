@@ -256,7 +256,10 @@ return [
             'geo/map',
             'geo/nearest-stations',
             'partners/default/region',
-            'partners/default/view'
+            'partners/default/view',
+            'partners/reservation/index',
+            'partners/reservation/advert-reservation',
+            'helpdesk/ajax'
         ]
     ]
 ];

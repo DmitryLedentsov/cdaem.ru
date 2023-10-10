@@ -30,6 +30,7 @@ class ReservationController extends \frontend\components\Controller
             return false;
         }
         $this->module->viewPath = '@common/modules/partners/views/frontend';
+
         return true;
     }
 
