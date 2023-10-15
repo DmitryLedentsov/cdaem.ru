@@ -47,10 +47,6 @@ class GuestController extends Controller
             $this->goBack();
         }
 
-        if (Yii::$app->request->getCurrentCitySubDomain() !== null) {
-            $this->redirect(Yii::$app->request->getCurrentUrlWithoutSubDomain());
-        }
-
         return true;
     }
 

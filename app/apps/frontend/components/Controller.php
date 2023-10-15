@@ -35,7 +35,7 @@ class Controller extends \yii\web\Controller
         return true;
     }
 
-    private  function checkActionForRedirect(string $action): bool
+    private function checkActionForRedirect(string $action): bool
     {
         foreach (Yii::$app->params['actionsWithSubdomain'] as $actionRule) {
             $array = explode("/", $actionRule);
@@ -43,6 +43,7 @@ class Controller extends \yii\web\Controller
                 return false;
             }
         }
+
         return true;
     }
 

@@ -42,10 +42,6 @@ class UserController extends Controller
 
         $this->module->viewPath = '@common/modules/users/views/frontend';
 
-        if (Yii::$app->request->getCurrentCitySubDomain() !== null) {
-            $this->redirect(Yii::$app->request->getCurrentUrlWithoutSubDomain());
-        }
-
         return true;
     }
 
