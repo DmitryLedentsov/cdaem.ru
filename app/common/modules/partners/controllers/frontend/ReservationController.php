@@ -77,16 +77,9 @@ class ReservationController extends \frontend\components\Controller
             $model->scenario = 'unauthorized';
         }
 
-        if (Yii::$app->request->isPost) {
-            // dd(Yii::$app->request->post());
-        }
-
         if ($model->load(Yii::$app->request->post())) {
-            // dd($model);
-            // $errors = ActiveForm::validate($model); // возвращает название полей в нижнем регистре, из-за чего не работает валидация
             $errors = $this->validate($model);
 
-            // dd($errors);
             if (!$errors) {
                 if ($model->process()) {
                     $msg = "
@@ -128,8 +121,6 @@ class ReservationController extends \frontend\components\Controller
         $reservationtakewidth = AdvertReservation::find()
             ->where(['confirm' => 2])->andWhere(['user_id' => Yii::$app->user->id])
             ->all();
-
-        // dd($reservationtakewidth);
 
         if (!empty($reservationtakewidth)) {
             $errorMessage = 'У вас есть неподтвержденная бронь! Пожалуйста подтвердите свою заявку, или отмените прежде чем сделать новую';
@@ -311,6 +302,7 @@ class ReservationController extends \frontend\components\Controller
         $reservationtakewidth = AdvertReservation::find()
             ->where(['confirm' => 2])->andWhere(['user_id' => Yii::$app->user->id])
             ->all();
+        // todo вернуть после отладки фомры бронирования, иначе нужн обудет удалять бронь после каждого создания
         //   if (empty($reservationtakewidth)){
         //       Yii::$app->session->setFlash('danger', 'У вас есть не подтвержденная бронь!');
         //   }

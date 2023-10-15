@@ -11,8 +11,6 @@
             $labelText = $label.find('span'),
             labelDefault = $labelText.text();
 
-        // console.log($existImageId);
-
         const imageToggle = (on, path = '', resetExistId = true) => {
             if (on) {
                 $label.addClass('file-ok');

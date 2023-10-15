@@ -101,9 +101,6 @@ class DefaultController extends \frontend\components\Controller
         $queryParams['city'] = $city->name_eng;
 
         unset($queryParams['city_name'], $queryParams['city_code']);
-
-        // dd(self::class, $queryParams);
-
         return $this->redirect(array_merge($redirect, $queryParams), 302);
     }
 

@@ -108,8 +108,6 @@ final class AdvertisingTopSlider extends \yii\base\BaseObject implements Service
         $advertisementId = isset($data['advertisementId']) ? $data['advertisementId'] : null;
         $this->_email = $this->_process->user ? $this->_process->user->email : null;
 
-        // dd($data, $advertisementId, AdvertisementSlider::findOne($advertisementId), $this->_email);
-
         if (!$this->_advertisement = AdvertisementSlider::findOne($advertisementId)) {
             return false;
         }

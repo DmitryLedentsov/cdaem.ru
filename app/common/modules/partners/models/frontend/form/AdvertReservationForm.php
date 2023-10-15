@@ -244,12 +244,7 @@ class AdvertReservationForm extends AdvertReservation
         $date_arrived = $this->arrived_date . ' ' . $this->arrived_time;
         $date_out = $this->out_date . ' ' . $this->out_time;
 
-        // dd($date_arrived, $date_out);
-        // dd(\DateTime::createFromFormat('Y-m-d H:i', $date_arrived), \DateTime::createFromFormat('Y-m-d H:i', $date_out));
-
-        // $date_arrived = \DateTime::createFromFormat('d.m.Y H:i', $date_arrived)->format('Y-m-d H:i:s');
         $date_arrived = \DateTime::createFromFormat('Y-m-d H:i', $date_arrived)->format('Y-m-d H:i:s');
-        // $date_out = \DateTime::createFromFormat('d.m.Y H:i', $date_out)->format('Y-m-d H:i:s');
         $date_out = \DateTime::createFromFormat('Y-m-d H:i', $date_out)->format('Y-m-d H:i:s');
 
         $reserved = Calendar::hasReserved($apartment_id, $date_arrived, $date_out);

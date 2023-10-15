@@ -77,7 +77,6 @@
                         });
                     });
 
-                    // console.log({result});
                     callback(result);
                 });
             },
@@ -85,7 +84,6 @@
     });
 
     addressField.on('autocomplete.select', function (evt, item) {
-        // console.log(item);
         addressField.data('current-value', item.value);
 
         // центрируем карту по адресу
@@ -119,7 +117,6 @@
                 },
                 success: function (response) {
                     let data = response.data;
-                    // console.log('success', data);
                     const metroBlock = $('.metro-block');
 
                     if (!data.length) {
@@ -138,7 +135,6 @@
                     })
                 },
                 error: function (response) {
-                    console.log('error', response.data);
                 }
             });
         }
@@ -177,7 +173,6 @@
             };
         },
         change: function (event, ui) {
-            console.log("change");
             if (ui.item === null) {
                 blockAddressField();
             }
@@ -185,7 +180,6 @@
 
         events: {
             change: function (event, ui) {
-                console.log("events.change");
                 if (ui.item === null) {
                     blockAddressField();
                 }
@@ -205,7 +199,6 @@
                         });
                     });
 
-                    // console.log({result});
                     callback(result);
                 });
             },
@@ -243,11 +236,8 @@
         $('.maps').css({display: 'flex'});
         $('#address-wrapper').css({display: 'block'});
 
-        // console.log(addressField.val());
-
         if (addressField.val()) {
             $.getJSON(searchAddressURL, {'query': addressField.val(), 'kladr': kladrField.val()}, function (response) {
-                // console.log(data);
                 let data = response.data;
                 let result = [];
                 data.forEach(item => {
@@ -258,7 +248,6 @@
                     });
                 });
 
-                // console.log({result});
                 addressField.trigger('autocomplete.select', result);
             });
         }

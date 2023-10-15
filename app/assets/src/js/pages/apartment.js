@@ -23,7 +23,19 @@ $(document).ready(function() {
     });
 
     $('.book-button').click(() => {
-        console.log('book-button click');
+        $('#form-reservation').submit();
+    });
+
+    $(document).on('submit', '#form-reservation', function (e) {
+        console.log("#form-reservation submit");
+        e.preventDefault();
+        window.ajaxRequest($(this), {
+            success: data => {
+                if (data.hasOwnProperty('status') && data.status === 'success') {
+                    $('#modalBook').modal('hide');
+                }
+            }
+        })
     });
 
     $(document).on('submit', '#complainForm', function (e) {
