@@ -26,5 +26,10 @@
                 {{ preview_advert_widget({'advert': advert}) }}
             {% endfor %}
         </div>
+        {% if dataProvider.getModels() is empty %}
+            <div class="alert alert-danger" role="alert">
+                Апартаменты не найдены.
+            </div>
+        {% endif %}
     </div>
 </section>
