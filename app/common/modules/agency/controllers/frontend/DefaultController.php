@@ -2,12 +2,12 @@
 
 namespace common\modules\agency\controllers\frontend;
 
-use common\modules\realty\models\RentType;
 use Yii;
 use yii\helpers\Url;
 use yii\web\Response;
 use yii\web\HttpException;
 use yii\widgets\ActiveForm;
+use common\modules\realty\models\RentType;
 use common\modules\agency\models as models;
 use common\modules\articles\models\Article;
 use common\modules\agency\models\SpecialAdvert;
@@ -82,6 +82,7 @@ class DefaultController extends \frontend\components\Controller
         } else {
             Yii::$app->view->registerLinkTag(['rel' => 'canonical', 'href' => URL::to('https://cdaem.ru')]);
         }
+
         return $this->render('index.twig', [
             'rentType'=>$metaData,
             'agencySearch' => $agencySearch,
