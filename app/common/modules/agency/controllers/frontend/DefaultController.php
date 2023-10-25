@@ -2,7 +2,9 @@
 
 namespace common\modules\agency\controllers\frontend;
 
+use common\modules\realty\models\RentType;
 use Yii;
+use yii\helpers\Url;
 use yii\web\Response;
 use yii\web\HttpException;
 use yii\widgets\ActiveForm;
@@ -64,6 +66,8 @@ class DefaultController extends \frontend\components\Controller
     {
         $specialAdverts = SpecialAdvert::findActive();
 
+        $rentType = Yii::$app->request->get('rentType', '/');
+        $metaData = RentType::findRentTypeBySlug($rentType);
         $agencySearch = new AgencyAdvertSearch();
         $agencyDataProvider = $agencySearch->allSearch(Yii::$app->request->get());
 
@@ -73,7 +77,13 @@ class DefaultController extends \frontend\components\Controller
             ->asArray()
             ->all();
 
+        if ($metaData['slug'] !== '/') {
+            Yii::$app->view->registerLinkTag(['rel' => 'canonical', 'href' => URL::to('https://cdaem.ru/' . $metaData['slug'])]);
+        } else {
+            Yii::$app->view->registerLinkTag(['rel' => 'canonical', 'href' => URL::to('https://cdaem.ru')]);
+        }
         return $this->render('index.twig', [
+            'rentType'=>$metaData,
             'agencySearch' => $agencySearch,
             'specialAdverts' => $specialAdverts,
             'agencyDataProvider' => $agencyDataProvider,

@@ -1,0 +1,76 @@
+<form class="container-fluid">
+    <div class="lookup-agency-form">
+        <div class="lookup-agency-filter lookup-agency-filter-city">
+            <span class="lookup-agency-filter-text">Город</span>
+            <label>
+                <input class="form-control" id="search-form-autocomplete" type="text" autocomplete="off" placeholder="Москва">
+            </label>
+        </div>
+        <div class="lookup-agency-filter lookup-agency-filter-type">
+            <span class="lookup-agency-filter-text">Выберите тип аренды</span>
+            <label>
+                <select class="custom-select">
+                    {% for key, type in agencySearch.rentTypesList %}
+                        <option value="{{ key }}" {{ key == rentType['rent_type_id']? 'selected="selected"' : '' }}>{{type}}</option>
+                    {% endfor %}
+                </select>
+            </label>
+        </div>
+        <div class="lookup-agency-filter lookup-agency-filter-rooms">
+            <span class="lookup-agency-filter-text">Количество комнат</span>
+            <label>
+                <select class="custom-select">
+                    <option selected>Кол-во комнат</option>
+                    <option>1 комната</option>
+                    <option>2 комнаты</option>
+                    <option>3 комнаты</option>
+                    <option>4 комнаты</option>
+                    <option>5 комнат</option>
+                    <option>6+ комнат</option>
+                </select>
+            </label>
+        </div>
+        <div class="lookup-agency-filter lookup-agency-filter-sort">
+            <span class="lookup-agency-filter-text">Сортировать объявления</span>
+            <label>
+                <select class="custom-select">
+                    <option selected>Выбрать округ</option>
+                    <option>Округ 1</option>
+                    <option>Округ 2</option>
+                    <option>Округ 3</option>
+                    <option>Округ 4</option>
+                    <option>Округ 5</option>
+                    <option>Округ 6</option>
+                </select>
+            </label>
+        </div>
+        <div class="lookup-agency-filter lookup-agency-filter-price">
+            <span class="lookup-agency-filter-text">Цена</span>
+            <div class="lookup-agency-filter-price-container">
+                <label>
+                    <input class="form-control lookup-agency-price lookup-agency-price-min" name="price-min" type="number" value="Цена от" placeholder="Цена от">
+                </label>
+                <label>
+                    <input class="form-control lookup-agency-price lookup-agency-price-max" name="price-max" type="number" value="Цена до" placeholder="Цена до">
+                </label>
+            </div>
+        </div>
+        <div class="lookup-agency-filter lookup-agency-filter-features">
+            <span class="lookup-agency-filter-text">Особенности</span>
+            <label>
+                <select class="custom-select">
+                    <option selected>Только с онлайн владельцами</option>
+                    <option>Особенности 1</option>
+                    <option>Особенности 2</option>
+                    <option>Особенности 3</option>
+                    <option>Особенности 4</option>
+                    <option>Особенности 5</option>
+                    <option>Особенности 6</option>
+                </select>
+            </label>
+        </div>
+    </div>
+    <div class="lookup-agency-buttons">
+        <button type="submit" class="btn btn-warning btn-special btn-search">Найти</button>
+    </div>
+</form>

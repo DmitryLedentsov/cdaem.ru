@@ -27,7 +27,7 @@ class BootstrapFrontend implements \yii\base\BootstrapInterface
                     'pattern' => '/<rentType:\w+>/komnat/<rooms:\w+>/okrug/<district:\w+>',
                     'route' => '/site/default/index',
                 ],
-                '<rentType:\w+>' => '/site/default/index',
+                '<rentType:\w+>' => '/agency/default/index',
                 //'images/thumbs/<path:.*>' => '/agency/default/thumbs',
             ]
         );
