@@ -8,13 +8,13 @@
 
 {% block seo %}
     {% include '@common/modules/site/views/_modules/_seo.twig' with {
-        'title': 'Снять квартиру на сутки 9037991799 | Сдаём.ру',
+        'title': rentType['name'] ~ ' 9037991799' ~' в ' ~ 'Москвe | Сдаём.ру',
         'description':  '',
         'keywords': '',
     } %}
 {% endblock %}
 
-{% block title %} Снять квартиру на сутки 9037991799 | Сдаём.ру  {% endblock %}
+{% block title %} {{rentType['name'] ~ ' 9037991799 ' ~ '| Сдаём.ру'}}  {% endblock %}
 
 {% block bodyClass %}l-base p-agency{% endblock %}
 
@@ -27,85 +27,7 @@
 
     <section class="intro">
         <div class="lookup-agency">
-            <div class="container-fluid">
-                <div class="lookup-agency-form">
-                    <div class="lookup-agency-filter lookup-agency-filter-city">
-                        <span class="lookup-agency-filter-text">Город</span>
-                        <label>
-                            <input class="form-control" id="search-form-autocomplete" type="text" autocomplete="off" placeholder="Москва">
-                        </label>
-                    </div>
-                    <div class="lookup-agency-filter lookup-agency-filter-type">
-                        <span class="lookup-agency-filter-text">Выберите тип аренды</span>
-                        <label>
-                            <select class="custom-select">
-                                <option selected>Квартира на сутки</option>
-                                <option>Квартира на час</option>
-                                <option>Квартира на ночь</option>
-                                <option>Квартира на месяц</option>
-                                <option>Комната на сутки</option>
-                                <option>Кой-ко место</option>
-                                <option>Загородный дом</option>
-                                <option>Квартира на Новый Год</option>
-                                <option>Квартира от cdaem.ru</option>
-                            </select>
-                        </label>
-                    </div>
-                    <div class="lookup-agency-filter lookup-agency-filter-rooms">
-                        <span class="lookup-agency-filter-text">Количество комнат</span>
-                        <label>
-                            <select class="custom-select">
-                                <option selected>Кол-во комнат</option>
-                                <option>1 комната</option>
-                                <option>2 комнаты</option>
-                                <option>3 комнаты</option>
-                                <option>4 комнаты</option>
-                                <option>5 комнат</option>
-                                <option>6+ комнат</option>
-                            </select>
-                        </label>
-                    </div>
-                    <div class="lookup-agency-filter lookup-agency-filter-sort">
-                        <span class="lookup-agency-filter-text">Сортировать объявления</span>
-                        <label>
-                            <select class="custom-select">
-                                <option selected>Выбрать округ</option>
-                                <option>Округ 1</option>
-                                <option>Округ 2</option>
-                                <option>Округ 3</option>
-                                <option>Округ 4</option>
-                                <option>Округ 5</option>
-                                <option>Округ 6</option>
-                            </select>
-                        </label>
-                    </div>
-                    <div class="lookup-agency-filter lookup-agency-filter-price">
-                        <span class="lookup-agency-filter-text">Цена</span>
-                        <div class="lookup-agency-filter-price-container">
-                            <label>
-                                <input class="form-control lookup-agency-price lookup-agency-price-min" name="price-min" type="number" value="Цена от" placeholder="Цена от">
-                            </label>
-                            <label>
-                                <input class="form-control lookup-agency-price lookup-agency-price-max" name="price-max" type="number" value="Цена до" placeholder="Цена до">
-                            </label>
-                        </div>
-                    </div>
-                    <div class="lookup-agency-filter lookup-agency-filter-features">
-                        <span class="lookup-agency-filter-text">Особенности</span>
-                        <label>
-                            <select class="custom-select">
-                                <option selected>Только с онлайн владельцами</option>
-                                <option>Особенности 1</option>
-                                <option>Особенности 2</option>
-                                <option>Особенности 3</option>
-                                <option>Особенности 4</option>
-                                <option>Особенности 5</option>
-                                <option>Особенности 6</option>
-                            </select>
-                        </label>
-                    </div>
-                </div>
-            </div>
+            {% include '@common/modules/agency/views/frontend/default/_search.twig'%}
         </div>
     </section>
 
@@ -113,6 +35,7 @@
         'searchModel' : agencySearch,
         'dataProvider' : agencyDataProvider,
         'specialAdverts': specialAdverts,
+        'rentType': rentType,
         'onlyAgency' : true
     }) | raw }}
 

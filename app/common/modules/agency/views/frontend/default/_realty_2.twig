@@ -20,11 +20,16 @@
 
 <section class="apartment-list">
     <div class="container-fluid">
-        <h2 class="section-title">Снять квартиру на сутки в Москве</h2>
+        <h2 class="section-title">{{rentType['slug']=='/'?"Снять квартиру " : rentType['name']}} в Москвe</h2>
         <div class="apartment-card-container">
             {% for advert in dataProvider.getModels() %}
                 {{ preview_advert_widget({'advert': advert}) }}
             {% endfor %}
         </div>
+        {% if dataProvider.getModels() is empty %}
+            <div class="alert alert-danger" role="alert">
+                Апартаменты не найдены.
+            </div>
+        {% endif %}
     </div>
 </section>
