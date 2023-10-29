@@ -52,7 +52,8 @@ class DefaultController extends \frontend\components\Controller
      */
     public function actionIndex(?string $city = null): Response
     {
-        $metaData = RentType::findRentTypeBySlug(Yii::$app->request->get('rentType', '/'));
+        $rentType = Yii::$app->request->get('rentType', '/');
+        $metaData = RentType::findRentTypeBySlug($rentType);
 
         if (empty($metaData)) {
             throw new NotFoundHttpException();
