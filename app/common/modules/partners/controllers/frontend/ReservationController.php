@@ -126,7 +126,7 @@ class ReservationController extends \frontend\components\Controller
             $errorMessage = 'У вас есть неподтвержденная бронь! Пожалуйста подтвердите свою заявку, или отмените прежде чем сделать новую';
 
             if (Yii::$app->request->isAjax) {
-                return $this->criticalErrorsAjaxResponse(new \Exception(),$errorMessage);
+                return $this->validationCriticalErrorAjaxResponse($errorMessage);
             }
             else {
                 Yii::$app->session->setFlash('danger', $errorMessage);
@@ -148,7 +148,7 @@ class ReservationController extends \frontend\components\Controller
 
             if (!$errors) {
                 if (!Yii::$app->user->isGuest && $form->landlord_id === Yii::$app->user->id) {
-                    return $this->criticalErrorsAjaxResponse(new \Exception(),"Вы не можете оставить заявку на бронь к своим апартаментам.");
+                    return $this->validationCriticalErrorAjaxResponse("Вы не можете оставить заявку на бронь к своим апартаментам.");
                 }
 
                 $transaction = Yii::$app->db->beginTransaction();

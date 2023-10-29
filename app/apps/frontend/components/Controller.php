@@ -90,17 +90,25 @@ class Controller extends \yii\web\Controller
     }
 
     /**
-     * @param \Throwable $throwable
      * @param string $message
      * @return Response
      */
-    public function criticalErrorsAjaxResponse(\Throwable  $throwable, $message = 'Возникла критическая ошибка, пожалуйста обратитесь в техническую поддержку.'): Response
+    public function validationCriticalErrorAjaxResponse(string $message): Response
+    {
+        return $this->validationErrorsAjaxResponse(["form-global-error" => $message]);
+    }
+
+    /**
+     * @param \Throwable $throwable
+     * @return Response
+     */
+    public function criticalErrorsAjaxResponse(\Throwable  $throwable): Response
     {
         Yii::$app->response->statusCode = 500;
 
         $result = [
             'status' => 'failure',
-            'message' => $message,
+            'message' => 'Возникла критическая ошибка, пожалуйста обратитесь в техническую поддержку.',
             'data' => [],
         ];
 

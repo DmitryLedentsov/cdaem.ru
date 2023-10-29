@@ -39,6 +39,14 @@ $(function () {
             const getNameByKey = (key) => `${key.split('-')[0]}[${key.split('-')[1]}]`;
 
             let key = Object.keys(response.responseJSON)[0];
+
+            // Глобальная ошибка формы, без конкретного поля
+            if (key === "form-global-error") {
+                const message = response.responseJSON[key];
+                window.openWindow(translations.error_title, message);
+                return;
+            }
+
             let fieldName = getNameByKey(key);
             let $element = getInputByName(fieldName);
 
