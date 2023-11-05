@@ -9,6 +9,7 @@ use yii\widgets\ActiveForm;
 use common\modules\pages\models\Page;
 use common\modules\users\models\Profile;
 use common\modules\partners\models\frontend as models;
+use common\modules\merchant\models\backend\PaymentSearch;
 use common\modules\users\models\frontend\UsersListSearch;
 
 /**
@@ -93,9 +94,12 @@ class DefaultController extends \frontend\components\Controller
     {
         $searchModel = new models\search\ServiceSearch();
         $dataProvider = $searchModel->search();
+        $paymentsSearchModel = new PaymentSearch();
+        $payments = $paymentsSearchModel->search(["user_id"=>Yii::$app->user->id]);
 
         return $this->render('orders.twig', [
             'dataProvider' => $dataProvider,
+            'payments'=>$payments
         ]);
     }
 
