@@ -132,7 +132,7 @@
                                         {% endif %}
                                     </div>
                                     <div class="purchases-activity-date">
-                                        Активно с {{ service.date_start }}
+                                        Активно с {{ DateTimeHelper.toFullDateTime(service.date_start) }}
                                     </div>
                                 </div>
                             </td>
