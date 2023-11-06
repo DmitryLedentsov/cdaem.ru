@@ -27,13 +27,17 @@ $(document).ready(function() {
     });
 
     $(document).on('submit', '#form-reservation', function (e) {
-        console.log("#form-reservation submit");
         e.preventDefault();
         window.ajaxRequest($(this), {
             success: data => {
                 if (data.hasOwnProperty('status') && data.status === 'success') {
                     $('#modalBook').modal('hide');
                 }
+            },
+            commonError: message => {
+                $('#form-reservation > .section:last-child').after(
+                    $('<div>', {class: 'alert alert-danger', role: 'alert'}).append(message)
+                );
             }
         })
     });

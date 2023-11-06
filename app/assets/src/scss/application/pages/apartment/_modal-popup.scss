@@ -418,6 +418,10 @@
 
         .section {
             .search-form-filter-calendar {
+                .invalid-feedback {
+                    margin-left: -12px;
+                    margin-top: 7px;
+                }
                 .daterangepicker-text {
                     margin-top: 1rem;
                     margin-right: 2rem;

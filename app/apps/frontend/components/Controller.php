@@ -93,9 +93,9 @@ class Controller extends \yii\web\Controller
      * @param string $message
      * @return Response
      */
-    public function validationCriticalErrorAjaxResponse(string $message): Response
+    public function validationTotalErrorAjaxResponse(string $message): Response
     {
-        return $this->validationErrorsAjaxResponse(["form-global-error" => $message]);
+        return $this->validationErrorsAjaxResponse(["" => $message]);
     }
 
     /**
