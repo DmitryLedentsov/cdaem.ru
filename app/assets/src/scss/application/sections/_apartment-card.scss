@@ -38,23 +38,15 @@
 
     &-item-for-service {
         background: #FFFFFF;
-        //background: #FF0000;
-        //border: 0.065rem solid #E1E1E1;
         border: 0.13rem solid #E1E1E1;
-        //border-top-right-radius: 0.3rem;
-        //border-top-left-radius: 0.3rem;
         border-radius: 0.3rem;
-        //border-bottom: none;
         padding: 0.8rem;
-        //margin: 4px;
         margin: 4px 4px 0 4px;
-        //min-height: 393px;
         min-height: 257px;
     }
 
     &-image-block {
         position: relative;
-        //margin-bottom: 1rem;
     }
 
     &-price {
@@ -148,9 +140,7 @@
 
     &-location {
         font-weight: 600;
-        //font-size: 1.1rem;
         color: #000000;
-        //margin-bottom: 0.6rem;
     }
 
     &-position {

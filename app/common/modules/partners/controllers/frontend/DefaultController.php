@@ -101,9 +101,6 @@ class DefaultController extends \frontend\components\Controller
         $queryParams['city'] = $city->name_eng;
 
         unset($queryParams['city_name'], $queryParams['city_code']);
-
-        // dd(self::class, $queryParams);
-
         return $this->redirect(array_merge($redirect, $queryParams), 302);
     }
 
@@ -129,6 +126,7 @@ class DefaultController extends \frontend\components\Controller
         $cityName = Yii::$app->request->getCurrentCitySubDomain();
         $currentCity = City::findByNameEng($cityName ?: 'msk');
 
+        // throw new \Exception("Чтобы не вернул контроллер, будет редирект");
         return $this->render('region.twig', [
             'city' => $city,
             'searchModel' => $searchModel,

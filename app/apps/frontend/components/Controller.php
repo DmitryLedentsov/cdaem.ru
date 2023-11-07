@@ -90,6 +90,15 @@ class Controller extends \yii\web\Controller
     }
 
     /**
+     * @param string $message
+     * @return Response
+     */
+    public function validationTotalErrorAjaxResponse(string $message): Response
+    {
+        return $this->validationErrorsAjaxResponse(["" => $message]);
+    }
+
+    /**
      * @param \Throwable $throwable
      * @return Response
      */

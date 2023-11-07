@@ -1,4 +1,9 @@
+{% if not isFromAraptmentPage%}
 {{ html.beginForm(['/reservation'], 'post', {'id': 'form-reservation'}) |raw }}
+{% else %}
+{{ html.beginForm(['/partners/reservation/advert-reservation?advert_id=' ~ advert_id], 'post', {'id': 'form-reservation'}) |raw }}
+{% endif %}
+
 {% if not isFromAraptmentPage%}
 <div class="section">
     <div class="section-head section-head-between">
@@ -118,6 +123,7 @@
     </div>
 </div>
 
+{% if not isFromAraptmentPage%}
 <div class="section">
     <div class="section-head section-head-between">
         <h2 class="section-header">Ваши предпочтения</h2>
@@ -187,7 +193,7 @@
         </div>
     </div>
 </div>
-
+{% endif %}
 {% if not app.user.id %}
     <div class="section">
         <div class="section-head section-head-between">
@@ -196,16 +202,22 @@
         <div class="step">
             <div class="step-line">
                 <div class="step-column-33">
-                    <input type="text" name="ReservationForm[email]" class="step-input form-control" placeholder="Почта *">
-                    <div class="invalid-feedback" style="opacity:1"></div>
+                    <div class="form-group">
+                        <input type="text" name="ReservationForm[email]" class="step-input form-control" placeholder="Почта *">
+                        <div class="invalid-feedback" style="opacity:1"></div>
+                    </div>
                 </div>
                 <div class="step-column-33">
-                    <input type="tel" name="ReservationForm[phone]" class="step-input form-control" placeholder="Телефон *">
-                    <div class="invalid-feedback" style="opacity:1"></div>
+                    <div class="form-group">
+                        <input type="tel" name="ReservationForm[phone]" class="step-input form-control" placeholder="Телефон *">
+                        <div class="invalid-feedback" style="opacity:1"></div>
+                    </div>
                 </div>
                 <div class="step-column-33">
-                    <input type="password" name="ReservationForm[password]" class="step-input form-control" placeholder="Пароль *">
-                    <div class="invalid-feedback" style="opacity:1"></div>
+                    <div class="form-group">
+                        <input type="password" name="ReservationForm[password]" class="step-input form-control" placeholder="Пароль *">
+                        <div class="invalid-feedback" style="opacity:1"></div>
+                    </div>
                 </div>
             </div>
             <div class="step-line">
@@ -238,7 +250,10 @@
         </div>
     </div>
 </div>
+
+{% if not isFromAraptmentPage%}
 <div class="rent-buttons">
     <button type="submit" class="btn btn-warning btn-special btn-fast-submite">Отправить</button>
 </div>
+{% endif %}
 {{ html.endForm() |raw }}

@@ -129,13 +129,7 @@ class OfficeController extends \frontend\components\Controller
         $facility = new models\form\FacilityForm(['scenario' => 'user-create']);
 
         if (Yii::$app->request->isAjax && Yii::$app->request->isPost) {
-            // dd(self::class, $_POST, $_FILES);
-            // dd(Yii::$app->request->post());
-            // dd(Yii::$app->request->post(), $apartment, $result, $apartment->city_id);
-
             $apartment->load(Yii::$app->request->post());
-
-            // dd(Yii::$app->request->post(), $apartment);
 
             $advert->load(Yii::$app->request->post());
             $image->load(Yii::$app->request->post());
@@ -204,9 +198,6 @@ class OfficeController extends \frontend\components\Controller
             throw new HttpException(404, 'Вы ищете страницу, которой не существует');
         }
 
-        // dd($apartment);
-        // dd($apartment->images);
-
         $apartment->scenario = 'user-update';
         $rentTypes = models\form\AdvertForm::getPreparedRentTypesAdvertsList(RentType::rentTypeslist(), $apartment->adverts);
         $advert = new models\form\AdvertForm(['scenario' => 'user-update']);
@@ -221,8 +212,6 @@ class OfficeController extends \frontend\components\Controller
             $advert->load(Yii::$app->request->post());
             $image->load(Yii::$app->request->post());
             $facilities = ArrayHelper::getValue(Yii::$app->request->post(), 'FacilityForm');
-
-            // dd($facilities);
 
             if ($facilities) {
                 $facility->load(['FacilityForm' => [

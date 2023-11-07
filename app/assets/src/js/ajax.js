@@ -39,6 +39,12 @@ $(function () {
             const getNameByKey = (key) => `${key.split('-')[0]}[${key.split('-')[1]}]`;
 
             let key = Object.keys(response.responseJSON)[0];
+
+            // Глобальная ошибка формы, без конкретного поля
+            if (key === "") {
+                return;
+            }
+
             let fieldName = getNameByKey(key);
             let $element = getInputByName(fieldName);
 
@@ -166,10 +172,11 @@ $(function () {
             error: function (response) {
                 window.ajaxProcessingError(response, $form);
 
-                let commonErrors = getCommonErrors(response);
+                const commonError = getCommonErrors(response);
 
-                if (commonErrors) {
-                    window.openWindow(translations.error_title, commonErrors[0]);
+                if (commonError) {
+                    params.commonError && params.commonError(commonError);
+                    // window.openWindow(translations.error_title, commonErrors[0]);
                     // window.openWindow(translations.error_title, commonErrors[Object.keys(commonErrors)[0]]);
                 }
             }
@@ -192,9 +199,12 @@ $(function () {
 
     function getCommonErrors(response) {
         try {
-            // console.log(response.responseJSON);
-            return response.responseJSON.errors['']; // при валидации тут пусто, поэтому не выводим модальное окно
-            // return response.responseJSON;
+            if (typeof response.responseJSON !== "object" || response.responseJSON === null) return;
+            const key = Object.keys(response.responseJSON)[0];
+            // Глобальная ошибка формы, без конкретного поля
+            if (key === "") {
+                return Object.values(response.responseJSON)[0];
+            }
         } catch (e) {
             return null;
         }

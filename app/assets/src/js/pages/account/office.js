@@ -26,7 +26,6 @@
             city = data.hasOwnProperty('city') ? data.city : '';
             cityId = data.hasOwnProperty('cityId') ? data.cityId : '';
 
-            // console.log(city, cityId);
             localStorage.setItem(currentUserKey, JSON.stringify({ 'city': {
                 'id': cityId,
                 'name': city
@@ -83,7 +82,6 @@
             };
         },
         change: function (event, ui) {
-            // console.log("change");
         },
 
         events: {
@@ -91,7 +89,6 @@
             },
             search: function (qry, callback) {
                 $.getJSON(searchCityURL, {'name': qry}, function (response) {
-                    // console.log(data);
                     let data = response.data;
                     let result = [];
                     data.forEach(item => {
@@ -101,7 +98,6 @@
                         });
                     });
 
-                    console.log({result});
                     callback(result);
                 });
             },
@@ -109,7 +105,6 @@
     });
 
     cityField.on('autocomplete.select', function (evt, item) {
-        // console.log(item);
         if (item.text) {
             $('#locationSelection').text(item.text);
             localStorage.setItem(currentUserKey, JSON.stringify({ 'city': {
@@ -239,8 +234,6 @@
 
     // Показываем окно для приобретения сервиса
     $(document).on('click', '.adv-card-change-item, .service-item-link', function (e) {
-        console.log('.adv-card-change-item, .service-item-link');
-        console.log(e);
         let $serviceButton = $(e.target);
         let serviceName = $serviceButton.data('serviceName');
         let serviceCaption = $serviceButton.text();
@@ -250,9 +243,6 @@
             return;
         }
 
-        // console.log(serviceName);
-        // let winBody = $('<div>').html(serviceName);
-
         let url = `/partners/ajax/realty-objects-by-service?service=${serviceName}`;
         if (apartmentId) {
             url += `&apartment_id=${apartmentId}`
@@ -261,19 +251,7 @@
             url += `&advertisement_id=${advertisementId}`
         }
 
-        // console.log(url);
-
         $.get(url, function (response) {
-            // console.log(response);
-
-            /*
-            Старый способ вывести модал
-            $('#modal-realty-objects-by-service').remove();
-            $('body').append(response);
-            $('#modal-realty-objects-by-service').modal('show');
-             */
-
-            // console.log(winBody);
             serviceData.service = serviceName;
 
             let winBody = $('#service-modal-body');
@@ -322,7 +300,6 @@
      * Информация о покупке услуги
      */
     $(document).on("click", '#selected-advert-info', function (event) {
-        console.log("calc-price");
         event.preventDefault();
         var $this = $(this);
         var $targetModal = $('#modal-realty-objects-by-service');
@@ -333,19 +310,12 @@
 
         serviceData.request = 'calc';
 
-        console.log('serviceData', serviceData);
-
         // if (!$preloadFlag) {
         if (1) {
             // $preloadFlag = true;
-            console.log('post-запрос данных с расчётом цены');
-
-            console.log('токен перед отправкой', $("head > meta[name='csrf-token']").prop('content'));
             serviceData._csrf = $("head > meta[name='csrf-token']").prop('content');
-
             $.post("/partners/ajax/buy-service", serviceData, function (response) {
                 $targetModal.find('.load').html(response);
-                // $targetModal.find('.modal-title').html('Калькулятор');
 
                 if (!$targetModal.find('.alert-danger').length) {
                     $targetModal.find('.load').append('<div class="text-center"><span class="btn btn-primary btn-special" id="selected-advert-ago">Назад</span> &nbsp; <span class="btn btn-orange btn-special" id="selected-advert-pay">Оплатить</span></div>');
@@ -377,14 +347,11 @@
      * Оплата услуги
      */
     $(document).on("click", '#selected-advert-pay', function (event) {
-        console.log('Нажали кнопку «Оплатить» на первой форме');
         event.preventDefault();
         var $this = $(this);
         var $targetModal = $('#modal-realty-objects-by-service');
 
         serviceData.request = 'payment';
-
-        // console.log($serviceData);
 
         // if (!$preloadFlag) {
         if (1) {
@@ -427,13 +394,11 @@
      * @returns {boolean}
      */
     function openWindowByService($this) {
-        console.log('openWindowByService', $preloadFlag);
         if (!$preloadFlag) {
             $preloadFlag = true;
             $('#services .service').not($this).removeClass('active');
             $this.toggleClass('active');
             serviceData.service = $this.data('type');
-            console.log(serviceData);
             $.get("/partners/ajax/realty-objects-by-service", {service: serviceData.service}, function (response) {
                 $('#modal-realty-objects-by-service').remove();
                 $('body').append(response);

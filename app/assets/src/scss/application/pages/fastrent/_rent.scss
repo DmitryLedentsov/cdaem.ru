@@ -84,7 +84,6 @@
         justify-content: space-around;
 
         &:last-child {
-            //margin-bottom: 0;
         }
     }
 
@@ -203,7 +202,6 @@
 
     .maps {
         position: relative;
-        //display: flex;
         display: none;
         flex-wrap: nowrap;
         justify-content: space-between;
@@ -234,11 +232,6 @@
         }
 
         @include tablet() {
-            /*position: absolute;
-            left: 0;
-            top: -15px;
-            bottom: 0;
-            width: 241px;*/
         }
     }
 
@@ -314,7 +307,6 @@
 
     .step-photo {
         margin-top: 26px;
-        // margin-right: -27px;
         display: flex;
         flex-wrap: wrap;
         position: relative;
@@ -367,7 +359,6 @@
 
             @include tablet-land() {
                 margin-right: 0.7%;
-                //width: 176px;
                 width: 213px;
 
                 &:nth-child(2n),
@@ -488,7 +479,6 @@
             border: 1px solid #D7D7D7;
             max-width: 49.5%;
             min-width: auto;
-            //margin: 0;
             margin: 0 -0.8% 0 0;
         }
 
@@ -500,7 +490,6 @@
     .price-range {
         display: flex;
         &-input {
-            //width: 120px;
         }
 
         // исключаем препоследний, т.к. последним элементом будет валидация

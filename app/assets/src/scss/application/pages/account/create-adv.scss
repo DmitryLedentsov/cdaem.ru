@@ -158,7 +158,6 @@
 
     .maps {
         position: relative;
-        //display: flex;
         display: none;
         flex-wrap: nowrap;
         justify-content: space-between;
@@ -189,11 +188,6 @@
         }
 
         @include tablet() {
-            /*position: absolute;
-            left: 0;
-            top: -15px;
-            bottom: 0;
-            width: 241px;*/
         }
     }
 
@@ -269,7 +263,6 @@
 
     .step-photo {
         margin-top: 26px;
-        // margin-right: -27px;
         display: flex;
         flex-wrap: wrap;
         position: relative;
@@ -322,7 +315,6 @@
 
             @include tablet-land() {
                 margin-right: 0.7%;
-                //width: 176px;
                 width: 213px;
 
                 &:nth-child(2n),

@@ -66,10 +66,10 @@ class ReservationController extends \frontend\components\Controller
 
     /**
      * Резервация апартаментов "Быстро снять"
-     * @return array|string|Response
+     * @return Response
      * @throws HttpException
      */
-    public function actionIndex()
+    public function actionIndex() : Response
     {
         $model = new models\form\ReservationForm();
 
@@ -77,16 +77,9 @@ class ReservationController extends \frontend\components\Controller
             $model->scenario = 'unauthorized';
         }
 
-        if (Yii::$app->request->isPost) {
-            // dd(Yii::$app->request->post());
-        }
-
         if ($model->load(Yii::$app->request->post())) {
-            // dd($model);
-            // $errors = ActiveForm::validate($model); // возвращает название полей в нижнем регистре, из-за чего не работает валидация
             $errors = $this->validate($model);
 
-            // dd($errors);
             if (!$errors) {
                 if ($model->process()) {
                     $msg = "
@@ -100,90 +93,130 @@ class ReservationController extends \frontend\components\Controller
                 }
 
                 return $this->refresh();
-            } elseif (Yii::$app->request->isAjax) {
-                // Yii::$app->response->format = Response::FORMAT_JSON;
-                // return $errors;
+            }
+
+            if (Yii::$app->request->isAjax) {
                 return $this->validationErrorsAjaxResponse($errors);
             }
         }
 
-        return $this->render('reservation.twig', [
+        return $this->response($this->render('reservation.twig', [
             'reservationsForm' => $model,
             'rentTypes' => RentType::rentTypeslist(),
             'rooms' => Apartment::getRoomsArray(true),
             'floor' => Apartment::getFloorArray(),
             'sleepingPlaces' => Apartment::getSleepingPlacesArray(true),
             'metroWalkList' => Apartment::getMetroWalkArray(),
-        ]);
+        ]));
     }
 
     /**
      * Создание заявки на бронь объявления
      * @param $advert_id
-     * @return array|string|Response
+     * @return Response
      * @throws HttpException
+     * @throws \yii\db\Exception
      */
-    public function actionAdvertReservation($advert_id)
+    public function actionAdvertReservation($advert_id) : Response
     {
-        $reservationtakewidth = AdvertReservation::find()
+        $userUnconfirmedReservation = AdvertReservation::find()
             ->where(['confirm' => 2])->andWhere(['user_id' => Yii::$app->user->id])
             ->all();
-        if (!empty($reservationtakewidth)) {
-            Yii::$app->session->setFlash('danger', 'У вас есть неподтвержденная бронь! Пожалуйста подтвердите свою заявку, или отмените прежде чем сделать новую ');
 
+        if (!empty($userUnconfirmedReservation)) {
+            $errorMessage = 'У вас есть неподтвержденная бронь! Пожалуйста подтвердите свою заявку, или отмените прежде чем сделать новую';
+
+            if (Yii::$app->request->isAjax) {
+                return $this->validationTotalErrorAjaxResponse($errorMessage);
+            }
+
+            Yii::$app->session->setFlash('danger', $errorMessage);
             return $this->redirect(['/office/reservations']);
         }
 
         $advert = $this->findAdvert($advert_id);
-        $otheradvert = $this->findOtherAdvert($advert->apartment->user_id);
+        $otherAdvert = $this->findOtherAdvert($advert->apartment->user_id);
         $form = new models\form\AdvertReservationForm();
         if (Yii::$app->user->isGuest) {
             $form->scenario = 'unauthorized';
         }
         $form->advert_id = $advert_id;
         $form->landlord_id = $advert->apartment->user_id;
+
         if ($form->load(Yii::$app->request->post())) {
-            $errors = ActiveForm::validate($form);
+            $errors = $this->validate($form);
+
+            if (!Yii::$app->user->isGuest && $form->landlord_id === Yii::$app->user->id) {
+                return $this->validationTotalErrorAjaxResponse("Вы не можете оставить заявку на бронь к своим апартаментам.");
+            }
+
             if (!$errors) {
                 $transaction = Yii::$app->db->beginTransaction();
                 try {
                     if ($form->process()) {
-
                         // Отправить уведомление
                         Yii::$app->consoleRunner->run('partners/reservation/send-mail ' . $form->id . ' reservation');
 
-                        $msg = '<h4>№ заявки: ' . $form->id . '</h4>';
-                        $msg .= '<p>Заявка на бронирование успешно отправлена владельцу. Пожалуйста ожидайте подтверждения.</p>';
-                        $msg .= '<p style="padding:20px; font-size:20px; border:1px solid darkblue;">Если вы еще не зарегистрированы, обязательно подтвердите регистрацию у себя на e-mail</p>';
+                        $msg = "<h4>№ заявки: {$form->id}</h4>
+
+                             <p>Заявка на бронирование успешно отправлена владельцу. Пожалуйста ожидайте подтверждения.</p>
+                             
+                             <p style=\"padding:20px; font-size:20px; border:1px solid darkblue;\">
+                             Если вы еще не зарегистрированы, обязательно подтвердите регистрацию у себя на e-mail</p>
+                        ";
                         Yii::$app->session->setFlash('success', $msg);
+
+                        if (Yii::$app->request->isAjax) {
+                            return $this->successAjaxResponse(strip_tags($msg));
+                        }
                     } else {
                         Yii::$app->session->setFlash('danger', 'Возникла критическая ошибка. Пожалуйста обратитесь в техническую поддержку.');
+                        if (Yii::$app->request->isAjax) {
+                            return $this->criticalErrorsAjaxResponse(new \Exception());
+                        }
+
                     }
                 } catch (\Exception $e) {
                     $transaction->rollBack();
                     Yii::$app->session->setFlash('danger', 'Возникла критическая ошибка. Пожалуйста обратитесь в техническую поддержку.');
+                    if (Yii::$app->request->isAjax) {
+                        return $this->criticalErrorsAjaxResponse(new \Exception());
+                    }
+
                 }
                 $transaction->commit();
 
+                if (Yii::$app->request->isAjax) {
+                    return $this->successAjaxResponse("                        
+                        Заявка успешно отправлена, вы можете увидеть её
+                        в личном кабинете. Далее, при подтверждении брони Владельцем и Вами, 
+                        контакты обеих сторон станут доступными."
+                    );
+                }
                 return $this->refresh();
-            } elseif (Yii::$app->request->isAjax) {
-                Yii::$app->response->format = Response::FORMAT_JSON;
+            }
 
-                return $errors;
+            if (Yii::$app->request->isAjax) {
+                return $this->validationErrorsAjaxResponse($errors);
             }
         }
 
-        return $this->render('_advert_reservation_form.twig', [
-            'reservationsForm' => $form, 'otheradvert' => $otheradvert,
-        ]);
+        if (Yii::$app->request->isAjax) {
+            return $this->criticalErrorsAjaxResponse(new \Exception());
+        }
+
+        return $this->response($this->render('_advert_reservation_form.twig', [
+            'reservationsForm' => $form, 'otherAdvert' => $otherAdvert,
+        ]));
     }
 
     /**
      * Общие заявки
-     * @return int|mixed|string
-     * @throws HttpException
+     * @return Response
+     * @throws \yii\base\InvalidRouteException
+     * @throws \yii\console\Exception
      */
-    public function actionTotalBid()
+    public function actionTotalBid() : Response
     {
         // Если тип пользователя "Хочу снять" выполняем специализированный экнш
         if (Yii::$app->user->identity->profile->user_type == Profile::WANT_RENT) {
@@ -199,19 +232,19 @@ class ReservationController extends \frontend\components\Controller
         $query2 = clone $dataProvider->query;
         UserSeen::updateLastDate(models\search\ReservationSearch::tableName(), $query2->select('max(date_update)')->scalar(), 'owner' . Yii::$app->request->cityId);
 
-        return $this->render('reservations-total-bid.twig', [
+        return $this->response($this->render('reservations-total-bid.twig', [
             'allReservationsCount' => $allReservationsCount,
             'openReservationsCount' => $openReservationsCount,
             'model' => $searchModel,
             'dataProvider' => $dataProvider,
-        ]);
+        ]));
     }
 
     /**
      * Общие заявки пользователя с типом аккаунта want-rent
-     * @return string
+     * @return Response
      */
-    public function actionTotalBidWantRent()
+    public function actionTotalBidWantRent() : Response
     {
         $searchModel = new models\search\ReservationSearch(['scenario' => 'global']);
         $dataProvider = $searchModel->wantRentSearch(Yii::$app->request->queryParams);
@@ -220,17 +253,16 @@ class ReservationController extends \frontend\components\Controller
         $query2 = clone $dataProvider->query;
         UserSeen::updateLastDate(models\search\ReservationSearch::tableName(), $query2->select('max(date_update)')->scalar(), 'renter');
 
-
-        return $this->render('reservations-want-rent-total-bid', [
+        return $this->response($this->render('reservations-want-rent-total-bid', [
             'dataProvider' => $dataProvider,
-        ]);
+        ]));
     }
 
     /**
      * Просмотр арендодателем заявок на бронь его объявлений
      * @return string
      */
-    public function actionReservations()
+    public function actionReservations() : Response
     {
         // Если тип пользователя "Хочу снять" выполняем специализированный экнш
         if (Yii::$app->user->identity->profile->user_type == Profile::WANT_RENT) {
@@ -238,59 +270,55 @@ class ReservationController extends \frontend\components\Controller
         }
 
         $searchModel = new models\search\AdvertReservationSearch(['scenario' => 'landlord']);
-
         $dataProvider = $searchModel->landlordSearch();
-
-
-        $otherreservation = new models\AdvertReservation;
-
+        $otherReservation = new models\AdvertReservation;
 
         $query2 = clone $dataProvider->query;
         UserSeen::updateLastDate(models\search\AdvertReservationSearch::tableName(), $query2->select('max(date_update)')->scalar(), 'landlord');
 
-        return $this->render('reservations.twig', [
+        return $this->response($this->render('reservations.twig', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'otherreservation' => $otherreservation,
-
-        ]);
+            'otherReservation' => $otherReservation,
+        ]));
     }
 
     /**
      * Просмотр арендатором (создателем) заявок на бронь объявлений
      * @return string
      */
-    public function actionReservationsWantRent()
+    public function actionReservationsWantRent() : Response
     {
         $searchModel = new models\search\AdvertReservationSearch(['scenario' => 'renter']);
         $dataProvider = $searchModel->renterSearch();
         $dataProvider->pagination->route = '/partners/reservation/reservations';
-        $reservationtakewidth = AdvertReservation::find()
+        $userUnconfirmedReservation = AdvertReservation::find()
             ->where(['confirm' => 2])->andWhere(['user_id' => Yii::$app->user->id])
             ->all();
-        //   if (empty($reservationtakewidth)){
+        // todo вернуть после отладки фомры бронирования, иначе нужн обудет удалять бронь после каждого создания
+        //   if (empty($userUnconfirmedReservation)){
         //       Yii::$app->session->setFlash('danger', 'У вас есть не подтвержденная бронь!');
         //   }
         $query2 = clone $dataProvider->query;
         $tableName = models\search\AdvertReservationSearch::tableName();
         UserSeen::updateLastDate($tableName, $query2->select('max(' . $tableName . '.date_update)')->scalar(), 'renter');
 
-        return $this->render('reservations-want-rent.twig', [
+        return $this->response($this->render('reservations-want-rent.twig', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'reservationtakewidth' => $reservationtakewidth,
-        ]);
+            'userUnconfirmedReservation' => $userUnconfirmedReservation,
+        ]));
     }
 
     /**
      * Находит ApartmentAdverts model по полю advert_id
      * Незабаненного пользователя
      * @param $advert_id
-     * @param null $city_name_eng
-     * @return array|null|\yii\db\ActiveRecord
+     * @param null $city_Name_Eng
+     * @return yii\db\ActiveRecord
      * @throws HttpException
      */
-    protected function findAdvert($advert_id, $city_name_eng = null)
+    protected function findAdvert($advert_id, $city_name_eng = null) : Advert
     {
         $advert = models\Advert::find()
             ->joinWith([
@@ -314,13 +342,11 @@ class ReservationController extends \frontend\components\Controller
     }
 
     /**
-     * @param $user_id
+     * @param $userId
      * @return array|\yii\db\ActiveRecord[]
      */
-    protected function findOtherAdvert($user_id)
+    protected function findOtherAdvert($userId)
     {
-        $userAdverts = Advert::getAdvertsByUser($user_id, 10);
-
-        return $userAdverts;
+        return Advert::getAdvertsByUser($userId, 10);
     }
 }

@@ -373,9 +373,6 @@ class AjaxController extends \frontend\components\Controller
 
                 // Инициализация сервиса
                 $service = Yii::$app->service->load($data['service']);
-
-                // dd($data);
-
                 $days = $service->isTimeInterval() ? $data['calculation']['days'] : null;
 
                 // Добавить процесс в обработку

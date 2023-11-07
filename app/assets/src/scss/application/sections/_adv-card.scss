@@ -194,18 +194,11 @@
         }
 
         &-link {
-            //display: inline-flex;
-            //margin-top: 5px;
-            //color: #0b6cff;
-            //text-decoration: underline;
-
             &:hover {
-                //color: #0345a9;
                 text-decoration: none;
             }
 
             &-icon {
-                //margin: 3px 5px 0 0;
             }
         }
 
@@ -424,9 +417,7 @@
 
             &:hover {
                 color: #cd8700;
-                //text-decoration: underline;
             }
-
 
             &:first-child {
                 border-right: 1px solid #474747;

@@ -15,21 +15,13 @@
 
     $(document).on('submit', '.adv-form', function (e) {
         e.preventDefault();
-        // console.log('submit');
-
         // ни один метод не вызывается, если возвращаем не 200
         window.ajaxRequest($(this), {
             success: function (response) {
-                console.log('success');
-                console.log(response);
             },
             error: function (data) {
-                console.log('error');
-                console.log(data);
             },
             fail: function (data) {
-                console.log('fail');
-                console.log(data);
             }
         });
     });
@@ -82,7 +74,6 @@
         window.openWindow(data.address, mapDiv, 'large');
     });
 
-
     function updateContactStatusAndReturn(apartmentId, status) {
         $.get(`/partners/office/update-contact-status?id=${apartmentId}&status=${status}`, function () {
             location.href = '/office/apartments';
@@ -98,5 +89,4 @@
         const apartmentId = $(this).data('apartmentId');
         updateContactStatusAndReturn(apartmentId, 1);
     });
-
 })(jQuery);

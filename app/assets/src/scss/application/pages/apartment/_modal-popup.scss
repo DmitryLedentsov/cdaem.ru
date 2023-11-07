@@ -357,7 +357,6 @@
         &-select-container {
             @include tablet() {
                 display: flex;
-                //justify-content: space-between;
                 justify-content: flex-start;
                 flex-wrap: wrap;
             }
@@ -402,7 +401,7 @@
 
 .modal-book {
     .modal-body {
-        select {
+        select, .step-input {
             font-size: small;
         }
 
@@ -419,6 +418,10 @@
 
         .section {
             .search-form-filter-calendar {
+                .invalid-feedback {
+                    margin-left: -12px;
+                    margin-top: 7px;
+                }
                 .daterangepicker-text {
                     margin-top: 1rem;
                     margin-right: 2rem;
@@ -441,7 +444,6 @@
                 &-line {
                     display: flex;
                     justify-content: space-between;
-                    //margin-bottom: 17px;
                     .price-range {
                         display: flex;
                         justify-content: space-between;
@@ -453,12 +455,10 @@
                         }
                     }
                     .step-column-66 {
-                        //width: 100%;
                         width: 65.5%;
                         margin: 0 1.2% 0 0;
                     }
                     .step-column-33 {
-                        //width: 100%;
                         width: 32.5%;
                         margin: 0 1.2% 0 0;
                     }
@@ -478,87 +478,6 @@
                     resize: none;
                 }
             }
-        }
-    }
-
-    //Первый вариант модала брони
-    .modal {
-        &-book-label {
-            width: 100%;
-            margin-bottom: 1.5rem;
-        }
-
-        &-book-author-label {
-            width: 100%;
-            margin-bottom: 0.6rem;
-        }
-
-        &-book-container {
-            @include tablet() {
-                display: flex;
-                justify-content: space-between;
-                flex-wrap: wrap;
-            }
-        }
-
-        &-select-container {
-            @include tablet() {
-                display: flex;
-                flex-direction: column;
-                flex-wrap: wrap;
-                width: 49%;
-            }
-
-            .rent-two-container {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                position: relative;
-
-                .input-field {
-                    width: 102px;
-                    padding-right: 10px;
-                    margin-left: 10px;
-                }
-            }
-
-            label {
-                width: 100%;
-                margin-bottom: 0.6rem;
-
-                @include tablet() {
-                    width: 100%;
-                }
-            }
-
-            .search-form-group {
-                @include phone() {
-                    flex-direction: column;
-                }
-
-                .search-form-filter-calendar {
-                    height: 42px;
-                    border: 1px solid #D7D7D7;
-
-                    @include tablet-land() {
-                        max-width: 100%;
-                    }
-                }
-
-                .search-form-filter {
-                    margin: 0 0 0.6rem;
-                }
-
-                .daterangepicker-text {
-                    font-weight: 400;
-                    font-size: 1rem;
-                    color: #4C4C4C;
-                }
-            }
-        }
-
-        .btn {
-            width: 214px;
         }
     }
 }

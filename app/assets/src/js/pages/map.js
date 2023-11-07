@@ -128,7 +128,6 @@
             queryMapObjects();
             window.location.href=$searchForm.attr("action");
         });*/
-        //console.log($formData);
         queryMapObjects();
 
 

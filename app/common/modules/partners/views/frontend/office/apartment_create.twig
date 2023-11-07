@@ -89,14 +89,6 @@
                                 <option value="">Метро 2</option>
                             </select>
                         </div>
-                        {#<div class="step-column-33">
-                            <label for="ApartmentForm[metro_walk]">Расстояние до метро</label>
-                            <select name="ApartmentForm[metro_walk]" class="custom-select">
-                                {% for id, value in metroWalks %}
-                                    <option value="{{ id }}">{{ value }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>#}
                     </div>
                     <div class="maps">
                         <div class="maps-data">
@@ -139,25 +131,6 @@
                     </div>
                         </div>
                     {% endfor %}
-                    {#<div class="step-column-33">
-                        <select name="AdvertForm[rent_type][]" multiple class="custom-select">
-                            {% for id, value in rentTypes %}
-                                <option value="{{ id }}">{{ value.name }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>#}
-                    {#<div class="step-column-33">
-                        <label for="AdvertForm[currency]">Валюта <sup>*</sup></label>
-                        <select name="AdvertForm[currency]" class="custom-select">
-                            {% for id, value in currencies %}
-                                <option value="{{ id }}">{{ value }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>#}
-                    {#<div class="step-column-33">
-                        <label for="AdvertForm[price]">Цена <sup>*</sup></label>
-                        <input type="text" name="AdvertForm[price]" class="step-input" placeholder="Введите цену">
-                    </div>#}
                 </div>
             </div>
 
