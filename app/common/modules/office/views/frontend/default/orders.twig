@@ -103,6 +103,7 @@
                 </thead>
                 <tbody class="purchases-body">
                     {% for service in dataProvider.getModels() %}
+                        {% set payment = payments.getModels() | filter(payment => payment.system == service.service) | first  %}
                         <tr>
                             <td data-label="Услуга">
                                 <div class="purchases-service">
@@ -122,27 +123,30 @@
                                 #}
                                 <div class="purchases-activity progress-label">
                                     <div class="purchases-activity-status">
-                                        В процессе
+                                        {% set success = service.process==1 %}
+                                        {{ success ? "Оплата прошла" : "В процессе"}}
+                                        {% if not success %}
                                         <span class="purchases-activity-timer">
                                         (ещё 25 мин)
                                         </span>
+                                        {% endif %}
                                     </div>
                                     <div class="purchases-activity-date">
-                                        Активно с 17.08.2023, 07:17
+                                        Активно с {{ DateTimeHelper.toFullDateTime(service.date_start) }}
                                     </div>
                                 </div>
                             </td>
                             <td data-label="Стоимость">
                                 <div class="purchases-price">
                                     <div class="purchases-price-value">
-                                        100₽
+                                        {{ payment.funds | number_format }} ₽
                                     </div>
                                 </div>
                             </td>
                             <td data-label="Оплачено">
                                 <div class="purchases-paid">
                                     <div class="purchases-paid-date">
-                                        17 августа 2017, 14:00
+                                        {{ DateTimeHelper.toFullDateTime(payment.date) }}
                                     </div>
                                 </div>
                             </td>
