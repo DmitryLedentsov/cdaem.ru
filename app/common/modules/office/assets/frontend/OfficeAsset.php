@@ -18,6 +18,7 @@ class OfficeAsset extends AssetBundle
 
     public $js = [
         '/_new/js/pages/account/home.min.js',
+        '/_new/js/pages/account/pay.min.js',
     ];
 
     /**

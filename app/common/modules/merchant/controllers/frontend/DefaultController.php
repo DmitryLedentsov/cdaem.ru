@@ -138,12 +138,11 @@ class DefaultController extends \frontend\components\Controller
             $model->system = Yii::$app->request->post('system');
             $model->data = Yii::$app->request->post('data', []);
             $model->processId = Yii::$app->request->post('processId');
-
             if ($model->validate()) {
-                return $model->process($transaction);
+                $model->process($transaction);
+            } else{
+                $transaction->rollBack();
             }
-
-            $transaction->rollBack();
 
             // Возникла ошибка
             foreach ($model->getErrors() as $error) {
@@ -151,11 +150,10 @@ class DefaultController extends \frontend\components\Controller
             }
         } catch (\Exception $e) {
             $transaction->rollBack();
-
             return $this->criticalErrorsAjaxResponse($e);
         }
 
-        return $this->successAjaxResponse('');
+        return $this->successAjaxResponse('ok');
     }
 
     /**
