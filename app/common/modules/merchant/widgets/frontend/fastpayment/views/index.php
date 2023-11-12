@@ -22,7 +22,7 @@ if (!empty($processService) && is_object($processService)) {
 }
 ?>
 
-<?= Html::beginForm(['/merchant/default/service'], 'POST', ['class' => 'payment-form']) ?>
+<?= Html::beginForm(['/merchant/default/service'], 'POST', ['id' => 'payment-form']) ?>
 
 
     <div class="payment-service">
