@@ -153,7 +153,7 @@ class DefaultController extends \frontend\components\Controller
             return $this->criticalErrorsAjaxResponse($e);
         }
 
-        return $this->successAjaxResponse('ok');
+        return $this->successAjaxResponse('');
     }
 
     /**
