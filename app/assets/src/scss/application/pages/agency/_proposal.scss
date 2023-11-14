@@ -5,7 +5,7 @@
     @include tablet-land() {
         padding: 4.5rem 0 6.9rem;
     }
-    
+
     .section-title {
         position: relative;
         margin: 0;
@@ -35,9 +35,6 @@
     }
 
     .apartment {
-        &-card {
-            padding: 0;
-        }
 
         &-item {
             border: 0.2rem solid $color-base-border;
@@ -78,13 +75,13 @@
             @include desktop() {
                 top: -17%;
             }
-      
+
             &::before,
             &::after {
                 content: "";
                 position: absolute;
             }
-      
+
             &::before {
                 top: 22px;
                 left: 23px;
@@ -93,7 +90,7 @@
                 background: #bdbdbd;
                 transition: background-color 0.2s;
             }
-      
+
             &::after {
                 top: 19px;
                 left: 22px;
@@ -105,7 +102,7 @@
                 transform: rotate(-45deg);
                 transition: border-color 0.2s;
             }
-      
+
             &:hover,
             &:focus {
                 border-color: $color-warning;
@@ -113,13 +110,13 @@
                 &::before {
                     background-color: $color-warning;
                 }
-        
+
                 &::after {
                     border-color: $color-warning;
                 }
             }
         }
-      
+
         .slick-prev {
             right: 56%;
 
@@ -131,7 +128,7 @@
                 right: 120px;
             }
         }
-    
+
         .slick-next {
             right: 26%;
             transform: rotate(180deg);
