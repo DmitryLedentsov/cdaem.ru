@@ -1,9 +1,11 @@
-(function ($) {
+let setFormDefaults;
 
+(function ($) {
     /**
      * Отправить платежную форму
      */
-    $(document).on('submit', '#payment-form', function (event) {
+    /*$(document).on('submit', '#payment-form', function (event) {
+        console.log('submit #payment-form');
         event.preventDefault();
         var $this = $(this);
         window.ajaxRequest($this,{
@@ -18,6 +20,5 @@
                 );
             }
         });
-    });
-
+    });*/
 })(jQuery);
