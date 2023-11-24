@@ -140,7 +140,7 @@ class DefaultController extends \frontend\components\Controller
             $model->processId = Yii::$app->request->post('processId');
             if ($model->validate()) {
                 $model->process($transaction);
-            } else{
+            } else {
                 $transaction->rollBack();
             }
 
@@ -150,6 +150,7 @@ class DefaultController extends \frontend\components\Controller
             }
         } catch (\Exception $e) {
             $transaction->rollBack();
+
             return $this->criticalErrorsAjaxResponse($e);
         }
 

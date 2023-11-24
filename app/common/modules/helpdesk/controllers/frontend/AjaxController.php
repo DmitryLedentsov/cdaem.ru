@@ -40,12 +40,9 @@ class AjaxController extends \frontend\components\Controller
      */
     public function beforeAction($action): bool
     {
+        $this->enableCsrfValidation = true;
         if (!parent::beforeAction($action)) {
             return false;
-        }
-
-        if (!Yii::$app->request->isAjax) {
-            return $this->goHome();
         }
 
         $this->module->viewPath = '@common/modules/helpdesk/views/frontend';
@@ -79,21 +76,18 @@ class AjaxController extends \frontend\components\Controller
 
             if (!$errors) {
                 if ($formModel->complaint()) {
-                    $this->successAjaxResponse('Ваша заявка успешно остановлена, пожалуйста ожидайте звонка от диспетчера.');
+                    return $this->successAjaxResponse('Ваша заявка успешно остановлена, пожалуйста ожидайте звонка от диспетчера.');
                 }
 
-                return [
-                    'status' => 0,
-                    'message' => 'Возникла критическая ошибка.'
-                ];
+                return $this->criticalErrorsAjaxResponse(new \Exception());
             }
 
             return $this->validationErrorsAjaxResponse($errors);
         }
 
-        return $this->renderAjax('complaint.twig', [
+        return $this->response($this->render('complaint.twig', [
             'model' => $model,
             'formModel' => $formModel,
-        ]);
+        ]));
     }
 }

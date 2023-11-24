@@ -63,6 +63,7 @@ class FacilityForm extends Facility
             }
 
             $this->facilities = $facilities;
+
             return true;
         }
 

@@ -259,7 +259,7 @@ return [
             'partners/default/view',
             'partners/reservation/index',
             'partners/reservation/advert-reservation',
-            'helpdesk/ajax'
+            'helpdesk/ajax/complaint'
         ]
     ]
 ];
