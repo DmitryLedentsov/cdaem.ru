@@ -25,7 +25,6 @@ class AgencyAsset extends AssetBundle
     public $js = [
         'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js',
         '/_new/js/pages/agency.min.js',
-        '/_new/js/pages/home.min.js',
     ];
 
     /**

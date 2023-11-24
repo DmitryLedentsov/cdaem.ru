@@ -5,12 +5,17 @@
     @var bool onlyAgency
 #}
 
+{{ use('frontend/themes/basic/assets/SlickAsset') }}
+{{ register_slick_asset() }}
+
 {% if specialAdverts is not empty %}
     <section class="proposal">
         <div class="container-fluid">
             <h2 class="section-title">Спец. предложения</h2>
         </div>
-        <div class="proposal-slider">
+
+        <div class="proposal-slider apartment-card-container">
+
             {% for specialAdvert in specialAdverts %}
                 {{ preview_advert_widget({'advert': specialAdvert}) }}
             {% endfor %}
