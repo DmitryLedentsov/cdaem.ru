@@ -285,6 +285,7 @@ class Metro extends \yii\db\ActiveRecord
             ])
                 // ->rawSql;
                 ->queryAll();
+
             return $result;
         } catch (\Exception $e) {
             return [];

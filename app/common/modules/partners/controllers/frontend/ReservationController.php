@@ -131,6 +131,7 @@ class ReservationController extends \frontend\components\Controller
             }
 
             Yii::$app->session->setFlash('danger', $errorMessage);
+
             return $this->redirect(['/office/reservations']);
         }
 
@@ -174,7 +175,6 @@ class ReservationController extends \frontend\components\Controller
                         if (Yii::$app->request->isAjax) {
                             return $this->criticalErrorsAjaxResponse(new \Exception());
                         }
-
                     }
                 } catch (\Exception $e) {
                     $transaction->rollBack();
@@ -182,17 +182,18 @@ class ReservationController extends \frontend\components\Controller
                     if (Yii::$app->request->isAjax) {
                         return $this->criticalErrorsAjaxResponse(new \Exception());
                     }
-
                 }
                 $transaction->commit();
 
                 if (Yii::$app->request->isAjax) {
-                    return $this->successAjaxResponse("                        
+                    return $this->successAjaxResponse(
+                        "                        
                         Заявка успешно отправлена, вы можете увидеть её
                         в личном кабинете. Далее, при подтверждении брони Владельцем и Вами, 
                         контакты обеих сторон станут доступными."
                     );
                 }
+
                 return $this->refresh();
             }
 

@@ -44,7 +44,18 @@ $(document).ready(function() {
 
     $(document).on('submit', '#complainForm', function (e) {
         e.preventDefault();
-        window.ajaxRequest($(this));
+        window.ajaxRequest($(this), {
+            success: data => {
+                if (data.hasOwnProperty('status') && data.status === 'success') {
+                    $('#complainModal').modal('hide');
+                }
+            },
+            commonError: message => {
+                $('#complainForm > .section:last-child').after(
+                    $('<div>', {class: 'alert alert-danger', role: 'alert'}).append(message)
+                );
+            }
+        })
     });
 
     var advertCoords = [55.76, 37.64];

@@ -4,8 +4,7 @@
      aria-labelledby="complainModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-window" role="document">
         <div class="modal-content modal-item">
-            <form id="complainForm"
-                  action="{{ path({'0' : '/helpdesk/ajax/complaint', 'advert_id' : model.advert_id}) }}" method="POST">
+                {{ html.beginForm(['/helpdesk/ajax/complaint?advert_id=' ~ advert_id], 'post', {'id': 'complainForm'}) |raw }}
                 <div class="modal-header modal-top">
                     <h4 class="modal-title modal-header-title" id="complainModalLabel">Оставить жалобу на владельца</h4>
                     <button type="button" id="complainFormCloseButton" class="close btn-close" data-dismiss="modal" aria-label="Close">
@@ -49,7 +48,7 @@
                     <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
                     <button type="submit" class="btn btn-warning" id="complain-submit">Отправить жалобу</button>
                 </div>
-            </form>
+            {{ html.endForm() |raw }}
         </div>
     </div>
 </div>
