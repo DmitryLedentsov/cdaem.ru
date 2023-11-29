@@ -152,6 +152,34 @@
 </section>
 
 
+
+<!-- Modal Book -->
+<div class="modal modal-book fade" id="modalBook" tabindex="-1" role="dialog" aria-labelledby="modalBookLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document" style="">
+        <div class="modal-content">
+            <div class="modal-header modal-top">
+                <h4 class="modal-title modal-header-title" id="modalBookLabel">Забронировать</h4>
+                <button type="button" class="close btn-close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                {% set isFromAraptmentPage = true %}
+                {% set advert_id = model.advert_id %}
+                {% include('@common/modules/partners/views/frontend/reservation/reservation-form.twig') %}
+            </div>
+            <div class="modal-footer modal-bottom">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+                <button type="button" class="btn btn-warning btn-special book-button" id="reservation-submit">Забронировать</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include('@common/modules/partners/views/frontend/default/view/offers.twig') %}
+{% include('@common/modules/partners/views/frontend/default/_modal_complain.twig') %}
+
+
 {#
     Заявка на бронь
 {{ this.render('@common/modules/agency/views/frontend/default/view/bid.twig', {
