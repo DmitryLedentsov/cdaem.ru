@@ -363,4 +363,15 @@ class Apartment extends \yii\db\ActiveRecord
 
         return true;
     }
+
+    public function getTimeToMetroInMinutes($transportType = 0)
+    {
+        $transportSpeed = [ // км/ч
+            0 => 4,  // пешеход
+            1 => 30, // такси
+            2 => 20, // общественный
+        ];
+
+        return !$this->metro_walk ? '-' : round($this->metro_walk  / $transportSpeed[$transportType] * 60) . ' МИН.' ;
+    }
 }

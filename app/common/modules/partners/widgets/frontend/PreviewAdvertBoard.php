@@ -83,13 +83,13 @@ class PreviewAdvertBoard extends Widget
         }
 
         $now_available = '';
-        if ($this->advert->apartment->now_available) {
+        if (isset($this->advert->apartment->now_available) && $this->advert->apartment->now_available) {
             $now_available = 'Сейчас свободно';
         }
 //        if ($this->advert->apartment->metroStation)
         //var_dump($this->advert->apartment->city->name);
-        $selected = $this->advert->selected ? ' selected' : '';
-        $contacts = $this->advert->apartment->open_contacts ? '<div class="contacts topper" title="Контакты открыты"></div>' : '';
+        $selected = isset($this->advert->selected) && $this->advert->selected ? ' selected' : '';
+        $contacts = isset($this->advert->apartment->open_contacts) && $this->advert->apartment->open_contacts ? '<div class="contacts topper" title="Контакты открыты"></div>' : '';
 
         return ('<div class="apartment-card">
                 <div class="apartment-item">

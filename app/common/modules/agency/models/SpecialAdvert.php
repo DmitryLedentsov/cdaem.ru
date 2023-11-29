@@ -65,6 +65,14 @@ class SpecialAdvert extends \yii\db\ActiveRecord
     }
 
     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getApartment()
+    {
+        return $this->getAdvert()->one()->hasOne(Apartment::class, ['apartment_id' => 'apartment_id']);
+    }
+
+    /**
      * @return array|\yii\db\ActiveRecord[]
      */
     public static function findActive()
