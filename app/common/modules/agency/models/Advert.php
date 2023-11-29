@@ -201,4 +201,33 @@ class Advert extends \yii\db\ActiveRecord
             ],
         ];
     }
+
+    /**
+     * Возвращает подготовленный список типов аренды включая объявления
+     * @param array $rentTypesList
+     * @param array $adverts
+     * @return array
+     */
+    public static function getPreparedRentTypesAdvertsList(array $rentTypesList, array $adverts)
+    {
+        $result = [];
+
+        foreach ($rentTypesList as $rentTypeId => $rentTypeName) {
+            $result[$rentTypeId] = ['name' => $rentTypeName, 'advert' => null];
+            foreach ($adverts as $advert) {
+                if ($rentTypeId == $advert->rent_type) {
+                    $attributes = $advert->getAttributes();
+                    $attributes['price'] = round($attributes['price']);
+                    $result[$rentTypeId] = array_merge($result[$rentTypeId], ['advert' => $attributes]);
+                    continue;
+                }
+            }
+        }
+
+        return $result;
+    }
+    public static function getPreparedRentTypesAdvertsListByApartment(\common\modules\agency\models\Apartment $apartment): array
+    {
+        return self::getPreparedRentTypesAdvertsList(RentType::rentTypeslist(), $apartment->adverts);
+    }
 }

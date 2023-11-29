@@ -374,4 +374,13 @@ class Apartment extends \yii\db\ActiveRecord
 
         return !$this->metro_walk ? '-' : round($this->metro_walk  / $transportSpeed[$transportType] * 60) . ' МИН.' ;
     }
+    public function getRentTypesPrices()
+    {
+        $rentTypes = \common\modules\agency\models\Advert::getPreparedRentTypesAdvertsListByApartment($this);
+
+        return array_map(function ($item) {
+            return $item['advert'] ? $item['advert']['price'] . ' ₽' : '-';
+        }, ArrayHelper::index($rentTypes, 'name'));
+    }
+
 }

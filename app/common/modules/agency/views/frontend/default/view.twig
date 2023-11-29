@@ -61,11 +61,14 @@
 
 {% block content %}
 
+    {{ use('common/modules/partners/widgets/frontend/PreviewAdvert') }}
+
+    {{ use('common/modules/partners/assets/frontend/ApartmentAsset') }}
+    {{ register_apartment_asset() }}
+
+    {# Подключение JavaScript yandex map #}
     {{ use('common/modules/geo/assets/frontend/YMapAsset') }}
     {{ register_y_map_asset() }}
-
-    {{ use('common/modules/agency/assets/frontend/ApartmentAsset') }}
-    {{ register_apartment_asset() }}
 
     {{ this.render('@common/modules/agency/views/frontend/default/view/apartment.twig', {
         'model' : model,
@@ -73,32 +76,3 @@
         'detailsHistoryForm' : detailsHistoryForm,
     }) | raw }}
 {% endblock content %}
-
-{% block additional_scripts %}
-    <script type="text/javascript">
-        $(document).ready(function() {
-            var advertCoords = [55.76, 37.64];
-
-            ymaps.ready(init);
-            function init(){
-                var myMap = new ymaps.Map("map", {
-                    center: advertCoords,
-                    zoom: 15,
-                    controls: []
-                });
-
-                createMarker(myMap)
-            }
-
-            function createMarker(myMap) {
-                var myPlacemark = new ymaps.Placemark(advertCoords, {}, {
-                    iconLayout: 'default#image',
-                    iconImageHref: './images/icons/apartment/mapMarker.svg',
-                    iconImageSize: [32, 30]
-                });
-
-                myMap.geoObjects.add(myPlacemark);
-            }
-        });
-    </script>
-{% endblock %}
