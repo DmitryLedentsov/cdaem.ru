@@ -6,7 +6,9 @@
     @var common\modules\agency\models\form\DetailsHistoryForm detailsHistoryForm
 #}
 <div class="container-fluid">
-    <div id="map" style="width: 100%; height: 429px"></div>
+    <div id="map" style="width: 100%; height: 429px">
+        <div id="ymap_key_display" style="position: relative; top: 0; left: 0; right: 0; color: black; text-align: center; font-size: 1.8em; pointer-events: none; z-index: 1; text-shadow: 0px 0px 20px; float: left;">Чтобы изменить масштаб, прокручивайте карту, удерживая клавишу Shift</div>
+    </div>
 </div>
 
 <section class="advert">
@@ -16,34 +18,31 @@
                 {{ model.apartment.address }}{{ model.apartment.apartment ? ', кв.'~model.apartment.apartment }}
             </h2>
             <div class="advert-cost">
-                {# ???????? #}
-                <div class="advert-cost-info">
+                {% set rentTypes = model.apartment.getRentTypesPrices() %}
+                <div class="advert-cost-info" {% if(rentTypes['Квартира на час'] == '-') %}style="display: none"{% endif %}>
                     <object class="advert-icon">
                         <img src="/_new/images/icons/apartment/hour.svg" alt="hour">
                     </object>
-                    <p>Час: <span>?? ₽</span></p>
+                    <p>Час: <span>{{ rentTypes['Квартира на час'] }}</span></p>
                 </div>
-                <div class="advert-cost-info">
+                <div class="advert-cost-info" {% if(rentTypes['Квартира на ночь'] == '-') %}style="display: none"{% endif %}>
                     <object class="advert-icon">
                         <img src="/_new/images/icons/apartment/night.svg" alt="night">
                     </object>
-                    <p>Ночь: <span>?? ₽</span></p>
+                    <p>Ночь: <span>{{ rentTypes['Квартира на ночь'] }}</span></p>
                 </div>
-                <div class="advert-cost-info">
+                <div class="advert-cost-info" {% if(rentTypes['Квартира на сутки'] == '-') %}style="display: none"{% endif %}>
                     <object class="advert-icon">
                         <img src="/_new/images/icons/apartment/day.svg" alt="day">
                     </object>
-                    <p>Сутки: <span>?? ₽</span></p>
+                    <p>Сутки: <span>{{ rentTypes['Квартира на сутки'] }}</span></p>
                 </div>
-                <div class="advert-cost-info">
+                <div class="advert-cost-info" {% if(rentTypes['Квартира на месяц'] == '-') %}style="display: none"{% endif %}>
                     <object class="advert-icon">
                         <img src="/_new/images/icons/apartment/months.svg" alt="months">
                     </object>
-                    <p>Месяц: <span>?? ₽</span></p>
+                    <p>Месяц: <span>{{ rentTypes['Квартира на месяц'] }}</span></p>
                 </div>
-
-                {# ???????? #}
-
             </div>
             <div class="advert-list">
                 <ul>
@@ -151,6 +150,34 @@
         </div>
     </div>
 </section>
+
+
+
+<!-- Modal Book -->
+<div class="modal modal-book fade" id="modalBook" tabindex="-1" role="dialog" aria-labelledby="modalBookLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document" style="">
+        <div class="modal-content">
+            <div class="modal-header modal-top">
+                <h4 class="modal-title modal-header-title" id="modalBookLabel">Забронировать</h4>
+                <button type="button" class="close btn-close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                {% set isFromAraptmentPage = true %}
+                {% set advert_id = model.advert_id %}
+                {% include('@common/modules/partners/views/frontend/reservation/reservation-form.twig') %}
+            </div>
+            <div class="modal-footer modal-bottom">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+                <button type="button" class="btn btn-warning btn-special book-button" id="reservation-submit">Забронировать</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include('@common/modules/partners/views/frontend/default/view/offers.twig') %}
+{% include('@common/modules/partners/views/frontend/default/_modal_complain.twig') %}
 
 
 {#

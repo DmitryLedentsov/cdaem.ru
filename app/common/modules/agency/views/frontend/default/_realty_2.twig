@@ -7,6 +7,7 @@
 
 {{ use('frontend/themes/basic/assets/SlickAsset') }}
 {{ register_slick_asset() }}
+{{ use('common/modules/partners/widgets/frontend/PreviewAdvertBoard') }}
 
 {% if specialAdverts is not empty %}
     <section class="proposal">
@@ -17,7 +18,7 @@
         <div class="proposal-slider apartment-card-container">
 
             {% for specialAdvert in specialAdverts %}
-                {{ preview_advert_widget({'advert': specialAdvert}) }}
+                {{ preview_advert_widget({'advert': specialAdvert.getAdvert().one()}) }}
             {% endfor %}
         </div>
     </section>
