@@ -204,7 +204,7 @@ class Pay extends \yii\base\Model
                 return false;
             }
             if (!$this->_service->validateContact()) {
-                $this->addError('', 'Ваше объявление под бронью, Вы не можете оплатить!.');
+                $this->addError('', 'Ваше объявление под бронью, Вы не можете оплатить!');
 
                 return false;
             }

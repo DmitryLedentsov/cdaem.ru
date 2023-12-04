@@ -13,7 +13,8 @@ class FastPaymentAsset extends AssetBundle
     ];
 
     public $js = [
-        'js/fast-payment.js',
+        '/_new/vendor/display-validation.min.js', // для отчистки сообщений валидации формы оплаты
+        '/_new/vendor/datetimepicker/datetimepicker.js', // для пикера даты // не помгает todo
     ];
 
     public $depends = [

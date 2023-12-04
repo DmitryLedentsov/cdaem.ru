@@ -170,6 +170,6 @@ use common\modules\partners\models\Service;
         }
 
     }
-
-    refreshScripts($);
+    // refreshScripts($);
+    refreshScripts(jQuery);
 </script>
