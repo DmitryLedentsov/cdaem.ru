@@ -1,8 +1,17 @@
-let setFormDefaults;
 if (typeof $isFastPaymentLoaded !== 'undefined') {
     setFormDefaults();
 }
 else {
+    const getToken = async function () {
+        let response = await fetch('/users/user/get-csrf-token');
+        return response.ok ? await response.text() : false;
+    };
+
+    const updateToken = async function() {
+        let token = await getToken();
+        token && ($("head > meta[name='csrf-token']").prop('content', token));
+    };
+
     $isFastPaymentLoaded = true;
     setFormDefaults = function () {
         $(".payment-service select[name*=system] option[value='BankCardPSR']").prop('selected', true);
@@ -34,16 +43,48 @@ else {
             $('.logo-pay[data-system="' + $this.val() + '"]').prop('checked', true);
         });
 
+
+        /**
+         * Отправить платежную форму, новый вариант
+         */
+        $(document).on('submit', '#payment-form', function (event) {
+            console.log('submit #payment-form');
+            event.preventDefault();
+            var $this = $(this);
+            window.ajaxRequest($this, {
+                success: data => {
+                    if (data.hasOwnProperty('status') && data.status === 'success') {
+                        // $('#main-modal').modal('hide');
+                        // window.toastSuccess(data.message, 'Оплата прошла успешно');
+                        window.closeWindow();
+                        window.toastSuccess('Оплата прошла успешно', 'Статус оплаты');
+                        if (data.hasOwnProperty('funds')) {
+                            $('#funds-main').html(data.funds);
+                        }
+                        updateToken();
+                    }
+                },
+                commonError: message => {
+                    $('#payment-form .modal-footer').before(
+                        $('<div>', {class: 'alert alert-danger', role: 'alert'}).append(message)
+                    );
+                }
+            });
+        });
+
+
         /**
          * Отправить платёжную форму, старый вариант
          */
-        $(document).on('submit', '#payment-form', function (event) {
+        /*$(document).on('submit', '#payment-form', function (event) {
             console.log("on('submit', '#payment-form'");
             event.preventDefault();
+
             var $this = $(this);
             var data = $this.serializeArray();
             $.post($this.attr('action'), data, function (response) {
                 response = JSON.parse(response);
+                console.log(response);
                 if (jQuery.isPlainObject(response) && ('status' in response) === true) {
                     if (response.status === 'success') {
                         window.toastSuccess(response.message, 'Информация');
@@ -69,28 +110,6 @@ else {
                     }
                 } else {
                     window.toastError(messageError, 'Ошибка');
-                }
-            });
-        });
-
-        /**
-         * Отправить платежную форму, новый вариант
-         */
-        /*$(document).on('submit', '#payment-form', function (event) {
-            console.log('submit #payment-form');
-            event.preventDefault();
-            var $this = $(this);
-            window.ajaxRequest($this,{
-                success: data => {
-                    if (data.hasOwnProperty('status') && data.status === 'success') {
-                        $('#main-modal').modal('hide');
-                        updateToken();
-                    }
-                },
-                commonError: message => {
-                    $('.payment-form > .section:last-child').after(
-                        $('<div>', {class: 'alert alert-danger', role: 'alert'}).append(message)
-                    );
                 }
             });
         });*/

@@ -1,4 +1,4 @@
-$(function () {
+$(function ($) {
 
     const translations = {
         'error_title': 'Возникла ошибка.',
@@ -175,6 +175,7 @@ $(function () {
                 const commonError = getCommonErrors(response);
 
                 if (commonError) {
+                    $form.displayValidation('clear');
                     params.commonError && params.commonError(commonError);
                     // window.openWindow(translations.error_title, commonErrors[0]);
                     // window.openWindow(translations.error_title, commonErrors[Object.keys(commonErrors)[0]]);
@@ -227,4 +228,4 @@ $(function () {
             window.openWindow(translations.error_title, translations.error_description);
         }
     }
-});
+}(jQuery));
