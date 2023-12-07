@@ -17,7 +17,7 @@ return [
             'dsn' => 'mysql:host=db;dbname=cdaem.ru',
             'username' => 'root',
             'password' => 'cdaemru',
-            'charset' => 'utf8',
+            'charset' => 'utf8mb4',
             'tablePrefix' => '',
             'enableSchemaCache' => false,
         ],
