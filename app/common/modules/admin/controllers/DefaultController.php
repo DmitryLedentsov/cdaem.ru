@@ -7,7 +7,6 @@ use yii\web\Response;
 use yii\helpers\ArrayHelper;
 use common\modules\agency\models\Select;
 use common\modules\admin\models\LogSearch;
-use common\modules\agency\models\WantPass;
 use common\modules\callback\models\Callback;
 use common\modules\helpdesk\models\Helpdesk;
 use common\modules\agency\models\Reservation;
@@ -68,12 +67,6 @@ class DefaultController extends \backend\components\Controller
             ->limit(10)
             ->all();
 
-        $wantPasses = WantPass::find()
-            ->where(['status' => WantPass::UNPROCESSED])
-            ->orderBy(['apartment_want_pass_id' => SORT_DESC])
-            ->limit(10)
-            ->all();
-
         $selects = Select::find()
             ->where(['status' => Select::UNPROCESSED])
             ->orderBy(['apartment_select_id' => SORT_DESC])
@@ -108,13 +101,11 @@ class DefaultController extends \backend\components\Controller
 
         return $this->render('index', [
             'callbacks' => $callbacks,
-            'wantPasses' => $wantPasses,
             'selects' => $selects,
             'helpdesks' => $helpdesks,
             'detailsHistory' => $detailsHistory,
             'agencyReservations' => $agencyReservations,
             'callbacks_count' => Callback::find()->where(['active' => Callback::UNPROCESSED])->count(),
-            'wantPasses_count' => WantPass::find()->where(['status' => WantPass::UNPROCESSED])->count(),
             'selects_count' => Select::find()->where(['status' => Select::UNPROCESSED])->count(),
             'helpdesks_count' => Helpdesk::find()->where(['close' => Helpdesk::AWAITING])->count(),
             'agencyReservations_count' => Reservation::find()->where(['processed' => Reservation::UNPROCESSED])->count(),
@@ -153,13 +144,6 @@ class DefaultController extends \backend\components\Controller
             $array['callbacks'] = [
                 'count' => Callback::find()->where(['active' => Callback::UNPROCESSED])->count(),
                 'message' => 'Заявки на "Обратный звонок"',
-            ];
-        }
-
-        if (Yii::$app->user->can('agency-want-pass-update')) {
-            $array['wantPasses'] = [
-                'count' => WantPass::find()->where(['status' => WantPass::UNPROCESSED])->count(),
-                'message' => 'Заявки на "Хочу сдать"',
             ];
         }
 

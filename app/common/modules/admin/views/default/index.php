@@ -230,51 +230,6 @@ echo \common\modules\admin\widgets\HeaderWidget::widget([
                     </div>
                 </div>
             <?php endif; ?>
-
-            <?php if (Yii::$app->user->can('agency-want-pass-view')): ?>
-                <div class="col-md-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading"><h6 class="panel-title"><i class="icon-home6"></i> Хочу сдать
-                                квартиру</h6></div>
-                        <div class="table-responsive pre-scrollable">
-                            <table class="table table-striped table-bordered">
-                                <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Пользователь</th>
-                                    <th>Типы аренды</th>
-                                    <th>Станции метро</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <?php
-                                if ($wantPasses && is_array($wantPasses)) {
-                                    foreach ($wantPasses as $wantPass) : ?>
-                                        <tr>
-                                            <td class="tdId">
-                                                <strong><?= HtmL::a('№ ' . $wantPass->apartment_want_pass_id, ['/agency/want-pass/update', 'id' => $wantPass->apartment_want_pass_id]) ?></strong>
-                                            </td>
-                                            <td><?= Html::encode($wantPass->name) ?></td>
-                                            <td><?= implode('<br/>', array_intersect_key($wantPass->rentTypesList, array_flip($wantPass->rent_types_array ?: []))); ?></td>
-                                            <td><?= implode('<br/>', array_intersect_key($wantPass->metroStations, array_flip($wantPass->metro_array ?: []))); ?></td>
-                                        </tr>
-                                    <?php
-                                    endforeach;
-                                } else {
-                                    echo '<tr><td colspan="4">В данный момент нет заявок</td></tr>';
-                                }
-                                ?>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <div class="table-footer">
-                            <?= HtmL::a('Посмотреть все новые заявки (' . $wantPasses_count . ')', ['/agency/want-pass/index'], ['class' => 'btn btn-link btn-icon btn-xs']) ?>
-                        </div>
-                    </div>
-                </div>
-            <?php endif; ?>
-
         </div>
 
 
