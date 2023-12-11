@@ -3,6 +3,7 @@
 namespace common\modules\merchant\controllers\frontend;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 use yii\web\Response;
 use yii\db\Transaction;
 use yii\widgets\ActiveForm;
@@ -144,9 +145,9 @@ class DefaultController extends \frontend\components\Controller
                 $transaction->rollBack();
             }
 
-            // Возникла ошибка
+            // Возникла ошибка, возвращаем первую
             foreach ($model->getErrors() as $error) {
-                return $this->validationErrorsAjaxResponse($error[0]);
+                return $this->validationTotalErrorAjaxResponse($error[0]);
             }
         } catch (\Exception $e) {
             $transaction->rollBack();
