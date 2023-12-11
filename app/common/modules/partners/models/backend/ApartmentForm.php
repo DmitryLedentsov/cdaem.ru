@@ -3,7 +3,6 @@
 namespace common\modules\partners\models\backend;
 
 use yii\db\ActiveRecord;
-use yii\web\UploadedFile;
 
 /**
  * @inheritdoc
@@ -45,20 +44,6 @@ class ApartmentForm extends \common\modules\partners\models\Apartment
     /**
      * @inheritdoc
      */
-    public function beforeValidate()
-    {
-        if (parent::beforeValidate()) {
-            $this->files = UploadedFile::getInstances($this, 'files');
-
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
-     * @inheritdoc
-     */
     public function attributeLabels()
     {
         $attributeLabels = parent::attributeLabels();
@@ -85,8 +70,8 @@ class ApartmentForm extends \common\modules\partners\models\Apartment
     public function scenarios()
     {
         return [
-            'create' => ['user_id', 'city_name' /*'city_id', 'closest_city_id'*/, 'address', 'apartment', 'floor', 'total_rooms', 'total_area', 'visible', 'status', 'remont', 'metro_walk', 'description', 'files'],
-            'update' => ['user_id', 'city_name' /*'city_id', 'closest_city_id'*/, 'address', 'apartment', 'floor', 'total_rooms', 'total_area', 'visible', 'status', 'remont', 'metro_walk', 'description', 'date_create', 'date_update', 'files']
+            'create' => ['user_id', 'city_id', 'closest_city_id', 'address', 'apartment', 'floor', 'total_rooms', 'total_area', 'visible', 'status', 'remont', 'metro_walk', 'description', 'files'],
+            'update' => ['user_id', 'city_id', 'closest_city_id', 'address', 'apartment', 'floor', 'total_rooms', 'total_area', 'visible', 'status', 'remont', 'metro_walk', 'description', 'date_create', 'date_update', 'files']
         ];
     }
 
@@ -96,22 +81,20 @@ class ApartmentForm extends \common\modules\partners\models\Apartment
     public function rules()
     {
         return [
-            [['user_id', 'apartment', 'floor', 'total_rooms', 'total_area', 'visible',
-                'status', 'remont', 'metro_walk', 'building_type', 'number_entrances', 'number_floors'], 'integer'],
+            [['user_id', 'city_id', 'closest_city_id', 'apartment', 'floor', 'total_rooms', 'total_area', 'visible', 'status', 'remont', 'metro_walk'], 'integer'],
             ['user_id', 'exist', 'targetClass' => \common\modules\users\models\User::class, 'targetAttribute' => 'id'],
-            [['city_name'], 'string'],
+            [['city_id', 'closest_city_id'], 'exist', 'targetClass' => \common\modules\geo\models\City::class, 'targetAttribute' => 'city_id'],
             [['visible', 'status'], 'in', 'range' => [0, 1, 2]],
             ['remont', 'in', 'range' => array_keys($this->remontList)],
             [['address'], 'string', 'max' => 255],
             [['description'], 'string'],
             [['files'], 'file', 'extensions' => 'jpg, png, jpeg', 'mimeTypes' => 'image/jpeg, image/png, image/JPG, ', 'maxFiles' => 10],
-
             // required on %scenarios%
-            [['user_id', 'city_name', 'region_name', 'address', 'floor', 'total_rooms', 'total_area',
-                'visible', 'status', 'remont', 'metro_walk'
+            [['user_id', 'city_id', 'address', 'floor', 'total_rooms', 'total_area',
+                'visible', 'status', 'remont', 'metro_walk',
             ], 'required', 'on' => 'create'],
-            [['user_id', 'city_name', 'region_name', 'address',
-                'floor', 'total_rooms', 'total_area', 'visible', 'status', 'remont', 'metro_walk'
+            [['user_id', 'city_id', 'address',
+                'floor', 'total_rooms', 'total_area', 'visible', 'status', 'remont', 'metro_walk',
             ], 'required', 'on' => 'update'],
         ];
     }
