@@ -45,6 +45,13 @@
         &-item {
             border: 0.2rem solid $color-base-border;
             border-bottom: 0;
+
+            &-selected {
+                border: 6px solid $color-highlight;
+            }
+        }
+        &-buttons {
+            width: auto !important;
         }
     }
 
@@ -77,13 +84,13 @@
             @include tablet-land() {
                 top: -16%;
             }
-      
+
             &::before,
             &::after {
-                content: "";
+                content:"";
                 position: absolute;
             }
-      
+
             &::before {
                 top: 22px;
                 left: 23px;
@@ -92,7 +99,7 @@
                 background: #E8E8E8;
                 transition: background-color 0.2s;
             }
-      
+
             &::after {
                 top: 19px;
                 left: 22px;
@@ -104,7 +111,7 @@
                 transform: rotate(-45deg);
                 transition: border-color 0.2s;
             }
-      
+
             &:hover,
             &:focus {
                 border-color: $color-warning;
@@ -112,13 +119,13 @@
                 &::before {
                     background-color: $color-warning;
                 }
-        
+
                 &::after {
                     border-color: $color-warning;
                 }
             }
         }
-      
+
         .slick-prev {
             right: 56%;
 
@@ -130,7 +137,7 @@
                 right: 120px;
             }
         }
-    
+
         .slick-next {
             right: 26%;
             transform: rotate(180deg);

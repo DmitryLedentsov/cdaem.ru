@@ -88,11 +88,11 @@ class PreviewAdvertBoard extends Widget
         }
 //        if ($this->advert->apartment->metroStation)
         //var_dump($this->advert->apartment->city->name);
-        $selected = $this->advert->selected ? ' selected' : '';
+        $selected = $this->advert->selected ? ' apartment-item-selected' : '';
         $contacts = $this->advert->apartment->open_contacts ? '<div class="contacts topper" title="Контакты открыты"></div>' : '';
 
         return ('<div class="apartment-card">
-                <div class="apartment-item">
+                <div class="apartment-item'. $selected. '">
                     <div class="apartment-image-block">
                         <!--<div class="apartment-price"><span class="apartment-price-value">'.$this->advert->priceText.'</span> / сут</div>-->
                         <div class="apartment-price apartment-price apartment-prices">'.$this->advert->priceText.' / 24ч</div>

@@ -1,3 +1,5 @@
+var $isFastPaymentLoaded;
+
 if (typeof $isFastPaymentLoaded !== 'undefined') {
     setFormDefaults();
 }
@@ -54,8 +56,6 @@ else {
             window.ajaxRequest($this, {
                 success: data => {
                     if (data.hasOwnProperty('status') && data.status === 'success') {
-                        // $('#main-modal').modal('hide');
-                        // window.toastSuccess(data.message, 'Оплата прошла успешно');
                         window.closeWindow();
                         window.toastSuccess('Оплата прошла успешно', 'Статус оплаты');
                         if (data.hasOwnProperty('funds')) {

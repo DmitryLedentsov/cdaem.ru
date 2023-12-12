@@ -16,12 +16,12 @@ use common\modules\partners\models\Service;
         <div class="load">
             <!--
             <?php try {
-    $service = Yii::$app->service->load($service);
-    echo Html::tag('p', '<b>' . $service->getName() . '</b>', []); ?>
+            $service = Yii::$app->service->load($service);
+            echo Html::tag('p', '<b>' . $service->getName() . '</b>', []); ?>
             -->
-                <?php if ($service->getId() != Service::SERVICE_ADVERTISING_TOP_SLIDER): ?>
-                    <p style="margin-bottom: 1rem;">Выделено объектов: <b id="selected-advert-count">0</b></p>
-                <?php endif; ?>
+            <?php if ($service->getId() != Service::SERVICE_ADVERTISING_TOP_SLIDER): ?>
+                <p style="margin-bottom: 1rem;">Выделено объектов: <b id="selected-advert-count">0</b></p>
+            <?php endif; ?>
 
                 <?php if ($service->isTimeInterval()): ?>
                     <p style="margin: 15px 0">
@@ -66,6 +66,7 @@ use common\modules\partners\models\Service;
                     <p><br/></p>
                 <?php endif; ?>
 
+
                 <?php echo \common\modules\partners\widgets\frontend\RealtyObjectsByService\RealtyObjectsByService::widget([
                     'service' => $service->getId(),
                     'apartmentId' => $apartmentId,
@@ -81,70 +82,11 @@ use common\modules\partners\models\Service;
     </div>
 </div>
 
+<!--Если не подключать эту библиотеку, не будет проходить повторная инициализация datepicker при выборе параметров услуги-->
+<script type="text/javascript" src="/_new/vendor/datetimepicker/bootstrap-datetimepicker.min.js"></script>
 <script>
-    function initSelectPicker() {
-        /**
-         * Кастомные селекты
-         */
-        $('.select-orange').selectpicker({ // TypeError: $(...).selectpicker is not a function
-            style: 'btn-orange',
-            liveSearch: false,
-            maxOptions: 1,
-            showIcon: false,
-            showContent: false,
-            iconBase: '',
-            tickIcon: ''
-        });
-
-        $('.select-pinkround').selectpicker({
-            style: 'btn-pinkround',
-            liveSearch: false,
-            maxOptions: 1,
-            showIcon: false,
-            showContent: false,
-            iconBase: '',
-            tickIcon: ''
-        });
-
-        $('.select-darkgray').selectpicker({
-            style: 'btn-darkgray',
-            liveSearch: false,
-            maxOptions: 1,
-            showIcon: false,
-            showContent: false,
-            iconBase: '',
-            tickIcon: ''
-        });
-
-        $('.select-primary').selectpicker({
-            style: 'btn-primary',
-            liveSearch: false,
-            maxOptions: 1,
-            showIcon: false,
-            showContent: false,
-            iconBase: '',
-            tickIcon: ''
-        });
-
-        $('.select-white').selectpicker({
-            style: 'btn-white',
-            liveSearch: false,
-            maxOptions: 1,
-            showIcon: false,
-            showContent: false,
-            iconBase: '',
-            tickIcon: ''
-        });
-    }
-
     // Если не пробрасывать $, то слетает фукнция $('.datepicker').datetimepicker
     function refreshScripts($) {
-        $('.modal .bootstrap-select').remove();
-
-        // if ($('.select-white').length) {
-            // initSelectPicker(); //TypeError: $(...).selectpicker is not a function
-        // }
-
         if ($('.datepicker').length) {
             $('.datepicker').datetimepicker({
                 format: 'DD.MM.YYYY',
@@ -168,8 +110,6 @@ use common\modules\partners\models\Service;
                 $(ev.currentTarget).parent().find('a[data-action=clear]').html('Сбросить').addClass('clear');
             });
         }
-
     }
-    // refreshScripts($);
-    refreshScripts(jQuery);
+    refreshScripts($);
 </script>
