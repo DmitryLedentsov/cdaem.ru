@@ -166,6 +166,7 @@
             <div class="modal-body">
                 {% set isFromAraptmentPage = true %}
                 {% set advert_id = model.advert_id %}
+                {% set isFromAraptmentPage = false %}
                 {% include('@common/modules/partners/views/frontend/reservation/reservation-form.twig') %}
             </div>
             <div class="modal-footer modal-bottom">
