@@ -254,6 +254,7 @@ return [
             'map',
             'geo/default/index',
             'geo/map',
+            'geo/apartment',
             'geo/nearest-stations',
             'partners/default/region',
             'partners/default/view',
